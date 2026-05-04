@@ -1,0 +1,17 @@
+{
+  "name": "Gatis Design",
+  "short_name": "Gatis Design",
+  "description": "Brand identity ar 18 gadu pieredzi.",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#FAFAFA",
+  "background_color": "#FAFAFA",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
+}
