@@ -14,7 +14,8 @@ export default defineConfig(({ command, isSsrBuild }) => ({
     react(),
     sitemap({
       hostname: "https://gatisdesign.com",
-      dynamicRoutes: ["/", "/portfolio", "/par-mani", "/kontakti", "/privatuma-politika"],
+      dynamicRoutes: ["/portfolio", "/par-mani", "/kontakti", "/privatuma-politika"],
+      exclude: ["/404"],
     }),
   ],
   resolve: {
