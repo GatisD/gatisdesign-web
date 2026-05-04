@@ -60,20 +60,38 @@ export default function Index() {
         {/* Asimetrisks 3-image grid: 1 lielais kreisajā, 2 vertikāli sakrauti labajā */}
         <FadeInOnScroll delay={0.5} className="relative grid grid-cols-2 gap-3 md:gap-4 h-[400px] md:h-[500px]">
           <div className="relative overflow-hidden bg-secondary border border-border">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="font-display text-5xl text-foreground/10">01</span>
-            </div>
+            <img
+              src="/portfolio/box-latvia.jpg"
+              alt="Box Latvia — brand identity"
+              className="w-full h-full object-cover"
+              loading="eager"
+              decoding="async"
+              width={1539}
+              height={1203}
+            />
           </div>
           <div className="grid grid-rows-2 gap-3 md:gap-4 h-full">
             <div className="relative overflow-hidden bg-secondary border border-border">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="font-display text-3xl text-foreground/10">02</span>
-              </div>
+              <img
+                src="/portfolio/apmekle.jpg"
+                alt="Apmekle.lv — brand identity"
+                className="w-full h-full object-cover"
+                loading="eager"
+                decoding="async"
+                width={606}
+                height={474}
+              />
             </div>
             <div className="relative overflow-hidden bg-secondary border border-border">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="font-display text-3xl text-foreground/10">03</span>
-              </div>
+              <img
+                src="/portfolio/web-design.jpg"
+                alt="Web design kolekcija"
+                className="w-full h-full object-cover"
+                loading="eager"
+                decoding="async"
+                width={1985}
+                height={1552}
+              />
             </div>
           </div>
         </FadeInOnScroll>
@@ -143,11 +161,23 @@ export default function Index() {
                       work.aspect === "4/5" ? "aspect-[4/5]" : work.aspect === "square" ? "aspect-square" : "aspect-[4/3]"
                     }`}
                   >
-                    <div className="w-full h-full flex items-center justify-center">
-                      <span className="font-display font-bold text-4xl md:text-5xl text-foreground/15 text-center px-6">
-                        {work.name}
-                      </span>
-                    </div>
+                    {work.cover ? (
+                      <img
+                        src={work.cover}
+                        alt={`${work.name} — ${work.category}`}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        loading="lazy"
+                        decoding="async"
+                        width={800}
+                        height={600}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <span className="font-display font-bold text-4xl md:text-5xl text-foreground/15 text-center px-6">
+                          {work.name}
+                        </span>
+                      </div>
+                    )}
                   </div>
                   <span className="eyebrow text-muted-foreground">{work.category}</span>
                   <h3 className="font-display text-xl md:text-2xl font-semibold mt-2 group-hover:text-accent transition-colors">
