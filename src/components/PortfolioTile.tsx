@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import HoverLift from "./animations/HoverLift";
 import type { PortfolioWork } from "@/data/portfolio";
@@ -26,10 +27,11 @@ export default function PortfolioTile({ work }: Props) {
 
   return (
     <article className="w-full">
-      <HoverLift>
-        <div
-          className={`relative overflow-hidden bg-secondary border border-border ${aspect} group cursor-pointer`}
-        >
+      <Link to={`/portfolio/${work.slug}`} className="block group">
+        <HoverLift>
+          <div
+            className={`relative overflow-hidden bg-secondary border border-border ${aspect}`}
+          >
           {/* Placeholder while no cover image yet */}
           {work.cover ? (
             <img
@@ -58,17 +60,18 @@ export default function PortfolioTile({ work }: Props) {
               <ArrowUpRight size={14} aria-hidden="true" />
             </div>
           </div>
+          </div>
+        </HoverLift>
+        <div className="mt-4">
+          <span className="eyebrow text-muted-foreground">{work.category}</span>
+          <h3 className="font-display text-lg md:text-xl font-semibold mt-1 group-hover:text-accent transition-colors">
+            {work.name}
+          </h3>
+          {work.caption && (
+            <p className="text-sm text-muted-foreground mt-1">{work.caption}</p>
+          )}
         </div>
-      </HoverLift>
-      <div className="mt-4">
-        <span className="eyebrow text-muted-foreground">{work.category}</span>
-        <h3 className="font-display text-lg md:text-xl font-semibold mt-1 group-hover:text-accent transition-colors">
-          {work.name}
-        </h3>
-        {work.caption && (
-          <p className="text-sm text-muted-foreground mt-1">{work.caption}</p>
-        )}
-      </div>
+      </Link>
     </article>
   );
 }

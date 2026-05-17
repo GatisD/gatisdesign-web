@@ -1,6 +1,7 @@
 import type { RouteRecord } from "vite-react-ssg";
 import Layout from "@/components/Layout";
 import Index from "./pages/Index";
+import { portfolioWorks } from "@/data/portfolio";
 
 export const routes: RouteRecord[] = [
   {
@@ -13,6 +14,12 @@ export const routes: RouteRecord[] = [
         path: "portfolio",
         lazy: () => import("./pages/Portfolio").then((m) => ({ Component: m.default })),
         entry: "src/pages/Portfolio.tsx",
+      },
+      {
+        path: "portfolio/:slug",
+        lazy: () => import("./pages/CollectionDetail").then((m) => ({ Component: m.default })),
+        entry: "src/pages/CollectionDetail.tsx",
+        getStaticPaths: () => portfolioWorks.map((w) => `/portfolio/${w.slug}`),
       },
       {
         path: "par-mani",

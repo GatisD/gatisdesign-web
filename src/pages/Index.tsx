@@ -59,40 +59,52 @@ export default function Index() {
 
         {/* Asimetrisks 3-image grid: 1 lielais kreisajā, 2 vertikāli sakrauti labajā */}
         <FadeInOnScroll delay={0.5} className="relative grid grid-cols-2 gap-3 md:gap-4 h-[400px] md:h-[500px]">
-          <div className="relative overflow-hidden bg-secondary border border-border">
+          <Link
+            to="/portfolio/box-latvia"
+            className="relative overflow-hidden bg-secondary border border-border group"
+            aria-label="Atvērt Box Latvia projekta lapu"
+          >
             <img
-              src="/portfolio/box-latvia.jpg"
+              src="/portfolio/box-latvia-cover.jpg"
               alt="Box Latvia — brand identity"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               loading="eager"
               decoding="async"
-              width={1539}
-              height={1203}
+              width={2000}
+              height={1500}
             />
-          </div>
+          </Link>
           <div className="grid grid-rows-2 gap-3 md:gap-4 h-full">
-            <div className="relative overflow-hidden bg-secondary border border-border">
+            <Link
+              to="/portfolio/apmekle"
+              className="relative overflow-hidden bg-secondary border border-border group"
+              aria-label="Atvērt Apmeklē.lv projekta lapu"
+            >
               <img
-                src="/portfolio/apmekle.jpg"
-                alt="Apmekle.lv — brand identity"
-                className="w-full h-full object-cover"
+                src="/portfolio/apmekle-cover.jpg"
+                alt="Apmeklē.lv — brand identity"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="eager"
                 decoding="async"
-                width={606}
-                height={474}
+                width={2000}
+                height={2000}
               />
-            </div>
-            <div className="relative overflow-hidden bg-secondary border border-border">
+            </Link>
+            <Link
+              to="/portfolio/digitalaisdzintars"
+              className="relative overflow-hidden bg-secondary border border-border group"
+              aria-label="Atvērt Digitālais Dzintars projekta lapu"
+            >
               <img
-                src="/portfolio/web-design.jpg"
-                alt="Web design kolekcija"
-                className="w-full h-full object-cover"
+                src="/portfolio/digitalaisdzintars-cover.jpg"
+                alt="Digitālais Dzintars — brand identity"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="eager"
                 decoding="async"
-                width={1985}
-                height={1552}
+                width={2000}
+                height={2500}
               />
-            </div>
+            </Link>
           </div>
         </FadeInOnScroll>
       </section>
@@ -150,12 +162,12 @@ export default function Index() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-12 gap-y-12 md:gap-y-20">
           {featured.map((work, i) => (
             <FadeInOnScroll
-              key={work.id}
+              key={work.slug}
               delay={i * 0.08}
               className={i % 2 === 1 ? "md:mt-12" : i === 2 ? "md:-mt-12" : ""}
             >
               <HoverLift>
-                <Link to="/portfolio" className="block group">
+                <Link to={`/portfolio/${work.slug}`} className="block group">
                   <div
                     className={`overflow-hidden bg-secondary border border-border mb-5 ${
                       work.aspect === "4/5" ? "aspect-[4/5]" : work.aspect === "square" ? "aspect-square" : "aspect-[4/3]"

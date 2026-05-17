@@ -68,14 +68,12 @@ export default function Portfolio() {
         <div className="grid grid-cols-4 md:grid-cols-12 gap-4 md:gap-6">
           {filtered.map((work, i) => (
             <FadeInOnScroll
-              key={work.id}
+              key={work.slug}
               delay={(i % 4) * 0.08}
               className={`col-span-4 ${
                 work.span === 8 ? "md:col-span-8" : work.span === 6 ? "md:col-span-6" : "md:col-span-4"
               }`}
             >
-              {/* PortfolioTile applies its own col-span via prop, but we already wrap.
-                  To avoid double-span, we render inline tile body here. */}
               <PortfolioTile work={work} />
             </FadeInOnScroll>
           ))}
