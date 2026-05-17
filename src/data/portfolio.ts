@@ -44,7 +44,7 @@ export const portfolioWorks: PortfolioWork[] = [
  caption: "Brand identity loģistikas zīmolam",
  description:
  "Pilna brand identity sistēma Box Latvia loģistikas servisam - logo, transportlīdzekļu marķējums, drukas materiāli un digitālā prezentācija. Vizuālā valoda balstīta uz dinamisku oranžu kontrastā ar tumšu virsmu, lai zīmols būtu pamanāms gan uz ceļa, gan ekrānā.",
- cover: "/portfolio/box-latvia-cover.jpg",
+ cover: "/portfolio/box-latvia-cover-43.jpg",
  aspect: "4/3",
  span: 8,
  gallery: gallery("box-latvia", 11),
@@ -58,7 +58,7 @@ export const portfolioWorks: PortfolioWork[] = [
  caption: "Pakalpojumu ekosistēmas zīmols",
  description:
  "Apmeklē.lv ir Latvijā veidota pakalpojumu platforma. Identitāte ir minimālistiska, ar piktogrammu, kas atspoguļo platformas filozofiju - viegli pieejama palīdzība ikdienā. Zaļā akcenta krāsa simbolizē pieejamību un drošību.",
- cover: "/portfolio/apmekle-cover.jpg",
+ cover: "/portfolio/apmekle-cover-sq.jpg",
  aspect: "square",
  span: 4,
  gallery: gallery("apmekle", 9),
@@ -72,7 +72,7 @@ export const portfolioWorks: PortfolioWork[] = [
  caption: "Liepājas kultūras zīmola atjaunošana",
  description:
  "Digitālais Dzintars ir Liepājas pilsētas digitālā kultūras platforma. Zīmola atjaunošana savieno klasisko Liepājas dzintara mantojumu ar mūsdienīgu digitālo estētiku. Plakāti, afišas un identitātes elementi atspoguļo gan kultūras dziļumu, gan tehnoloģisko progresu.",
- cover: "/portfolio/digitalaisdzintars-cover.jpg",
+ cover: "/portfolio/digitalaisdzintars-cover-45.jpg",
  aspect: "4/5",
  span: 4,
  gallery: gallery("digitalaisdzintars", 16),
@@ -88,7 +88,7 @@ export const portfolioWorks: PortfolioWork[] = [
  caption: "Atlasītie logo un brand identity darbi",
  description:
  "18 gadu darbā tapuši logo un brand identity projekti dažādās nozarēs - no maziem latviešu uzņēmumiem līdz starptautiskām markām. Šī ir atlasīta kolekcija - vairāk nekā 50 darbi, kas atspoguļo dažādus stilus, pieejas un risinājumus.",
- cover: "/portfolio/logo-branding-cover.jpg",
+ cover: "/portfolio/logo-branding-cover-sq.jpg",
  aspect: "square",
  span: 4,
  gallery: gallery("logo-branding", 51),
@@ -102,7 +102,7 @@ export const portfolioWorks: PortfolioWork[] = [
  caption: "Mājaslapas un digitālie produkti",
  description:
  "Mājaslapas, kas strādā - gan vizuāli, gan biznesa rezultātos. Pievērst uzmanību lietojamībai (UX), tehniskajai veiktspējai (Core Web Vitals) un meklētājprogrammu optimizācijai (SEO). Šeit atlasīti darbi no dažādām nozarēm.",
- cover: "/portfolio/web-design-cover.jpg",
+ cover: "/portfolio/web-design-cover-43.jpg",
  aspect: "4/3",
  span: 8,
  gallery: gallery("web-design", 3),
@@ -116,7 +116,7 @@ export const portfolioWorks: PortfolioWork[] = [
  caption: "Pielāgotas ilustrācijas zīmoliem",
  description:
  "Ilustrāciju kolekcija - no produktu ikonām un t-kreklu drukām līdz pilnām zīmolu ilustrāciju sistēmām. Raksturīgs stils - drosmīgs, ekspresīvs un personīgs.",
- cover: "/portfolio/illustrations-cover.jpg",
+ cover: "/portfolio/illustrations-cover-sq.jpg",
  aspect: "square",
  span: 4,
  gallery: gallery("illustrations", 8),
@@ -130,7 +130,7 @@ export const portfolioWorks: PortfolioWork[] = [
  caption: "Drukai veidoti dizaini",
  description:
  "Plakāti, afišas, bukleti un drukas materiāli. Drukas dizainā svarīgi visi detali - no tipogrāfijas līdz papīra izvēlei. Šajā kolekcijā atlasīti darbi, kas izdzīvojuši laika pārbaudi.",
- cover: "/portfolio/print-cover.jpg",
+ cover: "/portfolio/print-cover-45.jpg",
  aspect: "4/5",
  span: 4,
  gallery: gallery("print", 5),
