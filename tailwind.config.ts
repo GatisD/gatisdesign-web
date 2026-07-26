@@ -25,8 +25,7 @@ export default {
         /*
          * Vecās gaišās paletes atlikums. Palikuši tikai tie, ko reāli lieto kāds
          * fails: border (globālais noklusējums), background/foreground (body,
-         * Layout, sonner, privātuma politikas lapa), muted (sonner, privātuma
-         * politikas lapa) un popover (shadcn tooltip).
+         * Layout, sonner), muted (sonner) un popover (shadcn tooltip).
          */
         border: "hsl(var(--border))",
         background: "hsl(var(--background))",

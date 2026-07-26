@@ -12,12 +12,12 @@
 
 @layer base {
  /*
-  * Vecās gaišās paletes atlikums. Lapu dizains ir tumšais vara slānis
-  * (src/styles/tokens.css), tāpēc te palikuši tikai tie mainīgie, ko reāli lieto
-  * kāds fails:
-  * --background, --foreground - body un Layout ietvars, sonner toasts,
-  * privātuma politikas lapa, kas vēl ir gaišā dizainā;
-  * --muted, --muted-foreground - sonner toasts un privātuma politikas lapa;
+  * Vecās gaišās paletes atlikums. Visas lapas (arī privātuma politika un 404)
+  * tagad ir tumšajā vara slānī (src/styles/tokens.css), tāpēc te palikuši
+  * tikai tie mainīgie, ko reāli lieto kāds fails:
+  * --background, --foreground - body un Layout ietvars (redzami tikai zibsnī
+  * pirms lapas savu bg-ink-900 uzliek), sonner toasts;
+  * --muted, --muted-foreground - sonner toasts;
   * --popover, --popover-foreground - shadcn tooltip (src/components/ui/tooltip.tsx);
   * --border - globālais robežas krāsas noklusējums.
   * Pārējie (card, primary, secondary, destructive, accent, input, ring, surface,
@@ -63,28 +63,6 @@
  transition-duration: 0.01ms !important;
  scroll-behavior: auto !important;
  }
- }
-}
-
-@layer components {
- /*
-  * Vecās gaišās tipogrāfijas atlikums. Vajadzīgs vienīgi privātuma politikas
-  * lapai (src/pages/PrivatumaPolitika.tsx), kas vēl nav pārtaisīta tumšajā
-  * dizainā. Pārējās lapas raksta izmērus tieši klasēs, tāpēc .h1-hero,
-  * .orange-dot, .hover-underline, .input-underline un .grayscale-soft ir izņemti.
-  */
- .h2-editorial {
- @apply font-display font-semibold;
- font-size: clamp(32px, 5vw, 56px);
- line-height: 1.05;
- letter-spacing: -0.02em;
- }
- .eyebrow {
- font-family: var(--font-sans);
- text-transform: uppercase;
- font-size: 12px;
- font-weight: 500;
- letter-spacing: 0.1em;
  }
 }
 
