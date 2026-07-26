@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useLocation, Outlet } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { LocaleProvider } from "@/i18n/LocaleContext";
@@ -10,8 +9,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 import SmoothScroll from "./SmoothScroll";
 import CookieBanner from "./CookieBanner";
-
-const queryClient = new QueryClient();
 
 function ScrollToTopOnNav() {
   const { pathname } = useLocation();
@@ -34,21 +31,19 @@ export default function Layout({ locale }: { locale: Locale }) {
       >
         {dict[locale].nav.skipToContent}
       </a>
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <SmoothScroll />
-          <div className="min-h-screen flex flex-col bg-background text-foreground">
-            <ScrollToTopOnNav />
-            <Header />
-            <main id="saturs" className="flex-1 flex flex-col pt-20 md:pt-24">
-              <Outlet />
-            </main>
-            <Footer />
-            <CookieBanner />
-          </div>
-          <Sonner />
-        </TooltipProvider>
-      </QueryClientProvider>
+      <TooltipProvider>
+        <SmoothScroll />
+        <div className="min-h-screen flex flex-col bg-background text-foreground">
+          <ScrollToTopOnNav />
+          <Header />
+          <main id="saturs" className="flex-1 flex flex-col pt-20 md:pt-24">
+            <Outlet />
+          </main>
+          <Footer />
+          <CookieBanner />
+        </div>
+        <Sonner />
+      </TooltipProvider>
     </LocaleProvider>
   );
 }

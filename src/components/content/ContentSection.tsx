@@ -1,5 +1,7 @@
 import Kicker from "@/components/ui/Kicker";
+import LinkedEmail from "./LinkedEmail";
 import PriceTable from "./PriceTable";
+import StepFlow from "./StepFlow";
 import type { ContentSectionData } from "@/content/types";
 
 type Props = {
@@ -34,10 +36,14 @@ export default function ContentSection({ section, index }: Props) {
         <div className="space-y-5 text-paper-2">
           {section.body.map((paragraph) => (
             <p key={paragraph.slice(0, 48)} className="max-w-[68ch]">
-              {paragraph}
+              <LinkedEmail text={paragraph} />
             </p>
           ))}
         </div>
+
+        {section.steps ? (
+          <StepFlow steps={section.steps} className="mt-[clamp(24px,3vw,36px)]" />
+        ) : null}
 
         {section.bullets ? (
           <ul className="mt-[clamp(22px,2.6vw,34px)] max-w-[70ch] border-b border-line">
@@ -47,7 +53,9 @@ export default function ContentSection({ section, index }: Props) {
                 className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-x-4 border-t border-line py-4 text-paper-2"
               >
                 <span aria-hidden="true" className="mt-[0.62em] block h-[6px] w-[6px] rounded-full bg-amber" />
-                <span>{bullet}</span>
+                <span>
+                  <LinkedEmail text={bullet} />
+                </span>
               </li>
             ))}
           </ul>

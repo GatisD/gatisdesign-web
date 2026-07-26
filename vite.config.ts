@@ -79,21 +79,15 @@ export default defineConfig(({ command, isSsrBuild }) => ({
       output: isSsrBuild
         ? {}
         : {
+            // Katrai atslēgai šeit jābūt reāli instalētai un importētai pakotnei -
+            // Rollup krīt, ja manualChunks norāda uz moduli, kura grafā nav.
+            // No shadcn mantojuma palicis tikai @radix-ui/react-tooltip (viena maza
+            // pakotne), tāpēc atsevišķs radix gabals vairs nav vajadzīgs.
             manualChunks: {
               "react-vendor": ["react", "react-dom", "react-router-dom"],
-              "ui-radix": [
-                "@radix-ui/react-dialog",
-                "@radix-ui/react-dropdown-menu",
-                "@radix-ui/react-popover",
-                "@radix-ui/react-select",
-                "@radix-ui/react-toast",
-                "@radix-ui/react-tooltip",
-                "@radix-ui/react-slot",
-              ],
               motion: ["framer-motion", "lenis"],
               form: ["react-hook-form", "@hookform/resolvers", "zod"],
               icons: ["lucide-react"],
-              query: ["@tanstack/react-query"],
             },
           },
     },

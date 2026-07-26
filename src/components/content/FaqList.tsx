@@ -1,3 +1,4 @@
+import LinkedEmail from "./LinkedEmail";
 import type { FaqItem } from "@/content/types";
 
 /**
@@ -17,7 +18,9 @@ export default function FaqList({ items }: { items: FaqItem[] }) {
           <dt className="max-w-[28ch] text-[clamp(1.08rem,1.7vw,1.35rem)] font-medium leading-snug tracking-[-0.022em] text-paper">
             {item.q}
           </dt>
-          <dd className="m-0 max-w-[64ch] text-paper-dim">{item.a}</dd>
+          <dd className="m-0 max-w-[64ch] text-paper-dim">
+            <LinkedEmail text={item.a} />
+          </dd>
         </div>
       ))}
     </dl>
