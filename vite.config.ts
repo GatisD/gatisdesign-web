@@ -14,6 +14,7 @@ export default defineConfig(({ command, isSsrBuild }) => ({
     react(),
     sitemap({
       hostname: "https://gatisdesign.com",
+      generateRobotsTxt: false,
       dynamicRoutes: [
         "/portfolio",
         "/par-mani",
