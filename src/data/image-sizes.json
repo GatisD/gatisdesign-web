@@ -1,0 +1,646 @@
+{
+  "/portfolio/apmekle-cover-169.jpg": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/portfolio/apmekle-cover-43.jpg": {
+    "width": 1600,
+    "height": 1200
+  },
+  "/portfolio/apmekle-cover-45.jpg": {
+    "width": 1280,
+    "height": 1600
+  },
+  "/portfolio/apmekle-cover-sq.jpg": {
+    "width": 1400,
+    "height": 1400
+  },
+  "/portfolio/apmekle-cover.jpg": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/portfolio/apmekle.jpg": {
+    "width": 606,
+    "height": 474
+  },
+  "/portfolio/apmekle/apmekle-01.jpg": {
+    "width": 1600,
+    "height": 900
+  },
+  "/portfolio/apmekle/apmekle-02.jpg": {
+    "width": 1600,
+    "height": 900
+  },
+  "/portfolio/apmekle/apmekle-03.jpg": {
+    "width": 1600,
+    "height": 900
+  },
+  "/portfolio/apmekle/apmekle-04.jpg": {
+    "width": 1600,
+    "height": 900
+  },
+  "/portfolio/apmekle/apmekle-05.jpg": {
+    "width": 1600,
+    "height": 900
+  },
+  "/portfolio/apmekle/apmekle-06.jpg": {
+    "width": 1600,
+    "height": 900
+  },
+  "/portfolio/apmekle/apmekle-07.jpg": {
+    "width": 1600,
+    "height": 900
+  },
+  "/portfolio/apmekle/apmekle-08.jpg": {
+    "width": 1600,
+    "height": 1916
+  },
+  "/portfolio/apmekle/apmekle-09.jpg": {
+    "width": 1600,
+    "height": 1916
+  },
+  "/portfolio/box-latvia-cover-169.jpg": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/portfolio/box-latvia-cover-43.jpg": {
+    "width": 1600,
+    "height": 1200
+  },
+  "/portfolio/box-latvia-cover-45.jpg": {
+    "width": 1280,
+    "height": 1600
+  },
+  "/portfolio/box-latvia-cover-sq.jpg": {
+    "width": 1400,
+    "height": 1400
+  },
+  "/portfolio/box-latvia-cover.jpg": {
+    "width": 1920,
+    "height": 1336
+  },
+  "/portfolio/box-latvia.jpg": {
+    "width": 1539,
+    "height": 1203
+  },
+  "/portfolio/box-latvia/box-latvia-01.jpg": {
+    "width": 1600,
+    "height": 1113
+  },
+  "/portfolio/box-latvia/box-latvia-02.jpg": {
+    "width": 1600,
+    "height": 1066
+  },
+  "/portfolio/box-latvia/box-latvia-03.jpg": {
+    "width": 1600,
+    "height": 1066
+  },
+  "/portfolio/box-latvia/box-latvia-04.jpg": {
+    "width": 1600,
+    "height": 1066
+  },
+  "/portfolio/box-latvia/box-latvia-05.jpg": {
+    "width": 1600,
+    "height": 1200
+  },
+  "/portfolio/box-latvia/box-latvia-06.jpg": {
+    "width": 1600,
+    "height": 1066
+  },
+  "/portfolio/box-latvia/box-latvia-07.jpg": {
+    "width": 1600,
+    "height": 1066
+  },
+  "/portfolio/box-latvia/box-latvia-08.jpg": {
+    "width": 1600,
+    "height": 1142
+  },
+  "/portfolio/box-latvia/box-latvia-09.jpg": {
+    "width": 1600,
+    "height": 1600
+  },
+  "/portfolio/box-latvia/box-latvia-10.jpg": {
+    "width": 1600,
+    "height": 1200
+  },
+  "/portfolio/box-latvia/box-latvia-11.jpg": {
+    "width": 1600,
+    "height": 1066
+  },
+  "/portfolio/digitalaisdzintars-cover-169.jpg": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/portfolio/digitalaisdzintars-cover-43.jpg": {
+    "width": 1600,
+    "height": 1200
+  },
+  "/portfolio/digitalaisdzintars-cover-45.jpg": {
+    "width": 1280,
+    "height": 1600
+  },
+  "/portfolio/digitalaisdzintars-cover-sq.jpg": {
+    "width": 1400,
+    "height": 1400
+  },
+  "/portfolio/digitalaisdzintars-cover.jpg": {
+    "width": 1920,
+    "height": 1358
+  },
+  "/portfolio/digitalaisdzintars.jpg": {
+    "width": 365,
+    "height": 285
+  },
+  "/portfolio/digitalaisdzintars/digitalaisdzintars-01.jpg": {
+    "width": 1600,
+    "height": 1131
+  },
+  "/portfolio/digitalaisdzintars/digitalaisdzintars-02.jpg": {
+    "width": 1600,
+    "height": 565
+  },
+  "/portfolio/digitalaisdzintars/digitalaisdzintars-03.jpg": {
+    "width": 1600,
+    "height": 565
+  },
+  "/portfolio/digitalaisdzintars/digitalaisdzintars-04.jpg": {
+    "width": 1600,
+    "height": 565
+  },
+  "/portfolio/digitalaisdzintars/digitalaisdzintars-05.jpg": {
+    "width": 1600,
+    "height": 565
+  },
+  "/portfolio/digitalaisdzintars/digitalaisdzintars-06.jpg": {
+    "width": 1600,
+    "height": 566
+  },
+  "/portfolio/digitalaisdzintars/digitalaisdzintars-07.jpg": {
+    "width": 1600,
+    "height": 565
+  },
+  "/portfolio/digitalaisdzintars/digitalaisdzintars-08.jpg": {
+    "width": 1600,
+    "height": 565
+  },
+  "/portfolio/digitalaisdzintars/digitalaisdzintars-09.jpg": {
+    "width": 1600,
+    "height": 565
+  },
+  "/portfolio/digitalaisdzintars/digitalaisdzintars-10.jpg": {
+    "width": 1600,
+    "height": 566
+  },
+  "/portfolio/digitalaisdzintars/digitalaisdzintars-11.jpg": {
+    "width": 1600,
+    "height": 565
+  },
+  "/portfolio/digitalaisdzintars/digitalaisdzintars-12.jpg": {
+    "width": 1600,
+    "height": 566
+  },
+  "/portfolio/digitalaisdzintars/digitalaisdzintars-13.jpg": {
+    "width": 1600,
+    "height": 566
+  },
+  "/portfolio/digitalaisdzintars/digitalaisdzintars-14.jpg": {
+    "width": 1600,
+    "height": 566
+  },
+  "/portfolio/digitalaisdzintars/digitalaisdzintars-15.jpg": {
+    "width": 1600,
+    "height": 566
+  },
+  "/portfolio/digitalaisdzintars/digitalaisdzintars-16.jpg": {
+    "width": 1600,
+    "height": 566
+  },
+  "/portfolio/illustrations-cover-169.jpg": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/portfolio/illustrations-cover-43.jpg": {
+    "width": 1600,
+    "height": 1200
+  },
+  "/portfolio/illustrations-cover-45.jpg": {
+    "width": 1280,
+    "height": 1600
+  },
+  "/portfolio/illustrations-cover-sq.jpg": {
+    "width": 1400,
+    "height": 1400
+  },
+  "/portfolio/illustrations-cover.jpg": {
+    "width": 1100,
+    "height": 1100
+  },
+  "/portfolio/illustrations.jpg": {
+    "width": 450,
+    "height": 352
+  },
+  "/portfolio/illustrations/illustrations-01.jpg": {
+    "width": 1100,
+    "height": 1100
+  },
+  "/portfolio/illustrations/illustrations-02.jpg": {
+    "width": 1100,
+    "height": 1100
+  },
+  "/portfolio/illustrations/illustrations-03.jpg": {
+    "width": 1080,
+    "height": 1920
+  },
+  "/portfolio/illustrations/illustrations-04.jpg": {
+    "width": 1200,
+    "height": 900
+  },
+  "/portfolio/illustrations/illustrations-05.jpg": {
+    "width": 1100,
+    "height": 1100
+  },
+  "/portfolio/illustrations/illustrations-06.jpg": {
+    "width": 1100,
+    "height": 1100
+  },
+  "/portfolio/illustrations/illustrations-07.jpg": {
+    "width": 1100,
+    "height": 1100
+  },
+  "/portfolio/illustrations/illustrations-08.jpg": {
+    "width": 1600,
+    "height": 1635
+  },
+  "/portfolio/logo-branding-cover-169.jpg": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/portfolio/logo-branding-cover-43.jpg": {
+    "width": 1600,
+    "height": 1200
+  },
+  "/portfolio/logo-branding-cover-45.jpg": {
+    "width": 1280,
+    "height": 1600
+  },
+  "/portfolio/logo-branding-cover-sq.jpg": {
+    "width": 1400,
+    "height": 1400
+  },
+  "/portfolio/logo-branding-cover.jpg": {
+    "width": 1497,
+    "height": 1497
+  },
+  "/portfolio/logo-branding.png": {
+    "width": 1330,
+    "height": 1039
+  },
+  "/portfolio/logo-branding/logo-branding-01.jpg": {
+    "width": 1497,
+    "height": 1497
+  },
+  "/portfolio/logo-branding/logo-branding-02.jpg": {
+    "width": 500,
+    "height": 500
+  },
+  "/portfolio/logo-branding/logo-branding-03.jpg": {
+    "width": 500,
+    "height": 500
+  },
+  "/portfolio/logo-branding/logo-branding-04.jpg": {
+    "width": 1134,
+    "height": 2298
+  },
+  "/portfolio/logo-branding/logo-branding-05.jpg": {
+    "width": 1500,
+    "height": 1500
+  },
+  "/portfolio/logo-branding/logo-branding-06.jpg": {
+    "width": 500,
+    "height": 500
+  },
+  "/portfolio/logo-branding/logo-branding-07.jpg": {
+    "width": 500,
+    "height": 500
+  },
+  "/portfolio/logo-branding/logo-branding-08.jpg": {
+    "width": 500,
+    "height": 500
+  },
+  "/portfolio/logo-branding/logo-branding-09.jpg": {
+    "width": 1330,
+    "height": 2048
+  },
+  "/portfolio/logo-branding/logo-branding-10.jpg": {
+    "width": 1134,
+    "height": 1146
+  },
+  "/portfolio/logo-branding/logo-branding-11.jpg": {
+    "width": 965,
+    "height": 960
+  },
+  "/portfolio/logo-branding/logo-branding-12.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-13.jpg": {
+    "width": 500,
+    "height": 500
+  },
+  "/portfolio/logo-branding/logo-branding-14.jpg": {
+    "width": 500,
+    "height": 500
+  },
+  "/portfolio/logo-branding/logo-branding-15.jpg": {
+    "width": 1600,
+    "height": 1062
+  },
+  "/portfolio/logo-branding/logo-branding-16.jpg": {
+    "width": 1500,
+    "height": 1500
+  },
+  "/portfolio/logo-branding/logo-branding-17.jpg": {
+    "width": 500,
+    "height": 500
+  },
+  "/portfolio/logo-branding/logo-branding-18.jpg": {
+    "width": 1497,
+    "height": 1499
+  },
+  "/portfolio/logo-branding/logo-branding-19.jpg": {
+    "width": 500,
+    "height": 500
+  },
+  "/portfolio/logo-branding/logo-branding-20.jpg": {
+    "width": 1500,
+    "height": 1500
+  },
+  "/portfolio/logo-branding/logo-branding-21.jpg": {
+    "width": 500,
+    "height": 500
+  },
+  "/portfolio/logo-branding/logo-branding-22.jpg": {
+    "width": 1024,
+    "height": 1021
+  },
+  "/portfolio/logo-branding/logo-branding-23.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-24.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-25.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-26.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-27.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-28.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-29.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-30.jpg": {
+    "width": 1024,
+    "height": 989
+  },
+  "/portfolio/logo-branding/logo-branding-31.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-32.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-33.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-34.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-35.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-36.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-37.jpg": {
+    "width": 1024,
+    "height": 677
+  },
+  "/portfolio/logo-branding/logo-branding-38.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-39.jpg": {
+    "width": 1500,
+    "height": 1500
+  },
+  "/portfolio/logo-branding/logo-branding-40.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-41.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-42.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-43.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-44.jpg": {
+    "width": 1024,
+    "height": 1024
+  },
+  "/portfolio/logo-branding/logo-branding-45.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-46.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-47.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-48.jpg": {
+    "width": 800,
+    "height": 800
+  },
+  "/portfolio/logo-branding/logo-branding-49.jpg": {
+    "width": 1500,
+    "height": 1500
+  },
+  "/portfolio/logo-branding/logo-branding-50.jpg": {
+    "width": 1497,
+    "height": 1492
+  },
+  "/portfolio/logo-branding/logo-branding-51.jpg": {
+    "width": 1497,
+    "height": 1498
+  },
+  "/portfolio/posters-flyers.jpg": {
+    "width": 981,
+    "height": 766
+  },
+  "/portfolio/print-cover-169.jpg": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/portfolio/print-cover-43.jpg": {
+    "width": 1600,
+    "height": 1200
+  },
+  "/portfolio/print-cover-45.jpg": {
+    "width": 1280,
+    "height": 1600
+  },
+  "/portfolio/print-cover-sq.jpg": {
+    "width": 1400,
+    "height": 1400
+  },
+  "/portfolio/print-cover.jpg": {
+    "width": 1920,
+    "height": 1440
+  },
+  "/portfolio/print/print-01.jpg": {
+    "width": 1600,
+    "height": 1200
+  },
+  "/portfolio/print/print-02.jpg": {
+    "width": 1600,
+    "height": 1200
+  },
+  "/portfolio/print/print-03.jpg": {
+    "width": 1600,
+    "height": 1200
+  },
+  "/portfolio/print/print-04.jpg": {
+    "width": 1600,
+    "height": 933
+  },
+  "/portfolio/print/print-05.jpg": {
+    "width": 1600,
+    "height": 1200
+  },
+  "/portfolio/sites/110m2-cover.jpg": {
+    "width": 1200,
+    "height": 675
+  },
+  "/portfolio/sites/box-latvia-web-cover.jpg": {
+    "width": 1200,
+    "height": 675
+  },
+  "/portfolio/sites/cafeteria-cover.jpg": {
+    "width": 1200,
+    "height": 675
+  },
+  "/portfolio/sites/darbaguru-cover.jpg": {
+    "width": 1200,
+    "height": 675
+  },
+  "/portfolio/sites/estire-cover.jpg": {
+    "width": 1200,
+    "height": 675
+  },
+  "/portfolio/sites/forevolt-cover.jpg": {
+    "width": 1200,
+    "height": 675
+  },
+  "/portfolio/sites/green-bay-cover.jpg": {
+    "width": 1200,
+    "height": 675
+  },
+  "/portfolio/sites/kugi-kartupelis-cover.jpg": {
+    "width": 1200,
+    "height": 675
+  },
+  "/portfolio/sites/lauvas-zobs-cover.jpg": {
+    "width": 1200,
+    "height": 675
+  },
+  "/portfolio/sites/lucky-punch-cover.jpg": {
+    "width": 1200,
+    "height": 675
+  },
+  "/portfolio/sites/mebelu-montaza-cover.jpg": {
+    "width": 1200,
+    "height": 675
+  },
+  "/portfolio/sites/obsidian-cover.jpg": {
+    "width": 1200,
+    "height": 675
+  },
+  "/portfolio/sites/rois-lv-cover.jpg": {
+    "width": 1200,
+    "height": 675
+  },
+  "/portfolio/sites/universal-solutions-cover.jpg": {
+    "width": 1200,
+    "height": 675
+  },
+  "/portfolio/sites/valis-cover.jpg": {
+    "width": 1200,
+    "height": 675
+  },
+  "/portfolio/sites/varloz-cover.jpg": {
+    "width": 1200,
+    "height": 675
+  },
+  "/portfolio/web-design-cover-169.jpg": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/portfolio/web-design-cover-43.jpg": {
+    "width": 1600,
+    "height": 1200
+  },
+  "/portfolio/web-design-cover-45.jpg": {
+    "width": 1280,
+    "height": 1600
+  },
+  "/portfolio/web-design-cover-sq.jpg": {
+    "width": 1400,
+    "height": 1400
+  },
+  "/portfolio/web-design-cover.jpg": {
+    "width": 2000,
+    "height": 966
+  },
+  "/portfolio/web-design.jpg": {
+    "width": 1985,
+    "height": 1552
+  },
+  "/portfolio/web-design/web-design-01.jpg": {
+    "width": 1600,
+    "height": 773
+  },
+  "/portfolio/web-design/web-design-02.jpg": {
+    "width": 1600,
+    "height": 4708
+  },
+  "/portfolio/web-design/web-design-03.jpg": {
+    "width": 1600,
+    "height": 3943
+  }
+}

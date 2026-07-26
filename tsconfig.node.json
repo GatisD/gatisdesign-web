@@ -4,6 +4,8 @@
     "lib": ["ES2023"],
     "module": "ESNext",
     "skipLibCheck": true,
+    /* vite.config.ts sitemap ņem maršrutus no src/data/projects.ts, kas lasa JSON. */
+    "resolveJsonModule": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",

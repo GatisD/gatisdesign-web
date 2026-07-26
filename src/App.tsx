@@ -1,7 +1,7 @@
 import type { RouteRecord } from "vite-react-ssg";
 import Layout from "@/components/Layout";
 import Index from "./pages/Index";
-import { portfolioWorks } from "@/data/portfolio";
+import { projects } from "@/data/projects";
 import { LOCALES, ROUTES, type Locale } from "@/i18n/routes";
 
 /** Ceļš bez valodas prefiksa, jo bērnu maršruti ir relatīvi pret vecāku. */
@@ -42,10 +42,9 @@ function pagesFor(locale: Locale): RouteRecord[] {
     },
     {
       path: `${childPath(ROUTES.portfolio[locale], locale)}/:slug`,
-      lazy: () => import("./pages/CollectionDetail").then((m) => ({ Component: m.default })),
-      entry: "src/pages/CollectionDetail.tsx",
-      getStaticPaths: () =>
-        portfolioWorks.map((w) => `${ROUTES.portfolio[locale]}/${w.slug}`),
+      lazy: () => import("./pages/ProjectDetail").then((m) => ({ Component: m.default })),
+      entry: "src/pages/ProjectDetail.tsx",
+      getStaticPaths: () => projects.map((p) => `${ROUTES.portfolio[locale]}/${p.slug}`),
     },
     {
       path: childPath(ROUTES.about[locale], locale),

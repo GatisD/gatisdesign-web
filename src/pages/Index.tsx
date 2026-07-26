@@ -7,11 +7,11 @@ import Button from "@/components/ui/Button";
 import Kicker from "@/components/ui/Kicker";
 import SectionHead from "@/components/ui/SectionHead";
 import CountUp from "@/components/animations/CountUp";
-import PicturePortfolio from "@/components/PicturePortfolio";
+import ProjectTile from "@/components/ProjectTile";
 import { useLocale } from "@/i18n/LocaleContext";
 import { ROUTES, type RouteKey } from "@/i18n/routes";
 import { CONTACT_EMAIL, SITE_NAME, SITE_URL, SOCIAL } from "@/lib/site";
-import { portfolioWorks, type PortfolioWork } from "@/data/portfolio";
+import { featuredSlugs, projectBySlug, type Project } from "@/data/projects";
 import {
   aboutSection,
   contactSection,
@@ -128,27 +128,10 @@ const HERO_SPECS = [
 /**
  * Darbu izlase. home.json darbu sadaļā ir rakstīts "Šeit pieci darbi", tāpēc
  * flīžu ir tieši piecas. Otrā kolonna ir nobīdīta uz leju, kā konceptā.
+ * Slugi nāk no src/data/projects.ts, tur arī pārbaudīts, ka tie eksistē.
  */
-const WORKS_COLUMN_A = ["box-latvia", "digitalaisdzintars", "web-design"];
-const WORKS_COLUMN_B = ["apmekle", "logo-branding"];
-
-const bySlug = (slugs: string[]): PortfolioWork[] =>
-  slugs.map((slug) => portfolioWorks.find((w) => w.slug === slug)).filter(Boolean) as PortfolioWork[];
-
-const ASPECT_CLASS: Record<string, string> = {
-  square: "aspect-square",
-  "4/3": "aspect-[4/3]",
-  "4/5": "aspect-[4/5]",
-  "16/9": "aspect-[16/9]",
-};
-
-/** Vāku faktiskie izmēri (scripts/smart-covers.mjs) - vajadzīgi pret CLS. */
-const COVER_SIZE: Record<string, { width: number; height: number }> = {
-  square: { width: 1400, height: 1400 },
-  "4/3": { width: 1600, height: 1200 },
-  "4/5": { width: 1280, height: 1600 },
-  "16/9": { width: 1920, height: 1080 },
-};
+const bySlug = (slugs: string[]): Project[] =>
+  slugs.map((slug) => projectBySlug(slug)).filter(Boolean) as Project[];
 
 /* ------------------------------------------------------------------ *
  * Strukturētie dati
@@ -207,57 +190,6 @@ const homeServiceSchema = {
 const PAGE_TITLE = homeContent.metaTitle.replace(` - ${SITE_NAME} |`, " -");
 
 /* ------------------------------------------------------------------ *
- * Flīze
- * ------------------------------------------------------------------ */
-
-function WorkTile({ work, eager = false }: { work: PortfolioWork; eager?: boolean }) {
-  const { path } = useLocale();
-  const aspect = work.aspect ?? "4/3";
-  const size = COVER_SIZE[aspect] ?? COVER_SIZE["4/3"];
-
-  return (
-    <Link to={`${path("portfolio")}/${work.slug}`} className="reveal group block">
-      <span
-        className={cn(
-          "relative block overflow-hidden rounded-2xl border border-line bg-ink-800",
-          "transition-[transform,border-color,box-shadow] duration-500 [transition-timing-function:var(--ease)]",
-          "group-hover:-translate-y-[5px] group-hover:border-amber/40",
-          "group-hover:shadow-[0_36px_72px_-36px_rgba(0,0,0,.95)]",
-          ASPECT_CLASS[aspect],
-        )}
-      >
-        <PicturePortfolio
-          src={work.cover}
-          alt={`${work.name} - ${work.caption ?? "darba vāks"}`}
-          width={size.width}
-          height={size.height}
-          loading={eager ? "eager" : "lazy"}
-          decoding="async"
-          className="h-full w-full object-cover brightness-[0.93] saturate-[0.9] transition-[transform,filter] duration-700 [transition-timing-function:var(--ease)] group-hover:scale-105 group-hover:brightness-100 group-hover:saturate-100"
-        />
-      </span>
-
-      <span className="flex items-start justify-between gap-5 pt-4">
-        <span>
-          <span className="block text-[11px] uppercase tracking-[0.17em] text-paper-faint transition-colors duration-300 group-hover:text-amber">
-            {work.category}
-          </span>
-          <span className="mt-1.5 block text-[clamp(1.1rem,1.55vw,1.38rem)] tracking-[-0.028em] transition-colors duration-300 group-hover:text-amber-soft">
-            {work.name}
-          </span>
-        </span>
-        <span
-          aria-hidden="true"
-          className="mt-1 grid h-[38px] w-[38px] shrink-0 place-items-center rounded-full border border-line-strong text-paper-faint transition-all duration-300 group-hover:border-amber group-hover:bg-amber group-hover:text-[#1a1206]"
-        >
-          <ArrowUpRight size={17} />
-        </span>
-      </span>
-    </Link>
-  );
-}
-
-/* ------------------------------------------------------------------ *
  * Lapa
  * ------------------------------------------------------------------ */
 
@@ -270,8 +202,8 @@ export default function Index() {
   // saturu zem angļu URL.
   const noindex = !isLv;
 
-  const columnA = bySlug(WORKS_COLUMN_A);
-  const columnB = bySlug(WORKS_COLUMN_B);
+  const columnA = bySlug(featuredSlugs.columnA);
+  const columnB = bySlug(featuredSlugs.columnB);
 
   return (
     // Negatīvā augšmala pavelk tumšo fonu zem fiksētās galvenes (Layout main
@@ -476,13 +408,13 @@ export default function Index() {
 
           <div className="grid gap-[clamp(28px,3.4vw,40px)] md:grid-cols-2 md:gap-[clamp(24px,2.6vw,38px)]">
             <div className="grid content-start gap-[clamp(28px,3.4vw,40px)]">
-              {columnA.map((work, i) => (
-                <WorkTile key={work.slug} work={work} eager={i === 0} />
+              {columnA.map((project, i) => (
+                <ProjectTile key={project.slug} project={project} eager={i === 0} />
               ))}
             </div>
             <div className="grid content-start gap-[clamp(28px,3.4vw,40px)] md:mt-[clamp(46px,6vw,104px)]">
-              {columnB.map((work) => (
-                <WorkTile key={work.slug} work={work} />
+              {columnB.map((project) => (
+                <ProjectTile key={project.slug} project={project} />
               ))}
             </div>
           </div>

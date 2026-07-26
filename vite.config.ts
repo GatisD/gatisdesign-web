@@ -3,11 +3,11 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import sitemap from "vite-plugin-sitemap";
 import { ROUTES, type RouteKey } from "./src/i18n/routes";
-import { portfolioWorks } from "./src/data/portfolio";
+import { projects } from "./src/data/projects";
 
 // Sitemap ir vienots patiesības avots: bāzes maršruti nāk no ROUTES (abas valodas),
 // portfolio detail lapas (dinamiskās /portfolio/:slug lapas, sk. src/App.tsx
-// getStaticPaths) nāk no portfolioWorks. Šie divi faili ir vienīgie faktiskie
+// getStaticPaths) nāk no src/data/projects.ts. Šie divi faili ir vienīgie faktiskie
 // maršrutu avoti kodubāzē - roku rakstīts saraksts šeit vairs netiek uzturēts.
 // "/" (LV sākumlapa) NETIEK iekļauta: vite-plugin-sitemap pats to atklāj no
 // dist/index.html, kas jau eksistē tā closeBundle brīdī (rakstīts Vite
@@ -21,9 +21,9 @@ import { portfolioWorks } from "./src/data/portfolio";
 const baseRoutes = Object.values(ROUTES)
   .flatMap((p) => [p.lv, p.en])
   .filter((route) => route !== ROUTES.home.lv);
-const portfolioDetailRoutes = portfolioWorks.flatMap((w) => [
-  `${ROUTES.portfolio.lv}/${w.slug}`,
-  `${ROUTES.portfolio.en}/${w.slug}`,
+const portfolioDetailRoutes = projects.flatMap((p) => [
+  `${ROUTES.portfolio.lv}/${p.slug}`,
+  `${ROUTES.portfolio.en}/${p.slug}`,
 ]);
 const dynamicRoutes = [...baseRoutes, ...portfolioDetailRoutes];
 
@@ -45,9 +45,9 @@ for (const key of highPriorityKeys) {
   priorityByRoute[ROUTES[key].lv] = 0.8;
   priorityByRoute[ROUTES[key].en] = 0.8;
 }
-for (const w of portfolioWorks) {
-  priorityByRoute[`${ROUTES.portfolio.lv}/${w.slug}`] = 0.8;
-  priorityByRoute[`${ROUTES.portfolio.en}/${w.slug}`] = 0.8;
+for (const p of projects) {
+  priorityByRoute[`${ROUTES.portfolio.lv}/${p.slug}`] = 0.8;
+  priorityByRoute[`${ROUTES.portfolio.en}/${p.slug}`] = 0.8;
 }
 
 // https://vitejs.dev/config/
