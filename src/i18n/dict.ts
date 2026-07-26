@@ -24,6 +24,12 @@ export const dict = {
       body: "Iespējams, adrese ir mainīta vai ierakstīta ar kļūdu.",
       cta: "Uz sākumu",
     },
+    cookies: {
+      text: "Šajā mājaslapā izmantoju sīkdatnes darbības nodrošināšanai un anonīmai analīzei. Vairāk -",
+      privacyLink: "privātuma politikā",
+      acceptAll: "Pieņemt visas",
+      necessaryOnly: "Tikai nepieciešamās",
+    },
   },
   en: {
     nav: {
@@ -49,6 +55,12 @@ export const dict = {
       title: "This page does not exist",
       body: "The address may have changed or contains a typo.",
       cta: "Go to homepage",
+    },
+    cookies: {
+      text: "This site uses cookies for core functionality and anonymous analytics. More in the",
+      privacyLink: "privacy policy",
+      acceptAll: "Accept all",
+      necessaryOnly: "Necessary only",
     },
   },
 } as const;
