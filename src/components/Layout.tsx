@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { LocaleProvider } from "@/i18n/LocaleContext";
+import { dict } from "@/i18n/dict";
 import type { Locale } from "@/i18n/routes";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -27,6 +28,12 @@ export default function Layout({ locale }: { locale: Locale }) {
   // so we don't wrap it again here (would create a competing context).
   return (
     <LocaleProvider locale={locale}>
+      <a
+        href="#saturs"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-amber focus:px-4 focus:py-2 focus:text-[#0d0b09]"
+      >
+        {dict[locale].nav.skipToContent}
+      </a>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <SmoothScroll />

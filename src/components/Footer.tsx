@@ -1,12 +1,7 @@
 import { Link } from "react-router-dom";
+import { useLocale } from "@/i18n/LocaleContext";
 import { CONTACT_EMAIL, SOCIAL } from "@/lib/site";
-
-const navLinks = [
-  { label: "Sākums", href: "/" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Par mani", href: "/par-mani" },
-  { label: "Kontakti", href: "/kontakti" },
-];
+import Kicker from "./ui/Kicker";
 
 const socialLinks = [
   { label: "Dribbble", href: SOCIAL.dribbble },
@@ -16,27 +11,53 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const { t, path } = useLocale();
+
+  const serviceLinks = [
+    { to: path("services.brand"), label: t.services.brand },
+    { to: path("services.web"), label: t.services.web },
+    { to: path("services.ai"), label: t.services.ai },
+    { to: path("services.seo"), label: t.services.seo },
+  ];
+
+  const pageLinks = [
+    { to: path("portfolio"), label: t.nav.portfolio },
+    { to: path("about"), label: t.nav.about },
+    { to: path("contact"), label: t.nav.contact },
+    { to: path("privacy"), label: t.footer.privacy },
+  ];
+
+  // Vienīgais atļautais new Date() lietojums render laikā - gads mainās reti,
+  // build un hidratācijas laiks praktiski vienmēr sakrīt (sk. projekta CLAUDE.md).
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="bg-background border-t border-border">
-      <div className="max-w-[1280px] mx-auto px-6 md:px-10 lg:px-16 py-20 md:py-24">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-12">
-          <div className="col-span-2 md:col-span-1 space-y-4">
-            <span className="eyebrow text-muted-foreground block">GATIS DESIGN</span>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              Brand identity ar 18 gadu pieredzi. <br /> Bāzēts Rīgā, pieejams projektiem visā pasaulē.
-            </p>
+    <footer className="border-t border-line bg-ink-850">
+      <div className="mx-auto max-w-wrap px-[var(--pad-x)] py-16 md:py-20">
+        <div className="grid gap-12 sm:grid-cols-2 md:grid-cols-3">
+          <div className="space-y-4 sm:col-span-2 md:col-span-1">
+            <Link to={path("home")} className="flex w-fit flex-col leading-none">
+              <span className="font-accent text-xl italic text-paper">Gatis Design</span>
+              <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-paper-faint">Rīga</span>
+            </Link>
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="inline-block min-h-[44px] items-center text-sm text-paper-dim transition-colors duration-200 hover:text-amber"
+            >
+              {CONTACT_EMAIL}
+            </a>
           </div>
 
           <div className="space-y-4">
-            <span className="eyebrow text-muted-foreground block">Navigācija</span>
+            <Kicker>{t.nav.services}</Kicker>
             <ul className="space-y-3">
-              {navLinks.map((l) => (
-                <li key={l.href}>
+              {serviceLinks.map((link) => (
+                <li key={link.to}>
                   <Link
-                    to={l.href}
-                    className="text-sm text-muted-foreground hover:text-accent transition-colors"
+                    to={link.to}
+                    className="inline-flex min-h-[44px] items-center text-sm text-paper-dim transition-colors duration-200 hover:text-amber"
                   >
-                    {l.label}
+                    {link.label}
                   </Link>
                 </li>
               ))}
@@ -44,46 +65,37 @@ export default function Footer() {
           </div>
 
           <div className="space-y-4">
-            <span className="eyebrow text-muted-foreground block">Kontakti</span>
             <ul className="space-y-3">
-              <li>
-                <a
-                  href={`mailto:${CONTACT_EMAIL}`}
-                  className="text-sm text-foreground hover:text-accent transition-colors"
-                >
-                  {CONTACT_EMAIL}
-                </a>
-              </li>
-              <li className="text-sm text-muted-foreground">Rīga, Latvija</li>
-            </ul>
-          </div>
-
-          <div className="space-y-4">
-            <span className="eyebrow text-muted-foreground block">Sociāli</span>
-            <ul className="space-y-3">
-              {socialLinks.map((s) => (
-                <li key={s.href}>
-                  <a
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-muted-foreground hover:text-accent transition-colors"
+              {pageLinks.map((link) => (
+                <li key={link.to}>
+                  <Link
+                    to={link.to}
+                    className="inline-flex min-h-[44px] items-center text-sm text-paper-dim transition-colors duration-200 hover:text-amber"
                   >
-                    {s.label}
-                  </a>
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row gap-3 justify-between items-center text-xs text-muted-foreground">
-          <p>© {new Date().getFullYear()} Gatis Design. Visas tiesības aizsargātas.</p>
-          <div className="flex gap-6">
-            <Link to="/privatuma-politika" className="hover:text-foreground transition-colors">
-              Privātuma politika
-            </Link>
-            <span className="font-mono uppercase tracking-widest">Crafted in Riga</span>
+        <div className="mt-16 flex flex-col items-center justify-between gap-6 border-t border-line pt-8 md:flex-row">
+          <p className="text-xs text-paper-faint">
+            © {year} Gatis Design. {t.footer.rights}.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+            {socialLinks.map((s) => (
+              <a
+                key={s.href}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[44px] items-center text-xs uppercase tracking-[0.08em] text-paper-faint transition-colors duration-200 hover:text-amber"
+              >
+                {s.label}
+              </a>
+            ))}
           </div>
         </div>
       </div>

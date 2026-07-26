@@ -2,6 +2,17 @@ import { useEffect } from "react";
 import Lenis from "lenis";
 
 /**
+ * Modulim piesaistīta singleton instance, lai citas komponentes (piem. Header
+ * mobilā izvēlne) var apturēt/atsākt smooth scroll bez atsevišķa React konteksta.
+ * `null` kamēr komponente nav mount'ota vai lietotājam ir prefers-reduced-motion.
+ */
+let lenisInstance: Lenis | null = null;
+
+export function getLenis(): Lenis | null {
+  return lenisInstance;
+}
+
+/**
  * Lenis smooth scroll setup.
  * Respects prefers-reduced-motion (a11y).
  */
@@ -15,6 +26,7 @@ export default function SmoothScroll() {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     });
+    lenisInstance = lenis;
 
     let raf = 0;
     function loop(time: number) {
@@ -26,6 +38,7 @@ export default function SmoothScroll() {
     return () => {
       cancelAnimationFrame(raf);
       lenis.destroy();
+      lenisInstance = null;
     };
   }, []);
 
