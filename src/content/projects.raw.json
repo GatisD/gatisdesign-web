@@ -1,0 +1,719 @@
+[
+  {
+    "id": "estire",
+    "slug": "estire",
+    "category": "web",
+    "client": "Estire",
+    "year": 2026,
+    "yearEstimated": true,
+    "roleKind": "solo",
+    "roleLabel": "Dizains un izstrāde",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://estire.lv",
+    "externalStatus": "live",
+    "stack": [
+      "React",
+      "Vite",
+      "TypeScript",
+      "Tailwind",
+      "Supabase",
+      "Vercel"
+    ],
+    "titleLv": "Estire - bruģēšanas materiālu mājaslapa",
+    "summaryLv": "Bruģakmens un beramkravu tirgotāja kodēta mājaslapa ar noliktavas katalogu un pieprasījumu formu.",
+    "coverHint": "shots/estire.png",
+    "needsInput": "Kurā gadā tapa pirmā Estire versija? Zināms tikai, ka 2026-05-03 frontend pārcēlu no Lovable uz Vercel."
+  },
+  {
+    "id": "rois-lv",
+    "slug": "rois-lv",
+    "category": "web",
+    "client": "ROIS.lv",
+    "year": 2026,
+    "yearEstimated": false,
+    "roleKind": "solo",
+    "roleLabel": "Dizains un izstrāde",
+    "services": [
+      "majaslapas",
+      "seo"
+    ],
+    "externalUrl": "https://rois.lv",
+    "externalStatus": "live",
+    "stack": [
+      "React",
+      "TanStack Start",
+      "Tailwind",
+      "Vercel",
+      "Cloudflare Workers"
+    ],
+    "titleLv": "ROIS.lv - mārketinga aģentūras mājaslapa",
+    "summaryLv": "WordPress vietnes pilna pārbūve kodā: 30+ lapas, video atsauksmes, blogs un forma ar UTM atribūciju.",
+    "coverHint": "shots/rois.png"
+  },
+  {
+    "id": "improvement",
+    "slug": "improvement",
+    "category": "web",
+    "client": "Improvement",
+    "year": 2026,
+    "yearEstimated": false,
+    "roleKind": "solo",
+    "roleLabel": "Dizains un izstrāde",
+    "services": [
+      "majaslapas",
+      "seo"
+    ],
+    "externalUrl": "https://improvement.rois.lv",
+    "externalStatus": "live",
+    "stack": [
+      "React",
+      "Vite",
+      "TypeScript",
+      "Tailwind",
+      "WooCommerce REST",
+      "Vercel"
+    ],
+    "titleLv": "Improvement - beramkravu un bruģēšanas vietne",
+    "summaryLv": "Divvalodu vietne ar WooCommerce materiālu katalogu, cenu pieprasījumu un prerenderētām lapām SEO dēļ.",
+    "coverHint": "shots/improvement.png",
+    "needsInput": "Vai Improvement drīkst rādīt portfolio, ņemot vērā 1500 EUR parādu un 22.07 apturēšanas scenāriju? Un vai rādām improvement.rois.lv (rebuild) vai gaidām cutover uz improvement.lv?"
+  },
+  {
+    "id": "universal-solutions",
+    "slug": "universal-solutions",
+    "category": "web",
+    "client": "SIA Universal Solutions",
+    "year": 2026,
+    "yearEstimated": false,
+    "roleKind": "solo",
+    "roleLabel": "Zīmols, dizains un izstrāde",
+    "services": [
+      "zimols",
+      "majaslapas"
+    ],
+    "externalUrl": "https://universalsolutionseu.net",
+    "externalStatus": "live",
+    "stack": [
+      "React",
+      "Vite",
+      "Cloudflare Workers",
+      "Resend"
+    ],
+    "titleLv": "Universal Solutions - zinātnes un AI konsultācijas",
+    "summaryLv": "Logo un mājaslapa datu analītikas uzņēmumam: pakalpojumi, vakances un formas uz Cloudflare Workers.",
+    "coverHint": "shots/universalsolutions.png"
+  },
+  {
+    "id": "lk-landscape",
+    "slug": "lk-landscape",
+    "category": "web",
+    "client": "LK Landscape (Laura Kleinberga)",
+    "year": 2026,
+    "yearEstimated": false,
+    "roleKind": "solo",
+    "roleLabel": "Dizains un izstrāde",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://laura.gatisdesign.com",
+    "externalStatus": "live",
+    "stack": [
+      "React",
+      "Vite",
+      "TypeScript",
+      "Tailwind",
+      "Cloudflare Workers"
+    ],
+    "titleLv": "LK Landscape - ainavu arhitektes portfolio",
+    "summaryLv": "Ainavu arhitektes portfolio ar darbu galeriju, LV/EN pārslēgu un mierīgu, gaišu tipogrāfisko sistēmu.",
+    "coverHint": "shots/laura.png",
+    "needsInput": "Vai Laura piekrīt publiskam portfolio ierakstam? Lapa vēl dzīvo uz manas testa subdomēnas, kontaktforma nesūta e-pastu un Instagram saite ir placeholder."
+  },
+  {
+    "id": "kugi-kartupelis",
+    "slug": "kugi-kartupelis",
+    "category": "web",
+    "client": "Personīgs projekts",
+    "year": 2026,
+    "yearEstimated": false,
+    "roleKind": "solo",
+    "roleLabel": "Dizains un izstrāde",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://kartupelis.gatisdesign.com",
+    "externalStatus": "live",
+    "stack": [
+      "React",
+      "Vite",
+      "TypeScript",
+      "Tailwind",
+      "Vercel Functions",
+      "Upstash Redis"
+    ],
+    "titleLv": "Kuģi Kartupelis - tiešsaistes spēle",
+    "summaryLv": "Divu spēlētāju kuģu kaujas spēle ar dalāmu saiti, jūras kartes dizainu un servera pusē pārbaudītiem gājieniem.",
+    "coverHint": "shots/kartupelis.png"
+  },
+  {
+    "id": "8kajis",
+    "slug": "8kajis",
+    "category": "web",
+    "client": "8kājis (SIA Zingelis)",
+    "year": 2026,
+    "yearEstimated": false,
+    "roleKind": "solo",
+    "roleLabel": "Dizains un izstrāde",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://8kajis.gatisdesign.com",
+    "externalStatus": "live",
+    "stack": [
+      "WordPress",
+      "WooCommerce",
+      "Elementor",
+      "Custom child theme"
+    ],
+    "titleLv": "8kājis - attīstošo rotaļlietu veikals",
+    "summaryLv": "Shopify veikala pārcelšana uz WooCommerce: 135 produkti, split ekrāna ievads un sensorās telpas sadaļa.",
+    "coverHint": "shots/8kajis.png",
+    "needsInput": "Vai drīkst saitēt uz būves vidi 8kajis.gatisdesign.com (noindex), vai gaidām go-live uz 8kajis.lv? Vai Rasa piekrīt publiskošanai?"
+  },
+  {
+    "id": "mebelu-montaza",
+    "slug": "mebelu-montaza",
+    "category": "web",
+    "client": "Mēbeļu montieris (Elvijs)",
+    "year": 2026,
+    "yearEstimated": false,
+    "roleKind": "solo",
+    "roleLabel": "Dizains un izstrāde",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://mebelumontaza-web.vercel.app",
+    "externalStatus": "live",
+    "stack": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "vite-react-ssg",
+      "Tailwind",
+      "Vercel"
+    ],
+    "titleLv": "Mēbeļu montāža - servisa mājaslapa",
+    "summaryLv": "Mēbeļu montāžas un pārvākšanās servisa vietne ar četrām pakalpojumu lapām, portfolio un pieteikuma formu.",
+    "coverHint": "shots/mebelumontaza.png",
+    "needsInput": "Vai Elvijam ir savs domēns, uz kuru saitēt? Šobrīd dzīvo tikai uz mebelumontaza-web.vercel.app."
+  },
+  {
+    "id": "crc-tech",
+    "slug": "crc-tech",
+    "category": "web",
+    "client": "CRC Technologies",
+    "year": 2026,
+    "yearEstimated": false,
+    "roleKind": "solo",
+    "roleLabel": "Dizains un izstrāde (demo)",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://crc.rois.lv",
+    "externalStatus": "live",
+    "stack": [
+      "React",
+      "Vite",
+      "Tailwind",
+      "Cloudflare Workers"
+    ],
+    "titleLv": "CRC Technologies - redizaina demo",
+    "summaryLv": "Drukas un dokumentu pārvaldības uzņēmuma sākumlapas redizaina demo, kas tapa pirms piedāvājuma.",
+    "coverHint": "shots/crc.png",
+    "needsInput": "CRC vēl NAV klients - piedāvājums 2000 EUR nav akceptēts. Vai publisks demo ir OK, vai rādām tikai pēc līguma? Ja rādām, jāatzīmē, ka tas ir koncepts, ne klienta pasūtīts darbs."
+  },
+  {
+    "id": "tenter",
+    "slug": "tenter",
+    "category": "web",
+    "client": "Tenter Latvija",
+    "year": 2026,
+    "yearEstimated": true,
+    "roleKind": "solo",
+    "roleLabel": "Izstrāde un uzturēšana",
+    "services": [
+      "majaslapas",
+      "seo"
+    ],
+    "externalUrl": "https://tenter.lv",
+    "externalStatus": "live",
+    "stack": [
+      "WordPress",
+      "Breakdance",
+      "Yoast",
+      "GPTranslate"
+    ],
+    "titleLv": "Tenter - jumta kopņu ražotāja vietne",
+    "summaryLv": "Jumta kopņu ražotāja WordPress vietnes attīstība: landing lapas, trīsvalodu FAQ un tehniskais SEO.",
+    "coverHint": "shots/tenter.png",
+    "needsInput": "Kāda tieši ir mana loma tenter.lv? Neatrodu pierādījumu, ka esmu taisījis sākotnējo dizainu - zināmais ir landing lapas, FAQ sistēma, GTM/Consent un SEO labojumi. Vai to saukt par 'izstrāde un uzturēšana' un no kura gada?"
+  },
+  {
+    "id": "chipchop",
+    "slug": "chipchop",
+    "category": "web",
+    "client": "ChipChop Barbershop",
+    "year": 2026,
+    "yearEstimated": false,
+    "roleKind": "solo",
+    "roleLabel": "SEO un GEO stratēģija",
+    "services": [
+      "seo"
+    ],
+    "externalUrl": "https://chipchop.lv",
+    "externalStatus": "live",
+    "stack": [
+      "WordPress",
+      "Elementor",
+      "Amelia"
+    ],
+    "titleLv": "ChipChop Barbershop - lokālais SEO",
+    "summaryLv": "Salaspils frizētavas lokālā SEO un GEO plāns: schema, satura struktūra un Google profila optimizācija.",
+    "coverHint": "shots/chipchop.png",
+    "needsInput": "Plāns ir sagatavots, bet ieviešana ir HOLD un uz lapas nekas nav mainīts. Vai to vispār likt portfolio, vai gaidām reālus rezultātus? Lapas dizains nav mans."
+  },
+  {
+    "id": "minismaidins",
+    "slug": "minismaidins",
+    "category": "web",
+    "client": "MiniSmaidiņš",
+    "year": 2026,
+    "yearEstimated": true,
+    "roleKind": "solo",
+    "roleLabel": "Tehniskā uzturēšana",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://minismaidins.lv",
+    "externalStatus": "live",
+    "stack": [
+      "Shopify",
+      "Liquid",
+      "GitHub Actions"
+    ],
+    "titleLv": "MiniSmaidiņš - Shopify veikala uzturēšana",
+    "summaryLv": "Bērnu rotaļlietu Shopify veikala tehniskie labojumi grozā un pasūtījumu sinhronizācija ar noliktavu.",
+    "coverHint": "shots/minismaidins.png",
+    "needsInput": "Kas tieši ir mans devums? Atmiņā ir tikai Admin API piekļuve, pasūtījumu sync un plānoti tēmas labojumi - nav pierādījuma par dizainu vai veikala izstrādi. Varbūt šis nav portfolio ieraksts."
+  },
+  {
+    "id": "lucky-punch",
+    "slug": "lucky-punch",
+    "category": "web",
+    "client": "Lucky Punch",
+    "year": 2024,
+    "yearEstimated": true,
+    "roleKind": "rois",
+    "roleLabel": "Izstrāde ROIS komandā",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://luckypunch.lv",
+    "externalStatus": "live",
+    "stack": [
+      "Shopify"
+    ],
+    "titleLv": "Lucky Punch - enerģijas dzēriena veikals",
+    "summaryLv": "Enerģijas dzēriena zīmola Shopify veikals ar cīņas sporta vizuālo valodu, LV/EN un divām valūtām.",
+    "coverHint": "shots/luckypunch.png",
+    "needsInput": "Kurā gadā taisījām un kas tieši bija mans darbs (dizains, tēmas izstrāde, produktu setup)? Gads 2024 ir minējums. Ekrānattēlā redzams sīkdatņu banneris - vajag uzņemt no jauna."
+  },
+  {
+    "id": "lauvas-zobs",
+    "slug": "lauvas-zobs",
+    "category": "web",
+    "client": "Lauvas Zobs",
+    "year": 2024,
+    "yearEstimated": true,
+    "roleKind": "rois",
+    "roleLabel": "Izstrāde ROIS komandā",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://lauvaszobs.lv",
+    "externalStatus": "live",
+    "stack": [
+      "WordPress",
+      "Enfold",
+      "WPML"
+    ],
+    "titleLv": "Lauvas Zobs - zobārstniecības klīnika",
+    "summaryLv": "Daudzprofilu stomatoloģijas klīnikas vietne ar pakalpojumu lapām, speciālistiem un divvalodu saturu.",
+    "coverHint": "shots/lauvaszobs.png",
+    "needsInput": "Gads ir minējums (lapas kājenē 2025). Kas bija mana daļa - dizains, būve vai abi?"
+  },
+  {
+    "id": "valis",
+    "slug": "valis",
+    "category": "web",
+    "client": "Valis Stomatoloģija",
+    "year": 2024,
+    "yearEstimated": true,
+    "roleKind": "rois",
+    "roleLabel": "Izstrāde ROIS komandā",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://valis.lv",
+    "externalStatus": "live",
+    "stack": [
+      "WordPress",
+      "Elementor"
+    ],
+    "titleLv": "Valis Stomatoloģija - klīnikas vietne",
+    "summaryLv": "Zobu implantācijas klīnikas vietne ar pieteikuma plūsmu, divu filiāļu kontaktiem un pakalpojumiem.",
+    "coverHint": "shots/valis.png",
+    "needsInput": "Gads nav zināms - 2024 ir minējums. Kas bija mana daļa projektā?"
+  },
+  {
+    "id": "cafeteria",
+    "slug": "cafeteria",
+    "category": "web",
+    "client": "Cafeteria",
+    "year": null,
+    "yearEstimated": false,
+    "roleKind": "rois",
+    "roleLabel": "Izstrāde ROIS komandā",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://cafeteria.lv",
+    "externalStatus": "live",
+    "stack": [],
+    "titleLv": "Cafeteria - mājaslapas izstrāde",
+    "summaryLv": null,
+    "coverHint": "shots/cafeteria.png",
+    "needsInput": "Ekrānattēls ir Cloudflare bota pārbaudes lapa, ne saits - vajag jaunu ekrānattēlu no brauzera. Nezinu ne nozari, ne gadu, ne manu lomu. Ko Cafeteria dara un ko mēs viņiem uztaisījām?"
+  },
+  {
+    "id": "forevolt",
+    "slug": "forevolt",
+    "category": "web",
+    "client": "Forevolt",
+    "year": null,
+    "yearEstimated": false,
+    "roleKind": "rois",
+    "roleLabel": "Izstrāde ROIS komandā",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": null,
+    "externalStatus": "archived",
+    "stack": [],
+    "titleLv": "Forevolt - mājaslapas izstrāde",
+    "summaryLv": null,
+    "coverHint": null,
+    "needsInput": "forevolt.com vairs nedzīvo - domēns ir GoDaddy pārdošanas lapa, un ekrānattēls ir 'Access Denied'. Vai ir saglabāti vizuāļi vai Wayback kadrs? Ja nav, iesaku izmest no portfolio."
+  },
+  {
+    "id": "box-latvia-web",
+    "slug": "box-latvia-web",
+    "category": "web",
+    "client": "Box Latvia",
+    "year": 2023,
+    "yearEstimated": true,
+    "roleKind": "rois",
+    "roleLabel": "Zīmols un izstrāde ROIS komandā",
+    "services": [
+      "majaslapas",
+      "zimols"
+    ],
+    "externalUrl": "https://boxlatvia.lv",
+    "externalStatus": "live",
+    "stack": [
+      "WordPress",
+      "OceanWP",
+      "Elementor Pro",
+      "WPML"
+    ],
+    "titleLv": "Box Latvia - pārvākšanās un noliktavu serviss",
+    "summaryLv": "Trīs pakalpojumu virzienu vietne: pārvākšanās serviss, noliktavas un nekustamais īpašums ar cenu pieprasījumu.",
+    "coverHint": "shots/boxlatvia.png",
+    "needsInput": "Gads 2023 ņemts no zīmola darba portfolio.ts - vai mājaslapa tapa tajā pašā gadā? Zīmols ir atsevišķs ieraksts (box-latvia)."
+  },
+  {
+    "id": "green-bay",
+    "slug": "green-bay",
+    "category": "web",
+    "client": "Green Bay",
+    "year": null,
+    "yearEstimated": false,
+    "roleKind": "rois",
+    "roleLabel": "Izstrāde ROIS komandā",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": null,
+    "externalStatus": "archived",
+    "stack": [],
+    "titleLv": "Green Bay - e-komercija",
+    "summaryLv": null,
+    "coverHint": "assets/clients/Greenbay.webp",
+    "needsInput": "Nav ne domēna, ne ekrānattēla - greenbay.lv un greenbay.eu neatbild. Kāds ir īstais domēns, ko tieši uztaisījām un kurā gadā? Bez vizuāļa šo nevar rādīt."
+  },
+  {
+    "id": "110m2",
+    "slug": "110m2",
+    "category": "web",
+    "client": "110m2",
+    "year": 2026,
+    "yearEstimated": true,
+    "roleKind": "rois",
+    "roleLabel": "Izstrāde un SEO ROIS komandā",
+    "services": [
+      "majaslapas",
+      "seo"
+    ],
+    "externalUrl": "https://110m2.lv",
+    "externalStatus": "live",
+    "stack": [
+      "WordPress",
+      "Astra",
+      "Elementor Pro",
+      "Rank Math"
+    ],
+    "titleLv": "110m2 - tipveida privātmāju vietne",
+    "summaryLv": "Tipveida privātmāju vietne ar izmaksu kalkulatoru, trīs valodu pārslēgu un SEO optimizētu bloga sadaļu.",
+    "coverHint": null,
+    "needsInput": "Nav ekrānattēla - vajag uzņemt 110m2.lv. Mans dokumentētais darbs ir bloga raksti, SEO un valodu pārslēga labojums; vai mājaslapas izstrāde arī bija mūsu?"
+  },
+  {
+    "id": "santa-zvejniece",
+    "slug": "santa-zvejniece",
+    "category": "brand",
+    "client": "Santa Zvejniece",
+    "year": null,
+    "yearEstimated": false,
+    "roleKind": "rois",
+    "roleLabel": "Zīmola izstrāde ROIS komandā",
+    "services": [
+      "zimols"
+    ],
+    "externalUrl": null,
+    "externalStatus": null,
+    "stack": [],
+    "titleLv": "Santa Zvejniece - pilns uzņēmuma zīmols",
+    "summaryLv": null,
+    "coverHint": null,
+    "needsInput": "Nav ne vizuāļa, ne gada, ne nozares. ROIS clients.ts logo fails ir 'Audit.webp', kas jau iepriekš bija apšaubāms sasaistījums. Vajag īstos zīmola failus un aprakstu."
+  },
+  {
+    "id": "darbaguru",
+    "slug": "darbaguru",
+    "category": "brand",
+    "client": "DarbaGuru",
+    "year": 2024,
+    "yearEstimated": true,
+    "roleKind": "rois",
+    "roleLabel": "Logo un brandbook ROIS komandā",
+    "services": [
+      "zimols"
+    ],
+    "externalUrl": "https://darbaguru.lv",
+    "externalStatus": "live",
+    "stack": [],
+    "titleLv": "DarbaGuru - logo un mazais brandbook",
+    "summaryLv": "Personāla vadības ārpakalpojuma uzņēmuma logo un neliels brandbook ar krāsu un logo lietojuma noteikumiem.",
+    "coverHint": "assets/clients/DarbaGuru.webp",
+    "needsInput": "Vāks: darbaguru.lv ekrānattēls rāda mājaslapu, ko mēs netaisījām - vākam vajag logo vai brandbook lapas. Kurā gadā tapa un vai brandbook fails vēl ir saglabāts?"
+  },
+  {
+    "id": "obsidian",
+    "slug": "obsidian",
+    "category": "brand",
+    "client": "Obsidian",
+    "year": null,
+    "yearEstimated": false,
+    "roleKind": "rois",
+    "roleLabel": "Logo un vizītkartes ROIS komandā",
+    "services": [
+      "zimols"
+    ],
+    "externalUrl": null,
+    "externalStatus": null,
+    "stack": [],
+    "titleLv": "Obsidian - logo un vizītkartes",
+    "summaryLv": null,
+    "coverHint": "assets/clients/Obisdian.webp",
+    "needsInput": "Zināms tikai 'Logo un vizītkaršu izstrāde' no ROIS klientu saraksta. Vajag nozari, gadu un vizītkaršu vizuāļus - viens logo fails portfolio kartei ir par maz."
+  },
+  {
+    "id": "varloz",
+    "slug": "varloz",
+    "category": "brand",
+    "client": "Varloz",
+    "year": null,
+    "yearEstimated": false,
+    "roleKind": "rois",
+    "roleLabel": "Logo un vizītkartes ROIS komandā",
+    "services": [
+      "zimols"
+    ],
+    "externalUrl": null,
+    "externalStatus": null,
+    "stack": [],
+    "titleLv": "Varloz - logo un vizītkartes",
+    "summaryLv": null,
+    "coverHint": "assets/clients/Varloz.webp",
+    "needsInput": "Tāpat kā Obsidian - zināms tikai pakalpojuma nosaukums. Vajag nozari, gadu un vizītkaršu vizuāļus."
+  },
+  {
+    "id": "box-latvia-brand",
+    "slug": "box-latvia",
+    "category": "brand",
+    "client": "Box Latvia",
+    "year": 2023,
+    "yearEstimated": false,
+    "roleKind": "rois",
+    "roleLabel": "Zīmola izstrāde ROIS komandā",
+    "services": [
+      "zimols"
+    ],
+    "externalUrl": null,
+    "externalStatus": null,
+    "stack": [],
+    "titleLv": "Box Latvia - zīmola identitāte",
+    "summaryLv": "Loģistikas zīmola identitāte: logo, transportlīdzekļu marķējums, drukas materiāli un digitālā prezentācija.",
+    "coverHint": "public/portfolio/box-latvia-cover-43.jpg",
+    "galleryCount": 11
+  },
+  {
+    "id": "apmekle",
+    "slug": "apmekle",
+    "category": "brand",
+    "client": "Apmeklē.lv",
+    "year": 2023,
+    "yearEstimated": false,
+    "roleKind": "solo",
+    "roleLabel": "Zīmola izstrāde",
+    "services": [
+      "zimols"
+    ],
+    "externalUrl": null,
+    "externalStatus": null,
+    "stack": [],
+    "titleLv": "Apmeklē.lv - pakalpojumu platformas zīmols",
+    "summaryLv": "Latvijā veidotas pakalpojumu platformas identitāte ar minimālu piktogrammu un zaļu akcenta krāsu.",
+    "coverHint": "public/portfolio/apmekle-cover-sq.jpg",
+    "galleryCount": 9,
+    "needsInput": "Vai Apmeklē.lv zīmols bija Gata solo darbs, vai ROIS pasūtījums? Esošajā portfolio.ts loma nav norādīta."
+  },
+  {
+    "id": "digitalaisdzintars",
+    "slug": "digitalaisdzintars",
+    "category": "brand",
+    "client": "Digitālais Dzintars",
+    "year": 2024,
+    "yearEstimated": false,
+    "roleKind": "solo",
+    "roleLabel": "Zīmola izstrāde",
+    "services": [
+      "zimols"
+    ],
+    "externalUrl": null,
+    "externalStatus": null,
+    "stack": [],
+    "titleLv": "Digitālais Dzintars - kultūras zīmols",
+    "summaryLv": "Liepājas digitālās kultūras platformas zīmola atjaunošana ar plakātiem, afišām un identitātes elementiem.",
+    "coverHint": "public/portfolio/digitalaisdzintars-cover-45.jpg",
+    "galleryCount": 16
+  },
+  {
+    "id": "logo-branding",
+    "slug": "logo-branding",
+    "category": "brand",
+    "client": "Dažādi klienti",
+    "year": 2026,
+    "yearEstimated": false,
+    "yearRange": "2008-2026",
+    "roleKind": "solo",
+    "roleLabel": "Dizains",
+    "services": [
+      "zimols"
+    ],
+    "externalUrl": null,
+    "externalStatus": null,
+    "stack": [],
+    "titleLv": "Logo un zīmolu kolekcija",
+    "summaryLv": "Atlasīti logo un zīmola identitātes darbi no 18 gadu prakses - vairāk nekā 50 darbi dažādās nozarēs.",
+    "coverHint": "public/portfolio/logo-branding-cover-sq.jpg",
+    "galleryCount": 51
+  },
+  {
+    "id": "illustrations",
+    "slug": "illustrations",
+    "category": "brand",
+    "client": "Dažādi klienti",
+    "year": 2026,
+    "yearEstimated": false,
+    "yearRange": "2012-2026",
+    "roleKind": "solo",
+    "roleLabel": "Dizains",
+    "services": [
+      "zimols"
+    ],
+    "externalUrl": null,
+    "externalStatus": null,
+    "stack": [],
+    "titleLv": "Ilustrāciju kolekcija",
+    "summaryLv": "Ilustrācijas zīmoliem - no produktu ikonām un t-kreklu drukām līdz veselām ilustrāciju sistēmām.",
+    "coverHint": "public/portfolio/illustrations-cover-sq.jpg",
+    "galleryCount": 8,
+    "needsInput": "Kategorija: shēmā ir tikai 'web' un 'brand'. Ilustrācijas un druka ieliktas zem 'brand' - vai vajag trešo kategoriju 'dizains'?"
+  },
+  {
+    "id": "print",
+    "slug": "print",
+    "category": "brand",
+    "client": "Dažādi klienti",
+    "year": 2026,
+    "yearEstimated": false,
+    "yearRange": "2010-2026",
+    "roleKind": "solo",
+    "roleLabel": "Dizains",
+    "services": [
+      "zimols"
+    ],
+    "externalUrl": null,
+    "externalStatus": null,
+    "stack": [],
+    "titleLv": "Plakātu un drukas kolekcija",
+    "summaryLv": "Plakāti, afišas, bukleti un drukas materiāli, kuros svarīga katra detaļa - no tipogrāfijas līdz papīram.",
+    "coverHint": "public/portfolio/print-cover-45.jpg",
+    "galleryCount": 5
+  },
+  {
+    "id": "web-design-collection",
+    "slug": "web-design",
+    "category": "web",
+    "client": "Dažādi klienti",
+    "year": 2026,
+    "yearEstimated": false,
+    "yearRange": "2010-2026",
+    "roleKind": "solo",
+    "roleLabel": "Dizains",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": null,
+    "externalStatus": null,
+    "stack": [],
+    "titleLv": "Web dizaina kolekcija",
+    "summaryLv": "Atlasīti mājaslapu dizaina darbi no dažādām nozarēm, ar fokusu uz lietojamību, veiktspēju un SEO.",
+    "coverHint": "public/portfolio/web-design-cover-43.jpg",
+    "galleryCount": 3,
+    "needsInput": "Šī kolekcija pārklājas ar jaunajiem atsevišķajiem web ierakstiem un tajā ir tikai 3 attēli. Vai to paturam, vai izjaucam pa atsevišķiem projektiem?"
+  }
+]
