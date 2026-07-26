@@ -14,9 +14,22 @@ import { portfolioWorks } from "./src/data/portfolio";
 // pamatbūvē pirms SSG daudzlapu rendera). Ja to pievieno arī šeit, sitemap
 // satur "/" divreiz. "/en" ŠEIT ir vajadzīgs, jo dist/en/index.html tajā
 // brīdī vēl neeksistē.
+// Pakalpojumu lapas vēl nav uzbūvētas (nāk nākamajā plānā). Sitemap nedrīkst
+// saturēt URL, kas atgriež 404 - Search Console to skaita kā kļūdu. Tās šeit
+// tiek izlaistas un pievienotas atpakaļ, tiklīdz maršruti eksistē src/App.tsx.
+const NOT_YET_BUILT: RouteKey[] = [
+  "services.brand",
+  "services.web",
+  "services.ai",
+  "services.seo",
+];
+const notYetBuiltPaths = new Set(
+  NOT_YET_BUILT.flatMap((key) => [ROUTES[key].lv, ROUTES[key].en]),
+);
+
 const baseRoutes = Object.values(ROUTES)
   .flatMap((p) => [p.lv, p.en])
-  .filter((route) => route !== ROUTES.home.lv);
+  .filter((route) => route !== ROUTES.home.lv && !notYetBuiltPaths.has(route));
 const portfolioDetailRoutes = portfolioWorks.flatMap((w) => [
   `${ROUTES.portfolio.lv}/${w.slug}`,
   `${ROUTES.portfolio.en}/${w.slug}`,

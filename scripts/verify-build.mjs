@@ -51,6 +51,16 @@ else {
   const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
   if (new Set(locs).size !== locs.length) errors.push("sitemap satur dublētus URL");
   if (!locs.some((l) => l.includes("/en/"))) errors.push("sitemap nesatur EN lapas");
+
+  // 6. Katram sitemap URL jābūt reālam failam. Sitemap ar 404 lapām ir
+  // sliktāks par sitemap bez tām - Search Console tās skaita kā kļūdas.
+  for (const loc of locs) {
+    const p = new URL(loc).pathname.replace(/\/$/, "");
+    const file = p === "" ? "index.html" : `${p.slice(1)}.html`;
+    if (!existsSync(join(DIST, file)) && !existsSync(join(DIST, p.slice(1), "index.html"))) {
+      errors.push(`sitemap norāda uz neeksistējošu lapu: ${p}`);
+    }
+  }
 }
 
 if (errors.length) {
