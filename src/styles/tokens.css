@@ -1,0 +1,32 @@
+@import "@fontsource-variable/epilogue";
+@import "@fontsource/newsreader/400-italic.css";
+
+:root {
+  --ink-950: #0a0908;
+  --ink-900: #0d0b09;
+  --ink-850: #121010;
+  --ink-800: #181513;
+  --ink-750: #211d1a;
+  --ink-700: #2b2622;
+
+  --paper: #efe8dc;
+  --paper-2: #cfc5b6;
+  --paper-dim: #a69c8e;
+  --paper-faint: #948a7d;
+
+  --amber: #e0723c;
+  --amber-soft: #e99b75;
+  --amber-deep: #98461e;
+  --amber-glow: rgba(224, 114, 60, 0.16);
+
+  --line: rgba(239, 232, 220, 0.11);
+  --line-strong: rgba(239, 232, 220, 0.2);
+
+  --font-sans: "Epilogue Variable", sans-serif;
+  --font-accent: "Newsreader", Georgia, serif;
+
+  --pad-x: clamp(20px, 5vw, 52px);
+  --sec-y: clamp(76px, 10vw, 152px);
+  --wrap: 1280px;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}

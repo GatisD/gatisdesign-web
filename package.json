@@ -3,7 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "engines": { "node": ">=20 <=25" },
+  "engines": {
+    "node": ">=20 <=25"
+  },
   "scripts": {
     "dev": "vite",
     "build": "npm run typecheck && vite-react-ssg build && node scripts/verify-build.mjs",
@@ -16,8 +18,8 @@
     "images:covers": "node scripts/smart-covers.mjs"
   },
   "dependencies": {
-    "@fontsource-variable/inter": "^5.2.8",
-    "@fontsource/jetbrains-mono": "^5.2.8",
+    "@fontsource-variable/epilogue": "^5.3.0",
+    "@fontsource/newsreader": "^5.3.0",
     "@hookform/resolvers": "^3.10.0",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-alert-dialog": "^1.1.14",

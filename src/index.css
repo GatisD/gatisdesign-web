@@ -1,6 +1,5 @@
-/* Self-hosted fonts (replace Google Fonts external load) */
-@import "@fontsource-variable/inter/index.css";
-@import "@fontsource/jetbrains-mono/500.css";
+/* Vara akcenta dizaina sistēma (jaunais slānis - koncepts C "Tumšais amats") */
+@import "./styles/tokens.css";
 
 @tailwind base;
 @tailwind components;
@@ -77,6 +76,13 @@
  @apply bg-background text-foreground font-sans antialiased;
  }
 
+ /* Vara akcenta fokusa gredzens (WCAG redzamības prasība) */
+ :focus-visible {
+ outline: 2px solid var(--amber);
+ outline-offset: 3px;
+ border-radius: 2px;
+ }
+
  /* Reduce-motion: respect OS-level preference (a11y) */
  @media (prefers-reduced-motion: reduce) {
  *,
@@ -105,7 +111,8 @@
  letter-spacing: -0.02em;
  }
  .eyebrow {
- @apply font-mono uppercase;
+ font-family: var(--font-sans);
+ text-transform: uppercase;
  font-size: 12px;
  font-weight: 500;
  letter-spacing: 0.1em;

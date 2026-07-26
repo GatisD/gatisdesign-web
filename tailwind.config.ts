@@ -14,11 +14,12 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        display: ["Geist", "system-ui", "sans-serif"],
-        headline: ["Geist", "system-ui", "sans-serif"],
-        mono: ['"JetBrains Mono"', "ui-monospace", "monospace"],
-        label: ['"JetBrains Mono"', "ui-monospace", "monospace"],
+        sans: ["var(--font-sans)"],
+        accent: ["var(--font-accent)"],
+        display: ["system-ui", "sans-serif"],
+        headline: ["system-ui", "sans-serif"],
+        mono: ["var(--font-sans)"],
+        label: ["var(--font-sans)"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -55,6 +56,31 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        /* Vara akcenta sistēma (koncepts C "Tumšais amats") */
+        ink: {
+          950: "var(--ink-950)",
+          900: "var(--ink-900)",
+          850: "var(--ink-850)",
+          800: "var(--ink-800)",
+          750: "var(--ink-750)",
+          700: "var(--ink-700)",
+        },
+        paper: {
+          DEFAULT: "var(--paper)",
+          2: "var(--paper-2)",
+          dim: "var(--paper-dim)",
+          faint: "var(--paper-faint)",
+        },
+        amber: {
+          DEFAULT: "var(--amber)",
+          soft: "var(--amber-soft)",
+          deep: "var(--amber-deep)",
+          glow: "var(--amber-glow)",
+        },
+        line: {
+          DEFAULT: "var(--line)",
+          strong: "var(--line-strong)",
+        },
       },
       borderRadius: {
         DEFAULT: "0.125rem",
@@ -64,6 +90,9 @@ export default {
       },
       letterSpacing: {
         widest: "0.2em",
+      },
+      maxWidth: {
+        wrap: "var(--wrap)",
       },
       keyframes: {
         "accordion-down": {
