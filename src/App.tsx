@@ -14,6 +14,28 @@ function pagesFor(locale: Locale): RouteRecord[] {
   return [
     { index: true, Component: Index, entry: "src/pages/Index.tsx" },
     {
+      path: childPath(ROUTES["services.brand"][locale], locale),
+      lazy: () =>
+        import("./pages/services/ZimolaIdentitate").then((m) => ({ Component: m.default })),
+      entry: "src/pages/services/ZimolaIdentitate.tsx",
+    },
+    {
+      path: childPath(ROUTES["services.web"][locale], locale),
+      lazy: () =>
+        import("./pages/services/MajaslapuIzstrade").then((m) => ({ Component: m.default })),
+      entry: "src/pages/services/MajaslapuIzstrade.tsx",
+    },
+    {
+      path: childPath(ROUTES["services.ai"][locale], locale),
+      lazy: () => import("./pages/services/AiAgenti").then((m) => ({ Component: m.default })),
+      entry: "src/pages/services/AiAgenti.tsx",
+    },
+    {
+      path: childPath(ROUTES["services.seo"][locale], locale),
+      lazy: () => import("./pages/services/SeoGeoAeo").then((m) => ({ Component: m.default })),
+      entry: "src/pages/services/SeoGeoAeo.tsx",
+    },
+    {
       path: childPath(ROUTES.portfolio[locale], locale),
       lazy: () => import("./pages/Portfolio").then((m) => ({ Component: m.default })),
       entry: "src/pages/Portfolio.tsx",
