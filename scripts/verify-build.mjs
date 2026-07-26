@@ -44,6 +44,15 @@ for (const page of ["index.html", "en/contact.html"]) {
   }
 }
 
+// 5. sitemap satur abu valodu ceļus un neatkārtojas
+const sitemap = read("sitemap.xml");
+if (!sitemap) errors.push("dist/sitemap.xml neeksistē");
+else {
+  const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  if (new Set(locs).size !== locs.length) errors.push("sitemap satur dublētus URL");
+  if (!locs.some((l) => l.includes("/en/"))) errors.push("sitemap nesatur EN lapas");
+}
+
 if (errors.length) {
   console.error("Būves vārti KRITA:");
   for (const e of errors) console.error("  -", e);
