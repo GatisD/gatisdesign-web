@@ -423,8 +423,4 @@ export default function Kontakti() {
  );
 }
 
-declare global {
- interface Window {
- dataLayer?: Array<Record<string, unknown>>;
- }
-}
+// Window.dataLayer ir deklarēts src/vite-env.d.ts (viens avots, lai izvairītos no konfliktējošām deklarācijām)

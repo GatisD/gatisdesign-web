@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "npm run typecheck && vite-react-ssg build && node scripts/verify-build.mjs",
     "build:csr": "vite build",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.node.json --noEmit",
     "test": "vitest run",
     "lint": "eslint .",
     "preview": "vite preview",

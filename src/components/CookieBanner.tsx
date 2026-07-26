@@ -5,11 +5,7 @@ const STORAGE_KEY = "cookie_consent_v1";
 
 type Consent = "all" | "necessary" | null;
 
-declare global {
- interface Window {
- gtag?: (...args: unknown[]) => void;
- }
-}
+// Window.gtag ir deklarēts src/vite-env.d.ts (viens avots, lai izvairītos no konfliktējošām deklarācijām)
 
 export default function CookieBanner() {
  const [consent, setConsent] = useState<Consent>(null);

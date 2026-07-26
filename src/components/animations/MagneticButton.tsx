@@ -6,7 +6,20 @@ import {
   type ButtonHTMLAttributes,
 } from "react";
 
-interface Props extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "ref"> {
+// onDrag/onDragStart/onDragEnd/onAnimationStart izslēgti, jo framer-motion
+// pārdefinē šos handlerus ar citu signatūru nekā natīvais DOM - neviens
+// izsaucējs tos nelieto (sk. Index.tsx/ParMani.tsx), tāpēc drošs izslēgt.
+type ConflictingMotionHandlers =
+  | "onDrag"
+  | "onDragStart"
+  | "onDragEnd"
+  | "onAnimationStart";
+
+interface Props
+  extends Omit<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    "ref" | ConflictingMotionHandlers
+  > {
   children: ReactNode;
   className?: string;
   strength?: number;
