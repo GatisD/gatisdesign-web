@@ -141,6 +141,47 @@
  }
 }
 
+@layer components {
+ /*
+  * Scroll atklāsme bez JavaScript (sākumlapa). Bāzes stāvoklis ir REDZAMS -
+  * paslēpt saturu drīkst tikai animācija, tāpēc bez JS, bez scroll laika līnijas
+  * atbalsta, drukājot vai ar reduce-motion teksts paliek vietā.
+  */
+ @media (prefers-reduced-motion: no-preference) {
+ @supports (animation-timeline: view()) {
+ .reveal {
+ animation: reveal-rise linear both;
+ animation-timeline: view();
+ animation-range: entry 4% cover 22%;
+ }
+ }
+ }
+ @keyframes reveal-rise {
+ from {
+ opacity: 0;
+ transform: translateY(20px);
+ }
+ to {
+ opacity: 1;
+ transform: none;
+ }
+ }
+ @media (prefers-reduced-motion: reduce) {
+ .reveal {
+ animation: none !important;
+ opacity: 1 !important;
+ transform: none !important;
+ }
+ }
+ @media print {
+ .reveal {
+ animation: none !important;
+ opacity: 1 !important;
+ transform: none !important;
+ }
+ }
+}
+
 @layer utilities {
  .text-balance {
  text-wrap: balance;
