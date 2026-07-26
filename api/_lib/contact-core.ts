@@ -1,5 +1,5 @@
-import { buildAutoReplyEmail, buildNotificationEmail, type EmailMessage } from "./contact-emails";
-import { contactSchema, fieldErrorsFrom, type FieldErrors } from "./contact-schema";
+import { buildAutoReplyEmail, buildNotificationEmail, type EmailMessage } from "./contact-emails.js";
+import { contactSchema, fieldErrorsFrom, type FieldErrors } from "./contact-schema.js";
 
 /**
  * Kontaktformas loģika bez HTTP slāņa. Šeit nav ne req, ne res - tāpēc to var

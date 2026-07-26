@@ -4,7 +4,7 @@ import {
   FIELD_LIMITS,
   FORM_LOCALES,
   SERVICE_VALUES,
-} from "./contact-fields";
+} from "./contact-fields.js";
 
 /**
  * Kontaktformas shēma. VIENA shēma abām pusēm: pārlūks ar to pārbauda formu

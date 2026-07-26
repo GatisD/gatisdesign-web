@@ -1,13 +1,19 @@
 {
   /* Vercel serverless funkcijas (api/). Stingrāks režīms nekā src/ - servera
-     kods ir vienīgā vieta, kur nokļūst svešs ievads. */
+     kods ir vienīgā vieta, kur nokļūst svešs ievads.
+
+     module/moduleResolution ir NodeNext, NEVIS bundler - tieši tā, kā api/
+     failus kompilē Vercel. Funkcijas netiek bundlētas: katrs .ts kļūst par
+     atsevišķu .js, un package.json "type": "module" dēļ tos ielādē Node ESM.
+     Tāpēc relatīvajiem importiem OBLIGĀTI vajag ".js" paplašinājumu, citādi
+     produkcijā funkcija krīt ar ERR_MODULE_NOT_FOUND jau moduļa ielādes brīdī.
+     Ar "bundler" tsc to nepamana - ar "nodenext" pamana (TS2835). */
   "compilerOptions": {
     "target": "ES2022",
     "lib": ["ES2023"],
-    "module": "ESNext",
-    "moduleResolution": "bundler",
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
     "types": ["node"],
-    "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,

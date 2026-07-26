@@ -5,9 +5,9 @@ import {
   handleContact,
   readConfig,
   type ContactResult,
-} from "./_lib/contact-core";
-import { FIELD_LIMITS } from "./_lib/contact-fields";
-import { createResendSender } from "./_lib/resend";
+} from "./_lib/contact-core.js";
+import { FIELD_LIMITS } from "./_lib/contact-fields.js";
+import { createResendSender } from "./_lib/resend.js";
 
 /**
  * POST /api/contact - kontaktformas pieteikums.
@@ -34,7 +34,11 @@ export default async function handler(
     }
 
     const body = await readJsonBody(req);
-    if (!body.ok) {
+    // Apzināti "=== false", nevis "!body.ok": Vercel api/ kompilē ar savu
+    // ne-strict tsconfig, un tur boolean diskriminants ar noliegumu nesašaurina
+    // savienojumu. Rezultāts būtu TS2339 troksnis būves logos, kurā noslīkst
+    // īstās kļūdas.
+    if (body.ok === false) {
       send(res, { status: body.error === "payload" ? 413 : 400, body: { ok: false, error: body.error } });
       return;
     }

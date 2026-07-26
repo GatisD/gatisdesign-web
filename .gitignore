@@ -28,3 +28,6 @@ dist-ssr
 *.sln
 *.sw?
 .vercel
+
+# scripts/verify-api-runtime.mjs pagaidu izvads
+.api-verify

@@ -1,5 +1,5 @@
-import { budgetLabel, serviceLabel } from "./contact-fields";
-import type { ContactData } from "./contact-schema";
+import { budgetLabel, serviceLabel } from "./contact-fields.js";
+import type { ContactData } from "./contact-schema.js";
 
 /** Vēstules saturs, ko padod sūtītājam. */
 export type EmailMessage = {

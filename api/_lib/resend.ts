@@ -1,5 +1,5 @@
-import type { EmailMessage } from "./contact-emails";
-import type { SendEmail } from "./contact-core";
+import type { EmailMessage } from "./contact-emails.js";
+import type { SendEmail } from "./contact-core.js";
 
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
 const TIMEOUT_MS = 10_000;

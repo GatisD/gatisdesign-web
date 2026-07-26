@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { handleContact, readConfig, resetRateLimit, RATE_LIMIT, type ContactConfig } from "./contact-core";
-import type { EmailMessage } from "./contact-emails";
+import { handleContact, readConfig, resetRateLimit, RATE_LIMIT, type ContactConfig } from "./contact-core.js";
+import type { EmailMessage } from "./contact-emails.js";
 
 const config: ContactConfig = {
   from: "Gatis Design <forma@send.gatisdesign.com>",
