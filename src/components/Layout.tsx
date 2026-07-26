@@ -33,7 +33,7 @@ export default function Layout({ locale }: { locale: Locale }) {
           <div className="min-h-screen flex flex-col bg-background text-foreground">
             <ScrollToTopOnNav />
             <Header />
-            <main className="flex-1 flex flex-col pt-20 md:pt-24">
+            <main id="saturs" className="flex-1 flex flex-col pt-20 md:pt-24">
               <Outlet />
             </main>
             <Footer />

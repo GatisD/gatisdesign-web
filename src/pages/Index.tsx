@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import SEO from "@/components/SEO";
 import JsonLd, { personSchema, professionalServiceSchema } from "@/components/JsonLd";
+import { useLocale } from "@/i18n/LocaleContext";
 import RevealText from "@/components/animations/RevealText";
 import FadeInOnScroll from "@/components/animations/FadeInOnScroll";
 import CountUp from "@/components/animations/CountUp";
@@ -13,12 +14,26 @@ import { CONTACT_EMAIL } from "@/lib/site";
 import PicturePortfolio from "@/components/PicturePortfolio";
 
 export default function Index() {
+ const { locale } = useLocale();
  // Top 4 darbi sākumlapas "Nesenie projekti" sadaļā
  const featured = portfolioWorks.slice(0, 4);
 
  return (
  <>
- <SEO />
+ <SEO
+ routeKey="home"
+ locale={locale}
+ title={
+ locale === "lv"
+ ? "Brand identity ar 18 gadu pieredzi"
+ : "Brand identity with 18 years of experience"
+ }
+ description={
+ locale === "lv"
+ ? "Neatkarīgs brand un web dizainers Rīgā. 100+ projekti zīmoliem Latvijā un ārpus. Logo, mājaslapas, ilustrācijas, druka."
+ : "Independent brand and web designer based in Riga. 100+ projects for brands in Latvia and abroad. Logo, websites, illustrations, print design."
+ }
+ />
  <JsonLd data={[personSchema, professionalServiceSchema]} />
 
  {/* HERO - asimetrisks 3-image grid */}

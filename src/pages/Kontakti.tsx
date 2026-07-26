@@ -9,6 +9,7 @@ import SEO from "@/components/SEO";
 import JsonLd, { buildBreadcrumbSchema, faqSchema, personSchema } from "@/components/JsonLd";
 import FadeInOnScroll from "@/components/animations/FadeInOnScroll";
 import { CONTACT_EMAIL, SOCIAL } from "@/lib/site";
+import { useLocale } from "@/i18n/LocaleContext";
 
 const contactSchema = z.object({
  name: z.string().min(2, "Ievadi vārdu"),
@@ -46,6 +47,7 @@ const faqItems = [
 ];
 
 export default function Kontakti() {
+ const { locale } = useLocale();
  const [submitted, setSubmitted] = useState(false);
  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
@@ -97,9 +99,14 @@ export default function Kontakti() {
  return (
  <>
  <SEO
- title="Kontakti"
- description="Pastāsti par savu projektu. Atbildu 24h laikā. Bāzēts Rīgā, pieejams projektiem visā pasaulē."
- path="/kontakti"
+ routeKey="contact"
+ locale={locale}
+ title={locale === "lv" ? "Kontakti" : "Contact"}
+ description={
+ locale === "lv"
+ ? "Pastāsti par savu projektu. Atbildu 24h laikā. Bāzēts Rīgā, pieejams projektiem visā pasaulē."
+ : "Tell me about your project. I reply within 24h. Based in Riga, available for projects worldwide."
+ }
  />
  <JsonLd
  data={[

@@ -5,6 +5,7 @@ import JsonLd, { buildBreadcrumbSchema, personSchema } from "@/components/JsonLd
 import FadeInOnScroll from "@/components/animations/FadeInOnScroll";
 import MagneticButton from "@/components/animations/MagneticButton";
 import { CONTACT_EMAIL } from "@/lib/site";
+import { useLocale } from "@/i18n/LocaleContext";
 
 const milestones = [
  { year: "2008", icon: Brush, title: "Sākums", text: "Pirmie grafiskā dizaina soļi un aizraušanās ar vizuālo komunikāciju." },
@@ -29,12 +30,18 @@ const process = [
 ];
 
 export default function ParMani() {
+ const { locale } = useLocale();
  return (
  <>
  <SEO
- title="Par mani"
- description="Gatis Daugavietis - neatkarīgs brand un web dizainers ar 18 gadu pieredzi. Mans ceļš, ekspertīze un darba process."
- path="/par-mani"
+ routeKey="about"
+ locale={locale}
+ title={locale === "lv" ? "Par mani" : "About"}
+ description={
+ locale === "lv"
+ ? "Gatis Daugavietis - neatkarīgs brand un web dizainers ar 18 gadu pieredzi. Mans ceļš, ekspertīze un darba process."
+ : "Gatis Daugavietis - independent brand and web designer with 18 years of experience. My journey, expertise and process."
+ }
  />
  <JsonLd
  data={[

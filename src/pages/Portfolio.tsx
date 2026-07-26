@@ -4,8 +4,10 @@ import JsonLd, { buildBreadcrumbSchema } from "@/components/JsonLd";
 import FadeInOnScroll from "@/components/animations/FadeInOnScroll";
 import PortfolioTile from "@/components/PortfolioTile";
 import { portfolioWorks, categories, type PortfolioCategory } from "@/data/portfolio";
+import { useLocale } from "@/i18n/LocaleContext";
 
 export default function Portfolio() {
+ const { locale } = useLocale();
  const [active, setActive] = useState<"Visi" | PortfolioCategory>("Visi");
 
  const filtered = useMemo(() => {
@@ -16,9 +18,14 @@ export default function Portfolio() {
  return (
  <>
  <SEO
+ routeKey="portfolio"
+ locale={locale}
  title="Portfolio"
- description="Atlasītie brand identity, web, ilustrāciju un drukas projekti. 18 gadu darba kolekcija."
- path="/portfolio"
+ description={
+ locale === "lv"
+ ? "Atlasītie brand identity, web, ilustrāciju un drukas projekti. 18 gadu darba kolekcija."
+ : "Selected brand identity, web, illustration and print projects. An 18-year collection of work."
+ }
  />
  <JsonLd
  data={buildBreadcrumbSchema([

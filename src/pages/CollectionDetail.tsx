@@ -7,8 +7,10 @@ import FadeInOnScroll from "@/components/animations/FadeInOnScroll";
 import { findWork, neighbours } from "@/data/portfolio";
 import NotFound from "./NotFound";
 import PicturePortfolio from "@/components/PicturePortfolio";
+import { useLocale } from "@/i18n/LocaleContext";
 
 export default function CollectionDetail() {
+ const { locale } = useLocale();
  const { slug = "" } = useParams<{ slug: string }>();
  const work = findWork(slug);
  const nav = neighbours(slug);
@@ -48,10 +50,14 @@ export default function CollectionDetail() {
  return (
  <>
  <SEO
+ locale={locale}
  title={work.name}
  description={work.caption ?? work.name}
- path={`/portfolio/${work.slug}`}
- ogImage={work.cover}
+ image={work.cover}
+ alternates={[
+ { locale: "lv", path: `/portfolio/${work.slug}` },
+ { locale: "en", path: `/en/portfolio/${work.slug}` },
+ ]}
  />
  <JsonLd
  data={buildBreadcrumbSchema([

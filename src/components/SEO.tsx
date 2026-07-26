@@ -1,42 +1,49 @@
 import { Helmet } from "react-helmet-async";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
+import { alternatesFor, type Locale, type RouteKey } from "@/i18n/routes";
 
-interface SEOProps {
- title?: string;
- description?: string;
- path?: string;
- lastModified?: string;
- ogImage?: string;
-}
+type Props = {
+  title: string;
+  description: string;
+  locale: Locale;
+  routeKey?: RouteKey;
+  /** Projektu lapām, kur ceļš nenāk no ROUTES. */
+  alternates?: Array<{ locale: Locale; path: string }>;
+  image?: string;
+  noindex?: boolean;
+};
 
-const DEFAULT_TITLE = "Gatis Design - Brand identity ar 18 gadu pieredzi";
-const DEFAULT_DESC =
- "Neatkarīgs brand un web dizainers Rīgā. 100+ projekti zīmoliem Latvijā un ārpus. Logo, mājaslapas, ilustrācijas, druka.";
+const abs = (p: string) => (p.startsWith("http") ? p : `${SITE_URL}${p.startsWith("/") ? "" : "/"}${p}`);
 
-export default function SEO({ title, description, path = "", lastModified, ogImage }: SEOProps) {
- const pageTitle = title ? `${title} | ${SITE_NAME}` : DEFAULT_TITLE;
- const pageDesc = description || DEFAULT_DESC;
- const url = `${SITE_URL}${path}`;
- const image = ogImage || `${SITE_URL}/og-image.png`;
+export default function SEO({ title, description, locale, routeKey, alternates, image, noindex }: Props) {
+  const alts = alternates ?? (routeKey ? alternatesFor(routeKey) : []);
+  const self = alts.find((a) => a.locale === locale);
+  const canonical = self ? abs(self.path) : SITE_URL;
+  const ogImage = abs(image ?? "/og-image.png");
+  const lvAlt = alts.find((a) => a.locale === "lv");
 
- return (
- <Helmet>
- <title>{pageTitle}</title>
- <meta name="description" content={pageDesc} />
- <link rel="canonical" href={url} />
- <meta property="og:title" content={pageTitle} />
- <meta property="og:description" content={pageDesc} />
- <meta property="og:url" content={url} />
- <meta property="og:type" content="website" />
- <meta property="og:site_name" content={SITE_NAME} />
- <meta property="og:image" content={image} />
- <meta property="og:locale" content="lv_LV" />
- <meta name="twitter:card" content="summary_large_image" />
- <meta name="twitter:title" content={pageTitle} />
- <meta name="twitter:description" content={pageDesc} />
- <meta name="twitter:image" content={image} />
- {lastModified && <meta name="article:modified_time" content={lastModified} />}
- {lastModified && <meta property="og:updated_time" content={lastModified} />}
- </Helmet>
- );
+  return (
+    <Helmet>
+      <html lang={locale} />
+      <title>{`${title} | ${SITE_NAME}`}</title>
+      <meta name="description" content={description} />
+      <link rel="canonical" href={canonical} />
+      {noindex ? <meta name="robots" content="noindex, follow" /> : null}
+
+      {alts.map((a) => (
+        <link key={a.locale} rel="alternate" hrefLang={a.locale} href={abs(a.path)} />
+      ))}
+      {lvAlt ? <link rel="alternate" hrefLang="x-default" href={abs(lvAlt.path)} /> : null}
+
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:url" content={canonical} />
+      <meta property="og:image" content={ogImage} />
+      <meta property="og:image:alt" content={title} />
+      <meta property="og:locale" content={locale === "lv" ? "lv_LV" : "en_US"} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:image" content={ogImage} />
+    </Helmet>
+  );
 }

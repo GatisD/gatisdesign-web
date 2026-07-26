@@ -1,15 +1,21 @@
 import SEO from "@/components/SEO";
 import JsonLd, { buildBreadcrumbSchema } from "@/components/JsonLd";
 import { CONTACT_EMAIL } from "@/lib/site";
+import { useLocale } from "@/i18n/LocaleContext";
 
 export default function PrivatumaPolitika() {
+ const { locale } = useLocale();
  return (
  <>
  <SEO
- title="Privātuma politika"
- description="Gatis Design privātuma politika - kā apstrādājam tavus datus, kādas ir tavas tiesības un kā ar mums sazināties."
- path="/privatuma-politika"
- lastModified="2026-05-03"
+ routeKey="privacy"
+ locale={locale}
+ title={locale === "lv" ? "Privātuma politika" : "Privacy Policy"}
+ description={
+ locale === "lv"
+ ? "Gatis Design privātuma politika - kā apstrādājam tavus datus, kādas ir tavas tiesības un kā ar mums sazināties."
+ : "Gatis Design privacy policy - how we process your data, what your rights are and how to contact us."
+ }
  />
  <JsonLd
  data={buildBreadcrumbSchema([
