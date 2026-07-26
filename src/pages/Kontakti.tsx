@@ -1,27 +1,11 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Link } from "react-router-dom";
 import { ArrowRight, Plus, Minus } from "lucide-react";
-import { toast } from "sonner";
 import SEO from "@/components/SEO";
 import JsonLd, { buildBreadcrumbSchema, faqSchema, personSchema } from "@/components/JsonLd";
 import FadeInOnScroll from "@/components/animations/FadeInOnScroll";
+import ContactForm from "@/components/ContactForm";
 import { CONTACT_EMAIL, SOCIAL } from "@/lib/site";
 import { useLocale } from "@/i18n/LocaleContext";
-
-const contactSchema = z.object({
- name: z.string().min(2, "Ievadi vārdu"),
- email: z.string().email("Ievadi derīgu e-pastu"),
- projectType: z.string().min(1, "Izvēlies projekta veidu"),
- message: z.string().min(10, "Apraksti projektu vismaz 10 simbolos"),
- consent: z.boolean().refine((v) => v === true, {
- message: "Jāpiekrīt datu apstrādei",
- }),
-});
-
-type ContactValues = z.infer<typeof contactSchema>;
 
 const faqItems = [
  {
@@ -47,54 +31,8 @@ const faqItems = [
 ];
 
 export default function Kontakti() {
- const { locale } = useLocale();
- const [submitted, setSubmitted] = useState(false);
+ const { locale, t } = useLocale();
  const [openFaq, setOpenFaq] = useState<number | null>(0);
-
- const {
- register,
- handleSubmit,
- formState: { errors, isSubmitting },
- reset,
- } = useForm<ContactValues>({
- resolver: zodResolver(contactSchema),
- defaultValues: { consent: false },
- });
-
- async function onSubmit(values: ContactValues) {
- try {
- const res = await fetch("/api/contact", {
- method: "POST",
- headers: { "Content-Type": "application/json" },
- body: JSON.stringify(values),
- });
- if (!res.ok) throw new Error("Send failed");
- const data = (await res.json().catch(() => ({}))) as { ok?: boolean };
- if (data.ok === false) throw new Error("Send failed");
- toast.success("Paldies! Sazināsimies 24h laikā.");
- setSubmitted(true);
- reset();
- // GTM event (no-op kamēr GTM nav uzstādīts)
- if (typeof window !== "undefined" && window.dataLayer) {
- window.dataLayer.push({
- event: "generate_lead",
- form_name: "contact",
- });
- }
- } catch {
- // Graceful fallback - RESEND_API_KEY vēl nav, parādam mailto fallback
- toast.message("Forma vēl nav savienota - uzraksti tieši uz e-pastu", {
- description: CONTACT_EMAIL,
- action: {
- label: "Atvērt e-pastu",
- onClick: () =>
- window.location.assign(
- `mailto:${CONTACT_EMAIL}?subject=Projekta pieprasījums no ${values.name}&body=${encodeURIComponent(values.message)}`,
- ),
- },
- });
- }
- }
 
  return (
  <>
@@ -139,173 +77,16 @@ export default function Kontakti() {
  <div className="w-full md:w-[60%]">
  <FadeInOnScroll>
  <span className="eyebrow orange-dot text-muted-foreground block mb-4">
- PROJEKTA PIEPRASĪJUMS
+ {t.form.kicker}
  </span>
- <h2 className="font-display text-2xl md:text-3xl font-semibold mb-10 md:mb-12">
- Aizpildi formu
+ <h2 className="font-display text-2xl md:text-3xl font-semibold mb-4">
+ {t.form.title}
  </h2>
-
- {submitted ? (
- <div className="border border-border rounded-lg p-8 text-center">
- <p className="font-display text-xl md:text-2xl text-foreground mb-4">
- Paldies! Pieprasījums saņemts.
+ <p className="text-muted-foreground mb-8 md:mb-10 max-w-xl leading-relaxed">
+ {t.form.lede}
  </p>
- <p className="text-muted-foreground">
- Atbildēšu pēc iespējas ātrāk - parasti 24h laikā.
- </p>
- </div>
- ) : (
- <form onSubmit={handleSubmit(onSubmit)} className="space-y-10" noValidate>
- <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
- <div className="flex flex-col space-y-2">
- <label
- htmlFor="name"
- className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase"
- >
- Vārds, Uzvārds
- </label>
- <input
- id="name"
- type="text"
- placeholder="Jānis Bērziņš"
- className="input-underline"
- autoComplete="name"
- {...register("name")}
- />
- {errors.name && (
- <span className="text-xs text-destructive">{errors.name.message}</span>
- )}
- </div>
- <div className="flex flex-col space-y-2">
- <label
- htmlFor="email"
- className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase"
- >
- E-pasts
- </label>
- <input
- id="email"
- type="email"
- placeholder="janis@uznemums.lv"
- className="input-underline"
- autoComplete="email"
- {...register("email")}
- />
- {errors.email && (
- <span className="text-xs text-destructive">{errors.email.message}</span>
- )}
- </div>
- </div>
 
- <div className="flex flex-col space-y-2">
- <label
- htmlFor="projectType"
- className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase"
- >
- Projekta veids
- </label>
- <select
- id="projectType"
- className="input-underline appearance-none cursor-pointer"
- defaultValue=""
- {...register("projectType")}
- >
- <option value="" disabled>
- Izvēlies...
- </option>
- <option value="brand-identity">Zīmola identitāte</option>
- <option value="web-design">Web dizains</option>
- <option value="logo">Logo izstrāde</option>
- <option value="print">Drukas dizains / iepakojums</option>
- <option value="illustration">Ilustrācijas</option>
- <option value="other">Cits</option>
- </select>
- {errors.projectType && (
- <span className="text-xs text-destructive">
- {errors.projectType.message}
- </span>
- )}
- </div>
-
- <div className="flex flex-col space-y-2">
- <label
- htmlFor="message"
- className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase"
- >
- Projekta apraksts
- </label>
- <textarea
- id="message"
- rows={4}
- placeholder="Pastāsti par vēlmēm, mērķiem un termiņiem..."
- className="input-underline resize-none"
- {...register("message")}
- />
- {errors.message && (
- <span className="text-xs text-destructive">{errors.message.message}</span>
- )}
- </div>
-
- <div className="flex items-start space-x-3 group cursor-pointer">
- <input
- id="consent"
- type="checkbox"
- className="w-4 h-4 mt-1 rounded-sm border-border text-foreground focus:ring-accent"
- {...register("consent")}
- />
- <label
- htmlFor="consent"
- className="text-xs text-muted-foreground leading-relaxed cursor-pointer group-hover:text-foreground transition-colors"
- >
- Piekrītu personas datu apstrādei saskaņā ar{" "}
- <Link
- to="/privatuma-politika"
- className="text-accent underline underline-offset-2"
- >
- privātuma politiku
- </Link>
- .
- </label>
- </div>
- {errors.consent && (
- <span className="text-xs text-destructive block">{errors.consent.message}</span>
- )}
-
- <button
- type="submit"
- disabled={isSubmitting}
- className="w-full bg-foreground text-background py-5 px-8 font-display font-semibold text-lg flex justify-between items-center group hover:bg-accent hover:text-accent-foreground transition-all duration-500 rounded-lg disabled:opacity-60"
- >
- <span>{isSubmitting ? "Sūta..." : "Sūtīt pieprasījumu"}</span>
- <ArrowRight
- size={20}
- className="transition-transform duration-300 group-hover:translate-x-2"
- />
- </button>
-
- <p className="text-[11px] text-muted-foreground leading-relaxed pt-4">
- Forma aizsargāta ar reCAPTCHA v3 (kad būs aktivizēts) - sk. Google{" "}
- <a
- href="https://policies.google.com/privacy"
- target="_blank"
- rel="noopener noreferrer"
- className="underline"
- >
- Privacy Policy
- </a>{" "}
- un{" "}
- <a
- href="https://policies.google.com/terms"
- target="_blank"
- rel="noopener noreferrer"
- className="underline"
- >
- Terms of Service
- </a>
- .
- </p>
- </form>
- )}
+ <ContactForm />
  </FadeInOnScroll>
  </div>
 
