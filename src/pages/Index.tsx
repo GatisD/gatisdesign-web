@@ -12,11 +12,10 @@ import MediaPlaceholder, { SHOW_PLACEHOLDERS } from "@/components/direction/Medi
 import Band from "@/components/direction/Band";
 import { Section, SectionTitle, LabelRow, ProseColumns } from "@/components/direction/Section";
 import FaqList from "@/components/content/FaqList";
-import { CONTENT_MODIFIED } from "@/components/content/serviceSchema";
 import ProjectCard from "@/components/ProjectCard";
 import { useLocale } from "@/i18n/LocaleContext";
 import { ROUTES, type RouteKey } from "@/i18n/routes";
-import { CONTACT_EMAIL, SITE_NAME, SITE_URL, SOCIAL } from "@/lib/site";
+import { CONTACT_EMAIL, CONTENT_MODIFIED, SITE_NAME, SITE_URL, SOCIAL } from "@/lib/site";
 import { featured, projectBySlug, projects, type Project } from "@/data/projects";
 import {
   aboutSection,

@@ -12,3 +12,13 @@ export const SOCIAL = {
   instagram: "https://instagram.com/gatisdesign",
   linkedin: "https://www.linkedin.com/in/gatis-daugavietis-bb5566193",
 };
+
+/**
+ * Satura pēdējās redakcijas datums strukturētajiem datiem.
+ *
+ * Konstante, ne `new Date()`: būvē un hidratācijā tam jābūt vienam un tam
+ * pašam, un "šodien" nozīmētu, ka lapa katru dienu apgalvo, ka saturs ir
+ * atjaunots. Dzīvo šeit, ne schema modulī, lai sākumlapa un "Par mani" to
+ * varētu paņemt, neievelkot bundlē visu četru pakalpojumu lapu saturu.
+ */
+export const CONTENT_MODIFIED = "2026-09-05";

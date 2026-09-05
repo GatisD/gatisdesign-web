@@ -82,11 +82,15 @@ export default defineConfig(({ command, isSsrBuild }) => ({
             // Rollup krīt, ja manualChunks norāda uz moduli, kura grafā nav.
             // No shadcn mantojuma palicis tikai @radix-ui/react-tooltip (viena maza
             // pakotne), tāpēc atsevišķs radix gabals vairs nav vajadzīgs.
+            // Animāciju bibliotēkas šeit nav apzināti: vite-react-ssg
+            // maršrutu gabalus priekšielādē KATRĀ lapā, tāpēc framer-motion
+            // maksāja 41,5 KB gzip arī tur, kur no tā nekas netika lietots.
+            // Atklāsme, vilnis un mikro-interakcijas ir CSS (src/index.css),
+            // magnētiskā poga un skaitītājs - viens rAF cikls bez bibliotēkas.
             manualChunks: {
               "react-vendor": ["react", "react-dom", "react-router-dom"],
-              motion: ["framer-motion", "lenis"],
+              scroll: ["lenis"],
               form: ["react-hook-form", "@hookform/resolvers", "zod"],
-              icons: ["lucide-react"],
             },
           },
     },

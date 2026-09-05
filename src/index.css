@@ -150,6 +150,25 @@
     }
   }
 
+  /* Darbu režģis pēc filtra maiņas: vilnis, ne pārlēciens. Bāzes stāvoklis
+     ir gala stāvoklis, tāpēc bez JS un bez animācijām kartes vienkārši ir. */
+  @media (prefers-reduced-motion: no-preference) {
+    .grid-in {
+      animation: grid-in 0.44s var(--ease) backwards;
+      animation-delay: calc(var(--grid-index, 0) * 45ms);
+    }
+  }
+  @keyframes grid-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
   /* Procesa līnija zīmējas, kad sekcija ienāk skatā. */
   .rail-draw {
     transform-origin: top;
@@ -226,7 +245,7 @@
       transform: none;
       transition: none;
     }
-    .marquee-track,
+    .grid-in,
     .media-settle,
     .shake,
     .check-draw {

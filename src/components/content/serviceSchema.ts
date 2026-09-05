@@ -1,17 +1,10 @@
-import { SITE_URL, SITE_NAME, CONTACT_EMAIL } from "@/lib/site";
+import { SITE_URL, SITE_NAME, CONTACT_EMAIL, CONTENT_MODIFIED } from "@/lib/site";
 import { buildBreadcrumbSchema } from "@/components/JsonLd";
 import { priceRangeFor } from "@/content";
 import type { ServiceContent } from "@/content/types";
 import { pathFor, type Locale, type RouteKey } from "@/i18n/routes";
 
 const abs = (p: string) => `${SITE_URL}${p}`;
-
-/**
- * Satura pēdējās redakcijas datums. Konstante, ne `new Date()`: būvē un
- * hidratācijā tam jābūt vienam un tam pašam, un "šodien" strukturētajos datos
- * nozīmētu, ka lapa katru dienu apgalvo, ka saturs ir atjaunots.
- */
-export const CONTENT_MODIFIED = "2026-09-05";
 
 /**
  * Viena un tā pati persona visos objektos - caur `@id`, ne caur atkārtotu

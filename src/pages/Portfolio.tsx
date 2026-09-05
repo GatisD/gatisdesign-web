@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import SEO from "@/components/SEO";
 import JsonLd, { buildBreadcrumbSchema } from "@/components/JsonLd";
 import Reveal from "@/components/animations/Reveal";
@@ -30,7 +29,6 @@ const RATIO = ["16 / 10", "16 / 10", "4 / 3", "4 / 3", "4 / 3"];
 export default function Portfolio() {
   const { locale, t, path } = useLocale();
   const [filter, setFilter] = useState<Filter>("all");
-  const reduced = useReducedMotion();
   const isLv = locale === "lv";
 
   const visible = useMemo(
@@ -128,14 +126,13 @@ export default function Portfolio() {
               >
                 {item.label}
                 <span className="font-label text-label text-paper-faint">{item.count}</span>
-                {active ? (
-                  <motion.span
-                    aria-hidden="true"
-                    layoutId="filter-underline"
-                    className="absolute inset-x-0 bottom-1 h-[2px] bg-amber"
-                    transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 480, damping: 42 }}
-                  />
-                ) : null}
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "absolute inset-x-0 bottom-1 h-[2px] origin-left bg-amber transition-transform duration-300 ease-dir",
+                    active ? "scale-x-100" : "scale-x-0",
+                  )}
+                />
               </button>
             );
           })}
@@ -144,26 +141,23 @@ export default function Portfolio() {
 
       {/* ============ REŽĢIS ============ */}
       <Section rhythm="lg" ariaLabel={isLv ? "Darbu saraksts" : "Work list"}>
-        <div className="grid gap-grid md:grid-cols-12">
-          <AnimatePresence mode="popLayout" initial={false}>
-            {visible.map((project, i) => (
-              <motion.div
-                key={project.slug}
-                layout={reduced ? false : "position"}
-                initial={reduced ? false : { opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={reduced ? { opacity: 0 } : { opacity: 0, y: -8 }}
-                transition={
-                  reduced
-                    ? { duration: 0 }
-                    : { duration: 0.42, ease: [0.22, 0.61, 0.36, 1], delay: Math.min(i, 5) * 0.04 }
-                }
-                className={SPAN[i % SPAN.length]}
-              >
-                <ProjectCard project={project} eager={i === 0} ratio={RATIO[i % RATIO.length]} />
-              </motion.div>
-            ))}
-          </AnimatePresence>
+        {/*
+          Režģis tiek pārmontēts ar `key={filter}`, un kartes ienāk ar vilni
+          (`.grid-in`, src/index.css). Tā ir CSS animācija, ne JS izkārtojuma
+          pārrēķins: `layout` FLIP ar animāciju bibliotēku šeit maksāja 41,5 KB
+          gzip KATRĀ lapā (vite-react-ssg maršrutu gabalus priekšielādē visur),
+          un tas ir vairāk nekā viss pārējais animāciju kods kopā.
+        */}
+        <div key={filter} className="grid gap-grid md:grid-cols-12">
+          {visible.map((project, i) => (
+            <div
+              key={project.slug}
+              className={cn("grid-in", SPAN[i % SPAN.length])}
+              style={{ ["--grid-index" as string]: Math.min(i, 7) }}
+            >
+              <ProjectCard project={project} eager={i === 0} ratio={RATIO[i % RATIO.length]} />
+            </div>
+          ))}
         </div>
 
         <p className="mt-[clamp(30px,4vw,52px)] border-t border-line pt-5">

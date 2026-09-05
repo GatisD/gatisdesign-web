@@ -10,13 +10,12 @@ import MediaPlaceholder from "@/components/direction/MediaPlaceholder";
 import { Section, SectionTitle, LabelRow } from "@/components/direction/Section";
 import ContentSections from "@/components/content/ContentSections";
 import FaqList from "@/components/content/FaqList";
-import { CONTENT_MODIFIED } from "@/components/content/serviceSchema";
 import LinkedEmail from "@/components/content/LinkedEmail";
 import { aboutContent } from "@/content/pages";
 import { statItems } from "@/content/home";
 import { useLocale } from "@/i18n/LocaleContext";
 import { pathFor, type RouteKey } from "@/i18n/routes";
-import { CONTACT_EMAIL, SITE_NAME, SITE_URL, SOCIAL } from "@/lib/site";
+import { CONTACT_EMAIL, CONTENT_MODIFIED, SITE_NAME, SITE_URL, SOCIAL } from "@/lib/site";
 
 const SERVICE_KEYS = ["services.brand", "services.web", "services.ai", "services.seo"] as const;
 const LABEL_BY_KEY = {
