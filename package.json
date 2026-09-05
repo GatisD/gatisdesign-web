@@ -16,7 +16,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "images:webp": "node scripts/convert-webp.mjs",
-    "images:covers": "node scripts/smart-covers.mjs"
+    "images:covers": "node scripts/smart-covers.mjs",
+    "images:media": "node scripts/prepare-media.mjs"
   },
   "dependencies": {
     "@fontsource-variable/epilogue": "^5.3.0",
