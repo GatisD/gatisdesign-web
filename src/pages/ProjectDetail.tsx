@@ -358,7 +358,7 @@ export default function ProjectDetail() {
                 </h2>
                 <p className="mt-3 text-[16px] text-paper-dim">{nav.next.client}</p>
               </div>
-              <span className="block overflow-hidden rounded-card border border-line bg-ink-card" style={{ aspectRatio: "16 / 10" }}>
+              <span className="block h-[clamp(200px,26vw,320px)] overflow-hidden rounded-card border border-line bg-ink-card">
                 <PicturePortfolio
                   src={nav.next.cover.src}
                   alt=""

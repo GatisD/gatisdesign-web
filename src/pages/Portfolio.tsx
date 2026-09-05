@@ -24,7 +24,14 @@ const META_DESCRIPTION =
  * pie augšā līdzinātām kartēm lasās kā kļūda, ne kā ritms.
  */
 const SPAN = ["md:col-span-7", "md:col-span-5", "md:col-span-4", "md:col-span-4", "md:col-span-4"];
-const RATIO = ["16 / 10", "16 / 10", "4 / 3", "4 / 3", "4 / 3"];
+/** Augstums, ne proporcija: vienā rindā visām kartēm jābeidzas vienā līnijā. */
+const FRAME = [
+  "h-[clamp(210px,30vw,500px)]",
+  "h-[clamp(210px,30vw,500px)]",
+  "h-[clamp(190px,22vw,360px)]",
+  "h-[clamp(190px,22vw,360px)]",
+  "h-[clamp(190px,22vw,360px)]",
+];
 
 export default function Portfolio() {
   const { locale, t, path } = useLocale();
@@ -155,7 +162,7 @@ export default function Portfolio() {
               className={cn("grid-in", SPAN[i % SPAN.length])}
               style={{ ["--grid-index" as string]: Math.min(i, 7) }}
             >
-              <ProjectCard project={project} eager={i === 0} ratio={RATIO[i % RATIO.length]} />
+              <ProjectCard project={project} eager={i === 0} frame={FRAME[i % FRAME.length]} />
             </div>
           ))}
         </div>

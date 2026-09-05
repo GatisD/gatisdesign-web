@@ -95,15 +95,21 @@
   }
 
   /* Hero rindu atklāsme: clip-path no apakšas, 70 ms nobīde uz rindu.
-     Bāze redzama - slēpj tikai zem tā paša data-reveal vārta. */
+     Bāze redzama - slēpj tikai zem tā paša data-reveal vārta.
+
+     Augšējā mala ir NEGATĪVA visos redzamajos stāvokļos. Latviešu Ā Ē Ī Ū
+     garumzīmes uppercase displejā sēž virs cap-height, un ar `inset(0 ...)`
+     tās tiek nogrieztas: "PIEPRASĪJUMUS" nolasās kā "PIEPRASIJUMUS". Nogrieztu
+     garumzīmi pamana tikai tas, kurš lasa latviski, tāpēc tā ir tieši tā kļūda,
+     kas paliek lapā gadiem. */
   [data-reveal="on"] .line-reveal > span {
-    clip-path: inset(0 0 105% 0);
+    clip-path: inset(-30% 0 105% 0);
     transform: translateY(0.14em);
   }
   [data-reveal="on"] .line-reveal.is-visible > span {
     animation: line-rise 0.86s var(--ease-settle) backwards;
     animation-delay: calc(var(--line-index, 0) * 70ms);
-    clip-path: inset(0 0 -12% 0);
+    clip-path: none;
     transform: none;
   }
   [data-reveal="on"] .line-reveal:focus-within > span {
@@ -113,11 +119,11 @@
   }
   @keyframes line-rise {
     from {
-      clip-path: inset(0 0 105% 0);
+      clip-path: inset(-30% 0 105% 0);
       transform: translateY(0.14em);
     }
     to {
-      clip-path: inset(0 0 -12% 0);
+      clip-path: inset(-30% 0 -15% 0);
       transform: none;
     }
   }

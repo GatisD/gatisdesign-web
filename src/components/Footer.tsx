@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useLocale } from "@/i18n/LocaleContext";
 import { CONTACT_EMAIL, SOCIAL } from "@/lib/site";
-import MediaPlaceholder from "./direction/MediaPlaceholder";
+import MediaPlaceholder, { SHOW_PLACEHOLDERS } from "./direction/MediaPlaceholder";
 import Label from "./ui/Label";
 import LanguageSwitch from "./LanguageSwitch";
 
@@ -46,7 +46,16 @@ export default function Footer() {
   return (
     <footer className="on-paper bg-paper text-on-paper">
       <div className="mx-auto w-full max-w-wrap px-5 sm:px-8 lg:px-10 pb-10 pt-16 md:pt-24">
-        <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:items-end md:gap-12">
+        {/* Kolonnas ir divas tikai tad, kad portreta vieta reāli renderējas.
+            Produkcijā vietturis ir null, un bez šī nosacījuma saites paliktu
+            iespiestas šaurajā 1fr kolonnā blakus tukšumam. */}
+        <div
+          className={
+            SHOW_PLACEHOLDERS
+              ? "grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:items-end md:gap-12"
+              : "grid gap-10"
+          }
+        >
           <MediaPlaceholder
             text={t.footer.portraitSlot}
             ratio="17 / 10"

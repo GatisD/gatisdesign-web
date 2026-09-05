@@ -21,12 +21,16 @@ import type { Project } from "@/data/projects";
 export default function ProjectCard({
   project,
   eager = false,
-  ratio,
+  frame,
 }: {
   project: Project;
   eager?: boolean;
-  /** Kadra proporcija režģī. Bez tā karte seko attēla proporcijai. */
-  ratio?: string;
+  /**
+   * Kadra AUGSTUMS režģī, ne proporcija. Vienā rindā kartes ir dažāda platuma
+   * (7+5, 4+4+4), un vienāda proporcija tad dod dažādu augstumu: karšu apakšas
+   * nesakrīt, un tas lasās kā kļūda, ne kā ritms.
+   */
+  frame?: string;
 }) {
   const { path } = useLocale();
   const { cover } = project;
@@ -38,8 +42,8 @@ export default function ProjectCard({
       className="group flex h-full flex-col gap-[18px]"
     >
       <span
-        className="relative block overflow-hidden rounded-card border border-line bg-ink-card"
-        style={{ aspectRatio: ratio ?? `${cover.width} / ${cover.height}` }}
+        className={cn("relative block overflow-hidden rounded-card border border-line bg-ink-card", frame)}
+        style={frame ? undefined : { aspectRatio: `${cover.width} / ${cover.height}` }}
       >
         <PicturePortfolio
           src={cover.src}
