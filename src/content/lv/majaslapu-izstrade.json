@@ -1,8 +1,8 @@
 {
   "slug": "majaslapu-izstrade",
   "title": "Mājaslapu izstrāde",
-  "metaTitle": "Mājaslapu izstrāde, kas nes pieteikumus - no 500 EUR",
-  "metaDescription": "Lapa ir, pieteikumu nav? Mājaslapas būvēju ap vienu skaidru darbību. Landing page no 500 EUR, pilna lapa 900-1500 EUR. Neesmu PVN maksātājs - cena ir galīga.",
+  "metaTitle": "Mājaslapu izstrāde: cena no 500 EUR",
+  "metaDescription": "Mājaslapu izstrāde ar fiksētu cenu: landing page no 500 EUR, pilna lapa 900-1500 EUR, interneta veikals no 2500 EUR. Neesmu PVN maksātājs, tāpēc norādītās ir gala cenas.",
   "h1": "Mājaslapu izstrāde, kas nes pieteikumus",
   "directAnswer": "Visbiežākais iemesls, kāpēc mani uzrunā, ir lapa, kas izskatās pieklājīgi, bet nenes pieteikumus. Mājaslapu izstrādi sāku ar struktūru un vienu skaidru darbību katrā lapā. Landing page maksā no 500 EUR, pilna uzņēmuma mājaslapa 900-1500 EUR, e-komercija divās valodās no 2500 EUR. Termiņš - no 5 darba dienām līdz 10 nedēļām. Neesmu PVN maksātājs, tāpēc norādītā cena ir gala cena.",
   "sections": [
@@ -227,7 +227,7 @@
   "faq": [
     {
       "q": "Cik maksā mājaslapas izveide?",
-      "a": "Vienas lapas landing page maksā no 500 EUR, pilna uzņēmuma mājaslapa 900-1500 EUR, interneta veikals divās valodās no 2500 EUR. Cenu nosaka lapu skaits, valodu skaits un tas, cik daudz satura jāsagatavo man. Tā kā neesmu PVN maksātājs, norādītā summa ir gala summa - pie tās nekas netiek pieskaitīts."
+      "a": "Vienas lapas mājaslapa (landing page) maksā no 500 EUR, pilna uzņēmuma mājaslapa 900-1500 EUR, interneta veikals divās valodās no 2500 EUR. Pilns cenrādis ar to, kas katrā cenā ietilpst, ir tabulā „Cenas un termiņi” šajā lapā."
     },
     {
       "q": "Cik ilgā laikā tiek izstrādāta mājaslapa?",
@@ -239,7 +239,7 @@
     },
     {
       "q": "Vai cenai jāpieskaita PVN?",
-      "a": "Nē. Es neesmu PVN maksātājs, tāpēc rēķinā ir tieši tā summa, kas saskaņota. Daudzi konkurenti cenu norāda bez PVN: „no 999 EUR” reāli nozīmē 1208,79 EUR. Apmaksas termiņš ir 5 dienas no rēķina izrakstīšanas. Lielākus projektus dalu divās daļās - 50% sākumā, 50% pirms palaišanas."
+      "a": "Nē. Neesmu PVN maksātājs, tāpēc rēķinā ir tieši tā summa, kas saskaņota piedāvājumā. Apmaksas termiņš ir 5 darbadienas, lielākus projektus dalu divās daļās."
     },
     {
       "q": "Vai varēšu pats labot saturu?",
@@ -262,5 +262,6 @@
     "/par-mani - enkurs „18 gadu pieredze”; sadaļās „Reāli piemēri” un „Kad es neesmu īstā izvēle”",
     "/kontakti - enkurs „uzraksti man”; sadaļā „Kā sākt” un pēc cenu tabulas"
   ],
-  "cta": "Uzraksti uz connect@gatisdesign.com - atsūtīšu konkrētu cenu un termiņu vienas darba dienas laikā."
+  "cta": "Uzraksti uz connect@gatisdesign.com - atsūtīšu konkrētu cenu un termiņu vienas darba dienas laikā.",
+  "heroLede": "Lapa, kas nenes pieteikumus, ir tikai izdevumi. Sāku ar struktūru un vienu skaidru darbību katrā lapā. Cenas un termiņi ir tabulā zemāk."
 }

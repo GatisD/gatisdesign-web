@@ -2,7 +2,7 @@
   "cta": "Aizpildi formu vai raksti uz connect@gatisdesign.com. Atbildi saņemsi vienas darba dienas laikā.",
   "directAnswer": "Raksti uz connect@gatisdesign.com vai aizpildi formu - atbildi saņemsi vienas darba dienas laikā. Vislabāk der īss apraksts par to, kas šobrīd nestrādā, kāds ir mērķis un līdz kuram datumam tas jāpaveic. Pēc 20-30 minūšu sarunas nosūtu piedāvājumu ar fiksētu cenu un termiņu. Budžeta diapazonu formā prasu apzināti - tas ietaupa laiku abām pusēm.",
   "h1": "Pastāsti, kas tev jāatrisina",
-  "metaTitle": "Kontakti - Gatis Daugavietis, dizainers un izstrādātājs",
+  "metaTitle": "Kontakti - Gatis Daugavietis, web dizainers",
   "metaDescription": "Uzraksti, kāda problēma jārisina, un es atbildēšu vienas darba dienas laikā. Pēc sarunas saņemsi piedāvājumu ar cenu un termiņu. connect@gatisdesign.com, Rīga.",
   "sections": [
     {
@@ -61,7 +61,7 @@
       "bullets": [
         "Vārds",
         "E-pasts",
-        "Pakalpojums: zīmola identitāte, mājaslapas izstrāde, AI aģenti un automatizācijas, SEO/GEO/AEO redzamība",
+        "Pakalpojums: zīmola identitāte, mājaslapas izstrāde, AI aģenti un automatizācija, SEO/GEO/AEO redzamība",
         "Budžeta diapazons",
         "Termiņš",
         "Apraksts"
@@ -101,7 +101,7 @@
     },
     {
       "q": "Kā notiek apmaksa?",
-      "a": "50% pēc vienošanās, 50% pēc darba nodošanas. Rēķina apmaksas termiņš ir 5 dienas, rēķinus izrakstu bez PVN. Cena piedāvājumā ir fiksēta - ja apjoms mainās darba gaitā, par to vienojamies rakstiski, pirms turpinu."
+      "a": "50% pēc vienošanās, 50% pēc darba nodošanas. Rēķina apmaksas termiņš ir 5 darbadienas, rēķinus izrakstu bez PVN. Cena piedāvājumā ir fiksēta - ja apjoms mainās darba gaitā, par to vienojamies rakstiski, pirms turpinu."
     },
     {
       "q": "Vai strādā ar ārzemju klientiem?",
@@ -111,5 +111,6 @@
       "q": "Vai vari pārņemt jau iesāktu projektu?",
       "a": "Jā, un tas notiek bieži. Pirms piekrītu, izvērtēju jau paveikto: koda kvalitāti, hostingu, piekļuves, licences. Reizēm lētāk ir pabeigt esošo, reizēm - pārtaisīt no nulles. Pasaku godīgi, kurš variants ir labāks tev, arī tad, ja man izdevīgāks būtu otrs."
     }
-  ]
+  ],
+  "heroLede": "Pastāsti, kas šobrīd nestrādā un kad tam jābūt gatavam. Atbildu vienas darba dienas laikā, un pēc pirmās sarunas tu saņem fiksētu tāmi ar termiņu."
 }

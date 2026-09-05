@@ -1,37 +1,51 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
 import { useLocale } from "@/i18n/LocaleContext";
 import { cn } from "@/lib/utils";
 import { getLenis } from "./SmoothScroll";
-import Button from "./ui/Button";
 import LanguageSwitch from "./LanguageSwitch";
+import Label from "./ui/Label";
+import type { RouteKey } from "@/i18n/routes";
 
+const SERVICE_KEYS: RouteKey[] = ["services.brand", "services.web", "services.ai", "services.seo"];
+const SERVICE_LABEL = { "services.brand": "brand", "services.web": "web", "services.ai": "ai", "services.seo": "seo" } as const;
+
+/**
+ * Galvene.
+ *
+ * Fons un apakšlīnija parādās tikai pēc 40 px ritināšanas - virs hero attēla
+ * josla ar fonu nogriež kadru, un Direction galva ir daļa no attēla, ne josla
+ * virs tā.
+ *
+ * "Pakalpojumi" ir īsts atklājamais bloks ar četrām saitēm, nevis saite uz
+ * lapu, kuras nav. Bez tā četri pakalpojumi navigācijā aizņemtu pusi joslas.
+ */
 export default function Header() {
   const { t, path } = useLocale();
   const { pathname } = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const menuId = useId();
+  const panelId = useId();
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
 
-  const primaryLinks = [
-    { to: path("home"), label: t.nav.home, end: true },
-    { to: path("services.brand"), label: t.services.brand, end: false },
-    { to: path("services.web"), label: t.services.web, end: false },
-    { to: path("services.ai"), label: t.services.ai, end: false },
-    { to: path("services.seo"), label: t.services.seo, end: false },
-    { to: path("portfolio"), label: t.nav.portfolio, end: false },
-    { to: path("about"), label: t.nav.about, end: false },
-    { to: path("contact"), label: t.nav.contact, end: false },
-  ];
-
-  // Lapas maiņa aizver mobilo izvēlni.
   useEffect(() => {
     setMobileOpen(false);
+    setServicesOpen(false);
   }, [pathname]);
 
-  // Kad izvēlne atvērta: apstādina Lenis smooth scroll (ne tikai body overflow),
-  // lai scroll-momentum nenoplūst zem overlay.
+  // Fons pēc 40 px. Pasīvs klausītājs, bez izkārtojuma mērījumiem render laikā.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Atvērta mobilā izvēlne aptur arī Lenis, ne tikai body overflow - citādi
+  // ritināšanas inerce noplūst zem pārklājuma.
   useEffect(() => {
     if (typeof document === "undefined") return;
     if (mobileOpen) {
@@ -46,100 +60,172 @@ export default function Header() {
     };
   }, [mobileOpen]);
 
-  // Escape aizver izvēlni un atgriež fokusu uz burgera pogu.
   useEffect(() => {
-    if (!mobileOpen) return;
+    if (!mobileOpen && !servicesOpen) return;
     function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") {
+      if (e.key !== "Escape") return;
+      if (mobileOpen) {
         setMobileOpen(false);
         toggleRef.current?.focus();
       }
+      setServicesOpen(false);
+    }
+    function onPointerDown(e: PointerEvent) {
+      if (servicesRef.current && !servicesRef.current.contains(e.target as Node)) setServicesOpen(false);
     }
     document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, [mobileOpen]);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [mobileOpen, servicesOpen]);
 
-  const desktopLinkClass = ({ isActive }: { isActive: boolean }) =>
+  const linkClass = ({ isActive }: { isActive: boolean }) =>
     cn(
-      "whitespace-nowrap text-[13px] font-medium tracking-[0.01em] transition-colors duration-200",
-      isActive ? "text-paper" : "text-paper-faint hover:text-paper",
+      "nav-underline relative text-[16px] font-medium transition-colors duration-300",
+      isActive ? "text-paper [--underline:1]" : "text-paper-2 hover:text-paper",
     );
 
   const mobileLinkClass = ({ isActive }: { isActive: boolean }) =>
     cn(
-      "flex min-h-[44px] items-center border-b border-line px-4 py-4 text-2xl transition-colors duration-200",
+      "flex min-h-[52px] items-center border-b border-line text-[clamp(1.25rem,5vw,1.6rem)] transition-colors duration-300",
       isActive ? "text-amber" : "text-paper hover:text-amber",
     );
+
+  const wordmark = (
+    <Link
+      to={path("home")}
+      className="flex shrink-0 items-baseline gap-1.5 leading-none"
+      aria-label={`${t.nav.home} - Gatis Design`}
+    >
+      <span className="text-[19px] font-bold tracking-[-0.02em] text-paper md:text-[20px]">Gatis Design</span>
+      <Label caps className="text-[10px]">
+        Rīga
+      </Label>
+    </Link>
+  );
 
   return (
     <>
       <header
-        className="fixed inset-x-0 top-0 z-50 border-b border-line backdrop-blur-md"
-        style={{ backgroundColor: "color-mix(in srgb, var(--ink-900) 78%, transparent)" }}
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500 ease-dir",
+          scrolled ? "border-b border-line bg-ink-900/85 backdrop-blur-md" : "border-b border-transparent",
+        )}
       >
-        <div className="mx-auto flex h-20 w-full max-w-[1600px] items-center justify-between gap-4 px-[var(--pad-x)] md:h-24">
-          <Link
-            to={path("home")}
-            className="flex shrink-0 flex-col whitespace-nowrap leading-none"
-            aria-label={`${t.nav.home} - Gatis Design`}
-          >
-            <span className="font-accent text-xl italic text-paper md:text-2xl">Gatis Design</span>
-            <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-paper-faint">Rīga</span>
-          </Link>
+        <div className="mx-auto flex h-16 w-full max-w-wrap items-center justify-between gap-6 px-pad-x md:h-[72px]">
+          {wordmark}
 
-          <nav className="hidden flex-wrap items-center justify-end gap-x-5 gap-y-1 lg:flex">
-            {primaryLinks.map((link) => (
-              <NavLink key={link.to} to={link.to} end={link.end} className={desktopLinkClass}>
-                {link.label}
-              </NavLink>
-            ))}
+          <nav aria-label={t.nav.services} className="hidden items-center gap-8 lg:flex">
+            <NavLink to={path("portfolio")} className={linkClass}>
+              {t.nav.portfolio}
+            </NavLink>
+
+            <div ref={servicesRef} className="relative">
+              <button
+                type="button"
+                aria-expanded={servicesOpen}
+                aria-controls={panelId}
+                onClick={() => setServicesOpen((v) => !v)}
+                className={cn(
+                  "nav-underline relative text-[16px] font-medium transition-colors duration-300",
+                  SERVICE_KEYS.some((k) => pathname === path(k))
+                    ? "text-paper [--underline:1]"
+                    : "text-paper-2 hover:text-paper",
+                )}
+              >
+                {t.nav.services}
+              </button>
+              {servicesOpen ? (
+                <div
+                  id={panelId}
+                  className="absolute right-0 top-[calc(100%+18px)] z-10 w-[300px] rounded-card border border-line bg-ink-card p-2 shadow-[0_40px_80px_-40px_rgba(0,0,0,.9)]"
+                >
+                  <ul>
+                    {SERVICE_KEYS.map((key) => (
+                      <li key={key}>
+                        <NavLink
+                          to={path(key)}
+                          className="flex min-h-[48px] items-center rounded-field px-4 text-[16px] text-paper-2 transition-colors duration-200 hover:bg-ink-800 hover:text-amber"
+                        >
+                          {t.services[SERVICE_LABEL[key as keyof typeof SERVICE_LABEL]]}
+                        </NavLink>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+            </div>
+
+            <NavLink to={path("about")} className={linkClass}>
+              {t.nav.about}
+            </NavLink>
+            <NavLink
+              to={path("contact")}
+              className={({ isActive }) =>
+                cn(
+                  "nav-underline relative text-[16px] font-medium text-amber transition-colors duration-300",
+                  isActive && "[--underline:1]",
+                )
+              }
+            >
+              {t.nav.contact}
+            </NavLink>
+            <LanguageSwitch />
           </nav>
 
-          <div className="flex shrink-0 items-center gap-3">
-            <div className="hidden lg:block">
-              <LanguageSwitch />
-            </div>
-            <div className="hidden lg:block">
-              <Button to={path("contact")} size="sm" className="whitespace-nowrap">
-                {t.nav.cta}
-              </Button>
-            </div>
-
-            <button
-              ref={toggleRef}
-              type="button"
-              onClick={() => setMobileOpen((v) => !v)}
-              aria-expanded={mobileOpen}
-              aria-controls={menuId}
-              className="inline-flex h-[46px] w-[46px] items-center justify-center rounded-full border border-line-strong text-paper transition-colors duration-200 hover:border-amber hover:text-amber lg:hidden"
-            >
-              <span className="sr-only">{mobileOpen ? t.nav.closeMenu : t.nav.openMenu}</span>
-              {mobileOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
-            </button>
-          </div>
+          <button
+            ref={toggleRef}
+            type="button"
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-expanded={mobileOpen}
+            aria-controls={menuId}
+            className="-mr-2 inline-flex h-[46px] w-[46px] items-center justify-center text-paper transition-colors duration-300 hover:text-amber lg:hidden"
+          >
+            <span className="sr-only">{mobileOpen ? t.nav.closeMenu : t.nav.openMenu}</span>
+            <span aria-hidden="true" className="flex w-8 flex-col gap-[6px]">
+              <span
+                className={cn(
+                  "h-px w-full bg-current transition-transform duration-300 ease-dir",
+                  mobileOpen && "translate-y-[7px] rotate-45",
+                )}
+              />
+              <span className={cn("h-px w-full bg-current transition-opacity duration-200", mobileOpen && "opacity-0")} />
+              <span
+                className={cn(
+                  "h-px w-full bg-current transition-transform duration-300 ease-dir",
+                  mobileOpen && "-translate-y-[7px] -rotate-45",
+                )}
+              />
+            </span>
+          </button>
         </div>
       </header>
 
-      {mobileOpen && (
-        <div
-          id={menuId}
-          className="fixed inset-x-0 bottom-0 top-20 z-[100] overflow-y-auto bg-ink-900 md:top-24 lg:hidden"
-        >
-          <nav className="flex flex-col gap-1 p-6">
-            {primaryLinks.map((link) => (
-              <NavLink key={link.to} to={link.to} end={link.end} className={mobileLinkClass}>
-                {link.label}
+      {mobileOpen ? (
+        <div id={menuId} className="fixed inset-x-0 bottom-0 top-16 z-[100] overflow-y-auto bg-ink-900 md:top-[72px] lg:hidden">
+          <nav aria-label={t.nav.services} className="flex flex-col px-pad-x pt-6">
+            <NavLink to={path("portfolio")} className={mobileLinkClass}>
+              {t.nav.portfolio}
+            </NavLink>
+            {SERVICE_KEYS.map((key) => (
+              <NavLink key={key} to={path(key)} className={mobileLinkClass}>
+                {t.services[SERVICE_LABEL[key as keyof typeof SERVICE_LABEL]]}
               </NavLink>
             ))}
+            <NavLink to={path("about")} className={mobileLinkClass}>
+              {t.nav.about}
+            </NavLink>
+            <NavLink to={path("contact")} className={mobileLinkClass}>
+              {t.nav.contact}
+            </NavLink>
           </nav>
-          <div className="flex flex-col gap-6 px-6 pb-10">
+          <div className="px-pad-x pb-12 pt-8">
             <LanguageSwitch />
-            <Button to={path("contact")} className="w-full">
-              {t.nav.cta}
-            </Button>
           </div>
         </div>
-      )}
+      ) : null}
     </>
   );
 }

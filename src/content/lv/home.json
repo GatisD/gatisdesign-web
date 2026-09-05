@@ -1,16 +1,17 @@
 {
   "slug": "/",
   "title": "Sākumlapa - Gatis Design",
-  "metaTitle": "Lapa, kas nes pieprasījumus - web dizainers Rīgā",
-  "metaDescription": "Lapa izskatās labi, bet pieprasījumu nav? Salaboju struktūru, ātrumu, tekstu un mērījumus. Web dizainers Rīgā, 18 gadu pieredze, cenas no 500 EUR.",
-  "h1": "Tava lapa izskatās labi, bet nenes pieprasījumus. Esmu web dizainers Rīgā, kurš to salabo.",
+  "metaTitle": "Mājaslapu dizains, kas nes pieprasījumus",
+  "metaDescription": "Mājaslapu dizains un izstrāde ar 18 gadu pieredzi. Zīmolu, lapu, AI aģentus un redzamību Google meklēšanā un AI atbildēs - visu izdara viens cilvēks. Cenas no 500 EUR.",
+  "h1": "Lapa, kas nes pieprasījumus.",
   "directAnswer": "Lapa izskatās kārtībā, bet pieprasījumu nav - ar to klienti pie manis nāk visbiežāk. Esmu Gatis Daugavietis, web dizainers un izstrādātājs Rīgā. Strādāju viens, bez aģentūras: uzzīmēju zīmolu, uzbūvēju lapu, pieslēdzu AI aģentus un atbildu par redzamību Google meklēšanā un AI atbildēs. Klienti Latvijā, Igaunijā, Lietuvā un ASV. Cenas no 500 EUR, pirmā versija parasti ir gatava 2-4 nedēļās.",
   "sections": [
     {
       "kicker": "Hero",
-      "heading": "Tava lapa izskatās labi, bet nenes pieprasījumus. Esmu web dizainers Rīgā, kurš to salabo.",
+      "heading": "Lapa, kas nes pieprasījumus.",
       "body": [
-        "Salaboju to, kas neļauj lapai nest pieprasījumus: struktūru, ātrumu, tekstu un mērījumus. 18 gadu pieredze, 100+ projekti, klienti Latvijā, Igaunijā, Lietuvā un ASV."
+        "Mājaslapu dizainu, zīmolu, AI aģentus un redzamību Google meklēšanā un AI atbildēs - visu izdara viens cilvēks.",
+        "Salaboju to, kas neļauj lapai nest pieprasījumus: struktūru, ātrumu, tekstu un mērījumus. 18 gadu pieredze, 100+ projektu, klienti Latvijā, Igaunijā, Lietuvā un ASV."
       ],
       "bullets": [
         "CTA 1 (primārā): Pastāsti par projektu -> /kontakti",
@@ -37,7 +38,7 @@
         "Zīmola identitāte. Ja zīmols katrā vietā izskatās mazliet citāds, klients to neatceras. Logo, krāsas, tipogrāfija un lietošanas noteikumi, ar kuriem zīmols izskatās vienādi gan uz auto sāna, gan Instagram profilā. No 500 EUR. -> /zimola-identitate",
         "Mājaslapu izstrāde un dizains. Lēna lapa bez mērījumiem katru mēnesi klusi zaudē pieprasījumus. Dizains, kods, saturs un hostings vienās rokās, WordPress vai React, ar ātrumu un mērījumiem no pirmās dienas. No 500 EUR. -> /majaslapu-izstrade",
         "AI aģenti. Ja komanda katru nedēļu ar rokām atkārto to pašu darbu, tas ir laiks, ko var atgūt. Automatizācija pieprasījumu apstrādei, atskaitēm, satura sagatavošanai un datu apmaiņai starp sistēmām. Audits no 400 EUR. -> /ai-agenti",
-        "SEO, GEO un AEO. Ja tevi neatrod ne Google, ne ChatGPT, izvēle notiek bez tevis. Darbs pie tā, lai lapu atrod gan Google meklēšanā, gan ChatGPT un Perplexity atbildēs. Audits no 300 EUR. -> /seo-geo-aeo"
+        "SEO, GEO un AEO. Ja tevi neatrod ne Google, ne ChatGPT, izvēle notiek bez tevis. Panāku, lai tavu lapu atrastu gan Google meklēšanā, gan ChatGPT un Perplexity atbildēs. Audits no 300 EUR. -> /seo-geo-aeo"
       ],
       "table": {
         "caption": "Sākuma cenas un termiņi (cenas bez PVN)",
@@ -97,8 +98,8 @@
         "Bez tukšām frāzēm par pieredzi. Četri skaitļi, ko var pārbaudīt darbu sadaļā un atsauksmēs."
       ],
       "bullets": [
-        "18 gadi web izstrādē un dizainā, kopš 2008. gada",
-        "100+ pabeigti projekti: zīmoli, mājaslapas, e-veikali, kampaņas",
+        "18 gadu web izstrādē un dizainā, kopš 2008. gada",
+        "100+ pabeigtu projektu: zīmolu, mājaslapu, interneta veikalu, kampaņu",
         "4 tirgi: Latvija, Igaunija, Lietuva un ASV",
         "1 kontaktpersona no pirmās sarunas līdz palaišanai un arī pēc tās"
       ]
@@ -174,5 +175,6 @@
     "/par-mani",
     "/kontakti"
   ],
-  "cta": "Pastāsti par projektu: connect@gatisdesign.com vai /kontakti. Pirmā saruna neko nemaksā, pēc tās saņem fiksētu tāmi ar termiņiem."
+  "cta": "Pastāsti par projektu: connect@gatisdesign.com vai /kontakti. Pirmā saruna neko nemaksā, pēc tās saņem fiksētu tāmi ar termiņiem.",
+  "heroLede": "Mājaslapu dizainu, zīmolu, AI aģentus un redzamību Google meklēšanā un AI atbildēs - visu izdara viens cilvēks."
 }

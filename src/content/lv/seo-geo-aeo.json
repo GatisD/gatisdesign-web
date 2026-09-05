@@ -1,8 +1,8 @@
 {
   "slug": "seo-geo-aeo",
   "title": "GEO optimizācija, SEO un AEO",
-  "metaTitle": "Tevis nav ChatGPT atbildēs? GEO optimizācija | Gatis Design",
-  "metaDescription": "Klients jautā ChatGPT, un tevis tur nav. GEO optimizācija, SEO un AEO, lai tevi citē AI atbildēs. Audits no 300 EUR, ieviešana no 700 EUR, fiksētas cenas.",
+  "metaTitle": "SEO optimizācija un audits - cena no 300 EUR",
+  "metaDescription": "SEO audits no 300 EUR, GEO un AEO ieviešana no 700 EUR. Fiksētas cenas, lai tevi atrastu Google meklēšanā un citētu ChatGPT atbildēs. Rīga, klienti Baltijā un ASV.",
   "h1": "Klients jautā ChatGPT, un tevis tur nav: GEO optimizācija, SEO un AEO",
   "directAnswer": "Daļa klientu vairs nepārlūko Google desmit zilās saites - viņi jautā ChatGPT vai paļaujas uz Google AI kopsavilkumu, un tur tavas lapas nav. GEO optimizācija panāk, ka modelis tevi nosauc un citē. Darba pamatā ir tehniskais SEO, citējami fragmenti un schema markup. Audits līdz 5 lapām maksā 300 EUR, ieviešana sākas no 700 EUR, pirmās izmaiņas redzamas 6-10 nedēļās.",
   "sections": [
@@ -188,7 +188,7 @@
         "Uzturēšanai ir jēga tikai tad, kad pamatdarbs ir izdarīts. Tas ir mēneša darbs ar atskaiti, nevis abonements par klusēšanu. Ilgtermiņa līgumu nav, uzturēšanu var pārtraukt, brīdinot mēnesi iepriekš."
       ],
       "table": {
-        "caption": "Cenas ir bez PVN. Es neesmu PVN maksātājs, tāpēc rēķinā PVN netiek pieskaitīts. Apmaksas termiņš ir 5 dienas.",
+        "caption": "Cenas ir bez PVN. Es neesmu PVN maksātājs, tāpēc rēķinā PVN netiek pieskaitīts. Apmaksas termiņš ir 5 darbadienas.",
         "columns": [
           "Pakalpojums",
           "Apjoms",
@@ -316,5 +316,6 @@
     "/par-mani - enkurs „18 gadu pieredze dizainā un izstrādē”, sadaļā „Kā es strādāju”",
     "/kontakti - enkurs „sazinies ar mani”, noslēguma aicinājumā"
   ],
-  "cta": "Sāc ar auditu par 300 EUR. Raksti uz connect@gatisdesign.com un pievieno lapas adresi - pirmo novērtējumu atsūtu vienas darba dienas laikā."
+  "cta": "Sāc ar auditu par 300 EUR. Raksti uz connect@gatisdesign.com un pievieno lapas adresi - pirmo novērtējumu atsūtu vienas darba dienas laikā.",
+  "heroLede": "Daļa klientu vairs nemeklē Google meklētājā - viņi jautā ChatGPT, un tur tavas lapas nav. Salaboju tehnisko bāzi un saturu tā, lai tie parādītos abās vietās."
 }

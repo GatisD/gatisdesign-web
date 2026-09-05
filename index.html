@@ -5,12 +5,27 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#FAFAFA" />
+    <meta name="theme-color" content="#0D0B09" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Fonts self-hosted via @fontsource in src/index.css (no external preconnect needed) -->
+    <!-- Fonti ir pašhostēti caur @fontsource (src/styles/tokens.css) - ārējs preconnect nav vajadzīgs. -->
 
-    <!-- Google Consent Mode v2 (default denied) -->
+    <!--
+      Atklāsmes vārti. Slēpšana notiek TIKAI tad, kad šis atribūts ir uzlikts,
+      un tas netiek uzlikts pie prefers-reduced-motion. Bez JS atribūta nav,
+      tāpēc nekas netiek paslēpts. Skripts ir inline un pirms lapas, lai lēmums
+      ir pieņemts pirms pirmā kadra (sk. src/index.css .reveal bloku).
+    -->
+    <script>
+      (function () {
+        try {
+          if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          document.documentElement.setAttribute('data-reveal', 'on');
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Google Consent Mode v2 (noklusējums - liegts) -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -23,7 +38,7 @@
       });
     </script>
 
-    <!-- TODO: pievienot GTM / GA4 ID kad klients tos sniegs (services.ga4 = deferred) -->
+    <!-- TODO: pievienot GTM / GA4 ID, kad tie būs zināmi (services.ga4 = atlikts) -->
   </head>
   <body>
     <div id="root"></div>

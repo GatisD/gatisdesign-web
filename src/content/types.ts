@@ -47,10 +47,26 @@ export type PageContent = {
   metaTitle: string;
   metaDescription: string;
   h1: string;
-  /** Atbilde uz lapas galveno jautājumu vienā rindkopā. Tiek izcelta hero blokā. */
+  /**
+   * Atbilde uz lapas galveno jautājumu vienā rindkopā. Tiek lietota meta
+   * aprakstā un strukturētajos datos. Lapā to vairs neizceļ atsevišķā blokā:
+   * kopā ar hero ievadu, cenu tabulu un FAQ tas nozīmēja cenas vienā lapā
+   * līdz astoņām reizēm (hallmark audits 2026-09-05, Mj2).
+   */
   directAnswer: string;
+  /**
+   * Hero ievads - divas rindas bez cipariem. Cenas dzīvo cenu tabulā, un
+   * tabula ir vienīgā vieta, kur tās ir pilnā apjomā.
+   */
+  heroLede?: string;
   sections: ContentSectionData[];
   faq: FaqItem[];
+  /**
+   * Jautājumi, kas paliek FAQPage strukturētajos datos, bet lapā netiek rādīti.
+   * Piemērs: "Kas ir Gatis Daugavietis?" uz lapas "Par mani" - visa lapa jau ir
+   * atbilde, un redzams jautājums to atkārto trešo reizi.
+   */
+  faqSchemaOnly?: FaqItem[];
   cta?: string;
   /** Tikai pakalpojumu lapām: LV ceļš bez slīpsvītras. */
   slug?: string;

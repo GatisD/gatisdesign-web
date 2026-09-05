@@ -1,50 +1,49 @@
-import { useInView, animate, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-interface Props {
-  to: number;
-  duration?: number;
-  suffix?: string;
-  className?: string;
-}
-
 /**
- * Skaitītājs, kas statiskajā HTML jau satur gala skaitli.
+ * Odometra skaitītājs. Bez animāciju bibliotēkas: viens requestAnimationFrame
+ * cikls ar to pašu easing līkni, kas visam pārējam.
  *
- * Sākuma stāvoklis apzināti ir `to`, nevis nulle: lapa tiek ģenerēta statiski,
- * tāpēc bez JavaScript (un meklētāja crawler acīs) paliek redzams tieši tas,
- * kas rakstīts saturā. Animācija sākas tikai pēc hidratācijas, kad bloks nonāk
- * skatā, un beidzas tajā pašā skaitlī.
+ * Bāzes stāvoklis ir GALA skaitlis - SSG kadrā, bez JS un pie reduced-motion
+ * lapā uzreiz stāv "100", ne "0". Animācija tikai pievieno kustību.
  */
-export default function CountUp({ to, duration = 1.5, suffix = "", className }: Props) {
+export default function CountUp({ to, duration = 1.2 }: { to: number; duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true });
-  const reduce = useReducedMotion();
-  const [animated, setAnimated] = useState<number | null>(null);
-
-  // Ja bloks jau ir pirmajā kadrā, skaitītājs nesāk no nulles: HTML skaitlis jau
-  // ir redzams, un lēciens 18 -> 0 -> 18 izskatītos pēc kļūdas, ne pēc animācijas.
-  const visibleOnLoad = useRef(false);
-  useEffect(() => {
-    visibleOnLoad.current = ref.current
-      ? ref.current.getBoundingClientRect().top < window.innerHeight
-      : false;
-  }, []);
+  const [value, setValue] = useState(to);
 
   useEffect(() => {
-    if (!inView || reduce || visibleOnLoad.current) return;
-    const controls = animate(0, to, {
-      duration,
-      ease: [0.16, 1, 0.3, 1],
-      onUpdate: (v) => setAnimated(Math.round(v)),
-    });
-    return () => controls.stop();
-  }, [inView, to, duration, reduce]);
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let raf = 0;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        io.disconnect();
+        const start = performance.now();
+        setValue(0);
+        const tick = (now: number) => {
+          const t = Math.min(1, (now - start) / (duration * 1000));
+          // cubic-bezier(.22,1,.36,1) tuvinājums: ātrs sākums, mīksts nobeigums
+          const eased = 1 - Math.pow(1 - t, 3);
+          setValue(Math.round(eased * to));
+          if (t < 1) raf = requestAnimationFrame(tick);
+        };
+        raf = requestAnimationFrame(tick);
+      },
+      { rootMargin: "0px 0px -40px 0px" },
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      cancelAnimationFrame(raf);
+    };
+  }, [to, duration]);
 
   return (
-    <span ref={ref} className={className}>
-      {animated ?? to}
-      {suffix}
+    <span ref={ref} className="tabular-nums">
+      {value}
     </span>
   );
 }

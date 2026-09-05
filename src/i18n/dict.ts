@@ -19,7 +19,7 @@ export const dict = {
     services: {
       brand: "Zīmola identitāte",
       web: "Mājaslapu izstrāde",
-      ai: "AI aģenti un automatizācijas",
+      ai: "AI aģenti un automatizācija",
       seo: "SEO, GEO un AEO",
     },
     lang: { label: "Valodas izvēle", lv: "LV", en: "EN" },

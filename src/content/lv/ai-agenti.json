@@ -1,8 +1,8 @@
 {
   "slug": "ai-agenti",
   "title": "AI aģentu izstrāde un procesu automatizācija",
-  "metaTitle": "AI aģentu izstrāde: dati pārvietojas paši | Gatis Design",
-  "metaDescription": "Katru dienu kāds ar rokām pārceļ pieprasījumus starp sistēmām. Būvēju AI aģentus un plūsmas, kas to dara bez cilvēka. Audits no 400 EUR, process 900-1800 EUR.",
+  "metaTitle": "AI aģenti un automatizācija uzņēmumiem",
+  "metaDescription": "AI automatizācija uzņēmumiem, kuros datus no vienas sistēmas otrā joprojām pārnes ar rokām. Procesu audits no 400 EUR, viens aģents 900-1800 EUR.",
   "h1": "AI aģentu izstrāde uzņēmumiem, kuros datus starp sistēmām joprojām pārnes ar rokām",
   "directAnswer": "Katru dienu kāds komandā pārceļ pieprasījumus no reklāmas konta uz CRM, kopē skaitļus atskaitēs un pamana kļūdu par vēlu. Es būvēju AI aģentus un automatizētas plūsmas, kas šo darbu paveic bez cilvēka un neko nepazaudē. Viens process no sākuma līdz beigām maksā 900-1800 EUR, procesu audits no 400 EUR, izstrāde aizņem 2-8 nedēļas. Strādāju ar Latvijas, Igaunijas un Lietuvas uzņēmumiem.",
   "sections": [
@@ -62,7 +62,7 @@
       "heading": "Cik maksā AI aģentu izstrāde",
       "body": [
         "Cena ir atkarīga no tā, cik sistēmas jāsavieno un cik daudz izņēmumu ir procesā. Divām sistēmām ar skaidru loģiku ir viena cena. Piecām sistēmām, no kurām divām nav normālas API, tā ir pavisam cita.",
-        "Cenas ir bez PVN - es neesmu PVN maksātājs, tāpēc rēķinam to nepievienoju. Apmaksa 50% sākumā, 50% pēc nodošanas. Apmaksas termiņš 5 dienas.",
+        "Cenas ir bez PVN - es neesmu PVN maksātājs, tāpēc rēķinam to nepievienoju. Apmaksa 50% sākumā, 50% pēc nodošanas. Apmaksas termiņš 5 darbadienas.",
         "Manā cenā nav iekļautas trešo pušu izmaksas: hostings plūsmām, modeļa API tokeni, n8n vai Cloudflare abonements. Vienai vidēja apjoma plūsmai tās parasti ir 5-40 EUR mēnesī. Es tās aprēķinu jau auditā, lai pēc pusgada rēķinā nebūtu pārsteigumu."
       ],
       "table": {
@@ -210,7 +210,7 @@
   "faq": [
     {
       "q": "Cik maksā AI aģenta izstrāde?",
-      "a": "Procesu audits ar automatizācijas plānu maksā no 400 EUR. Viens aģents vai automatizācija, kas aptver vienu procesu no sākuma līdz beigām, maksā 900-1800 EUR. Kompleksa integrācija ar CRM, atskaitēm un vairākiem datu avotiem sākas no 2500 EUR. Uzraudzība un uzturēšana no 100 EUR mēnesī, atsevišķi darbi 60 EUR stundā. Cenas ir bez PVN."
+      "a": "Procesu audits ar automatizācijas plānu maksā no 400 EUR, viens aģents vai automatizācija 900-1800 EUR. Pārējās pozīcijas, tostarp integrācijas un uzturēšanu, atradīsi cenu tabulā šajā lapā."
     },
     {
       "q": "Cik ilgi aizņem izstrāde?",
@@ -245,5 +245,6 @@
     "/par-mani - enkurs „18 gadu pieredze web izstrādē un dizainā” sadaļā „Ar ko sākt”",
     "/kontakti - enkurs „uzraksti man” sadaļā „Ar ko sākt”"
   ],
-  "cta": "Uzraksti uz connect@gatisdesign.com un apraksti vienu procesu, kas komandai atņem visvairāk laika. Atbildu vienas darba dienas laikā ar aplēsi: vai to ir vērts automatizēt, cik tas maksās un cik ilgi tas aizņems."
+  "cta": "Uzraksti uz connect@gatisdesign.com un apraksti vienu procesu, kas komandai atņem visvairāk laika. Atbildu vienas darba dienas laikā ar aplēsi: vai to ir vērts automatizēt, cik tas maksās un cik ilgi tas aizņems.",
+  "heroLede": "Kāds komandā joprojām ar rokām pārceļ pieprasījumus no reklāmas konta uz CRM. Es būvēju aģentus, kas to dara paši - ar laika zīmogiem un pārbaudēm."
 }

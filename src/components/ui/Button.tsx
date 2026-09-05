@@ -6,22 +6,60 @@ type Props = {
   children: ReactNode;
   to?: string;
   href?: string;
-  variant?: "primary" | "ghost";
-  size?: "md" | "sm";
+  type?: "button" | "submit";
+  /**
+   * `primary` ir vienīgā pill forma lapā - tā apzīmē vienu galveno darbību.
+   * `link` ir teksta saite ar vara apakšlīniju; `outline` ir rāmis bez pildījuma.
+   */
+  variant?: "primary" | "outline" | "link";
   className?: string;
+  disabled?: boolean;
   onClick?: () => void;
 };
 
-export default function Button({ children, to, href, variant = "primary", size = "md", className, onClick }: Props) {
+/**
+ * Pogas. Direction noteikums: pill TIKAI primārajai darbībai, augstums 64 px
+ * (52 px mobilajā), lai tā sakrīt ar formas lauku augstumu. Sekundārā darbība
+ * nekad nav otra pill - citādi lapā ir divas "galvenās" pogas.
+ */
+export default function Button({
+  children,
+  to,
+  href,
+  type = "button",
+  variant = "primary",
+  className,
+  disabled,
+  onClick,
+}: Props) {
   const cls = cn(
-    "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300",
-    size === "md" ? "min-h-[50px] px-[26px] text-[15px]" : "min-h-[44px] px-5 text-[14px]",
-    variant === "primary"
-      ? "bg-amber text-[#1a1206] shadow-[0_12px_40px_-14px_rgba(224,114,60,.65)] hover:bg-amber-soft hover:-translate-y-[2px]"
-      : "border border-line-strong text-paper hover:border-amber hover:text-amber hover:-translate-y-[2px]",
+    "inline-flex items-center justify-center gap-2 font-medium transition-[background-color,color,border-color,transform] duration-300 ease-dir",
+    variant === "primary" &&
+      "h-[56px] rounded-full bg-paper px-8 text-[17px] text-ink-900 hover:bg-amber hover:text-on-amber md:h-16 md:px-[34px] md:text-[18px]",
+    variant === "outline" &&
+      "h-[56px] rounded-full border border-line-strong px-8 text-[17px] text-paper hover:border-amber hover:text-amber md:h-16 md:px-[34px] md:text-[18px]",
+    variant === "link" &&
+      "border-b border-amber pb-1 text-[17px] text-paper hover:text-amber md:text-[18px]",
+    disabled && "pointer-events-none opacity-55",
     className,
   );
-  if (to) return <Link to={to} className={cls}>{children}</Link>;
-  if (href) return <a href={href} className={cls}>{children}</a>;
-  return <button type="button" className={cls} onClick={onClick}>{children}</button>;
+  if (to) {
+    return (
+      <Link to={to} className={cls}>
+        {children}
+      </Link>
+    );
+  }
+  if (href) {
+    return (
+      <a href={href} className={cls}>
+        {children}
+      </a>
+    );
+  }
+  return (
+    <button type={type} className={cls} disabled={disabled} onClick={onClick}>
+      {children}
+    </button>
+  );
 }

@@ -1,15 +1,15 @@
 {
-  "metaTitle": "Gatis Daugavietis - web dizainers ar 18 gadu pieredzi",
+  "metaTitle": "Gatis Daugavietis - web dizainers Rīgā",
   "metaDescription": "Esmu Gatis Daugavietis, dizainers un izstrādātājs Rīgā ar 18 gadu pieredzi. Strādāju viens: zīmola identitāte, mājaslapas, AI aģenti, SEO/GEO/AEO redzamība.",
   "h1": "Gatis Daugavietis - web dizainers un izstrādātājs ar 18 gadu pieredzi",
-  "directAnswer": "Esmu Gatis Daugavietis, web dizainers un izstrādātājs Rīgā ar 18 gadu pieredzi. Strādāju viens, bez aģentūras, un vedu projektu no pirmās sarunas līdz publicēšanai. Līnijas ir četras: zīmola identitāte, mājaslapu izstrāde, AI aģenti un automatizācijas, SEO/GEO/AEO redzamība. Klienti ir Latvijā, Igaunijā, Lietuvā un ASV. Kontakts: connect@gatisdesign.com.",
+  "directAnswer": "Esmu Gatis Daugavietis, web dizainers un izstrādātājs Rīgā ar 18 gadu pieredzi. Strādāju viens, bez aģentūras, un vedu projektu no pirmās sarunas līdz publicēšanai. Līnijas ir četras: zīmola identitāte, mājaslapu izstrāde, AI aģenti un automatizācija, SEO/GEO/AEO redzamība. Klienti ir Latvijā, Igaunijā, Lietuvā un ASV. Kontakts: connect@gatisdesign.com.",
   "sections": [
     {
       "heading": "Kas es esmu un ko risinu",
       "body": [
         "Vairums cilvēku man neraksta tāpēc, ka viņiem vajag dizainu. Viņi raksta tāpēc, ka kaut kas nestrādā. Mājaslapa izskatās pēc 2015. gada un nenes nevienu pieprasījumu. Materiāli izskatās tā, it kā tos būtu taisījuši pieci dažādi uzņēmumi. Meklētājā pirmais parādās konkurents. Komanda katru dienu pusstundu pārraksta vienas un tās pašas atbildes, ko sen varētu darīt automātiski.",
-        "Mans darbs ir to atrisināt tā, lai problēma vairs neatgriežas. Ne uztaisīt dizainu, bet panākt, ka lieta beidzot dara to, kas tai jādara: mājaslapa nes pieprasījumus, zīmols izskatās pēc viena uzņēmuma, saturs parādās gan meklētājā, gan AI atbildēs, procesi iet paši.",
-        "18 gadi te nav diploms uz sienas. Tie nozīmē vienu praktisku lietu: lielāko daļu no tā, kas projektā var noiet greizi, es jau esmu redzējis vismaz vienu reizi. Kad hostings nomirst piektdienas vakarā, kad atjauninājums salauž pieteikuma formu, kad pēc mēneša pēkšņi vajag vēl vienu valodu - man tā nav pirmā reize. Tas ir vienīgais, ko pieredze reāli dod: mazāk pārsteigumu tev."
+        "Mans darbs ir to atrisināt tā, lai problēma vairs neatgrieztos. Ne uztaisīt dizainu, bet panākt, ka lieta beidzot dara to, kas tai jādara: mājaslapa nes pieprasījumus, zīmols izskatās pēc viena uzņēmuma, saturs parādās gan meklētājā, gan AI atbildēs, procesi iet paši.",
+        "18 gadu pieredze te nav diploms uz sienas. Tā nozīmē vienu praktisku lietu: lielāko daļu no tā, kas projektā var noiet greizi, es jau esmu redzējis vismaz vienu reizi. Kad hostings nomirst piektdienas vakarā, kad atjauninājums salauž pieteikuma formu, kad pēc mēneša pēkšņi vajag vēl vienu valodu - man tā nav pirmā reize. Tas ir vienīgais, ko pieredze reāli dod: mazāk pārsteigumu tev."
       ]
     },
     {
@@ -85,7 +85,7 @@
       "bullets": [
         "Zīmola identitāte. Logotips, krāsas, tipogrāfija, lietošanas noteikumi un gatavi šabloni. Novērš to, ka materiālus katru reizi taisa no nulles un tie nekad neizskatās pēc viena uzņēmuma.",
         "Mājaslapu izstrāde. WordPress, React vai statiska vietne. Tehnoloģiju izvēlos pēc tā, kas tev pēc tam būs jāuztur, ne pēc tā, kas man pašam patīk. Sākot ar vienu landing page kampaņai un beidzot ar vairāku valodu vietni, kas savienota ar CRM.",
-        "AI aģenti un automatizācijas. Pieprasījumu apstrāde, atbilžu sagataves, datu pārnese starp sistēmām, atskaites, kas sagatavojas pašas. Novērš to, ka cilvēks nedēļā pavada astoņas stundas darbā, kuru var izdarīt mašīna.",
+        "AI aģenti un automatizācija. Pieprasījumu apstrāde, atbilžu sagataves, datu pārnese starp sistēmām, atskaites, kas sagatavojas pašas. Novērš to, ka cilvēks nedēļā pavada astoņas stundas darbā, kuru var izdarīt mašīna.",
         "SEO, GEO un AEO redzamība. Klasiskā optimizācija meklētājam un tas pats darbs AI atbildēm: ChatGPT, Google AI pārskati, Perplexity. Tehniskā bāze, satura struktūra un dati, ko modelis spēj nolasīt un citēt."
       ]
     },
@@ -112,10 +112,6 @@
   ],
   "faq": [
     {
-      "q": "Kas ir Gatis Daugavietis?",
-      "a": "Web dizainers un izstrādātājs Rīgā ar 18 gadu pieredzi. Strādāju viens, bez aģentūras, četrās līnijās: zīmola identitāte, mājaslapu izstrāde, AI aģenti un automatizācijas, SEO/GEO/AEO redzamība. Klienti ir Latvijā, Igaunijā, Lietuvā un ASV."
-    },
-    {
       "q": "Vai strādā viens vai ar komandu?",
       "a": "Viens. Tas pats cilvēks, ar kuru notiek pirmā saruna, arī zīmē, programmē un atbild pēc palaišanas. Ja projektā vajag fotogrāfu vai video, piesaistu atsevišķu speciālistu, bet atbildība par rezultātu paliek man."
     },
@@ -125,12 +121,19 @@
     },
     {
       "q": "Cik maksā projekts?",
-      "a": "Cena ir atkarīga no apjoma, tāpēc to nenosaucu pirms sarunas. Pēc pirmās sarunas saņem rakstisku piedāvājumu ar fiksētu cenu, termiņu un sarakstu ar to, kas darbā neietilpst."
+      "a": "Cenas ir publiskas: katra pakalpojuma lapā ir tabula ar summām un termiņiem. Konkrētu summu savam apjomam tu saņem rakstiskā piedāvājumā pēc pirmās sarunas, kopā ar termiņu un sarakstu ar to, kas darbā neietilpst."
     },
     {
       "q": "Kā ar tevi sazināties?",
       "a": "Raksti uz connect@gatisdesign.com. Pastāsti, ko dari, kas nestrādā un kad tam jābūt gatavam. Atbildu vienas darba dienas laikā."
     }
   ],
-  "cta": "Raksti uz connect@gatisdesign.com - pastāsti, ko dari un kas nestrādā. Atbildēšu vienas darba dienas laikā."
+  "cta": "Raksti uz connect@gatisdesign.com - pastāsti, ko dari un kas nestrādā. Atbildēšu vienas darba dienas laikā.",
+  "faqSchemaOnly": [
+    {
+      "q": "Kas ir Gatis Daugavietis?",
+      "a": "Web dizainers un izstrādātājs Rīgā ar 18 gadu pieredzi. Strādāju viens, bez aģentūras, četrās līnijās: zīmola identitāte, mājaslapu izstrāde, AI aģenti un automatizācija, SEO/GEO/AEO redzamība. Klienti ir Latvijā, Igaunijā, Lietuvā un ASV."
+    }
+  ],
+  "heroLede": "Mani sauc Gatis Daugavietis. Astoņpadsmit gadus zīmēju un būvēju mājaslapas un zīmolus Rīgā. Strādāju viens, bez aģentūras, un vedu projektu no pirmās sarunas līdz palaišanai un arī pēc tās."
 }
