@@ -53,6 +53,8 @@ export default function HeroMedia({
         loading={eager ? "eager" : "lazy"}
         priority={eager ? "high" : "low"}
         decoding={eager ? "sync" : "async"}
+        widths={[960, 1600]}
+        sizes="100vw"
         width={1600}
         height={900}
         className="media-settle absolute inset-0 h-full w-full object-cover"

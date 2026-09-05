@@ -97,7 +97,6 @@ export default function Header() {
     <Link
       to={path("home")}
       className="flex shrink-0 items-baseline gap-1.5 leading-none"
-      aria-label={`${t.nav.home} - Gatis Design`}
     >
       <span className="text-[19px] font-bold tracking-[-0.02em] text-paper md:text-[20px]">Gatis Design</span>
       <Label caps className="text-[11px]">

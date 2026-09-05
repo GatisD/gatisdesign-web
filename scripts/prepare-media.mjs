@@ -1,38 +1,44 @@
 /**
- * Hero un joslu fona kadri: vienāds izmērs, WebP blakus JPG.
+ * Hero un joslu fona kadri: divi platumi, WebP blakus JPG.
  *
- * Šie attēli ir PAGAIDU stock kadri (Unsplash License) - struktūra jau ir
- * gatava video (src/components/direction/HeroMedia.tsx `src`), bet pašu video
- * vēl nav. Tāpēc te ir tikai divi soļi: samazināt līdz 1920 px platumam un
- * uztaisīt WebP versiju, ko <picture> pasniedz pirmo.
+ * Divi platumi ir mērījuma rezultāts, ne pieņēmums: ar vienu 1600 px kadru
+ * Lighthouse mobilajā rādīja 145 KiB lieku svaru - telefons lejupielādēja
+ * datora izmēra attēlu. Tagad `srcset` ļauj pārlūkam izvēlēties.
+ *
+ * Šie kadri ir PAGAIDU stock (Unsplash License) vai kadri no paša darbiem.
+ * Struktūra jau ir gatava video (HeroMedia `src`), pats video vēl nav uzņemts.
  */
 import sharp from "sharp";
-import { readdir, stat } from "node:fs/promises";
+import { readdir, stat, unlink } from "node:fs/promises";
 import { join, parse } from "node:path";
 
 const DIR = new URL("../public/media/", import.meta.url).pathname;
-const MAX_WIDTH = 1920;
+const WIDTHS = [960, 1600];
 
-const files = (await readdir(DIR)).filter((f) => /\.(jpe?g|png)$/i.test(f));
-let converted = 0;
+const all = await readdir(DIR);
+// Ģenerētos variantus izmetam, lai atkārtota palaišana nerada variantus no variantiem.
+for (const f of all) {
+  if (/-\d+\.(jpe?g|webp)$/i.test(f) || /\.webp$/i.test(f)) await unlink(join(DIR, f));
+}
 
-for (const file of files) {
+const sources = (await readdir(DIR)).filter((f) => /\.(jpe?g|png)$/i.test(f));
+for (const file of sources) {
   const src = join(DIR, file);
   const { name } = parse(file);
-  const image = sharp(src);
-  const meta = await image.metadata();
-  const resize = (meta.width ?? 0) > MAX_WIDTH ? { width: MAX_WIDTH } : null;
-
-  if (resize) {
-    const buffer = await sharp(src).resize(resize).jpeg({ quality: 82, mozjpeg: true }).toBuffer();
-    await sharp(buffer).toFile(src);
+  const meta = await sharp(src).metadata();
+  const lines = [];
+  for (const w of WIDTHS) {
+    const width = Math.min(w, meta.width ?? w);
+    const base = sharp(src).resize({ width });
+    await base.clone().jpeg({ quality: 80, mozjpeg: true }).toFile(join(DIR, `${name}-${w}.jpg`));
+    await base.clone().webp({ quality: 76, effort: 5 }).toFile(join(DIR, `${name}-${w}.webp`));
+    const j = await stat(join(DIR, `${name}-${w}.jpg`));
+    const p = await stat(join(DIR, `${name}-${w}.webp`));
+    lines.push(`${w}w ${(j.size / 1024).toFixed(0)}/${(p.size / 1024).toFixed(0)} KB`);
   }
-  await sharp(src).webp({ quality: 78, effort: 5 }).toFile(join(DIR, `${name}.webp`));
-  const after = await stat(src);
-  const webp = await stat(join(DIR, `${name}.webp`));
-  console.log(
-    `${file.padEnd(24)} ${String(meta.width).padStart(5)}px -> ${(after.size / 1024).toFixed(0)} KB jpg, ${(webp.size / 1024).toFixed(0)} KB webp`,
-  );
-  converted += 1;
+  // Bāzes fails paliek kā rezerve pārlūkiem bez srcset atbalsta.
+  await sharp(src).resize({ width: 1600 }).jpeg({ quality: 80, mozjpeg: true }).toBuffer()
+    .then((buf) => sharp(buf).toFile(src));
+  console.log(`${file.padEnd(22)} ${lines.join("  ")}`);
 }
-console.log(`Sagatavoti ${converted} kadri`);
+console.log(`Sagatavoti ${sources.length} kadri x ${WIDTHS.length} platumi`);
