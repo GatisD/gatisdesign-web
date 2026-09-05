@@ -23,7 +23,14 @@ export const dict = {
       seo: "SEO, GEO un AEO",
     },
     lang: { label: "Valodas izvēle", lv: "LV", en: "EN" },
-    footer: { rights: "Visas tiesības aizsargātas", privacy: "Privātuma politika" },
+    footer: {
+      rights: "Visas tiesības aizsargātas",
+      privacy: "Privātuma politika",
+      /** Kājenes portreta vieta. Redzama tikai izstrādē un priekšskatījumā. */
+      portraitSlot: "Portrets vai video darba vidē - vēl jāuzņem",
+      location: "Gatis Daugavietis · Rīga · Latvija",
+      backToTop: "Atpakaļ uz augšu",
+    },
     notFound: {
       title: "Šāda lapa neeksistē",
       body: "Iespējams, adrese ir mainīta vai ierakstīta ar kļūdu.",
@@ -64,6 +71,7 @@ export const dict = {
       consentAfter: ".",
       honeypotLabel: "Uzņēmums (šo lauku neaizpildi)",
       submit: "Nosūtīt pieprasījumu",
+      replyTime: "Atbildu vienas darba dienas laikā.",
       sending: "Nosūta...",
       successTitle: "Paldies, pieprasījums ir saņemts",
       successBody:
@@ -108,7 +116,13 @@ export const dict = {
       seo: "SEO, GEO and AEO",
     },
     lang: { label: "Language", lv: "LV", en: "EN" },
-    footer: { rights: "All rights reserved", privacy: "Privacy policy" },
+    footer: {
+      rights: "All rights reserved",
+      privacy: "Privacy policy",
+      portraitSlot: "Portrait or workshop video - still to be shot",
+      location: "Gatis Daugavietis · Riga · Latvia",
+      backToTop: "Back to top",
+    },
     notFound: {
       title: "This page does not exist",
       body: "The address may have changed or contains a typo.",
@@ -144,6 +158,7 @@ export const dict = {
       consentAfter: ".",
       honeypotLabel: "Company (leave this field empty)",
       submit: "Send request",
+      replyTime: "I reply within one working day.",
       sending: "Sending...",
       successTitle: "Thank you, your request has arrived",
       successBody:

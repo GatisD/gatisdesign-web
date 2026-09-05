@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import PicturePortfolio from "@/components/PicturePortfolio";
 
 /**
  * Hero un joslu fona kadrs.
@@ -46,12 +47,11 @@ export default function HeroMedia({
 
   return (
     <div ref={wrap} className={cn("absolute inset-0 overflow-hidden", className)} aria-hidden={posterAlt ? undefined : true}>
-      <img
+      <PicturePortfolio
         src={poster}
         alt={posterAlt}
         loading={eager ? "eager" : "lazy"}
-        // eslint-disable-next-line react/no-unknown-property
-        fetchPriority={eager ? "high" : "low"}
+        priority={eager ? "high" : "low"}
         decoding={eager ? "sync" : "async"}
         width={1600}
         height={900}

@@ -21,7 +21,7 @@ export const SERVICE_LABELS: Record<FormLocale, Record<ServiceValue, string>> = 
   lv: {
     zimols: "Zīmola identitāte",
     majaslapas: "Mājaslapu izstrāde",
-    "ai-agenti": "AI aģenti un automatizācijas",
+    "ai-agenti": "AI aģenti un automatizācija",
     seo: "SEO, GEO un AEO",
   },
   en: {

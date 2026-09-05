@@ -1,20 +1,31 @@
-import { useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router-dom";
-import { ArrowRight, Check, ChevronDown } from "lucide-react";
 import { useLocale } from "@/i18n/LocaleContext";
 import type { Dict } from "@/i18n/dict";
+import Label from "@/components/ui/Label";
 import { CONTACT_EMAIL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { BUDGET_VALUES, FIELD_LIMITS, SERVICE_VALUES } from "../../api/_lib/contact-fields";
 import { contactSchema, type ContactFormValues } from "../../api/_lib/contact-schema";
 
 /**
- * Kontaktforma. Validāciju veic tā pati zod shēma, ko lieto serveris
+ * Kontaktforma.
+ *
+ * Validāciju veic tā pati zod shēma, ko lieto serveris
  * (api/_lib/contact-schema.ts), tāpēc pārlūkā un serverī nevar sanākt divi
  * dažādi noteikumu komplekti. Kļūdu ziņojumi shēmā ir atslēgas - tekstu abās
  * valodās dod dict.ts.
+ *
+ * Mikro-interakcijas (Kinetics): pogas stāvokļi idle -> sūta -> nosūtīts,
+ * zīmētais ķeksis pēc atbildes un viena 400 ms kratīšana pie validācijas
+ * kļūdas. Visas trīs ir atgriezeniskā saite par TIEŠI TO darbību, ko lietotājs
+ * veica; pie `prefers-reduced-motion` tās neizpildās (sk. src/index.css).
+ *
+ * Budžets ir radio čipu grupa <fieldset> iekšienē, un neviens no tiem NAV
+ * iepriekš izvēlēts: iepriekš izvēlēts zemākais diapazons izvēlas lietotāja
+ * vietā.
  */
 
 type ErrorKey = keyof Dict["form"]["errors"];
@@ -28,25 +39,18 @@ type ApiResponse =
   | { ok: true }
   | { ok: false; error: string; fields?: Record<string, string>; retryAfter?: number };
 
-/** Lauki, kuriem serveris drīkst uzstādīt kļūdu (lai neveidojas fantoma lauki). */
-const FORM_FIELDS = [
-  "name",
-  "email",
-  "service",
-  "budget",
-  "timeline",
-  "message",
-  "consent",
-] as const;
+const FORM_FIELDS = ["name", "email", "service", "budget", "timeline", "message", "consent"] as const;
 type FormField = (typeof FORM_FIELDS)[number];
 
 const FIELD_BASE =
-  "w-full rounded-xl border border-line bg-ink-800 px-4 text-[15px] text-paper placeholder:text-paper-faint transition-colors duration-200 hover:border-line-strong focus:border-amber focus:outline-none aria-[invalid=true]:border-amber/70";
-const FIELD_INPUT = cn(FIELD_BASE, "min-h-[48px] py-3");
+  "w-full rounded-field border border-line bg-ink-850 px-4 text-[16px] text-paper placeholder:text-paper-faint transition-[border-color,background-color] duration-300 hover:border-line-strong focus:border-amber focus:outline-none focus:ring-0 aria-[invalid=true]:border-amber";
+const FIELD_INPUT = cn(FIELD_BASE, "h-[52px]");
 
 export default function ContactForm({ className }: { className?: string }) {
   const { t, path, locale } = useLocale();
   const [status, setStatus] = useState<Status>({ state: "idle" });
+  const [shake, setShake] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const {
     register,
@@ -58,15 +62,15 @@ export default function ContactForm({ className }: { className?: string }) {
     formState: { errors, isSubmitting },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      timeline: "",
-      message: "",
-      consent: false,
-      company: "",
-    },
+    defaultValues: { name: "", email: "", timeline: "", message: "", consent: false, company: "" },
   });
+
+  // Viena kratīšana, 400 ms, pie katras jaunas validācijas kļūdas.
+  useEffect(() => {
+    if (!shake) return;
+    const id = window.setTimeout(() => setShake(false), 420);
+    return () => window.clearTimeout(id);
+  }, [shake]);
 
   const errorText = (key?: string): string => {
     const table = t.form.errors as Record<string, string>;
@@ -102,51 +106,45 @@ export default function ContactForm({ className }: { className?: string }) {
         const reported = Object.entries(data.fields).filter(([field]) =>
           (FORM_FIELDS as readonly string[]).includes(field),
         ) as Array<[FormField, string]>;
-        for (const [field, key] of reported) {
-          setError(field, { type: "server", message: key });
-        }
+        for (const [field, key] of reported) setError(field, { type: "server", message: key });
         if (reported.length > 0) setFocus(reported[0][0]);
         setStatus({ state: "error", messageKey: "validation", code });
+        setShake(true);
         return;
       }
 
-      setStatus({
-        state: "error",
-        messageKey: code === "rate_limit" ? "rateLimit" : "server",
-        code,
-      });
+      setStatus({ state: "error", messageKey: code === "rate_limit" ? "rateLimit" : "server", code });
+      setShake(true);
     } catch {
       // Tīkls nokrita vai atbilde nepienāca. To parādām kā tīkla kļūdu, nevis
       // slēpjam aiz "forma vēl nav savienota".
       setStatus({ state: "error", messageKey: "network", code: "network" });
+      setShake(true);
     }
   }
 
   if (status.state === "success") {
     return (
-      <div
-        className={cn(
-          "rounded-2xl border border-line bg-ink-850 p-6 text-paper md:p-8",
-          className,
-        )}
-      >
-        <div
-          className="flex h-11 w-11 items-center justify-center rounded-full bg-amber text-[#1a1206]"
+      <div className={cn("rounded-card border border-line bg-ink-850 p-6 text-paper md:p-9", className)}>
+        <span
+          className="flex h-12 w-12 items-center justify-center rounded-full bg-amber text-on-amber"
           aria-hidden="true"
         >
-          <Check size={22} />
-        </div>
-        <h3 className="mt-5 text-[clamp(1.25rem,2vw,1.6rem)] font-medium tracking-[-0.02em]">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+            <path className="check-draw" d="M5 12.5 10 17.5 19 7" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </span>
+        <h3 className="mt-6 text-[clamp(1.35rem,2.4vw,1.8rem)] font-medium tracking-[-0.02em]">
           {t.form.successTitle}
         </h3>
-        <p className="mt-3 max-w-[52ch] text-paper-dim">{t.form.successBody}</p>
+        <p className="mt-3 max-w-[52ch] text-[16px] leading-[1.6] text-paper-2">{t.form.successBody}</p>
         <button
           type="button"
           onClick={() => {
             reset();
             setStatus({ state: "idle" });
           }}
-          className="mt-6 min-h-[44px] rounded-full border border-line-strong px-5 text-[14px] text-paper transition-colors duration-200 hover:border-amber hover:text-amber"
+          className="mt-7 inline-flex min-h-[52px] items-center rounded-full border border-line-strong px-6 text-[16px] text-paper transition-colors duration-300 hover:border-amber hover:text-amber"
         >
           {t.form.successAgain}
         </button>
@@ -158,12 +156,10 @@ export default function ContactForm({ className }: { className?: string }) {
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      ref={formRef}
+      onSubmit={handleSubmit(onSubmit, () => setShake(true))}
       noValidate
-      className={cn(
-        "rounded-2xl border border-line bg-ink-850 p-6 text-paper md:p-8",
-        className,
-      )}
+      className={cn(shake && "shake", className)}
     >
       <div className="grid gap-6 md:grid-cols-2">
         <Field id="name" label={t.form.nameLabel} error={errors.name && errorText(errors.name.message)}>
@@ -196,59 +192,60 @@ export default function ContactForm({ className }: { className?: string }) {
           />
         </Field>
 
-        <Field
-          id="service"
-          label={t.form.serviceLabel}
-          error={errors.service && errorText(errors.service.message)}
-        >
-          <SelectShell>
-            <select
-              id="service"
-              defaultValue=""
-              className={cn(FIELD_INPUT, "appearance-none pr-11")}
-              aria-required="true"
-              aria-invalid={errors.service ? true : undefined}
-              aria-describedby={errors.service ? "service-error" : undefined}
-              {...register("service")}
-            >
-              <option value="" disabled>
-                {t.form.servicePlaceholder}
-              </option>
-              {SERVICE_VALUES.map((value) => (
-                <option key={value} value={value}>
-                  {t.form.serviceOptions[value]}
+        <div className="md:col-span-2">
+          <Field id="service" label={t.form.serviceLabel} error={errors.service && errorText(errors.service.message)}>
+            <SelectShell>
+              <select
+                id="service"
+                defaultValue=""
+                className={cn(FIELD_INPUT, "appearance-none pe-11")}
+                aria-required="true"
+                aria-invalid={errors.service ? true : undefined}
+                aria-describedby={errors.service ? "service-error" : undefined}
+                {...register("service")}
+              >
+                <option value="" disabled>
+                  {t.form.servicePlaceholder}
                 </option>
-              ))}
-            </select>
-          </SelectShell>
-        </Field>
+                {SERVICE_VALUES.map((value) => (
+                  <option key={value} value={value}>
+                    {t.form.serviceOptions[value]}
+                  </option>
+                ))}
+              </select>
+            </SelectShell>
+          </Field>
+        </div>
 
-        <Field
-          id="budget"
-          label={t.form.budgetLabel}
-          error={errors.budget && errorText(errors.budget.message)}
-        >
-          <SelectShell>
-            <select
-              id="budget"
-              defaultValue=""
-              className={cn(FIELD_INPUT, "appearance-none pr-11")}
-              aria-required="true"
-              aria-invalid={errors.budget ? true : undefined}
-              aria-describedby={errors.budget ? "budget-error" : undefined}
-              {...register("budget")}
-            >
-              <option value="" disabled>
-                {t.form.budgetPlaceholder}
-              </option>
-              {BUDGET_VALUES.map((value) => (
-                <option key={value} value={value}>
-                  {t.form.budgetOptions[value]}
-                </option>
-              ))}
-            </select>
-          </SelectShell>
-        </Field>
+        {/* Budžets: radio čipi bez iepriekšējas izvēles. */}
+        <fieldset className="md:col-span-2">
+          <legend className="mb-3">
+            <Label>{t.form.budgetLabel}</Label>
+          </legend>
+          <div className="flex flex-wrap gap-2.5">
+            {BUDGET_VALUES.map((value) => (
+              <label
+                key={value}
+                className="group cursor-pointer rounded-field border border-line px-4 py-3 text-[15px] text-paper-2 transition-[border-color,color,background-color] duration-300 hover:border-line-strong has-[:checked]:border-amber has-[:checked]:bg-amber has-[:checked]:text-on-amber has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-amber"
+              >
+                <input
+                  type="radio"
+                  value={value}
+                  className="sr-only"
+                  aria-invalid={errors.budget ? true : undefined}
+                  aria-describedby={errors.budget ? "budget-error" : undefined}
+                  {...register("budget")}
+                />
+                {t.form.budgetOptions[value]}
+              </label>
+            ))}
+          </div>
+          {errors.budget ? (
+            <p id="budget-error" role="alert" className="mt-2 text-[14px] text-amber">
+              {errorText(errors.budget.message)}
+            </p>
+          ) : null}
+        </fieldset>
 
         <div className="md:col-span-2">
           <Field
@@ -271,15 +268,11 @@ export default function ContactForm({ className }: { className?: string }) {
         </div>
 
         <div className="md:col-span-2">
-          <Field
-            id="message"
-            label={t.form.messageLabel}
-            error={errors.message && errorText(errors.message.message)}
-          >
+          <Field id="message" label={t.form.messageLabel} error={errors.message && errorText(errors.message.message)}>
             <textarea
               id="message"
               rows={5}
-              className={cn(FIELD_BASE, "min-h-[140px] resize-y py-3 leading-[1.6]")}
+              className={cn(FIELD_BASE, "min-h-[150px] resize-y py-3.5 leading-[1.6]")}
               placeholder={t.form.messagePlaceholder}
               maxLength={FIELD_LIMITS.messageMax}
               aria-required="true"
@@ -298,11 +291,11 @@ export default function ContactForm({ className }: { className?: string }) {
         <input id="company" type="text" tabIndex={-1} autoComplete="off" {...register("company")} />
       </div>
 
-      <div className="mt-6 flex items-start gap-3">
+      <div className="mt-7 flex items-start gap-3">
         <input
           id="consent"
           type="checkbox"
-          className="mt-[3px] h-5 w-5 shrink-0 cursor-pointer rounded border border-line-strong bg-ink-800 accent-amber"
+          className="mt-[3px] h-5 w-5 shrink-0 cursor-pointer rounded-[4px] border border-line-strong bg-ink-850 accent-[var(--amber)]"
           aria-required="true"
           aria-invalid={errors.consent ? true : undefined}
           aria-describedby={errors.consent ? "consent-error" : undefined}
@@ -310,53 +303,60 @@ export default function ContactForm({ className }: { className?: string }) {
         />
         <label htmlFor="consent" className="cursor-pointer text-[14px] leading-[1.55] text-paper-dim">
           {t.form.consentBefore}{" "}
-          <Link
-            to={path("privacy")}
-            className="text-amber underline underline-offset-2 hover:text-amber-soft"
-          >
+          <Link to={path("privacy")} className="border-b border-line-amber text-paper transition-colors duration-300 hover:text-amber">
             {t.form.consentLink}
           </Link>
           {t.form.consentAfter}
         </label>
       </div>
-      {errors.consent && (
-        <p id="consent-error" role="alert" className="mt-2 text-[13px] text-amber-soft">
+      {errors.consent ? (
+        <p id="consent-error" role="alert" className="mt-2 text-[14px] text-amber">
           {errorText(errors.consent.message)}
         </p>
-      )}
+      ) : null}
 
-      {failure && (
-        <div
-          role="alert"
-          className="mt-6 rounded-xl border border-amber/45 bg-amber-glow px-4 py-4 text-[14px]"
-        >
+      {failure ? (
+        <div role="alert" className="mt-7 rounded-field border border-amber px-5 py-4 text-[15px]">
           <p className="font-semibold text-paper">{t.form.failureTitle}</p>
-          <p className="mt-1 text-paper-2">{t.form.errors[failure.messageKey]}</p>
+          <p className="mt-1.5 text-paper-2">{t.form.errors[failure.messageKey]}</p>
           <p className="mt-2 text-paper-2">
             {t.form.failureFallback}{" "}
             <a
-              href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-                `${t.form.kicker}: ${getValues("name") || ""}`.trim(),
-              )}`}
-              className="text-amber underline underline-offset-2 hover:text-amber-soft"
+              href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`${t.form.kicker}: ${getValues("name") || ""}`.trim())}`}
+              className="border-b border-line-amber text-paper transition-colors duration-300 hover:text-amber"
             >
               {CONTACT_EMAIL}
             </a>
           </p>
-          <p className="mt-2 text-[12px] text-paper-faint">
-            {t.form.failureCode}: {failure.code}
+          <p className="mt-2.5">
+            <Label>
+              {t.form.failureCode}: {failure.code}
+            </Label>
           </p>
         </div>
-      )}
+      ) : null}
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="mt-7 inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-amber px-6 text-[15px] font-semibold text-[#1a1206] shadow-[0_12px_40px_-14px_rgba(224,114,60,.65)] transition-all duration-300 hover:bg-amber-soft disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
-      >
-        {isSubmitting ? t.form.sending : t.form.submit}
-        {!isSubmitting && <ArrowRight size={17} aria-hidden="true" />}
-      </button>
+      <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          aria-busy={isSubmitting}
+          className="inline-flex h-[56px] items-center justify-center gap-3 rounded-full bg-paper px-8 text-[17px] font-medium text-ink-900 transition-[background-color,color,opacity] duration-300 hover:bg-amber hover:text-on-amber disabled:cursor-not-allowed disabled:opacity-60 md:h-16 md:px-9 md:text-[18px]"
+        >
+          {isSubmitting ? (
+            <>
+              <span
+                aria-hidden="true"
+                className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
+              />
+              {t.form.sending}
+            </>
+          ) : (
+            t.form.submit
+          )}
+        </button>
+        <span className="text-[14px] text-paper-dim">{t.form.replyTime}</span>
+      </div>
     </form>
   );
 }
@@ -375,16 +375,14 @@ function Field({
   children: ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="text-[13px] font-medium text-paper-2">
+    <div className="flex flex-col gap-2.5">
+      <label htmlFor={id} className="font-label text-label text-paper-faint">
         {label}
-        {optional ? (
-          <span className="ml-2 font-normal text-[12px] text-paper-faint">({optional})</span>
-        ) : null}
+        {optional ? <span className="ms-2">({optional})</span> : null}
       </label>
       {children}
       {error ? (
-        <p id={`${id}-error`} role="alert" className="text-[13px] text-amber-soft">
+        <p id={`${id}-error`} role="alert" className="text-[14px] text-amber">
           {error}
         </p>
       ) : null}
@@ -397,10 +395,9 @@ function SelectShell({ children }: { children: ReactNode }) {
   return (
     <div className="relative">
       {children}
-      <ChevronDown
-        size={18}
+      <span
         aria-hidden="true"
-        className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-paper-faint"
+        className="pointer-events-none absolute end-4 top-1/2 h-2 w-2 -translate-y-1/2 rotate-45 border-b border-e border-paper-faint"
       />
     </div>
   );

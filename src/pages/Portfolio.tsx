@@ -1,60 +1,56 @@
 import { useMemo, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import SEO from "@/components/SEO";
 import JsonLd, { buildBreadcrumbSchema } from "@/components/JsonLd";
+import Reveal from "@/components/animations/Reveal";
+import LineReveal from "@/components/animations/LineReveal";
+import MagneticButton from "@/components/animations/MagneticButton";
 import Button from "@/components/ui/Button";
-import Kicker from "@/components/ui/Kicker";
-import ProjectTile from "@/components/ProjectTile";
-import { projects, CATEGORY_LABEL, type Project, type ProjectCategory } from "@/data/projects";
+import Label from "@/components/ui/Label";
+import { Section, SectionTitle, LabelRow } from "@/components/direction/Section";
+import ProjectCard from "@/components/ProjectCard";
+import { projects, CATEGORY_LABEL, type ProjectCategory } from "@/data/projects";
 import { useLocale } from "@/i18n/LocaleContext";
 import { CONTACT_EMAIL, SITE_URL } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 type Filter = "all" | ProjectCategory;
 
-const FILTERS: Array<{ key: Filter; label: string }> = [
-  { key: "all", label: "Visi" },
-  { key: "web", label: CATEGORY_LABEL.web },
-  { key: "brand", label: CATEGORY_LABEL.brand },
-];
-
 const META_DESCRIPTION =
-  "Mājaslapas, zīmolu identitātes, ilustrācijas un drukas darbi. Pie katra projekta redzams klients, mana loma un tehnoloģijas.";
-
-/** Flīzes augstums kolonnas platuma vienībās: attēls plus paraksta bloks. */
-const tileCost = (project: Project) => project.cover.height / project.cover.width + 0.12;
+  "23 pabeigti projekti: mājaslapu izstrādes piemēri, logo un zīmola darbi. Estire, Box Latvia, ROIS.lv, Apmeklē.lv, Lauvas Zobs. Katram projektam norādīta loma un gads.";
 
 /**
- * Sadala sarakstu divās kolonnās pēc uzkrātā augstuma, NESAJAUCOT secību: pirmās
- * flīzes iet kreisajā kolonnā, pārējās labajā. Tā uz telefona (viena kolonna zem
- * otras) saglabājas tā pati secība, kas datora režģī, un abas kolonnas beidzas
- * aptuveni vienā augstumā.
+ * Režģa ritms. Piecu flīžu cikls: divas platas (7+5), tad trīs vienādas (4+4+4).
+ * Rindas iekšienē kadra proporcija ir VIENĀDA - nevienāds augstums vienā rindā
+ * pie augšā līdzinātām kartēm lasās kā kļūda, ne kā ritms.
  */
-function splitColumns(list: Project[]): [Project[], Project[]] {
-  if (list.length < 2) return [list, []];
-  const total = list.reduce((sum, project) => sum + tileCost(project), 0);
-  let acc = 0;
-  let cut = list.length;
-  for (let i = 0; i < list.length; i++) {
-    const cost = tileCost(list[i]);
-    if (acc + cost / 2 > total / 2) {
-      cut = i;
-      break;
-    }
-    acc += cost;
-  }
-  cut = Math.min(Math.max(cut, 1), list.length - 1);
-  return [list.slice(0, cut), list.slice(cut)];
-}
+const SPAN = ["md:col-span-7", "md:col-span-5", "md:col-span-4", "md:col-span-4", "md:col-span-4"];
+const RATIO = ["16 / 10", "16 / 10", "4 / 3", "4 / 3", "4 / 3"];
 
 export default function Portfolio() {
-  const { locale } = useLocale();
+  const { locale, t, path } = useLocale();
   const [filter, setFilter] = useState<Filter>("all");
+  const reduced = useReducedMotion();
+  const isLv = locale === "lv";
 
   const visible = useMemo(
     () => (filter === "all" ? projects : projects.filter((p) => p.category === filter)),
     [filter],
   );
-  const [columnA, columnB] = splitColumns(visible);
+
+  const filters: Array<{ key: Filter; label: string; count: number }> = [
+    { key: "all", label: isLv ? "Visi" : "All", count: projects.length },
+    {
+      key: "web",
+      label: CATEGORY_LABEL.web,
+      count: projects.filter((p) => p.category === "web").length,
+    },
+    {
+      key: "brand",
+      label: CATEGORY_LABEL.brand,
+      count: projects.filter((p) => p.category === "brand").length,
+    },
+  ];
 
   const listSchema = {
     "@context": "https://schema.org",
@@ -70,132 +66,139 @@ export default function Portfolio() {
   };
 
   return (
-    // Negatīvā augšmala pavelk tumšo fonu zem fiksētās galvenes (Layout main pt-20/24).
-    <div className="-mt-20 flex-1 bg-ink-900 pt-20 text-paper md:-mt-24 md:pt-24">
+    <>
       <SEO
         routeKey="portfolio"
         locale={locale}
-        title="Darbi"
+        title="Mājaslapu un logo izstrādes piemēri"
         description={META_DESCRIPTION}
-        // TODO: EN saturs vēl nav uzrakstīts, tāpēc /en rāda LV tekstu ar noindex,
-        // tāpat kā pakalpojumu lapas.
-        noindex={locale !== "lv"}
+        // EN saturs vēl nav tulkots, tāpēc /en/portfolio rāda LV tekstu ar noindex.
+        noindex={!isLv}
       />
       <JsonLd
         data={[
           buildBreadcrumbSchema([
-            { name: "Sākums", path: "/" },
-            { name: "Darbi", path: "/portfolio" },
+            { name: isLv ? "Sākums" : "Home", path: "/" },
+            { name: t.nav.portfolio, path: "/portfolio" },
           ]),
           listSchema,
         ]}
       />
 
       {/* ============ GALVA ============ */}
-      <section className="relative overflow-hidden border-b border-line" aria-labelledby="darbi-h">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute left-[-6%] top-[-30%] h-[min(460px,52vw)] w-[min(760px,92vw)] rounded-full opacity-60 blur-[90px]"
-          style={{
-            background: "radial-gradient(circle at 50% 50%, rgba(224,114,60,.26), transparent 68%)",
-          }}
-        />
-        <div className="relative mx-auto max-w-wrap px-[var(--pad-x)] pb-[clamp(40px,5vw,68px)] pt-[clamp(32px,5vw,72px)]">
-          <Kicker className="mb-[clamp(18px,2.4vw,28px)]">Darbi</Kicker>
-          <h1
+      <section className="bg-ink-900 pb-sec-sm pt-[clamp(104px,15vw,180px)]" aria-labelledby="darbi-h">
+        <div className="mx-auto w-full max-w-wrap px-pad-x">
+          <LineReveal
+            as="h1"
             id="darbi-h"
-            className="max-w-[18ch] text-[clamp(2.1rem,5vw,4.1rem)] font-light leading-[1.04] tracking-[-0.042em] [text-wrap:balance]"
-          >
-            Projekti, kas <span className="font-accent italic text-amber-soft">strādā</span> arī
-            ārpus prezentācijas
-          </h1>
-          <p className="mt-[clamp(20px,2.6vw,30px)] max-w-[62ch] text-[clamp(1.02rem,1.28vw,1.19rem)] leading-[1.62] text-paper-2">
-            Mājaslapas, zīmolu identitātes, ilustrācijas un drukas darbi. Pie katra darba ir norādīts,
-            kas bija klients un kāda bija mana loma - daļa projektu tapa ROIS komandā, daļa - viens
-            pats.
-          </p>
+            lines={["Mājaslapu un logo", "izstrādes piemēri"]}
+            className="text-display-2 font-bold uppercase text-paper"
+          />
+          <Reveal delay={0.2} className="mt-[clamp(22px,3vw,38px)] max-w-[62ch]">
+            <p className="text-[clamp(1.02rem,1.4vw,1.25rem)] leading-[1.5] text-paper-2">
+              <span aria-hidden="true" className="text-amber">
+                &#8627;
+              </span>{" "}
+              Projekti, kas strādā arī ārpus prezentācijas. Pie katra darba ir norādīts klients, mana
+              loma un gads - daļa projektu tapa ROIS komandā, daļa viena paša rokām.
+            </p>
+          </Reveal>
         </div>
       </section>
 
       {/* ============ FILTRS ============ */}
-      <section className="border-b border-line bg-ink-850" aria-label="Darbu filtrs">
-        <div className="mx-auto flex max-w-wrap flex-wrap items-center gap-2.5 px-[var(--pad-x)] py-[clamp(16px,2vw,22px)]">
-          {FILTERS.map((item) => {
+      <div className="sticky top-16 z-40 border-y border-line bg-ink-900/90 backdrop-blur-md md:top-[72px]">
+        <div
+          role="group"
+          aria-label={isLv ? "Darbu filtrs" : "Work filter"}
+          className="mx-auto flex max-w-wrap flex-wrap items-center gap-x-8 gap-y-1 px-pad-x py-3"
+        >
+          {filters.map((item) => {
             const active = item.key === filter;
-            const count =
-              item.key === "all"
-                ? projects.length
-                : projects.filter((p) => p.category === item.key).length;
             return (
               <button
                 key={item.key}
                 type="button"
                 onClick={() => setFilter(item.key)}
                 aria-pressed={active}
-                className={cnFilter(active)}
+                className={cn(
+                  "relative inline-flex min-h-[44px] items-center gap-2 text-[16px] transition-colors duration-300",
+                  active ? "text-paper" : "text-paper-dim hover:text-paper",
+                )}
               >
                 {item.label}
-                <span className={active ? "text-[#1a1206]/60" : "text-paper-faint"}>{count}</span>
+                <span className="font-label text-label text-paper-faint">{item.count}</span>
+                {active ? (
+                  <motion.span
+                    aria-hidden="true"
+                    layoutId="filter-underline"
+                    className="absolute inset-x-0 bottom-1 h-[2px] bg-amber"
+                    transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 480, damping: 42 }}
+                  />
+                ) : null}
               </button>
             );
           })}
         </div>
-      </section>
+      </div>
 
       {/* ============ REŽĢIS ============ */}
-      <section className="mx-auto max-w-wrap px-[var(--pad-x)] py-[var(--sec-y)]" aria-label="Darbu saraksts">
-        <div className="grid gap-[clamp(28px,3.4vw,40px)] md:grid-cols-2 md:gap-[clamp(24px,2.6vw,38px)]">
-          <div className="grid content-start gap-[clamp(28px,3.4vw,40px)]">
-            {columnA.map((project, i) => (
-              <ProjectTile key={project.slug} project={project} eager={i === 0} />
+      <Section rhythm="lg" ariaLabel={isLv ? "Darbu saraksts" : "Work list"}>
+        <div className="grid gap-grid md:grid-cols-12">
+          <AnimatePresence mode="popLayout" initial={false}>
+            {visible.map((project, i) => (
+              <motion.div
+                key={project.slug}
+                layout={reduced ? false : "position"}
+                initial={reduced ? false : { opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reduced ? { opacity: 0 } : { opacity: 0, y: -8 }}
+                transition={
+                  reduced
+                    ? { duration: 0 }
+                    : { duration: 0.42, ease: [0.22, 0.61, 0.36, 1], delay: Math.min(i, 5) * 0.04 }
+                }
+                className={SPAN[i % SPAN.length]}
+              >
+                <ProjectCard project={project} eager={i === 0} ratio={RATIO[i % RATIO.length]} />
+              </motion.div>
             ))}
-          </div>
-          <div className="grid content-start gap-[clamp(28px,3.4vw,40px)] md:mt-[clamp(46px,6vw,104px)]">
-            {columnB.map((project) => (
-              <ProjectTile key={project.slug} project={project} />
-            ))}
-          </div>
+          </AnimatePresence>
         </div>
 
-        {/* Bez skaitļa locīšanas: "Redzami: 14 no 23" strādā ar jebkuru skaitli. */}
-        <p className="mt-[clamp(36px,4vw,56px)] text-center text-[13px] text-paper-dim">
-          Redzami: {visible.length} no {projects.length}
+        <p className="mt-[clamp(30px,4vw,52px)] border-t border-line pt-5">
+          <Label>
+            {isLv
+              ? `Redzami: ${visible.length} no ${projects.length}`
+              : `Showing ${visible.length} of ${projects.length}`}
+          </Label>
         </p>
-      </section>
+      </Section>
 
-      {/* ============ CTA ============ */}
-      <section className="border-t border-line bg-ink-950" aria-labelledby="portfolio-cta-h">
-        <div className="mx-auto grid max-w-wrap justify-items-center gap-6 px-[var(--pad-x)] py-[var(--sec-y)] text-center">
-          <Kicker>Sadarbība</Kicker>
-          <h2
-            id="portfolio-cta-h"
-            className="max-w-[18ch] text-[clamp(1.85rem,4.2vw,3.2rem)] font-light leading-[1.06] tracking-[-0.04em] [text-wrap:balance]"
-          >
-            Vai tavs projekts būs nākamais <span className="font-accent italic text-amber-soft">šajā</span>{" "}
-            sarakstā?
-          </h2>
-          <p className="max-w-[58ch] text-[clamp(1rem,1.2vw,1.12rem)] leading-[1.62] text-paper-2">
-            Uzraksti, ko vajag - godīgi novērtēšu, cik tas prasīs laika un naudas.
+      {/* ============ SĀKSIM ============ */}
+      <Section rhythm="lg" surface="ink-950" labelledBy="portfolio-cta-h">
+        <SectionTitle id="portfolio-cta-h" className="mb-[clamp(22px,3vw,34px)]">
+          {isLv ? "Vai tavs projekts būs nākamais sarakstā?" : "Will your project be next on this list?"}
+        </SectionTitle>
+        <LabelRow label={isLv ? "Sāksim" : "Start"}>
+          <p className="max-w-[58ch] text-[17px] leading-[1.6] text-paper-2">
+            {isLv
+              ? "Uzraksti, ko vajag - godīgi novērtēšu, cik tas prasīs laika un naudas, un pēc pirmās sarunas tu saņem fiksētu tāmi ar termiņu."
+              : "Tell me what you need. I will give you an honest estimate of time and cost, and a fixed quote after the first call."}
           </p>
-          <div className="mt-2 flex flex-wrap justify-center gap-3.5">
-            <Button href={`mailto:${CONTACT_EMAIL}`}>
-              Sākt projektu
-              <ArrowRight size={17} aria-hidden="true" />
-            </Button>
+          <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <MagneticButton>
+              <Button to={path("contact")}>{t.nav.cta}</Button>
+            </MagneticButton>
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="border-b border-line-amber pb-1 text-[clamp(1rem,1.4vw,1.2rem)] text-paper transition-colors duration-300 hover:text-amber"
+            >
+              {CONTACT_EMAIL}
+            </a>
           </div>
-        </div>
-      </section>
-    </div>
+        </LabelRow>
+      </Section>
+    </>
   );
-}
-
-/** Filtra pogas stils. Atsevišķi, lai JSX paliek lasāms. */
-function cnFilter(active: boolean): string {
-  return [
-    "inline-flex items-center gap-2 rounded-full px-[18px] py-[9px] text-[13.5px] font-medium",
-    "transition-[background-color,color,border-color,transform] duration-300",
-    active
-      ? "border border-amber bg-amber text-[#1a1206]"
-      : "border border-line-strong text-paper-2 hover:border-amber hover:text-amber",
-  ].join(" ");
 }

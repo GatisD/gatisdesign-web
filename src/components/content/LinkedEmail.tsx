@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { CONTACT_EMAIL } from "@/lib/site";
 
 const INLINE_LINK =
-  "underline decoration-amber/50 underline-offset-4 transition-colors duration-200 hover:text-amber";
+  "border-b border-line-amber transition-colors duration-300 hover:text-amber";
 
 /**
  * Teksts, kurā saturā ierakstītā e-pasta adrese kļūst par īstu mailto saiti.

@@ -247,8 +247,16 @@ export function projectNeighbours(slug: string): { prev: Project; next: Project 
   };
 }
 
-/** Sākumlapas izlase - piecas flīzes, kā rakstīts home.json darbu sadaļā. */
-export const featuredSlugs = {
-  columnA: ["box-latvia", "digitalaisdzintars", "web-design"],
-  columnB: ["apmekle", "logo-branding"],
-};
+/**
+ * Sākumlapas izlase - tieši tie pieci darbi, kas nosaukti home.json darbu
+ * sadaļā, tajā pašā secībā. Režģis tos liek divās rindās (7+5, tad 4+4+4),
+ * un rindas iekšienē kadru proporcija ir vienāda: nevienāds augstums rindā
+ * lasās kā kļūda, ne kā ritms.
+ */
+export const featured: string[] = [
+  "estire",
+  "box-latvia",
+  "digitalaisdzintars",
+  "apmekle",
+  "universal-solutions",
+];

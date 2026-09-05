@@ -11,12 +11,14 @@ import { useEffect, useRef, useState, type CSSProperties, type ElementType } fro
  */
 export default function LineReveal({
   as: Tag = "h1",
+  id,
   lines,
   className,
   lineClassName,
   accentFrom,
 }: {
   as?: ElementType;
+  id?: string;
   lines: string[];
   className?: string;
   lineClassName?: string;
@@ -52,7 +54,7 @@ export default function LineReveal({
   }, []);
 
   return (
-    <Tag ref={ref} className={["line-reveal", visible && "is-visible", className].filter(Boolean).join(" ")}>
+    <Tag ref={ref} id={id} className={["line-reveal", visible && "is-visible", className].filter(Boolean).join(" ")}>
       {lines.map((line, i) => (
         <span
           key={line}

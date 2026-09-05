@@ -1,27 +1,33 @@
+import Reveal from "@/components/animations/Reveal";
 import LinkedEmail from "./LinkedEmail";
 import type { FaqItem } from "@/content/types";
 
 /**
- * FAQ ar semantisku <dl> iezīmējumu. Atbildes ir pilnā tekstā HTML, nevis aiz
- * JS akordeona - tieši šo satura daļu meklētāji un AI atbildes citē visbiežāk.
+ * FAQ ar semantisku <dl> iezīmējumu un ATVĒRTĀM atbildēm.
+ *
+ * Akordeons te apzināti nav: tieši šo satura daļu meklētāji un AI atbildes citē
+ * visbiežāk, un apstiprinātajā kanvā jautājums un atbilde stāv blakus vienā
+ * rindā. Aizvērts akordeons ietaupītu ekrānu, bet iztērētu to, kāpēc šī sadaļa
+ * vispār eksistē.
+ *
  * <dt> nedrīkst saturēt virsraksta elementu (HTML specifikācija), tāpēc
  * jautājums ir noformēts kā virsraksts, bet paliek <dt>.
  */
 export default function FaqList({ items }: { items: FaqItem[] }) {
   return (
     <dl className="border-t border-line">
-      {items.map((item) => (
-        <div
-          key={item.q}
-          className="grid gap-3 border-b border-line py-[clamp(22px,2.6vw,32px)] lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-12"
-        >
-          <dt className="max-w-[28ch] text-[clamp(1.08rem,1.7vw,1.35rem)] font-medium leading-snug tracking-[-0.022em] text-paper">
-            {item.q}
-          </dt>
-          <dd className="m-0 max-w-[64ch] text-paper-dim">
-            <LinkedEmail text={item.a} />
-          </dd>
-        </div>
+      {items.map((item, i) => (
+        <Reveal key={item.q} delay={i * 0.05} y={14}>
+          <div className="grid gap-x-12 gap-y-3 border-b border-line py-7 md:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)_28px]">
+            <dt className="max-w-[26ch] text-[clamp(1.15rem,1.9vw,1.5rem)] font-medium leading-[1.25] tracking-[-0.02em] text-paper">
+              {item.q}
+            </dt>
+            <dd className="m-0 max-w-[62ch] text-[16px] leading-[1.6] text-paper-2">
+              <LinkedEmail text={item.a} />
+            </dd>
+            <span aria-hidden="true" className="hidden h-px w-4 self-start justify-self-end bg-paper-faint md:mt-3.5 md:block" />
+          </div>
+        </Reveal>
       ))}
     </dl>
   );

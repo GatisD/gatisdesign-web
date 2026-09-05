@@ -6,7 +6,7 @@ import {
   draftSlugs,
   projectBySlug,
   projectNeighbours,
-  featuredSlugs,
+  featured,
   SERVICE_ROUTE_KEY,
 } from "./projects";
 import rawJson from "../content/projects.raw.json";
@@ -114,7 +114,8 @@ describe("portfolio projekti", () => {
   });
 
   it("sākumlapas izlases slugi ir publicētajā sarakstā", () => {
-    for (const slug of [...featuredSlugs.columnA, ...featuredSlugs.columnB]) {
+    expect(featured).toHaveLength(5);
+    for (const slug of featured) {
       expect(projectBySlug(slug), slug).toBeDefined();
     }
   });
