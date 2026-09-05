@@ -32,6 +32,8 @@ const FRAME = [
   "h-[clamp(190px,22vw,360px)]",
   "h-[clamp(190px,22vw,360px)]",
 ];
+/** Kadra proporcija - pēc tās karte izlemj, vai attēls aizpilda vai ietilpst. */
+const FRAME_RATIO = [7 / 4.4, 5 / 3.2, 4 / 3, 4 / 3, 4 / 3];
 
 export default function Portfolio() {
   const { locale, t, path } = useLocale();
@@ -105,7 +107,7 @@ export default function Portfolio() {
                 &#8627;
               </span>{" "}
               Projekti, kas strādā arī ārpus prezentācijas. Pie katra darba ir norādīts klients, mana
-              loma un gads - daļa projektu tapa ROIS komandā, daļa viena paša rokām.
+              loma un gads - daļa projektu tapa ROIS komandā, daļa - vienam pašam.
             </p>
           </Reveal>
         </div>
@@ -162,7 +164,12 @@ export default function Portfolio() {
               className={cn("grid-in", SPAN[i % SPAN.length])}
               style={{ ["--grid-index" as string]: Math.min(i, 7) }}
             >
-              <ProjectCard project={project} eager={i === 0} frame={FRAME[i % FRAME.length]} />
+              <ProjectCard
+                project={project}
+                eager={i === 0}
+                frame={FRAME[i % FRAME.length]}
+                frameRatio={FRAME_RATIO[i % FRAME_RATIO.length]}
+              />
             </div>
           ))}
         </div>
@@ -179,12 +186,12 @@ export default function Portfolio() {
       {/* ============ SĀKSIM ============ */}
       <Section rhythm="lg" surface="ink-950" labelledBy="portfolio-cta-h">
         <SectionTitle id="portfolio-cta-h" className="mb-[clamp(22px,3vw,34px)]">
-          {isLv ? "Vai tavs projekts būs nākamais sarakstā?" : "Will your project be next on this list?"}
+          {isLv ? "Vai nākamais darbs būs tavs?" : "Will the next one be yours?"}
         </SectionTitle>
-        <LabelRow label={isLv ? "Sāksim" : "Start"}>
+        <LabelRow label={isLv ? "Atbilde 1 darba dienā" : "Reply in 1 working day"}>
           <p className="max-w-[58ch] text-[17px] leading-[1.6] text-paper-2">
             {isLv
-              ? "Uzraksti, ko vajag - godīgi novērtēšu, cik tas prasīs laika un naudas, un pēc pirmās sarunas tu saņem fiksētu tāmi ar termiņu."
+              ? "Uzraksti, ko tev vajag - godīgi novērtēšu, cik tas prasīs laika un naudas, un pēc pirmās sarunas tu saņemsi fiksētu tāmi ar termiņu."
               : "Tell me what you need. I will give you an honest estimate of time and cost, and a fixed quote after the first call."}
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">

@@ -22,6 +22,7 @@ export default function ProjectCard({
   project,
   eager = false,
   frame,
+  frameRatio,
 }: {
   project: Project;
   eager?: boolean;
@@ -31,10 +32,28 @@ export default function ProjectCard({
    * nesakrīt, un tas lasās kā kļūda, ne kā ritms.
    */
   frame?: string;
+  /**
+   * Kadra proporcija (platums/augstums). Pēc tās tiek izlemts, vai attēls
+   * kadru aizpilda vai ietilpst tajā - sk. komentāru pie `fits` zemāk.
+   */
+  frameRatio?: number;
 }) {
   const { path } = useLocale();
   const { cover } = project;
   const meta = [project.role.label, project.year].filter(Boolean).join(" · ");
+
+  /**
+   * `object-cover` griež malas, un tieši malās sēž tas, kas kartei dod jēgu:
+   * klienta virsraksts un logotips. Reāli nogriezts iznākums bija "APMEK",
+   * "BARE KNUCKL" un "ātne, dati un ksligais intelekts".
+   *
+   * Tāpēc aizpildīšana notiek tikai tad, kad attēla un kadra proporcijas ir
+   * tuvu (griezums zem ~18%). Kvadrātveida logo un platie ekrānuzņēmumi šaurā
+   * kadrā ietilpst pilnībā uz kartes fona - labāk redzēt visu darbu ar malu,
+   * nekā pusi no tā bez malas.
+   */
+  const coverRatio = cover.width / cover.height;
+  const fits = frameRatio ? Math.max(coverRatio / frameRatio, frameRatio / coverRatio) <= 1.18 : true;
 
   return (
     <Link
@@ -54,7 +73,8 @@ export default function ProjectCard({
           priority={eager ? "high" : "low"}
           decoding={eager ? "sync" : "async"}
           className={cn(
-            "h-full w-full object-cover object-[top_center]",
+            "h-full w-full",
+            fits ? "object-cover object-[top_center]" : "object-contain p-5 md:p-7",
             "[filter:contrast(.96)_saturate(.9)]",
             "transition-[transform,filter] duration-[1100ms] ease-dir",
             "group-hover:scale-[1.03] group-hover:[filter:contrast(1)_saturate(1)]",

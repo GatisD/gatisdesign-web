@@ -11,7 +11,6 @@ import HeroMedia from "@/components/direction/HeroMedia";
 import MediaPlaceholder, { SHOW_PLACEHOLDERS } from "@/components/direction/MediaPlaceholder";
 import Band from "@/components/direction/Band";
 import { Section, SectionTitle, LabelRow, ProseColumns } from "@/components/direction/Section";
-import FaqList from "@/components/content/FaqList";
 import ProjectCard from "@/components/ProjectCard";
 import { useLocale } from "@/i18n/LocaleContext";
 import { ROUTES, type RouteKey } from "@/i18n/routes";
@@ -136,16 +135,6 @@ const homeWebsiteSchema = {
   about: { "@id": BUSINESS_ID },
 };
 
-const homeFaqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: homeContent.faq.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a },
-  })),
-};
-
 const bySlug = (slugs: string[]): Project[] =>
   slugs.map((slug) => projectBySlug(slug)).filter(Boolean) as Project[];
 
@@ -175,7 +164,7 @@ export default function Index() {
         description={homeContent.metaDescription}
         noindex={noindex}
       />
-      <JsonLd data={[homeWebsiteSchema, homePersonSchema, homeServiceSchema, homeFaqSchema]} />
+      <JsonLd data={[homeWebsiteSchema, homePersonSchema, homeServiceSchema]} />
 
       {/* ============ HERO ============ */}
       <section
@@ -223,7 +212,7 @@ export default function Index() {
 
           {SHOW_PLACEHOLDERS ? (
             <div className="mt-8 max-w-[260px]">
-              <MediaPlaceholder text="Vieta 20 sekunžu video vai portretam - vēl jāuzņem" />
+              <MediaPlaceholder text="Portrets vai 15 sekunžu video darba vidē - vēl jāuzņem" />
             </div>
           ) : null}
 
@@ -242,24 +231,6 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ============ AR MANI STRĀDĀ ============ */}
-      {/* Bez ritošas joslas: septiņpadsmit vārdu saraksts ir saturs, un kustība
-          te neko nepaskaidrotu - tā tikai apgrūtinātu nolasīšanu. */}
-      <section className="border-y border-line bg-ink-850" aria-labelledby="klienti-h">
-        <div className="mx-auto flex max-w-wrap flex-col gap-4 px-5 py-8 sm:px-8 md:flex-row md:items-baseline md:gap-10 lg:px-10">
-          <h2 id="klienti-h" className="shrink-0">
-            <Label caps>Ar mani strādā</Label>
-          </h2>
-          <ul className="flex flex-wrap gap-x-7 gap-y-2">
-            {trustClients.map((name) => (
-              <li key={name} className="text-[clamp(1rem,1.3vw,1.18rem)] text-paper-2">
-                {name}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
       {/* ============ DARBI ============ */}
       <Section rhythm="lg" labelledBy="darbi-h">
         <SectionTitle id="darbi-h" size="giant" className="mb-[clamp(32px,5vw,64px)]">
@@ -273,7 +244,12 @@ export default function Index() {
               delay={stagger(i, 2)}
               className={i === 0 ? "md:col-span-7" : "md:col-span-5"}
             >
-              <ProjectCard project={project} eager={i === 0} frame="h-[clamp(210px,30vw,500px)]" />
+              <ProjectCard
+                project={project}
+                eager={i === 0}
+                frame="h-[clamp(210px,30vw,500px)]"
+                frameRatio={i === 0 ? 7 / 4.4 : 5 / 3.2}
+              />
             </Reveal>
           ))}
         </div>
@@ -281,7 +257,7 @@ export default function Index() {
         <div className="mt-grid grid gap-grid md:grid-cols-12">
           {rowBottom.map((project, i) => (
             <Reveal key={project.slug} delay={stagger(i, 3)} className="md:col-span-4">
-              <ProjectCard project={project} frame="h-[clamp(190px,22vw,360px)]" />
+              <ProjectCard project={project} frame="h-[clamp(190px,22vw,360px)]" frameRatio={4 / 3} />
             </Reveal>
           ))}
         </div>
@@ -296,10 +272,27 @@ export default function Index() {
         </Reveal>
       </Section>
 
+      {/* Klientu vārdi pieder darbiem, ne atsevišķai "uzticības joslai" tūlīt
+          aiz hero: tur tā ir logo siena no cita žanra lapas. */}
+      <section className="border-y border-line bg-ink-850" aria-labelledby="klienti-h">
+        <div className="mx-auto flex max-w-wrap flex-col gap-4 px-5 py-8 sm:px-8 md:flex-row md:items-baseline md:gap-10 lg:px-10">
+          <h2 id="klienti-h" className="shrink-0">
+            <Label caps>Klienti, ar kuriem strādāju</Label>
+          </h2>
+          <ul className="flex flex-wrap gap-x-7 gap-y-2">
+            {trustClients.map((name) => (
+              <li key={name} className="text-[clamp(1rem,1.3vw,1.18rem)] text-paper-2">
+                {name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* ============ JOSLA ============ */}
       <Band
         poster="/media/band-craft.jpg"
-        text="Vienalga, kur tu sāc - ar tukšu lapu vai ar lapu, kas neko nenes: es novedu līdz versijai, kas strādā."
+        text="Vienalga, kur tu sāc: ar tukšu lapu vai ar tādu, kas neko nenes. Es to aizvedu līdz versijai, kas strādā."
       />
 
       {/* ============ PAKALPOJUMI ============ */}
@@ -308,7 +301,7 @@ export default function Index() {
           {servicesSection.heading}
         </SectionTitle>
 
-        <LabelRow label="Pakalpojumi">
+        <LabelRow label={`${serviceCards.length} pakalpojumi · no 300 EUR`}>
           <ul>
             {serviceCards.map((card, i) => (
               <Reveal
@@ -363,7 +356,7 @@ export default function Index() {
         <SectionTitle id="par-h" className="mb-[clamp(26px,3.4vw,44px)]">
           Viens cilvēks, kurš atbild par rezultātu
         </SectionTitle>
-        <LabelRow label="Par mani">
+        <LabelRow label="Rīgā kopš 2008">
           {aboutSection.body.map((paragraph) => (
             <p key={paragraph.slice(0, 40)} className="mb-5 max-w-[64ch] text-[17px] leading-[1.6] text-paper-2 last:mb-0">
               <LinkedText text={paragraph} />
@@ -377,27 +370,21 @@ export default function Index() {
         </LabelRow>
       </Section>
 
-      {/* ============ JAUTĀJUMI ============ */}
-      <Section rhythm="lg" surface="ink-850" labelledBy="faq-h">
-        <SectionTitle id="faq-h" size="giant" className="mb-[clamp(28px,4vw,56px)]">
-          Jautājumi
-        </SectionTitle>
-        <FaqList items={homeContent.faq} />
-      </Section>
-
       {/* ============ SĀKSIM ============ */}
       <Section rhythm="lg" surface="ink-950" labelledBy="kontakti-h">
         <SectionTitle id="kontakti-h" className="mb-[clamp(22px,3vw,34px)]">
           {contactSection.heading === "Kā sākt" ? "Pastāsti, kas tev jāatrisina" : contactSection.heading}
         </SectionTitle>
-        <LabelRow label="Sāksim">
+        <LabelRow label="Atbilde 1 darba dienā">
           <p className="max-w-[58ch] text-[17px] leading-[1.6] text-paper-2">
             <LinkedText text={contactSection.body[0]} />
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
-            <MagneticButton>
-              <Button to={path("contact")}>{heroCtas[0].label}</Button>
-            </MagneticButton>
+            {/* Otrā pill uz vienas lapas atceļ pirmās nozīmi: pill apzīmē
+                VIENU galveno darbību. Noslēgumā tā ir rāmja poga. */}
+            <Button to={path("contact")} variant="outline">
+              {heroCtas[0].label}
+            </Button>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
               className="inline-block border-b border-line-amber py-1.5 text-[clamp(1rem,1.4vw,1.2rem)] text-paper transition-colors duration-300 hover:text-amber"

@@ -43,7 +43,7 @@ const MEDIA: Record<
     posterPosition: "center 40%",
     band: {
       poster: "/media/band-brand.jpg",
-      text: "Viena zīme, kas lasās no divdesmit metriem uz kravas auto un no trīsdesmit centimetriem uz vizītkartes.",
+      text: "Viena zīme, kas salasāma gan no divdesmit metriem uz kravas auto, gan no trīsdesmit centimetriem uz vizītkartes.",
     },
   },
   "services.web": {
@@ -51,7 +51,7 @@ const MEDIA: Record<
     poster: "/media/hero-web.jpg",
     band: {
       poster: "/media/band-craft.jpg",
-      text: "Lapa, kas izskatās labi, bet nenes pieteikumus, ir tikai izdevumi. Es salaboju to, kas tai neļauj strādāt.",
+      text: "Testa adrese ir pieejama no pirmās nedēļas: tu redzi lapu topam, nevis saņem to gatavu prezentācijā.",
     },
   },
   "services.ai": {
@@ -59,7 +59,7 @@ const MEDIA: Record<
     poster: "/media/hero-ai.jpg",
     band: {
       poster: "/media/band-console.jpg",
-      text: "Kad dati pārvietojas paši, komanda pamana kļūdu pirms klienta, nevis pēc tam.",
+      text: "Kad dati plūst paši, komanda pamana kļūdu pirms klienta, nevis pēc tam.",
     },
   },
   "services.seo": {
@@ -67,7 +67,7 @@ const MEDIA: Record<
     poster: "/media/hero-seo.jpg",
     band: {
       poster: "/media/band-seo.jpg",
-      text: "Lai lapu atrastu Google meklēšanā un lai to citētu ChatGPT tad, kad klients jautā tur, nevis meklētājā.",
+      text: "Lai lapu atrastu Google meklēšanā un lai ChatGPT to citētu tad, kad klients jautā tur, nevis meklētājā.",
     },
   },
 };
@@ -111,9 +111,9 @@ export default function ServicePage({ routeKey }: { routeKey: ServiceRouteKey })
         toc={tocFor(content.sections)}
       />
 
-      <ContentSections sections={first} />
+      <ContentSections sections={first} labelBudget={2} />
       <Band poster={media.band.poster} text={media.band.text} />
-      <ContentSections sections={rest} />
+      <ContentSections sections={rest} labelBudget={1} />
 
       {/* ============ JAUTĀJUMI ============ */}
       <Section rhythm="lg" surface="ink-850" labelledBy="jautajumi">
@@ -157,7 +157,7 @@ export default function ServicePage({ routeKey }: { routeKey: ServiceRouteKey })
         <SectionTitle id="saksim" className="mb-[clamp(22px,3vw,34px)] scroll-mt-24">
           {isLv ? "Pastāsti, kas tev jāatrisina" : "Tell me what needs solving"}
         </SectionTitle>
-        <LabelRow label={isLv ? "Sāksim" : "Start"}>
+        <LabelRow label={isLv ? "Atbilde 1 darba dienā" : "Reply in 1 working day"}>
           {content.cta ? (
             <p className="max-w-[58ch] text-[17px] leading-[1.6] text-paper-2">{content.cta}</p>
           ) : null}

@@ -97,9 +97,17 @@ export function LabelRow({
   children: ReactNode;
   className?: string;
 }) {
+  // Bez etiķetes kolonnu nav vispār. Iepriekš tukšā 1fr kolonna palika, un uz
+  // garākajām lapām trešdaļa platuma bija tukša no augšas līdz apakšai -
+  // vienpadsmit reižu pēc kārtas. Tukša kolonna nav ritms, tā ir ģeneratora pēda.
+  if (!label) {
+    return <div className={cn("min-w-0 max-w-[76ch]", className)}>{children}</div>;
+  }
   return (
     <div className={cn("grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-12", className)}>
-      <div className="md:pt-1.5">{label ? <Label caps>({label})</Label> : null}</div>
+      <div className="md:pt-1.5">
+        <Label caps>({label})</Label>
+      </div>
       <div className="min-w-0">{children}</div>
     </div>
   );

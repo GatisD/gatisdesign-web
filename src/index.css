@@ -13,6 +13,12 @@
   * {
     border-color: var(--line);
   }
+  html,
+  body {
+    /* `clip`, ne `hidden`: `hidden` uz saknes padara `position: sticky`
+       neizmantojamu, un lapā ir lipīgs darbu filtrs. */
+    overflow-x: clip;
+  }
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

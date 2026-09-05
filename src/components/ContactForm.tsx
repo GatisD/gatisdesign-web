@@ -42,9 +42,15 @@ type ApiResponse =
 const FORM_FIELDS = ["name", "email", "service", "budget", "timeline", "message", "consent"] as const;
 type FormField = (typeof FORM_FIELDS)[number];
 
+/**
+ * `focus:outline-none` te iepriekš nogalināja globālo fokusa gredzenu:
+ * `.focus\:outline-none:focus` specifiskums pārspēj `:focus-visible`, un ar
+ * tastatūru laukos bija redzama tikai rāmja krāsas maiņa. Gredzens ir
+ * skaidri uzlikts atpakaļ.
+ */
 const FIELD_BASE =
-  "w-full rounded-field border border-line bg-ink-850 px-4 text-[16px] text-paper placeholder:text-paper-faint transition-[border-color,background-color] duration-300 hover:border-line-strong focus:border-amber focus:outline-none focus:ring-0 aria-[invalid=true]:border-amber";
-const FIELD_INPUT = cn(FIELD_BASE, "h-[52px]");
+  "w-full rounded-field border border-line bg-ink-850 px-4 text-[16px] text-paper placeholder:text-paper-faint transition-[border-color,background-color] duration-300 hover:border-line-strong focus:border-amber focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-amber aria-[invalid=true]:border-amber";
+const FIELD_INPUT = cn(FIELD_BASE, "min-h-[56px] py-4");
 
 export default function ContactForm({ className }: { className?: string }) {
   const { t, path, locale } = useLocale();

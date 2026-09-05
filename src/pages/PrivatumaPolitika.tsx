@@ -76,7 +76,7 @@ export default function PrivatumaPolitika() {
           <div className="max-w-[70ch]">
             <h1 className="max-w-[20ch] text-display-2 font-bold uppercase">Privātuma politika</h1>
             <p className="mt-6">
-              <Label>Pēdējā atjaunošana: 2026-05-03</Label>
+              <Label>Pēdējoreiz atjaunināts: 2026-05-03</Label>
             </p>
 
             <div className="mt-12">

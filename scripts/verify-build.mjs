@@ -58,7 +58,20 @@ for (const page of ["index.html", "en/contact.html"]) {
   }
 }
 
-// 5. sitemap satur abu valodu ceļus un neatkārtojas
+// 5. Mono etiķetes izmērs. `text-label` ir mūsu pašu fonta izmērs, un
+// tailwind-merge to bez konfigurācijas uzskata par krāsu un izmet. Simptoms
+// bija kluss: klase kodā, likums CSS, bet lapā 12 px vietā 16-17 px.
+for (const page of ["index.html", "majaslapu-izstrade.html"]) {
+  const html = read(page);
+  if (!html) continue;
+  const fontLabel = (html.match(/font-label/g) ?? []).length;
+  const textLabel = (html.match(/text-label/g) ?? []).length;
+  if (fontLabel > 0 && textLabel < fontLabel) {
+    errors.push(`${page}: mono etiķetēm pazudis izmērs (font-label ${fontLabel}, text-label ${textLabel})`);
+  }
+}
+
+// 6. sitemap satur ceļus un neatkārtojas
 const sitemap = read("sitemap.xml");
 if (!sitemap) errors.push("dist/sitemap.xml neeksistē");
 else {

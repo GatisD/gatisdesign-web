@@ -25,7 +25,7 @@ export default function FaqList({ items }: { items: FaqItem[] }) {
           key={item.q}
           delay={i * 0.05}
           y={14}
-          className={`grid gap-x-12 gap-y-3 border-t border-line py-7 md:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)_28px] ${
+          className={`grid gap-x-12 gap-y-3 border-t border-line py-7 md:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] ${
             i === items.length - 1 ? "border-b" : ""
           }`}
         >
@@ -35,7 +35,6 @@ export default function FaqList({ items }: { items: FaqItem[] }) {
           <dd className="m-0 max-w-[62ch] text-[16px] leading-[1.6] text-paper-2">
             <LinkedEmail text={item.a} />
           </dd>
-          <span aria-hidden="true" className="hidden h-px w-4 self-start justify-self-end bg-paper-faint md:mt-3.5 md:block" />
         </Reveal>
       ))}
     </dl>

@@ -150,7 +150,7 @@ export default function ParMani() {
         <SectionTitle id="saksim" className="mb-[clamp(22px,3vw,34px)]">
           {isLv ? "Pastāsti, kas tev jāatrisina" : "Tell me what needs solving"}
         </SectionTitle>
-        <LabelRow label={isLv ? "Sāksim" : "Start"}>
+        <LabelRow label={isLv ? "Atbilde 1 darba dienā" : "Reply in 1 working day"}>
           {aboutContent.cta ? (
             <p className="max-w-[58ch] text-[17px] leading-[1.6] text-paper-2">
               <LinkedEmail text={aboutContent.cta} />

@@ -27,17 +27,17 @@ export const dict = {
       rights: "Visas tiesības aizsargātas",
       privacy: "Privātuma politika",
       /** Kājenes portreta vieta. Redzama tikai izstrādē un priekšskatījumā. */
-      portraitSlot: "Portrets vai video darba vidē - vēl jāuzņem",
+      portraitSlot: "Portrets vai 15 sekunžu video darba vidē - vēl jāuzņem",
       location: "Gatis Daugavietis · Rīga · Latvija",
       backToTop: "Atpakaļ uz augšu",
     },
     notFound: {
-      title: "Šāda lapa neeksistē",
+      title: "Šādas lapas nav",
       body: "Iespējams, adrese ir mainīta vai ierakstīta ar kļūdu.",
       cta: "Uz sākumu",
     },
     cookies: {
-      text: "Šajā mājaslapā izmantoju sīkdatnes darbības nodrošināšanai un anonīmai analīzei. Vairāk -",
+      text: "Šajā mājaslapā izmantoju sīkdatnes, lai nodrošinātu lapas darbību un anonīmi analizētu apmeklējumu. Vairāk -",
       privacyLink: "privātuma politikā",
       acceptAll: "Pieņemt visas",
       necessaryOnly: "Tikai nepieciešamās",
@@ -72,7 +72,7 @@ export const dict = {
       honeypotLabel: "Uzņēmums (šo lauku neaizpildi)",
       submit: "Nosūtīt pieprasījumu",
       replyTime: "Atbildu vienas darba dienas laikā.",
-      sending: "Nosūta...",
+      sending: "Sūta...",
       successTitle: "Paldies, pieprasījums ir saņemts",
       successBody:
         "Apstiprinājumu nosūtīju uz norādīto e-pastu. Darba dienās atbildu 24 stundu laikā.",

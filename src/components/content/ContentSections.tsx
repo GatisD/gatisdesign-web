@@ -25,6 +25,17 @@ import type { ContentSectionData } from "@/content/types";
 
 const MAX_LABELS = 3;
 
+/**
+ * Etiķete, kas atkārto savu virsrakstu, neko nepasaka. "(Struktūra)" blakus
+ * virsrakstam "Struktūra, kas pārvērš apmeklētājus pieteikumos" ir tikai
+ * 340 px kolonna ar to pašu vārdu. Referencē etiķete nes CITU informāciju
+ * nekā virsraksts, tāpēc te tā tiek rādīta tikai tad, kad tā to dara.
+ */
+function labelAddsMeaning(kicker: string, heading: string): boolean {
+  const norm = (s: string) => s.toLowerCase().replace(/[^a-zāčēģīķļņšūž ]/g, "");
+  return !norm(heading).startsWith(norm(kicker));
+}
+
 type Form = "table" | "prose" | "label";
 
 function formFor(section: ContentSectionData, index: number): Form {
@@ -44,14 +55,30 @@ export function tocFor(sections: ContentSectionData[]): Array<{ id: string; labe
   const out: Array<{ id: string; label: string }> = [];
   const table = sections.find((s) => s.table);
   if (table) out.push({ id: headingId(table.heading), label: "Cenas" });
-  const steps = sections.find((s) => s.steps);
+  // Procesu meklē gan pēc `steps` masīva, gan pēc virsraksta: trīs lapas to
+  // saturā tur kā numurētu sarakstu, un bez otrā ceļa satura rādītājā pazuda
+  // vienīgais enkurs septiņām vidus sadaļām 14 000 px garā lapā.
+  const steps =
+    sections.find((s) => s.steps) ??
+    sections.find((s) => /^(kā notiek|kā sāk|process|darba gaita)/i.test(s.heading) || s.kicker === "Process");
   if (steps) out.push({ id: headingId(steps.heading), label: "Process" });
   out.push({ id: "jautajumi", label: "Jautājumi" });
   out.push({ id: "saksim", label: "Sāksim" });
   return out;
 }
 
-export default function ContentSections({ sections }: { sections: ContentSectionData[] }) {
+export default function ContentSections({
+  sections,
+  labelBudget = MAX_LABELS,
+}: {
+  sections: ContentSectionData[];
+  /**
+   * Cik etiķetes šis izsaukums drīkst iztērēt. Budžets ir uz LAPU, ne uz
+   * izsaukumu: pakalpojumu lapa satura sadaļas renderē divos gabalos (pirms
+   * un pēc foto joslas), un bez šī propa katrs gabals sāktu skaitīt no nulles.
+   */
+  labelBudget?: number;
+}) {
   let labelsUsed = 0;
 
   return (
@@ -61,7 +88,12 @@ export default function ContentSections({ sections }: { sections: ContentSection
         const id = headingId(section.heading);
         const surface = index % 2 === 1 ? "ink-850" : "ink";
         let label: string | undefined;
-        if (section.kicker && labelsUsed < MAX_LABELS && form === "label") {
+        if (
+          section.kicker &&
+          labelsUsed < labelBudget &&
+          form === "label" &&
+          labelAddsMeaning(section.kicker, section.heading)
+        ) {
           label = section.kicker;
           labelsUsed += 1;
         }

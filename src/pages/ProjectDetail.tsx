@@ -379,7 +379,7 @@ export default function ProjectDetail() {
         <SectionTitle id="projekts-cta-h" className="mb-[clamp(22px,3vw,34px)]">
           {isLv ? "Vajag līdzīgu risinājumu?" : "Need something similar?"}
         </SectionTitle>
-        <LabelRow label={isLv ? "Sāksim" : "Start"}>
+        <LabelRow label={isLv ? "Atbilde 1 darba dienā" : "Reply in 1 working day"}>
           <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
             <MagneticButton>
               <Button to={path("contact")}>{t.nav.cta}</Button>
