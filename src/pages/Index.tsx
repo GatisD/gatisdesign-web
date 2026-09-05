@@ -330,7 +330,7 @@ export default function Index() {
             ))}
           </ul>
           <p className="pt-6">
-            <Label>Norādītās cenas ir gala cenas - neesmu PVN maksātājs.</Label>
+            <Label>Norādītās cenas ir galīgās - neesmu PVN maksātājs.</Label>
           </p>
         </LabelRow>
       </Section>
