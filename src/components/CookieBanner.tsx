@@ -50,12 +50,14 @@ export default function CookieBanner() {
     <div
       role="dialog"
       aria-label={locale === "lv" ? "Sīkdatņu paziņojums" : "Cookie notice"}
-      className="fixed inset-x-0 bottom-0 z-[200] border-t border-line bg-ink-900/95 p-4 backdrop-blur-md md:p-6"
+      // Necaurspīdīgs fons apzināti: ar bg-ink-900/95 un izpludinājumu virs
+      // gaišā hero kadra teksta kontrasts nokrita līdz 1,2:1.
+      className="fixed inset-x-0 bottom-0 z-[200] border-t border-line-strong bg-ink-950 p-4 md:p-6"
     >
       <div className="mx-auto flex max-w-4xl flex-col items-start justify-between gap-4 md:flex-row md:items-center">
-        <p className="text-sm leading-relaxed text-paper-dim">
+        <p className="text-[15px] leading-relaxed text-paper-2">
           {t.cookies.text}{" "}
-          <Link to={path("privacy")} className="text-amber underline underline-offset-2 hover:text-amber-soft">
+          <Link to={path("privacy")} className="border-b border-line-amber text-paper transition-colors duration-300 hover:text-amber">
             {t.cookies.privacyLink}
           </Link>
           .
@@ -64,14 +66,14 @@ export default function CookieBanner() {
           <button
             type="button"
             onClick={handleReject}
-            className="min-h-[44px] flex-1 rounded-full border border-line-strong px-4 text-sm text-paper transition-colors duration-200 hover:border-amber hover:text-amber md:flex-initial"
+            className="min-h-[48px] flex-1 rounded-full border border-line-strong px-5 text-[15px] text-paper transition-colors duration-300 hover:border-amber hover:text-amber md:flex-initial"
           >
             {t.cookies.necessaryOnly}
           </button>
           <button
             type="button"
             onClick={handleAccept}
-            className="min-h-[44px] flex-1 rounded-full bg-amber px-4 text-sm font-semibold text-[#1a1206] transition-colors duration-200 hover:bg-amber-soft md:flex-initial"
+            className="min-h-[48px] flex-1 rounded-full bg-paper px-5 text-[15px] font-medium text-ink-900 transition-colors duration-300 hover:bg-amber hover:text-on-amber md:flex-initial"
           >
             {t.cookies.acceptAll}
           </button>

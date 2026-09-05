@@ -39,7 +39,7 @@ export default function Button({
     variant === "outline" &&
       "h-[56px] rounded-full border border-line-strong px-8 text-[17px] text-paper hover:border-amber hover:text-amber md:h-16 md:px-[34px] md:text-[18px]",
     variant === "link" &&
-      "border-b border-amber pb-1 text-[17px] text-paper hover:text-amber md:text-[18px]",
+      "border-b border-amber py-1.5 text-[17px] text-paper hover:text-amber md:text-[18px]",
     disabled && "pointer-events-none opacity-55",
     className,
   );

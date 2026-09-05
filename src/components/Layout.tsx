@@ -1,7 +1,5 @@
 import { useEffect } from "react";
 import { useLocation, Outlet } from "react-router-dom";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { Toaster as Sonner } from "@/components/ui/sonner";
 import { LocaleProvider } from "@/i18n/LocaleContext";
 import { dict } from "@/i18n/dict";
 import type { Locale } from "@/i18n/routes";
@@ -38,19 +36,16 @@ export default function Layout({ locale }: { locale: Locale }) {
       >
         {dict[locale].nav.skipToContent}
       </a>
-      <TooltipProvider>
-        <SmoothScroll />
-        <div className="flex min-h-screen flex-col bg-ink-900 text-paper">
-          <ScrollToTopOnNav />
-          <Header />
-          <main id="saturs" className="flex flex-1 flex-col">
-            <Outlet />
-          </main>
-          <Footer />
-          <CookieBanner />
-        </div>
-        <Sonner />
-      </TooltipProvider>
+      <SmoothScroll />
+      <div className="flex min-h-screen flex-col bg-ink-900 text-paper">
+        <ScrollToTopOnNav />
+        <Header />
+        <main id="saturs" className="flex flex-1 flex-col">
+          <Outlet />
+        </main>
+        <Footer />
+        <CookieBanner />
+      </div>
     </LocaleProvider>
   );
 }

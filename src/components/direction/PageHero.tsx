@@ -32,13 +32,13 @@ export default function PageHero({
 }) {
   return (
     <section className="relative isolate flex min-h-[clamp(520px,72vh,760px)] flex-col justify-end overflow-hidden bg-ink-900 pb-16 md:pb-24 pt-[clamp(96px,16vw,200px)]">
-      <HeroMedia poster={poster} src={video} position={posterPosition} eager brightness={0.5} />
+      <HeroMedia poster={poster} src={video} position={posterPosition} eager brightness={0.42} />
       <div
         aria-hidden="true"
         className="absolute inset-0 -z-[1]"
         style={{
           background:
-            "linear-gradient(180deg, rgba(13,11,9,.62) 0%, rgba(13,11,9,.18) 46%, rgba(13,11,9,.94) 100%)",
+            "linear-gradient(180deg, rgba(13,11,9,.70) 0%, rgba(13,11,9,.42) 42%, rgba(13,11,9,.97) 88%)",
         }}
       />
       <div className="relative mx-auto w-full max-w-wrap px-5 sm:px-8 lg:px-10">

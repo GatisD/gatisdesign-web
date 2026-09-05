@@ -167,7 +167,7 @@ export default function ServicePage({ routeKey }: { routeKey: ServiceRouteKey })
             </MagneticButton>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="border-b border-line-amber pb-1 text-[clamp(1rem,1.4vw,1.2rem)] text-paper transition-colors duration-300 hover:text-amber"
+              className="inline-block border-b border-line-amber py-1.5 text-[clamp(1rem,1.4vw,1.2rem)] text-paper transition-colors duration-300 hover:text-amber"
             >
               {CONTACT_EMAIL}
             </a>

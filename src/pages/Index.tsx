@@ -193,7 +193,7 @@ export default function Index() {
           className="absolute inset-0 -z-[1]"
           style={{
             background:
-              "linear-gradient(180deg, rgba(13,11,9,.42) 0%, rgba(13,11,9,.06) 44%, rgba(13,11,9,.88) 100%)",
+              "linear-gradient(180deg, rgba(13,11,9,.50) 0%, rgba(13,11,9,.16) 40%, rgba(13,11,9,.93) 92%)",
           }}
         />
 
@@ -405,7 +405,7 @@ export default function Index() {
             </MagneticButton>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="border-b border-line-amber pb-1 text-[clamp(1rem,1.4vw,1.2rem)] text-paper transition-colors duration-300 hover:text-amber"
+              className="inline-block border-b border-line-amber py-1.5 text-[clamp(1rem,1.4vw,1.2rem)] text-paper transition-colors duration-300 hover:text-amber"
             >
               {CONTACT_EMAIL}
             </a>
