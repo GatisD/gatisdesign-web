@@ -40,9 +40,9 @@ const MEDIA: Record<
   "services.brand": {
     titleLines: ["Zīmola", "identitāte"],
     poster: "/media/hero-brand.jpg",
-    posterPosition: "center 45%",
+    posterPosition: "center 40%",
     band: {
-      poster: "/media/band-craft.jpg",
+      poster: "/media/band-brand.jpg",
       text: "Viena zīme, kas lasās no divdesmit metriem uz kravas auto un no trīsdesmit centimetriem uz vizītkartes.",
     },
   },
@@ -66,7 +66,7 @@ const MEDIA: Record<
     titleLines: ["SEO, GEO", "un AEO"],
     poster: "/media/hero-seo.jpg",
     band: {
-      poster: "/media/hero-ai.jpg",
+      poster: "/media/band-seo.jpg",
       text: "Lai lapu atrastu Google meklēšanā un lai to citētu ChatGPT tad, kad klients jautā tur, nevis meklētājā.",
     },
   },
