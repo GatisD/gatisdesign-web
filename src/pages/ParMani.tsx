@@ -10,6 +10,7 @@ import MediaPlaceholder from "@/components/direction/MediaPlaceholder";
 import { Section, SectionTitle, LabelRow } from "@/components/direction/Section";
 import ContentSections from "@/components/content/ContentSections";
 import FaqList from "@/components/content/FaqList";
+import { CONTENT_MODIFIED } from "@/components/content/serviceSchema";
 import LinkedEmail from "@/components/content/LinkedEmail";
 import { aboutContent } from "@/content/pages";
 import { statItems } from "@/content/home";
@@ -57,6 +58,7 @@ export default function ParMani() {
     knowsLanguage: ["lv", "en"],
     knowsAbout: SERVICE_KEYS.map((key) => t.services[LABEL_BY_KEY[key]]),
     sameAs: [SOCIAL.linkedin, SOCIAL.instagram, SOCIAL.dribbble, SOCIAL.facebook],
+    dateModified: CONTENT_MODIFIED,
   };
 
   // FAQPage satur arī tos jautājumus, kas lapā netiek rādīti (piem. "Kas ir

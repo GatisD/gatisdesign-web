@@ -1,38 +1,88 @@
-# Gatis Design
+# Gatis Design - Gatis Daugavietis
 
-> Brand identity ar 18 gadu pieredzi. Logo, mājaslapas, ilustrācijas un drukai ar fokusu uz kvalitatīvu zīmolu valodu.
+> Uzzīmēju zīmolu, uzbūvēju lapu, pieslēdzu AI aģentus un atbildu par redzamību Google un AI atbildēs. Viens cilvēks visai ķēdei. Rīga, Latvija, 18 gadu pieredze kopš 2008. gada, vairāk nekā 100 pabeigtu projektu.
 
-## Par dizaineri
-Gatis Daugavietis ir neatkarīgs brand un web dizainers ar 18 gadu pieredzi. Strādā ar zīmoliem Latvijā un ārpus tās, primary fokuss uz brand identity, mājaslapām un izdrukāmā satura dizainu.
+## Kas es esmu
+Gatis Daugavietis ir dizainers un izstrādātājs Rīgā. Strādāju viens, bez aģentūras: no pirmās sarunas līdz publicēšanai un arī pēc tās. Klienti ir Latvijā, Igaunijā, Lietuvā un ASV. Neesmu PVN maksātājs, tāpēc norādītā cena ir gala cena, tai klāt nekas netiek pieskaitīts.
 
-## Pakalpojumi
-- Logo & Brand Identity - visaptverošu zīmola vadlīniju izstrāde
-- Web Design - UX/UI risinājumi un mājaslapu izstrāde
-- Illustrations - pielāgotas ilustrācijas un ikonu komplekti
-- Print Design - vizītkartes, plakāti, iepakojuma dizains
+## Pakalpojumi un cenas
+- Mājaslapu izstrāde un dizains: landing page no 500 EUR, pilna mājaslapa 900-1500 EUR, interneta veikals divās valodās no 2500 EUR, pamata uzturēšana 50-80 EUR mēnesī, pilna uzturēšanas paka 100-150 EUR mēnesī. https://gatisdesign.com/majaslapu-izstrade
+- Logo izveide un zīmola identitāte: logo ar 3-4 koncepcijām 500-700 EUR, esošā logo uzlabošana 200 EUR, mazā zīmola grāmata 350 EUR, vidējā vai lielā zīmola grāmata 500 EUR, pilnā zīmola grāmata ar stratēģiju 3000 EUR, drukas materiāli 120-900 EUR. https://gatisdesign.com/zimola-identitate
+- AI aģenti un procesu automatizācija: procesu audits un automatizācijas plāns no 400 EUR, viena procesa automatizācija 900-1800 EUR, vairāku sistēmu integrācija no 2500 EUR, uzraudzība un uzturēšana no 100 EUR mēnesī. https://gatisdesign.com/ai-agenti
+- SEO, GEO un AEO redzamība: SEO Basic līdz 5 lapām 300 EUR, SEO Plus līdz 10 lapām 500 EUR, SEO PRO līdz 20 lapām 800 EUR, AI SEO bāzes ieviešana 700 EUR, AI SEO standarta ieviešana 1200 EUR, uzturēšana no 80 EUR mēnesī. https://gatisdesign.com/seo-geo-aeo
+- Atsevišķi darbi un konsultācijas esošā risinājumā: 60 EUR stundā. Projekti tiek pārdoti ar fiksētu cenu un termiņu, ne stundās.
 
-## Statistika
-- 18 gadi profesionālas pieredzes
-- 100+ realizēti projekti
-- 4 specializācijas kategorijas
-- 5+ gadi kā ROIS partneris
+## Kompetences
+- Mājaslapu izstrāde WordPress platformā un kodā: React, Vite, statiski ģenerēts HTML
+- Zīmola identitāte, logo, zīmola grāmatas, drukas materiāli un iepakojums
+- AI aģentu un automatizācijas izstrāde uzņēmumu iekšējiem procesiem
+- SEO, ģeneratīvā GEO un AEO optimizācija, lokālā redzamība Google Maps, llms.txt, schema markup un Core Web Vitals
 
-## Klienti, kas uzticējušies
-ROIS, Tenter, Estire, Box Latvia, Apmekle.lv, Digitalaisdzintars.lv
+## Fakti
+- Pieredze: 18 gadi, kopš 2008. gada
+- Pabeigti projekti: vairāk nekā 100
+- Publiskais portfolio: 23 projekti ar nosauktu klientu, lomu un gadu
+- Tirgi: Latvija, Igaunija, Lietuva, ASV
+- Saziņas valodas: latviešu un angļu
+- PVN: neesmu PVN maksātājs, norādītā cena ir gala cena
+- Apmaksas termiņš: 5 darbadienas
 
-## Kontaktinformācija
+## Darbi, ko var apskatīt
+Estire, Box Latvia, ROIS.lv, Apmeklē.lv, Lauvas Zobs, Valis Stomatoloģija, Universal Solutions, DarbaGuru, Digitālais Dzintars, 110m2, Kuģi Kartupelis, Mēbeļu montāža, Lucky Punch, Obsidian, Varloz, Cafeteria, Green Bay, Forevolt.
+
+## Kontakti
 - E-pasts: connect@gatisdesign.com
-- Atrašanās: Rīga, Latvija
-- Pieejams projektiem visā pasaulē
-
-## Sociālie tīkli
+- Atrašanās vieta: Rīga, Latvija
 - Dribbble: https://dribbble.com/gdesign90
-- Facebook: https://facebook.com/GatisDesign
-- Instagram: https://instagram.com/gatisdesign
 - LinkedIn: https://www.linkedin.com/in/gatis-daugavietis-bb5566193
+- Instagram: https://instagram.com/gatisdesign
+- Facebook: https://facebook.com/GatisDesign
 
-## Atsauces
-- Sākumlapa: https://gatisdesign.com/
-- Portfolio: https://gatisdesign.com/portfolio
+## Lapas
+- Sākums: https://gatisdesign.com/
+- Mājaslapu izstrāde un dizains: https://gatisdesign.com/majaslapu-izstrade
+- Logo izveide un zīmola identitāte: https://gatisdesign.com/zimola-identitate
+- AI aģenti un automatizācija: https://gatisdesign.com/ai-agenti
+- SEO, GEO un AEO: https://gatisdesign.com/seo-geo-aeo
+- Darbi: https://gatisdesign.com/portfolio
 - Par mani: https://gatisdesign.com/par-mani
 - Kontakti: https://gatisdesign.com/kontakti
+
+---
+
+# Gatis Design - Gatis Daugavietis (English)
+
+> I design the brand, build the site, connect the AI agents and stay responsible for visibility in Google and in AI answers. One person for the whole chain. Riga, Latvia; 18 years of experience since 2008; more than 100 completed projects.
+
+## Who this is
+Gatis Daugavietis is a designer and developer based in Riga, Latvia. He works solo, without an agency, from the first conversation through launch and after it. Clients are in Latvia, Estonia, Lithuania and the United States. He is not registered for VAT, so a quoted price is the final price with nothing added on top. Working languages: Latvian and English.
+
+## Services and prices
+- Website design and development: landing page from 500 EUR, full company website 900-1500 EUR, two-language online store from 2500 EUR, maintenance 50-150 EUR per month. https://gatisdesign.com/majaslapu-izstrade
+- Logo and brand identity: logo with 3-4 concepts 500-700 EUR, redraw of an existing logo 200 EUR, small brand book 350 EUR, medium or large brand book 500 EUR, full brand book with strategy 3000 EUR, print materials 120-900 EUR. https://gatisdesign.com/zimola-identitate
+- AI agents and process automation: process audit and automation plan from 400 EUR, one end-to-end automation 900-1800 EUR, multi-system integration from 2500 EUR, monitoring from 100 EUR per month. https://gatisdesign.com/ai-agenti
+- SEO, GEO and AEO visibility: audit up to 5 pages 300 EUR, up to 10 pages 500 EUR, up to 20 pages 800 EUR, AI visibility implementation 700 EUR or 1200 EUR, maintenance from 80 EUR per month. https://gatisdesign.com/seo-geo-aeo
+- Ad hoc work and consulting on an existing solution: 60 EUR per hour. Projects are sold at a fixed price and deadline, not by the hour.
+
+## Expertise
+- Website development on WordPress and in code: React, Vite, statically generated HTML
+- Brand identity, logos, brand books, print materials and packaging
+- AI agents and automations for internal company processes
+- SEO, generative engine optimisation (GEO), answer engine optimisation (AEO), local visibility in Google Maps, llms.txt, schema markup and Core Web Vitals
+
+## Facts
+- Experience: 18 years, since 2008
+- Completed projects: more than 100
+- Public portfolio: 23 projects, each with a named client, role and year
+- Markets: Latvia, Estonia, Lithuania, United States
+- VAT: not VAT registered, the quoted price is final
+- Payment terms: 5 working days
+
+## Contact
+- Email: connect@gatisdesign.com
+- Location: Riga, Latvia
+- Dribbble: https://dribbble.com/gdesign90
+- LinkedIn: https://www.linkedin.com/in/gatis-daugavietis-bb5566193
+
+## Note on language versions
+The pages listed above are in Latvian and are the canonical source. English versions live under https://gatisdesign.com/en and are being written; until they are published they carry a noindex tag and mirror the Latvian text.

@@ -18,13 +18,15 @@ import { projects } from "./src/data/projects";
 // tās vairs netiek izslēgtas. Ka sitemap nesatur mirušus URL, pārbauda būves
 // vārti (scripts/verify-build.mjs) - Search Console 404 lapas sitemap skaita
 // kā kļūdas.
+// EN maršruti sitemapā NEIET, kamēr tie ir noindex (visur `const noindex = !isLv`,
+// jo EN lapas šobrīd renderē latviešu tekstu). Sitemap, kas piedāvā Google 32
+// lapas, kuras pašas sevi aizliedz indeksēt, dod Search Console 32 kļūdas jau
+// pirmajā atskaitē. Kad src/content/en/*.json ir gatavi un noindex noņemts,
+// atgriez .flatMap((p) => [p.lv, p.en]) un EN projektu ceļus.
 const baseRoutes = Object.values(ROUTES)
-  .flatMap((p) => [p.lv, p.en])
+  .map((p) => p.lv)
   .filter((route) => route !== ROUTES.home.lv);
-const portfolioDetailRoutes = projects.flatMap((p) => [
-  `${ROUTES.portfolio.lv}/${p.slug}`,
-  `${ROUTES.portfolio.en}/${p.slug}`,
-]);
+const portfolioDetailRoutes = projects.map((p) => `${ROUTES.portfolio.lv}/${p.slug}`);
 const dynamicRoutes = [...baseRoutes, ...portfolioDetailRoutes];
 
 // Prioritāte pa maršrutu: sākumlapai augstākā, pakalpojumu un portfolio
@@ -39,15 +41,12 @@ const highPriorityKeys: RouteKey[] = [
 const priorityByRoute: Record<string, number> = {
   "*": 0.5,
   [ROUTES.home.lv]: 1.0,
-  [ROUTES.home.en]: 1.0,
 };
 for (const key of highPriorityKeys) {
   priorityByRoute[ROUTES[key].lv] = 0.8;
-  priorityByRoute[ROUTES[key].en] = 0.8;
 }
 for (const p of projects) {
   priorityByRoute[`${ROUTES.portfolio.lv}/${p.slug}`] = 0.8;
-  priorityByRoute[`${ROUTES.portfolio.en}/${p.slug}`] = 0.8;
 }
 
 // https://vitejs.dev/config/

@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 type Filter = "all" | ProjectCategory;
 
 const META_DESCRIPTION =
-  "23 pabeigti projekti: mājaslapu izstrādes piemēri, logo un zīmola darbi. Estire, Box Latvia, ROIS.lv, Apmeklē.lv, Lauvas Zobs. Katram projektam norādīta loma un gads.";
+  "23 pabeigti projekti: mājaslapu izstrādes piemēri, logo un zīmola darbi. Estire, Box Latvia, ROIS.lv, Apmeklē.lv. Katram projektam norādīta loma un gads.";
 
 /**
  * Režģa ritms. Piecu flīžu cikls: divas platas (7+5), tad trīs vienādas (4+4+4).

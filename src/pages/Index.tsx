@@ -12,6 +12,7 @@ import MediaPlaceholder, { SHOW_PLACEHOLDERS } from "@/components/direction/Medi
 import Band from "@/components/direction/Band";
 import { Section, SectionTitle, LabelRow, ProseColumns } from "@/components/direction/Section";
 import FaqList from "@/components/content/FaqList";
+import { CONTENT_MODIFIED } from "@/components/content/serviceSchema";
 import ProjectCard from "@/components/ProjectCard";
 import { useLocale } from "@/i18n/LocaleContext";
 import { ROUTES, type RouteKey } from "@/i18n/routes";
@@ -95,6 +96,7 @@ const homePersonSchema = {
   knowsAbout: serviceCards.map((card) => card.title),
   worksFor: { "@id": BUSINESS_ID },
   sameAs,
+  dateModified: CONTENT_MODIFIED,
 };
 
 const homeServiceSchema = {
@@ -113,6 +115,7 @@ const homeServiceSchema = {
   founder: { "@id": PERSON_ID },
   provider: { "@id": PERSON_ID },
   sameAs,
+  dateModified: CONTENT_MODIFIED,
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Pakalpojumi",
@@ -121,6 +124,17 @@ const homeServiceSchema = {
       itemOffered: { "@type": "Service", name: card.title, url: `${SITE_URL}${card.target}` },
     })),
   },
+};
+
+const homeWebsiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  name: SITE_NAME,
+  url: SITE_URL,
+  inLanguage: ["lv", "en"],
+  publisher: { "@id": PERSON_ID },
+  about: { "@id": BUSINESS_ID },
 };
 
 const homeFaqSchema = {
@@ -162,7 +176,7 @@ export default function Index() {
         description={homeContent.metaDescription}
         noindex={noindex}
       />
-      <JsonLd data={[homePersonSchema, homeServiceSchema, homeFaqSchema]} />
+      <JsonLd data={[homeWebsiteSchema, homePersonSchema, homeServiceSchema, homeFaqSchema]} />
 
       {/* ============ HERO ============ */}
       <section

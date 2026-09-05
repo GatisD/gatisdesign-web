@@ -14,7 +14,21 @@ const robots = read("robots.txt");
 if (!robots) {
   errors.push("dist/robots.txt neeksistē");
 } else {
-  for (const bot of ["GPTBot", "ClaudeBot", "PerplexityBot"]) {
+  // GPTBot ir apmācībai, bet ChatGPT meklēšanas rezultāti nāk no OAI-SearchBot,
+  // un AI Overviews - no Google-Extended. Trūkstošs bots nav sintakses kļūda,
+  // tāpēc to nepamana neviens cits, kā tikai šie vārti.
+  for (const bot of [
+    "GPTBot",
+    "OAI-SearchBot",
+    "ChatGPT-User",
+    "ClaudeBot",
+    "anthropic-ai",
+    "Claude-User",
+    "PerplexityBot",
+    "Perplexity-User",
+    "Google-Extended",
+    "Applebot-Extended",
+  ]) {
     if (!robots.includes(bot)) errors.push(`robots.txt trūkst ${bot} sadaļas`);
   }
 }
@@ -50,7 +64,17 @@ if (!sitemap) errors.push("dist/sitemap.xml neeksistē");
 else {
   const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
   if (new Set(locs).size !== locs.length) errors.push("sitemap satur dublētus URL");
-  if (!locs.some((l) => l.includes("/en/"))) errors.push("sitemap nesatur EN lapas");
+  // Sitemap nedrīkst piedāvāt Google lapu, kas pati sevi aizliedz indeksēt.
+  // Šis vārts turēs arī tad, kad EN tulkojums būs gatavs un EN atgriezīsies
+  // sitemapā - tad noindex tur vairs nebūs, un vārts nostrādās pats no sevis.
+  for (const loc of locs) {
+    const p = new URL(loc).pathname.replace(/\/$/, "");
+    const file = p === "" ? "index.html" : `${p.slice(1)}.html`;
+    const html = read(file) ?? read(`${p.slice(1)}/index.html`);
+    if (html && /name="robots"[^>]*content="[^"]*noindex/.test(html)) {
+      errors.push(`sitemap satur noindex lapu: ${p}`);
+    }
+  }
 
   // 6. Katram sitemap URL jābūt reālam failam. Sitemap ar 404 lapām ir
   // sliktāks par sitemap bez tām - Search Console tās skaita kā kļūdas.

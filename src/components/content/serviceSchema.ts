@@ -6,8 +6,21 @@ import { pathFor, type Locale, type RouteKey } from "@/i18n/routes";
 
 const abs = (p: string) => `${SITE_URL}${p}`;
 
+/**
+ * Satura pēdējās redakcijas datums. Konstante, ne `new Date()`: būvē un
+ * hidratācijā tam jābūt vienam un tam pašam, un "šodien" strukturētajos datos
+ * nozīmētu, ka lapa katru dienu apgalvo, ka saturs ir atjaunots.
+ */
+export const CONTENT_MODIFIED = "2026-09-05";
+
+/**
+ * Viena un tā pati persona visos objektos - caur `@id`, ne caur atkārtotu
+ * aprakstu. Bez tā Google un AI modeļiem šī ir vairākas dažādas personas ar
+ * vienu vārdu.
+ */
 const provider = {
   "@type": "Person",
+  "@id": `${SITE_URL}/#gatis`,
   name: "Gatis Daugavietis",
   alternateName: SITE_NAME,
   jobTitle: "Dizainers un izstrādātājs",
@@ -47,9 +60,10 @@ export function buildServiceSchema(
     serviceType: content.title,
     description: content.metaDescription,
     url,
-    provider,
+    provider: { "@id": `${SITE_URL}/#gatis` },
     areaServed,
     availableLanguage: ["lv", "en"],
+    dateModified: CONTENT_MODIFIED,
   };
 
   if (price) {
@@ -61,7 +75,7 @@ export function buildServiceSchema(
       offerCount: content.sections.filter((s) => s.table).length,
       url,
       availability: "https://schema.org/InStock",
-      seller: provider,
+      seller: { "@id": `${SITE_URL}/#gatis` },
     };
   }
 
@@ -80,5 +94,6 @@ export function buildServiceSchema(
     { name: content.title, path: pathFor(routeKey, locale) },
   ]);
 
-  return [service, faq, breadcrumb];
+  // Persona pilnā aprakstā iet reizi lapā; pārējie objekti uz to atsaucas ar @id.
+  return [provider, service, faq, breadcrumb];
 }
