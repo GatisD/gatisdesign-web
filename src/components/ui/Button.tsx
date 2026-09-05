@@ -35,9 +35,9 @@ export default function Button({
   const cls = cn(
     "inline-flex items-center justify-center gap-2 font-medium transition-[background-color,color,border-color,transform] duration-300 ease-dir",
     variant === "primary" &&
-      "h-[56px] rounded-full bg-paper px-8 text-[17px] text-ink-900 hover:bg-amber hover:text-on-amber md:h-16 md:px-[34px] md:text-[18px]",
+      "min-h-[56px] rounded-full bg-paper px-8 py-4 text-[17px] text-ink-900 hover:bg-amber hover:text-on-amber md:min-h-16 md:px-[34px] md:py-[18px] md:text-[18px]",
     variant === "outline" &&
-      "h-[56px] rounded-full border border-line-strong px-8 text-[17px] text-paper hover:border-amber hover:text-amber md:h-16 md:px-[34px] md:text-[18px]",
+      "min-h-[56px] rounded-full border border-line-strong px-8 py-4 text-[17px] text-paper hover:border-amber hover:text-amber md:min-h-16 md:px-[34px] md:py-[18px] md:text-[18px]",
     variant === "link" &&
       "border-b border-amber py-1.5 text-[17px] text-paper hover:text-amber md:text-[18px]",
     disabled && "pointer-events-none opacity-55",

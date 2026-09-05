@@ -182,18 +182,13 @@ export default function Index() {
         className="relative isolate flex min-h-[clamp(560px,88vh,880px)] flex-col justify-end overflow-hidden bg-ink-900 pb-[clamp(28px,4vw,44px)] pt-[clamp(104px,18vw,220px)]"
         aria-labelledby="hero-h"
       >
-        <HeroMedia
-          poster="/media/hero-workshop.jpg"
-          position="center 40%"
-          eager
-          brightness={0.55}
-        />
+        <HeroMedia className="-z-[2]" poster="/media/hero-workshop.jpg" position="center 40%" eager brightness={0.5} />
         <div
           aria-hidden="true"
           className="absolute inset-0 -z-[1]"
           style={{
             background:
-              "linear-gradient(180deg, rgba(13,11,9,.50) 0%, rgba(13,11,9,.16) 40%, rgba(13,11,9,.93) 92%)",
+              "linear-gradient(180deg, rgba(13,11,9,.44) 0%, rgba(13,11,9,.18) 28%, rgba(13,11,9,.66) 58%, rgba(13,11,9,.94) 92%)",
           }}
         />
 

@@ -188,7 +188,7 @@ export default function ProjectDetail() {
           className="absolute inset-0 -z-[1]"
           style={{
             background:
-              "linear-gradient(180deg, rgba(13,11,9,.6) 0%, rgba(13,11,9,.15) 45%, rgba(13,11,9,.94) 100%)",
+              "linear-gradient(180deg, rgba(13,11,9,.62) 0%, rgba(13,11,9,.34) 30%, rgba(13,11,9,.84) 62%, rgba(13,11,9,.98) 94%)",
           }}
         />
         <div className="relative mx-auto w-full max-w-wrap px-5 sm:px-8 lg:px-10">

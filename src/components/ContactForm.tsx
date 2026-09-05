@@ -287,8 +287,10 @@ export default function ContactForm({ className }: { className?: string }) {
       {/* Slazds robotiem. Redzams tikai ekrāna lasītājam, tāpēc ar skaidru
           norādi to neaizpildīt; no tabulācijas izņemts ar tabindex -1. */}
       <div className="sr-only">
-        <label htmlFor="company">{t.form.honeypotLabel}</label>
-        <input id="company" type="text" tabIndex={-1} autoComplete="off" {...register("company")} />
+        <label htmlFor="company" className="sr-only">
+          {t.form.honeypotLabel}
+        </label>
+        <input id="company" className="sr-only" type="text" tabIndex={-1} autoComplete="off" {...register("company")} />
       </div>
 
       <div className="mt-7 flex items-start gap-3">
@@ -341,7 +343,7 @@ export default function ContactForm({ className }: { className?: string }) {
           type="submit"
           disabled={isSubmitting}
           aria-busy={isSubmitting}
-          className="inline-flex h-[56px] items-center justify-center gap-3 rounded-full bg-paper px-8 text-[17px] font-medium text-ink-900 transition-[background-color,color,opacity] duration-300 hover:bg-amber hover:text-on-amber disabled:cursor-not-allowed disabled:opacity-60 md:h-16 md:px-9 md:text-[18px]"
+          className="inline-flex min-h-[56px] items-center justify-center gap-3 rounded-full bg-paper px-8 py-4 text-[17px] font-medium text-ink-900 transition-[background-color,color,opacity] duration-300 hover:bg-amber hover:text-on-amber disabled:cursor-not-allowed disabled:opacity-60 md:min-h-16 md:px-9 md:py-[18px] md:text-[18px]"
         >
           {isSubmitting ? (
             <>
