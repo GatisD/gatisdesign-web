@@ -164,20 +164,24 @@ export default function ProjectDetail() {
 
       {/* ============ VĀKS ============ */}
       <section
-        className="relative isolate flex min-h-[clamp(420px,66vh,720px)] flex-col justify-end overflow-hidden bg-ink-900 pb-sec-sm pt-[clamp(96px,14vw,180px)]"
+        className="relative isolate flex min-h-[clamp(420px,66vh,720px)] flex-col justify-end bg-ink-900 pb-12 pt-[clamp(96px,14vw,180px)] md:pb-16"
         aria-labelledby="projekts-h"
       >
-        <div ref={coverRef} className="absolute inset-x-0 -top-6 bottom-[-24px] -z-[2] will-change-transform">
-          <PicturePortfolio
-            src={project.cover.src}
-            alt=""
-            width={project.cover.width}
-            height={project.cover.height}
-            loading="eager"
-            priority="high"
-            decoding="sync"
-            className="media-settle h-full w-full object-cover object-[top_center] [filter:brightness(.5)_saturate(.85)]"
-          />
+        {/* Apgriešana notiek TIKAI uz attēla slāņa: ja to liktu uz sekcijas,
+            virsraksts ar garumzīmēm apakšējā malā tiktu nogriezts. */}
+        <div aria-hidden="true" className="absolute inset-0 -z-[2] overflow-hidden">
+          <div ref={coverRef} className="absolute inset-x-0 -top-6 bottom-[-24px] will-change-transform">
+            <PicturePortfolio
+              src={project.cover.src}
+              alt=""
+              width={project.cover.width}
+              height={project.cover.height}
+              loading="eager"
+              priority="high"
+              decoding="sync"
+              className="media-settle h-full w-full object-cover object-[top_center] [filter:brightness(.5)_saturate(.85)]"
+            />
+          </div>
         </div>
         <div
           aria-hidden="true"
@@ -187,7 +191,7 @@ export default function ProjectDetail() {
               "linear-gradient(180deg, rgba(13,11,9,.6) 0%, rgba(13,11,9,.15) 45%, rgba(13,11,9,.94) 100%)",
           }}
         />
-        <div className="relative mx-auto w-full max-w-wrap px-pad-x">
+        <div className="relative mx-auto w-full max-w-wrap px-5 sm:px-8 lg:px-10">
           <Link
             to={path("portfolio")}
             className="inline-flex min-h-[44px] items-center gap-2.5 text-[15px] text-paper-2 transition-colors duration-300 hover:text-amber"
@@ -206,7 +210,7 @@ export default function ProjectDetail() {
 
       {/* ============ FAKTU JOSLA ============ */}
       <section className="border-y border-line bg-ink-900" aria-label={isLv ? "Projekta dati" : "Project facts"}>
-        <dl className="mx-auto grid max-w-wrap grid-cols-2 px-pad-x md:grid-cols-4">
+        <dl className="mx-auto grid max-w-wrap grid-cols-2 px-5 py-2 sm:px-8 md:grid-cols-4 lg:px-10">
           {facts.map((fact, i) => (
             <div
               key={fact.term}
@@ -322,7 +326,7 @@ export default function ProjectDetail() {
           <SectionTitle id="saistitie-h" className="mb-[clamp(18px,2.4vw,28px)]">
             {isLv ? "Pakalpojumi šajā projektā" : "Services in this project"}
           </SectionTitle>
-          <ul className="flex flex-wrap gap-x-8 gap-y-2">
+          <ul className="flex flex-wrap gap-x-8 gap-y-1">
             {project.services.map((service) => (
               <li key={service}>
                 <Link

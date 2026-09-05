@@ -128,17 +128,23 @@ export default function ServicePage({ routeKey }: { routeKey: ServiceRouteKey })
         <SectionTitle id="citi-h" className="mb-[clamp(22px,3vw,36px)]">
           {isLv ? "Citi pakalpojumi" : "Other services"}
         </SectionTitle>
-        <ul className="border-t border-line">
+        <ul>
           {otherServices.map((key, i) => (
-            <Reveal as="li" key={key} delay={i * 0.06} y={14}>
+            <Reveal
+              as="li"
+              key={key}
+              delay={i * 0.06}
+              y={14}
+              className={`border-t border-line ${i === otherServices.length - 1 ? "border-b" : ""}`}
+            >
               <Link
                 to={path(key)}
-                className="group flex items-center justify-between gap-6 border-b border-line py-6 text-paper transition-colors duration-300 hover:text-amber"
+                className="group flex items-center justify-between gap-6 py-6 text-paper transition-colors duration-300 hover:text-amber"
               >
                 <span className="text-h3 font-medium">{t.services[LABEL_BY_KEY[key]]}</span>
                 <span
                   aria-hidden="true"
-                  className="h-px w-8 shrink-0 bg-paper-faint transition-[width,background-color] duration-300 group-hover:w-14 group-hover:bg-amber"
+                  className="h-px w-14 origin-right shrink-0 scale-x-[.55] bg-paper-faint transition-[transform,background-color] duration-300 ease-dir group-hover:scale-x-100 group-hover:bg-amber"
                 />
               </Link>
             </Reveal>

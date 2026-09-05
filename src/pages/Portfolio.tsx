@@ -86,8 +86,8 @@ export default function Portfolio() {
       />
 
       {/* ============ GALVA ============ */}
-      <section className="bg-ink-900 pb-sec-sm pt-[clamp(104px,15vw,180px)]" aria-labelledby="darbi-h">
-        <div className="mx-auto w-full max-w-wrap px-pad-x">
+      <section className="bg-ink-900 pb-12 md:pb-16 pt-[clamp(104px,15vw,180px)]" aria-labelledby="darbi-h">
+        <div className="mx-auto w-full max-w-wrap px-5 sm:px-8 lg:px-10">
           <LineReveal
             as="h1"
             id="darbi-h"
@@ -111,7 +111,7 @@ export default function Portfolio() {
         <div
           role="group"
           aria-label={isLv ? "Darbu filtrs" : "Work filter"}
-          className="mx-auto flex max-w-wrap flex-wrap items-center gap-x-8 gap-y-1 px-pad-x py-3"
+          className="mx-auto flex max-w-wrap flex-wrap items-center gap-x-8 gap-y-1 px-5 sm:px-8 lg:px-10 py-3"
         >
           {filters.map((item) => {
             const active = item.key === filter;

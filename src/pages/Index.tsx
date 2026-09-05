@@ -7,7 +7,6 @@ import Label from "@/components/ui/Label";
 import Reveal, { stagger } from "@/components/animations/Reveal";
 import LineReveal from "@/components/animations/LineReveal";
 import MagneticButton from "@/components/animations/MagneticButton";
-import Marquee from "@/components/animations/Marquee";
 import HeroMedia from "@/components/direction/HeroMedia";
 import MediaPlaceholder, { SHOW_PLACEHOLDERS } from "@/components/direction/MediaPlaceholder";
 import Band from "@/components/direction/Band";
@@ -185,7 +184,7 @@ export default function Index() {
           }}
         />
 
-        <div className="relative mx-auto w-full max-w-wrap px-pad-x">
+        <div className="relative mx-auto w-full max-w-wrap px-5 sm:px-8 lg:px-10">
           <LineReveal
             as="h1"
             id="hero-h"
@@ -222,12 +221,10 @@ export default function Index() {
 
           <Reveal delay={0.38} className="mt-[clamp(26px,3.4vw,44px)]">
             <div className="grid border border-line-amber sm:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-              <p className="border-b border-line-amber px-3 py-2.5 sm:border-b-0 sm:border-r">
-                <Label tone="amber" caps>
-                  Gatis Design · Rīga · kopš 2008
-                </Label>
+              <p className="border-b border-line-amber px-4 py-3 sm:border-b-0 sm:border-e">
+                <Label tone="amber">Gatis Design · Rīga · kopš 2008</Label>
               </p>
-              <p className="px-3 py-2.5">
+              <p className="px-4 py-3">
                 <Label tone="amber">
                   Lapa, kas izskatās labi, bet nenes pieprasījumus, ir tikai izdevumi.
                 </Label>
@@ -238,18 +235,20 @@ export default function Index() {
       </section>
 
       {/* ============ AR MANI STRĀDĀ ============ */}
-      <section className="border-y border-line bg-ink-850 py-5" aria-labelledby="klienti-h">
-        <div className="mx-auto flex max-w-wrap flex-col gap-3 px-pad-x md:flex-row md:items-center md:gap-8">
+      {/* Bez ritošas joslas: septiņpadsmit vārdu saraksts ir saturs, un kustība
+          te neko nepaskaidrotu - tā tikai apgrūtinātu nolasīšanu. */}
+      <section className="border-y border-line bg-ink-850" aria-labelledby="klienti-h">
+        <div className="mx-auto flex max-w-wrap flex-col gap-4 px-5 py-8 sm:px-8 md:flex-row md:items-baseline md:gap-10 lg:px-10">
           <h2 id="klienti-h" className="shrink-0">
             <Label caps>Ar mani strādā</Label>
           </h2>
-          <Marquee className="min-w-0 flex-1 [mask-image:linear-gradient(90deg,transparent,#000_6%,#000_94%,transparent)]">
+          <ul className="flex flex-wrap gap-x-7 gap-y-2">
             {trustClients.map((name) => (
-              <span key={name} className="whitespace-nowrap text-[clamp(1rem,1.3vw,1.18rem)] text-paper-2">
+              <li key={name} className="text-[clamp(1rem,1.3vw,1.18rem)] text-paper-2">
                 {name}
-              </span>
+              </li>
             ))}
-          </Marquee>
+          </ul>
         </div>
       </section>
 
@@ -304,10 +303,16 @@ export default function Index() {
         <LabelRow label="Pakalpojumi">
           <ul>
             {serviceCards.map((card, i) => (
-              <Reveal as="li" key={card.target} delay={i * 0.06} y={16}>
+              <Reveal
+                as="li"
+                key={card.target}
+                delay={i * 0.06}
+                y={16}
+                className={`border-t border-line ${i === serviceCards.length - 1 ? "border-b" : ""}`}
+              >
                 <Link
                   to={path(ROUTE_KEY_BY_LV_PATH[card.target])}
-                  className="group grid grid-cols-1 gap-x-8 gap-y-3 border-t border-line py-7 transition-colors duration-300 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_160px]"
+                  className="group grid grid-cols-1 gap-x-8 gap-y-3 py-7 transition-colors duration-300 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_160px]"
                 >
                   <h3 className="text-h3 font-medium text-paper transition-colors duration-300 group-hover:text-amber">
                     {card.title}
@@ -323,7 +328,7 @@ export default function Index() {
               </Reveal>
             ))}
           </ul>
-          <p className="border-t border-line pt-5">
+          <p className="pt-6">
             <Label>Norādītās cenas ir gala cenas - neesmu PVN maksātājs.</Label>
           </p>
         </LabelRow>

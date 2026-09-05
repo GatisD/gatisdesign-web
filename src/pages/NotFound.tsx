@@ -9,8 +9,8 @@ export default function NotFound() {
     <>
       <SEO locale={locale} noindex title={t.notFound.title} description={t.notFound.body} />
 
-      <section className="flex flex-1 items-center bg-ink-900 pb-sec-lg pt-[clamp(120px,18vw,220px)]">
-        <div className="mx-auto w-full max-w-wrap px-pad-x">
+      <section className="flex flex-1 items-center bg-ink-900 pb-20 md:pb-32 pt-[clamp(120px,18vw,220px)]">
+        <div className="mx-auto w-full max-w-wrap px-5 sm:px-8 lg:px-10">
           <p className="mb-6">
             <Label caps>(404)</Label>
           </p>

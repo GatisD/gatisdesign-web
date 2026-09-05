@@ -17,7 +17,7 @@ export default function Band({
   return (
     <section className="relative h-[clamp(320px,52vw,620px)] overflow-hidden bg-ink-900">
       <HeroMedia poster={poster} src={video} brightness={0.38} blur position="center 45%" />
-      <div className="relative mx-auto flex h-full max-w-wrap items-center px-pad-x">
+      <div className="relative mx-auto flex h-full max-w-wrap items-center px-5 sm:px-8 lg:px-10">
         <p className="ml-auto max-w-[42ch] text-[clamp(1.05rem,1.7vw,1.5rem)] leading-[1.4] text-paper md:w-[46%]">
           <span aria-hidden="true" className="text-amber">
             &#8627;

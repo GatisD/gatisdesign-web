@@ -6,10 +6,14 @@ import Label from "@/components/ui/Label";
 type Rhythm = "sm" | "md" | "lg";
 type Surface = "ink" | "ink-850" | "ink-950";
 
+/**
+ * Ritms konkrētos pikseļos, ne caur CSS mainīgo: mainīgais neļauj ne rīkiem,
+ * ne pārlūka inspektoram redzēt, cik atkāpes tur reāli ir.
+ */
 const PAD: Record<Rhythm, string> = {
-  sm: "py-sec-sm",
-  md: "py-sec-md",
-  lg: "py-sec-lg",
+  sm: "py-12 md:py-16",
+  md: "py-16 md:py-24",
+  lg: "py-20 md:py-32",
 };
 const BG: Record<Surface, string> = {
   ink: "bg-ink-900",
@@ -42,7 +46,7 @@ export function Section({
       aria-label={ariaLabel}
       className={cn(BG[surface], PAD[rhythm], className)}
     >
-      <div className="mx-auto w-full max-w-wrap px-pad-x">{children}</div>
+      <div className="mx-auto w-full max-w-wrap px-5 sm:px-8 lg:px-10">{children}</div>
     </section>
   );
 }

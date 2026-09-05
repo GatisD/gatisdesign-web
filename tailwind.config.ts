@@ -67,7 +67,7 @@ export default {
         giant: ["var(--giant)", { lineHeight: "1", letterSpacing: "-0.04em" }],
         h2: ["var(--h2)", { lineHeight: "1.02", letterSpacing: "-0.045em" }],
         h3: ["var(--h3)", { lineHeight: "1.04", letterSpacing: "-0.04em" }],
-        label: ["12px", { lineHeight: "1.2", letterSpacing: "0.02em" }],
+        label: ["12px", { lineHeight: "1.4", letterSpacing: "0.02em" }],
       },
       spacing: {
         "pad-x": "var(--pad-x)",
@@ -82,7 +82,6 @@ export default {
       transitionTimingFunction: {
         dir: "var(--ease)",
         settle: "var(--ease-settle)",
-        spring: "var(--ease-spring)",
       },
     },
   },

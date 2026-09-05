@@ -45,7 +45,7 @@ export default function Footer() {
 
   return (
     <footer className="on-paper bg-paper text-on-paper">
-      <div className="mx-auto w-full max-w-wrap px-pad-x pb-10 pt-sec-md">
+      <div className="mx-auto w-full max-w-wrap px-5 sm:px-8 lg:px-10 pb-10 pt-16 md:pt-24">
         <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:items-end md:gap-12">
           <MediaPlaceholder
             text={t.footer.portraitSlot}

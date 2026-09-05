@@ -70,8 +70,8 @@ export default function PrivatumaPolitika() {
         ])}
       />
 
-      <div className="flex-1 bg-ink-900 pb-sec-lg pt-[clamp(104px,15vw,180px)] text-paper">
-        <article className="mx-auto max-w-wrap px-pad-x">
+      <div className="flex-1 bg-ink-900 pb-20 md:pb-32 pt-[clamp(104px,15vw,180px)] text-paper">
+        <article className="mx-auto max-w-wrap px-5 sm:px-8 lg:px-10">
           {/* Lasāmības dēļ teksta kolonna nav platāka par 70ch. */}
           <div className="max-w-[70ch]">
             <h1 className="max-w-[20ch] text-display-2 font-bold uppercase">Privātuma politika</h1>

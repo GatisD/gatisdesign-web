@@ -104,10 +104,18 @@ export default function ContentSections({ sections }: { sections: ContentSection
                 {section.steps ? <StepFlow steps={section.steps} className="mt-8" /> : null}
 
                 {section.bullets ? (
-                  <ul className="mt-8 max-w-[68ch] border-t border-line">
+                  <ul className="mt-8 max-w-[68ch]">
                     {section.bullets.map((bullet, i) => (
-                      <Reveal as="li" key={bullet.slice(0, 48)} delay={i * 0.05} y={12}>
-                        <p className="border-b border-line py-4 text-[16px] leading-[1.55] text-paper-2">
+                      <Reveal
+                        as="li"
+                        key={bullet.slice(0, 48)}
+                        delay={i * 0.05}
+                        y={12}
+                        className={`border-t border-line py-4 ${
+                          i === section.bullets!.length - 1 ? "border-b" : ""
+                        }`}
+                      >
+                        <p className="text-[16px] leading-[1.55] text-paper-2">
                           <LinkedEmail text={bullet} />
                         </p>
                       </Reveal>

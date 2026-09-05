@@ -89,8 +89,8 @@ export default function ParMani() {
       <JsonLd data={[personSchema, faqPageSchema, breadcrumbSchema]} />
 
       {/* ============ GALVA: portrets pa kreisi, vārds pa labi ============ */}
-      <section className="bg-ink-900 pb-sec-sm pt-[clamp(96px,14vw,160px)]" aria-labelledby="par-h">
-        <div className="mx-auto grid w-full max-w-wrap gap-x-14 gap-y-10 px-pad-x md:grid-cols-2 md:items-end">
+      <section className="bg-ink-900 pb-12 md:pb-16 pt-[clamp(96px,14vw,160px)]" aria-labelledby="par-h">
+        <div className="mx-auto grid w-full max-w-wrap gap-x-14 gap-y-10 px-5 sm:px-8 lg:px-10 md:grid-cols-2 md:items-end">
           <MediaPlaceholder
             text={isLv ? "Portrets vai 15 sekunžu video darba vidē - vēl jāuzņem" : "Portrait or a 15 second workshop video - still to be shot"}
             ratio="4 / 5"
@@ -118,7 +118,7 @@ export default function ParMani() {
 
       {/* ============ SKAITĻI ============ */}
       <section className="border-y border-line bg-ink-900" aria-label={isLv ? "Skaitļi" : "Numbers"}>
-        <div className="mx-auto grid max-w-wrap gap-8 px-pad-x py-8 sm:grid-cols-3">
+        <div className="mx-auto grid max-w-wrap gap-8 px-5 py-10 sm:grid-cols-3 sm:px-8 lg:px-10">
           {FACTS.map((stat, i) => (
             <Reveal key={stat.label} delay={stagger(i, 3)} y={14}>
               <p className="flex flex-col gap-2">

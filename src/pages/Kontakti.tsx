@@ -78,8 +78,8 @@ export default function Kontakti() {
       <JsonLd data={[contactPointSchema, faqPageSchema, breadcrumbSchema]} />
 
       {/* ============ GALVA ============ */}
-      <section className="bg-ink-900 pb-sec-sm pt-[clamp(96px,14vw,168px)]" aria-labelledby="kontakti-h">
-        <div className="mx-auto w-full max-w-wrap px-pad-x">
+      <section className="bg-ink-900 pb-12 md:pb-16 pt-[clamp(96px,14vw,168px)]" aria-labelledby="kontakti-h">
+        <div className="mx-auto w-full max-w-wrap px-5 sm:px-8 lg:px-10">
           <LineReveal
             as="h1"
             id="kontakti-h"
@@ -147,10 +147,18 @@ export default function Kontakti() {
             </p>
           ))}
           {brief.bullets ? (
-            <ul className="mt-8 max-w-[68ch] border-t border-line">
+            <ul className="mt-8 max-w-[68ch]">
               {brief.bullets.map((bullet, i) => (
-                <Reveal as="li" key={bullet.slice(0, 40)} delay={i * 0.05} y={12}>
-                  <p className="border-b border-line py-4 text-[16px] leading-[1.55] text-paper-2">
+                <Reveal
+                  as="li"
+                  key={bullet.slice(0, 40)}
+                  delay={i * 0.05}
+                  y={12}
+                  className={`border-t border-line py-4 ${
+                    i === brief.bullets!.length - 1 ? "border-b" : ""
+                  }`}
+                >
+                  <p className="text-[16px] leading-[1.55] text-paper-2">
                     <LinkedEmail text={bullet} />
                   </p>
                 </Reveal>
@@ -174,10 +182,18 @@ export default function Kontakti() {
             </p>
           ))}
           {limits.bullets ? (
-            <ul className="mt-8 max-w-[68ch] border-t border-line">
+            <ul className="mt-8 max-w-[68ch]">
               {limits.bullets.map((bullet, i) => (
-                <Reveal as="li" key={bullet.slice(0, 40)} delay={i * 0.05} y={12}>
-                  <p className="border-b border-line py-4 text-[16px] leading-[1.55] text-paper-2">
+                <Reveal
+                  as="li"
+                  key={bullet.slice(0, 40)}
+                  delay={i * 0.05}
+                  y={12}
+                  className={`border-t border-line py-4 ${
+                    i === limits.bullets!.length - 1 ? "border-b" : ""
+                  }`}
+                >
+                  <p className="text-[16px] leading-[1.55] text-paper-2">
                     <LinkedEmail text={bullet} />
                   </p>
                 </Reveal>

@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "image-hover-transform",
+        "value": "*",
+        "files": [
+          "dist/**"
+        ],
+        "createdAt": "2026-09-05T18:26:52.098Z",
+        "reason": "Portfolio kartes, galerija un nakamais projekts: hover scale(1.03) uz ekranuzņemuma ir apstiprinatais Direction lemums - attels pietuvojas, un klust redzams, ka aiz kartes ir ista lapa. Vienigais attelu hover efekts saja lapa; pie prefers-reduced-motion neizpildas."
+      }
+    ]
+  }
+}

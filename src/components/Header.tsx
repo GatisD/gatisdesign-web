@@ -100,7 +100,7 @@ export default function Header() {
       aria-label={`${t.nav.home} - Gatis Design`}
     >
       <span className="text-[19px] font-bold tracking-[-0.02em] text-paper md:text-[20px]">Gatis Design</span>
-      <Label caps className="text-[10px]">
+      <Label caps className="text-[11px]">
         Rīga
       </Label>
     </Link>
@@ -114,7 +114,7 @@ export default function Header() {
           scrolled ? "border-b border-line bg-ink-900/85 backdrop-blur-md" : "border-b border-transparent",
         )}
       >
-        <div className="mx-auto flex h-16 w-full max-w-wrap items-center justify-between gap-6 px-pad-x md:h-[72px]">
+        <div className="mx-auto flex h-16 w-full max-w-wrap items-center justify-between gap-6 px-5 sm:px-8 lg:px-10 md:h-[72px]">
           {wordmark}
 
           <nav aria-label={t.nav.services} className="hidden items-center gap-8 lg:flex">
@@ -205,7 +205,7 @@ export default function Header() {
 
       {mobileOpen ? (
         <div id={menuId} className="fixed inset-x-0 bottom-0 top-16 z-[100] overflow-y-auto bg-ink-900 md:top-[72px] lg:hidden">
-          <nav aria-label={t.nav.services} className="flex flex-col px-pad-x pt-6">
+          <nav aria-label={t.nav.services} className="flex flex-col px-5 sm:px-8 lg:px-10 pt-6">
             <NavLink to={path("portfolio")} className={mobileLinkClass}>
               {t.nav.portfolio}
             </NavLink>
@@ -221,7 +221,7 @@ export default function Header() {
               {t.nav.contact}
             </NavLink>
           </nav>
-          <div className="px-pad-x pb-12 pt-8">
+          <div className="px-5 sm:px-8 lg:px-10 pb-12 pt-8">
             <LanguageSwitch />
           </div>
         </div>
