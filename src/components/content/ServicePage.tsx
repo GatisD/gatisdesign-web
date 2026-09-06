@@ -11,7 +11,7 @@ import { Section, SectionTitle } from "@/components/direction/Section";
 import ContentSections, { priceSection, tocFor } from "./ContentSections";
 import FaqList from "./FaqList";
 import { buildServiceSchema } from "./serviceSchema";
-import { serviceContent, type ServiceRouteKey } from "@/content";
+import type { ServiceContent, ServiceRouteKey } from "@/content";
 import { headingId } from "@/content/slug";
 import { useLocale } from "@/i18n/LocaleContext";
 
@@ -73,9 +73,22 @@ const MEDIA: Record<
   },
 };
 
-export default function ServicePage({ routeKey }: { routeKey: ServiceRouteKey }) {
+/**
+ * Saturs nāk kā props, ne no kartes.
+ *
+ * `serviceContent` karte ieveda VISU četru lapu JSON vienā koplietotā gabalā
+ * (31,6 KB gzip), un vite-react-ssg to priekšielādēja katrā pakalpojumu lapā -
+ * apmeklētājs, kurš atvēra vienu lapu, lejupielādēja visu četru tekstu, lai gan
+ * viņa lapas teksts jau bija HTML. Tagad katra lapa ievelk tikai savu failu.
+ */
+export default function ServicePage({
+  routeKey,
+  content,
+}: {
+  routeKey: ServiceRouteKey;
+  content: ServiceContent;
+}) {
   const { locale, t, path } = useLocale();
-  const content = serviceContent[routeKey];
   const media = MEDIA[routeKey];
   const isLv = locale === "lv";
 

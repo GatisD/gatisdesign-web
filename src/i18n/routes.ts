@@ -54,6 +54,8 @@ export function projectPath(slug: Record<Locale, string>, locale: Locale): strin
  * Slug abās valodās ir viens un tas pats (sk. ProjectDetail `alternates`),
  * tāpēc prefikss tiek ņemts no ROUTES.portfolio, ne salikts ar rokām.
  */
+const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
 export function pathForPathname(pathname: string, locale: Locale): string | null {
   const clean = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
   const key = routeKeyForPath(clean);
@@ -62,7 +64,11 @@ export function pathForPathname(pathname: string, locale: Locale): string | null
     const prefix = `${ROUTES.portfolio[from]}/`;
     if (clean.startsWith(prefix)) {
       const slug = clean.slice(prefix.length);
-      if (slug && !slug.includes("/")) return `${pathFor("portfolio", locale)}/${slug}`;
+      // Slug forma ir stingra ar nolūku: šī ir vienīgā vieta, kur saites mērķis
+      // nāk no adreses joslas, nevis no ROUTES kartes vai datiem. Bez šī vārta
+      // `/portfolio/\\svesa.lv` kļūtu par saiti ar atpakaļsvītru - tieši tas
+      // ceļš, ko apraksta react-router atvērtās pāradresācijas brīdinājums.
+      if (SLUG.test(slug)) return `${pathFor("portfolio", locale)}/${slug}`;
     }
   }
   return null;

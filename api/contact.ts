@@ -33,7 +33,17 @@ export default async function handler(
       return;
     }
 
-    const body = await readJsonBody(req);
+    // Ķermeņa nolasīšanai sava kļūdu apstrāde: ar Content-Type application/json
+    // Vercel parsē pats, un pie salauzta JSON izņēmums lidoja līdz ārējam catch,
+    // kas atbild 500 "neparedzēta kļūda". Salauzts JSON ir klienta kļūda, un
+    // atbildei uz to ir 400, ne 500.
+    let body: BodyResult;
+    try {
+      body = await readJsonBody(req);
+    } catch {
+      send(res, { status: 400, body: { ok: false, error: "json" } });
+      return;
+    }
     // Apzināti "=== false", nevis "!body.ok": Vercel api/ kompilē ar savu
     // ne-strict tsconfig, un tur boolean diskriminants ar noliegumu nesašaurina
     // savienojumu. Rezultāts būtu TS2339 troksnis būves logos, kurā noslīkst
@@ -85,6 +95,11 @@ type BodyResult = { ok: true; value: unknown } | { ok: false; error: "json" | "p
  */
 async function readJsonBody(req: VercelLikeRequest): Promise<BodyResult> {
   if (req.body !== undefined && req.body !== null && typeof req.body === "object") {
+    // Vercel jau ir noparsējis ķermeni, tāpēc plūsmas izmēra vārti nekad
+    // nenostrādāja - pa šo ceļu vienīgā robeža bija Vercel 4,5 MB. Izmēru
+    // mēra pēc noparsētā objekta.
+    const size = Buffer.byteLength(JSON.stringify(req.body), "utf8");
+    if (size > FIELD_LIMITS.bodyBytesMax) return { ok: false, error: "payload" };
     return { ok: true, value: req.body };
   }
   if (typeof req.body === "string") return parseJson(req.body);

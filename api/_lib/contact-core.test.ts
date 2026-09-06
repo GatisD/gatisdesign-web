@@ -281,3 +281,36 @@ describe("konfigurācija no vides", () => {
     expect(cfg.apiKey).toBe("re_x");
   });
 });
+
+describe("kontroles rakstzīmes laukos", () => {
+  it("rindas pārtraukums vārdā netiek pieņemts", async () => {
+    // "Jānis\r\nBcc: x@y.z" nonāktu e-pasta subject rindā. Shēma to noraida
+    // pati, nevis paļaujas uz to, ka Resend API to noraidīs.
+    const mail = recorder();
+    const result = await handleContact({
+      method: "POST",
+      payload: { ...validPayload, name: "Jānis\r\nBcc: uzbrucejs@piemers.lv" },
+      ip: freshIp(),
+      config,
+      send: mail.send,
+    });
+    expect(result.status).toBe(400);
+    expect(result.body).toMatchObject({ ok: false, error: "validation" });
+    expect((result.body as { fields: Record<string, string> }).fields.name).toBe("nameShort");
+    expect(mail.sent).toHaveLength(0);
+  });
+
+  it("rindas pārtraukums termiņā netiek pieņemts", async () => {
+    const mail = recorder();
+    const result = await handleContact({
+      method: "POST",
+      payload: { ...validPayload, timeline: "divi mēneši\nX-Header: 1" },
+      ip: freshIp(),
+      config,
+      send: mail.send,
+    });
+    expect(result.status).toBe(400);
+    expect((result.body as { fields: Record<string, string> }).fields.timeline).toBe("timelineLong");
+    expect(mail.sent).toHaveLength(0);
+  });
+});

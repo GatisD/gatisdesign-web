@@ -84,8 +84,7 @@ export default defineConfig(({ command, isSsrBuild }) => ({
         : {
             // Katrai atslēgai šeit jābūt reāli instalētai un importētai pakotnei -
             // Rollup krīt, ja manualChunks norāda uz moduli, kura grafā nav.
-            // No shadcn mantojuma palicis tikai @radix-ui/react-tooltip (viena maza
-            // pakotne), tāpēc atsevišķs radix gabals vairs nav vajadzīgs.
+            // shadcn un Radix pakotņu projektā vairs nav nevienas.
             // Animāciju bibliotēkas šeit nav apzināti: vite-react-ssg
             // maršrutu gabalus priekšielādē KATRĀ lapā, tāpēc framer-motion
             // maksāja 41,5 KB gzip arī tur, kur no tā nekas netika lietots.

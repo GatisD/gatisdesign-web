@@ -16,11 +16,15 @@ import {
  * nezinot ne vārda apmeklētāja valodā.
  */
 export const contactSchema = z.object({
+  // Rindas pārtraukums vārdā nonāktu e-pasta `subject` rindā. Resend JSON API
+  // to gandrīz noteikti noraidītu, bet shēma to nedrīkst atstāt Resend ziņā:
+  // "Jānis\r\nBcc: x@y.z" iepriekš izgāja validāciju.
   name: z
     .string({ required_error: "nameShort", invalid_type_error: "nameShort" })
     .trim()
     .min(FIELD_LIMITS.nameMin, "nameShort")
-    .max(FIELD_LIMITS.nameMax, "nameLong"),
+    .max(FIELD_LIMITS.nameMax, "nameLong")
+    .regex(/^[^\r\n]+$/, "nameShort"),
   email: z
     .string({ required_error: "emailInvalid", invalid_type_error: "emailInvalid" })
     .trim()
@@ -32,6 +36,7 @@ export const contactSchema = z.object({
     .string({ invalid_type_error: "timelineLong" })
     .trim()
     .max(FIELD_LIMITS.timelineMax, "timelineLong")
+    .regex(/^[^\r\n]*$/, "timelineLong")
     .optional()
     .default(""),
   message: z

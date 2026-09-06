@@ -4,11 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* reCAPTCHA v3 nozīmīte paslēpta - juridiskā norāde ir formā tekstā. */
-.grecaptcha-badge {
-  visibility: hidden !important;
-}
-
 @layer base {
   * {
     border-color: var(--line);

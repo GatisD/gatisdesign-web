@@ -50,9 +50,6 @@ export default {
           amber: "var(--line-amber)",
           paper: "var(--line-on-paper)",
         },
-        /* shadcn tooltip un sonner mantojums - vienīgie divi faili, kas to lieto */
-        popover: { DEFAULT: "var(--ink-850)", foreground: "var(--paper)" },
-        muted: { DEFAULT: "var(--ink-800)", foreground: "var(--paper-dim)" },
       },
       borderRadius: {
         DEFAULT: "var(--r-base)",

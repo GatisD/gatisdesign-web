@@ -47,5 +47,9 @@ describe("routes karte", () => {
     // Nezināms ceļš neizdomā pāri.
     expect(pathForPathname("/nav-tadas-lapas", "en")).toBeNull();
     expect(pathForPathname("/portfolio/a/b", "en")).toBeNull();
+    // Mērķis nāk no adreses joslas, tāpēc slug formai jābūt stingrai.
+    expect(pathForPathname("/portfolio/\\svesa.lv", "en")).toBeNull();
+    expect(pathForPathname("/portfolio/..%2Fen", "en")).toBeNull();
+    expect(pathForPathname("/portfolio/Estire", "en")).toBeNull();
   });
 });
