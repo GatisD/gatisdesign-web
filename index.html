@@ -38,7 +38,37 @@
       });
     </script>
 
-    <!-- TODO: pievienot GTM / GA4 ID, kad tie būs zināmi (services.ga4 = atlikts) -->
+    <!--
+      Google Tag Manager.
+
+      Šeit, nevis React komponentē: react-helmet-async izvadi vite-react-ssg
+      ievieto <head> SĀKUMĀ, tātad PIRMS augšējā Consent Mode bloka. Konteinera
+      skripts ir `async`, un async skripts drīkst izpildīties, kamēr parseris vēl
+      lasa lapu, - ar siltu kešu gtm.js sāktu darbu, pirms noklusējums ir
+      uzstādīts, un `wait_for_update` nekad nenostrādātu. Statisks skripts tieši
+      aiz noklusējuma bloka šo sacīkšu iespēju izslēdz pavisam.
+
+      ID nāk no `VITE_GTM_ID` - Vite to aizvieto būves laikā. Ja mainīgā nav,
+      vietturis paliek neaizvietots, formas pārbaude nesakrīt un konteiners
+      netiek ielādēts: dzīvā lapā tas nozīmētu 404 pieprasījumu katrā ielādē un
+      tracking, kas izskatās uzstādīts, bet neko nemēra.
+    -->
+    <script>
+      (function () {
+        var id = '%VITE_GTM_ID%';
+        if (!/^GTM-[A-Z0-9]{5,}$/.test(id)) return;
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+          j.async = true;
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', id);
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

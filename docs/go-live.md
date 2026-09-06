@@ -166,7 +166,7 @@ neatbild vispār.
 
 | Punkts | Kas jādara | Kas notiek līdz tam |
 |---|---|---|
-| GTM/GA4 | `VITE_GTM_ID` Vercel vidē + jauna būve | Lapa nemēra neko. Consent Mode v2 noklusējums jau ir vietā, koda izmaiņas nav vajadzīgas |
+| GTM/GA4 | `VITE_GTM_ID = GTM-MR2Q6KF2` ir Vercel Preview un Production vidē; atlicis publicēt GA4 tagus konteinerī | Konteiners ielādējas, bet tajā vēl nav neviena taga, tāpēc lapa nemēra neko. **Pirms domēna pārslēgšanas pārbaudi, ka konteinerī tiešām ir publicēts `Google tag - GA4`** - sīkdatņu joslas un privātuma politikas teksts jāsaskaņo ar to, kas reāli darbojas |
 | EN saturs | `src/content/en/*.json`, tad `LANGUAGE_SWITCH_VISIBLE = true`, `noindex` nost, EN atpakaļ sitemapā | LV/EN pārslēgs ir paslēpts, EN lapas ir noindex un ārpus sitemap |
 | Atsauksmes | 3 atsauksmes ar vārdu, uzņēmumu, amatu un rezultātu -> `src/content/testimonials.ts`, `TESTIMONIALS_ENABLED = true` | Sadaļa nerenderējas |
 | Portrets un video | Faili -> `public/media/` | Vietturi produkcijā nerenderējas |

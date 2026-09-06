@@ -7,7 +7,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 import SmoothScroll from "./SmoothScroll";
 import CookieBanner from "./CookieBanner";
-import Gtm from "./analytics/Gtm";
 
 function ScrollToTopOnNav() {
   const { pathname } = useLocation();
@@ -37,7 +36,6 @@ export default function Layout({ locale }: { locale: Locale }) {
       >
         {dict[locale].nav.skipToContent}
       </a>
-      <Gtm />
       <SmoothScroll />
       <div className="flex min-h-screen flex-col bg-ink-900 text-paper">
         <ScrollToTopOnNav />

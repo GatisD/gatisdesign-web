@@ -87,7 +87,7 @@ Uzliek visām vidēm (Production, Preview, Development):
 | `CONTACT_FROM` | nē | `Gatis Design <forma@send.gatisdesign.com>` | Sūtītājs. Domēnam jābūt verificētam Resend kontā |
 | `CONTACT_REPLY_TO` | nē | tukšs | Uz kurieni aiziet atbilde uz automātisko vēstuli; ja tukšs, lieto `CONTACT_TO` |
 | `VITE_SITE_URL` | nē | `https://gatisdesign.com` | Canonical, og:url, sitemap |
-| `VITE_GTM_ID` | nē | tukšs vai `GTM-XXXXXXX` | Google Tag Manager konteiners. Kamēr tukšs, `src/components/analytics/Gtm.tsx` nerenderē neko |
+| `VITE_GTM_ID` | nē | tukšs vai `GTM-XXXXXXX` | Google Tag Manager konteiners. Vietturi `index.html` aizvieto būve; kamēr mainīgā nav, konteiners netiek ielādēts |
 
 `CONTACT_*` un `RESEND_API_KEY` ir bez `VITE_` prefiksa apzināti - ar to prefiksu Vite tos
 ieliktu pārlūka pakā.
