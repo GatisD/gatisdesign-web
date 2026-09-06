@@ -392,22 +392,24 @@ export default function ProjectDetail() {
           kadri, vāks ir TAS PATS datora kadrs, kas jau stāv augstāk kopā ar
           telefonu - un viens un tas pats attēls divreiz vienā lapā ir kļūda,
           ne ritms. */}
-      {gallery.length === 0 && !project.shot ? (
-        <Section rhythm="md" ariaLabel={isLv ? "Projekta vāks" : "Project cover"}>
-          <Reveal>
-            <span className="mx-auto block max-w-[1080px] overflow-hidden rounded-card border border-line bg-ink-card">
-              <PicturePortfolio
-                src={project.cover.src}
-                alt={project.cover.alt}
-                width={project.cover.width}
-                height={project.cover.height}
-                loading="lazy"
-                decoding="async"
-                className="h-auto w-full object-cover"
-              />
-            </span>
-          </Reveal>
-        </Section>
+      {gallery.length === 0 ? (
+        project.shot ? null : (
+          <Section rhythm="md" ariaLabel={isLv ? "Projekta vāks" : "Project cover"}>
+            <Reveal>
+              <span className="mx-auto block max-w-[1080px] overflow-hidden rounded-card border border-line bg-ink-card">
+                <PicturePortfolio
+                  src={project.cover.src}
+                  alt={project.cover.alt}
+                  width={project.cover.width}
+                  height={project.cover.height}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-auto w-full object-cover"
+                />
+              </span>
+            </Reveal>
+          </Section>
+        )
       ) : (
         <Section rhythm="lg" labelledBy="galerija-h">
           <SectionTitle id="galerija-h" size="giant" className="mb-[clamp(28px,4vw,56px)]">
