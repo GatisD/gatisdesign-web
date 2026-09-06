@@ -101,13 +101,18 @@ export default function Header() {
       className="inline-flex min-h-[44px] shrink-0 items-center leading-none transition-colors duration-300 active:text-amber"
     >
       {/* Lauva ir dekors blakus pašam vārdam, tāpēc alt ir tukšs: ar
-          alt="Gatis Design" ekrāna lasītājs saiti nolasītu divreiz. */}
+          alt="Gatis Design" ekrāna lasītājs saiti nolasītu divreiz.
+
+          40 px, ne 30: vecais vietturis bija vienkāršs siluets un turējās arī
+          mazs, bet īstajā zīmē ir krēpes un seja. Nomērīts uz ink-900 - pie
+          30 px no tās paliek balts plankums ar dzeltenu punktu virsū. 40 px
+          ietilpst galvenes 44 px joslā un seju jau var atšķirt. */}
       <img
         src="/media/lauva.svg"
         alt=""
-        width="18"
-        height="30"
-        className="me-2.5 h-[30px] w-auto shrink-0"
+        width="45"
+        height="40"
+        className="me-2.5 h-10 w-auto shrink-0"
       />
       <span className="text-[19px] font-bold tracking-[-0.02em] text-paper md:text-[20px]">Gatis Design</span>
     </Link>

@@ -61,12 +61,14 @@ export default function Footer() {
           />
 
           <div className="flex flex-col gap-6">
-            {/* Kolofona zīme. Uz papīra lauva ir tintē, ne papīrā - tas pats
-                fails, cita krāsa (public/media/lauva-tumsa.svg). alt tukšs, jo
+            {/* Kolofona zīme. Kopš 2026-09-06 te ir īstais logo, un tam vairs
+                nevajag atsevišķu variantu gaišam fonam: zīme nes pati savas
+                melnās kontūras, tāpēc tā turas gan uz papīra, gan uz tintes.
+                alt tukšs, jo
                 vārds ir blakus tekstā. */}
             <Link to={path("home")} className="flex w-fit items-center gap-3">
               <img
-                src="/media/lauva-tumsa.svg"
+                src="/media/lauva.svg"
                 alt=""
                 width="24"
                 height="40"
