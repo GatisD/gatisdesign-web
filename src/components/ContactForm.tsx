@@ -60,6 +60,16 @@ const FIELD_INPUT = cn(FIELD_BASE, "min-h-[56px] py-4 md:min-h-16");
  */
 const ERROR_SLOT = "min-h-[19px] text-[14px] leading-[1.35] text-amber";
 
+/** Cik ilgi iesniegšana gaida Cloudflare pilnvaru, pirms padodas. */
+const TURNSTILE_WAIT_MS = 10_000;
+
+/** Servera kļūdas kods -> teksts. Plakana tabula, ne ligzdoti trejnieki. */
+const MESSAGE_BY_CODE: Record<string, ErrorKey> = {
+  turnstile: "turnstile",
+  turnstile_unavailable: "turnstileUnavailable",
+  rate_limit: "rateLimit",
+};
+
 export default function ContactForm({ className }: { className?: string }) {
   const { t, path, locale } = useLocale();
   const [status, setStatus] = useState<Status>({ state: "idle" });
@@ -67,6 +77,10 @@ export default function ContactForm({ className }: { className?: string }) {
   // Turnstile pilnvara. Glabājas `ref`, ne `state`: tās maiņa nav iemesls
   // pārzīmēt formu, un iesniegšanas brīdī vajadzīga pēdējā vērtība.
   const turnstileToken = useRef("");
+  // Kas gaida pilnvaru. Cilvēks, kurš aizpilda formu ātri, nospiež pogu pirms
+  // Cloudflare atbildes; bez šī pieteikums aizietu ar tukšu pilnvaru un
+  // atgrieztos ar kļūdu, kurai nav sakara ar viņu.
+  const turnstileWaiter = useRef<((token: string) => void) | null>(null);
   const [turnstileReset, setTurnstileReset] = useState(0);
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -90,6 +104,30 @@ export default function ContactForm({ className }: { className?: string }) {
     return () => window.clearTimeout(id);
   }, [shake]);
 
+  /** Pieņem pilnvaru un atmodina iesniegšanu, ja tā gaida. */
+  function receiveTurnstileToken(token: string): void {
+    turnstileToken.current = token;
+    if (token && turnstileWaiter.current) {
+      const resolve = turnstileWaiter.current;
+      turnstileWaiter.current = null;
+      resolve(token);
+    }
+  }
+
+  /** Gaida pilnvaru līdz `ms`. Tukša virkne nozīmē: nesagaidīja. */
+  function awaitTurnstileToken(ms: number): Promise<string> {
+    if (turnstileToken.current) return Promise.resolve(turnstileToken.current);
+    return new Promise<string>((resolve) => {
+      turnstileWaiter.current = resolve;
+      window.setTimeout(() => {
+        if (turnstileWaiter.current === resolve) {
+          turnstileWaiter.current = null;
+          resolve("");
+        }
+      }, ms);
+    });
+  }
+
   const errorText = (key?: string): string => {
     const table = t.form.errors as Record<string, string>;
     return (key && table[key]) || t.form.errors.server;
@@ -98,13 +136,26 @@ export default function ContactForm({ className }: { className?: string }) {
   async function onSubmit(values: ContactFormValues) {
     setStatus({ state: "idle" });
     try {
+      // Poga paliek "sūta" stāvoklī, kamēr Cloudflare atbild. Bez pilnvaras
+      // pieprasījumu nemaz nesūtam: serveris to noraidītu, un cilvēks saņemtu
+      // kļūdu par mūsu gaidīšanu.
+      let turnstileValue = "";
+      if (turnstileEnabled) {
+        turnstileValue = await awaitTurnstileToken(TURNSTILE_WAIT_MS);
+        if (!turnstileValue) {
+          setStatus({ state: "error", messageKey: "turnstile", code: "turnstile" });
+          setShake(true);
+          setTurnstileReset((n) => n + 1);
+          return;
+        }
+      }
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...values,
           locale,
-          ...(turnstileEnabled ? { [TURNSTILE_FIELD]: turnstileToken.current } : {}),
+          ...(turnstileEnabled ? { [TURNSTILE_FIELD]: turnstileValue } : {}),
         }),
       });
       const data = (await response.json().catch(() => null)) as ApiResponse | null;
@@ -138,7 +189,7 @@ export default function ContactForm({ className }: { className?: string }) {
 
       setStatus({
         state: "error",
-        messageKey: code === "turnstile" ? "turnstile" : code === "rate_limit" ? "rateLimit" : "server",
+        messageKey: MESSAGE_BY_CODE[code] ?? "server",
         code,
       });
       setShake(true);
@@ -346,9 +397,7 @@ export default function ContactForm({ className }: { className?: string }) {
       </p>
 
       <Turnstile
-        onToken={(token) => {
-          turnstileToken.current = token;
-        }}
+        onToken={receiveTurnstileToken}
         resetSignal={turnstileReset}
         locale={locale}
       />

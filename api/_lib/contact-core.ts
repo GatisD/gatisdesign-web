@@ -30,6 +30,7 @@ export type ContactErrorCode =
   | "validation"
   | "rate_limit"
   | "turnstile"
+  | "turnstile_unavailable"
   | "config"
   | "send"
   | "server";
@@ -85,13 +86,17 @@ export function readConfig(env: Record<string, string | undefined>): ContactConf
 
 export const TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 
+/** Cik ilgi gaidām Cloudflare atbildi, pirms atzīstam pārbaudi par nepieejamu. */
+export const TURNSTILE_TIMEOUT_MS = 4000;
+
 export type VerifyTurnstile = (token: string, ip: string) => Promise<boolean>;
 
 type FetchLike = (url: string, init: {
   method: string;
   headers: Record<string, string>;
   body: string;
-}) => Promise<{ ok: boolean; json: () => Promise<unknown> }>;
+  signal?: AbortSignal;
+}) => Promise<{ ok: boolean; status?: number; json: () => Promise<unknown> }>;
 
 /**
  * Pārbaude pret Cloudflare. Atgriež TIKAI true/false: ja atbilde nav
@@ -107,8 +112,13 @@ export function createTurnstileVerifier(secret: string, fetchImpl?: FetchLike): 
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: params.toString(),
+      // Bez šī nogriezuma pakārtā Cloudflare atbilde tur funkciju atvērtu
+      // līdz pat izpildlaika limitam, un cilvēks gaida tukšā.
+      signal: AbortSignal.timeout(TURNSTILE_TIMEOUT_MS),
     });
-    if (!response.ok) return false;
+    // Cloudflare 5xx NAV "pilnvara nav derīga". Izņēmums ļauj izsaucējam
+    // atšķirt pakalpojuma pārtraukumu no īsta robota.
+    if (!response.ok) throw new Error(`Turnstile atbildēja ar statusu ${response.status ?? "?"}`);
     const data = (await response.json()) as { success?: unknown } | null;
     return data?.success === true;
   };
@@ -221,8 +231,14 @@ export async function handleContact(input: HandleContactInput): Promise<ContactR
     try {
       passed = await verify(token, input.ip);
     } catch (error) {
-      // Cloudflare nesasniedzams nedrīkst nozīmēt "laižam cauri visu".
-      log.error("[contact] Turnstile pārbaude neizdevās", { reason: describeError(error) });
+      // Cloudflare nesasniedzams nedrīkst nozīmēt "laižam cauri visu", bet arī
+      // nedrīkst izskatīties pēc cilvēka vainas: 503 un cits teksts, nevis 400.
+      log.error("[contact] Turnstile pārbaude nav pieejama", { reason: describeError(error) });
+      return {
+        status: 503,
+        body: { ok: false, error: "turnstile_unavailable" },
+        headers: { "Retry-After": "30" },
+      };
     }
     if (!passed) {
       log.warn("[contact] Turnstile pilnvara nav derīga");

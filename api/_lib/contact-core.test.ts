@@ -383,7 +383,11 @@ describe("Turnstile robotu pārbaude", () => {
         throw new Error("tīkls nost");
       },
     });
-    expect(result.status).toBe(400);
+    // Pārtraukums pie Cloudflare nav cilvēka vaina: 503 un cits teksts, un
+    // vēstule joprojām neaiziet.
+    expect(result.status).toBe(503);
+    expect(result.body).toMatchObject({ ok: false, error: "turnstile_unavailable" });
+    expect(result.headers?.["Retry-After"]).toBe("30");
     expect(mail.sent).toHaveLength(0);
   });
 
@@ -447,8 +451,12 @@ describe("Turnstile robotu pārbaude", () => {
     const fetchFalse = async () => ({ ok: true, json: async () => ({ success: false }) });
     await expect(createTurnstileVerifier("noslepums", fetchFalse)("x", "")).resolves.toBe(false);
 
+    // 5xx no Cloudflare met izņēmumu, lai izsaucējs to neuzskatītu par
+    // nederīgu pilnvaru: viens ir pakalpojuma pārtraukums, otrs ir robots.
     const fetchHttpError = async () => ({ ok: false, json: async () => ({ success: true }) });
-    await expect(createTurnstileVerifier("noslepums", fetchHttpError)("x", "")).resolves.toBe(false);
+    await expect(createTurnstileVerifier("noslepums", fetchHttpError)("x", "")).rejects.toThrow(
+      /statusu/,
+    );
   });
 
   it("readConfig nolasa TURNSTILE_SECRET_KEY", () => {

@@ -497,7 +497,26 @@ if (process.argv.includes("--selftest")) {
   process.exit(0);
 }
 
-const errors = checkDist(DIST);
+/**
+ * 17. vārti: Turnstile abas puses vai nevienu.
+ *
+ * Publiskā atslēga tiek iecepta būvē, slepenā dzīvo tikai serverī. Ja Vercel
+ * ir uzstādīta viena bez otras, būve ir zaļa, bet forma ir mirusi: klients
+ * nesūta pilnvaru, serveris to prasa, un katrs pieteikums saņem 400. To nevar
+ * ieraudzīt ne testos, ne dist saturā - tikai šeit, kur abi mainīgie ir redzami.
+ */
+function checkTurnstilePair() {
+  const site = (process.env.VITE_TURNSTILE_SITE_KEY ?? "").trim();
+  const secret = (process.env.TURNSTILE_SECRET_KEY ?? "").trim();
+  if (Boolean(site) === Boolean(secret)) return [];
+  return [
+    site
+      ? "VITE_TURNSTILE_SITE_KEY ir uzstādīts, bet TURNSTILE_SECRET_KEY nav: logrīks rādīsies, serveris pilnvaru nepārbaudīs"
+      : "TURNSTILE_SECRET_KEY ir uzstādīts, bet VITE_TURNSTILE_SITE_KEY nav: forma nesūtīs pilnvaru, un katrs pieteikums saņems 400",
+  ];
+}
+
+const errors = [...checkDist(DIST), ...checkTurnstilePair()];
 if (errors.length) {
   console.error("Būves vārti KRITA:");
   for (const e of errors) console.error("  -", e);
