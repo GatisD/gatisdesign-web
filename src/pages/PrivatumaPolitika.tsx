@@ -150,8 +150,8 @@ export default function PrivatumaPolitika() {
                 <p>
                   Tavus datus nenododu trešajām personām, izņemot divus pakalpojumu sniedzējus, kas
                   nepieciešami mājaslapas darbībai: hostings - Vercel Inc.; kontaktformas vēstuļu piegāde -
-                  Resend. Abi šos datus apstrādā manā uzdevumā un atbilst GDPR prasībām. Pieteikums netiek
-                  glabāts nevienā datubāzē - tas aiziet uz manu e-pastu un paliek tur.
+                  Resend. Abi šos datus apstrādā manā uzdevumā un atbilst GDPR prasībām. Pieprasījums netiek
+                  glabāts nevienā datubāzē - tas nonāk manā e-pastā un paliek tur.
                 </p>
               </Section>
 

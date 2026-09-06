@@ -36,11 +36,15 @@ import {
  * līdz šim tur bija tikai "Cafeteria. Izstrāde ROIS komandā." - 38 zīmes gan
  * lapā, gan meta aprakstā.
  */
+const lowerFirst = (s: string) => (s ? s[0].toLocaleLowerCase("lv") + s.slice(1) : s);
+
 function factualSentence(project: Project): string {
   const services = project.services.map((s) => SERVICE_LABEL[s]).join(", ");
   return [
     `${CATEGORY_TAG[project.category]} klientam ${project.client}.`,
-    `Loma: ${project.role.label}${project.year ? `, ${project.year}` : ""}.`,
+    // Aiz kola latviski seko mazais burts, ja aiz tā nav īpašvārds. Lomas
+    // apzīmējums datos sākas ar lielo ("Izstrāde ROIS komandā").
+    `Loma: ${lowerFirst(project.role.label)}${project.year ? `, ${project.year}` : ""}.`,
     services ? `Pakalpojumi: ${services}.` : "",
   ]
     .filter(Boolean)

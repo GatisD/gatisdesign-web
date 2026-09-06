@@ -141,7 +141,7 @@ export default function ServicePage({
           </MagneticButton>
           {prices ? (
             <Button href={`#${headingId(prices.heading)}`} variant="link">
-              {isLv ? "Skatīt cenas" : "See prices"}
+              {isLv ? "Apskati cenas" : "See prices"}
             </Button>
           ) : null}
         </div>

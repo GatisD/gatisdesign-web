@@ -187,7 +187,7 @@ export default function Portfolio() {
       <ClosingLine
         text={
           isLv
-            ? `Uzraksti uz ${CONTACT_EMAIL}, ko tev vajag - godīgi novērtēšu, cik tas prasīs laika un naudas, un pēc pirmās sarunas saņemsi fiksētu tāmi ar termiņu.`
+            ? `Uzraksti uz ${CONTACT_EMAIL}, kas tev vajadzīgs - godīgi novērtēšu, cik tas prasīs laika un naudas, un pēc pirmās sarunas saņemsi fiksētu tāmi ar termiņu.`
             : `Write to ${CONTACT_EMAIL} and tell me what you need. I will give you an honest estimate of time and cost, and a fixed quote after the first call.`
         }
         note={isLv ? "Atbilde 1 darba dienā" : "Reply in 1 working day"}

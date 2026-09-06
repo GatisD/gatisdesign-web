@@ -178,7 +178,7 @@
         {
           "title": "Audits",
           "meta": "3-5 darba dienas",
-          "text": "Tehniskā pārbaude, renderēšana bez JavaScript, Search Console dati, schema stāvoklis, iekšējā sasaiste, konkurentu momentuzņēmums."
+          "text": "Tehniskā pārbaude, renderēšana bez JavaScript, Search Console dati, struktūrdatu (schema.org) stāvoklis, iekšējā sasaiste, konkurentu pārskats."
         },
         {
           "title": "Tehniskais bloks",
@@ -188,7 +188,7 @@
         {
           "title": "Saturs",
           "meta": "2-4 nedēļas",
-          "text": "Tiešā atbilde pirmajos simts vārdos, cenas ar skaitļiem, FAQ bloks, citējami fragmenti."
+          "text": "Tiešā atbilde pirmajos simt vārdos, cenas ar skaitļiem, FAQ bloks, citējami fragmenti."
         },
         {
           "title": "Entitātes",
@@ -208,7 +208,7 @@
         "Uzturēšanai ir jēga tikai tad, kad pamatdarbs ir izdarīts. Tas ir mēneša darbs ar atskaiti, nevis abonements par klusēšanu. Ilgtermiņa līgumu nav, uzturēšanu var pārtraukt, brīdinot mēnesi iepriekš."
       ],
       "table": {
-        "caption": "Cenas ir bez PVN. Es neesmu PVN maksātājs, tāpēc rēķinā PVN netiek pieskaitīts. Apmaksas termiņš ir 5 darbadienas.",
+        "caption": "Cenas ir galīgas: neesmu PVN maksātājs, tāpēc šiem skaitļiem nekas netiek pieskaitīts. Apmaksas termiņš ir 5 darba dienas.",
         "columns": [
           "Pakalpojums",
           "Apjoms",

@@ -62,7 +62,7 @@
       "heading": "Cik maksā AI aģentu izstrāde",
       "body": [
         "Cena ir atkarīga no tā, cik sistēmas jāsavieno un cik daudz izņēmumu ir procesā. Divām sistēmām ar skaidru loģiku ir viena cena. Piecām sistēmām, no kurām divām nav normālas API, tā ir pavisam cita.",
-        "Cenas ir bez PVN - es neesmu PVN maksātājs, tāpēc rēķinam to nepievienoju. Apmaksa 50% sākumā, 50% pēc nodošanas. Apmaksas termiņš 5 darbadienas.",
+        "Cenas ir galīgas: neesmu PVN maksātājs, tāpēc rēķinam nekas netiek pievienots. Apmaksa 50% sākumā, 50% pēc nodošanas. Apmaksas termiņš 5 darba dienas.",
         "Manā cenā nav iekļautas trešo pušu izmaksas: hostings plūsmām, modeļa API tokeni, n8n vai Cloudflare abonements. Vienai vidēja apjoma plūsmai tās parasti ir 5-40 EUR mēnesī. Es tās aprēķinu jau auditā, lai pēc pusgada rēķinā nebūtu pārsteigumu."
       ],
       "table": {
@@ -123,7 +123,7 @@
     {
       "heading": "Kur es iesaku naudu netērēt",
       "body": [
-        "Puse sarunu par AI aģentiem beidzas ar to, ka automatizācija konkrētajā gadījumā neatmaksājas: process notiek piecas reizes gadā, dati ir skenētos PDF bez struktūras, process vēl mainās katru mēnesi vai lēmumu tik un tā pieņem cilvēks. Labāk to pateikt pirmajā sarunā nekā pēc trešā rēķina - kur es kopumā neesmu īstā izvēle, ir /par-mani."
+        "Puse sarunu par AI aģentiem beidzas ar to, ka automatizācija konkrētajā gadījumā neatmaksājas: process notiek piecas reizes gadā, dati ir skenētos PDF failos bez struktūras, process vēl mainās katru mēnesi vai lēmumu tāpat pieņem cilvēks. Labāk to pateikt pirmajā sarunā nekā pēc trešā rēķina - par to, kādos gadījumos es kopumā neesmu īstā izvēle, esmu uzrakstījis /par-mani."
       ]
     },
     {
@@ -185,7 +185,7 @@
         {
           "title": "Procesu audits",
           "meta": "no 400 EUR",
-          "text": "Uzrakstu procesu soli pa solim ar laikiem, atzīmēju automatizējamos posmus un aprēķinu izmaksas."
+          "text": "Uzrakstu procesu soli pa solim ar laika patēriņu, atzīmēju automatizējamos posmus un aprēķinu izmaksas."
         },
         {
           "title": "Prototips vienam procesam",

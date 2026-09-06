@@ -4,7 +4,7 @@
   "metaTitle": "Mājaslapu izstrāde: cena no 500 EUR",
   "metaDescription": "Mājaslapu izstrāde ar fiksētu cenu: landing page no 500 EUR, pilna lapa 900-1500 EUR, interneta veikals no 2500 EUR. Neesmu PVN maksātājs - cena ir galīga.",
   "h1": "Mājaslapu izstrāde, kas nes pieprasījumus",
-  "directAnswer": "Visbiežākais iemesls, kāpēc mani uzrunā, ir lapa, kas izskatās pieklājīgi, bet nenes pieprasījumus. Mājaslapu izstrādi sāku ar struktūru un vienu skaidru darbību katrā lapā. Landing page maksā no 500 EUR, pilna uzņēmuma mājaslapa 900-1500 EUR, e-komercija divās valodās no 2500 EUR. Termiņš - no 5 darba dienām līdz 10 nedēļām. Neesmu PVN maksātājs, tāpēc norādītā summa ir galīga.",
+  "directAnswer": "Visbiežākais iemesls, kāpēc mani uzrunā, ir lapa, kas izskatās pieklājīgi, bet nenes pieprasījumus. Mājaslapu izstrādi sāku ar struktūru un vienu skaidru darbību katrā lapā. Vienas lapas mājaslapa (landing page) maksā no 500 EUR, pilna uzņēmuma mājaslapa 900-1500 EUR, interneta veikals divās valodās no 2500 EUR. Termiņš - no 5 darba dienām līdz 10 nedēļām. Neesmu PVN maksātājs, tāpēc norādītā summa ir galīga.",
   "sections": [
     {
       "kicker": "Cenas",
@@ -16,7 +16,7 @@
         "Cenu uz augšu ceļ katra papildu valoda (apmēram +30% no bāzes), interneta veikala funkcionalitāte, integrācijas ar CRM vai grāmatvedības sistēmu, kalkulatori un konfiguratori. Cenu zemāk tur gatavs saturs, skaidra struktūra un viens lēmumu pieņēmējs klienta pusē. Lielākus projektus dalu divās daļās: 50% sākumā, 50% pirms palaišanas."
       ],
       "table": {
-        "caption": "Cenas ir galīgas: neesmu PVN maksātājs, tāpēc pie šiem skaitļiem nekas netiek pieskaitīts.",
+        "caption": "Cenas ir galīgas: neesmu PVN maksātājs, tāpēc šiem skaitļiem nekas netiek pieskaitīts.",
         "columns": [
           "Risinājums",
           "Cena",
@@ -71,7 +71,7 @@
         "Būve kodā vai WordPress uzstādīšana ar sakārtotu administratora daļu",
         "Tehniskais SEO: title un meta apraksti, virsrakstu hierarhija, sitemap.xml, robots.txt, schema.org strukturētie dati",
         "Google Analytics 4 un Google Search Console pieslēgšana, mērķdarbību uzstādīšana",
-        "Kontaktformas ar pārbaudītu e-pasta piegādi, lai pieprasījumi nenonāktu mēstulēs",
+        "Kontaktformas ar pārbaudītu e-pasta piegādi, lai pieprasījumi nenonāktu surogātpastā",
         "SSL sertifikāts, 301 pāradresācijas no vecās lapas, sakārtota 404 lapa",
         "Ātruma optimizācija: attēli WebP formātā, fonti lokāli, bez lieku skriptu slāņa",
         "Īsa video pamācība, kā pašam labot saturu tieši tavā lapā"
@@ -160,12 +160,12 @@
         {
           "title": "Dizains",
           "meta": "5-10 dienas",
-          "text": "Rādu sākumlapu un vienu iekšējo lapu. Divas labojumu kārtas ir cenā. Kad dizains ir apstiprināts, izkārtojumu no pamatiem vairs nemainām."
+          "text": "Rādu sākumlapu un vienu iekšējo lapu. Divas labojumu kārtas ir cenā. Kad dizains ir apstiprināts, izkārtojumu no pamatiem vairs nemainu."
         },
         {
-          "title": "Būve",
+          "title": "Būvēšana",
           "meta": "7-15 dienas",
-          "text": "Lapa top testa adresē, kuru vari atvērt jebkurā brīdī, nevis tikai gala prezentācijā. Paralēli uzstādu analītiku un tehnisko SEO."
+          "text": "Lapa top testa adresē, kuru vari atvērt jebkurā brīdī, nevis tikai gala prezentācijā. Paralēli uzstādu analītiku un sakārtoju tehnisko SEO."
         },
         {
           "title": "Testēšana",
@@ -175,7 +175,7 @@
         {
           "title": "Palaišana",
           "meta": "1 diena",
-          "text": "Pārceļu lapu uz tavu domēnu, uzstādu SSL sertifikātu, izveidoju 301 pāradresācijas no vecajām saitēm un iesniedzu sitemap.xml Google Search Console kontā."
+          "text": "Pārceļu lapu uz tavu domēnu, uzstādu SSL sertifikātu, izveidoju 301 tipa pāradresācijas no vecajām saitēm un iesniedzu sitemap.xml Google Search Console kontā."
         }
       ]
     },
@@ -197,7 +197,7 @@
       ],
       "bullets": [
         "Estire: lapa uzbūvēta kodā un darbojas Vercel platformā. Izvēlējos kodu, nevis WordPress, jo saturs mainās reti, bet ātrums un dizaina precizitāte bija svarīgi. Hostings praktiski neko nemaksā un ikmēneša uzturēšana nav vajadzīga.",
-        "Universal Solutions: lapa ar pilnu GDPR risinājumu - piekrišana sīkdatnēm, Consent Mode v2 un formu vēstules, ko piegādā atsevišķa infrastruktūra, lai pieprasījumi nepazustu mēstulēs.",
+        "Universal Solutions: lapa ar pilnu GDPR risinājumu - piekrišana sīkdatnēm, Consent Mode v2 un formu vēstules, ko piegādā atsevišķa infrastruktūra, lai pieprasījumi nepazustu surogātpastā.",
         "Valis Stomatoloģija: klīnikas lapa, kurā galvenā darbība ir pieraksts pie ārsta. Struktūru veidoju ap šo vienu darbību, nevis ap uzņēmuma vēsturi.",
         "Lauvas Zobs: neliels zīmols, kuram viss vajadzīgais ietilpa dažās lapās. Šeit strādā landing page loģika - viens vēstījums, viena darbība, bez liekām sadaļām."
       ]
@@ -256,7 +256,7 @@
     },
     {
       "q": "Vai cenai jāpieskaita PVN?",
-      "a": "Nē. Neesmu PVN maksātājs, tāpēc cenu tabulā redzamie skaitļi ir tie paši, kas nonāk rēķinā. Apmaksas termiņš ir 5 darbadienas, lielākus projektus dalu divās daļās."
+      "a": "Nē. Neesmu PVN maksātājs, tāpēc cenu tabulā redzamie skaitļi ir tie paši, kas nonāk rēķinā. Apmaksas termiņš ir 5 darba dienas; lielākus projektus dalu divās daļās."
     },
     {
       "q": "Vai varēšu pats labot saturu?",
