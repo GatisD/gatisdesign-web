@@ -88,7 +88,7 @@ export default function CookieBanner() {
       <div className="mx-auto flex max-w-wrap flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
         {/* Rindas garums ir ierobežots arī te: pie 1440 px josla bija vienīgā
             vieta lapā, kur teksta rinda pārsniedza 100 zīmes. */}
-        <p className="max-w-[78ch] text-[13px] leading-[1.4] text-paper-2 sm:text-[14px] md:text-[15px]">
+        <p className="max-w-[68ch] text-[13px] leading-[1.4] text-paper-2 sm:text-[14px] md:text-[15px]">
           {t.cookies.text}{" "}
           <Link
             to={path("privacy")}

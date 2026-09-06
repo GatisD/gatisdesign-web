@@ -74,7 +74,7 @@ export default function PriceTable({ table }: { table: ContentTable }) {
       {/* Paraksts ir vienīgais teksts lapā, kas gāja visā tabulas platumā:
           pie 1440 px tā bija 170 zīmju rinda, un acs, atgriežoties nākamās
           rindas sākumā, pazaudē vietu. */}
-      <figcaption className="mt-4 max-w-[64ch]">
+      <figcaption className="mt-4 max-w-[46ch]">
         <Label>{table.caption}</Label>
       </figcaption>
     </figure>
