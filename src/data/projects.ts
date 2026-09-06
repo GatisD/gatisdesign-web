@@ -19,7 +19,7 @@
 import rawJson from "../content/projects.raw.json";
 import draftJson from "../content/projects.draft.json";
 import imageSizes from "./image-sizes.json";
-import { portfolioWorks } from "./portfolio";
+import { portfolioWorks, galleryPath, type GalleryLayout } from "./portfolio";
 import type { RouteKey } from "../i18n/routes";
 
 export type ProjectCategory = "web" | "brand";
@@ -31,7 +31,10 @@ export interface ProjectImage {
   src: string;
   width: number;
   height: number;
+  /** Alt teksts pēc attēla satura (src/data/portfolio.ts). */
   alt: string;
+  /** Paraksts no Gata paša ieraksta. Nav klāt, ja avota teksta nav. */
+  caption?: string;
 }
 
 export interface ProjectRole {
@@ -58,6 +61,8 @@ export interface Project {
   cover: ProjectImage;
   /** Tikai kolekcijām - pilna darbu galerija. */
   gallery?: ProjectImage[];
+  /** Kā galerija izkārtojas lapā. Ir tikai tad, ja galerija ir. */
+  galleryLayout?: GalleryLayout;
 }
 
 interface RawProject {
@@ -156,10 +161,24 @@ export const EXTERNAL_STATUS_NOTE: Record<ExternalStatus, string> = {
 
 const sizes = imageSizes as Record<string, { width: number; height: number }>;
 
-function image(src: string, alt: string): ProjectImage {
+function image(src: string, alt: string, caption?: string): ProjectImage {
   const size = sizes[src];
-  if (!size) throw new Error(`Nav zināms attēla izmērs: ${src}. Palaid scripts/prepare-covers.mjs`);
-  return { src, width: size.width, height: size.height, alt };
+  if (!size) throw new Error(`Nav zināms attēla izmērs: ${src}. Palaid scripts/image-manifest.mjs`);
+  const img: ProjectImage = { src, width: size.width, height: size.height, alt };
+  if (caption) img.caption = caption;
+  return img;
+}
+
+/** Galerijas pēc slug. Kolekcijām tā ir visa lapa, projektiem - papildinājums. */
+const worksBySlug = new Map(portfolioWorks.map((work) => [work.slug, work]));
+
+function galleryFor(slug: string): { images: ProjectImage[]; layout: GalleryLayout } | null {
+  const work = worksBySlug.get(slug);
+  if (!work) return null;
+  return {
+    images: work.gallery.map((item) => image(galleryPath(slug, item.file), item.alt, item.caption)),
+    layout: work.layout,
+  };
 }
 
 function displayYear(entry: RawProject): string | undefined {
@@ -168,7 +187,7 @@ function displayYear(entry: RawProject): string | undefined {
   return entry.year === null ? undefined : String(entry.year);
 }
 
-function toProject(entry: RawProject, cover: ProjectImage, gallery?: ProjectImage[]): Project {
+function toProject(entry: RawProject, cover: ProjectImage): Project {
   const project: Project = {
     id: entry.id,
     slug: entry.slug,
@@ -186,7 +205,11 @@ function toProject(entry: RawProject, cover: ProjectImage, gallery?: ProjectImag
   if (entry.stack.length > 0) project.stack = entry.stack;
   const year = displayYear(entry);
   if (year) project.year = year;
-  if (gallery && gallery.length > 0) project.gallery = gallery;
+  const gallery = galleryFor(entry.slug);
+  if (gallery && gallery.images.length > 0) {
+    project.gallery = gallery.images;
+    project.galleryLayout = gallery.layout;
+  }
   return project;
 }
 
@@ -204,17 +227,19 @@ function buildSiteProjects(): Project[] {
     });
 }
 
-/** Septiņas dizaina kolekcijas: vāks un galerija no portfolio.ts, pārējais no izpētes datiem. */
+/**
+ * Dizaina kolekcijas: vāks no portfolio.ts, pārējais no izpētes datiem.
+ * Kolekciju atšķir `galleryCount` - projektiem, kam galerija ir tikai
+ * papildinājums (Varloz), vāks paliek tāds pats kā sarakstā.
+ */
 function buildCollections(): Project[] {
-  return portfolioWorks.map((work) => {
-    const entry = raw.find((p) => p.slug === work.slug);
-    if (!entry) throw new Error(`Kolekcijai ${work.slug} nav ieraksta projects.raw.json`);
-    const total = work.gallery.length;
-    const gallery = work.gallery.map((src, i) =>
-      image(src, `${entry.titleLv} - ${i + 1}. attēls no ${total}`),
-    );
-    return toProject(entry, image(work.cover, entry.titleLv), gallery);
-  });
+  return raw
+    .filter((entry) => !draftIds.has(entry.id) && entry.galleryCount !== undefined)
+    .map((entry) => {
+      const work = worksBySlug.get(entry.slug);
+      if (!work) throw new Error(`Kolekcijai ${entry.slug} nav galerijas src/data/portfolio.ts`);
+      return toProject(entry, image(work.cover, entry.titleLv));
+    });
 }
 
 function ordered(list: Project[]): Project[] {

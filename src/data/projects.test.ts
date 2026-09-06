@@ -96,14 +96,40 @@ describe("portfolio projekti", () => {
     }
   });
 
-  it("galerijas ir tikai kolekcijām un visi faili eksistē", () => {
+  it("galerijas faili eksistē un tiem ir izmērs", () => {
     const withGallery = projects.filter((p) => p.gallery);
-    expect(withGallery.length).toBe(7);
+    expect(withGallery.length).toBe(8);
     for (const project of withGallery) {
       for (const img of project.gallery ?? []) {
         expect(img.width, img.src).toBeGreaterThan(0);
-        expect(img.alt, img.src).toContain(project.title);
+        expect(img.height, img.src).toBeGreaterThan(0);
         expect(existsSync(join(PUBLIC_DIR, img.src)), img.src).toBe(true);
+      }
+    }
+  });
+
+  it("galerijas alt teksts apraksta attēlu, ne tā kārtas numuru", () => {
+    // Agrāk alt tika ģenerēts kā "Logo kolekcija - 7. attēls no 51". Ekrāna
+    // lasītājam tas nepasaka neko, un attēlu meklētājam - vēl mazāk. Tagad
+    // katrs alt ir rakstīts pēc satura, tāpēc tie ir gan gari, gan atšķirīgi.
+    for (const project of projects) {
+      const seen = new Set<string>();
+      for (const img of project.gallery ?? []) {
+        expect(img.alt.length, img.src).toBeGreaterThan(20);
+        expect(img.alt, img.src).not.toMatch(/attēls no|image \d+ of/i);
+        expect(seen.has(img.alt), `atkārtots alt: ${img.src}`).toBe(false);
+        seen.add(img.alt);
+      }
+    }
+  });
+
+  it("režģa kolekcijām ir sagatavoti 640 px varianti", () => {
+    // Logo kolekcijā ir 70 kadri. Bez šī varianta lapa noritinot lejupielādētu
+    // pilnos kadrus (2,4 MB WebP), sk. scripts/gallery-thumbs.mjs.
+    for (const project of projects.filter((p) => p.galleryLayout === "grid")) {
+      for (const img of project.gallery ?? []) {
+        const variant = img.src.replace(/\.jpg$/, "-640.webp");
+        expect(existsSync(join(PUBLIC_DIR, variant)), variant).toBe(true);
       }
     }
   });
@@ -139,7 +165,7 @@ describe("portfolio projekti", () => {
   it("plānās lapas ir zināmas un uzskaitītas", () => {
     // Ja apraksts kādai no tām tiek uzrakstīts, šis tests krīt un atgādina
     // pārbaudīt sitemap prioritāti (vite.config.ts liek 0,5 tieši šīm).
-    expect([...thinSlugs].sort()).toEqual(["cafeteria", "forevolt", "green-bay", "obsidian", "varloz"]);
+    expect([...thinSlugs].sort()).toEqual(["cafeteria", "forevolt", "green-bay", "obsidian"]);
     for (const slug of thinSlugs) {
       expect(featured, slug).not.toContain(slug);
     }

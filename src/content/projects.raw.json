@@ -565,9 +565,9 @@
     "externalStatus": null,
     "stack": [],
     "titleLv": "Varloz - logo un vizītkartes",
-    "summaryLv": null,
+    "summaryLv": "Grieķu pārtikas zīmola logotips un vizītkartes, veidoti kopā ar klientu.",
     "coverHint": "assets/clients/Varloz.webp",
-    "needsInput": "Tāpat kā Obsidian - zināms tikai pakalpojuma nosaukums. Vajag nozari, gadu un vizītkaršu vizuāļus."
+    "needsInput": "Vizītkaršu vizuālis ir (no Gata Instagram ieraksta 2023-06-19), nozare arī - grieķu pārtika. Trūkst gada, kad darbs tapa."
   },
   {
     "id": "box-latvia-brand",
@@ -587,7 +587,7 @@
     "titleLv": "Box Latvia - zīmola identitāte",
     "summaryLv": "Loģistikas zīmola identitāte: logo, transportlīdzekļu marķējums, drukas materiāli un digitālā prezentācija.",
     "coverHint": "public/portfolio/box-latvia-cover-43.jpg",
-    "galleryCount": 11
+    "galleryCount": 12
   },
   {
     "id": "apmekle",
@@ -647,9 +647,9 @@
     "externalStatus": null,
     "stack": [],
     "titleLv": "Logo un zīmolu kolekcija",
-    "summaryLv": "Atlasīti logo un zīmola identitātes darbi no 18 gadu prakses - vairāk nekā 50 darbi dažādās nozarēs.",
+    "summaryLv": "Atlasīti logotipu un zīmola identitātes darbi no 18 gadu prakses - 70 darbu dažādās nozarēs.",
     "coverHint": "public/portfolio/logo-branding-cover-sq.jpg",
-    "galleryCount": 51
+    "galleryCount": 70
   },
   {
     "id": "illustrations",
