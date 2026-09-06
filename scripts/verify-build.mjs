@@ -225,8 +225,120 @@ function checkDist(dist) {
     }
   }
 
+  // 13. Redzamā h1 sakrīt ar satura faila `h1` lauku. Šis lauks gadu bija
+  //     deklarēts, aizpildīts un nelasīts nekur, tāpēc meta tabulā ierakstītie
+  //     virsrakstu labojumi lapā nekad nenonāca. Tagad tas ir avots, un vārti
+  //     to notur.
+  for (const [page, file] of Object.entries(H1_SOURCE)) {
+    const html = read(page);
+    const contentPath = join(ROOT, "src/content/lv", file);
+    if (!html || !existsSync(contentPath)) continue;
+    const raw = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
+    if (!raw) continue; // trūkstošu h1 jau ziņo 9. vārti
+    const visible = raw[1]
+      .replace(/<[^>]+>/g, "")
+      .replace(/&quot;/g, '"')
+      .replace(/&#x27;|&#39;/g, "'")
+      .replace(/&amp;/g, "&")
+      .replace(/\s+/g, " ")
+      .trim();
+    const expected = JSON.parse(readFileSync(contentPath, "utf8")).h1.replace(/\s+/g, " ").trim();
+    if (visible !== expected) {
+      errors.push(`${page}: h1 lapā ir "${visible}", satura failā "${expected}"`);
+    }
+  }
+
+  // 14. llms.txt atbilst llmstxt.org formai: viens H1, saites Markdown formā un
+  //     visas sitemap lapas failā. Kails URL pārbaudītājam nav saite - tieši to
+  //     ziņoja Chrome Agentic Browsing audits.
+  const llms = read("llms.txt");
+  if (!llms) errors.push("dist/llms.txt neeksistē");
+  else {
+    const h1s = llms.split("\n").filter((line) => /^# \S/.test(line));
+    if (h1s.length !== 1) errors.push(`llms.txt satur ${h1s.length} H1 rindas, gaidīta 1`);
+    const links = [...llms.matchAll(/\[[^\]]+\]\((https?:\/\/[^)]+|mailto:[^)]+)\)/g)];
+    if (links.length < 40) errors.push(`llms.txt ir ${links.length} Markdown saites, gaidītas vismaz 40`);
+    if (/[–— ]/.test(llms)) errors.push("llms.txt satur garo domuzīmi vai cieto atstarpi");
+    const inFile = new Set(links.map(([, url]) => url.replace(/\/$/, "")));
+    const sitemapLocs = sitemap ? [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]) : [];
+    for (const loc of sitemapLocs) {
+      if (!inFile.has(loc.replace(/\/$/, ""))) errors.push(`llms.txt trūkst sitemap adreses: ${loc}`);
+    }
+  }
+
+  // 15. Markdown saite, kas palikusi redzamā tekstā. `[enkurs](/cels)` ir
+  //     satura forma, ne izvads: ja rindkopu renderē komponente, kas nelieto
+  //     LinkedText, cilvēks lapā redz kvadrātiekavas ar ceļu. Tieši tā notika
+  //     sākumlapas kontaktu sadaļā.
+  for (const page of pages) {
+    const html = read(page);
+    if (!html) continue;
+    const text = html.replace(/<script[\s\S]*?<\/script>/g, " ");
+    const leaks = [...text.matchAll(/\[[^\]\n]{2,80}\]\((\/[a-z0-9/-]+|https:\/\/[^)\s]+)\)/g)];
+    for (const [leak] of leaks.slice(0, 3)) {
+      errors.push(`${page}: Markdown saite palikusi tekstā: ${leak.slice(0, 70)}`);
+    }
+  }
+
+  // 16. Darbu skaits tekstā sakrīt ar darbu skaitu datos.
+  //
+  //     Meta apraksts gadu apgalvoja "23 pabeigti projekti", un pēc tam, kad
+  //     4. kārta pievienoja desmit vietnes, lapa rādīja 33. Meta apraksts nāk
+  //     no `projects.length`, bet `llms.txt` ir rakstīts ar roku - tāpēc abi
+  //     tiek salīdzināti ar to, kas dist mapē tiešām ir.
+  {
+    const detailPages = pages.filter((page) => /^portfolio\/[^/]+\.html$/.test(page));
+    const total = detailPages.length;
+    const indexable = sitemap
+      ? [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].filter((m) => m[1].includes("/portfolio/")).length
+      : 0;
+
+    if (total === 0) errors.push("dist nesatur nevienu projekta lapu");
+
+    const portfolio = read("portfolio.html");
+    if (portfolio) {
+      const description = attr(portfolio, /<meta[^>]*name="description"[^>]*content="([^"]*)"/) ?? "";
+      if (!description.startsWith(`${total} publicēti darbi`)) {
+        errors.push(`portfolio.html meta apraksts nesākas ar "${total} publicēti darbi": ${description.slice(0, 40)}`);
+      }
+    }
+
+    if (llms) {
+      for (const claim of [`${total} publicēti darbi`, `${total} published works`]) {
+        if (!llms.includes(claim)) errors.push(`llms.txt trūkst apgalvojuma "${claim}"`);
+      }
+      // Katrs skaitlis pie "publicēti darbi" un "published works", ne tikai
+      // pirmais: viena vieta failā var palikt atpakaļ, un tieši tā notiek.
+      const counted = /(\d+) (?:publicēti darbi|published works)|Publicētie darbi: (\d+)/g;
+      for (const [phrase, a, b] of llms.matchAll(counted)) {
+        const count = a ?? b;
+        if (Number(count) !== total) {
+          errors.push(`llms.txt saka "${phrase}", bet dist satur ${total} projektu lapas`);
+        }
+      }
+      const listed = [...llms.matchAll(/\]\(https:\/\/gatisdesign\.com\/portfolio\/[a-z0-9-]+\)/g)].length;
+      if (listed !== indexable) {
+        errors.push(`llms.txt uzskaita ${listed} projektu lapas, sitemapā to ir ${indexable}`);
+      }
+      if (!llms.includes(`uzskaitīti tie ${indexable},`)) {
+        errors.push(`llms.txt nesaka, ka uzskaitītas tieši ${indexable} projektu lapas`);
+      }
+    }
+  }
+
   return errors;
 }
+
+/** Lapa dist mapē -> satura fails, no kura nāk tās h1. */
+const H1_SOURCE = {
+  "index.html": "home.json",
+  "zimola-identitate.html": "zimola-identitate.json",
+  "majaslapu-izstrade.html": "majaslapu-izstrade.json",
+  "ai-agenti.html": "ai-agenti.json",
+  "seo-geo-aeo.html": "seo-geo-aeo.json",
+  "par-mani.html": "par-mani.json",
+  "kontakti.html": "kontakti.json",
+};
 
 /* ------------------------------------------------------------------ *
  * Selftests: katram vārtam sava zināmi sliktā kopija.
@@ -295,6 +407,35 @@ const MUTATIONS = [
     },
   },
   {
+    name: "h1 lapā aizgājis no satura faila",
+    apply: (d) => {
+      const p = join(d, "seo-geo-aeo.html");
+      writeFileSync(p, readFileSync(p, "utf8").replace(/(<h1[^>]*>)([\s\S]*?)(<\/h1>)/, "$1<span>Cits virsraksts</span>$3"));
+    },
+  },
+  {
+    name: "Markdown saite palikusi redzamā tekstā",
+    apply: (d) => {
+      const p = join(d, "par-mani.html");
+      const html = readFileSync(p, "utf8");
+      writeFileSync(p, html.replace("</main>", "<p>Vairāk [par mani](/par-mani) lapā.</p></main>"));
+    },
+  },
+  {
+    name: "llms.txt bez Markdown saitēm",
+    apply: (d) => {
+      const p = join(d, "llms.txt");
+      writeFileSync(p, readFileSync(p, "utf8").replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$2"));
+    },
+  },
+  {
+    name: "darbu skaits tekstā atpalicis no datiem",
+    apply: (d) => {
+      const p = join(d, "llms.txt");
+      writeFileSync(p, readFileSync(p, "utf8").replace(/33 publicēti darbi/g, "23 publicēti darbi"));
+    },
+  },
+  {
     name: "404 lapai uzlikts canonical",
     apply: (d) => {
       const p = join(d, "404.html");
@@ -356,7 +497,26 @@ if (process.argv.includes("--selftest")) {
   process.exit(0);
 }
 
-const errors = checkDist(DIST);
+/**
+ * 17. vārti: Turnstile abas puses vai nevienu.
+ *
+ * Publiskā atslēga tiek iecepta būvē, slepenā dzīvo tikai serverī. Ja Vercel
+ * ir uzstādīta viena bez otras, būve ir zaļa, bet forma ir mirusi: klients
+ * nesūta pilnvaru, serveris to prasa, un katrs pieteikums saņem 400. To nevar
+ * ieraudzīt ne testos, ne dist saturā - tikai šeit, kur abi mainīgie ir redzami.
+ */
+function checkTurnstilePair() {
+  const site = (process.env.VITE_TURNSTILE_SITE_KEY ?? "").trim();
+  const secret = (process.env.TURNSTILE_SECRET_KEY ?? "").trim();
+  if (Boolean(site) === Boolean(secret)) return [];
+  return [
+    site
+      ? "VITE_TURNSTILE_SITE_KEY ir uzstādīts, bet TURNSTILE_SECRET_KEY nav: logrīks rādīsies, serveris pilnvaru nepārbaudīs"
+      : "TURNSTILE_SECRET_KEY ir uzstādīts, bet VITE_TURNSTILE_SITE_KEY nav: forma nesūtīs pilnvaru, un katrs pieteikums saņems 400",
+  ];
+}
+
+const errors = [...checkDist(DIST), ...checkTurnstilePair()];
 if (errors.length) {
   console.error("Būves vārti KRITA:");
   for (const e of errors) console.error("  -", e);

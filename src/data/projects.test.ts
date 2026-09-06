@@ -9,6 +9,7 @@ import {
   relatedProjects,
   richness,
   thinSlugs,
+  indexableProjects,
   featured,
   SERVICE_ROUTE_KEY,
 } from "./projects";
@@ -169,11 +170,18 @@ describe("portfolio projekti", () => {
 
   it("plānās lapas ir zināmas un uzskaitītas", () => {
     // Ja apraksts kādai no tām tiek uzrakstīts, šis tests krīt un atgādina
-    // pārbaudīt sitemap prioritāti (vite.config.ts liek 0,5 tieši šīm).
+    // pārbaudīt, ka lapa atgriežas sitemapā un indeksā.
     expect([...thinSlugs].sort()).toEqual(["cafeteria", "forevolt", "green-bay", "obsidian"]);
     for (const slug of thinSlugs) {
       expect(featured, slug).not.toContain(slug);
     }
+  });
+
+  it("indeksējamie projekti ir tieši tie, kuriem ir apraksts", () => {
+    const thin = new Set(thinSlugs);
+    expect(indexableProjects.map((p) => p.slug).filter((slug) => thin.has(slug))).toEqual([]);
+    expect(indexableProjects).toHaveLength(projects.length - thinSlugs.length);
+    for (const project of indexableProjects) expect(project.summary.length).toBeGreaterThan(20);
   });
 
   it("saistītie darbi neatkārto ne sevi, ne nākamo projektu", () => {

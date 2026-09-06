@@ -1,88 +1,104 @@
 # Gatis Design - Gatis Daugavietis
 
-> Uzzīmēju zīmolu, uzbūvēju lapu, pieslēdzu AI aģentus un atbildu par redzamību Google un AI atbildēs. Viens cilvēks visai ķēdei. Rīga, Latvija, 18 gadu pieredze kopš 2008. gada, vairāk nekā 100 pabeigtu projektu.
+> Mājaslapu dizainers un izstrādātājs Rīgā. Zīmols, mājaslapa, AI aģenti un redzamība Google meklētājā un AI atbildēs - visu izdara viens cilvēks, bez aģentūras. 18 gadu pieredze kopš 2008. gada, vairāk nekā 100 pabeigtu projektu, klienti Latvijā, Igaunijā, Lietuvā un ASV.
 
-## Kas es esmu
-Gatis Daugavietis ir dizainers un izstrādātājs Rīgā. Strādāju viens, bez aģentūras: no pirmās sarunas līdz publicēšanai un arī pēc tās. Klienti ir Latvijā, Igaunijā, Lietuvā un ASV. Neesmu PVN maksātājs, tāpēc norādītā summa ir galīga - tai klāt nekas netiek pieskaitīts.
+Pēdējoreiz atjaunināts: 2026-09-06. Kanoniskā versija ir latviešu valodā.
 
-## Pakalpojumi un cenas
-- Mājaslapu izstrāde un dizains: landing page no 500 EUR, pilna mājaslapa 900-1500 EUR, interneta veikals divās valodās no 2500 EUR, pamata uzturēšana 50-80 EUR mēnesī, pilna uzturēšanas paka 100-150 EUR mēnesī. https://gatisdesign.com/majaslapu-izstrade
-- Logo izveide un zīmola identitāte: logo ar 3-4 koncepcijām 500-700 EUR, esošā logo uzlabošana 200 EUR, mazā zīmola grāmata 350 EUR, vidējā vai lielā zīmola grāmata 500 EUR, pilnā zīmola grāmata ar stratēģiju 3000 EUR, drukas materiāli 120-900 EUR. https://gatisdesign.com/zimola-identitate
-- AI aģenti un procesu automatizācija: procesu audits un automatizācijas plāns no 400 EUR, viena procesa automatizācija 900-1800 EUR, vairāku sistēmu integrācija no 2500 EUR, uzraudzība un uzturēšana no 100 EUR mēnesī. https://gatisdesign.com/ai-agenti
-- SEO, GEO un AEO redzamība: SEO Basic līdz 5 lapām 300 EUR, SEO Plus līdz 10 lapām 500 EUR, SEO PRO līdz 20 lapām 800 EUR, AI SEO bāzes ieviešana 700 EUR, AI SEO standarta ieviešana 1200 EUR, uzturēšana no 80 EUR mēnesī. https://gatisdesign.com/seo-geo-aeo
-- Atsevišķi darbi un konsultācijas esošā risinājumā: 60 EUR stundā. Projekti tiek pārdoti ar fiksētu cenu un termiņu, ne stundās.
+Gatis Daugavietis strādā viens - no pirmās sarunas līdz publicēšanai un arī pēc tās. Viņš nav PVN maksātājs, tāpēc norādītā summa ir galīga: tai nekas netiek pieskaitīts. Apmaksas termiņš ir 5 darba dienas. Projekti tiek pārdoti ar fiksētu cenu un termiņu, nevis pēc stundas likmes; stundas likme 60 EUR attiecas tikai uz atsevišķiem darbiem jau esošā risinājumā.
 
-## Kompetences
-- Mājaslapu izstrāde WordPress platformā un kodā: React, Vite, statiski ģenerēts HTML
-- Zīmola identitāte, logo, zīmola grāmatas, drukas materiāli un iepakojums
-- AI aģentu un automatizācijas izstrāde uzņēmumu iekšējiem procesiem
-- SEO, ģeneratīvā GEO un AEO optimizācija, lokālā redzamība Google Maps, llms.txt, schema markup un Core Web Vitals
+## Pakalpojumi
+
+- [Mājaslapu izstrāde un dizains](https://gatisdesign.com/majaslapu-izstrade): vienas lapas mājaslapa no 500 EUR, uzņēmuma mājaslapa ar vairākām sadaļām 900-1500 EUR, interneta veikals divās valodās no 2500 EUR, uzturēšana 50-80 EUR mēnesī. Termiņš no 5 darba dienām līdz 10 nedēļām atkarībā no apjoma.
+- [Logo izveide un zīmola identitāte](https://gatisdesign.com/zimola-identitate): logo ar 3-4 koncepcijām 500-700 EUR, izpilde 2-3 nedēļas. Esošā logo uzlabošana 200 EUR, zīmola grāmata 350-500 EUR, paplašināta zīmola grāmata ar stratēģiju 3000 EUR, drukas materiāli 120-900 EUR.
+- [SEO, GEO un AEO redzamība](https://gatisdesign.com/seo-geo-aeo): SEO audits līdz 5 lapām 300 EUR, līdz 10 lapām 500 EUR, līdz 20 lapām ar konkurentu analīzi 800 EUR. AI SEO bāzes ieviešana 700 EUR, standarta ieviešana 1200 EUR, uzturēšana no 80 EUR mēnesī.
+- [AI aģenti un procesu automatizācija](https://gatisdesign.com/ai-agenti): procesu audits un automatizācijas plāns no 400 EUR, viena procesa automatizācija 900-1800 EUR, vairāku sistēmu integrācija no 2500 EUR, uzraudzība no 100 EUR mēnesī.
+
+## Par mani un saziņa
+
+- [Sākumlapa](https://gatisdesign.com/): mājaslapu dizains, zīmols, AI aģenti un redzamība - visu izdara viens cilvēks.
+- [Par mani](https://gatisdesign.com/par-mani): 18 gadu pieredze dizainā un izstrādē, darba gaita soli pa solim, klientu profils un robežas, kad viens cilvēks nav pareizā izvēle.
+- [Kontakti](https://gatisdesign.com/kontakti): atbildu vienas darba dienas laikā; pēc sarunas nosūtu piedāvājumu ar cenu un termiņu. E-pasts: connect@gatisdesign.com. Atrašanās vieta - Rīga.
+- [Darbu izlase](https://gatisdesign.com/portfolio): 33 publicēti darbi - katram norādīts klients un mana loma. Zemāk uzskaitīti tie 29, kuriem ir sava lapa ar aprakstu.
+- [Privātuma politika](https://gatisdesign.com/privatuma-politika): kādi dati tiek vākti un kāpēc.
+
+## Biežākie jautājumi
+
+- Cik maksā mājaslapa? Vienas lapas mājaslapa maksā no 500 EUR, uzņēmuma mājaslapa ar vairākām sadaļām 900-1500 EUR, interneta veikals divās valodās no 2500 EUR. Cenu nosaku pirms darba sākuma, un tā nemainās.
+- Cik ilgā laikā top mājaslapa? Vienas lapas mājaslapa ir gatava 5-10 darba dienās, uzņēmuma mājaslapa 3-5 nedēļās, interneta veikals 6-10 nedēļās. Termiņš vairāk atkarīgs no tā, cik ātri saņemu saturu un atbildes, nekā no paša dizaina.
+- Vai cenai jāpieskaita PVN? Nē. Neesmu PVN maksātājs, tāpēc norādītā summa ir tā pati, kas nonāk rēķinā.
+- Kam pieder domēns, hostings un lapas pirmkods? Klientam. Domēns tiek reģistrēts uz klienta vārda, un pēc gala norēķina klients saņem visas piekļuves un pirmkodu. Hostings tiek reģistrēts uz klienta vārda, un klients maksā tieši pakalpojuma sniedzējam.
+- Vai Gatis Design ir aģentūra? Nē. Aiz Gatis Design ir viens cilvēks, bez darbiniekiem un bez apakšuzņēmējiem.
+- Vai Gatis strādā tikai ar klientiem Rīgā? Nē. Sapulces notiek attālināti, un klienti ir Latvijā, Igaunijā, Lietuvā un ASV.
 
 ## Fakti
+
 - Pieredze: 18 gadi, kopš 2008. gada
 - Pabeigti projekti: vairāk nekā 100
-- Publiskais portfolio: 23 projekti ar nosauktu klientu, lomu un gadu
+- Publicētie darbi: 33, katram norādīts klients un mana loma
 - Tirgi: Latvija, Igaunija, Lietuva, ASV
 - Saziņas valodas: latviešu un angļu
-- PVN: neesmu PVN maksātājs, norādītā summa ir galīga
+- Platformas un tehnoloģijas: WordPress, Shopify; kodā rakstītas lapas ar React un Vite
+- PVN: nav PVN maksātājs; norādītā summa ir galīga
 - Apmaksas termiņš: 5 darba dienas
 
-## Darbi, ko var apskatīt
-Estire, Box Latvia, ROIS.lv, Apmeklē.lv, Lauvas Zobs, Valis Stomatoloģija, Universal Solutions, DarbaGuru, Digitālais Dzintars, 110m2, Kuģi Kartupelis, Mēbeļu montāža, Lucky Punch, Obsidian, Varloz, Cafeteria, Green Bay, Forevolt.
+## Ko es nedaru
 
-## Kontakti
-- E-pasts: connect@gatisdesign.com
-- Atrašanās vieta: Rīga, Latvija
-- Dribbble: https://dribbble.com/gdesign90
-- LinkedIn: https://www.linkedin.com/in/gatis-daugavietis-bb5566193
-- Instagram: https://instagram.com/gatisdesign
-- Facebook: https://facebook.com/GatisDesign
+- Nepārdodu gatavas tēmas ar aizvietotu logotipu.
+- Nepieņemu darbus, kuros dizains jau ir uzzīmēts un vajadzīgs tikai kodētājs stundas likmē.
+- Negarantēju konkrētu pozīciju Google rezultātos vai konkrētu pieminējumu ChatGPT atbildē.
 
-## Lapas
-- Sākums: https://gatisdesign.com/
-- Mājaslapu izstrāde un dizains: https://gatisdesign.com/majaslapu-izstrade
-- Logo izveide un zīmola identitāte: https://gatisdesign.com/zimola-identitate
-- AI aģenti un automatizācija: https://gatisdesign.com/ai-agenti
-- SEO, GEO un AEO: https://gatisdesign.com/seo-geo-aeo
-- Darbi: https://gatisdesign.com/portfolio
-- Par mani: https://gatisdesign.com/par-mani
-- Kontakti: https://gatisdesign.com/kontakti
+## Darbi: mājaslapas
 
----
+- [Estire - bruģēšanas materiālu mājaslapa](https://gatisdesign.com/portfolio/estire): kodēta mājaslapa bruģakmens un beramkravu tirgotājam, ar noliktavas katalogu un pieprasījumu formu. Dizains un izstrāde.
+- [ROIS.lv - mārketinga aģentūras mājaslapa](https://gatisdesign.com/portfolio/rois-lv): iepriekšējās WordPress vietnes pārbūve ar pašrakstītu kodu: 30+ lapas, video atsauksmes, blogs un forma ar UTM atribūciju. Dizains un izstrāde, 2026.
+- [Universal Solutions - zinātnes un AI konsultācijas](https://gatisdesign.com/portfolio/universal-solutions): datu analītikas uzņēmuma logo un mājaslapa ar pakalpojumu un vakanču sadaļām; formas darbojas uz Cloudflare Workers. Zīmols, dizains un izstrāde, 2026.
+- [110m2 - tipveida privātmāju vietne](https://gatisdesign.com/portfolio/110m2): vietne ar izmaksu kalkulatoru, trīs valodu pārslēgu un blogu ar SEO optimizāciju. Izstrāde un SEO, ROIS komandā.
+- [Mēbeļu montāža - servisa mājaslapa](https://gatisdesign.com/portfolio/mebelu-montaza): vietne mēbeļu montāžas un pārvākšanās uzņēmumam, ar četrām pakalpojumu lapām, portfolio un pieteikuma formu. Dizains un izstrāde, 2026.
+- [Kuģi Kartupelis - tiešsaistes spēle](https://gatisdesign.com/portfolio/kugi-kartupelis): kuģu kaujas spēle diviem spēlētājiem, ar saiti, ko nosūtīt otram spēlētājam, jūras kartes dizainu un servera pusē pārbaudītiem gājieniem. Personīgs projekts, dizains un izstrāde, 2026.
+- [Box Latvia - pārvākšanās un noliktavu serviss](https://gatisdesign.com/portfolio/box-latvia-web): vietne ar trim pakalpojumu virzieniem - pārvākšanās, noliktavas un nekustamais īpašums. Zīmols un izstrāde, ROIS komandā.
+- [Lauvas Zobs - stomatoloģijas klīnika](https://gatisdesign.com/portfolio/lauvas-zobs): daudzprofilu stomatoloģijas klīnikas vietne ar pakalpojumu lapām, speciālistu profiliem un saturu divās valodās. Izstrāde ROIS komandā.
+- [Valis Stomatoloģija - klīnikas vietne](https://gatisdesign.com/portfolio/valis): zobu implantācijas klīnikas vietne ar pieraksta formu, divu filiāļu kontaktiem un pakalpojumu sadaļām. Izstrāde ROIS komandā.
+- [Lucky Punch - enerģijas dzēriena veikals](https://gatisdesign.com/portfolio/lucky-punch): Shopify veikals enerģijas dzēriena zīmolam, ar cīņas sporta vizuālo valodu, LV un EN versiju, divām valūtām. Izstrāde ROIS komandā.
+- [Termokoksne - termiski apstrādāta koka vietne](https://gatisdesign.com/portfolio/termokoksne): termiski apstrādāta koka fasāžu un terašu materiālu vietne ar katalogu, galeriju un partneru sadaļu. Izstrāde un uzturēšana.
+- [Salons Objekts - apdares materiālu vietne](https://gatisdesign.com/portfolio/salonsobjekts): apdares materiālu salona vietne ar produktu katalogu, projektu sadaļu un grozu. Izstrāde un uzturēšana.
+- [Laluna - Toyota pārstāvja vietne](https://gatisdesign.com/portfolio/laluna): toyota pārstāvja vietne ar jaunu un lietotu auto katalogu, finansēšanas, servisa un Toyota Business sadaļām. Izstrāde un uzturēšana.
+- [PSL - auto nomas un servisa vietne](https://gatisdesign.com/portfolio/psl): auto nomas un servisa uzņēmuma vietne ar ilgtermiņa nomas, mazlietotu auto un servisa sadaļām. Izstrāde un uzturēšana.
+- [Inovat - saules enerģijas preču veikals](https://gatisdesign.com/portfolio/inovat): saules enerģijas un būvniecības preču interneta veikals ar kategoriju sarakstu sākumlapas malā. Izstrāde un uzturēšana.
+- [Global Tactical Equipment - taktiskā aprīkojuma veikals](https://gatisdesign.com/portfolio/globaltac): taktiskā aprīkojuma interneta veikals ar valodu pārslēdzēju un grozu. Izstrāde un uzturēšana.
+- [Oak'A BBQ - grila mērču veikals](https://gatisdesign.com/portfolio/oakabbq): grila mērču un garšvielu zīmola interneta veikals ar apmācību un kultūras sadaļām. Izstrāde un uzturēšana.
+- [Nervostrong - uztura bagātinātāju veikals](https://gatisdesign.com/portfolio/nervostrong-veikals): uztura bagātinātāju zīmola interneta veikals ar produktu lapām, blogu un grozu. Izstrāde un uzturēšana.
+- [Sinu Uksed - durvju un logu vietne Igaunijā](https://gatisdesign.com/portfolio/sinuuksed): igaunijas durvju un logu tirgotāja vietne ar katalogu, atsauksmēm un biežāk uzdoto jautājumu sadaļu. Izstrāde un uzturēšana.
+- [Prof Durys - durvju vietne Lietuvā](https://gatisdesign.com/portfolio/profdurys): lietuvas durvju tirgotāja vietne ar katalogu, pakalpojumu sadaļu un atsauksmēm. Izstrāde un uzturēšana.
+- [Mājaslapu dizaina kolekcija](https://gatisdesign.com/portfolio/web-design): atlasīti mājaslapu dizaina darbi dažādās nozarēs, ar uzsvaru uz lietojamību, veiktspēju un SEO. Dizains, 2010-2026.
 
-# Gatis Design - Gatis Daugavietis (English)
+## Darbi: zīmols, logo un druka
 
-> I design the brand, build the site, connect the AI agents and stay responsible for visibility in Google and in AI answers. One person for the whole chain. Riga, Latvia; 18 years of experience since 2008; more than 100 completed projects.
+- [Box Latvia - zīmola identitāte](https://gatisdesign.com/portfolio/box-latvia): loģistikas zīmola identitāte: logo, transportlīdzekļu marķējums, drukas materiāli un zīmola lietojums digitālajā vidē. Zīmola izstrāde, ROIS komandā, 2023.
+- [Apmeklē.lv - pakalpojumu platformas zīmols](https://gatisdesign.com/portfolio/apmekle): Latvijā veidotas pakalpojumu platformas identitāte ar lakonisku piktogrammu un zaļu akcenta krāsu. Zīmola izstrāde, 2023.
+- [Digitālais Dzintars - kultūras zīmols](https://gatisdesign.com/portfolio/digitalaisdzintars): atjaunots zīmols Liepājas digitālās kultūras platformai: plakāti, afišas un identitātes elementi. Zīmola izstrāde, 2024.
+- [DarbaGuru - logo un mazā zīmola grāmata](https://gatisdesign.com/portfolio/darbaguru): logo personāla vadības ārpakalpojumu uzņēmumam un neliela zīmola grāmata ar krāsu un logo lietojuma noteikumiem. Logo un zīmola grāmata, ROIS komandā.
+- [Varloz - logo un vizītkartes](https://gatisdesign.com/portfolio/varloz): grieķu pārtikas zīmola logotips un vizītkartes, veidoti kopā ar klientu. Logo un vizītkartes, ROIS komandā.
+- [Logo un zīmolu kolekcija](https://gatisdesign.com/portfolio/logo-branding): atlasīti logotipu un zīmolu identitātes darbi no 18 gadu prakses - 70 darbi dažādās nozarēs. Dizains, 2008-2026.
+- [Ilustrāciju kolekcija](https://gatisdesign.com/portfolio/illustrations): ilustrācijas zīmoliem, no produktu ikonām un T kreklu apdrukām līdz veselām ilustrāciju sistēmām. Dizains, 2012-2026.
+- [Plakātu un drukas kolekcija](https://gatisdesign.com/portfolio/print): plakāti, afišas, bukleti un drukas materiāli, kuros svarīga katra detaļa - no burtu izvēles līdz papīram. Dizains, 2010-2026.
 
-## Who this is
-Gatis Daugavietis is a designer and developer based in Riga, Latvia. He works solo, without an agency, from the first conversation through launch and after it. Clients are in Latvia, Estonia, Lithuania and the United States. He is not registered for VAT, so a quoted price is the final price with nothing added on top. Working languages: Latvian and English.
+## Saziņa un profili
 
-## Services and prices
-- Website design and development: landing page from 500 EUR, full company website 900-1500 EUR, two-language online store from 2500 EUR, maintenance 50-150 EUR per month. https://gatisdesign.com/majaslapu-izstrade
-- Logo and brand identity: logo with 3-4 concepts 500-700 EUR, redraw of an existing logo 200 EUR, small brand book 350 EUR, medium or large brand book 500 EUR, full brand book with strategy 3000 EUR, print materials 120-900 EUR. https://gatisdesign.com/zimola-identitate
-- AI agents and process automation: process audit and automation plan from 400 EUR, one end-to-end automation 900-1800 EUR, multi-system integration from 2500 EUR, monitoring from 100 EUR per month. https://gatisdesign.com/ai-agenti
-- SEO, GEO and AEO visibility: audit up to 5 pages 300 EUR, up to 10 pages 500 EUR, up to 20 pages 800 EUR, AI visibility implementation 700 EUR or 1200 EUR, maintenance from 80 EUR per month. https://gatisdesign.com/seo-geo-aeo
-- Ad hoc work and consulting on an existing solution: 60 EUR per hour. Projects are sold at a fixed price and deadline, not by the hour.
+- [E-pasts: connect@gatisdesign.com](mailto:connect@gatisdesign.com): ātrākais veids, kā sākt sarunu. Atbildu vienas darba dienas laikā.
+- [LinkedIn](https://www.linkedin.com/in/gatis-daugavietis-bb5566193): profesionālais profils un darba gaitas.
+- [Dribbble](https://dribbble.com/gdesign90): dizaina darbu izlase.
+- [Instagram](https://instagram.com/gatisdesign): darba ikdiena un jaunākie darbi.
+- [Facebook](https://facebook.com/GatisDesign): Facebook lapa.
 
-## Expertise
-- Website development on WordPress and in code: React, Vite, statically generated HTML
-- Brand identity, logos, brand books, print materials and packaging
-- AI agents and automations for internal company processes
-- SEO, generative engine optimisation (GEO), answer engine optimisation (AEO), local visibility in Google Maps, llms.txt, schema markup and Core Web Vitals
+## Optional
 
-## Facts
-- Experience: 18 years, since 2008
-- Completed projects: more than 100
-- Public portfolio: 23 projects, each with a named client, role and year
-- Markets: Latvia, Estonia, Lithuania, United States
-- VAT: not VAT registered, the quoted price is final
-- Payment terms: 5 working days
+2026. gada septembrī angļu valodas versijas vēl top. Līdz publicēšanai šajās adresēs apzināti tiek rādīts latviešu teksts un tās satur `noindex` tagu, tāpēc par kanonisko avotu uzskatāmas iepriekš uzskaitītās latviešu lapas. Šīs adreses var atvērt ar tiešu saiti, bet tās nav sitemap failā.
 
-## Contact
-- Email: connect@gatisdesign.com
-- Location: Riga, Latvia
-- Dribbble: https://dribbble.com/gdesign90
-- LinkedIn: https://www.linkedin.com/in/gatis-daugavietis-bb5566193
-
-## Note on language versions
-The pages listed above are in Latvian and are the canonical source. English versions live under https://gatisdesign.com/en and are being written; until they are published they carry a noindex tag and mirror the Latvian text.
+- [Home (EN)](https://gatisdesign.com/en): one person for brand, website, AI agents and visibility in Google and AI answers.
+- [Website development (EN)](https://gatisdesign.com/en/website-development): landing page from 500 EUR, multi-section company website 900-1500 EUR, two-language online store from 2500 EUR.
+- [Brand identity (EN)](https://gatisdesign.com/en/brand-identity): logo with 3-4 concepts 500-700 EUR, brand book 350-500 EUR, extended brand book with strategy 3000 EUR, print materials 120-900 EUR.
+- [SEO, GEO and AEO (EN)](https://gatisdesign.com/en/seo-geo-aeo): audit 300-800 EUR by page count, AI SEO base implementation 700 EUR, standard implementation 1200 EUR, maintenance from 80 EUR per month.
+- [AI agents (EN)](https://gatisdesign.com/en/ai-agents): process audit from 400 EUR, one automation 900-1800 EUR, multi-system integration from 2500 EUR, monitoring from 100 EUR per month.
+- [Portfolio (EN)](https://gatisdesign.com/en/portfolio): 33 published works, each listing the client and my role.
+- [About (EN)](https://gatisdesign.com/en/about): designer and developer in Riga, 18 years of experience, working solo.
+- [Contact (EN)](https://gatisdesign.com/en/contact): connect@gatisdesign.com, Riga, Latvia, reply within one working day.

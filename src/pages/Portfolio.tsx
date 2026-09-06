@@ -4,10 +4,11 @@ import JsonLd, { buildBreadcrumbSchema } from "@/components/JsonLd";
 import Reveal from "@/components/animations/Reveal";
 import LineReveal from "@/components/animations/LineReveal";
 import Label from "@/components/ui/Label";
-import { Section } from "@/components/direction/Section";
+import { Section, SectionTitle } from "@/components/direction/Section";
+import LinkedText from "@/components/content/LinkedText";
 import ProjectCard from "@/components/ProjectCard";
 import ClosingLine from "@/components/content/ClosingLine";
-import { projects, CATEGORY_LABEL, type ProjectCategory } from "@/data/projects";
+import { CATEGORY_LABEL, indexableProjects, projects, type ProjectCategory } from "@/data/projects";
 import { useLocale } from "@/i18n/LocaleContext";
 import { pathFor } from "@/i18n/routes";
 import { CONTACT_EMAIL, SITE_URL } from "@/lib/site";
@@ -15,8 +16,23 @@ import { cn } from "@/lib/utils";
 
 type Filter = "all" | ProjectCategory;
 
-const META_DESCRIPTION =
-  "23 pabeigti projekti: mājaslapu izstrādes piemēri, logo un zīmola darbi. Estire, Box Latvia, ROIS.lv, Apmeklē.lv. Katram projektam norādīta loma un gads.";
+/**
+ * Darbu skaits nāk no datiem, ne no rokas. Iepriekš te stāvēja "23 pabeigti
+ * projekti", un pēc tam, kad 4. kārta pievienoja desmit vietnes, meta apraksts
+ * apgalvoja vienu skaitli, bet lapa rādīja citu.
+ */
+const META_DESCRIPTION = `${projects.length} publicēti darbi: mājaslapu izstrāde, logo un zīmola dizains. Estire, Box Latvia, ROIS.lv, Apmeklē.lv. Katram darbam norādīts klients un mana loma.`;
+
+/**
+ * Divas sadaļas zem režģa. Teksts dzīvo šeit, ne satura failā, jo /portfolio
+ * satura faila nav - dati nāk no projects.raw.json. Ja lapa iegūs savu JSON,
+ * abas rindkopas pārceļas turp.
+ */
+const WEB_NOTE =
+  "Darbu sarakstā ir divi tehnoloģiju ceļi. WordPress ar Elementor vai Breakdance - tad, kad saturu pēc palaišanas maina klients pats; tā uzbūvēta lielākā daļa šo lapu. Kodēta lapa ar React un Vite - tad, kad saturs mainās reti, bet svarīgi ir ātrums un dizaina precizitāte: Estire, ROIS.lv, Universal Solutions. Atsevišķa grupa ir veikali WooCommerce vai Shopify vidē, kā arī daudzvalodu lapas ar WPML. Cenas un termiņus katram no šiem ceļiem atradīsi lapā [Mājaslapu izstrāde](/majaslapu-izstrade).";
+
+const BRAND_NOTE =
+  "Šajā sadaļā ir gan pilnas identitātes ar zīmola grāmatu un drukas materiāliem, gan atsevišķi logotipi. Box Latvia ir loģistikas zīmols ar transportlīdzekļu marķējumu, Apmeklē.lv - platformas zīme, kurai jāstrādā lietotnes ikonas izmērā, Digitālais Dzintars - plakātu un afišu sistēma. Daļu darbu veidoju ROIS komandā, daļu viens pats, un pie katra tas ir norādīts. Cenas ir lapā [Logo izveide un zīmola identitāte](/zimola-identitate).";
 
 /**
  * Režģa ritms. Piecu flīžu cikls: divas platas (7+5), tad trīs vienādas (4+4+4).
@@ -63,8 +79,10 @@ export default function Portfolio() {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Gatis Daugavieša darbi",
-    numberOfItems: projects.length,
-    itemListElement: projects.map((project, i) => ({
+    // Sarakstā tikai tie darbi, kuriem ir sava indeksējama lapa. Nosaukt
+    // `noindex` adresi strukturētā sarakstā nozīmē aicināt to indeksēt.
+    numberOfItems: indexableProjects.length,
+    itemListElement: indexableProjects.map((project, i) => ({
       "@type": "ListItem",
       position: i + 1,
       name: project.title,
@@ -106,8 +124,8 @@ export default function Portfolio() {
               <span aria-hidden="true" className="text-amber">
                 &#8627;
               </span>{" "}
-              Projekti, kas strādā arī ārpus prezentācijas. Pie katra darba ir norādīts klients, mana
-              loma un gads - daļa projektu tapa ROIS komandā, daļa - vienam pašam.
+              Projekti, kas strādā arī ārpus prezentācijas. Katram darbam norādīts klients un mana
+              loma - daļu veidoju ROIS komandā, daļu viens pats.
             </p>
           </Reveal>
         </div>
@@ -183,6 +201,34 @@ export default function Portfolio() {
           </Label>
         </p>
       </Section>
+
+
+      {/* ============ KO ŠAJĀ SARAKSTĀ MEKLĒT ============ */}
+      {/* Lapa bija 277 vārdi ar vienu virsrakstu un bez neviena H2: navigācija,
+          ne galamērķis. Teksts stāv ZEM režģa, jo darbu lapā pirmais ir darbs.
+          Abas sadaļas ved uz komercijas lapām ar atslēgvārdu enkurā. */}
+      {isLv ? (
+        <Section rhythm="md" surface="ink-850" labelledBy="darbu-veidi">
+          <div className="grid gap-x-12 gap-y-10 md:grid-cols-2">
+            <div>
+              <SectionTitle id="darbu-veidi" className="mb-5">
+                Mājaslapas šajā sarakstā
+              </SectionTitle>
+              <p className="max-w-[58ch] text-[16px] leading-[1.6] text-paper-2">
+                <LinkedText text={WEB_NOTE} />
+              </p>
+            </div>
+            <div>
+              <SectionTitle id="zimola-darbi" className="mb-5">
+                Logo un zīmola darbi
+              </SectionTitle>
+              <p className="max-w-[58ch] text-[16px] leading-[1.6] text-paper-2">
+                <LinkedText text={BRAND_NOTE} />
+              </p>
+            </div>
+          </div>
+        </Section>
+      ) : null}
 
       {/* ============ SĀKSIM ============ */}
       <ClosingLine

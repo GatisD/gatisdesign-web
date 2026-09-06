@@ -333,6 +333,20 @@ export function richness(project: Project): number {
 export const thinSlugs: string[] = projects.filter((p) => !p.summary).map((p) => p.slug);
 
 /**
+ * Projekti, kurus drīkst piedāvāt meklētājam.
+ *
+ * Lapa bez apraksta salika teikumu no metadatu laukiem ("Mājaslapa klientam X.
+ * Loma: izstrāde ROIS komandā.") - Google acīs tas ir plāns saturs, un AI
+ * dzinējiem tur nav ko citēt. Tāpēc tādas lapas paliek sasniedzamas pēc tiešas
+ * adreses, bet iet ārā no sitemap un saņem `noindex`.
+ *
+ * Šis ir NOTEIKUMS, ne saraksts: brīdī, kad `summaryLv` tiek aizpildīts,
+ * lapa pati atgriežas indeksā. Izdomāt tekstu, lai lapa "izskatītos pilna",
+ * nedrīkst - projects.raw.json godīguma noteikums.
+ */
+export const indexableProjects: Project[] = projects.filter((p) => Boolean(p.summary));
+
+/**
  * Saistītie darbi: tā pati kategorija un vismaz viens kopīgs pakalpojums,
  * saraksta secībā, bagātākie pa priekšu. Nākamais projekts tiek izlaists - tas
  * lapā jau ir kā atsevišķs bloks, un divas vienādas saites blakus ir tikai

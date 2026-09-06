@@ -1,5 +1,13 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { handleContact, readConfig, resetRateLimit, RATE_LIMIT, type ContactConfig } from "./contact-core.js";
+import {
+  createTurnstileVerifier,
+  handleContact,
+  readConfig,
+  resetRateLimit,
+  RATE_LIMIT,
+  TURNSTILE_VERIFY_URL,
+  type ContactConfig,
+} from "./contact-core.js";
 import type { EmailMessage } from "./contact-emails.js";
 
 const config: ContactConfig = {
@@ -312,5 +320,148 @@ describe("kontroles rakstzīmes laukos", () => {
     expect(result.status).toBe(400);
     expect((result.body as { fields: Record<string, string> }).fields.timeline).toBe("timelineLong");
     expect(mail.sent).toHaveLength(0);
+  });
+});
+
+describe("Turnstile robotu pārbaude", () => {
+  const guarded: ContactConfig = { ...config, turnstileSecret: "0x_tests_nav_ista_atslega" };
+
+  it("bez noslēpuma pārbaude tiek izlaista un pieteikums aiziet", async () => {
+    const mail = recorder();
+    let called = false;
+    const result = await handleContact({
+      payload: validPayload,
+      ip: freshIp(),
+      config,
+      send: mail.send,
+      verifyTurnstile: async () => {
+        called = true;
+        return true;
+      },
+    });
+    expect(result.status).toBe(200);
+    expect(called).toBe(false);
+    expect(mail.sent).toHaveLength(2);
+  });
+
+  it("ar noslēpumu, bet bez pilnvaras atgriež 400 un nesūta neko", async () => {
+    const mail = recorder();
+    const result = await handleContact({
+      payload: validPayload,
+      ip: freshIp(),
+      config: guarded,
+      send: mail.send,
+      verifyTurnstile: async () => true,
+    });
+    expect(result.status).toBe(400);
+    expect(result.body).toEqual({ ok: false, error: "turnstile" });
+    expect(mail.sent).toHaveLength(0);
+  });
+
+  it("noraidīta pilnvara atgriež 400 un nesūta neko", async () => {
+    const mail = recorder();
+    const result = await handleContact({
+      payload: { ...validPayload, "cf-turnstile-response": "nederiga" },
+      ip: freshIp(),
+      config: guarded,
+      send: mail.send,
+      verifyTurnstile: async () => false,
+    });
+    expect(result.status).toBe(400);
+    expect(result.body).toEqual({ ok: false, error: "turnstile" });
+    expect(mail.sent).toHaveLength(0);
+  });
+
+  it("Cloudflare kļūda nenozīmē 'laižam cauri'", async () => {
+    const mail = recorder();
+    const result = await handleContact({
+      payload: { ...validPayload, "cf-turnstile-response": "pilnvara" },
+      ip: freshIp(),
+      config: guarded,
+      send: mail.send,
+      verifyTurnstile: async () => {
+        throw new Error("tīkls nost");
+      },
+    });
+    // Pārtraukums pie Cloudflare nav cilvēka vaina: 503 un cits teksts, un
+    // vēstule joprojām neaiziet.
+    expect(result.status).toBe(503);
+    expect(result.body).toMatchObject({ ok: false, error: "turnstile_unavailable" });
+    expect(result.headers?.["Retry-After"]).toBe("30");
+    expect(mail.sent).toHaveLength(0);
+  });
+
+  it("derīga pilnvara laiž cauri, un vēstules aiziet", async () => {
+    const mail = recorder();
+    const seen: Array<[string, string]> = [];
+    const ip = freshIp();
+    const result = await handleContact({
+      payload: { ...validPayload, "cf-turnstile-response": "  pilnvara  " },
+      ip,
+      config: guarded,
+      send: mail.send,
+      verifyTurnstile: async (token, from) => {
+        seen.push([token, from]);
+        return true;
+      },
+    });
+    expect(result.status).toBe(200);
+    expect(seen).toEqual([["pilnvara", ip]]);
+    expect(mail.sent).toHaveLength(2);
+  });
+
+  it("nederīgs pieteikums neaizdedzina Cloudflare pieprasījumu", async () => {
+    const mail = recorder();
+    let called = false;
+    const result = await handleContact({
+      payload: { ...validPayload, email: "nav-e-pasts" },
+      ip: freshIp(),
+      config: guarded,
+      send: mail.send,
+      verifyTurnstile: async () => {
+        called = true;
+        return true;
+      },
+    });
+    expect(result.status).toBe(400);
+    expect(result.body).toMatchObject({ error: "validation" });
+    expect(called).toBe(false);
+  });
+
+  it("pārbaudītājs sūta form-encoded ķermeni un lasa success lauku", async () => {
+    const calls: Array<{ url: string; body: string; headers: Record<string, string> }> = [];
+    const fetchOk = async (url: string, init: { headers: Record<string, string>; body: string }) => {
+      calls.push({ url, body: init.body, headers: init.headers });
+      return { ok: true, json: async () => ({ success: true }) };
+    };
+    const verify = createTurnstileVerifier("noslepums", fetchOk);
+    await expect(verify("pilnvara", "203.0.113.7")).resolves.toBe(true);
+    expect(calls[0].url).toBe(TURNSTILE_VERIFY_URL);
+    expect(calls[0].headers["Content-Type"]).toBe("application/x-www-form-urlencoded");
+    const params = new URLSearchParams(calls[0].body);
+    expect(params.get("secret")).toBe("noslepums");
+    expect(params.get("response")).toBe("pilnvara");
+    expect(params.get("remoteip")).toBe("203.0.113.7");
+
+    // "unknown" ir mūsu pašu vietturis, ne adrese - to nesūtam.
+    const noIp = createTurnstileVerifier("noslepums", fetchOk);
+    await noIp("pilnvara", "unknown");
+    expect(new URLSearchParams(calls[1].body).get("remoteip")).toBeNull();
+
+    const fetchFalse = async () => ({ ok: true, json: async () => ({ success: false }) });
+    await expect(createTurnstileVerifier("noslepums", fetchFalse)("x", "")).resolves.toBe(false);
+
+    // 5xx no Cloudflare met izņēmumu, lai izsaucējs to neuzskatītu par
+    // nederīgu pilnvaru: viens ir pakalpojuma pārtraukums, otrs ir robots.
+    const fetchHttpError = async () => ({ ok: false, json: async () => ({ success: true }) });
+    await expect(createTurnstileVerifier("noslepums", fetchHttpError)("x", "")).rejects.toThrow(
+      /statusu/,
+    );
+  });
+
+  it("readConfig nolasa TURNSTILE_SECRET_KEY", () => {
+    expect(readConfig({ TURNSTILE_SECRET_KEY: "  0xabc  " }).turnstileSecret).toBe("0xabc");
+    expect(readConfig({}).turnstileSecret).toBeUndefined();
+    expect(readConfig({ TURNSTILE_SECRET_KEY: "   " }).turnstileSecret).toBeUndefined();
   });
 });

@@ -1,8 +1,11 @@
 import SEO from "@/components/SEO";
 import JsonLd, { buildBreadcrumbSchema } from "@/components/JsonLd";
 import Label from "@/components/ui/Label";
+import Button from "@/components/ui/Button";
+import MagneticButton from "@/components/animations/MagneticButton";
 import Reveal, { stagger } from "@/components/animations/Reveal";
 import LineReveal from "@/components/animations/LineReveal";
+import { h1Lines } from "@/content/h1";
 import CountUp from "@/components/animations/CountUp";
 import MediaPlaceholder from "@/components/direction/MediaPlaceholder";
 import { Section, SectionTitle } from "@/components/direction/Section";
@@ -13,15 +16,17 @@ import { aboutContent } from "@/content/pages";
 import { statItems } from "@/content/home";
 import { useLocale } from "@/i18n/LocaleContext";
 import { pathFor, type RouteKey } from "@/i18n/routes";
-import { CONTACT_EMAIL, CONTENT_MODIFIED, SITE_NAME, SITE_URL, SOCIAL } from "@/lib/site";
-
-const SERVICE_KEYS = ["services.brand", "services.web", "services.ai", "services.seo"] as const;
-const LABEL_BY_KEY = {
-  "services.brand": "brand",
-  "services.web": "web",
-  "services.ai": "ai",
-  "services.seo": "seo",
-} as const;
+import {
+  CONTACT_EMAIL,
+  CONTENT_MODIFIED,
+  KNOWS_ABOUT,
+  PERSON_JOB_TITLE,
+  PERSON_OCCUPATION,
+  PERSON_SAME_AS,
+  SITE_NAME,
+  SITE_URL,
+  WORK_LOCATION,
+} from "@/lib/site";
 
 /**
  * Skaitļu josla ir TIKAI šeit - zem portreta, kur tā ir biogrāfijas daļa.
@@ -32,7 +37,7 @@ const LABEL_BY_KEY = {
 const FACTS = statItems.filter((stat) => !(stat.value === 1 && stat.suffix === ""));
 
 export default function ParMani() {
-  const { locale, t } = useLocale();
+  const { locale, t, path } = useLocale();
   const isLv = locale === "lv";
   const noindex = !isLv;
 
@@ -45,7 +50,7 @@ export default function ParMani() {
     "@id": PERSON_ID,
     name: "Gatis Daugavietis",
     alternateName: SITE_NAME,
-    jobTitle: "Web dizainers un izstrādātājs",
+    jobTitle: PERSON_JOB_TITLE,
     description: aboutContent.directAnswer,
     url: SITE_URL,
     mainEntityOfPage: abs("about"),
@@ -53,8 +58,13 @@ export default function ParMani() {
     image: `${SITE_URL}/og-image.png`,
     address: { "@type": "PostalAddress", addressLocality: "Rīga", addressCountry: "LV" },
     knowsLanguage: ["lv", "en"],
-    knowsAbout: SERVICE_KEYS.map((key) => t.services[LABEL_BY_KEY[key]]),
-    sameAs: [SOCIAL.linkedin, SOCIAL.instagram, SOCIAL.dribbble, SOCIAL.facebook],
+    knowsAbout: KNOWS_ABOUT,
+    // Abi faili apraksta VIENU `@id`. Ja tie atšķiras, parseris redz divus
+    // dažādus cilvēkus ar vienu identifikatoru, tāpēc lauki nāk no vienas
+    // konstantes (src/lib/site.ts), ne no divām kopijām.
+    hasOccupation: PERSON_OCCUPATION,
+    workLocation: WORK_LOCATION,
+    sameAs: PERSON_SAME_AS,
     dateModified: CONTENT_MODIFIED,
   };
 
@@ -100,7 +110,7 @@ export default function ParMani() {
             <LineReveal
               as="h1"
               id="par-h"
-              lines={["Gatis", "Daugavietis"]}
+              lines={h1Lines(aboutContent.h1, 1)}
               className="text-display-2 font-bold uppercase text-paper"
             />
             <Reveal delay={0.2} className="mt-[clamp(20px,3vw,34px)] max-w-[54ch]">
@@ -110,6 +120,22 @@ export default function ParMani() {
                 </span>{" "}
                 {aboutContent.heroLede ?? aboutContent.directAnswer}
               </p>
+            </Reveal>
+            {/* Lapā nebija nevienas pogas: 1408 vārdi par to, kā es strādāju,
+                un neviena vieta, kur to sākt. Darbība ir tā pati, kas
+                pakalpojumu lapās, lai lapas nesolītu dažādus ceļus. */}
+            <Reveal delay={0.3} className="mt-[clamp(24px,3.4vw,40px)] flex flex-wrap items-center gap-x-8 gap-y-4">
+              <MagneticButton>
+                <Button to={path("contact")}>
+                  {isLv ? "Pastāsti par projektu" : "Tell me about your project"}
+                </Button>
+              </MagneticButton>
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="inline-flex min-h-[44px] items-center text-[16px] text-paper transition-colors duration-300 hover:text-amber active:text-amber"
+              >
+                <span className="border-b border-line-amber pb-1.5">{CONTACT_EMAIL}</span>
+              </a>
             </Reveal>
           </div>
         </div>

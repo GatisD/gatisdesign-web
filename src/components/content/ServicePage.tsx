@@ -11,6 +11,8 @@ import { Section, SectionTitle } from "@/components/direction/Section";
 import ContentSections, { priceSection, tocFor } from "./ContentSections";
 import FaqList from "./FaqList";
 import { buildServiceSchema } from "./serviceSchema";
+import { SERVICE_HERO } from "./serviceHero";
+import { h1Lines } from "@/content/h1";
 import type { ServiceContent, ServiceRouteKey } from "@/content";
 import { headingId } from "@/content/slug";
 import { useLocale } from "@/i18n/LocaleContext";
@@ -29,49 +31,6 @@ const LABEL_BY_KEY = {
   "services.seo": "seo",
 } as const;
 
-/**
- * Katras pakalpojumu lapas galvas kadrs un vidusjosla. Fona attēli šobrīd ir
- * pagaidu stock kadri: struktūra jau ir gatava video (HeroMedia `video`), bet
- * paša video vēl nav uzņemts.
- */
-const MEDIA: Record<
-  ServiceRouteKey,
-  { titleLines: string[]; poster: string; posterPosition?: string; band: { poster: string; text: string } }
-> = {
-  "services.brand": {
-    titleLines: ["Zīmola", "identitāte"],
-    poster: "/media/hero-brand.jpg",
-    posterPosition: "center 40%",
-    band: {
-      poster: "/media/band-brand.jpg",
-      text: "Viena zīme, kas salasāma gan no divdesmit metriem uz kravas auto, gan no trīsdesmit centimetriem uz vizītkartes.",
-    },
-  },
-  "services.web": {
-    titleLines: ["Mājaslapu", "izstrāde"],
-    poster: "/media/hero-web.jpg",
-    band: {
-      poster: "/media/band-craft.jpg",
-      text: "Testa adrese ir pieejama no pirmās nedēļas: tu redzi lapu topam, nevis saņem to gatavu prezentācijā.",
-    },
-  },
-  "services.ai": {
-    titleLines: ["AI aģenti un", "automatizācija"],
-    poster: "/media/hero-ai.jpg",
-    band: {
-      poster: "/media/band-console.jpg",
-      text: "Kad dati plūst paši, komanda pamana kļūdu pirms klienta, nevis pēc tam.",
-    },
-  },
-  "services.seo": {
-    titleLines: ["SEO, GEO", "un AEO"],
-    poster: "/media/hero-seo.jpg",
-    band: {
-      poster: "/media/band-seo.jpg",
-      text: "Lai lapu atrastu Google meklēšanā un lai ChatGPT to citētu tad, kad klients jautā tur, nevis meklētājā.",
-    },
-  },
-};
 
 /**
  * Saturs nāk kā props, ne no kartes.
@@ -89,7 +48,7 @@ export default function ServicePage({
   content: ServiceContent;
 }) {
   const { locale, t, path } = useLocale();
-  const media = MEDIA[routeKey];
+  const hero = SERVICE_HERO[routeKey];
   const isLv = locale === "lv";
 
   // EN saturs vēl nav uzrakstīts. Līdz tam EN maršruti rāda LV tekstu ar
@@ -127,10 +86,10 @@ export default function ServicePage({
           darbība ir teksta saite uz cenu tabulu: cilvēks, kurš atnāca pēc
           cenas, nedrīkst to meklēt ar ritināšanu 19 000 px garā lapā. */}
       <PageHero
-        titleLines={media.titleLines}
+        titleLines={h1Lines(content.h1, hero.breakAfter)}
         lede={content.heroLede ?? content.directAnswer}
-        poster={media.poster}
-        posterPosition={media.posterPosition}
+        poster={hero.poster}
+        posterPosition={hero.posterPosition}
         toc={tocFor(content.sections)}
       >
         <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
@@ -150,7 +109,7 @@ export default function ServicePage({
       {/* Etiķešu budžets ir uz LAPU, ne uz izsaukumu: 2 + 2 = 4, un vairāk par
           četrām sānu etiķetēm 14 sekciju dokumentā vairs nav ritms, bet raksts. */}
       <ContentSections sections={first} labelBudget={2} />
-      <Band poster={media.band.poster} text={media.band.text} />
+      <Band poster={hero.band.poster} text={hero.band.text} />
       <ContentSections sections={rest} labelBudget={2} />
 
       {/* ============ JAUTĀJUMI ============ */}

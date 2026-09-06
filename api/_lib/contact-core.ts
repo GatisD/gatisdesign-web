@@ -29,6 +29,8 @@ export type ContactErrorCode =
   | "payload"
   | "validation"
   | "rate_limit"
+  | "turnstile"
+  | "turnstile_unavailable"
   | "config"
   | "send"
   | "server";
@@ -51,6 +53,8 @@ export type ContactConfig = {
   /** Adrese, uz kuru aiziet atbilde uz automātisko vēstuli. */
   replyTo: string;
   apiKey?: string;
+  /** Cloudflare Turnstile noslēpums. Ja tā nav, robotu pārbaude tiek izlaista. */
+  turnstileSecret?: string;
 };
 
 export const DEFAULT_FROM = "Gatis Design <forma@send.gatisdesign.com>";
@@ -68,6 +72,55 @@ export function readConfig(env: Record<string, string | undefined>): ContactConf
     to,
     replyTo: env.CONTACT_REPLY_TO?.trim() || to,
     apiKey: env.RESEND_API_KEY?.trim() || undefined,
+    turnstileSecret: env.TURNSTILE_SECRET_KEY?.trim() || undefined,
+  };
+}
+
+/* ------------------------------------------------------------------ *
+ * Cloudflare Turnstile
+ *
+ * Medus pods ķer skriptu, kas aizpilda visus laukus; ātruma ierobežojums ķer
+ * atkārtotu sūtīšanu no vienas adreses. Turnstile ķer to, ko neviens no tiem
+ * neredz: vienu pieprasījumu no automatizēta pārlūka ar derīgiem datiem.
+ * ------------------------------------------------------------------ */
+
+export const TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+
+/** Cik ilgi gaidām Cloudflare atbildi, pirms atzīstam pārbaudi par nepieejamu. */
+export const TURNSTILE_TIMEOUT_MS = 4000;
+
+export type VerifyTurnstile = (token: string, ip: string) => Promise<boolean>;
+
+type FetchLike = (url: string, init: {
+  method: string;
+  headers: Record<string, string>;
+  body: string;
+  signal?: AbortSignal;
+}) => Promise<{ ok: boolean; status?: number; json: () => Promise<unknown> }>;
+
+/**
+ * Pārbaude pret Cloudflare. Atgriež TIKAI true/false: ja atbilde nav
+ * viennozīmīgs `success: true`, pieteikums netiek sūtīts.
+ */
+export function createTurnstileVerifier(secret: string, fetchImpl?: FetchLike): VerifyTurnstile {
+  const doFetch = (fetchImpl ?? (globalThis.fetch as unknown as FetchLike));
+  return async (token, ip) => {
+    const params = new URLSearchParams({ secret, response: token });
+    // `remoteip` ir neobligāts; "unknown" ir mūsu pašu vietturis, ne adrese.
+    if (ip && ip !== "unknown") params.set("remoteip", ip);
+    const response = await doFetch(TURNSTILE_VERIFY_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: params.toString(),
+      // Bez šī nogriezuma pakārtā Cloudflare atbilde tur funkciju atvērtu
+      // līdz pat izpildlaika limitam, un cilvēks gaida tukšā.
+      signal: AbortSignal.timeout(TURNSTILE_TIMEOUT_MS),
+    });
+    // Cloudflare 5xx NAV "pilnvara nav derīga". Izņēmums ļauj izsaucējam
+    // atšķirt pakalpojuma pārtraukumu no īsta robota.
+    if (!response.ok) throw new Error(`Turnstile atbildēja ar statusu ${response.status ?? "?"}`);
+    const data = (await response.json()) as { success?: unknown } | null;
+    return data?.success === true;
   };
 }
 
@@ -121,6 +174,8 @@ export type HandleContactInput = {
   config: ContactConfig;
   send: SendEmail;
   logger?: Logger;
+  /** Testiem un citām izpildvidēm. Bez tā tiek veidots parastais HTTP pārbaudītājs. */
+  verifyTurnstile?: VerifyTurnstile;
 };
 
 export async function handleContact(input: HandleContactInput): Promise<ContactResult> {
@@ -160,6 +215,35 @@ export async function handleContact(input: HandleContactInput): Promise<ContactR
     // Logā tikai lauku nosaukumi un kļūdu atslēgas, nekad pati vēstule.
     log.warn("[contact] validācija neizdevās", { fields });
     return { status: 400, body: { ok: false, error: "validation", fields } };
+  }
+
+  // Robotu pārbaude PĒC validācijas: nederīgs pieteikums tāpat neaiziet, un
+  // par katru tukšu formu maksāt ar pieprasījumu uz Cloudflare nav jēgas.
+  if (input.config.turnstileSecret) {
+    const raw = (input.payload as Record<string, unknown> | null)?.["cf-turnstile-response"];
+    const token = typeof raw === "string" ? raw.trim() : "";
+    if (!token) {
+      log.warn("[contact] Turnstile pilnvaras nav");
+      return { status: 400, body: { ok: false, error: "turnstile" } };
+    }
+    const verify = input.verifyTurnstile ?? createTurnstileVerifier(input.config.turnstileSecret);
+    let passed = false;
+    try {
+      passed = await verify(token, input.ip);
+    } catch (error) {
+      // Cloudflare nesasniedzams nedrīkst nozīmēt "laižam cauri visu", bet arī
+      // nedrīkst izskatīties pēc cilvēka vainas: 503 un cits teksts, nevis 400.
+      log.error("[contact] Turnstile pārbaude nav pieejama", { reason: describeError(error) });
+      return {
+        status: 503,
+        body: { ok: false, error: "turnstile_unavailable" },
+        headers: { "Retry-After": "30" },
+      };
+    }
+    if (!passed) {
+      log.warn("[contact] Turnstile pilnvara nav derīga");
+      return { status: 400, body: { ok: false, error: "turnstile" } };
+    }
   }
 
   if (!input.config.apiKey) {

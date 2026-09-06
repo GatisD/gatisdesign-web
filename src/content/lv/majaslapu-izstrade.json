@@ -3,17 +3,16 @@
   "title": "Mājaslapu izstrāde",
   "metaTitle": "Mājaslapu izstrāde: cena no 500 EUR",
   "metaDescription": "Mājaslapu izstrāde ar fiksētu cenu: landing page no 500 EUR, pilna lapa 900-1500 EUR, interneta veikals no 2500 EUR. Neesmu PVN maksātājs - cena ir galīga.",
-  "h1": "Mājaslapu izstrāde, kas nes pieprasījumus",
-  "directAnswer": "Visbiežākais iemesls, kāpēc mani uzrunā, ir lapa, kas izskatās pieklājīgi, bet nenes pieprasījumus. Mājaslapu izstrādi sāku ar struktūru un vienu skaidru darbību katrā lapā. Vienas lapas mājaslapa (landing page) maksā no 500 EUR, pilna uzņēmuma mājaslapa 900-1500 EUR, interneta veikals divās valodās no 2500 EUR. Termiņš - no 5 darba dienām līdz 10 nedēļām. Neesmu PVN maksātājs, tāpēc norādītā summa ir galīga.",
+  "h1": "Mājaslapu izstrāde",
+  "directAnswer": "Mājaslapu izstrādi sāku ar struktūru un vienu skaidru darbību katrā lapā. Vienas lapas mājaslapa (landing page) maksā no 500 EUR, pilna uzņēmuma mājaslapa 900-1500 EUR, interneta veikals divās valodās no 2500 EUR. Termiņš - no 5 darba dienām līdz 10 nedēļām. Neesmu PVN maksātājs, tāpēc norādītā summa ir galīga.",
   "sections": [
     {
       "kicker": "Cenas",
       "heading": "Cik maksā mājaslapas izveide",
       "body": [
-        "Ja tu šo lasi, situācija visdrīzāk ir viena no divām: lapa ir, bet no tās nenāk pieprasījumi, vai arī lapas nav vispār un nav skaidrs, cik tas maksās un cik ilgi vilksies. Cenas jautājumu nokārtoju uzreiz: cena ir zemāk, tabulā, ar konkrētiem skaitļiem. Rādu to publiski, jo pusē sarunu pirmais jautājums tāpat ir par budžetu, un mums abiem ir vienkāršāk, ja jau pirms zvana ir skaidrs, vai esam vienā cenu diapazonā.",
-        "Viena lieta jāpasaka uzreiz: es neesmu PVN maksātājs. Kad konkurents raksta „no 999 EUR”, pie tā parasti vēl jāpieskaita PVN un reālais rēķins ir 1208,79 EUR. Mani 900 EUR ir 900 EUR arī rēķinā. Ja sarunā nosauktā summa ir vienāda, starpība ir 21%.",
-        "Cenu nosaka trīs lietas: lapu skaits, valodu skaits un tas, cik daudz satura man jāsagatavo pašam. Ja teksti un fotogrāfijas ir gatavi, projekts virzās ātrāk un maksā mazāk. Ja teksti jāraksta no nulles un jāorganizē fotosesija, tas ir atsevišķs darbs ar atsevišķu cenu.",
-        "Cenu uz augšu ceļ katra papildu valoda (apmēram +30% no bāzes), interneta veikala funkcionalitāte, integrācijas ar CRM vai grāmatvedības sistēmu, kalkulatori un konfiguratori. Cenu zemāk tur gatavs saturs, skaidra struktūra un viens lēmumu pieņēmējs klienta pusē. Lielākus projektus dalu divās daļās: 50% sākumā, 50% pirms palaišanas."
+        "Neesmu PVN maksātājs. Kad konkurents raksta „no 999 EUR”, tam vēl pieskaita PVN un rēķinā ir 1208,79 EUR. Mani 900 EUR ir 900 EUR arī rēķinā: ja nosauktā summa ir vienāda, starpība ir 21%.",
+        "Cenu nosaka lapu skaits, valodu skaits un tas, cik daudz satura sagatavoju es. Gatavi teksti un fotogrāfijas projektu paātrina un padara lētāku; rakstīšana no nulles un fotosesija ir atsevišķas pozīcijas.",
+        "Cenu ceļ katra papildu valoda (+30% no bāzes), veikala funkcionalitāte, integrācijas ar CRM vai grāmatvedības sistēmu, kalkulatori un konfiguratori. Lielākus projektus dalu divās daļās: 50% sākumā, 50% pirms palaišanas."
       ],
       "table": {
         "caption": "Cenas ir galīgas: neesmu PVN maksātājs, tāpēc šiem skaitļiem nekas netiek pieskaitīts.",
@@ -61,19 +60,18 @@
       "kicker": "Bez papildu rēķina",
       "heading": "Kas ir iekļauts cenā",
       "body": [
-        "Cenā ir nevis tikai skaisti dizaina faili, bet viss, kas vajadzīgs, lai lapa strādātu no pirmās dienas. Neesmu redzējis nevienu gadījumu, kurā klientam būtu noderējis dizains bez uzstādītas analītikas vai bez pārbaudītas kontaktformas.",
-        "Ārpus cenas paliek un tiek saskaņoti atsevišķi: domēns un hostings (tie ir tavi un reģistrēti uz tava uzņēmuma vārda), fotogrāfijas, tekstu rakstīšana no nulles, maksas spraudņu licences un tulkojumi. Tos varu nokārtot es, bet tās ir atsevišķas pozīcijas, nevis bāzes cenā paslēptas izmaksas."
+        "Ārpus cenas paliek un tiek saskaņoti atsevišķi: domēns un hostings (tie ir tavi, reģistrēti uz tava uzņēmuma vārda), fotogrāfijas, tekstu rakstīšana no nulles, maksas spraudņu licences un tulkojumi. Tos varu nokārtot es, bet kā atsevišķas pozīcijas, ne kā bāzes cenā paslēptas izmaksas."
       ],
       "bullets": [
         "Struktūra un lapu karte: kas ir katrā lapā un kādā secībā apmeklētājs to lasa",
-        "Individuāls dizains, nevis nopirkta tēma ar aizvietotu logotipu",
-        "Adaptīvs izkārtojums telefonam, planšetei un datoram; mobilo versiju pārbaudu reālā ierīcē, ne tikai pārlūka simulatorā",
-        "Būve kodā vai WordPress uzstādīšana ar sakārtotu administratora daļu",
+        "Individuāls dizains, ne nopirkta tēma ar aizvietotu logotipu. Pašu zīmi taisu atsevišķi: [zīmola identitāte un logotips](/zimola-identitate)",
+        "Adaptīvs izkārtojums telefonam, planšetei un datoram; mobilo versiju pārbaudu reālā ierīcē, ne simulatorā",
+        "Būvēšana kodā vai WordPress uzstādīšana ar sakārtotu administratora daļu",
         "Tehniskais SEO: title un meta apraksti, virsrakstu hierarhija, sitemap.xml, robots.txt, schema.org strukturētie dati",
         "Google Analytics 4 un Google Search Console pieslēgšana, mērķdarbību uzstādīšana",
         "Kontaktformas ar pārbaudītu e-pasta piegādi, lai pieprasījumi nenonāktu surogātpastā",
         "SSL sertifikāts, 301 pāradresācijas no vecās lapas, sakārtota 404 lapa",
-        "Ātruma optimizācija: attēli WebP formātā, fonti lokāli, bez lieku skriptu slāņa",
+        "Ātruma optimizācija: attēli WebP formātā, fonti lokāli, bez lieka skriptu slāņa",
         "Īsa video pamācība, kā pašam labot saturu tieši tavā lapā"
       ]
     },
@@ -81,27 +79,25 @@
       "kicker": "Piecas sekundes",
       "heading": "Struktūra, kas pārvērš apmeklētājus pieprasījumos",
       "body": [
-        "Lielākā daļa uzņēmumu lapu ir uzbūvētas no uzņēmuma skatpunkta: par mums, mūsu vēsture, mūsu vērtības un tikai kaut kur pēc tam pakalpojumi. Apmeklētājs ienāk ar citu jautājumu - vai šis uzņēmums var atrisināt manu problēmu, cik tas maksās un cik ilgi tas prasīs.",
-        "Tāpēc katru lapu būvēju ap vienu darbību. Ja lapā ir piecas vienlīdz svarīgas pogas, nav nevienas.",
-        "Pēdējais punkts sarakstā zemāk vairs nav niša. Daļa cilvēku atbildi uz jautājumu, kas Rīgā taisa mājaslapas, tagad meklē ChatGPT logā vai Google AI kopsavilkumā, nevis desmit zilajās saitēs. Lai lapa tur parādītos, tai jābūt uzrakstītai konkrēti: skaitļi, cenas, termiņi, nosaukumi. Frāze „individuāla pieeja katram klientam” netiek citēta nekad.",
-        "Ja tev jau ir lapa un tā nav slikta, ne vienmēr vajag jaunu. Reizēm pareizā atbilde ir pārtaisīt divas lapas un salabot ātrumu par trešdaļu no jaunas lapas cenas. To pasaku pēc tam, kad esmu paskatījies, kas tev ir, nevis pirms tam."
+        "Vairums uzņēmumu lapu ir uzbūvētas no uzņēmuma skatpunkta: par mums, vēsture, vērtības un tikai pēc tam pakalpojumi. Apmeklētājs ienāk ar citu jautājumu - vai šis uzņēmums atrisinās manu problēmu, cik tas maksās un cik ilgi prasīs. Tāpēc katru lapu būvēju ap vienu darbību: ja lapā ir piecas vienlīdz svarīgas pogas, nav nevienas.",
+        "Redzamība AI atbildēs vairs nav niša: daļa cilvēku atbildi meklē ChatGPT logā vai Google AI kopsavilkumā, un tur nokļūst tikai konkrēti uzrakstīts teksts - skaitļi, cenas, termiņi, nosaukumi. To pašu principu visai lapai piemēro [atsevišķs SEO darbs ar saturu un saitēm](/seo-geo-aeo).",
+        "Ja lapa tev jau ir un tā nav slikta, jauna ne vienmēr vajadzīga: reizēm pareizā atbilde ir pārtaisīt divas lapas un salabot ātrumu - par trešdaļu no jaunas lapas cenas."
       ],
       "bullets": [
-        "Pirmais ekrāns bez metaforām pasaka, ko tu dari un kam. Apmeklētājs izlemj piecās sekundēs, vai lasīt tālāk.",
-        "Cena vai vismaz cenu diapazons ir redzams. Lapas bez cenām saņem vairāk zvanu, bet sliktāku: cilvēki zvana, lai noskaidrotu, vai vispār to var atļauties.",
+        "Pirmais ekrāns bez metaforām pasaka, ko tu dari un kam. Apmeklētājs izšķiras piecās sekundēs.",
+        "Cena vai vismaz cenu diapazons ir redzams. Lapas bez cenām saņem vairāk zvanu, bet tie ir sliktāki.",
         "Pierādījumi: reāli darbi, klientu nosaukumi, atsauksmes ar vārdu. Attēlu bankas fotogrāfija ar smaidošu komandu nepierāda neko.",
-        "Viena skaidra darbība katrā lapā: zvans, forma vai tikšanās pieprasījums. Forma ar trim laukiem tiek aizpildīta biežāk nekā forma ar desmit.",
-        "FAQ ar reāliem jautājumiem, kurus klienti uzdod pa telefonu. Tieši šo satura daļu AI meklētāji citē visbiežāk."
+        "Viena skaidra darbība katrā lapā. Forma ar trim laukiem tiek aizpildīta biežāk nekā forma ar desmit.",
+        "FAQ ar reāliem jautājumiem, kurus klienti uzdod pa telefonu. Tieši šo daļu AI meklētāji citē visbiežāk."
       ]
     },
     {
       "kicker": "Tehnoloģija",
       "heading": "WordPress vai kods - kad kuru izvēlēties",
       "body": [
-        "Man nav favorīta. Strādāju ar abiem un izvēlos pēc tā, kas ar lapu notiks pēc gada, nevis pēc tā, ko man ir ērtāk uzbūvēt.",
-        "WordPress ņemu, kad saturs dzīvo: blogs, jaunumi, katalogs, kas mainās, vairāki cilvēki, kas raksta. Klients atver redaktoru un maina tekstu bez izstrādātāja. Samaksa par to ir uzturēšana - kodolam, tēmai un spraudņiem regulāri jāsaņem atjauninājumi, citādi pēc gada tev ir nevis mājaslapa, bet drošības problēma.",
-        "Kodu ņemu, kad saturs mainās reti un svarīgākais ir ātrums ar precīzu dizainu. Tāda lapa ir sagatavota jau pirms atvēršanas, tāpēc ielādējas gandrīz uzreiz. Hostings Vercel platformā bieži maksā 0 EUR un uzlaušanai nav kur pieķerties: nav administratora paneļa un nav datubāzes. Estire lapa strādā tieši tā.",
-        "Ja neesi pārliecināts, kurš variants ir tavs, izvēli izdaru es pirmajā sarunā un pamatoju, kāpēc. Nepārdodu WordPress tāpēc, ka tas ir ātrāk uzbūvējams, un nepārdodu kodu tāpēc, ka tas skan modernāk."
+        "Favorīta man nav. Izvēlos pēc tā, kas ar lapu notiks pēc gada, ne pēc tā, ko man ir ērtāk uzbūvēt.",
+        "WordPress ņemu, kad saturs dzīvo: blogs, jaunumi, katalogs, vairāki cilvēki, kas raksta. Tekstu maini pats, bez izstrādātāja, un samaksa par to ir uzturēšana - bez regulāriem atjauninājumiem pēc gada tev ir nevis mājaslapa, bet drošības problēma.",
+        "Kodu ņemu, kad saturs mainās reti un svarīgākais ir ātrums ar precīzu dizainu. Tāda lapa ir sagatavota pirms atvēršanas, hostings Vercel platformā bieži maksā 0 EUR, un uzlauzējam nav kur pieķerties: nav ne administratora paneļa, ne datubāzes."
       ],
       "table": {
         "caption": "Kā izvēlos starp WordPress un koda risinājumu",
@@ -143,14 +139,14 @@
       "kicker": "Process",
       "heading": "Kā notiek darbs: soļi un termiņi",
       "body": [
-        "Strādāju viens. Starp mums nav projektu vadītāja, kas pārstāsta tavus vārdus dizainerim un dizainera vārdus programmētājam. Tas nozīmē īsākus termiņus un to, ka par katru soli atbild viens cilvēks.",
-        "Kopā tas ir no 3 nedēļām maziem projektiem līdz 10 nedēļām e-komercijai. Termiņi turas, ja atbildes nāk 1-2 dienu laikā. Visbiežākais iemesls, kāpēc projekts velkas, nav izstrāde, bet saturs no klienta puses. Tieši tāpēc otrajā solī es tekstus un fotogrāfijas pieprasu rakstiski, pirms sāku zīmēt."
+        "Strādāju viens: starp mums nav projektu vadītāja, kas pārstāsta tavus vārdus dizainerim un dizainera vārdus programmētājam.",
+        "Kopā tas ir no 3 nedēļām maziem projektiem līdz 10 nedēļām e-komercijai. Visbiežāk projektu velk garumā nevis izstrāde, bet saturs no klienta puses - tāpēc tekstus un fotogrāfijas pieprasu otrajā solī, pirms sāku zīmēt."
       ],
       "steps": [
         {
           "title": "Saruna un piedāvājums",
           "meta": "1-2 dienas",
-          "text": "Uzdodu jautājumus par biznesu, konkurentiem un to, kas lapai jāpanāk. Atsūtu fiksētu cenu un termiņu rakstiski, nevis vārdu „no”."
+          "text": "Uzdodu jautājumus par biznesu, konkurentiem un to, kas lapai jāpanāk. Atsūtu fiksētu cenu un termiņu rakstiski, ne vārdu „no”."
         },
         {
           "title": "Struktūra un saturs",
@@ -160,12 +156,12 @@
         {
           "title": "Dizains",
           "meta": "5-10 dienas",
-          "text": "Rādu sākumlapu un vienu iekšējo lapu. Divas labojumu kārtas ir cenā. Kad dizains ir apstiprināts, izkārtojumu no pamatiem vairs nemainu."
+          "text": "Rādu sākumlapu un vienu iekšējo lapu. Divas labojumu kārtas ir cenā. Pēc apstiprinājuma izkārtojumu no pamatiem vairs nemainu."
         },
         {
           "title": "Būvēšana",
           "meta": "7-15 dienas",
-          "text": "Lapa top testa adresē, kuru vari atvērt jebkurā brīdī, nevis tikai gala prezentācijā. Paralēli uzstādu analītiku un sakārtoju tehnisko SEO."
+          "text": "Lapa top testa adresē, ko vari atvērt jebkurā brīdī, ne tikai gala prezentācijā. Paralēli uzstādu analītiku un tehnisko SEO."
         },
         {
           "title": "Testēšana",
@@ -175,7 +171,7 @@
         {
           "title": "Palaišana",
           "meta": "1 diena",
-          "text": "Pārceļu lapu uz tavu domēnu, uzstādu SSL sertifikātu, izveidoju 301 tipa pāradresācijas no vecajām saitēm un iesniedzu sitemap.xml Google Search Console kontā."
+          "text": "Pārceļu lapu uz tavu domēnu, uzstādu SSL sertifikātu, izveidoju 301 pāradresācijas no vecajām saitēm un iesniedzu sitemap.xml Google Search Console kontā."
         }
       ]
     },
@@ -183,36 +179,34 @@
       "kicker": "Ātrums",
       "heading": "Ātrums un Core Web Vitals",
       "body": [
-        "Google mēra trīs rādītājus, kas ir daļa no meklētāja algoritma: LCP - cik ātri parādās lapas galvenais saturs (mērķis - mazāk nekā 2,5 sekundes), INP - cik ātri lapa atbild uz klikšķi (mazāk nekā 200 ms) un CLS - cik daudz saturs lec, kamēr lapa ielādējas (mazāk nekā 0,1).",
-        "Praksē lēna lapa maksā divreiz. Apmeklētājs aiziet, pirms ir redzējis piedāvājumu, un Google to rāda zemāk par ātrāku konkurentu. Lielākie bremzētāji, ko redzu klientu lapās, nav saistīti ar hostingu. Tie ir neoptimizēti attēli tieši no fotoaparāta un pieci spraudņi, kas dara vienu un to pašu.",
-        "Ko daru es: attēlus pārveidoju WebP formātā konkrētos izmēros, fontus turu uz sava servera, nevis velku no sveša, kritisko CSS ielieku uzreiz un pārējo atlieku, un neizmantoju smagus vizuālo lapu konstruktoru risinājumus tur, kur tie nav vajadzīgi. Mēru mobilajā režīmā, jo tur skaitļi ir sliktākie un tur ir lielākā daļa apmeklētāju.",
-        "Pēdējais solis nav mērāms testā. Katru pabeigto lapu atveru savā telefonā un eju tai cauri kā apmeklētājs. Simulators nerāda, ka poga ir par mazu īkšķim vai ka teksts uz attēla nav salasāms saulē."
+        "Google mēra trīs rādītājus, kas ir daļa no algoritma: LCP - cik ātri parādās galvenais saturs (mērķis zem 2,5 sekundēm), INP - cik ātri lapa atbild uz klikšķi (zem 200 ms), CLS - cik daudz saturs lec ielādes laikā (zem 0,1).",
+        "Lēna lapa maksā divreiz: apmeklētājs aiziet, pirms redzējis piedāvājumu, un Google to rāda zemāk par ātrāku konkurentu. Bremzē nevis hostings, bet neoptimizēti attēli tieši no fotoaparāta un pieci spraudņi, kas dara vienu un to pašu.",
+        "Ko daru es: attēlus pārveidoju WebP formātā konkrētos izmēros, fontus turu uz sava servera, kritisko CSS ielieku uzreiz un pārējo atlieku. Mēru mobilajā režīmā - tur skaitļi ir sliktākie un tur ir lielākā daļa apmeklētāju.",
+        "Pēdējais solis testā nav mērāms: katru pabeigto lapu atveru savā telefonā un eju tai cauri kā apmeklētājs. Simulators nerāda, ka poga ir par mazu īkšķim vai ka teksts uz attēla nav salasāms saulē."
       ]
     },
     {
       "kicker": "Desmit klienti",
       "heading": "Reāli piemēri",
       "body": [
-        "Starp klientiem ir MLM Cargo, ARM Metals, Tavasdurvis, Box Latvia, Tenter, Improvement, Cafeteria, Forevolt, DarbaGuru un Apmeklē.lv. Loģistika, ražošana, tirdzniecība, medicīna, pakalpojumi. 18 gadu pieredze un klienti Latvijā, Igaunijā, Lietuvā un ASV."
+        "Starp klientiem ir MLM Cargo, ARM Metals, Tavasdurvis, Box Latvia, Tenter, Improvement, Cafeteria, Forevolt, DarbaGuru un Apmeklē.lv: loģistika, ražošana, tirdzniecība, medicīna, pakalpojumi. [18 gadu pieredze](/par-mani), klienti Latvijā, Igaunijā, Lietuvā un ASV. Visus darbus var apskatīt [portfolio sadaļā](/portfolio)."
       ],
       "bullets": [
-        "Estire: lapa uzbūvēta kodā un darbojas Vercel platformā. Izvēlējos kodu, nevis WordPress, jo saturs mainās reti, bet ātrums un dizaina precizitāte bija svarīgi. Hostings praktiski neko nemaksā un ikmēneša uzturēšana nav vajadzīga.",
-        "Universal Solutions: lapa ar pilnu GDPR risinājumu - piekrišana sīkdatnēm, Consent Mode v2 un formu vēstules, ko piegādā atsevišķa infrastruktūra, lai pieprasījumi nepazustu surogātpastā.",
-        "Valis Stomatoloģija: klīnikas lapa, kurā galvenā darbība ir pieraksts pie ārsta. Struktūru veidoju ap šo vienu darbību, nevis ap uzņēmuma vēsturi.",
-        "Lauvas Zobs: neliels zīmols, kuram viss vajadzīgais ietilpa dažās lapās. Šeit strādā landing page loģika - viens vēstījums, viena darbība, bez liekām sadaļām."
+        "Estire: lapa kodā, Vercel platformā. Saturs mainās reti, bet ātrums un dizaina precizitāte ir svarīgi; hostings praktiski neko nemaksā un ikmēneša uzturēšana nav vajadzīga.",
+        "Universal Solutions: pilns GDPR risinājums - piekrišana sīkdatnēm, Consent Mode v2 un formu vēstules, ko piegādā atsevišķa infrastruktūra, lai pieprasījumi nepazustu surogātpastā.",
+        "Valis Stomatoloģija: klīnikas lapa, kurā galvenā darbība ir pieraksts pie ārsta. Struktūra veidota ap šo vienu darbību, ne ap uzņēmuma vēsturi.",
+        "Lauvas Zobs: neliels zīmols, kuram viss vajadzīgais ietilpa dažās lapās - viens vēstījums, viena darbība."
       ]
     },
     {
       "kicker": "50-150 EUR/mēn",
       "heading": "Kas notiek pēc palaišanas",
       "body": [
-        "Palaišana nav finiša līnija. Pirmajās nedēļās kļūst redzams, ko cilvēki lapā dara patiesībā, nevis ko mēs abi bijām iedomājušies.",
-        "Divas nedēļas pēc palaišanas es ieskatos analītikā: kur apmeklētāji apstājas, kuras lapas neviens neatver, vai formas tiek aizpildītas līdz galam. No tā parasti izriet divas trīs nelielas izmaiņas un tās ir iekļautas cenā.",
-        "Tālāk ir izvēle. Vari uzturēt lapu pats: iedodu piekļuves un pamācību, tad atstāju tevi mierā. Vai arī uzturēšanu atstāj man.",
-        "Uzturēšana nav obligāta un netiek piesaistīta izstrādes līgumam. Bet WordPress lapa bez atjauninājumiem gada laikā kļūst par drošības risku. Esmu tīrījis pietiekami daudz uzlauztu lapu, lai to pateiktu tieši, nevis pieklājīgi."
+        "Palaišana nav finiša līnija. Divas nedēļas pēc tās ieskatos analītikā: kur apmeklētāji apstājas, kuras lapas neviens neatver, vai formas tiek aizpildītas līdz galam. No tā parasti izriet divas trīs nelielas izmaiņas, un tās ir iekļautas cenā. Ja pieprasījumus apstrādā ar roku, šo posmu var pārņemt [AI aģents mājaslapā](/ai-agenti).",
+        "Tālāk vai nu uzturi lapu pats - iedodu piekļuves un pamācību - vai atstāj to man. Uzturēšana nav obligāta, bet WordPress lapa bez atjauninājumiem gada laikā kļūst par drošības risku."
       ],
       "bullets": [
-        "Pamata uzturēšana, 50-80 EUR/mēn: WordPress kodola, tēmas un spraudņu atjauninājumi, ikdienas rezerves kopijas ar iespēju atgriezties pie iepriekšējās versijas, drošības uzraudzība, darbspējas pārraudzība un neliels tehniskais atbalsts.",
+        "Pamata uzturēšana, 50-80 EUR/mēn: WordPress kodola, tēmas un spraudņu atjauninājumi, ikdienas rezerves kopijas ar atgriešanos pie iepriekšējās versijas, drošības un darbspējas uzraudzība, neliels tehniskais atbalsts.",
         "Pilna paka, 100-150 EUR/mēn: viss iepriekšējais plus satura izmaiņas (jaunas lapas, produkti, ziņas), Search Console un pozīciju uzraudzība, ikmēneša atskaite un ātruma pārbaude."
       ]
     },
@@ -220,24 +214,23 @@
       "kicker": "Rīga un tālāk",
       "heading": "Mājaslapu izstrāde Rīgā un attālināti",
       "body": [
-        "Es esmu Rīgā. Ja tev patīk runāt klātienē, satiekamies. Tas nemaksā neko un parasti aiztaupa divas e-pastu kārtas. Ja klātiene nav vajadzīga, viss notiek attālināti un tā strādā lielākā daļa klientu.",
-        "Attālums praksē neko nemaina. Struktūra dzīvo vienā koplietotā dokumentā, dizains nāk kā saite, ko var komentēt, un topošo lapu vari atvērt jebkurā brīdī. Sarakste latviski vai angliski.",
-        "Vairākvalodu lapas esmu būvējis gan WordPress vidē ar WPML, gan kodā. Ja plāno igauņu vai lietuviešu tirgu, par valodām ir vērts runāt pirms struktūras, nevis pēc palaišanas - vēlāk tas maksā dārgāk."
+        "Esmu Rīgā. Ja tev patīk runāt klātienē, satiekamies; pārējais notiek attālināti, un tā strādā lielākā daļa klientu. Struktūra dzīvo vienā koplietotā dokumentā, dizains nāk kā saite, ko var komentēt, un topošo lapu vari atvērt jebkurā brīdī. Sarakste latviski vai angliski.",
+        "Vairākvalodu lapas esmu būvējis gan WordPress vidē ar WPML, gan kodā. Ja plāno igauņu vai lietuviešu tirgu, par valodām ir vērts runāt pirms struktūras: vēlāk tas maksā dārgāk."
       ]
     },
     {
       "kicker": "Godīgi",
       "heading": "Kad es neesmu īstā izvēle",
       "body": [
-        "Ne katrs projekts ir mans, un to labāk pateikt uzreiz. Ja budžets ir zem 500 EUR, ja lapa vajadzīga parīt, ja meklē aģentūru ar komandu vai ja gaidi, ka lapa pati atvedīs apmeklētājus, es nebūšu labākā izvēle - pilns saraksts ir /par-mani."
+        "Ja budžets ir zem 500 EUR, ja lapa vajadzīga parīt, ja meklē aģentūru ar komandu vai ja gaidi, ka lapa pati atvedīs apmeklētājus, es neesmu īstā izvēle. Pilns saraksts ir sadaļā [Kad viens cilvēks nav īstā izvēle](/par-mani)."
       ]
     },
     {
       "kicker": "Sākums",
       "heading": "Kā sākt",
       "body": [
-        "Uzraksti uz connect@gatisdesign.com un pastāsti trīs lietas: ko dara tavs uzņēmums, kas tev ir tagad (lapa, domēns, teksti, fotogrāfijas) un kad tas vajadzīgs. Ar to pietiek, lai atsūtītu konkrētu cenu un termiņu, nevis vārdu „no”.",
-        "Atbildu vienas darba dienas laikā. Ja projekts nav mans, pateikšu to uzreiz un, ja varēšu, ieteikšu, pie kā vērsties."
+        "Uzraksti uz connect@gatisdesign.com un pastāsti trīs lietas: ko dara tavs uzņēmums, kas tev ir tagad (lapa, domēns, teksti, fotogrāfijas) un kad tas vajadzīgs. Ar to pietiek konkrētai cenai un termiņam, ne vārdam „no”.",
+        "Atbildu vienas darba dienas laikā. Ja projekts nav mans, pateikšu uzreiz un, ja varēšu, ieteikšu, pie kā vērsties."
       ]
     }
   ],
@@ -248,11 +241,11 @@
     },
     {
       "q": "Cik ilgā laikā tiek izstrādāta mājaslapa?",
-      "a": "Landing page prasa 5-10 darba dienas, pilna mājaslapa 3-5 nedēļas, e-komercija divās valodās 6-10 nedēļas. Termiņš turas, ja atbildes un saturs no klienta puses nāk 1-2 dienu laikā. Visbiežākais kavējuma iemesls nav izstrāde, bet tekstu un fotogrāfiju gaidīšana."
+      "a": "Landing page prasa 5-10 darba dienas, pilna mājaslapa 3-5 nedēļas, e-komercija divās valodās 6-10 nedēļas. Termiņš turas, ja saturs un atbildes nāk 1-2 dienu laikā; visbiežākais kavējuma iemesls nav izstrāde, bet tekstu un fotogrāfiju gaidīšana."
     },
     {
       "q": "Kas ir labāks - WordPress vai kodā rakstīta lapa?",
-      "a": "WordPress der, ja saturs mainās bieži un gribi to rediģēt pats: blogs, jaunumi, katalogs. Kodā rakstīta lapa der, ja saturs ir stabils un svarīgs ir ātrums ar precīzu dizainu - tā ielādējas ātrāk, hostings bieži maksā 0 EUR un ikmēneša uzturēšana praktiski nav vajadzīga. Izvēli izdaru pirmajā sarunā un pamatoju."
+      "a": "WordPress der, ja saturs mainās bieži un gribi to rediģēt pats: blogs, jaunumi, katalogs. Kodā rakstīta lapa der, ja saturs ir stabils un svarīgs ir ātrums ar precīzu dizainu: tā ielādējas ātrāk, hostings bieži maksā 0 EUR un ikmēneša uzturēšana praktiski nav vajadzīga. Izvēli izdaru pirmajā sarunā un pamatoju."
     },
     {
       "q": "Vai cenai jāpieskaita PVN?",
@@ -260,11 +253,11 @@
     },
     {
       "q": "Vai varēšu pats labot saturu?",
-      "a": "Jā. WordPress lapā saturu rediģē vizuālajā redaktorā pārlūkā: tekstus, attēlus, jaunas ziņas. Pēc palaišanas iedodu piekļuves un īsu video pamācību par tavu konkrēto lapu. Kodā rakstītās lapās satura izmaiņas parasti daru es, vai arī pieslēdzu vieglu CMS, ja plāno rediģēt bieži."
+      "a": "Jā. WordPress lapā saturu rediģē vizuālajā redaktorā pārlūkā, un pēc palaišanas iedodu piekļuves un īsu video pamācību par tavu konkrēto lapu. Kodā rakstītās lapās satura izmaiņas daru es vai pieslēdzu vieglu CMS, ja plāno rediģēt bieži."
     },
     {
       "q": "Kam pieder domēns, hostings un lapas kods?",
-      "a": "Tev. Domēns tiek reģistrēts uz tava uzņēmuma vārda, hostinga konts ir tavs un pēc gala norēķina saņem visas piekļuves un pirmkodu. Neko nepaturu pie sevis kā sviru. Ja kādreiz gribēsi mainīt izstrādātāju, aizej ar visu lapu bez atsevišķām sarunām."
+      "a": "Tev. Domēns tiek reģistrēts uz tava uzņēmuma vārda, hostinga konts ir tavs, un pēc gala norēķina saņem visas piekļuves un pirmkodu. Ja kādreiz gribēsi mainīt izstrādātāju, aizej ar visu lapu."
     },
     {
       "q": "Vai jaunā mājaslapa būs redzama Google?",
@@ -275,7 +268,7 @@
     "/zimola-identitate - enkurs „zīmola identitāte un logotips”; sadaļā „Kas ir iekļauts cenā”, pie individuālā dizaina",
     "/seo-geo-aeo - enkurs „atsevišķs SEO darbs ar saturu un saitēm”; FAQ atbildē par redzamību Google un sadaļā „Struktūra, kas pārvērš apmeklētājus pieprasījumos” pie AI meklētājiem",
     "/ai-agenti - enkurs „AI aģents mājaslapā”; sadaļā „Kas notiek pēc palaišanas”, pie pieprasījumu apstrādes",
-    "/portfolio - enkurs „pilns darbu portfolio”; sadaļas „Reāli piemēri” beigās",
+    "/portfolio - enkurs „portfolio sadaļā”; sadaļas „Reāli piemēri” beigās",
     "/par-mani - enkurs „18 gadu pieredze”; sadaļās „Reāli piemēri” un „Kad es neesmu īstā izvēle”",
     "/kontakti - enkurs „uzraksti man”; sadaļā „Kā sākt” un pēc cenu tabulas"
   ],

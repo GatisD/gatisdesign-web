@@ -3,18 +3,16 @@
   "title": "GEO optimizācija, SEO un AEO",
   "metaTitle": "SEO optimizācija un audits - cena no 300 EUR",
   "metaDescription": "SEO audits no 300 EUR, GEO un AEO ieviešana no 700 EUR. Fiksētas cenas, lai tevi atrastu Google un citētu ChatGPT atbildēs. Rīga, klienti Baltijā un ASV.",
-  "h1": "Klients jautā ChatGPT, un tevis tur nav: GEO optimizācija, SEO un AEO",
+  "h1": "SEO, GEO un AEO optimizācija",
   "directAnswer": "Daļa klientu vairs nepārlūko Google desmit zilās saites - viņi jautā ChatGPT vai paļaujas uz Google AI kopsavilkumu, un tur tavas lapas nav. GEO optimizācija panāk, ka modelis tevi nosauc un citē. Darba pamatā ir tehniskais SEO, citējami fragmenti un schema markup. Audits līdz 5 lapām maksā 300 EUR, ieviešana sākas no 700 EUR, pirmās izmaiņas redzamas 6-10 nedēļās.",
   "sections": [
     {
       "kicker": "Divas nozīmes",
       "heading": "Kas ir GEO optimizācija un kāpēc šis termins mulsina",
       "body": [
-        "Pieprasījumi kļūst retāki, kaut arī lapa nav mainījusies un Google pozīcijas ir tur, kur bijušas. Daļa klientu vairs nemeklē tā, kā agrāk: viņi uzraksta jautājumu ChatGPT vai izlasa Google AI kopsavilkumu lapas augšā un tālāk vairs neritina. Google rezultātu lapā cilvēks redz desmit saites un izvēlas pats. Ģeneratīvajā atbildē modelis izvēlas viņa vietā: uzraksta vienu atbildi un piemin trīs līdz astoņus avotus. Ja tavas lapas starp tiem nav, tu neesi otrajā vietā - tu tajā atbildē neparādies vispār, un par to pat neuzzini, jo nav neviena klikšķa, ko saskaitīt.",
-        "GEO ir saīsinājums no angļu valodas termina Generative Engine Optimization jeb ģeneratīvo meklēšanas sistēmu optimizācijas. Tas ir darbs, kas panāk, ka ChatGPT, Perplexity, Gemini un Google AI Overviews savās atbildēs nosauc tavu uzņēmumu un citē tavu lapu kā avotu. Latvijā šis saīsinājums mulsina, jo daļa cilvēku ar vārdu „GEO” saprot ģeogrāfisko jeb lokālo SEO - redzamību Google Maps un vaicājumos ar pilsētas nosaukumu. Abas nozīmes ir dzīvas, tāpēc pirmajā sarunā vienmēr noskaidroju, kura no tām ir domāta. Šajā lapā runāju par abām.",
-        "Šai pārmaiņai ir divas praktiskas sekas. Pirmā: daļu apmeklējumu tu zaudē, jo cilvēks atbildi saņem, neatverot nevienu lapu. Otrā: tie apmeklētāji, kas tomēr atnāk pēc AI ieteikuma, ir daudz ieinteresētāki, jo viņi jau ir izlasījuši, ka tu dari tieši to, kas viņiem vajadzīgs. Pēdējā gada projektos redzu, ka šī plūsma vēl ir maza, bet tā aug, un tās apmeklētāji biežāk kļūst par klientiem nekā pārējie organiskie apmeklētāji.",
-        "GEO nav nekāda atsevišķa maģija papildus SEO. Liela daļa darba sakrīt ar tehnisko SEO, ko labi speciālisti dara jau piecpadsmit gadus: tīrs HTML, ātra lapa, saprotama struktūra, godīgs saturs. Jaunais ir tas, ka lapu tagad lasa ne tikai meklētāja robots, bet arī modelis, kas no tās izgriež fragmentus un pārstāsta tos savā atbildē.",
-        "Divas nozīmes, ko latviski apzīmē ar vienu un to pašu saīsinājumu:"
+        "Pieprasījumi kļūst retāki, kaut arī lapa nav mainījusies un Google pozīcijas ir tur, kur bijušas. Rezultātu sarakstā cilvēks redz desmit saites un izvēlas pats; ģeneratīvajā atbildē modelis izvēlas viņa vietā un piemin trīs līdz astoņus avotus. Ja tavas lapas tur nav, tu neesi otrajā vietā - tu tajā atbildē neparādies vispār, un par to neuzzini, jo nav neviena klikšķa, ko saskaitīt.",
+        "GEO ir Generative Engine Optimization jeb ģeneratīvo meklēšanas sistēmu optimizācija: darbs, kas panāk, ka ChatGPT, Perplexity, Gemini un Google AI Overviews atbildēs nosauc tavu uzņēmumu un citē tavu lapu. Latvijā saīsinājums mulsina, jo daļa cilvēku ar to saprot ģeogrāfisko jeb lokālo SEO. Abas nozīmes ir dzīvas, un šajā lapā runāju par abām.",
+        "GEO nav atsevišķa maģija papildus SEO. Liela daļa darba sakrīt ar tehnisko SEO: tīrs HTML, ātra lapa, saprotama struktūra, godīgs saturs. Jaunais ir tas, ka lapu tagad lasa arī modelis, kas no tās izgriež fragmentus un pārstāsta savā atbildē."
       ],
       "bullets": [
         "GEO kā ģeneratīvā optimizācija: redzamība ChatGPT, Perplexity, Gemini un Google AI Overviews atbildēs.",
@@ -25,8 +23,8 @@
     {
       "heading": "SEO, GEO un AEO: ar ko tie atšķiras",
       "body": [
-        "Trīs saīsinājumi apzīmē trīs dažādus mērķus, nevis trīs dažādus pakalpojumus. Praksē visus trīs darbus daru vienā piegājienā, jo aptuveni divas trešdaļas darba ir kopīgas. Atšķiras pēdējā trešdaļa un veids, kā rezultātu mēra.",
-        "Kopīgais pamats visiem šiem virzieniem, arī lokālajam SEO, ir viens: lapa, kas ātri atbild, ir nolasāma bez JavaScript, ir strukturēta ar godīgiem virsrakstiem un satur faktus, ko var pārbaudīt. Ja pamata nav, nav jēgas ne no viena saīsinājuma. Tāpēc es nepārdodu atsevišķu „GEO pakotni” lapai, kurai vēl nav sakārtots tehniskais slānis."
+        "Trīs saīsinājumi apzīmē trīs mērķus, ne trīs pakalpojumus. Visus trīs darbus daru vienā piegājienā, jo aptuveni divas trešdaļas darba ir kopīgas.",
+        "Kopīgais pamats, arī lokālajam SEO, ir viens: lapa, kas ātri atbild, ir nolasāma bez JavaScript, strukturēta ar godīgiem virsrakstiem un kas satur pārbaudāmus faktus. Bez tā atsevišķu „GEO pakotni” es nepārdodu."
       ],
       "table": {
         "caption": "Četri virzieni, viens tehniskais pamats.",
@@ -67,11 +65,9 @@
     {
       "heading": "Kā AI modeļi izvēlas, ko citēt",
       "body": [
-        "Modelis neatver tavu lapu tāpēc, ka tā ir skaista. Kad cilvēks uzdod jautājumu, sistēma to sadala vairākos meklēšanas vaicājumos, savāc desmitiem lapu, izgriež no tām īsus fragmentus un uzbūvē atbildi no tiem fragmentiem, kas jautājumam atbilst visprecīzāk. Citēts tiek fragments, nevis lapa kopumā.",
-        "No tā izriet pirmā praktiskā prasība: katrai svarīgai rindkopai jābūt saprotamai arī tad, ja to izlasa atsevišķi, bez pārējās lapas. Rindkopa, kas sākas ar „kā jau minēju iepriekš”, modelim ir bezvērtīga, jo izgrieztā veidā tā neko nepasaka.",
-        "Otrā prasība ir skaitļi. Modeļi konsekventi izvēlas fragmentus ar konkrētām summām, termiņiem un nosaukumiem. Teikums „individuāla pieeja katram klientam” nav citējams, jo tajā nav informācijas. Teikums „pilns SEO audits līdz 5 lapām maksā 300 EUR un aizņem 3-5 darba dienas” ir citējams, jo to var pārstāstīt bez izmaiņām. Tieši tāpēc cenu tabula šajā lapā ir ar skaitļiem, nevis ar aicinājumu sazināties.",
-        "Trešā prasība ir entitāšu skaidrība. Modelim jāsaprot, kas tu esi, ko tu dari un kur tu strādā, un šai informācijai jāsakrīt visur, kur tā parādās: mājaslapā, Google Business Profile, LinkedIn un nozares katalogos. Ja mājaslapā esi dizainers un izstrādātājs, bet katalogā „mārketinga aģentūra”, modelis izvēlas skaidrāko avotu, un tas parasti nav tavējais.",
-        "Kas padara fragmentu citējamu:"
+        "Sistēma jautājumu sadala vairākos vaicājumos, savāc desmitiem lapu un uzbūvē atbildi no īsiem fragmentiem. Citēts tiek fragments, ne lapa kopumā. Pirmā prasība: katrai svarīgai rindkopai jābūt saprotamai arī atsevišķi - rindkopa, kas sākas ar „kā jau minēju iepriekš”, izgrieztā veidā neko nepasaka.",
+        "Otrā prasība ir skaitļi. „Individuāla pieeja katram klientam” nav citējama, jo tajā nav informācijas; „pilns SEO audits līdz 5 lapām maksā 300 EUR un aizņem 3-5 darba dienas” ir citējams, jo to var pārstāstīt bez izmaiņām.",
+        "Trešā prasība ir entitāšu skaidrība: kas tu esi, ko dari un kur strādā, un šai informācijai jāsakrīt mājaslapā, Google Business Profile, LinkedIn un katalogos. Ja mājaslapā esi dizainers un izstrādātājs, bet katalogā „mārketinga aģentūra”, modelis izvēlas skaidrāko avotu, un tas parasti nav tavējais."
       ],
       "bullets": [
         "Fragments, kas ir saprotams bez pārējās lapas.",
@@ -86,11 +82,8 @@
       "kicker": "Renderēšana",
       "heading": "Kāpēc ar JavaScript renderēts saturs AI atbildēs neeksistē",
       "body": [
-        "Googlebot JavaScript izpilda, kaut arī ar aizkavi. Lielākā daļa AI botu to nedara. GPTBot, PerplexityBot un ClaudeBot paņem servera atsūtīto HTML un lasa tikai to, kas tajā jau ir. Ja saturs parādās vienīgi pēc tam, kad pārlūkā nostrādā React vai Vue, botam tava lapa ir tukša.",
-        "Šis ir biežākais klusais iemesls, kāpēc uzņēmums AI atbildēs neparādās. Lapa izskatās moderna, Google to indeksē, formas strādā, bet ChatGPT par uzņēmumu neko nezina, jo saņemtajā HTML failā nav neviena teikuma, tikai viens tukšs konteinera elements un skriptu saraksts.",
-        "Ja pārbaude rāda tukšumu, risinājums ir server-side rendering, statiska ģenerēšana vai prerender slānis. Šajā lapā, kuru tu tagad lasi, viss teksts ir HTML kodā jau pirms pārlūks izpilda pirmo skriptu, un tieši tāpēc to var citēt. Statiskā renderēšana atrisina arī ātruma problēmu, tāpēc jaunās lapās to izmantoju pēc noklusējuma, nevis pievienoju vēlāk kā ielāpu.",
-        "Vecās WordPress lapās šī problēma parasti nepastāv, un tas ir viens no retajiem gadījumiem, kad vecā tehnoloģija ir priekšrocība. Problēma sākas tur, kur WordPress darbojas kā headless datu avots un lapu renderē atsevišķa React lietotne vai kur saturu ielādē trešās puses spraudnis pēc lapas atvēršanas.",
-        "Pārbaude aizņem minūti un nemaksā neko:"
+        "Googlebot JavaScript izpilda, kaut arī ar aizkavi. GPTBot, PerplexityBot un ClaudeBot to nedara - tie lasa tikai servera atsūtīto HTML. Ja saturs parādās vienīgi pēc tam, kad pārlūkā nostrādā React vai Vue, botam tava lapa ir tukša, lai gan Google to indeksē un formas strādā. Googlebot uzvedību Google apraksta [JavaScript SEO pamatos](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics).",
+        "Risinājums ir server-side rendering, statiska ģenerēšana vai prerender slānis. Šajā lapā viss teksts ir HTML kodā jau pirms pirmā skripta, un tāpēc to var citēt. Statiskā renderēšana atrisina arī ātrumu, tāpēc [jaunās mājaslapas](/majaslapu-izstrade) būvēju tā uzreiz. Vecās WordPress lapās šīs problēmas parasti nav."
       ],
       "bullets": [
         "Atver lapas pirmkodu ar Ctrl+U un meklē tajā kādu teikumu no lapas. Ja atrodi tikai tukšu div elementu, saturu renderē pārlūks.",
@@ -102,10 +95,10 @@
     {
       "heading": "llms.txt un robots.txt AI botiem",
       "body": [
-        "robots.txt nosaka piekļuvi. Diezgan bieži atrodu, ka lapa AI botiem ir aizvērta nejauši: to izdarījis drošības spraudnis, Cloudflare noteikums vai hostinga slēdzis ar nosaukumu „AI protection”, kuru neviens nav apzināti ieslēdzis. Pirmais darbs katrā auditā ir pārbaudīt, vai botiem vispār ir atļauts ienākt.",
-        "Par llms.txt esmu godīgs. Tas ir priekšlikums, nevis standarts, un neviens no lielajiem modeļu ražotājiem nav publiski apstiprinājis, ka to lasa. Es to tomēr sagatavoju, jo tas aizņem pusstundu, neko nesabojā un dod skaidru satura karti gadījumam, ja formāts nostiprinās. Solīt, ka llms.txt uzreiz dos citējumus, būtu meli.",
-        "Daudz lielāku ietekmi dod garlaicīgi parastas lietas: derīga sitemap.xml, pareizi HTTP statusa kodi, canonical bez pretrunām, tīra iekšējā sasaiste un lapas, kas arī mobilajā tīklā atveras ātrāk par divām sekundēm.",
-        "Boti, kurus pārbaudu robots.txt failā un servera žurnālos:"
+        "robots.txt nosaka piekļuvi. Bieži atrodu, ka lapa AI botiem ir aizvērta nejauši: to izdarījis drošības spraudnis, Cloudflare noteikums vai hostinga slēdzis „AI protection”. Pirmais darbs katrā auditā ir pārbaudīt, vai botiem vispār ir atļauts ienākt.",
+        "llms.txt ir priekšlikums, ne standarts: fails, kurā vietne mašīnlasāmā formā uzskaita savas svarīgākās lapas. Neviens lielais modeļu ražotājs nav apstiprinājis, ka to lasa, tāpēc es to sagatavoju - pusstunda darba, kas neko nesabojā - bet rezultātu no tā nesolu.",
+        "Lielāku ietekmi nekā llms.txt dod garlaicīgas lietas: derīga sitemap.xml, pareizi HTTP statusa kodi, canonical bez pretrunām un lapas, kas mobilajā tīklā atveras ātrāk par divām sekundēm.",
+        "Formātu apraksta [llms.txt specifikācija](https://llmstxt.org/), bet katra bota uzvedību - tā īpašnieka dokumentācija: [OpenAI](https://platform.openai.com/docs/bots), [Anthropic](https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler) un [Perplexity](https://docs.perplexity.ai/guides/bots)."
       ],
       "bullets": [
         "GPTBot, OAI-SearchBot un ChatGPT-User: OpenAI boti satura ievākšanai un meklēšanai reāllaikā.",
@@ -119,10 +112,9 @@
     {
       "heading": "Schema markup: konteksts, ko mašīna nolasa bez minēšanas",
       "body": [
-        "Schema markup ir JSON-LD bloks lapas kodā, kas mašīnai pasaka to, ko cilvēks nolasa no dizaina: šis ir pakalpojums, šī ir tā cena, šis ir jautājums un šī ir atbilde uz to.",
-        "Schema pati par sevi nav ranžēšanas faktors, un es to nesolu kā pozīciju uzlabotāju. Tā dara ko citu: samazina minēšanu. Jo mazāk parsētājam jāmin, jo lielāka iespēja, ka tavs fragments tiks izmantots pareizajā kontekstā un ar pareizo cenu.",
-        "Vēl viena godīga piezīme: 2023. gadā Google lielākajai daļai lapu izslēdza FAQ paplašinātos rezultātus, tāpēc no FAQPage veidotie izvēršamie jautājumi meklētājā vairs neparādās. Struktūru es tomēr atstāju, jo to lasa AI parsētāji, un tas ir bezmaksas veids, kā jautājumu un atbildi pasniegt gatavā formā.",
-        "Kuru schema tipu kur lieku:"
+        "Schema markup ir JSON-LD bloks lapas kodā, kas mašīnai pasaka to, ko cilvēks nolasa no dizaina: šis ir pakalpojums, šī ir tā cena, šis ir jautājums un šī ir atbilde. Tipus uztur [schema.org](https://schema.org/); tos, kurus Google tiešām izmanto, uzskaita [Google strukturēto datu dokumentācija](https://developers.google.com/search/docs/appearance/structured-data/search-gallery).",
+        "Schema nav ranžēšanas faktors, un es to nesolu kā pozīciju uzlabotāju. Tā samazina minēšanu: jo mazāk parsētājam jāmin, jo lielāka iespēja, ka fragments tiks izmantots pareizajā kontekstā un ar pareizo cenu. Tas pats attiecas uz entitātes skaidrību ārpus koda, ko sakārto [zīmola identitāte](/zimola-identitate).",
+        "2023. gadā Google lielākajai daļai lapu izslēdza FAQ paplašinātos rezultātus, tāpēc izvēršamie jautājumi meklētājā vairs neparādās. Struktūru tomēr atstāju, jo to lasa AI parsētāji."
       ],
       "bullets": [
         "Organization: kas ir uzņēmums, tā logotips un profili citās platformās.",
@@ -136,10 +128,9 @@
     {
       "heading": "Ja ar GEO tu domā ģeogrāfisko redzamību",
       "body": [
-        "Lokālajai redzamībai darba saraksts ir citāds, un tas nav mazāk svarīgs. Vaicājumi „labākais zobārsts Rīgā” vai „durvju montāža netālu no manis” nes klientus, kas ir gatavi pirkt šodien.",
-        "Šeit ir viens svarīgs brīdinājums. Es netaisu desmitiem gandrīz identisku lapu ar nomainītu pilsētas nosaukumu. Google tās sauc par doorway pages un pazemina to pozīcijas, un AI modeļi tās ignorē, jo tajās nav nekā unikāla. Lokālā lapa ir vērtīga tikai tad, ja tajā ir reāls saturs par konkrēto vietu: paveiktie objekti, piegādes laiki, cenas un kontaktpersona.",
-        "Vēl viena lieta, ko klienti bieži nezina: uz lokālajiem jautājumiem AI modeļi atbild, balstoties ne tikai uz tavu mājaslapu, bet arī uz Google Business Profile, katalogiem, forumiem un atsauksmēm. Ja tur par tevi nav nekā, spodra mājaslapa viena pati atbildi nemainīs.",
-        "Lokālās redzamības darba saraksts:"
+        "Vaicājumi „labākais zobārsts Rīgā” vai „durvju montāža netālu no manis” nes klientus, kas ir gatavi pirkt šodien, un šiem vaicājumiem darba saraksts ir citāds.",
+        "Viens brīdinājums: es netaisu desmitiem gandrīz identisku lapu ar nomainītu pilsētas nosaukumu. Google tās sauc par doorway pages un pazemina to pozīcijas, un AI modeļi tās ignorē. Lokālā lapa ir vērtīga tikai ar reālu saturu par konkrēto vietu: paveiktie objekti, piegādes laiki, cenas un kontaktpersona.",
+        "Uz lokālajiem jautājumiem modeļi atbild, balstoties arī uz Google Business Profile, katalogiem, forumiem un atsauksmēm. Ja tur par tevi nav nekā, spodra mājaslapa viena pati atbildi nemainīs."
       ],
       "bullets": [
         "Vienāds nosaukums, adrese un telefons visos avotos, līdz pat pieraksta formai.",
@@ -152,9 +143,7 @@
     {
       "heading": "Biežākās kļūdas, ko atrodu auditos",
       "body": [
-        "Auditos atkārtojas viens un tas pats saraksts neatkarīgi no nozares un no tā, cik dārga bija mājaslapa.",
-        "Lielāko daļu no šī saraksta var salabot divās nedēļās, un tas ir lētākais posms visā darbā. Dārgi kļūst tad, kad jāpārraksta saturs un jāpārbūvē renderēšana.",
-        "Saraksts, kas atkārtojas gandrīz katrā projektā:"
+        "Auditos atkārtojas viens un tas pats saraksts neatkarīgi no nozares un no tā, cik dārga bija mājaslapa. Lielāko daļu no tā var salabot divās nedēļās; dārgi kļūst tad, kad jāpārraksta saturs un jāpārbūvē renderēšana."
       ],
       "bullets": [
         "Saturu renderē pārlūks, tāpēc AI botiem lapa ir tukša.",
@@ -170,9 +159,9 @@
       "kicker": "Process",
       "heading": "Kā es strādāju: no audita līdz mērāmai redzamībai",
       "body": [
-        "Es strādāju viens un visu daru pats. Nav klientu vadītāja, kas pārstāsta izstrādātāja vārdus, un nav atskaišu par darbu, kas nav padarīts. Tas pats cilvēks, kurš uztaisa dizainu, uzraksta arī kodu un schema bloku.",
-        "Audits vienmēr ir pirmais. Es nepārdodu abonementu lapai, kuras problēmas vēl neredzu. Auditā redzamā aina bieži maina plānu: reizēm satura darbs vispār nav vajadzīgs, jo pietiek ar renderēšanas labojumu.",
-        "Mērīšana sākas vienlaikus ar pirmo bloku, nevis beigās, jo bez sākuma punkta izaugsmi nevar pierādīt. Sākuma punktu nofiksēju pirms pirmās izmaiņas: pozīcijas, apmeklējums, botu pieprasījumi un atbildes uz jautājumu komplektu katrā modelī."
+        "Strādāju viens: tas pats cilvēks, kurš uztaisa dizainu, uzraksta arī kodu un schema bloku. Aiz tā ir [18 gadu pieredze dizainā un izstrādē](/par-mani).",
+        "Audits vienmēr ir pirmais - abonementu lapai, kuras problēmas vēl neredzu, es nepārdodu. Auditā redzamā aina bieži maina plānu: reizēm satura darbs nav vajadzīgs, jo pietiek ar renderēšanas labojumu.",
+        "Mērīšana sākas ar pirmo bloku, ne beigās: pirms pirmās izmaiņas nofiksēju pozīcijas, apmeklējumu, botu pieprasījumus un atbildes uz jautājumu komplektu katrā modelī."
       ],
       "steps": [
         {
@@ -203,9 +192,8 @@
     {
       "heading": "Cenas",
       "body": [
-        "Cenas ir fiksētas un publiskas. Es neveidoju piedāvājumus, kuru summa ir atkarīga no tā, cik liels izskatās klienta budžets.",
-        "Izvēle starp Basic, Plus un PRO ir atkarīga no lapu skaita un no tā, cik dziļi jāiet. AI SEO ieviešana ir atsevišķs darbs, jo tur runa nav par pārbaudi, bet par reālām izmaiņām lapā: schema, renderēšana, satura pārrakstīšana citējamā formā, botu piekļuve un mērīšanas sistēma.",
-        "Uzturēšanai ir jēga tikai tad, kad pamatdarbs ir izdarīts. Tas ir mēneša darbs ar atskaiti, nevis abonements par klusēšanu. Ilgtermiņa līgumu nav, uzturēšanu var pārtraukt, brīdinot mēnesi iepriekš."
+        "Izvēle starp Basic, Plus un PRO ir atkarīga no lapu skaita un no tā, cik dziļi jāiet. AI SEO ieviešana ir atsevišķs darbs: tur runa nav par pārbaudi, bet par reālām izmaiņām lapā - schema, renderēšana, satura pārrakstīšana citējamā formā, botu piekļuve un mērīšanas sistēma.",
+        "Uzturēšanai ir jēga tikai tad, kad pamatdarbs ir izdarīts. Ilgtermiņa līgumu nav, uzturēšanu var pārtraukt, brīdinot mēnesi iepriekš."
       ],
       "table": {
         "caption": "Cenas ir galīgas: neesmu PVN maksātājs, tāpēc šiem skaitļiem nekas netiek pieskaitīts. Apmaksas termiņš ir 5 darba dienas.",
@@ -251,15 +239,13 @@
     {
       "heading": "Kā izmērīt redzamību AI atbildēs",
       "body": [
-        "ChatGPT nav savas Search Console, un neviens rīks nerāda pilnu ainu. To es pasaku uzreiz, jo solījumi par „pilnu AI redzamības kontroli” ir pārdošanas triki.",
-        "Jautājumu komplekts nav elegants rīks, bet tas ir vissvarīgākais. Es pierakstu, vai zīmols atbildē parādās, kurā vietā un kurš domēns tiek citēts. Bez šī saraksta jebkura saruna par AI redzamību ir sajūtu saruna.",
-        "Google Search Console atsevišķi neuzrāda impressions, kas nāk no AI Overviews, tāpēc precīzu skaitli, cik reizes lapa parādījās AI blokā, no Search Console datiem iegūt nevar. Ja kāds tev to sola, viņš vai nu neizprot datus, vai apzināti pārspīlē.",
-        "Mērīt tomēr var, un es to daru ar četriem avotiem vienlaikus:"
+        "ChatGPT nav savas Search Console, un neviens rīks nerāda pilnu ainu. Solījumi par „pilnu AI redzamības kontroli” ir pārdošanas triki.",
+        "Vissvarīgākais rīks ir jautājumu komplekts: pierakstu, vai zīmols atbildē parādās, kurā vietā un kurš domēns tiek citēts. Daļu no šīs uzskaites pārņem [AI aģenti saturam un mērīšanai](/ai-agenti). Google Search Console atsevišķi neuzrāda impressions no AI Overviews, tāpēc precīzu skaitli no tās datiem iegūt nevar."
       ],
       "bullets": [
         "Servera žurnāli: vai GPTBot, PerplexityBot un ClaudeBot vispār ienāk lapā, cik bieži un kuras lapas tie paņem.",
         "Analītika: apmeklētāji no chatgpt.com, perplexity.ai un copilot.microsoft.com. Skaitlis parasti ir mazāks par patieso, jo daļa pāreju paliek bez avota.",
-        "Manuāls jautājumu komplekts: 20-40 jautājumu, ko reālie klienti tiešām uzdod; tos katru mēnesi vienā un tajā pašā dienā ievadu katrā modelī.",
+        "Manuāls jautājumu komplekts: 20-40 jautājumi, ko reālie klienti tiešām uzdod; tos katru mēnesi vienā un tajā pašā dienā ievadu katrā modelī.",
         "Zīmola vaicājumu pieaugums Search Console datos: netiešs, bet ticams signāls, jo pēc AI ieteikuma cilvēks uzņēmuma nosaukumu bieži pameklē Google."
       ]
     },
@@ -267,10 +253,7 @@
       "kicker": "Godīgi",
       "heading": "Ko reāli var solīt un ko nevar",
       "body": [
-        "Šī sadaļa parasti pārdod labāk nekā visas pārējās kopā, jo tā ir vienīgā, kuru neviens nekopē.",
-        "Es nesolu pirmo vietu Google. Neviens to nevar garantēt, un ikviens, kurš garantē, vai nu melo, vai runā par vaicājumiem, kurus neviens nemeklē. Es nesolu arī, ka ChatGPT nosauks tavu uzņēmumu. Modeļi atbild nekonsekventi: viens un tas pats jautājums divas dienas pēc kārtas var dot dažādus avotus, un ražotāji algoritmus maina bez brīdinājuma.",
-        "Vēl viena godīga lieta par konkurenci Latvijā. Ja tev ir jauna lapa, pirmās pozīcijas terminiem „SEO optimizācija” un „SEO pakalpojumi” 6-12 mēnešos nav sasniedzamas. Tās jau gadiem tur aģentūras ar simtiem lapu, sakrātām saitēm un domēna vēsturi, un pretī nostāties ar budžetu, kas mērāms simtos eiro, nav reāli. Kas ir sasniedzams: konkrēti garāki vaicājumi ar skaidru nodomu, nišas jautājumi un tieši tie jautājumi, kurus cilvēki pilnos teikumos uzdod AI asistentiem.",
-        "Sadalījums ir vienkāršs:"
+        "Jaunai lapai pirmās pozīcijas terminiem „SEO optimizācija” un „SEO pakalpojumi” 6-12 mēnešos nav sasniedzamas: tās gadiem tur aģentūras ar simtiem lapu un domēna vēsturi. Sasniedzami ir garāki vaicājumi ar skaidru nodomu, nišas jautājumi un tie jautājumi, ko cilvēki pilnos teikumos uzdod AI asistentiem."
       ],
       "bullets": [
         "Solu: lapas, kuras boti spēj nolasīt, un pierādījumu no servera žurnāliem, ka tie tās nolasa.",
@@ -284,36 +267,34 @@
     {
       "heading": "Ar ko esmu strādājis",
       "body": [
-        "Astoņpadsmit gados esmu strādājis ar klientiem Latvijā, Igaunijā, Lietuvā un ASV. Daļa projektu ir jaunas mājaslapas, kurās SEO pamats ielikts jau izstrādes laikā, daļa ir esošu lapu sakārtošana.",
-        "Ražošanā un būvniecībā tie ir Tenter, ARM Metals, Estire un Improvement. Loģistikā un biznesa pakalpojumos: MLM Cargo, Box Latvia, Universal Solutions un DarbaGuru. Tirdzniecībā un patērētāju pakalpojumos: Tavasdurvis, Lucky Punch, Cafeteria, Valis Stomatoloģija, Lauvas Zobs un Forevolt. Digitālajos produktos: Apmeklē.lv, Digitālais Dzintars un LimeBit.",
-        "Nozares atšķiras, bet pirmās problēmas gandrīz vienmēr ir vienādas: saturs, ko boti nevar nolasīt, lapas bez tiešas atbildes uz galveno jautājumu, cenas, kuras nekur nav nosauktas, un schema, kas vai nu nav ielikta, vai ir kļūdaina. Tāpēc audits vienmēr ir pirmais solis, nevis uzreiz satura darbs."
+        "Ražošanā un būvniecībā: Tenter, ARM Metals, Estire un Improvement. Loģistikā un biznesa pakalpojumos: MLM Cargo, Box Latvia, Universal Solutions un DarbaGuru. Tirdzniecībā un patērētāju pakalpojumos: Tavasdurvis, Lucky Punch, Cafeteria, Valis Stomatoloģija, Lauvas Zobs un Forevolt. Digitālajos produktos: Apmeklē.lv, Digitālais Dzintars un LimeBit. Publicētie darbi ir [mājaslapu un logo izstrādes piemēros](/portfolio).",
+        "Astoņpadsmit gados esmu strādājis ar klientiem Latvijā, Igaunijā, Lietuvā un ASV. Daļa projektu ir [jaunas mājaslapas](/majaslapu-izstrade), kurās SEO pamats ielikts jau izstrādes laikā, daļa - esošu lapu sakārtošana. Nozares atšķiras, bet pirmās problēmas ir vienādas: saturs, ko boti nevar nolasīt, nekur nenosauktas cenas un schema, kas vai nu nav ielikta, vai ir kļūdaina."
       ]
     },
     {
       "heading": "Ar ko sākt",
       "body": [
-        "Sāc ar auditu par 300 EUR. Es pārbaudu līdz piecām svarīgākajām lapām un atsūtu pēc svarīguma sakārtotu sarakstu ar to, kas kavē redzamību meklētājos un AI atbildēs. Sarakstu vari izmantot arī bez manis, tas ir tavs.",
-        "Ja pēc audita gribi, lai labojumus ieviešu es, izmaksas ir atkarīgas no apjoma un sākas no 700 EUR. Termiņus nosaucu pirms darba sākuma, nevis procesa vidū.",
-        "Raksti uz connect@gatisdesign.com un pievieno lapas adresi. Pirmo novērtējumu parasti atsūtu vienas darba dienas laikā."
+        "Sāc ar auditu par 300 EUR: pārbaudu līdz piecām svarīgākajām lapām un atsūtu pēc svarīguma sakārtotu sarakstu ar to, kas kavē redzamību meklētājos un AI atbildēs. Sarakstu vari izmantot arī bez manis, tas ir tavs.",
+        "Ja gribi, lai labojumus ieviešu es, izmaksas sākas no 700 EUR atkarībā no apjoma. Raksti uz connect@gatisdesign.com vai [sazinies ar mani kontaktu formā](/kontakti) un pievieno lapas adresi - pirmo novērtējumu atsūtu vienas darba dienas laikā."
       ]
     }
   ],
   "faq": [
     {
       "q": "Kas ir GEO optimizācija?",
-      "a": "GEO optimizācija jeb ģeneratīvo meklēšanas sistēmu optimizācija ir darbs, kas panāk, ka ChatGPT, Perplexity, Gemini un Google AI Overviews savās atbildēs nosauc uzņēmumu un citē tā mājaslapu. Tā ietver tehnisko sakārtošanu, citējamu satura struktūru un schema markup. Latvijā ar GEO dažkārt apzīmē arī ģeogrāfisko jeb lokālo SEO, tāpēc nozīmi ir vērts precizēt jau sarunas sākumā."
+      "a": "GEO optimizācija jeb ģeneratīvo meklēšanas sistēmu optimizācija ir darbs, kas panāk, ka ChatGPT, Perplexity, Gemini un Google AI Overviews atbildēs nosauc uzņēmumu un citē tā mājaslapu. Tā ietver tehnisko sakārtošanu, citējamu satura struktūru un schema markup. Latvijā ar GEO dažkārt apzīmē arī ģeogrāfisko jeb lokālo SEO, tāpēc nozīmi ir vērts precizēt sarunas sākumā."
     },
     {
       "q": "Ar ko GEO atšķiras no SEO?",
-      "a": "SEO mērķis ir pozīcija meklētāja rezultātu sarakstā, GEO mērķis ir citāts AI ģenerētā atbildē. Tehniskais pamats abiem ir kopīgs: ātra lapa, nolasāms HTML, skaidra struktūra. Atšķiras satura forma. SEO pietiek ar labu lapu kopumā, GEO vajag atsevišķas rindkopas, kas ir saprotamas un citējamas arī izrautas no konteksta."
+      "a": "SEO mērķis ir pozīcija meklētāja rezultātu sarakstā, GEO mērķis ir citāts AI ģenerētā atbildē. Tehniskais pamats abiem ir kopīgs: ātra lapa, nolasāms HTML, skaidra struktūra. Atšķiras satura forma: SEO pietiek ar labu lapu kopumā, bet GEO vajag atsevišķas rindkopas, kas ir saprotamas arī izrautas no konteksta."
     },
     {
       "q": "Cik maksā GEO un SEO optimizācija?",
-      "a": "Pilns audits līdz 5 lapām maksā 300 EUR, līdz 10 lapām ar ātruma un AI optimizāciju 500 EUR, līdz 20 lapām ar konkurentu analīzi 800 EUR. AI SEO ieviešana maksā 700 EUR bāzes apjomā un 1200 EUR standarta apjomā, abas summas var sadalīt divos mēneša maksājumos. Uzturēšana sākas no 80 EUR mēnesī. Cenas ir bez PVN."
+      "a": "Pilns audits līdz 5 lapām maksā 300 EUR, līdz 10 lapām ar ātruma un AI optimizāciju 500 EUR, līdz 20 lapām ar konkurentu analīzi 800 EUR. AI SEO ieviešana maksā 700 EUR bāzes apjomā un 1200 EUR standarta apjomā, abas summas var sadalīt divos mēneša maksājumos. Uzturēšana sākas no 80 EUR mēnesī. Cenas ir galīgas - neesmu PVN maksātājs."
     },
     {
       "q": "Cik ilgā laikā parādās rezultāti?",
-      "a": "Tehniskās izmaiņas boti pamana 2-6 nedēļu laikā, jo tik bieži tie lapu apmeklē no jauna. Pirmās izmaiņas AI atbildēs parasti redzu 6-10 nedēļās pēc ieviešanas. Klasiskajā Google meklēšanā nišas vaicājumi prasa 3-6 mēnešus, bet konkurētspējīgāki termini - gadu vai ilgāku darbu."
+      "a": "Tehniskās izmaiņas boti pamana 2-6 nedēļu laikā. Pirmās izmaiņas AI atbildēs parasti redzu 6-10 nedēļās pēc ieviešanas. Klasiskajā Google meklēšanā nišas vaicājumi prasa 3-6 mēnešus, bet konkurētspējīgāki termini - gadu vai ilgāku darbu."
     },
     {
       "q": "Vai var garantēt, ka ChatGPT ieteiks manu uzņēmumu?",
@@ -329,14 +310,14 @@
     }
   ],
   "internalLinks": [
-    "/majaslapu-izstrade - enkurs „mājaslapu izstrāde ar statisku renderēšanu”, sadaļā par JavaScript renderēto saturu",
-    "/majaslapu-izstrade - enkurs „jaunu lapu būvēju uzreiz ar SEO pamatu”, sadaļā „Kā es strādāju”",
-    "/ai-agenti - enkurs „AI aģenti satura un mērīšanas darbam”, sadaļā „Kā izmērīt redzamību AI atbildēs”",
-    "/zimola-identitate - enkurs „zīmola identitāte”, sadaļā par entitāšu skaidrību",
-    "/portfolio - enkurs „darbu portfolio”, sadaļā „Ar ko esmu strādājis”",
+    "/majaslapu-izstrade - enkurs „jaunās mājaslapas”, sadaļā par JavaScript renderēto saturu",
+    "/majaslapu-izstrade - enkurs „jaunas mājaslapas”, sadaļā „Ar ko esmu strādājis”",
+    "/ai-agenti - enkurs „AI aģenti saturam un mērīšanai”, sadaļā „Kā izmērīt redzamību AI atbildēs”",
+    "/zimola-identitate - enkurs „zīmola identitāte”, sadaļā par schema un entitāšu skaidrību",
+    "/portfolio - enkurs „mājaslapu un logo izstrādes piemēros”, sadaļā „Ar ko esmu strādājis”",
     "/par-mani - enkurs „18 gadu pieredze dizainā un izstrādē”, sadaļā „Kā es strādāju”",
-    "/kontakti - enkurs „sazinies ar mani”, noslēguma aicinājumā"
+    "/kontakti - enkurs „sazinies ar mani kontaktu formā”, noslēguma aicinājumā"
   ],
   "cta": "Sāc ar auditu par 300 EUR. Raksti uz connect@gatisdesign.com un pievieno lapas adresi - pirmo novērtējumu atsūtu vienas darba dienas laikā.",
-  "heroLede": "Daļa klientu vairs nemeklē Google meklētājā - viņi jautā ChatGPT, un tur tavas lapas nav. Salaboju tehnisko bāzi un saturu tā, lai tie parādītos abās vietās."
+  "heroLede": "Daļa klientu vairs nemeklē Google meklētājā - viņi jautā ChatGPT, un tur tavas lapas nav. Salaboju tehnisko bāzi un saturu tā, lai lapa parādītos abās vietās."
 }

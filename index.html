@@ -52,21 +52,41 @@
       vietturis paliek neaizvietots, formas pārbaude nesakrīt un konteiners
       netiek ielādēts: dzīvā lapā tas nozīmētu 404 pieprasījumu katrā ielādē un
       tracking, kas izskatās uzstādīts, bet neko nemēra.
+
+      Ielāde notiek pirmajā dīkstāves brīdī, ne uzreiz. gtm.js ar visiem tagiem
+      ir ~110 KB JavaScript, un mobilajā mērījumā tas deva +113 ms TBT tieši
+      lapas atvēršanas brīdī. Konteiners nav vajadzīgs pirmajā kadrā: notikumi
+      līdz tā ielādei gaida `dataLayer` masīvā un tiek apstrādāti pēc tam.
+
+      Consent Mode noklusējums paliek AUGŠĀ, sinhroni. Aizkave to nemaina un
+      neatceļ: noklusējums ir uzstādīts jau pirms konteiners vispār pieprasīts.
     -->
     <script>
       (function () {
         var id = '%VITE_GTM_ID%';
         if (!/^GTM-[A-Z0-9]{5,}$/.test(id)) return;
-        (function (w, d, s, l, i) {
-          w[l] = w[l] || [];
-          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-          var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s),
-            dl = l != 'dataLayer' ? '&l=' + l : '';
-          j.async = true;
-          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-          f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', id);
+        var started = false;
+        function load() {
+          if (started) return;
+          started = true;
+          (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            var f = d.getElementsByTagName(s)[0],
+              j = d.createElement(s),
+              dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+          })(window, document, 'script', 'dataLayer', id);
+        }
+        // Pirmā cilvēka darbība ielādē konteineru uzreiz: mērķdarbība nedrīkst
+        // gaidīt dīkstāvi tikai tāpēc, ka lapa vēl zīmējas.
+        ['pointerdown', 'keydown', 'touchstart'].forEach(function (type) {
+          window.addEventListener(type, load, { once: true, passive: true });
+        });
+        if ('requestIdleCallback' in window) window.requestIdleCallback(load, { timeout: 3000 });
+        else window.setTimeout(load, 1500);
       })();
     </script>
   </head>

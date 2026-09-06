@@ -32,7 +32,7 @@ import {
  * Fakti par projektu vienā teikumu virknē.
  *
  * Nekas netiek izdomāts: viss salikts no laukiem, kas datos jau ir - nozare,
- * klients, loma, gads, pakalpojumi. Piecām lapām no 23 apraksta nav vispār, un
+ * klients, loma, gads, pakalpojumi. Četrām lapām no 33 apraksta nav vispār, un
  * līdz šim tur bija tikai "Cafeteria. Izstrāde ROIS komandā." - 38 zīmes gan
  * lapā, gan meta aprakstā.
  */
@@ -227,7 +227,10 @@ export default function ProjectDetail() {
           { locale: "en", path: projectPath(project.slug, "en") },
         ]}
         // EN saturs vēl nav tulkots, tāpēc /en rāda LV tekstu ar noindex.
-        noindex={!isLv}
+        // Bez apraksta lapas vienīgais teksts ir salikts no metadatu laukiem -
+        // tāda lapa Google indeksā ir plāns saturs, tāpēc arī tā ir noindex,
+        // līdz `summaryLv` ir uzrakstīts (sk. indexableProjects).
+        noindex={!isLv || !project.summary}
       />
       <JsonLd
         data={[
@@ -375,18 +378,24 @@ export default function ProjectDetail() {
               </ul>
             ) : null}
 
-            <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3">
-              {project.externalUrl ? (
-                <>
-                  <Button href={project.externalUrl} variant="link">
-                    {linkLabel}
-                  </Button>
-                  <Label>{prettyUrl(project.externalUrl)}</Label>
-                </>
-              ) : statusNote ? (
-                <Label>{statusNote}</Label>
-              ) : null}
-            </div>
+            {/* Rinda tikai tad, kad tajā kaut kas ir. Zīmola darbiem nav ne
+                ārējās saites, ne statusa piezīmes, un tukšs konteiners ar
+                `mt-8` telefonā deva 32 px tukšuma, kas kopā ar sekciju atkāpēm
+                izauga par 132 px caurumu pirms galerijas. */}
+            {project.externalUrl || statusNote ? (
+              <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3">
+                {project.externalUrl ? (
+                  <>
+                    <Button href={project.externalUrl} variant="link">
+                      {linkLabel}
+                    </Button>
+                    <Label>{prettyUrl(project.externalUrl)}</Label>
+                  </>
+                ) : (
+                  <Label>{statusNote}</Label>
+                )}
+              </div>
+            ) : null}
           </LabelRow>
       </Section>
 

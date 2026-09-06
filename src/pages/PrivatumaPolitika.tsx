@@ -77,7 +77,7 @@ export default function PrivatumaPolitika() {
         ])}
       />
 
-      <div className="flex-1 bg-ink-900 pb-20 md:pb-32 pt-[clamp(104px,15vw,180px)] text-paper">
+      <div className="flex-1 bg-ink-900 pb-14 md:pb-32 pt-[clamp(104px,15vw,180px)] text-paper">
         <article className="mx-auto max-w-wrap px-5 sm:px-8 lg:px-10">
           {/* Lasāmības dēļ teksta kolonna nav platāka par 70ch. */}
           <div className="max-w-[70ch]">
@@ -144,12 +144,16 @@ export default function PrivatumaPolitika() {
                 <p>
                   Tava izvēle glabājas pārlūka lokālajā krātuvē (localStorage) ar nosaukumu{" "}
                   <code>cookie_consent_v1</code> - šis ieraksts nav sīkdatne un netiek sūtīts serverim.
-                  Piekrišanas noklusējums lapā ir „liegts” (Google Consent Mode v2), tāpēc bez tavas
-                  izvēles analītika nesāk darboties.
+                  Piekrišanas noklusējums lapā ir „liegts” (Google Consent Mode v2). Pirms tavas
+                  izvēles Google saņem anonīmu signālu bez sīkdatnēm un bez identifikatora, pēc kura
+                  tevi varētu atpazīt nākamreiz. Statistiku, ko var sasaistīt ar tavu apmeklējumu,
+                  sāku vākt tikai pēc tavas piekrišanas.
                 </p>
                 <p>
                   Piekrišanu jebkurā brīdī vari mainīt kājenes saitē „Sīkdatņu iestatījumi” - tā atver
-                  paziņojumu no jauna. Sīkdatņu dzēšana pārlūkā šo izvēli neatiestata.
+                  paziņojumu no jauna. Ja izvēlies „Tikai vajadzīgās” vai atsauc jau doto piekrišanu,
+                  sīkdatnes, ko izvietoja Google Analytics, tiek izdzēstas uzreiz. Sīkdatņu dzēšana
+                  pārlūkā pašu izvēli neatiestata.
                 </p>
               </Section>
 

@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
  * tāpēc /majaslapu-izstrade ved uz /en/website-development, ne uz /en/majaslapu-izstrade.
  * Projektu lapām, kurām ROUTES atslēgas nav, pāri dod `pathForPathname` - tas
  * paņem slug un pieliek to pie ROUTES.portfolio maršruta. Iepriekš tur atslēga
- * bija null, un pārslēgs no katras no 23 projektu lapām veda uz /en sākumlapu.
+ * bija null, un pārslēgs no katras no 33 projektu lapām veda uz /en sākumlapu.
  *
  * `onPaper` maina krāsas kājenes papīra fonam: tumšās virsmas vara tur ir
  * 2,60:1 un neder ne tekstam, ne aktīvajam stāvoklim.
