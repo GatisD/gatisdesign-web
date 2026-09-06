@@ -93,17 +93,15 @@ export default function Header() {
       isActive ? "text-amber" : "text-paper hover:text-amber",
     );
 
-  // Ārējais elements dod 44 px klikšķa lauku, iekšējais - bāzes līnijas
-  // līdzinājumu starp 19 px vārdzīmi un 11 px mono pilsētu. Ja abus liktu uz
-  // viena elementa, `items-baseline` 44 px kastē vārdzīmi pieceltu augšā.
+  // 44 px klikšķa lauks ap zīmi. Pilsēta blakus vārdam nestāv: tā ir kājenē
+  // un strukturētajos datos, un galvenē tā tikai atkārtoja to pašu.
   const wordmark = (
     <Link
       to={path("home")}
       className="inline-flex min-h-[44px] shrink-0 items-center leading-none transition-colors duration-300 active:text-amber"
     >
       {/* Lauva ir dekors blakus pašam vārdam, tāpēc alt ir tukšs: ar
-          alt="Gatis Design" ekrāna lasītājs saiti nolasītu "Gatis Design Gatis
-          Design Rīga". */}
+          alt="Gatis Design" ekrāna lasītājs saiti nolasītu divreiz. */}
       <img
         src="/media/lauva.svg"
         alt=""
@@ -111,12 +109,7 @@ export default function Header() {
         height="30"
         className="me-2.5 h-[30px] w-auto shrink-0"
       />
-      <span className="flex items-baseline gap-1.5">
-        <span className="text-[19px] font-bold tracking-[-0.02em] text-paper md:text-[20px]">Gatis Design</span>
-        <Label caps className="text-[11px]">
-          Rīga
-        </Label>
-      </span>
+      <span className="text-[19px] font-bold tracking-[-0.02em] text-paper md:text-[20px]">Gatis Design</span>
     </Link>
   );
 

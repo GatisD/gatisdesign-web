@@ -9,6 +9,10 @@ import type { ContentStep } from "@/content/types";
  * Sliede zīmējas, kad sekcija ienāk skatā (`.rail-draw`, CSS transform), soļi
  * ienāk pēc kārtas ar monotonu aizturi - viencolonnas sarakstā kolonnu vilnis
  * liktu 4. solim parādīties pirms 3.
+ *
+ * Sliede stāv ailīšu STARPĀ (numura kolonna 32/40 px, atstarpe 20/28 px), ne
+ * numuru vidū: pie 15 px tā gāja cauri pašiem cipariem, un līnija, kas šķērso
+ * skaitli, izskatās pēc kļūdas, ne pēc laika ass.
  */
 export default function StepFlow({
   steps,
@@ -26,7 +30,7 @@ export default function StepFlow({
       <ol className="relative border-t border-line">
         <span
           aria-hidden="true"
-          className="rail-draw absolute bottom-6 left-[15px] top-6 w-px bg-line-strong sm:left-[19px]"
+          className="rail-draw absolute bottom-6 left-[42px] top-6 w-px bg-line-strong sm:left-[54px]"
         />
         {steps.map((step, index) => (
           <li

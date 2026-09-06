@@ -10,10 +10,15 @@ type Surface = "ink" | "ink-850" | "ink-950";
  * Ritms konkrētos pikseļos, ne caur CSS mainīgo: mainīgais neļauj ne rīkiem,
  * ne pārlūka inspektoram redzēt, cik atkāpes tur reāli ir.
  */
+/**
+ * Vertikālais ritms. Telefonā tas ir mazāks nekā uz darbvirsmas: 390 px platā
+ * ekrānā divas blakus sekcijas ar py-20 deva 160 px tukšuma, un tas lasās kā
+ * caurums, ne kā elpa. Uz darbvirsmas gaisa daudzums nemainās.
+ */
 const PAD: Record<Rhythm, string> = {
-  sm: "py-12 md:py-16",
-  md: "py-16 md:py-24",
-  lg: "py-20 md:py-32",
+  sm: "py-9 md:py-16",
+  md: "py-11 md:py-24",
+  lg: "py-14 md:py-32",
 };
 const BG: Record<Surface, string> = {
   ink: "bg-ink-900",

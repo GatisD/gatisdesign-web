@@ -119,10 +119,11 @@ export default function Turnstile({
   if (!turnstileEnabled) return null;
 
   return (
-    <div className="mt-7">
-      {/* Augstums rezervēts iepriekš: logrīks ir 65 px, un tā parādīšanās
-          nedrīkst pabīdīt piekrišanas rindu un pogu. */}
-      <div ref={hostRef} className="min-h-[65px]" />
+    <div className={armed ? "mt-7" : undefined}>
+      {/* Vietu rezervējam TIKAI pēc pirmā pieskāriena formai. Iepriekš šeit
+          stāvēja tukšs 65 px bloks, un telefonā tas izskatījās pēc cauruma
+          starp piekrišanu un pogu. Nobīde pēc lietotāja darbības CLS neskaita. */}
+      <div ref={hostRef} className={armed ? "min-h-[65px]" : undefined} />
     </div>
   );
 }
