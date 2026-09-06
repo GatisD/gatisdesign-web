@@ -3,6 +3,7 @@ import JsonLd, { buildBreadcrumbSchema } from "@/components/JsonLd";
 import Label from "@/components/ui/Label";
 import Reveal from "@/components/animations/Reveal";
 import LineReveal from "@/components/animations/LineReveal";
+import { h1Lines } from "@/content/h1";
 import { Section, SectionTitle, LabelRow } from "@/components/direction/Section";
 import ContactForm from "@/components/ContactForm";
 import FaqList from "@/components/content/FaqList";
@@ -12,7 +13,14 @@ import { contactContent, contactSections } from "@/content/pages";
 import { headingId } from "@/content/slug";
 import { useLocale } from "@/i18n/LocaleContext";
 import { pathFor } from "@/i18n/routes";
-import { CONTACT_EMAIL, SITE_NAME, SITE_URL, SOCIAL } from "@/lib/site";
+import {
+  CONTACT_EMAIL,
+  PERSON_OCCUPATION,
+  PERSON_SAME_AS,
+  SITE_NAME,
+  SITE_URL,
+  WORK_LOCATION,
+} from "@/lib/site";
 
 /**
  * Kontakti.
@@ -43,9 +51,13 @@ export default function Kontakti() {
       "@id": `${SITE_URL}/#gatis`,
       name: "Gatis Daugavietis",
       alternateName: SITE_NAME,
+      jobTitle: "Web dizainers un izstrādātājs",
+      url: SITE_URL,
       email: CONTACT_EMAIL,
       address: { "@type": "PostalAddress", addressLocality: "Rīga", addressCountry: "LV" },
-      sameAs: [SOCIAL.linkedin, SOCIAL.instagram, SOCIAL.dribbble, SOCIAL.facebook],
+      hasOccupation: PERSON_OCCUPATION,
+      workLocation: WORK_LOCATION,
+      sameAs: PERSON_SAME_AS,
     },
   };
 
@@ -87,7 +99,7 @@ export default function Kontakti() {
           <LineReveal
             as="h1"
             id="kontakti-h"
-            lines={["Pastāsti, kas", "tev jāatrisina"]}
+            lines={h1Lines(contactContent.h1, 2)}
             className="text-display-2 font-bold uppercase text-paper"
           />
           <Reveal delay={0.2} className="mt-[clamp(18px,2.4vw,28px)] max-w-[62ch]">

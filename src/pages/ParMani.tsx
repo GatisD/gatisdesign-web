@@ -3,6 +3,7 @@ import JsonLd, { buildBreadcrumbSchema } from "@/components/JsonLd";
 import Label from "@/components/ui/Label";
 import Reveal, { stagger } from "@/components/animations/Reveal";
 import LineReveal from "@/components/animations/LineReveal";
+import { h1Lines } from "@/content/h1";
 import CountUp from "@/components/animations/CountUp";
 import MediaPlaceholder from "@/components/direction/MediaPlaceholder";
 import { Section, SectionTitle } from "@/components/direction/Section";
@@ -13,7 +14,15 @@ import { aboutContent } from "@/content/pages";
 import { statItems } from "@/content/home";
 import { useLocale } from "@/i18n/LocaleContext";
 import { pathFor, type RouteKey } from "@/i18n/routes";
-import { CONTACT_EMAIL, CONTENT_MODIFIED, SITE_NAME, SITE_URL, SOCIAL } from "@/lib/site";
+import {
+  CONTACT_EMAIL,
+  CONTENT_MODIFIED,
+  PERSON_OCCUPATION,
+  PERSON_SAME_AS,
+  SITE_NAME,
+  SITE_URL,
+  WORK_LOCATION,
+} from "@/lib/site";
 
 const SERVICE_KEYS = ["services.brand", "services.web", "services.ai", "services.seo"] as const;
 const LABEL_BY_KEY = {
@@ -54,7 +63,12 @@ export default function ParMani() {
     address: { "@type": "PostalAddress", addressLocality: "Rīga", addressCountry: "LV" },
     knowsLanguage: ["lv", "en"],
     knowsAbout: SERVICE_KEYS.map((key) => t.services[LABEL_BY_KEY[key]]),
-    sameAs: [SOCIAL.linkedin, SOCIAL.instagram, SOCIAL.dribbble, SOCIAL.facebook],
+    // Abi faili apraksta VIENU `@id`. Ja tie atšķiras, parseris redz divus
+    // dažādus cilvēkus ar vienu identifikatoru, tāpēc lauki nāk no vienas
+    // konstantes (src/lib/site.ts), ne no divām kopijām.
+    hasOccupation: PERSON_OCCUPATION,
+    workLocation: WORK_LOCATION,
+    sameAs: PERSON_SAME_AS,
     dateModified: CONTENT_MODIFIED,
   };
 
@@ -100,7 +114,7 @@ export default function ParMani() {
             <LineReveal
               as="h1"
               id="par-h"
-              lines={["Gatis", "Daugavietis"]}
+              lines={h1Lines(aboutContent.h1, 1)}
               className="text-display-2 font-bold uppercase text-paper"
             />
             <Reveal delay={0.2} className="mt-[clamp(20px,3vw,34px)] max-w-[54ch]">
