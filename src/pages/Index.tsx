@@ -96,7 +96,7 @@ const homeServiceSchema = {
     height: 512,
     caption: SITE_NAME,
   },
-  // Uz jautājumu "vai Gatis Design ir aģentūra" entītāte atbild pati.
+  // Uz jautājumu "vai Gatis Design ir aģentūra" entitāte atbild pati.
   numberOfEmployees: { "@type": "QuantitativeValue", value: 1 },
   knowsAbout: KNOWS_ABOUT,
   // `availableLanguage` Organization domēnā nav; uz biznesa mezgla pareizais
@@ -403,7 +403,7 @@ export default function Index() {
             </a>
           </div>
           <p className="mt-6 max-w-[58ch] text-[15px] leading-[1.6] text-paper-dim">
-            {contactSection.body[1]}
+            <LinkedText text={contactSection.body[1]} />
           </p>
         </LabelRow>
       </Section>

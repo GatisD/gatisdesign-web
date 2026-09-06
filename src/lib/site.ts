@@ -14,7 +14,7 @@ export const SOCIAL = {
 };
 
 /**
- * Profili strukturētajiem datiem, sadalīti pa entītātēm.
+ * Profili strukturētajiem datiem, sadalīti pa entitātēm.
  *
  * Identisks masīvs gan uz `Person`, gan uz `ProfessionalService` mašīnai
  * nozīmē, ka personai un biznesam ir tieši viens profilu komplekts, tātad tie,
@@ -25,7 +25,7 @@ export const PERSON_SAME_AS = [SOCIAL.linkedin, SOCIAL.instagram, SOCIAL.dribbbl
 export const BUSINESS_SAME_AS = [SOCIAL.facebook];
 
 /**
- * Profesija kā kodēta entītāte, ne kā brīvs teksts. O*NET kods 15-1254.00 ir
+ * Profesija kā kodēta entitāte, ne kā brīvs teksts. O*NET kods 15-1254.00 ir
  * Web Developers. Rich result no šī nav; ieguvums ir AI citējamībā.
  */
 export const PERSON_OCCUPATION = {
@@ -57,7 +57,7 @@ export const WORK_LOCATION = {
  * Apkalpotās valstis strukturētajiem datiem.
  *
  * Viena konstante, ne divas: sākumlapā tas bija virkņu masīvs, pakalpojumu
- * lapās - `Country` objekti, un viena entītāte par vienu un to pašu runāja
+ * lapās - `Country` objekti, un viena entitāte par vienu un to pašu runāja
  * divās formās. `sameAs` uz Wikidata ir tas, kas atšķir vārdu "Latvija" no
  * valsts zināšanu grafā.
  */
@@ -72,7 +72,7 @@ export const AREA_SERVED = [
   },
 ];
 
-/** Kompetences mašīnlasāmā formā. Tas, ko entītāte prot, ne tas, ko pārdod. */
+/** Kompetences mašīnlasāmā formā. Tas, ko entitāte prot, ne tas, ko pārdod. */
 export const KNOWS_ABOUT = [
   "Mājaslapu dizains un izstrāde",
   "WordPress mājaslapu izstrāde",

@@ -66,7 +66,7 @@
       ],
       "bullets": [
         "Struktūra un lapu karte: kas ir katrā lapā un kādā secībā apmeklētājs to lasa",
-        "Individuāls dizains, nevis nopirkta tēma ar aizvietotu logotipu",
+        "Individuāls dizains, nevis nopirkta tēma ar aizvietotu logotipu - ja vajag arī pašu zīmi, to taisu atsevišķi: [zīmola identitāte un logotips](/zimola-identitate)",
         "Adaptīvs izkārtojums telefonam, planšetei un datoram; mobilo versiju pārbaudu reālā ierīcē, ne tikai pārlūka simulatorā",
         "Būve kodā vai WordPress uzstādīšana ar sakārtotu administratora daļu",
         "Tehniskais SEO: title un meta apraksti, virsrakstu hierarhija, sitemap.xml, robots.txt, schema.org strukturētie dati",
@@ -83,7 +83,7 @@
       "body": [
         "Lielākā daļa uzņēmumu lapu ir uzbūvētas no uzņēmuma skatpunkta: par mums, mūsu vēsture, mūsu vērtības un tikai kaut kur pēc tam pakalpojumi. Apmeklētājs ienāk ar citu jautājumu - vai šis uzņēmums var atrisināt manu problēmu, cik tas maksās un cik ilgi tas prasīs.",
         "Tāpēc katru lapu būvēju ap vienu darbību. Ja lapā ir piecas vienlīdz svarīgas pogas, nav nevienas.",
-        "Pēdējais punkts sarakstā zemāk vairs nav niša. Daļa cilvēku atbildi uz jautājumu, kas Rīgā taisa mājaslapas, tagad meklē ChatGPT logā vai Google AI kopsavilkumā, nevis desmit zilajās saitēs. Lai lapa tur parādītos, tai jābūt uzrakstītai konkrēti: skaitļi, cenas, termiņi, nosaukumi. Frāze „individuāla pieeja katram klientam” netiek citēta nekad.",
+        "Pēdējais punkts sarakstā zemāk vairs nav niša. Daļa cilvēku atbildi uz jautājumu, kas Rīgā taisa mājaslapas, tagad meklē ChatGPT logā vai Google AI kopsavilkumā, nevis desmit zilajās saitēs. Lai lapa tur parādītos, tai jābūt uzrakstītai konkrēti: skaitļi, cenas, termiņi, nosaukumi. Frāze „individuāla pieeja katram klientam” netiek citēta nekad. Šo pašu principu visai lapai piemēro [atsevišķs SEO darbs ar saturu un saitēm](/seo-geo-aeo).",
         "Ja tev jau ir lapa un tā nav slikta, ne vienmēr vajag jaunu. Reizēm pareizā atbilde ir pārtaisīt divas lapas un salabot ātrumu par trešdaļu no jaunas lapas cenas. To pasaku pēc tam, kad esmu paskatījies, kas tev ir, nevis pirms tam."
       ],
       "bullets": [
@@ -193,7 +193,7 @@
       "kicker": "Desmit klienti",
       "heading": "Reāli piemēri",
       "body": [
-        "Starp klientiem ir MLM Cargo, ARM Metals, Tavasdurvis, Box Latvia, Tenter, Improvement, Cafeteria, Forevolt, DarbaGuru un Apmeklē.lv. Loģistika, ražošana, tirdzniecība, medicīna, pakalpojumi. 18 gadu pieredze un klienti Latvijā, Igaunijā, Lietuvā un ASV."
+        "Starp klientiem ir MLM Cargo, ARM Metals, Tavasdurvis, Box Latvia, Tenter, Improvement, Cafeteria, Forevolt, DarbaGuru un Apmeklē.lv. Loģistika, ražošana, tirdzniecība, medicīna, pakalpojumi. [18 gadu pieredze](/par-mani) un klienti Latvijā, Igaunijā, Lietuvā un ASV. Visus darbus var apskatīt [portfolio sadaļā](/portfolio)."
       ],
       "bullets": [
         "Estire: lapa uzbūvēta kodā un darbojas Vercel platformā. Izvēlējos kodu, nevis WordPress, jo saturs mainās reti, bet ātrums un dizaina precizitāte bija svarīgi. Hostings praktiski neko nemaksā un ikmēneša uzturēšana nav vajadzīga.",
@@ -207,7 +207,7 @@
       "heading": "Kas notiek pēc palaišanas",
       "body": [
         "Palaišana nav finiša līnija. Pirmajās nedēļās kļūst redzams, ko cilvēki lapā dara patiesībā, nevis ko mēs abi bijām iedomājušies.",
-        "Divas nedēļas pēc palaišanas es ieskatos analītikā: kur apmeklētāji apstājas, kuras lapas neviens neatver, vai formas tiek aizpildītas līdz galam. No tā parasti izriet divas trīs nelielas izmaiņas un tās ir iekļautas cenā.",
+        "Divas nedēļas pēc palaišanas es ieskatos analītikā: kur apmeklētāji apstājas, kuras lapas neviens neatver, vai formas tiek aizpildītas līdz galam. No tā parasti izriet divas trīs nelielas izmaiņas un tās ir iekļautas cenā. Ja pieprasījumus apstrādā ar roku, šo posmu var pārņemt [AI aģents mājaslapā](/ai-agenti).",
         "Tālāk ir izvēle. Vari uzturēt lapu pats: iedodu piekļuves un pamācību, tad atstāju tevi mierā. Vai arī uzturēšanu atstāj man.",
         "Uzturēšana nav obligāta un netiek piesaistīta izstrādes līgumam. Bet WordPress lapa bez atjauninājumiem gada laikā kļūst par drošības risku. Esmu tīrījis pietiekami daudz uzlauztu lapu, lai to pateiktu tieši, nevis pieklājīgi."
       ],
@@ -229,7 +229,7 @@
       "kicker": "Godīgi",
       "heading": "Kad es neesmu īstā izvēle",
       "body": [
-        "Ne katrs projekts ir mans, un to labāk pateikt uzreiz. Ja budžets ir zem 500 EUR, ja lapa vajadzīga parīt, ja meklē aģentūru ar komandu vai ja gaidi, ka lapa pati atvedīs apmeklētājus, es nebūšu labākā izvēle - pilns saraksts ir /par-mani."
+        "Ne katrs projekts ir mans, un to labāk pateikt uzreiz. Ja budžets ir zem 500 EUR, ja lapa vajadzīga parīt, ja meklē aģentūru ar komandu vai ja gaidi, ka lapa pati atvedīs apmeklētājus, es nebūšu labākais risinājums - pilns saraksts ir sadaļā [Kad viens cilvēks nav īstā izvēle](/par-mani)."
       ]
     },
     {

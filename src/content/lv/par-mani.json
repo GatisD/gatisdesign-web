@@ -85,10 +85,10 @@
         "Vairums projektu skar divas vai trīs līnijas vienlaikus. Jauns zīmols bez mājaslapas ir puse darba, un mājaslapa bez redzamības ir vizītkarte, ko neviens neatrod."
       ],
       "bullets": [
-        "Zīmola identitāte. Logotips, krāsas, tipogrāfija, lietošanas noteikumi un gatavi šabloni. Novērš to, ka materiālus katru reizi taisa no nulles un tie nekad neizskatās pēc viena uzņēmuma.",
-        "Mājaslapu izstrāde. WordPress, React vai statiska vietne. Tehnoloģiju izvēlos pēc tā, kas tev pēc tam būs jāuztur, ne pēc tā, kas man pašam patīk. Sākot ar vienu landing page kampaņai un beidzot ar vairāku valodu vietni, kas savienota ar CRM.",
-        "AI aģenti un automatizācija. Pieprasījumu apstrāde, atbilžu sagataves, datu pārnese starp sistēmām, atskaites, kas sagatavojas pašas. Novērš to, ka cilvēks nedēļā pavada astoņas stundas darbā, kuru var izdarīt mašīna.",
-        "SEO, GEO un AEO redzamība. Klasiskā optimizācija meklētājam un tas pats darbs AI atbildēm: ChatGPT, Google AI pārskati, Perplexity. Tehniskā bāze, satura struktūra un dati, ko modelis spēj nolasīt un citēt."
+        "[Zīmola identitāte](/zimola-identitate). Logotips, krāsas, tipogrāfija, lietošanas noteikumi un gatavi šabloni. Novērš to, ka materiālus katru reizi taisa no nulles un tie nekad neizskatās pēc viena uzņēmuma.",
+        "[Mājaslapu izstrāde](/majaslapu-izstrade). WordPress, React vai statiska vietne. Tehnoloģiju izvēlos pēc tā, kas tev pēc tam būs jāuztur, ne pēc tā, kas man pašam patīk. Sākot ar vienu landing page kampaņai un beidzot ar vairāku valodu vietni, kas savienota ar CRM.",
+        "[AI aģenti un automatizācija](/ai-agenti). Pieprasījumu apstrāde, atbilžu sagataves, datu pārnese starp sistēmām, atskaites, kas sagatavojas pašas. Novērš to, ka cilvēks nedēļā pavada astoņas stundas darbā, kuru var izdarīt mašīna.",
+        "[SEO, GEO un AEO redzamība](/seo-geo-aeo). Klasiskā optimizācija meklētājam un tas pats darbs AI atbildēm: ChatGPT, Google AI pārskati, Perplexity. Tehniskā bāze, satura struktūra un dati, ko modelis spēj nolasīt un citēt."
       ]
     },
     {

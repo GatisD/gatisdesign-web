@@ -86,9 +86,9 @@
       "kicker": "Renderēšana",
       "heading": "Kāpēc ar JavaScript renderēts saturs AI atbildēs neeksistē",
       "body": [
-        "Googlebot JavaScript izpilda, kaut arī ar aizkavi. Lielākā daļa AI botu to nedara. GPTBot, PerplexityBot un ClaudeBot paņem servera atsūtīto HTML un lasa tikai to, kas tajā jau ir. Ja saturs parādās vienīgi pēc tam, kad pārlūkā nostrādā React vai Vue, botam tava lapa ir tukša.",
+        "Googlebot JavaScript izpilda, kaut arī ar aizkavi. Lielākā daļa AI botu to nedara. GPTBot, PerplexityBot un ClaudeBot paņem servera atsūtīto HTML un lasa tikai to, kas tajā jau ir. Ja saturs parādās vienīgi pēc tam, kad pārlūkā nostrādā React vai Vue, botam tava lapa ir tukša. To, kā Googlebot apstrādā JavaScript, Google apraksta [JavaScript SEO pamatos](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics).",
         "Šis ir biežākais klusais iemesls, kāpēc uzņēmums AI atbildēs neparādās. Lapa izskatās moderna, Google to indeksē, formas strādā, bet ChatGPT par uzņēmumu neko nezina, jo saņemtajā HTML failā nav neviena teikuma, tikai viens tukšs konteinera elements un skriptu saraksts.",
-        "Ja pārbaude rāda tukšumu, risinājums ir server-side rendering, statiska ģenerēšana vai prerender slānis. Šajā lapā, kuru tu tagad lasi, viss teksts ir HTML kodā jau pirms pārlūks izpilda pirmo skriptu, un tieši tāpēc to var citēt. Statiskā renderēšana atrisina arī ātruma problēmu, tāpēc jaunās lapās to izmantoju pēc noklusējuma, nevis pievienoju vēlāk kā ielāpu.",
+        "Ja pārbaude rāda tukšumu, risinājums ir server-side rendering, statiska ģenerēšana vai prerender slānis. Šajā lapā, kuru tu tagad lasi, viss teksts ir HTML kodā jau pirms pārlūks izpilda pirmo skriptu, un tieši tāpēc to var citēt. Statiskā renderēšana atrisina arī ātruma problēmu, tāpēc [jaunās mājaslapas](/majaslapu-izstrade) būvēju tā uzreiz, nevis pieliku statisko renderēšanu klāt vēlāk kā ielāpu.",
         "Vecās WordPress lapās šī problēma parasti nepastāv, un tas ir viens no retajiem gadījumiem, kad vecā tehnoloģija ir priekšrocība. Problēma sākas tur, kur WordPress darbojas kā headless datu avots un lapu renderē atsevišķa React lietotne vai kur saturu ielādē trešās puses spraudnis pēc lapas atvēršanas.",
         "Pārbaude aizņem minūti un nemaksā neko:"
       ],
@@ -105,7 +105,7 @@
         "robots.txt nosaka piekļuvi. Diezgan bieži atrodu, ka lapa AI botiem ir aizvērta nejauši: to izdarījis drošības spraudnis, Cloudflare noteikums vai hostinga slēdzis ar nosaukumu „AI protection”, kuru neviens nav apzināti ieslēdzis. Pirmais darbs katrā auditā ir pārbaudīt, vai botiem vispār ir atļauts ienākt.",
         "Par llms.txt esmu godīgs. Tas ir priekšlikums, nevis standarts, un neviens no lielajiem modeļu ražotājiem nav publiski apstiprinājis, ka to lasa. Es to tomēr sagatavoju, jo tas aizņem pusstundu, neko nesabojā un dod skaidru satura karti gadījumam, ja formāts nostiprinās. Solīt, ka llms.txt uzreiz dos citējumus, būtu meli.",
         "Daudz lielāku ietekmi dod garlaicīgi parastas lietas: derīga sitemap.xml, pareizi HTTP statusa kodi, canonical bez pretrunām, tīra iekšējā sasaiste un lapas, kas arī mobilajā tīklā atveras ātrāk par divām sekundēm.",
-        "Boti, kurus pārbaudu robots.txt failā un servera žurnālos:"
+        "Boti, kurus pārbaudu robots.txt failā un servera žurnālos: Faila formātu apraksta [llms.txt specifikācija](https://llmstxt.org/), bet katra bota uzvedību apraksta tā īpašnieka dokumentācija: [OpenAI](https://platform.openai.com/docs/bots), [Anthropic](https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler) un [Perplexity](https://docs.perplexity.ai/guides/bots)."
       ],
       "bullets": [
         "GPTBot, OAI-SearchBot un ChatGPT-User: OpenAI boti satura ievākšanai un meklēšanai reāllaikā.",
@@ -119,8 +119,8 @@
     {
       "heading": "Schema markup: konteksts, ko mašīna nolasa bez minēšanas",
       "body": [
-        "Schema markup ir JSON-LD bloks lapas kodā, kas mašīnai pasaka to, ko cilvēks nolasa no dizaina: šis ir pakalpojums, šī ir tā cena, šis ir jautājums un šī ir atbilde uz to.",
-        "Schema pati par sevi nav ranžēšanas faktors, un es to nesolu kā pozīciju uzlabotāju. Tā dara ko citu: samazina minēšanu. Jo mazāk parsētājam jāmin, jo lielāka iespēja, ka tavs fragments tiks izmantots pareizajā kontekstā un ar pareizo cenu.",
+        "Schema markup ir JSON-LD bloks lapas kodā, kas mašīnai pasaka to, ko cilvēks nolasa no dizaina: šis ir pakalpojums, šī ir tā cena, šis ir jautājums un šī ir atbilde uz to. Tipu sarakstu uztur [schema.org](https://schema.org/), bet tos, kurus Google tiešām izmanto, uzskaita [Google strukturēto datu dokumentācija](https://developers.google.com/search/docs/appearance/structured-data/search-gallery).",
+        "Schema pati par sevi nav ranžēšanas faktors, un es to nesolu kā pozīciju uzlabotāju. Tā dara ko citu: samazina minēšanu. Jo mazāk parsētājam jāmin, jo lielāka iespēja, ka tavs fragments tiks izmantots pareizajā kontekstā un ar pareizo cenu. Tas pats attiecas uz entitātes skaidrību ārpus koda: viens nosaukums, viena zīme un viens apraksts visur - to sakārto [zīmola identitāte](/zimola-identitate).",
         "Vēl viena godīga piezīme: 2023. gadā Google lielākajai daļai lapu izslēdza FAQ paplašinātos rezultātus, tāpēc no FAQPage veidotie izvēršamie jautājumi meklētājā vairs neparādās. Struktūru es tomēr atstāju, jo to lasa AI parsētāji, un tas ir bezmaksas veids, kā jautājumu un atbildi pasniegt gatavā formā.",
         "Kuru schema tipu kur lieku:"
       ],
@@ -152,7 +152,7 @@
     {
       "heading": "Biežākās kļūdas, ko atrodu auditos",
       "body": [
-        "Auditos atkārtojas viens un tas pats saraksts neatkarīgi no nozares un no tā, cik dārga bija mājaslapa.",
+        "Mājaslapas optimizācija sākas nevis ar rīka atskaiti, bet ar to, ka kāds izlasa, kas lapā tiešām ir uzrakstīts. Auditos atkārtojas viens un tas pats saraksts neatkarīgi no nozares un no tā, cik dārga bija mājaslapa.",
         "Lielāko daļu no šī saraksta var salabot divās nedēļās, un tas ir lētākais posms visā darbā. Dārgi kļūst tad, kad jāpārraksta saturs un jāpārbūvē renderēšana.",
         "Saraksts, kas atkārtojas gandrīz katrā projektā:"
       ],
@@ -170,7 +170,7 @@
       "kicker": "Process",
       "heading": "Kā es strādāju: no audita līdz mērāmai redzamībai",
       "body": [
-        "Es strādāju viens un visu daru pats. Nav klientu vadītāja, kas pārstāsta izstrādātāja vārdus, un nav atskaišu par darbu, kas nav padarīts. Tas pats cilvēks, kurš uztaisa dizainu, uzraksta arī kodu un schema bloku.",
+        "Es strādāju viens un visu daru pats. Nav klientu vadītāja, kas pārstāsta izstrādātāja vārdus, un nav atskaišu par darbu, kas nav padarīts. Tas pats cilvēks, kurš uztaisa dizainu, uzraksta arī kodu un schema bloku. Aiz tā ir [18 gadu pieredze dizainā un izstrādē](/par-mani).",
         "Audits vienmēr ir pirmais. Es nepārdodu abonementu lapai, kuras problēmas vēl neredzu. Auditā redzamā aina bieži maina plānu: reizēm satura darbs vispār nav vajadzīgs, jo pietiek ar renderēšanas labojumu.",
         "Mērīšana sākas vienlaikus ar pirmo bloku, nevis beigās, jo bez sākuma punkta izaugsmi nevar pierādīt. Sākuma punktu nofiksēju pirms pirmās izmaiņas: pozīcijas, apmeklējums, botu pieprasījumi un atbildes uz jautājumu komplektu katrā modelī."
       ],
@@ -252,7 +252,7 @@
       "heading": "Kā izmērīt redzamību AI atbildēs",
       "body": [
         "ChatGPT nav savas Search Console, un neviens rīks nerāda pilnu ainu. To es pasaku uzreiz, jo solījumi par „pilnu AI redzamības kontroli” ir pārdošanas triki.",
-        "Jautājumu komplekts nav elegants rīks, bet tas ir vissvarīgākais. Es pierakstu, vai zīmols atbildē parādās, kurā vietā un kurš domēns tiek citēts. Bez šī saraksta jebkura saruna par AI redzamību ir sajūtu saruna.",
+        "Jautājumu komplekts nav elegants rīks, bet tas ir vissvarīgākais. Es pierakstu, vai zīmols atbildē parādās, kurā vietā un kurš domēns tiek citēts. Bez šī saraksta jebkura saruna par AI redzamību ir sajūtu saruna. Daļu no šīs uzskaites pārņem [AI aģenti saturam un mērīšanai](/ai-agenti).",
         "Google Search Console atsevišķi neuzrāda impressions, kas nāk no AI Overviews, tāpēc precīzu skaitli, cik reizes lapa parādījās AI blokā, no Search Console datiem iegūt nevar. Ja kāds tev to sola, viņš vai nu neizprot datus, vai apzināti pārspīlē.",
         "Mērīt tomēr var, un es to daru ar četriem avotiem vienlaikus:"
       ],
@@ -284,8 +284,8 @@
     {
       "heading": "Ar ko esmu strādājis",
       "body": [
-        "Astoņpadsmit gados esmu strādājis ar klientiem Latvijā, Igaunijā, Lietuvā un ASV. Daļa projektu ir jaunas mājaslapas, kurās SEO pamats ielikts jau izstrādes laikā, daļa ir esošu lapu sakārtošana.",
-        "Ražošanā un būvniecībā tie ir Tenter, ARM Metals, Estire un Improvement. Loģistikā un biznesa pakalpojumos: MLM Cargo, Box Latvia, Universal Solutions un DarbaGuru. Tirdzniecībā un patērētāju pakalpojumos: Tavasdurvis, Lucky Punch, Cafeteria, Valis Stomatoloģija, Lauvas Zobs un Forevolt. Digitālajos produktos: Apmeklē.lv, Digitālais Dzintars un LimeBit.",
+        "Astoņpadsmit gados esmu strādājis ar klientiem Latvijā, Igaunijā, Lietuvā un ASV. Daļa projektu ir [jaunas mājaslapas](/majaslapu-izstrade), kurās SEO pamats ielikts jau izstrādes laikā, daļa ir esošu lapu sakārtošana.",
+        "Ražošanā un būvniecībā tie ir Tenter, ARM Metals, Estire un Improvement. Loģistikā un biznesa pakalpojumos: MLM Cargo, Box Latvia, Universal Solutions un DarbaGuru. Tirdzniecībā un patērētāju pakalpojumos: Tavasdurvis, Lucky Punch, Cafeteria, Valis Stomatoloģija, Lauvas Zobs un Forevolt. Digitālajos produktos: Apmeklē.lv, Digitālais Dzintars un LimeBit. Visus publicētos darbus var apskatīt [mājaslapu un logo izstrādes piemēros](/portfolio).",
         "Nozares atšķiras, bet pirmās problēmas gandrīz vienmēr ir vienādas: saturs, ko boti nevar nolasīt, lapas bez tiešas atbildes uz galveno jautājumu, cenas, kuras nekur nav nosauktas, un schema, kas vai nu nav ielikta, vai ir kļūdaina. Tāpēc audits vienmēr ir pirmais solis, nevis uzreiz satura darbs."
       ]
     },
@@ -294,7 +294,7 @@
       "body": [
         "Sāc ar auditu par 300 EUR. Es pārbaudu līdz piecām svarīgākajām lapām un atsūtu pēc svarīguma sakārtotu sarakstu ar to, kas kavē redzamību meklētājos un AI atbildēs. Sarakstu vari izmantot arī bez manis, tas ir tavs.",
         "Ja pēc audita gribi, lai labojumus ieviešu es, izmaksas ir atkarīgas no apjoma un sākas no 700 EUR. Termiņus nosaucu pirms darba sākuma, nevis procesa vidū.",
-        "Raksti uz connect@gatisdesign.com un pievieno lapas adresi. Pirmo novērtējumu parasti atsūtu vienas darba dienas laikā."
+        "Raksti uz connect@gatisdesign.com vai [sazinies ar mani kontaktu formā](/kontakti) un pievieno lapas adresi. Pirmo novērtējumu parasti atsūtu vienas darba dienas laikā."
       ]
     }
   ],
