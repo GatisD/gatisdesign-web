@@ -388,7 +388,11 @@ export default function ProjectDetail() {
       </Section>
 
       {/* ============ GALERIJA ============ */}
-      {gallery.length === 0 ? (
+      {/* Vāka bloks ir rezerve lapām bez galerijas. Ja projektam ir pārlūka
+          kadri, vāks ir TAS PATS datora kadrs, kas jau stāv augstāk kopā ar
+          telefonu - un viens un tas pats attēls divreiz vienā lapā ir kļūda,
+          ne ritms. */}
+      {gallery.length === 0 && !project.shot ? (
         <Section rhythm="md" ariaLabel={isLv ? "Projekta vāks" : "Project cover"}>
           <Reveal>
             <span className="mx-auto block max-w-[1080px] overflow-hidden rounded-card border border-line bg-ink-card">
