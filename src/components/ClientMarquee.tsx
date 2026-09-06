@@ -5,7 +5,7 @@ import { clientLogos, clientLogoPath } from "@/data/clients";
  * Klientu logotipu josla.
  *
  * Kustība ir CSS, ne JS: divi identiski saraksti cits aiz cita, un celiņš
- * pārvietojas tieši par pusi savā platuma - brīdī, kad otrā saraksta pirmais
+ * pārvietojas tieši par pusi sava platuma - brīdī, kad otrā saraksta pirmais
  * logotips stāv tur, kur sākumā stāvēja pirmā saraksta pirmais, animācija sākas
  * no gala, un šuve nav redzama. Otrais saraksts ir `aria-hidden`, jo ekrāna
  * lasītājam tie ir tie paši četrpadsmit klienti, ne divdesmit astoņi.
