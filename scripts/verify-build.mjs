@@ -280,6 +280,50 @@ function checkDist(dist) {
     }
   }
 
+  // 16. Darbu skaits tekstā sakrīt ar darbu skaitu datos.
+  //
+  //     Meta apraksts gadu apgalvoja "23 pabeigti projekti", un pēc tam, kad
+  //     4. kārta pievienoja desmit vietnes, lapa rādīja 33. Meta apraksts nāk
+  //     no `projects.length`, bet `llms.txt` ir rakstīts ar roku - tāpēc abi
+  //     tiek salīdzināti ar to, kas dist mapē tiešām ir.
+  {
+    const detailPages = pages.filter((page) => /^portfolio\/[^/]+\.html$/.test(page));
+    const total = detailPages.length;
+    const indexable = sitemap
+      ? [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].filter((m) => m[1].includes("/portfolio/")).length
+      : 0;
+
+    if (total === 0) errors.push("dist nesatur nevienu projekta lapu");
+
+    const portfolio = read("portfolio.html");
+    if (portfolio) {
+      const description = attr(portfolio, /<meta[^>]*name="description"[^>]*content="([^"]*)"/) ?? "";
+      if (!description.startsWith(`${total} publicēti darbi`)) {
+        errors.push(`portfolio.html meta apraksts nesākas ar "${total} publicēti darbi": ${description.slice(0, 40)}`);
+      }
+    }
+
+    if (llms) {
+      for (const claim of [`${total} publicēti darbi`, `${total} published works`]) {
+        if (!llms.includes(claim)) errors.push(`llms.txt trūkst apgalvojuma "${claim}"`);
+      }
+      // Katrs skaitlis pie "publicēti darbi" un "published works", ne tikai
+      // pirmais: viena vieta failā var palikt atpakaļ, un tieši tā notiek.
+      for (const [phrase, count] of llms.matchAll(/(\d+) (?:publicēti darbi|published works)/g)) {
+        if (Number(count) !== total) {
+          errors.push(`llms.txt saka "${phrase}", bet dist satur ${total} projektu lapas`);
+        }
+      }
+      const listed = [...llms.matchAll(/\]\(https:\/\/gatisdesign\.com\/portfolio\/[a-z0-9-]+\)/g)].length;
+      if (listed !== indexable) {
+        errors.push(`llms.txt uzskaita ${listed} projektu lapas, sitemapā to ir ${indexable}`);
+      }
+      if (!llms.includes(`uzskaitīti ${indexable},`)) {
+        errors.push(`llms.txt nesaka, ka uzskaitītas tieši ${indexable} projektu lapas`);
+      }
+    }
+  }
+
   return errors;
 }
 
@@ -380,6 +424,13 @@ const MUTATIONS = [
     apply: (d) => {
       const p = join(d, "llms.txt");
       writeFileSync(p, readFileSync(p, "utf8").replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$2"));
+    },
+  },
+  {
+    name: "darbu skaits tekstā atpalicis no datiem",
+    apply: (d) => {
+      const p = join(d, "llms.txt");
+      writeFileSync(p, readFileSync(p, "utf8").replace(/33 publicēti darbi/g, "23 publicēti darbi"));
     },
   },
   {

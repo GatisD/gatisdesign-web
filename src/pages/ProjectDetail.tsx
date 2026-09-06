@@ -32,7 +32,7 @@ import {
  * Fakti par projektu vienā teikumu virknē.
  *
  * Nekas netiek izdomāts: viss salikts no laukiem, kas datos jau ir - nozare,
- * klients, loma, gads, pakalpojumi. Piecām lapām no 23 apraksta nav vispār, un
+ * klients, loma, gads, pakalpojumi. Četrām lapām no 33 apraksta nav vispār, un
  * līdz šim tur bija tikai "Cafeteria. Izstrāde ROIS komandā." - 38 zīmes gan
  * lapā, gan meta aprakstā.
  */

@@ -16,8 +16,12 @@ import { cn } from "@/lib/utils";
 
 type Filter = "all" | ProjectCategory;
 
-const META_DESCRIPTION =
-  "23 pabeigti projekti: mājaslapu izstrādes piemēri, logo un zīmola darbi. Estire, Box Latvia, ROIS.lv, Apmeklē.lv. Katram norādīts klients un mana loma.";
+/**
+ * Darbu skaits nāk no datiem, ne no rokas. Iepriekš te stāvēja "23 pabeigti
+ * projekti", un pēc tam, kad 4. kārta pievienoja desmit vietnes, meta apraksts
+ * apgalvoja vienu skaitli, bet lapa rādīja citu.
+ */
+const META_DESCRIPTION = `${projects.length} publicēti darbi: mājaslapu izstrādes piemēri, logo un zīmola darbi. Estire, Box Latvia, ROIS.lv, Apmeklē.lv. Katram norādīts klients un mana loma.`;
 
 /**
  * Divas sadaļas zem režģa. Teksts dzīvo šeit, ne satura failā, jo /portfolio
