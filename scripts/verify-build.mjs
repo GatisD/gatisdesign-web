@@ -140,7 +140,25 @@ function checkDist(dist) {
       }
     }
 
-    // 8. h1 rindas atdala īsta atstarpe. Bez tās `textContent` deva
+    // 8. Fontu preload: tikai divi Epilogue faili. vite-react-ssg izliek
+    //    preload uz katru fontu failu, ko atrod CSS, un seši preload ar High
+    //    prioritāti stāv tieši LCP attēla blakus (sk. scripts/tune-preloads.mjs).
+    const preloads = [...html.matchAll(/<link\b[^>]*rel="preload"[^>]*as="font"[^>]*>/g)];
+    if (preloads.length !== 2) {
+      errors.push(`${where} fontu preload ir ${preloads.length}, gaidīti 2`);
+    }
+    for (const [tag] of preloads) {
+      const href = tag.match(/href="([^"]+)"/)?.[1] ?? "";
+      if (!href.endsWith(".woff2")) errors.push(`${where} preload nav woff2: ${href}`);
+      if (!/epilogue-latin(-ext)?-wght-normal/.test(href)) {
+        errors.push(`${where} preload nav Epilogue teksta fonts: ${href}`);
+      }
+      if (href.startsWith("/") && !existsSync(join(dist, href.slice(1)))) {
+        errors.push(`${where} preload norāda uz neesošu failu: ${href}`);
+      }
+    }
+
+    // 9. h1 rindas atdala īsta atstarpe. Bez tās `textContent` deva
     //    "Mājaslapuizstrāde" - tieši to redz katrs teksta izvilcējs, kas
     //    nerenderē CSS.
     const h1 = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
@@ -156,7 +174,7 @@ function checkDist(dist) {
     }
   }
 
-  // 9. index.html galvas atsauces norāda uz reāliem failiem (apple-touch-icon
+  // 10. index.html galvas atsauces norāda uz reāliem failiem (apple-touch-icon
   //    404 katram iOS pamana tikai šis vārts).
   const index = read("index.html");
   if (index) {
@@ -168,7 +186,7 @@ function checkDist(dist) {
     }
   }
 
-  // 10. sitemap: bez dublikātiem, bez noindex lapām, bez mirušiem URL.
+  // 11. sitemap: bez dublikātiem, bez noindex lapām, bez mirušiem URL.
   const sitemap = read("sitemap.xml");
   if (!sitemap) errors.push("dist/sitemap.xml neeksistē");
   else {
@@ -185,7 +203,7 @@ function checkDist(dist) {
     }
   }
 
-  // 11. Kontaktu lapā nonāk KATRA satura sadaļa. Pretējais virziens - sadaļa
+  // 12. Kontaktu lapā nonāk KATRA satura sadaļa. Pretējais virziens - sadaļa
   //     ir JSON, lapa to nerāda - iepriekš nebija segts ne ar testu, ne ar
   //     vārtiem, un trīs sadaļas klusi nebija lapā.
   const kontakti = read("kontakti.html");
@@ -261,6 +279,19 @@ const MUTATIONS = [
       const p = join(d, "kontakti.html");
       const html = readFileSync(p, "utf8");
       writeFileSync(p, html.replace(/Strādāju viens, tāpēc katru pieteikumu/g, "").replace(/Strādāju viens, tāpēc katru pieprasījumu/g, ""));
+    },
+  },
+  {
+    name: "atgriezies lieks fontu preload",
+    apply: (d) => {
+      const p = join(d, "index.html");
+      writeFileSync(
+        p,
+        readFileSync(p, "utf8").replace(
+          "<head>",
+          '<head><link rel="preload" as="font" type="font/woff2" href="/assets/dm-mono-latin-400-normal.woff2" crossorigin>',
+        ),
+      );
     },
   },
   {
