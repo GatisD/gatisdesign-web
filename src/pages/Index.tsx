@@ -339,7 +339,10 @@ export default function Index() {
       {/* Deviņi jautājumi ar cenām un termiņiem stāv tūlīt aiz cenu rindas: tie
           atbild tieši uz to, ko pakalpojumu saraksts tikko pacēla. Atbildes ir
           atvērtas, ne akordeonā - sk. FaqList. */}
-      <Section rhythm="lg" labelledBy="jautajumi-h">
+      {/* Ritms `md`, ne `lg`: fons ir tas pats, kas pakalpojumu sadaļai, tāpēc
+          divas `lg` atkāpes pēc kārtas telefonā deva 112 px tukšuma bez nevienas
+          līnijas vai krāsas maiņas - caurums, ne robeža. */}
+      <Section rhythm="md" labelledBy="jautajumi-h">
         <SectionTitle id="jautajumi-h" className="mb-[clamp(30px,4vw,56px)]">
           Biežākie jautājumi
         </SectionTitle>

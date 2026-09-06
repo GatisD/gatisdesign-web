@@ -186,12 +186,17 @@ export default function ContentSections({
               </ProseColumns>
             ) : (
               <LabelRow label={label}>
-                <Reveal>{body}</Reveal>
+                {/* Tukšs `Reveal` ir tukšs konteiners: kad sadaļai prozas nav
+                    (saraksts pats ir saturs), tas atstāj vietu, kurā nekā nav,
+                    un nākamā bloka `mt-8` to vēl pastiepj. */}
+                {section.body.length > 0 ? <Reveal>{body}</Reveal> : null}
 
-                {section.steps ? <StepFlow steps={section.steps} className="mt-8" /> : null}
+                {section.steps ? (
+                  <StepFlow steps={section.steps} className={section.body.length > 0 ? "mt-8" : undefined} />
+                ) : null}
 
                 {section.bullets ? (
-                  <ul className="mt-8 max-w-[68ch]">
+                  <ul className={`max-w-[68ch] ${section.body.length > 0 || section.steps ? "mt-8" : ""}`}>
                     {section.bullets.map((bullet, i) => (
                       <Reveal
                         as="li"

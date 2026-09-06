@@ -378,18 +378,24 @@ export default function ProjectDetail() {
               </ul>
             ) : null}
 
-            <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3">
-              {project.externalUrl ? (
-                <>
-                  <Button href={project.externalUrl} variant="link">
-                    {linkLabel}
-                  </Button>
-                  <Label>{prettyUrl(project.externalUrl)}</Label>
-                </>
-              ) : statusNote ? (
-                <Label>{statusNote}</Label>
-              ) : null}
-            </div>
+            {/* Rinda tikai tad, kad tajā kaut kas ir. Zīmola darbiem nav ne
+                ārējās saites, ne statusa piezīmes, un tukšs konteiners ar
+                `mt-8` telefonā deva 32 px tukšuma, kas kopā ar sekciju atkāpēm
+                izauga par 132 px caurumu pirms galerijas. */}
+            {project.externalUrl || statusNote ? (
+              <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3">
+                {project.externalUrl ? (
+                  <>
+                    <Button href={project.externalUrl} variant="link">
+                      {linkLabel}
+                    </Button>
+                    <Label>{prettyUrl(project.externalUrl)}</Label>
+                  </>
+                ) : (
+                  <Label>{statusNote}</Label>
+                )}
+              </div>
+            ) : null}
           </LabelRow>
       </Section>
 

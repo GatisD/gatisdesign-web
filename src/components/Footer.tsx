@@ -43,7 +43,7 @@ export default function Footer() {
 
   return (
     <footer className="on-paper bg-paper text-on-paper">
-      <div className="mx-auto w-full max-w-wrap px-5 sm:px-8 lg:px-10 pb-10 pt-16 md:pt-24">
+      <div className="mx-auto w-full max-w-wrap px-5 sm:px-8 lg:px-10 pb-10 pt-12 md:pt-24">
         {/* Kolonnas ir divas tikai tad, kad portreta vieta reāli renderējas.
             Produkcijā vietturis ir null, un bez šī nosacījuma saites paliktu
             iespiestas šaurajā 1fr kolonnā blakus tukšumam. */}
