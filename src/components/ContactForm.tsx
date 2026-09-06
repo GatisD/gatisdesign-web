@@ -312,7 +312,7 @@ export default function ContactForm({ className }: { className?: string }) {
         <input
           id="consent"
           type="checkbox"
-          className="mt-[3px] h-5 w-5 shrink-0 cursor-pointer rounded-[4px] border border-line-strong bg-ink-850 accent-[var(--amber)]"
+          className="mt-px h-6 w-6 shrink-0 cursor-pointer rounded-[4px] border border-line-strong bg-ink-850 accent-[var(--amber)]"
           aria-required="true"
           aria-invalid={errors.consent ? true : undefined}
           aria-describedby={errors.consent ? "consent-error" : undefined}

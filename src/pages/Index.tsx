@@ -351,9 +351,9 @@ export default function Index() {
             </Button>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="inline-block border-b border-line-amber py-1.5 text-[clamp(1rem,1.4vw,1.2rem)] text-paper transition-colors duration-300 hover:text-amber"
+              className="inline-flex min-h-[44px] items-center text-[clamp(1rem,1.4vw,1.2rem)] text-paper transition-colors duration-300 hover:text-amber active:text-amber"
             >
-              {CONTACT_EMAIL}
+              <span className="border-b border-line-amber pb-1.5">{CONTACT_EMAIL}</span>
             </a>
           </div>
           <p className="mt-6 max-w-[58ch] text-[15px] leading-[1.6] text-paper-dim">
