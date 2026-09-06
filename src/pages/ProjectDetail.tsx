@@ -125,10 +125,21 @@ export default function ProjectDetail() {
   // atkārtots - tas lapā jau ir kā atsevišķs bloks.
   const related = relatedProjects(slug);
   const gallery = project?.gallery ?? [];
+  const isGrid = project?.galleryLayout === "grid";
   const [lightbox, setLightbox] = useState<number | null>(null);
   const [loaded, setLoaded] = useState(false);
   const coverRef = useCoverParallax();
+  // Fokusa pārvaldība: no kuras pogas attēls tika atvērts, kur fokuss iet
+  // dialoga iekšienē un kur tas atgriežas pēc aizvēršanas.
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const returnFocusRef = useRef<HTMLElement | null>(null);
 
+  const openAt = useCallback((i: number) => {
+    returnFocusRef.current = document.activeElement as HTMLElement | null;
+    setLoaded(false);
+    setLightbox(i);
+  }, []);
   const close = useCallback(() => setLightbox(null), []);
   const prev = useCallback(() => {
     setLoaded(false);
@@ -140,13 +151,42 @@ export default function ProjectDetail() {
   }, [gallery.length]);
 
   useEffect(() => {
-    if (lightbox === null) return;
+    if (lightbox === null) {
+      // Fokuss atgriežas uz to pašu galerijas pogu, no kuras attēls tika atvērts.
+      // Bez tā tabulēšana pēc aizvēršanas sākas no lapas sākuma.
+      returnFocusRef.current?.focus();
+      returnFocusRef.current = null;
+      return;
+    }
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-      else if (e.key === "ArrowLeft") prev();
-      else if (e.key === "ArrowRight") next();
+      if (e.key === "Escape") {
+        close();
+        return;
+      }
+      if (e.key === "ArrowLeft") {
+        prev();
+        return;
+      }
+      if (e.key === "ArrowRight") {
+        next();
+        return;
+      }
+      // Fokusa slazds: aiz dialoga pēdējās pogas Tab atgriežas pie pirmās.
+      if (e.key !== "Tab") return;
+      const buttons = dialogRef.current?.querySelectorAll<HTMLElement>("button");
+      if (!buttons || buttons.length === 0) return;
+      const first = buttons[0];
+      const last = buttons[buttons.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
     document.body.style.overflow = "hidden";
+    closeRef.current?.focus();
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";
@@ -319,39 +359,63 @@ export default function ProjectDetail() {
           <SectionTitle id="galerija-h" size="giant" className="mb-[clamp(28px,4vw,56px)]">
             {isLv ? "Galerija" : "Gallery"}
           </SectionTitle>
-          <div className="grid gap-grid md:grid-cols-12">
-            {gallery.map((img, i) => (
-              <Reveal
-                key={img.src}
-                delay={stagger(i, 2)}
-                className={i % 4 === 0 ? "md:col-span-12" : "md:col-span-6"}
-              >
-                <button
-                  type="button"
-                  onClick={() => {
-                    setLoaded(false);
-                    setLightbox(i);
-                  }}
-                  className="group block w-full overflow-hidden rounded-card border border-line bg-ink-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber"
-                  aria-label={
-                    isLv
-                      ? `Atvērt ${i + 1}. attēlu no ${gallery.length}`
-                      : `Open image ${i + 1} of ${gallery.length}`
-                  }
+          {isGrid ? (
+            /* Kolekcija, kur katrs kadrs ir atsevišķs darbs: vienādi kvadrāti.
+               `object-contain` tāpēc, ka kadri ir dažādās proporcijās un darbs
+               nedrīkst tikt apgriezts, lai ietilptu šūnā. Režģa kartei pietiek
+               ar 640 px variantu - pilno kadru ielādē tikai lightbox. */
+            <ul className="grid grid-cols-2 gap-grid sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+              {gallery.map((img, i) => (
+                <Reveal as="li" key={img.src} delay={stagger(i, 5)}>
+                  <button
+                    type="button"
+                    onClick={() => openAt(i)}
+                    className="group block aspect-square w-full overflow-hidden rounded-card border border-line bg-ink-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber"
+                    aria-label={isLv ? `${img.alt}. Atvērt lielāku attēlu` : `${img.alt}. Open larger`}
+                  >
+                    <PicturePortfolio
+                      src={img.src}
+                      alt={img.alt}
+                      width={img.width}
+                      height={img.height}
+                      widths={[640]}
+                      sizes="(min-width: 1280px) 18vw, (min-width: 1024px) 22vw, (min-width: 640px) 30vw, 45vw"
+                      loading={i === 0 ? "eager" : "lazy"}
+                      decoding="async"
+                      className="h-full w-full object-contain"
+                    />
+                  </button>
+                </Reveal>
+              ))}
+            </ul>
+          ) : (
+            <div className="grid gap-grid md:grid-cols-12">
+              {gallery.map((img, i) => (
+                <Reveal
+                  key={img.src}
+                  delay={stagger(i, 2)}
+                  className={i % 4 === 0 ? "md:col-span-12" : "md:col-span-6"}
                 >
-                  <PicturePortfolio
-                    src={img.src}
-                    alt={img.alt}
-                    width={img.width}
-                    height={img.height}
-                    loading={i === 0 ? "eager" : "lazy"}
-                    decoding="async"
-                    className="h-auto w-full object-cover transition-transform duration-[1100ms] ease-dir group-hover:scale-[1.03]"
-                  />
-                </button>
-              </Reveal>
-            ))}
-          </div>
+                  <button
+                    type="button"
+                    onClick={() => openAt(i)}
+                    className="group block w-full overflow-hidden rounded-card border border-line bg-ink-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber"
+                    aria-label={isLv ? `${img.alt}. Atvērt lielāku attēlu` : `${img.alt}. Open larger`}
+                  >
+                    <PicturePortfolio
+                      src={img.src}
+                      alt={img.alt}
+                      width={img.width}
+                      height={img.height}
+                      loading={i === 0 ? "eager" : "lazy"}
+                      decoding="async"
+                      className="h-auto w-full object-cover transition-transform duration-[1100ms] ease-dir group-hover:scale-[1.03]"
+                    />
+                  </button>
+                </Reveal>
+              ))}
+            </div>
+          )}
         </Section>
       )}
 
@@ -445,11 +509,15 @@ export default function ProjectDetail() {
               ? `${lightbox + 1}. attēls no ${gallery.length}`
               : `Image ${lightbox + 1} of ${gallery.length}`
           }
-          className="fixed inset-0 z-[120] flex items-center justify-center bg-ink-950/97 p-4"
+          ref={dialogRef}
+          /* Apakšā papildu atstarpe: sīkdatņu josla ir virs dialoga (z-200), un
+             bez tās paraksts ar skaitītāju paliktu zem joslas. */
+          className="fixed inset-0 z-[120] flex items-center justify-center bg-ink-950/95 p-4 pb-28 md:pb-24"
           onClick={close}
         >
           <button
             type="button"
+            ref={closeRef}
             onClick={(e) => {
               e.stopPropagation();
               close();
@@ -492,22 +560,32 @@ export default function ProjectDetail() {
               loaded ? "opacity-0" : "opacity-100"
             }`}
           />
-          <PicturePortfolio
-            src={gallery[lightbox].src}
-            alt={gallery[lightbox].alt}
-            width={gallery[lightbox].width}
-            height={gallery[lightbox].height}
-            onLoad={() => setLoaded(true)}
-            className={`max-h-[86vh] max-w-[92vw] object-contain transition-opacity duration-300 ${
-              loaded ? "opacity-100" : "opacity-0"
-            }`}
-            onClick={(e) => e.stopPropagation()}
-          />
-          <span className="absolute bottom-5 left-1/2 -translate-x-1/2">
-            <Label>
-              {lightbox + 1} / {gallery.length}
-            </Label>
-          </span>
+          {/* Attēls un paraksts vienā kolonnā, ne absolūti pozicionēti: citādi
+              garš paraksts pielīp pie attēla apakšas vai aizlien zem tā. */}
+          <div className="flex max-h-full flex-col items-center gap-3">
+            <PicturePortfolio
+              src={gallery[lightbox].src}
+              alt={gallery[lightbox].alt}
+              width={gallery[lightbox].width}
+              height={gallery[lightbox].height}
+              onLoad={() => setLoaded(true)}
+              className={`max-h-[72vh] max-w-[88vw] object-contain transition-opacity duration-300 ${
+                loaded ? "opacity-100" : "opacity-0"
+              }`}
+              onClick={(e) => e.stopPropagation()}
+            />
+            <div className="flex flex-col items-center gap-1.5 text-center">
+              {/* Paraksts ir tikai tur, kur teksts nāk no Gata paša ieraksta. */}
+              {gallery[lightbox].caption ? (
+                <p className="max-w-[60ch] text-[15px] leading-snug text-paper-2">
+                  {gallery[lightbox].caption}
+                </p>
+              ) : null}
+              <Label>
+                {lightbox + 1} / {gallery.length}
+              </Label>
+            </div>
+          </div>
         </div>
       ) : null}
     </>
