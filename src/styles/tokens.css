@@ -102,6 +102,13 @@
   --ink-950: #0a0908;
   --ink-900: #0d0b09;
   --ink-850: #121010;
+  /* Tie paši toņi kanālos. Tailwind caurspīdīguma modifikators (`bg-ink-900/85`)
+     ar `var(--ink-900)` NEDARBOJAS - utilītklase vienkārši netiek ģenerēta un
+     fons pazūd bez kļūdas. Šīs trīs virsmas lieto ar caurspīdīgumu (lipīgā
+     galvene, filtru josla, lightbox fons), tāpēc tām vajag kanālus. */
+  --ink-950-rgb: 10 9 8;
+  --ink-900-rgb: 13 11 9;
+  --ink-850-rgb: 18 16 16;
   --ink-card: #161211;
   --ink-800: #181513;
   --ink-750: #211d1a;

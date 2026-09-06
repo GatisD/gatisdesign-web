@@ -20,9 +20,11 @@ export default {
         background: "var(--ink-900)",
         foreground: "var(--paper)",
         ink: {
-          950: "var(--ink-950)",
-          900: "var(--ink-900)",
-          850: "var(--ink-850)",
+          // Trīs virsmas, ko lieto ar caurspīdīgumu, nāk kanālos: ar `var(--ink-900)`
+          // Tailwind modifikatoru `/85` neģenerē vispār (sk. tokens.css komentāru).
+          950: "rgb(var(--ink-950-rgb) / <alpha-value>)",
+          900: "rgb(var(--ink-900-rgb) / <alpha-value>)",
+          850: "rgb(var(--ink-850-rgb) / <alpha-value>)",
           card: "var(--ink-card)",
           800: "var(--ink-800)",
           750: "var(--ink-750)",
