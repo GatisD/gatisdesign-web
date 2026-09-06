@@ -225,8 +225,74 @@ function checkDist(dist) {
     }
   }
 
+  // 13. Redzamā h1 sakrīt ar satura faila `h1` lauku. Šis lauks gadu bija
+  //     deklarēts, aizpildīts un nelasīts nekur, tāpēc meta tabulā ierakstītie
+  //     virsrakstu labojumi lapā nekad nenonāca. Tagad tas ir avots, un vārti
+  //     to notur.
+  for (const [page, file] of Object.entries(H1_SOURCE)) {
+    const html = read(page);
+    const contentPath = join(ROOT, "src/content/lv", file);
+    if (!html || !existsSync(contentPath)) continue;
+    const raw = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
+    if (!raw) continue; // trūkstošu h1 jau ziņo 9. vārti
+    const visible = raw[1]
+      .replace(/<[^>]+>/g, "")
+      .replace(/&quot;/g, '"')
+      .replace(/&#x27;|&#39;/g, "'")
+      .replace(/&amp;/g, "&")
+      .replace(/\s+/g, " ")
+      .trim();
+    const expected = JSON.parse(readFileSync(contentPath, "utf8")).h1.replace(/\s+/g, " ").trim();
+    if (visible !== expected) {
+      errors.push(`${page}: h1 lapā ir "${visible}", satura failā "${expected}"`);
+    }
+  }
+
+  // 14. llms.txt atbilst llmstxt.org formai: viens H1, saites Markdown formā un
+  //     visas sitemap lapas failā. Kails URL pārbaudītājam nav saite - tieši to
+  //     ziņoja Chrome Agentic Browsing audits.
+  const llms = read("llms.txt");
+  if (!llms) errors.push("dist/llms.txt neeksistē");
+  else {
+    const h1s = llms.split("\n").filter((line) => /^# \S/.test(line));
+    if (h1s.length !== 1) errors.push(`llms.txt satur ${h1s.length} H1 rindas, gaidīta 1`);
+    const links = [...llms.matchAll(/\[[^\]]+\]\((https?:\/\/[^)]+|mailto:[^)]+)\)/g)];
+    if (links.length < 40) errors.push(`llms.txt ir ${links.length} Markdown saites, gaidītas vismaz 40`);
+    if (/[–— ]/.test(llms)) errors.push("llms.txt satur garo domuzīmi vai cieto atstarpi");
+    const inFile = new Set(links.map(([, url]) => url.replace(/\/$/, "")));
+    const sitemapLocs = sitemap ? [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]) : [];
+    for (const loc of sitemapLocs) {
+      if (!inFile.has(loc.replace(/\/$/, ""))) errors.push(`llms.txt trūkst sitemap adreses: ${loc}`);
+    }
+  }
+
+  // 15. Markdown saite, kas palikusi redzamā tekstā. `[enkurs](/cels)` ir
+  //     satura forma, ne izvads: ja rindkopu renderē komponente, kas nelieto
+  //     LinkedText, cilvēks lapā redz kvadrātiekavas ar ceļu. Tieši tā notika
+  //     sākumlapas kontaktu sadaļā.
+  for (const page of pages) {
+    const html = read(page);
+    if (!html) continue;
+    const text = html.replace(/<script[\s\S]*?<\/script>/g, " ");
+    const leaks = [...text.matchAll(/\[[^\]\n]{2,80}\]\((\/[a-z0-9/-]+|https:\/\/[^)\s]+)\)/g)];
+    for (const [leak] of leaks.slice(0, 3)) {
+      errors.push(`${page}: Markdown saite palikusi tekstā: ${leak.slice(0, 70)}`);
+    }
+  }
+
   return errors;
 }
+
+/** Lapa dist mapē -> satura fails, no kura nāk tās h1. */
+const H1_SOURCE = {
+  "index.html": "home.json",
+  "zimola-identitate.html": "zimola-identitate.json",
+  "majaslapu-izstrade.html": "majaslapu-izstrade.json",
+  "ai-agenti.html": "ai-agenti.json",
+  "seo-geo-aeo.html": "seo-geo-aeo.json",
+  "par-mani.html": "par-mani.json",
+  "kontakti.html": "kontakti.json",
+};
 
 /* ------------------------------------------------------------------ *
  * Selftests: katram vārtam sava zināmi sliktā kopija.
@@ -292,6 +358,28 @@ const MUTATIONS = [
           '<head><link rel="preload" as="font" type="font/woff2" href="/assets/dm-mono-latin-400-normal.woff2" crossorigin>',
         ),
       );
+    },
+  },
+  {
+    name: "h1 lapā aizgājis no satura faila",
+    apply: (d) => {
+      const p = join(d, "seo-geo-aeo.html");
+      writeFileSync(p, readFileSync(p, "utf8").replace(/(<h1[^>]*>)([\s\S]*?)(<\/h1>)/, "$1<span>Cits virsraksts</span>$3"));
+    },
+  },
+  {
+    name: "Markdown saite palikusi redzamā tekstā",
+    apply: (d) => {
+      const p = join(d, "par-mani.html");
+      const html = readFileSync(p, "utf8");
+      writeFileSync(p, html.replace("</main>", "<p>Vairāk [par mani](/par-mani) lapā.</p></main>"));
+    },
+  },
+  {
+    name: "llms.txt bez Markdown saitēm",
+    apply: (d) => {
+      const p = join(d, "llms.txt");
+      writeFileSync(p, readFileSync(p, "utf8").replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$2"));
     },
   },
   {
