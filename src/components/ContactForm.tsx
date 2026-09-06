@@ -50,7 +50,14 @@ type FormField = (typeof FORM_FIELDS)[number];
  */
 const FIELD_BASE =
   "w-full rounded-field border border-line bg-ink-850 px-4 text-[16px] text-paper placeholder:text-paper-faint transition-[border-color,background-color] duration-300 hover:border-line-strong focus:border-amber focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-amber aria-[invalid=true]:border-amber";
-const FIELD_INPUT = cn(FIELD_BASE, "min-h-[56px] py-4");
+const FIELD_INPUT = cn(FIELD_BASE, "min-h-[56px] py-4 md:min-h-16");
+
+/**
+ * Kļūdas rinda ir ATVĒLĒTA, ne pieaugoša. Tukšs iesniegums ar sešām kļūdām
+ * lapu pagarināja par 151 px, un viss zem formas nolēca lejā tieši tajā brīdī,
+ * kad cilvēks skatās, kur radās kļūda. Vieta ir vienmēr; mainās tikai teksts.
+ */
+const ERROR_SLOT = "min-h-[19px] text-[14px] leading-[1.35] text-amber";
 
 export default function ContactForm({ className }: { className?: string }) {
   const { t, path, locale } = useLocale();
@@ -246,11 +253,9 @@ export default function ContactForm({ className }: { className?: string }) {
               </label>
             ))}
           </div>
-          {errors.budget ? (
-            <p id="budget-error" role="alert" className="mt-2 text-[14px] text-amber">
-              {errorText(errors.budget.message)}
-            </p>
-          ) : null}
+          <p id="budget-error" role="alert" className={cn("mt-2", ERROR_SLOT)}>
+            {errors.budget ? errorText(errors.budget.message) : ""}
+          </p>
         </fieldset>
 
         <div className="md:col-span-2">
@@ -290,9 +295,13 @@ export default function ContactForm({ className }: { className?: string }) {
         </div>
       </div>
 
-      {/* Slazds robotiem. Redzams tikai ekrāna lasītājam, tāpēc ar skaidru
-          norādi to neaizpildīt; no tabulācijas izņemts ar tabindex -1. */}
-      <div className="sr-only">
+      {/* Slazds robotiem. `.sr-only` nozīmē "redzams TIKAI ekrānlasītājam" -
+          tieši pretēji slazda nolūkam: redzīgs lietotājs to neredzēja, bet
+          ekrānlasītāja lietotājs to dzirdēja un varēja aizpildīt, un tad
+          serveris atbild ok, vēstuli nesūtot. `aria-hidden` uz ietinošā div
+          izņem to arī no pieejamības koka; `tabindex=-1` jau izņēma no
+          tabulācijas. */}
+      <div className="sr-only" aria-hidden="true">
         <label htmlFor="company" className="sr-only">
           {t.form.honeypotLabel}
         </label>
@@ -317,11 +326,9 @@ export default function ContactForm({ className }: { className?: string }) {
           {t.form.consentAfter}
         </label>
       </div>
-      {errors.consent ? (
-        <p id="consent-error" role="alert" className="mt-2 text-[14px] text-amber">
-          {errorText(errors.consent.message)}
-        </p>
-      ) : null}
+      <p id="consent-error" role="alert" className={cn("mt-2", ERROR_SLOT)}>
+        {errors.consent ? errorText(errors.consent.message) : ""}
+      </p>
 
       {failure ? (
         <div role="alert" className="mt-7 rounded-field border border-amber px-5 py-4 text-[15px]">
@@ -383,17 +390,15 @@ function Field({
   children: ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-2.5">
+    <div className="flex flex-col gap-2">
       <label htmlFor={id} className="font-label text-label text-paper-faint">
         {label}
         {optional ? <span className="ms-2">({optional})</span> : null}
       </label>
       {children}
-      {error ? (
-        <p id={`${id}-error`} role="alert" className="text-[14px] text-amber">
-          {error}
-        </p>
-      ) : null}
+      <p id={`${id}-error`} role="alert" className={ERROR_SLOT}>
+        {error || ""}
+      </p>
     </div>
   );
 }

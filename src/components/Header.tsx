@@ -127,20 +127,27 @@ export default function Header() {
             </NavLink>
 
             <div ref={servicesRef} className="relative">
-              <button
-                type="button"
+              {/* Saite, ne poga: bez JS <button> neko nedarīja, un četras
+                  pakalpojumu lapas bija sasniedzamas tikai no kājenes. Ar JS
+                  klikšķis atver sarakstu (preventDefault), bez JS tas aizved uz
+                  pirmo pakalpojumu lapu. */}
+              <a
+                href={path("services.web")}
                 aria-expanded={servicesOpen}
                 aria-controls={panelId}
-                onClick={() => setServicesOpen((v) => !v)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setServicesOpen((v) => !v);
+                }}
                 className={cn(
-                  "nav-underline relative text-[16px] font-medium transition-colors duration-300",
+                  "nav-underline relative cursor-pointer text-[16px] font-medium transition-colors duration-300 active:text-amber",
                   SERVICE_KEYS.some((k) => pathname === path(k))
                     ? "text-paper [--underline:1]"
                     : "text-paper-2 hover:text-paper",
                 )}
               >
                 {t.nav.services}
-              </button>
+              </a>
               {servicesOpen ? (
                 <div
                   id={panelId}

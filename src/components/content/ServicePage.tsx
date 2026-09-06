@@ -7,10 +7,11 @@ import Reveal from "@/components/animations/Reveal";
 import PageHero from "@/components/direction/PageHero";
 import Band from "@/components/direction/Band";
 import { Section, SectionTitle, LabelRow } from "@/components/direction/Section";
-import ContentSections, { tocFor } from "./ContentSections";
+import ContentSections, { priceSection, tocFor } from "./ContentSections";
 import FaqList from "./FaqList";
 import { buildServiceSchema } from "./serviceSchema";
 import { serviceContent, type ServiceRouteKey } from "@/content";
+import { headingId } from "@/content/slug";
 import { useLocale } from "@/i18n/LocaleContext";
 import { CONTACT_EMAIL } from "@/lib/site";
 
@@ -86,6 +87,10 @@ export default function ServicePage({ routeKey }: { routeKey: ServiceRouteKey })
 
   const otherServices = SERVICE_KEYS.filter((key) => key !== routeKey);
 
+  // Cenu sadaļas enkurs hero sekundārajai saitei. Nāk no tā paša atlasītāja,
+  // ko lieto satura rādītājs, tāpēc abas saites vienmēr ved uz vienu vietu.
+  const prices = priceSection(content.sections);
+
   // Josla nāk pēc satura vidus, ne tieši pirms FAQ: tā ir elpa starp diviem
   // teksta blokiem, nevis dekors pirms noslēguma.
   const mid = Math.ceil(content.sections.length / 2);
@@ -103,13 +108,31 @@ export default function ServicePage({ routeKey }: { routeKey: ServiceRouteKey })
       />
       <JsonLd data={buildServiceSchema(content, routeKey, locale)} />
 
+      {/* Pirmajā ekrānā jābūt darbībai. Nomērīts bija tā, ka vienīgā poga virs
+          krokas visās četrās pakalpojumu lapās bija sīkdatņu joslas poga -
+          tieši tajās lapās, kurās ir cenas. Pill ir viena (saruna), otrā
+          darbība ir teksta saite uz cenu tabulu: cilvēks, kurš atnāca pēc
+          cenas, nedrīkst to meklēt ar ritināšanu 19 000 px garā lapā. */}
       <PageHero
         titleLines={media.titleLines}
         lede={content.heroLede ?? content.directAnswer}
         poster={media.poster}
         posterPosition={media.posterPosition}
         toc={tocFor(content.sections)}
-      />
+      >
+        <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+          <MagneticButton>
+            <Button to={path("contact")}>
+              {isLv ? "Pastāsti par projektu" : "Tell me about your project"}
+            </Button>
+          </MagneticButton>
+          {prices ? (
+            <Button href={`#${headingId(prices.heading)}`} variant="link">
+              {isLv ? "Skatīt cenas" : "See prices"}
+            </Button>
+          ) : null}
+        </div>
+      </PageHero>
 
       <ContentSections sections={first} labelBudget={2} />
       <Band poster={media.band.poster} text={media.band.text} />

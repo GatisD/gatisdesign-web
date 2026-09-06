@@ -51,16 +51,33 @@ function rhythmFor(section: ContentSectionData): "sm" | "md" | "lg" {
   return words > 130 ? "md" : "sm";
 }
 
+/**
+ * Cenu sadaļa: tā, kuras tabulā ir kolonna "Cena", nevis vienkārši pirmā
+ * tabula lapā. SEO lapā pirmā tabula ir SEO/GEO/AEO salīdzinājums, un satura
+ * rādītāja saite "Cenas" veda tieši uz to - cilvēks, kurš atnāca pēc cenas,
+ * nokļuva pie citas tabulas un ritināja tālāk pats.
+ */
+export function priceSection(sections: ContentSectionData[]): ContentSectionData | undefined {
+  return (
+    sections.find((s) => s.table?.columns.some((c) => /cena/i.test(c))) ??
+    sections.find((s) => s.table)
+  );
+}
+
 export function tocFor(sections: ContentSectionData[]): Array<{ id: string; label: string }> {
   const out: Array<{ id: string; label: string }> = [];
-  const table = sections.find((s) => s.table);
-  if (table) out.push({ id: headingId(table.heading), label: "Cenas" });
+  const prices = priceSection(sections);
+  if (prices) out.push({ id: headingId(prices.heading), label: "Cenas" });
   // Procesu meklē gan pēc `steps` masīva, gan pēc virsraksta: trīs lapas to
   // saturā tur kā numurētu sarakstu, un bez otrā ceļa satura rādītājā pazuda
   // vienīgais enkurs septiņām vidus sadaļām 14 000 px garā lapā.
   const steps =
     sections.find((s) => s.steps) ??
-    sections.find((s) => /^(kā notiek|kā sāk|process|darba gaita)/i.test(s.heading) || s.kicker === "Process");
+    sections.find(
+      (s) =>
+        /^(kā notiek|kā sāk|process|darba gaita|kā es strādāju)/i.test(s.heading) ||
+        s.kicker === "Process",
+    );
   if (steps) out.push({ id: headingId(steps.heading), label: "Process" });
   out.push({ id: "jautajumi", label: "Jautājumi" });
   out.push({ id: "saksim", label: "Sāksim" });

@@ -32,18 +32,13 @@ export default function PageHero({
 }) {
   return (
     <section className="relative isolate flex min-h-[clamp(520px,72vh,760px)] flex-col justify-end overflow-hidden bg-ink-900 pb-16 md:pb-24 pt-[clamp(96px,16vw,200px)]">
-      <HeroMedia className="-z-[2]" poster={poster} src={video} position={posterPosition} eager brightness={0.45} />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-[1]"
-        style={{
-          background:
-            // Apakšējā puse ir gandrīz vienlaidus tonis apzināti: ievads te
-            // sēž uz kadra, un pie kadra gaišākā punkta kontrasts krita līdz
-            // 2,5:1. Attēls paliek redzams augšpusē, kur ir tikai virsraksts.
-            "linear-gradient(180deg, rgba(13,11,9,.55) 0%, rgba(13,11,9,.38) 24%, rgba(13,11,9,.90) 54%, rgba(13,11,9,.98) 80%)",
-        }}
-      />
+      {/* brightness .45 -> .6: kopā ar veco pārklājumu augšējie 250 px pie
+          390 px bija melns laukums ar vāju gaismas svītru, un tur nebija ko
+          skatīties. Pārklājuma līkne (--scrim-page) augšā ir gaišāka, apakšā
+          gandrīz vienlaidus - ievads sēž uz kadra, un pie kadra gaišākā punkta
+          kontrasts bija nokritis līdz 2,5:1. */}
+      <HeroMedia className="-z-[2]" poster={poster} src={video} position={posterPosition} eager brightness={0.6} />
+      <div aria-hidden="true" className="absolute inset-0 -z-[1]" style={{ background: "var(--scrim-page)" }} />
       <div className="relative mx-auto w-full max-w-wrap px-5 sm:px-8 lg:px-10">
         <LineReveal
           as="h1"
