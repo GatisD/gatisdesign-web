@@ -86,7 +86,9 @@ export default function CookieBanner() {
       className="fixed inset-x-0 bottom-0 z-[200] border-t border-line-strong bg-ink-950 px-4 py-3 md:px-6"
     >
       <div className="mx-auto flex max-w-wrap flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
-        <p className="text-[14px] leading-[1.45] text-paper-2 md:text-[15px]">
+        {/* Rindas garums ir ierobežots arī te: pie 1440 px josla bija vienīgā
+            vieta lapā, kur teksta rinda pārsniedza 100 zīmes. */}
+        <p className="max-w-[78ch] text-[14px] leading-[1.45] text-paper-2 md:text-[15px]">
           {t.cookies.text}{" "}
           <Link
             to={path("privacy")}

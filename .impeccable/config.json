@@ -11,6 +11,15 @@
         ],
         "createdAt": "2026-09-05T18:26:52.098Z",
         "reason": "Portfolio kartes, galerija un nakamais projekts: hover scale(1.03) uz ekranuzņemuma ir apstiprinatais Direction lemums - attels pietuvojas, un klust redzams, ka aiz kartes ir ista lapa. Vienigais attelu hover efekts saja lapa; pie prefers-reduced-motion neizpildas."
+      },
+      {
+        "rule": "image-hover-transform",
+        "value": "*",
+        "files": [
+          "src/components/ProjectCard.tsx"
+        ],
+        "createdAt": "2026-09-06T04:53:23.863Z",
+        "reason": "Darbu kartes attēla pietuvinājums 1.03 ir šīs lapas vienīgais satura hover: ekrānuzņēmums pienāk tuvāk, un kļūst redzams, ka aiz kartes ir īsta lapa. Ierobežots ar @media (hover:hover), tāpēc mobilajā tā nav vispār. Dokumentēts ProjectCard.tsx komentārā."
       }
     ]
   }
