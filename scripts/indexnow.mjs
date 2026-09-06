@@ -11,7 +11,8 @@ import { join } from "node:path";
  *
  * Palaist TIKAI pēc izvietošanas produkcijā:
  *
- *   node scripts/indexnow.mjs               # visas sitemap adreses
+ *   node scripts/indexnow.mjs               # adreses no vietējā dist/sitemap.xml
+ *   node scripts/indexnow.mjs --live        # adreses no dzīvā sitemap (CI)
  *   node scripts/indexnow.mjs --dry-run     # tikai parāda, ko sūtītu
  *   node scripts/indexnow.mjs /kontakti /portfolio
  *
@@ -44,12 +45,33 @@ function urlsFromSitemap() {
   return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 }
 
+/**
+ * Adreses no DZĪVĀ sitemap. Šo lieto automātiskā palaišana pēc izvietošanas:
+ * tur būves nav, un pareizais avots tāpat ir tas, kas tiešām publicēts - ne
+ * tas, kas ir kādā vietējā dist mapē. Ja izvietošana neizdevās, dzīvais sitemap
+ * ir vecais, un mēs vienkārši atkārtojam veco sarakstu; tas ir nekaitīgi.
+ */
+async function urlsFromLiveSitemap() {
+  const res = await fetch(`https://${HOST}/sitemap.xml`, {
+    headers: { "user-agent": "gatisdesign-indexnow/1.0" },
+  });
+  if (!res.ok) throw new Error(`Dzīvais sitemap atbildēja ar ${res.status}`);
+  const xml = await res.text();
+  return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+}
+
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
 const explicit = args.filter((a) => a.startsWith("/"));
 
 const key = findKey();
-const urlList = explicit.length > 0 ? explicit.map((p) => `https://${HOST}${p}`) : urlsFromSitemap();
+const live = args.includes("--live");
+const urlList =
+  explicit.length > 0
+    ? explicit.map((p) => `https://${HOST}${p}`)
+    : live
+      ? await urlsFromLiveSitemap()
+      : urlsFromSitemap();
 
 // IndexNow pieņem līdz 10 000 adresēm vienā pieprasījumā; mums to ir 32.
 if (urlList.length === 0) {

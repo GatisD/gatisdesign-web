@@ -22,6 +22,21 @@ function sectionByKicker(kicker: string): ContentSectionData {
 export const heroSection = sectionByKicker("Sākums");
 export const chainSection = sectionByKicker("Bez aģentūras");
 export const servicesSection = sectionByKicker("Pakalpojumi");
+/**
+ * UZMANĪBU: no šīm divām sadaļām lapā nonāk tikai daļa. Mērīts dist/index.html
+ * 2026-09-06, ne pieņemts:
+ *
+ *   worksSection - renderējas TIKAI `body[0]` (Index.tsx caur `LinkedText`).
+ *                  Virsraksts un seši projektu bullet punkti (~130 vārdi) lapā
+ *                  neparādās nekur; tos pašus darbus rāda `projects.ts` kartes.
+ *   statsSection - renderējas TIKAI `bullets`, un tikai caur `statItems` zemāk.
+ *                  Virsraksts un `body` (~25 vārdi) lapā neparādās.
+ *
+ * Tas nav bojājums, bet arī nav acīmredzams: fails izskatās kā lapas saturs, un
+ * teksts tajā izskatās publicēts. Pirms rediģē šīs divas sadaļas, zini, ka lielākā
+ * daļa no tā, ko tur uzrakstīsi, lapā nenonāks. Lēmums, vai tekstu dzēst vai
+ * izcelt lapā, ir Gata - tāpēc te ir piezīme, ne dzēšana.
+ */
 export const worksSection = sectionByKicker("Darbi");
 export const statsSection = sectionByKicker("Skaitļi");
 export const aboutSection = sectionByKicker("Par mani");

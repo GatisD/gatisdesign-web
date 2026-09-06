@@ -1,0 +1,41 @@
+# IndexNow pēc katras produkcijas izvietošanas.
+#
+# Kāpēc tas te ir: ChatGPT meklēšana un Copilot balstās uz Bing indeksu. Ja lapa
+# tur nav, ne llms.txt, ne strukturētie dati to neaizstāj - modelim vienkārši nav
+# ko atrast. Līdz šim skripts bija jāatceras palaist ar roku, un tieši tāpēc pēc
+# 4. kārtas izvietošanas tas netika palaists nemaz.
+#
+# Trigeris ir Vercel izvietošanas rezultāts, ne push: push nozīmē, ka kods ir
+# repozitorijā, nevis ka lapa ir dzīva. Sūtām tikai pēc "success" un tikai
+# produkcijai; priekšskatījumu adreses IndexNow neinteresē.
+#
+# Noslēpumu te nav: IndexNow atslēga pēc būtības ir publiska - to pašu vērtību
+# jebkurš var izlasīt https://gatisdesign.com/<atslēga>.txt. Tā apliecina domēna
+# īpašumtiesības, ne piekļuves tiesības.
+name: IndexNow
+
+on:
+  deployment_status:
+
+permissions:
+  contents: read
+
+jobs:
+  pingot:
+    # Tikai veiksmīga produkcijas izvietošana. Bez šī nosacījuma katrs
+    # priekšskatījums sūtītu produkcijas adreses, un tas ir troksnis, ne signāls.
+    if: >
+      github.event.deployment_status.state == 'success' &&
+      github.event.deployment_status.environment == 'Production'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # `npm ci` te nav vajadzīgs: skripts lieto tikai node:fs, node:path un
+      # iebūvēto fetch. Atkarību instalēšana būtu minūte par velti.
+      - name: Paziņot IndexNow
+        run: node scripts/indexnow.mjs --live
