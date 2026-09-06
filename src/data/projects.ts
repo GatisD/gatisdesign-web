@@ -242,9 +242,15 @@ function buildSiteProjects(): Project[] {
     .map((entry) => {
       // Juridiskā forma alt tekstā nav vajadzīga: "SIA Universal Solutions mājaslapas ..." ir smagi.
       const clientName = entry.client.replace(/^SIA\s+/, "");
+      /**
+       * Zīmola nosaukums alt tekstā stāv AIZ lietvārda ("Mājaslapa Estire"), ne
+       * priekšā: latviski "Estire mājaslapa" ir angļu salikteņa forma, un pareizā
+       * "Estires mājaslapa" prasa ģenitīvu, ko svešiem zīmoliem mehāniski
+       * atvasināt nevar (PSL, Oak'A BBQ, Sinu Uksed).
+       */
       const alt = LOGO_COVER_IDS.has(entry.id)
         ? `${clientName} logotips`
-        : `${clientName} mājaslapas ekrānuzņēmums`;
+        : `Mājaslapa ${clientName} datora ekrānā`;
 
       /**
        * Vāks nāk no pārlūka kadra, ja tāds ir. Vecie 16:9 vāki bija griezti no
@@ -262,9 +268,9 @@ function buildSiteProjects(): Project[] {
       const mobileSmallSrc = `/portfolio/shots/${entry.slug}-mobile-sm.jpg`;
       if (hasImage(shotSrc) && hasImage(mobileSrc) && hasImage(mobileSmallSrc)) {
         project.shot = {
-          desktop: image(shotSrc, `${clientName} mājaslapa datora ekrānā`),
-          mobile: image(mobileSrc, `${clientName} mājaslapa telefona ekrānā`),
-          mobileSmall: image(mobileSmallSrc, `${clientName} mājaslapa telefona ekrānā`),
+          desktop: image(shotSrc, `Mājaslapa ${clientName} datora ekrānā`),
+          mobile: image(mobileSrc, `Mājaslapa ${clientName} telefona ekrānā`),
+          mobileSmall: image(mobileSmallSrc, `Mājaslapa ${clientName} telefona ekrānā`),
         };
       }
       return project;

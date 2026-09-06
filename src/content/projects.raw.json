@@ -759,7 +759,7 @@
       "Elementor"
     ],
     "titleLv": "PSL - auto nomas un servisa vietne",
-    "summaryLv": "Auto nomas un servisa uzņēmuma vietne ar ilgtermiņa nomas, mazlietotu auto un autoservisa sadaļām. Sākumlapā piedāvājumu pavada video, un blakus stāv piecas darbības pogas, tostarp pieteikšanās testa braucienam un saziņa WhatsApp.",
+    "summaryLv": "Auto nomas un servisa uzņēmuma vietne ar ilgtermiņa nomas, mazlietotu auto un servisa sadaļām. Sākumlapā piedāvājumu pavada video, un blakus ir piecas pogas, tostarp pieteikšanās testa braucienam un saziņa WhatsApp lietotnē.",
     "coverHint": "shots/psl.jpg",
     "needsInput": "Kurā gadā tapa psl.lv un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
   },
@@ -782,7 +782,7 @@
       "Elementor"
     ],
     "titleLv": "Laluna - Toyota pārstāvja vietne",
-    "summaryLv": "Toyota pārstāvja vietne ar jaunu un lietotu auto katalogu, finansēšanas, servisa un Toyota Business sadaļām. Zem kampaņas kadra ir rinda ar pieteikšanās pogām: testa brauciens, piedāvājums, serviss un virsbūves remonts.",
+    "summaryLv": "Toyota pārstāvja vietne ar jaunu un lietotu auto katalogu, finansēšanas, servisa un Toyota Business sadaļām. Zem kampaņas attēla ir pogu rinda: testa brauciens, piedāvājums, serviss un virsbūves remonts.",
     "coverHint": "shots/laluna.jpg",
     "needsInput": "Kurā gadā tapa laluna.lv un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
   },
@@ -806,7 +806,7 @@
       "WooCommerce"
     ],
     "titleLv": "Salons Objekts - apdares materiālu vietne",
-    "summaryLv": "Iekštelpu apdares materiālu salona vietne ar produktu katalogu, projektu sadaļu un grozu. Sākumlapa ir kategoriju režģis, kurā katra kartīte ved uz savu materiālu grupu.",
+    "summaryLv": "Apdares materiālu salona vietne ar produktu katalogu, projektu sadaļu un grozu. Sākumlapa ir kategoriju režģis, kurā katra kartīte ved uz savu materiālu grupu.",
     "coverHint": "shots/salonsobjekts.jpg",
     "needsInput": "Kurā gadā tapa salonsobjekts.lv un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
   },
@@ -830,7 +830,7 @@
       "WooCommerce"
     ],
     "titleLv": "Global Tactical Equipment - taktiskā aprīkojuma veikals",
-    "summaryLv": "Taktiskā aprīkojuma interneta veikals ar vairāku valodu pārslēgu un grozu. Uzreiz aiz pirmā ekrāna ir pārstāvēto zīmolu rinda un tieša saite uz veikalu.",
+    "summaryLv": "Taktiskā aprīkojuma interneta veikals ar valodu pārslēdzēju un grozu. Uzreiz zem pirmā ekrāna ir pārstāvēto zīmolu rinda un tieša saite uz katalogu.",
     "coverHint": "shots/globaltac.jpg",
     "needsInput": "Kurā gadā tapa globaltac.lv un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
   },
@@ -854,7 +854,7 @@
       "WooCommerce"
     ],
     "titleLv": "Oak'A BBQ - grila mērču veikals",
-    "summaryLv": "Grila mērču un garšvielu zīmola interneta veikals ar veikala, apmācību un kultūras sadaļu. Sākumlapas pirmais ekrāns ir akcijas kampaņa ar tās darbības datumiem.",
+    "summaryLv": "Grila mērču un garšvielu zīmola interneta veikals ar apmācību un kultūras sadaļām. Sākumlapas pirmajā ekrānā ir akcija ar norises datumiem.",
     "coverHint": "shots/oakabbq.jpg",
     "needsInput": "Kurā gadā tapa oakabbq.com un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
   },
@@ -877,7 +877,7 @@
       "Elementor"
     ],
     "titleLv": "Sinu Uksed - durvju un logu vietne Igaunijā",
-    "summaryLv": "Igauņu durvju un logu tirgotāja vietne ar katalogu, atsauksmēm un biežāk uzdoto jautājumu sadaļu. Sākumlapa piedāvājumu dala trīs daļās - ārdurvis, iekšdurvis un logi - un strādā igauņu un krievu valodā.",
+    "summaryLv": "Igaunijas durvju un logu tirgotāja vietne ar katalogu, atsauksmēm un biežāk uzdoto jautājumu sadaļu. Sākumlapā piedāvājums ir sadalīts trīs daļās: ārdurvis, iekšdurvis un logi. Vietne ir pieejama igauņu un krievu valodā.",
     "coverHint": "shots/sinuuksed.jpg",
     "needsInput": "Kurā gadā tapa sinuuksed.ee un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
   },
@@ -901,7 +901,7 @@
       "WooCommerce"
     ],
     "titleLv": "Prof Durys - durvju vietne Lietuvā",
-    "summaryLv": "Lietuviešu durvju tirgotāja vietne ar katalogu, pakalpojumu un atsauksmju sadaļu. Sākumlapā piedāvājums ir sadalīts attēlu kartītēs, un vietne strādā lietuviešu un krievu valodā.",
+    "summaryLv": "Lietuvas durvju tirgotāja vietne ar katalogu, pakalpojumu sadaļu un atsauksmēm. Sākumlapā piedāvājums ir sadalīts attēlu kartītēs, un vietne ir pieejama lietuviešu un krievu valodā.",
     "coverHint": "shots/profdurys.jpg",
     "needsInput": "Kurā gadā tapa profdurys.lt un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
   },
@@ -925,7 +925,7 @@
       "WooCommerce"
     ],
     "titleLv": "Inovat - saules enerģijas preču veikals",
-    "summaryLv": "Saules enerģijas un būvniecības preču interneta veikals ar kategoriju sarakstu sākumlapas malā. Katalogā ir saules paneļi, invertori, akumulatori, siltumsūkņi un skrūvpāļi, atsevišķi ir klientu servisa un uzņēmumu sadaļa.",
+    "summaryLv": "Saules enerģijas un būvniecības preču interneta veikals ar kategoriju sarakstu sākumlapas malā. Katalogā ir saules paneļi, invertori, akumulatori, siltumsūkņi un skrūvpāļi. Atsevišķi ir klientu apkalpošanas sadaļa un sadaļa uzņēmumiem.",
     "coverHint": "shots/inovat.jpg",
     "needsInput": "Kurā gadā tapa inovat.lv un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
   },
@@ -949,7 +949,7 @@
       "WooCommerce"
     ],
     "titleLv": "Nervostrong - uztura bagātinātāju veikals",
-    "summaryLv": "Uztura bagātinātāju zīmola interneta veikals ar produktu lapām, blogu un grozu. Sākumlapas kampaņas kadrs ved uz produktu, zem tā stāv pircēju iecienītāko preču rinda.",
+    "summaryLv": "Uztura bagātinātāju zīmola interneta veikals ar produktu lapām, blogu un grozu. Sākumlapas kampaņas attēls ved uz produktu, zem tā ir pircēju iecienītāko preču rinda.",
     "coverHint": "shots/nervostrong-veikals.jpg",
     "needsInput": "Kurā gadā tapa veikals.nervostrong.com un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
   }

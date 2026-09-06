@@ -312,7 +312,7 @@ export default function ProjectDetail() {
           Mobilajā kolonnas saliekas vienā, un telefons paliek savā platumā, jo
           izstiepts pāri visai lapai tas vairs nav telefons. */}
       {project.shot ? (
-        <Section rhythm="md" ariaLabel={isLv ? "Pārlūka kadri" : "Browser views"}>
+        <Section rhythm="md" ariaLabel={isLv ? "Ekrānuzņēmumi" : "Browser views"}>
           <div className="grid gap-grid md:grid-cols-[3fr_1fr] md:items-start">
             <Reveal className="overflow-hidden rounded-card border border-line bg-ink-card">
               <PicturePortfolio
