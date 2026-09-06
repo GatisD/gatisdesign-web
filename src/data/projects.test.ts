@@ -123,13 +123,18 @@ describe("portfolio projekti", () => {
     }
   });
 
-  it("režģa kolekcijām ir sagatavoti 640 px varianti", () => {
-    // Logo kolekcijā ir 70 kadri. Bez šī varianta lapa noritinot lejupielādētu
-    // pilnos kadrus (2,4 MB WebP), sk. scripts/gallery-thumbs.mjs.
+  it("režģa kolekcijām ir sagatavoti 400 un 640 px varianti", () => {
+    // Logo kolekcijā ir 70 kadri. Bez variantiem lapa noritinot lejupielādētu
+    // pilnos kadrus (2,4 MB WebP), sk. scripts/gallery-thumbs.mjs. Platumiem
+    // jāsakrīt ar `widths` iekš ProjectDetail režģa zara.
     for (const project of projects.filter((p) => p.galleryLayout === "grid")) {
       for (const img of project.gallery ?? []) {
-        const variant = img.src.replace(/\.jpg$/, "-640.webp");
-        expect(existsSync(join(PUBLIC_DIR, variant)), variant).toBe(true);
+        for (const width of [400, 640]) {
+          for (const ext of ["webp", "jpg"]) {
+            const variant = img.src.replace(/\.jpg$/, `-${width}.${ext}`);
+            expect(existsSync(join(PUBLIC_DIR, variant)), variant).toBe(true);
+          }
+        }
       }
     }
   });

@@ -22,7 +22,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const PUB = join(ROOT, "public/portfolio");
 
 /** Platumi, ko ģenerē scripts/gallery-thumbs.mjs. */
-const VARIANT_WIDTHS = [640];
+const VARIANT_WIDTHS = [400, 640];
 const variantRe = new RegExp(`-(${VARIANT_WIDTHS.join("|")})\\.(jpe?g|png)$`, "i");
 /** `logo-branding-01-640.jpg` ir variants, `apmekle-cover-169.jpg` - nav. */
 const isWidthVariant = (name) => variantRe.test(name);

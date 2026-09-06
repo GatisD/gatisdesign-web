@@ -364,30 +364,36 @@ export default function ProjectDetail() {
                `object-contain` tāpēc, ka kadri ir dažādās proporcijās un darbs
                nedrīkst tikt apgriezts, lai ietilptu šūnā. Režģa kartei pietiek
                ar 640 px variantu - pilno kadru ielādē tikai lightbox. */
-            <ul className="grid grid-cols-2 gap-grid sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-              {gallery.map((img, i) => (
-                <Reveal as="li" key={img.src} delay={stagger(i, 5)}>
-                  <button
-                    type="button"
-                    onClick={() => openAt(i)}
-                    className="group block aspect-square w-full overflow-hidden rounded-card border border-line bg-ink-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber"
-                    aria-label={isLv ? `${img.alt}. Atvērt lielāku attēlu` : `${img.alt}. Open larger`}
-                  >
-                    <PicturePortfolio
-                      src={img.src}
-                      alt={img.alt}
-                      width={img.width}
-                      height={img.height}
-                      widths={[640]}
-                      sizes="(min-width: 1280px) 18vw, (min-width: 1024px) 22vw, (min-width: 640px) 30vw, 45vw"
-                      loading={i === 0 ? "eager" : "lazy"}
-                      decoding="async"
-                      className="h-full w-full object-contain"
-                    />
-                  </button>
-                </Reveal>
-              ))}
-            </ul>
+            /* Viena atklāsme visam režģim, ne 70 atsevišķas: katrs Reveal atver
+               savu IntersectionObserver, un 70 novērotāji telefonā maksāja 230 ms
+               galvenajā pavedienā (Lighthouse TBT 70 -> 300 ms). Blīvā sietā
+               viļņa animācija turklāt lasās kā troksnis, ne kā ritms. */
+            <Reveal>
+              <ul className="grid grid-cols-2 gap-grid sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                {gallery.map((img, i) => (
+                  <li key={img.src}>
+                    <button
+                      type="button"
+                      onClick={() => openAt(i)}
+                      className="group block aspect-square w-full overflow-hidden rounded-card border border-line bg-ink-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber"
+                      aria-label={isLv ? `${img.alt}. Atvērt lielāku attēlu` : `${img.alt}. Open larger`}
+                    >
+                      <PicturePortfolio
+                        src={img.src}
+                        alt={img.alt}
+                        width={img.width}
+                        height={img.height}
+                        widths={[400, 640]}
+                        sizes="(min-width: 1280px) 18vw, (min-width: 1024px) 22vw, (min-width: 640px) 30vw, 45vw"
+                        loading={i === 0 ? "eager" : "lazy"}
+                        decoding="async"
+                        className="h-full w-full object-contain"
+                      />
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
           ) : (
             <div className="grid gap-grid md:grid-cols-12">
               {gallery.map((img, i) => (
