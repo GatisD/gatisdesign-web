@@ -1,4 +1,4 @@
-import { SITE_URL, SITE_NAME, CONTACT_EMAIL, CONTENT_MODIFIED } from "@/lib/site";
+import { SITE_URL, SITE_NAME, CONTACT_EMAIL, CONTENT_MODIFIED, AREA_SERVED } from "@/lib/site";
 import { buildBreadcrumbSchema } from "@/components/JsonLd";
 import { priceRangeFor } from "@/content";
 import type { ServiceContent } from "@/content/types";
@@ -12,6 +12,9 @@ const abs = (p: string) => `${SITE_URL}${p}`;
  * vienu vārdu.
  */
 const provider = {
+  // `@context` ir tāpēc, ka šis mezgls masīvā stāv patstāvīgi. Bez konteksta
+  // stingrā JSON-LD apstrādē tas zaudē vārdnīcu, un `@type` kļūst par tekstu.
+  "@context": "https://schema.org",
   "@type": "Person",
   "@id": `${SITE_URL}/#gatis`,
   name: "Gatis Daugavietis",
@@ -25,13 +28,6 @@ const provider = {
     addressCountry: "LV",
   },
 };
-
-const areaServed = [
-  { "@type": "Country", name: "Latvija" },
-  { "@type": "Country", name: "Igaunija" },
-  { "@type": "Country", name: "Lietuva" },
-  { "@type": "Country", name: "Amerikas Savienotās Valstis" },
-];
 
 /**
  * Service + FAQPage + BreadcrumbList vienā masīvā. Cenu diapazons nāk no lapas
@@ -54,7 +50,7 @@ export function buildServiceSchema(
     description: content.metaDescription,
     url,
     provider: { "@id": `${SITE_URL}/#gatis` },
-    areaServed,
+    areaServed: AREA_SERVED,
     availableLanguage: ["lv", "en"],
     dateModified: CONTENT_MODIFIED,
   };
@@ -64,8 +60,11 @@ export function buildServiceSchema(
       "@type": "AggregateOffer",
       priceCurrency: "EUR",
       lowPrice: price.low,
-      highPrice: price.high,
-      offerCount: content.sections.filter((s) => s.table).length,
+      // `highPrice` tikai tad, kad diapazons tiešām ir. Ar vienu cenu tabulā
+      // abi gali sanāca vienādi, un mašīnai tas nozīmē "dārgāk nemaksā",
+      // lai gan lapa saka "no".
+      ...(price.high > price.low ? { highPrice: price.high } : {}),
+      offerCount: price.count,
       url,
       availability: "https://schema.org/InStock",
       seller: { "@id": `${SITE_URL}/#gatis` },

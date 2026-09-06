@@ -1,6 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { serviceContent, priceRangeFor, type ServiceRouteKey } from "./index";
-import { ROUTES } from "@/i18n/routes";
+import { ROUTES, pathForPathname } from "@/i18n/routes";
+import { h1Lines } from "./h1";
+import { SERVICE_HERO } from "@/components/content/serviceHero";
 
 const entries = Object.entries(serviceContent) as [ServiceRouteKey, (typeof serviceContent)[ServiceRouteKey]][];
 
@@ -78,8 +80,47 @@ describe("pakalpojumu saturs", () => {
 
   it("cenu diapazonā neiekļauj ikmēneša un stundas likmes", () => {
     // Mājaslapu lapā uzturēšana ir 50-80 EUR/mēn - tā nedrīkst kļūt par zemāko cenu.
-    expect(priceRangeFor(serviceContent["services.web"])).toEqual({ low: 500, high: 2500 });
+    expect(priceRangeFor(serviceContent["services.web"])).toEqual({ low: 500, high: 2500, count: 3 });
     // AI lapā ir gan 100 EUR/mēn, gan 60 EUR/h - abas jāizlaiž.
-    expect(priceRangeFor(serviceContent["services.ai"])).toEqual({ low: 400, high: 2500 });
+    expect(priceRangeFor(serviceContent["services.ai"])).toEqual({ low: 400, high: 2500, count: 3 });
+  });
+
+  it.each(entries)("%s: offerCount ir cenu RINDU skaits, ne tabulu skaits", (key, content) => {
+    // Iepriekš `offerCount` skaitīja sadaļas ar tabulu, un dzīvajā HTML
+    // /majaslapu-izstrade uzrādīja divus piedāvājumus piecu rindu vietā.
+    const range = priceRangeFor(content)!;
+    const rows = content.sections
+      .flatMap((section) => {
+        const table = section.table;
+        if (!table) return [];
+        const priceColumns = table.columns
+          .map((column, index) => (/cena/i.test(column) ? index : -1))
+          .filter((index) => index >= 0);
+        return table.rows.filter((row) =>
+          priceColumns.some((index) => {
+            const cell = row[index] ?? "";
+            return cell.includes("EUR") && !/\/mēn|mēnesī|\/h\b|stundā/i.test(cell);
+          }),
+        );
+      });
+    expect(range.count, key).toBe(rows.length);
+    expect(range.count).toBeGreaterThan(0);
+  });
+
+  it.each(entries)("%s: h1 rindu lūzums ir teksta robežās", (key, content) => {
+    const lines = h1Lines(content.h1, SERVICE_HERO[key].breakAfter);
+    expect(lines.join(" ")).toBe(content.h1.trim());
+    expect(lines[0].length, key).toBeGreaterThan(2);
+    expect(lines[1].length, key).toBeGreaterThan(2);
+  });
+
+  it.each(entries)("%s: iekšējās saites saturā ved uz esošu ceļu", (key, content) => {
+    // `[enkurs](/cels)` saturā ir tikpat lauzta saite, cik `/undefined`, ja
+    // ceļa nav ne ROUTES kartē, ne projektu slug sarakstā.
+    for (const text of allStrings(key)) {
+      for (const [, target] of text.matchAll(/\[[^\]]+\]\((\/[a-z0-9/-]+)\)/g)) {
+        expect(pathForPathname(target, "lv"), `${key}: ${target}`).not.toBeNull();
+      }
+    }
   });
 });

@@ -5,6 +5,7 @@ import Button from "@/components/ui/Button";
 import Label from "@/components/ui/Label";
 import Reveal, { stagger } from "@/components/animations/Reveal";
 import LineReveal from "@/components/animations/LineReveal";
+import { h1Lines } from "@/content/h1";
 import MagneticButton from "@/components/animations/MagneticButton";
 import HeroMedia from "@/components/direction/HeroMedia";
 import MediaPlaceholder, { SHOW_PLACEHOLDERS } from "@/components/direction/MediaPlaceholder";
@@ -13,11 +14,23 @@ import { Section, SectionTitle, LabelRow, ProseColumns } from "@/components/dire
 import ProjectCard from "@/components/ProjectCard";
 import ClientMarquee from "@/components/ClientMarquee";
 import LinkedText from "@/components/content/LinkedText";
+import FaqList from "@/components/content/FaqList";
 import Testimonials from "@/components/content/Testimonials";
 import { useLocale } from "@/i18n/LocaleContext";
 import { ROUTES, type RouteKey } from "@/i18n/routes";
 import { routeKeyForLvPath } from "@/components/content/LinkedText";
-import { CONTACT_EMAIL, CONTENT_MODIFIED, SITE_NAME, SITE_URL, SOCIAL } from "@/lib/site";
+import {
+  AREA_SERVED,
+  BUSINESS_SAME_AS,
+  CONTACT_EMAIL,
+  CONTENT_MODIFIED,
+  KNOWS_ABOUT,
+  PERSON_OCCUPATION,
+  PERSON_SAME_AS,
+  SITE_NAME,
+  SITE_URL,
+  WORK_LOCATION,
+} from "@/lib/site";
 import { featured, projectBySlug, projects, type Project } from "@/data/projects";
 import {
   aboutSection,
@@ -35,7 +48,6 @@ import {
  * Strukturētie dati
  * ------------------------------------------------------------------ */
 
-const sameAs = [SOCIAL.linkedin, SOCIAL.instagram, SOCIAL.dribbble, SOCIAL.facebook];
 const postalAddress = { "@type": "PostalAddress", addressLocality: "Rīga", addressCountry: "LV" };
 const PERSON_ID = `${SITE_URL}/#gatis`;
 const BUSINESS_ID = `${SITE_URL}/#business`;
@@ -54,8 +66,10 @@ const homePersonSchema = {
   address: postalAddress,
   knowsLanguage: ["lv", "en"],
   knowsAbout: serviceCards.map((card) => card.title),
+  hasOccupation: PERSON_OCCUPATION,
+  workLocation: WORK_LOCATION,
   worksFor: { "@id": BUSINESS_ID },
-  sameAs,
+  sameAs: PERSON_SAME_AS,
   dateModified: CONTENT_MODIFIED,
 };
 
@@ -70,11 +84,36 @@ const homeServiceSchema = {
   image: `${SITE_URL}/og-image.png`,
   priceRange: "200-3000 EUR",
   currenciesAccepted: "EUR",
-  areaServed: ["Latvija", "Igaunija", "Lietuva", "ASV"],
+  // Google zināšanu panelis un zīmola bloks logo ņem TIKAI no `logo` lauka -
+  // `image` tam neder. Atsevišķa vārda zīmes faila vēl nav, tāpēc pagaidām
+  // der 512x512 ikona (prasība ir vismaz 112x112).
+  logo: {
+    "@type": "ImageObject",
+    "@id": `${SITE_URL}/#logo`,
+    url: `${SITE_URL}/icon-512.png`,
+    contentUrl: `${SITE_URL}/icon-512.png`,
+    width: 512,
+    height: 512,
+    caption: SITE_NAME,
+  },
+  // Uz jautājumu "vai Gatis Design ir aģentūra" entītāte atbild pati.
+  numberOfEmployees: { "@type": "QuantitativeValue", value: 1 },
+  knowsAbout: KNOWS_ABOUT,
+  // `availableLanguage` Organization domēnā nav; uz biznesa mezgla pareizais
+  // lauks ir `knowsLanguage`, un `availableLanguage` dzīvo `contactPoint` iekšā.
+  knowsLanguage: ["lv", "en"],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    email: CONTACT_EMAIL,
+    availableLanguage: ["lv", "en"],
+    areaServed: AREA_SERVED,
+  },
+  areaServed: AREA_SERVED,
   address: postalAddress,
   founder: { "@id": PERSON_ID },
   provider: { "@id": PERSON_ID },
-  sameAs,
+  sameAs: BUSINESS_SAME_AS,
   dateModified: CONTENT_MODIFIED,
   hasOfferCatalog: {
     "@type": "OfferCatalog",
@@ -84,6 +123,25 @@ const homeServiceSchema = {
       itemOffered: { "@type": "Service", name: card.title, url: `${SITE_URL}${card.target}` },
     })),
   },
+};
+
+/**
+ * Sākumlapas FAQ strukturētajos datos.
+ *
+ * Schema un redzamais teksts iet vienā izmaiņā, ne divās: septiņi jautājumi
+ * tikai `<script>` blokā būtu slēpta iezīmēšana, un Google strukturēto datu
+ * politika to aizliedz. Avots abiem ir viens - `homeContent.faq`.
+ */
+const homeFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${SITE_URL}/#faq`,
+  inLanguage: "lv",
+  mainEntity: homeContent.faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
 };
 
 const homeWebsiteSchema = {
@@ -126,7 +184,7 @@ export default function Index() {
         description={homeContent.metaDescription}
         noindex={noindex}
       />
-      <JsonLd data={[homeWebsiteSchema, homePersonSchema, homeServiceSchema]} />
+      <JsonLd data={[homeWebsiteSchema, homePersonSchema, homeServiceSchema, homeFaqSchema]} />
 
       {/* ============ HERO ============ */}
       <section
@@ -144,7 +202,7 @@ export default function Index() {
           <LineReveal
             as="h1"
             id="hero-h"
-            lines={["Lapa, kas nes", "pieprasījumus."]}
+            lines={h1Lines(homeContent.h1, 3)}
             accentFrom={1}
             className="text-display font-bold uppercase text-paper"
           />
@@ -274,6 +332,17 @@ export default function Index() {
             <Label>Norādītās cenas ir galīgās - neesmu PVN maksātājs.</Label>
           </p>
         </LabelRow>
+      </Section>
+
+      {/* ============ JAUTĀJUMI ============ */}
+      {/* Deviņi jautājumi ar cenām un termiņiem stāv tūlīt aiz cenu rindas: tie
+          atbild tieši uz to, ko pakalpojumu saraksts tikko pacēla. Atbildes ir
+          atvērtas, ne akordeonā - sk. FaqList. */}
+      <Section rhythm="lg" labelledBy="jautajumi-h">
+        <SectionTitle id="jautajumi-h" className="mb-[clamp(30px,4vw,56px)]">
+          Biežākie jautājumi
+        </SectionTitle>
+        <FaqList items={homeContent.faq} />
       </Section>
 
       {/* ============ VIENA CILVĒKA ĶĒDE ============ */}
