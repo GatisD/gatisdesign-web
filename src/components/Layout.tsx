@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import SmoothScroll from "./SmoothScroll";
 import ScrollManager from "./ScrollManager";
 import CookieBanner from "./CookieBanner";
+import ScrollToTop from "./ScrollToTop";
 
 /**
  * Lapas ietvars.
@@ -35,6 +36,7 @@ export default function Layout({ locale }: { locale: Locale }) {
         </main>
         <Footer />
         <CookieBanner />
+        <ScrollToTop />
       </div>
     </LocaleProvider>
   );

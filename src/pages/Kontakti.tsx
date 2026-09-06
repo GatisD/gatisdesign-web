@@ -1,6 +1,7 @@
 import SEO from "@/components/SEO";
 import JsonLd, { buildBreadcrumbSchema } from "@/components/JsonLd";
 import Label from "@/components/ui/Label";
+import HeroMedia from "@/components/direction/HeroMedia";
 import Reveal from "@/components/animations/Reveal";
 import LineReveal from "@/components/animations/LineReveal";
 import { h1Lines } from "@/content/h1";
@@ -95,7 +96,12 @@ export default function Kontakti() {
           kurā pirmais ekrāns ir DARBĪBA, ne lasīšana. Pie 1280x800 pirmajam
           formas laukam jāpaliek virs sīkdatņu joslas, kas aizņem apakšējos
           69 px līdz brīdim, kad apmeklētājs uz to atbild. */}
-      <section className="bg-ink-900 pb-8 md:pb-10 pt-[clamp(88px,12vw,140px)]" aria-labelledby="kontakti-h">
+      {/* Kadrs te ir tumšāks nekā citur (brightness .34) apzināti: augšā
+          rakstīts, ka šī ir darbības, ne skatīšanās lapa, un fons nedrīkst
+          sacensties ar formu. Tas ir tekstūra, ne attēls. */}
+      <section className="relative isolate overflow-hidden bg-ink-900 pb-8 md:pb-10 pt-[clamp(88px,12vw,140px)]" aria-labelledby="kontakti-h">
+        <HeroMedia className="-z-[2]" poster="/media/hero-contact.jpg" eager brightness={0.34} position="center 55%" />
+        <div aria-hidden="true" className="absolute inset-0 -z-[1]" style={{ background: "var(--scrim-page)" }} />
         <div className="mx-auto w-full max-w-wrap px-5 sm:px-8 lg:px-10">
           <LineReveal
             as="h1"

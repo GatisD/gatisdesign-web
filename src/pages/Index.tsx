@@ -192,7 +192,7 @@ export default function Index() {
         className="relative isolate flex min-h-[clamp(560px,88vh,880px)] flex-col justify-end overflow-hidden bg-ink-900 pb-[clamp(28px,4vw,44px)] pt-[clamp(104px,18vw,220px)]"
         aria-labelledby="hero-h"
       >
-        <HeroMedia className="-z-[2]" poster="/media/hero-workshop.jpg" position="center 40%" eager brightness={0.5} />
+        <HeroMedia className="-z-[2]" poster="/media/hero-workshop.jpg" position="center 40%" eager drift brightness={0.5} />
         <div
           aria-hidden="true"
           className="absolute inset-0 -z-[1]"

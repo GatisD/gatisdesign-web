@@ -20,6 +20,7 @@ export default function HeroMedia({
   className,
   position = "center 40%",
   eager = false,
+  drift = false,
   brightness = 0.55,
   blur = false,
 }: {
@@ -29,6 +30,8 @@ export default function HeroMedia({
   className?: string;
   position?: string;
   eager?: boolean;
+  /** Lēna kadra kustība. Tikai hero virsmām; joslās vidū lapas tā traucē lasīt. */
+  drift?: boolean;
   brightness?: number;
   blur?: boolean;
 }) {
@@ -46,7 +49,7 @@ export default function HeroMedia({
   const filter = `brightness(${brightness}) saturate(.85)${blur ? " blur(1px)" : ""}`;
 
   return (
-    <div ref={wrap} className={cn("absolute inset-0 overflow-hidden", className)} aria-hidden={posterAlt ? undefined : true}>
+    <div ref={wrap} className={cn("absolute inset-0 overflow-hidden", drift && "media-drift", className)} aria-hidden={posterAlt ? undefined : true}>
       <PicturePortfolio
         src={poster}
         alt={posterAlt}

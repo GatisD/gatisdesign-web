@@ -176,6 +176,26 @@
     }
   }
 
+  /* Hero fona lēnā kustība. Nav uz tā paša elementa, kur `media-settle`:
+     abas animētu `transform`, un vēlākā deklarācija otru klusi noēstu. Šī sēž
+     uz ietvara, `media-settle` uz paša attēla.
+
+     Cikls ir gars un `alternate`, tāpēc nav atkārtošanās lēciena; mērogs sākas
+     virs 1, lai kadra malas kustībā nekad neatkailinātos. */
+  @media (prefers-reduced-motion: no-preference) {
+    .media-drift {
+      animation: media-drift 46s var(--ease-settle, ease-in-out) infinite alternate;
+    }
+    @keyframes media-drift {
+      from {
+        transform: scale(1.05) translate3d(0, 0, 0);
+      }
+      to {
+        transform: scale(1.11) translate3d(-2.2%, -1.4%, 0);
+      }
+    }
+  }
+
   /* Darbu režģis pēc filtra maiņas: vilnis, ne pārlēciens. Bāzes stāvoklis
      ir gala stāvoklis, tāpēc bez JS un bez animācijām kartes vienkārši ir. */
   @media (prefers-reduced-motion: no-preference) {
@@ -339,6 +359,7 @@
     }
     .grid-in,
     .media-settle,
+    .media-drift,
     .shake,
     .check-draw {
       animation: none;

@@ -3,6 +3,7 @@ import JsonLd, { buildBreadcrumbSchema } from "@/components/JsonLd";
 import Label from "@/components/ui/Label";
 import Button from "@/components/ui/Button";
 import MagneticButton from "@/components/animations/MagneticButton";
+import HeroMedia from "@/components/direction/HeroMedia";
 import Reveal, { stagger } from "@/components/animations/Reveal";
 import LineReveal from "@/components/animations/LineReveal";
 import { h1Lines } from "@/content/h1";
@@ -98,7 +99,11 @@ export default function ParMani() {
       <JsonLd data={[personSchema, faqPageSchema, breadcrumbSchema]} />
 
       {/* ============ GALVA: portrets pa kreisi, vārds pa labi ============ */}
-      <section className="bg-ink-900 pb-12 md:pb-16 pt-[clamp(96px,14vw,160px)]" aria-labelledby="par-h">
+      {/* Fons te bija tukšs melnums. Kadrs ir pieklusināts (brightness .42):
+          galvenais šajā ekrānā ir portrets un vārds, fons ir tekstūra zem tā. */}
+      <section className="relative isolate overflow-hidden bg-ink-900 pb-12 md:pb-16 pt-[clamp(96px,14vw,160px)]" aria-labelledby="par-h">
+        <HeroMedia className="-z-[2]" poster="/media/hero-about.jpg" eager brightness={0.42} position="center 45%" />
+        <div aria-hidden="true" className="absolute inset-0 -z-[1]" style={{ background: "var(--scrim-page)" }} />
         <div className="mx-auto grid w-full max-w-wrap gap-x-14 gap-y-10 px-5 sm:px-8 lg:px-10 md:grid-cols-2 md:items-end">
           <MediaPlaceholder
             text={isLv ? "Portrets vai 15 sekunžu video darba vidē - vēl jāuzņem" : "Portrait or a 15 second workshop video - still to be shot"}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useLocale } from "@/i18n/LocaleContext";
 
@@ -88,6 +88,7 @@ export default function CookieBanner() {
   const { t, path, locale } = useLocale();
   const [consent, setConsent] = useState<Consent>(null);
   const [mounted, setMounted] = useState(false);
+  const josla = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -121,10 +122,34 @@ export default function CookieBanner() {
     setConsent(value);
   }
 
+  // Joslas augstumu publicējam kā `--bottom-bar`: poga uz lapas augšu ceļas
+  // virs tās, nevis palien apakšā. Augstums ir mērīts, ne uzminēts - josla ir
+  // viena rinda platā ekrānā un divas šaurā.
+  useEffect(() => {
+    const sakne = document.documentElement;
+    const redzama = mounted && consent === null;
+    if (!redzama) {
+      sakne.style.removeProperty("--bottom-bar");
+      return;
+    }
+    const mers = () => {
+      const h = josla.current?.offsetHeight;
+      if (h) sakne.style.setProperty("--bottom-bar", `${h}px`);
+    };
+    mers();
+    const ro = new ResizeObserver(mers);
+    if (josla.current) ro.observe(josla.current);
+    return () => {
+      ro.disconnect();
+      sakne.style.removeProperty("--bottom-bar");
+    };
+  }, [mounted, consent]);
+
   if (!mounted || consent !== null) return null;
 
   return (
     <div
+      ref={josla}
       role="dialog"
       aria-label={locale === "lv" ? "Sīkdatņu paziņojums" : "Cookie notice"}
       // Necaurspīdīgs fons apzināti: ar bg-ink-900/95 un izpludinājumu virs
