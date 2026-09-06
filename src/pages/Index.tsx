@@ -203,7 +203,7 @@ export default function Index() {
           <LineReveal
             as="h1"
             id="hero-h"
-            lines={h1Lines(homeContent.h1, 3)}
+            lines={h1Lines(homeContent.h1, homeContent.h1BreakAfter)}
             accentFrom={1}
             className="text-display font-bold uppercase text-paper"
           />

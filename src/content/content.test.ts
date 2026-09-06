@@ -85,30 +85,33 @@ describe("pakalpojumu saturs", () => {
     expect(priceRangeFor(serviceContent["services.ai"])).toEqual({ low: 400, high: 2500, count: 3 });
   });
 
-  it.each(entries)("%s: offerCount ir cenu RINDU skaits, ne tabulu skaits", (key, content) => {
-    // Iepriekš `offerCount` skaitīja sadaļas ar tabulu, un dzīvajā HTML
-    // /majaslapu-izstrade uzrādīja divus piedāvājumus piecu rindu vietā.
-    const range = priceRangeFor(content)!;
-    const rows = content.sections
-      .flatMap((section) => {
-        const table = section.table;
-        if (!table) return [];
-        const priceColumns = table.columns
-          .map((column, index) => (/cena/i.test(column) ? index : -1))
-          .filter((index) => index >= 0);
-        return table.rows.filter((row) =>
-          priceColumns.some((index) => {
-            const cell = row[index] ?? "";
-            return cell.includes("EUR") && !/\/mēn|mēnesī|\/h\b|stundā/i.test(cell);
-          }),
-        );
-      });
-    expect(range.count, key).toBe(rows.length);
-    expect(range.count).toBeGreaterThan(0);
+  // Šie skaitļi ir nolasīti no cenu tabulām ar roku 2026-09-06 un ir NEATKARĪGS
+  // orākuls. Iepriekš te stāvēja tests, kas `priceRangeFor` filtrēšanu uzrakstīja
+  // vēlreiz un tad salīdzināja funkciju ar savu kopiju: ja loģika kļūdījās, abas
+  // puses kļūdījās vienādi un tests palika zaļš. Tests, kas atkārto testējamo,
+  // nepārbauda neko - tas tikai apliecina, ka divas vienādas rindas ir vienādas.
+  //
+  // Zemākā cena zīmola lapā ir 120, ne 200: tā nāk no drukas materiālu rindas
+  // "120-900 EUR", un funkcija ņem VISUS skaitļus derīgā šūnā, ne tikai pirmo.
+  const GAIDĪTIE: Record<ServiceRouteKey, { low: number; high: number; count: number }> = {
+    "services.web": { low: 500, high: 2500, count: 3 },
+    "services.ai": { low: 400, high: 2500, count: 3 },
+    "services.brand": { low: 120, high: 3000, count: 6 },
+    "services.seo": { low: 300, high: 1200, count: 5 },
+  };
+
+  it.each(entries)("%s: cenu diapazons un rindu skaits sakrīt ar tabulu", (key, content) => {
+    expect(priceRangeFor(content), key).toEqual(GAIDĪTIE[key]);
+  });
+
+  it("gaidīto cenu tabula sedz katru pakalpojumu lapu", () => {
+    // Bez šī jauna lapa klusi paliktu bez sava skaitļa, un augšējais tests
+    // salīdzinātu ar `undefined`.
+    expect(Object.keys(GAIDĪTIE).sort()).toEqual(Object.keys(serviceContent).sort());
   });
 
   it.each(entries)("%s: h1 rindu lūzums ir teksta robežās", (key, content) => {
-    const lines = h1Lines(content.h1, SERVICE_HERO[key].breakAfter);
+    const lines = h1Lines(content.h1, content.h1BreakAfter);
     expect(lines.join(" ")).toBe(content.h1.trim());
     expect(lines[0].length, key).toBeGreaterThan(2);
     expect(lines[1].length, key).toBeGreaterThan(2);

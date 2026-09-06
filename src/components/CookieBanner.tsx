@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { CONSENT_COOKIE_PREFIXES } from "@/lib/consent-cookies";
 import { Link } from "react-router-dom";
 import { useLocale } from "@/i18n/LocaleContext";
 
@@ -25,7 +26,11 @@ function gaCookieDomains(host: string): string[] {
 }
 
 /**
- * Izdzēš `_ga` un `_ga_<mērījuma ID>` sīkdatnes.
+ * Izdzēš sīkdatnes, ko uzstāda ar piekrišanu ielādētie rīki.
+ *
+ * Prefiksi nāk no `consent-cookies.ts`, ne no šīs funkcijas: to pašu sarakstu
+ * lasa arī privātuma politika, tāpēc jauns rīks tiek notīrīts UN aprakstīts,
+ * nevis tikai viens no diviem.
  *
  * Bez šī atteikums bija tikai vārdos: nomērīts 2026-09-06, ka pēc "Tikai
  * vajadzīgās" abas GA sīkdatnes palika pārlūkā un turpināja ceļot uz Google ar
@@ -36,7 +41,7 @@ function clearAnalyticsCookies(): void {
   const domains = gaCookieDomains(window.location.hostname);
   for (const raw of document.cookie.split(";")) {
     const name = raw.split("=")[0]?.trim();
-    if (!name || !name.startsWith("_ga")) continue;
+    if (!name || !CONSENT_COOKIE_PREFIXES.some((pre) => name.startsWith(pre))) continue;
     for (const domain of domains) {
       document.cookie = `${name}=; Max-Age=0; path=/${domain ? `; domain=${domain}` : ""}`;
     }

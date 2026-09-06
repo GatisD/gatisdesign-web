@@ -106,7 +106,7 @@ export default function Kontakti() {
           <LineReveal
             as="h1"
             id="kontakti-h"
-            lines={h1Lines(contactContent.h1, 2)}
+            lines={h1Lines(contactContent.h1, contactContent.h1BreakAfter)}
             className="text-display-2 font-bold uppercase text-paper"
           />
           <Reveal delay={0.2} className="mt-[clamp(18px,2.4vw,28px)] max-w-[62ch]">

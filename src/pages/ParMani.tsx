@@ -115,7 +115,7 @@ export default function ParMani() {
             <LineReveal
               as="h1"
               id="par-h"
-              lines={h1Lines(aboutContent.h1, 1)}
+              lines={h1Lines(aboutContent.h1, aboutContent.h1BreakAfter)}
               className="text-display-2 font-bold uppercase text-paper"
             />
             <Reveal delay={0.2} className="mt-[clamp(20px,3vw,34px)] max-w-[54ch]">

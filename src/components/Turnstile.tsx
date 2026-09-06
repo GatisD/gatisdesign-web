@@ -107,11 +107,26 @@ export default function Turnstile({
       });
     return () => {
       cancelled = true;
+      // Logrīku noņemam, ne tikai atmetam atsauci. Cloudflare tur savu iekšējo
+      // reģistru; bez `remove` katra atgriešanās uz kontaktu lapu atstāj tur
+      // vienu mirušu ierakstu un vienu bāreni iframe. Ar klientu puses
+      // navigāciju to var izdarīt daudzas reizes vienā sesijā.
+      if (widgetRef.current !== null) {
+        try {
+          window.turnstile?.remove(widgetRef.current);
+        } catch {
+          // Ja skripts jau ir pazudis, nav ko noņemt - tas nav kļūda.
+        }
+        widgetRef.current = null;
+      }
     };
   }, [armed, locale]);
 
+  // Atiestatīšana pēc neveiksmīga iesnieguma. `resetSignal === 0` pārbaude te
+  // bija lieka: pirmajā uzstādīšanā logrīka vēl nav, un `widgetRef.current`
+  // to jau sedz. Divi nosacījumi vienam gadījumam slēpj, kurš no tiem strādā.
   useEffect(() => {
-    if (resetSignal === 0 || widgetRef.current === null) return;
+    if (widgetRef.current === null) return;
     window.turnstile?.reset(widgetRef.current);
     tokenRef.current("");
   }, [resetSignal]);

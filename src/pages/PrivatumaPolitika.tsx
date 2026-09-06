@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { cookieList, cookieCount } from "@/lib/consent-cookies";
 import SEO from "@/components/SEO";
 import JsonLd, { buildBreadcrumbSchema } from "@/components/JsonLd";
 import Label from "@/components/ui/Label";
@@ -99,7 +100,7 @@ export default function PrivatumaPolitika() {
                   items={[
                     "Kontaktformā: vārds un uzvārds, e-pasts, izvēlētais pakalpojums, budžeta diapazons, vēlamais termiņš un projekta apraksts.",
                     "Tehniskie dati, ko fiksē hostings (Vercel) - IP adrese un pieprasījuma laiks. Tos lieto tikai lapas darbībai un formas ātruma ierobežojumam.",
-                    "Ja piekrīti analītikai - Google Analytics 4 sīkdatnes (_ga un _ga_*). Tās glabā nejaušu apmeklētāja identifikatoru, nevis vārdu vai e-pastu. Bez piekrišanas tās netiek uzstādītas.",
+                    `Ja piekrīti analītikai - Google Analytics 4 sīkdatnes (${cookieList("lv")}). Tās glabā nejaušu apmeklētāja identifikatoru, nevis vārdu vai e-pastu. Bez piekrišanas tās netiek uzstādītas.`,
                   ]}
                 />
               </Section>
@@ -136,8 +137,8 @@ export default function PrivatumaPolitika() {
               <Section title="6. Sīkdatnes un piekrišana">
                 <p>
                   Bez tavas piekrišanas mājaslapa neuzstāda nevienu sīkdatni. Ja piekrīti, ielādējas
-                  Google Analytics 4 caur Google Tag Manager un uzstāda divas sīkdatnes -{" "}
-                  <code>_ga</code> un <code>_ga_*</code>. Tās satur nejaušu identifikatoru, nevis tavus
+                  Google Analytics 4 caur Google Tag Manager un uzstāda {cookieCount("lv")} sīkdatnes -{" "}
+                  <code>{cookieList("lv")}</code>. Tās satur nejaušu identifikatoru, nevis tavus
                   datus, un glabājas līdz 14 mēnešiem. IP adresi Google Analytics neglabā - to izmanto
                   tikai, lai noteiktu aptuveno atrašanās vietu, un pēc tam atmet.
                 </p>

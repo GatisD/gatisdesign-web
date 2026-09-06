@@ -3,16 +3,13 @@ import type { ServiceRouteKey } from "@/content";
 /**
  * Katras pakalpojumu lapas galvas kadrs un vidusjosla.
  *
- * `breakAfter` ir vienīgais, kas šeit pieder virsrakstam: pēc kura vārda H1
- * lūzt otrajā rindā. Paši vārdi nāk no satura faila `h1` lauka (sk.
- * `src/content/h1.ts`), tāpēc virsrakstu maina saturā, ne kodā.
+ * Šeit paliek TIKAI vizuālais: kadrs, tā kadrējums un vidusjoslas teksts.
+ * Virsraksts un tā rindas lūzums dzīvo satura failā (`h1`, `h1BreakAfter`),
+ * tāpēc virsrakstu maina saturā, un kodam par to nav jāzina.
  *
- * Fona attēli šobrīd ir pagaidu stock kadri: struktūra jau ir gatava video
- * (HeroMedia `video`), bet paša video vēl nav uzņemts.
+ * Struktūra jau ir gatava video (HeroMedia `video`), pats video vēl nav uzņemts.
  */
 export type ServiceHero = {
-  /** Pēc kura vārda `h1` lūzt otrajā rindā. */
-  breakAfter: number;
   poster: string;
   posterPosition?: string;
   band: { poster: string; text: string };
@@ -20,8 +17,6 @@ export type ServiceHero = {
 
 export const SERVICE_HERO: Record<ServiceRouteKey, ServiceHero> = {
   "services.brand": {
-    // "Logo izveide un | zīmola identitāte"
-    breakAfter: 3,
     poster: "/media/hero-brand.jpg",
     posterPosition: "center 40%",
     band: {
@@ -30,8 +25,6 @@ export const SERVICE_HERO: Record<ServiceRouteKey, ServiceHero> = {
     },
   },
   "services.web": {
-    // "Mājaslapu | izstrāde"
-    breakAfter: 1,
     poster: "/media/hero-web.jpg",
     band: {
       poster: "/media/band-craft.jpg",
@@ -39,8 +32,6 @@ export const SERVICE_HERO: Record<ServiceRouteKey, ServiceHero> = {
     },
   },
   "services.ai": {
-    // "AI aģenti un | automatizācija"
-    breakAfter: 3,
     poster: "/media/hero-ai.jpg",
     band: {
       poster: "/media/band-console.jpg",
@@ -48,8 +39,6 @@ export const SERVICE_HERO: Record<ServiceRouteKey, ServiceHero> = {
     },
   },
   "services.seo": {
-    // "SEO, GEO un AEO | optimizācija"
-    breakAfter: 4,
     poster: "/media/hero-seo.jpg",
     band: {
       poster: "/media/band-seo.jpg",

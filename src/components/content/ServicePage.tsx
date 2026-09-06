@@ -86,7 +86,7 @@ export default function ServicePage({
           darbība ir teksta saite uz cenu tabulu: cilvēks, kurš atnāca pēc
           cenas, nedrīkst to meklēt ar ritināšanu 19 000 px garā lapā. */}
       <PageHero
-        titleLines={h1Lines(content.h1, hero.breakAfter)}
+        titleLines={h1Lines(content.h1, content.h1BreakAfter)}
         lede={content.heroLede ?? content.directAnswer}
         poster={hero.poster}
         posterPosition={hero.posterPosition}

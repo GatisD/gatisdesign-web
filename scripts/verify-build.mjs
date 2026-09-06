@@ -326,10 +326,109 @@ function checkDist(dist) {
     }
   }
 
+
+  // 17. llms.txt cenas un termiņi sakrīt ar to, kas lapās tiešām publicēts.
+  //
+  //     llms.txt ir rakstīts ar roku, cenas dzīvo satura JSON. Kad 5. kārta
+  //     pārrakstīja termiņus, šis fails divās vietās palika ar vecajiem
+  //     skaitļiem - un modelim tika pasniegta cita cena nekā cilvēkam, klusi.
+  //
+  //     Salīdzinām ar dist HTML, ne ar JSON: nozīme ir tam, kas ir PUBLICĒTS.
+  //     Diapazons drīkst būt saskaitīts (300-800 EUR no 300 un 800), tāpēc tas
+  //     iziet, ja abi gali lapās ir; izdomāts skaitlis neiziet nekad.
+  if (llms) {
+    const teksts = pages
+      .map((page) => read(page) ?? "")
+      .join(" ")
+      .replace(/<script[\s\S]*?<\/script>/g, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&nbsp;|&#160;/g, " ")
+      .replace(/\s+/g, " ");
+
+    // Latviešu locījumi nav fakta maiņa: "5-10 darba dienās" un "5-10 darba
+    // dienas" ir viens un tas pats termiņš, tāpēc galotni nogriežam.
+    const stumbrs = (v) =>
+      v
+        .toLowerCase()
+        .replace(/\s+/g, " ")
+        .replace(/^no /, "")
+        .replace(/darba dien\w*/, "darba dien")
+        .replace(/nedēļ\w*/, "nedēļ")
+        .replace(/mēneš\w*|mēnesī/, "mēneš")
+        .trim();
+
+    const ATOMS = /(?:no\s+)?\d[\d\s]*(?:-\d+)?\s*(?:EUR|darba dien\w*|nedēļ\w*|mēneš\w*|mēnesī)/g;
+    const lapas = new Set([...teksts.matchAll(ATOMS)].map((x) => stumbrs(x[0])));
+
+    for (const raw of new Set([...llms.matchAll(ATOMS)].map((x) => x[0]))) {
+      const atoms = stumbrs(raw);
+      if (lapas.has(atoms)) continue;
+      // Saskaitīts diapazons: abiem galiem jābūt lapās ar to pašu vienību.
+      const dia = atoms.match(/^(\d+)-(\d+)( .+)?$/);
+      if (dia) {
+        const vieniba = dia[3] ?? " eur";
+        const gali = [dia[1], dia[2]].map((n) => `${n}${vieniba}`.trim());
+        if (gali.every((g) => lapas.has(g))) continue;
+      }
+      errors.push(`llms.txt apgalvo "${raw.trim()}", bet nevienā lapā tāda skaitļa nav`);
+    }
+  }
+
+
+  // 18. Privātuma politika nosauc TIEŠI tās sīkdatnes, ko kods tiešām uzstāda.
+  //
+  //     Saraksts dzīvo `src/lib/consent-cookies.ts` un baro gan tīrīšanu, gan
+  //     abus politikas gabalus. Vārti sargā to, ko viens avots nesargā: ka
+  //     kāds politikas tekstu atkal neieraksta ar roku. Pievieno Clarity un
+  //     aizmirsti - lapa turpina solīt divas sīkdatnes, kamēr uzstāda četras.
+  {
+    const avots = join(ROOT, "src/lib/consent-cookies.ts");
+    const politika = read("privatuma-politika.html");
+    if (existsSync(avots) && politika) {
+      const src = readFileSync(avots, "utf8");
+      const zimes = [...src.matchAll(/zime:\s*"([^"]+)"/g)].map((x) => x[1]);
+      if (zimes.length === 0) errors.push("consent-cookies.ts: neviena sīkdatnes zīme nav nolasāma");
+      const teksts = politika.replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ");
+      for (const zime of zimes) {
+        if (!teksts.includes(zime)) {
+          errors.push(`privatuma-politika.html nenosauc sīkdatni "${zime}", kaut kods to uzstāda`);
+        }
+      }
+    }
+  }
+
+
+  // 19. H1_SOURCE reģistrs sedz KATRU satura failu.
+  //
+  //     Trūkstoša rinda 13. vārtos nozīmē klusu izlaišanu, ne kļūdu. Reģistrs,
+  //     kas noveco klusi, ir sliktāks par reģistra neesamību: tas rada
+  //     pārliecību, ka lapa ir pārbaudīta, kad tā nav.
+  {
+    const saturaMape = join(ROOT, "src/content/lv");
+    if (existsSync(saturaMape)) {
+      const faili = readdirSync(saturaMape).filter((f) => f.endsWith(".json"));
+      const registra = new Set(Object.values(H1_SOURCE));
+      for (const f of faili) {
+        if (!registra.has(f)) errors.push(`H1_SOURCE nesatur "${f}" - tās lapas h1 netiek pārbaudīts`);
+      }
+      for (const f of registra) {
+        if (!faili.includes(f)) errors.push(`H1_SOURCE norāda uz neesošu satura failu "${f}"`);
+      }
+    }
+  }
+
   return errors;
 }
 
-/** Lapa dist mapē -> satura fails, no kura nāk tās h1. */
+/**
+ * Lapa dist mapē -> satura fails, no kura nāk tās h1.
+ *
+ * Šis ir TREŠAIS lapu reģistrs projektā (blakus maršrutiem un satura mapei), un
+ * tāpēc tas noveco klusi: pievieno lapu, aizmirsti rindu šeit, un 13. vārti to
+ * vienkārši izlaiž - lapa iziet pārbaudi, ko neviens tai nav palaidis. Zemāk
+ * esošie vārti to vairs neļauj: katram `src/content/lv/*.json` failam te jābūt
+ * savai rindai, citādi būve krīt.
+ */
 const H1_SOURCE = {
   "index.html": "home.json",
   "zimola-identitate.html": "zimola-identitate.json",
@@ -345,6 +444,20 @@ const H1_SOURCE = {
  * ------------------------------------------------------------------ */
 
 const MUTATIONS = [
+  {
+    name: "privātuma politika nenosauc uzstādīto sīkdatni",
+    apply(dir) {
+      const f = join(dir, "privatuma-politika.html");
+      writeFileSync(f, readFileSync(f, "utf8").replaceAll("_ga_*", "_xx_*"));
+    },
+  },
+  {
+    name: "llms.txt cena aizgājusi prom no lapām",
+    apply(dir) {
+      const f = join(dir, "llms.txt");
+      writeFileSync(f, readFileSync(f, "utf8").replace("no 500 EUR", "no 450 EUR"));
+    },
+  },
   {
     name: "robots.txt bez GPTBot",
     apply: (d) => writeFileSync(join(d, "robots.txt"), readFileSync(join(d, "robots.txt"), "utf8").replace(/GPTBot/g, "NavBot")),

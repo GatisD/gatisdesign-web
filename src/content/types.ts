@@ -48,6 +48,14 @@ export type PageContent = {
   metaDescription: string;
   h1: string;
   /**
+   * Pēc kura vārda `h1` lūzt otrajā rindā.
+   *
+   * Dzīvo te, blakus pašam virsrakstam, ne komponentē: kamēr skaitlis bija
+   * kodā, virsraksta saīsināšana JSON failā nogāza būvi, un satura labojums
+   * prasīja koda labojumu. Lūzums ir virsraksta īpašība, ne izkārtojuma.
+   */
+  h1BreakAfter: number;
+  /**
    * Atbilde uz lapas galveno jautājumu vienā rindkopā. Tiek lietota meta
    * aprakstā un strukturētajos datos. Lapā to vairs neizceļ atsevišķā blokā:
    * kopā ar hero ievadu, cenu tabulu un FAQ tas nozīmēja cenas vienā lapā
