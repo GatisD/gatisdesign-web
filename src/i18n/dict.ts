@@ -37,10 +37,12 @@ export const dict = {
       cta: "Uz sākumu",
     },
     cookies: {
-      text: "Šajā mājaslapā izmantoju sīkdatnes, lai nodrošinātu lapas darbību un anonīmi analizētu apmeklējumu. Vairāk -",
+      text: "Sīkdatnes lapas darbības nodrošināšanai un, ja piekrīti, anonīmai analītikai. Vairāk -",
       privacyLink: "privātuma politikā",
       acceptAll: "Pieņemt visas",
-      necessaryOnly: "Tikai nepieciešamās",
+      necessaryOnly: "Tikai vajadzīgās",
+      /** Kājenes saite, kas atver joslu no jauna. */
+      settings: "Sīkdatņu iestatījumi",
     },
     /**
      * Kontaktforma. Izvēlņu uzraksti nāk no api/_lib/contact-fields.ts, jo tos
@@ -129,10 +131,11 @@ export const dict = {
       cta: "Go to homepage",
     },
     cookies: {
-      text: "This site uses cookies for core functionality and anonymous analytics. More in the",
+      text: "Cookies for core site functionality and, if you agree, anonymous analytics. More in the",
       privacyLink: "privacy policy",
       acceptAll: "Accept all",
-      necessaryOnly: "Necessary only",
+      necessaryOnly: "Only necessary",
+      settings: "Cookie settings",
     },
     form: {
       kicker: "Project request",

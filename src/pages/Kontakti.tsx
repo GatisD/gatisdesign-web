@@ -78,7 +78,11 @@ export default function Kontakti() {
       <JsonLd data={[contactPointSchema, faqPageSchema, breadcrumbSchema]} />
 
       {/* ============ GALVA ============ */}
-      <section className="bg-ink-900 pb-12 md:pb-16 pt-[clamp(96px,14vw,168px)]" aria-labelledby="kontakti-h">
+      {/* Atkāpes te ir ciešākas nekā citās lapās apzināti: šī ir vienīgā lapa,
+          kurā pirmais ekrāns ir DARBĪBA, ne lasīšana. Pie 1280x800 pirmajam
+          formas laukam jāpaliek virs sīkdatņu joslas, kas aizņem apakšējos
+          69 px līdz brīdim, kad apmeklētājs uz to atbild. */}
+      <section className="bg-ink-900 pb-8 md:pb-10 pt-[clamp(88px,12vw,140px)]" aria-labelledby="kontakti-h">
         <div className="mx-auto w-full max-w-wrap px-5 sm:px-8 lg:px-10">
           <LineReveal
             as="h1"
@@ -86,7 +90,7 @@ export default function Kontakti() {
             lines={["Pastāsti, kas", "tev jāatrisina"]}
             className="text-display-2 font-bold uppercase text-paper"
           />
-          <Reveal delay={0.2} className="mt-[clamp(20px,3vw,34px)] max-w-[62ch]">
+          <Reveal delay={0.2} className="mt-[clamp(18px,2.4vw,28px)] max-w-[62ch]">
             <p className="text-[clamp(1.02rem,1.4vw,1.25rem)] leading-[1.5] text-paper-2">
               <span aria-hidden="true" className="text-amber">
                 &#8627;
@@ -98,22 +102,10 @@ export default function Kontakti() {
       </section>
 
       {/* ============ FORMA + BLAKUS KOLONNA ============ */}
-      <Section rhythm="md" ariaLabel={isLv ? "Pieteikums" : "Enquiry"}>
+      <Section rhythm="sm" ariaLabel={isLv ? "Pieprasījums" : "Enquiry"}>
         <div className="grid gap-x-16 gap-y-14 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-start">
           <div id={FORM_ANCHOR} className="scroll-mt-24">
-            <h2 className="mb-5 text-h3 font-medium text-paper">{t.form.title}</h2>
-            {/* Formas ievads nāk no satura, ne no koda: tur ir pateikts, kas ar
-                aizpildīto formu notiek un kāpēc formā vispār jautāju budžeta
-                diapazonu. Abas rindkopas bija uzrakstītas un izgājušas
-                gramatikas pārbaudi, bet lapā nenonāca. */}
-            {form.body.map((paragraph) => (
-              <p
-                key={paragraph.slice(0, 40)}
-                className="mb-4 max-w-[62ch] text-[16px] leading-[1.6] text-paper-dim last:mb-8"
-              >
-                <LinkedEmail text={paragraph} />
-              </p>
-            ))}
+            <h2 className="mb-8 text-h3 font-medium text-paper">{t.form.title}</h2>
             <ContactForm />
           </div>
 
@@ -130,6 +122,20 @@ export default function Kontakti() {
               </p>
               {contacts.body.map((paragraph) => (
                 <p key={paragraph.slice(0, 40)} className="mt-3 text-[15px] leading-[1.6] text-paper-dim">
+                  <LinkedEmail text={paragraph} />
+                </p>
+              ))}
+            </div>
+
+            {/* Formas ievads nāk no satura, ne no koda: tur ir pateikts, kas ar
+                aizpildīto formu notiek un kāpēc formā vispār jautāju budžeta
+                diapazonu. Abas rindkopas bija uzrakstītas un izgājušas
+                gramatikas pārbaudi, bet lapā nenonāca. Tās stāv blakus formai,
+                nevis virs tās: pie 1280x800 divas rindkopas starp virsrakstu un
+                pirmo lauku aizstumj formu par 171 px zem krokas. */}
+            <div className="border-s border-line ps-5">
+              {form.body.map((paragraph) => (
+                <p key={paragraph.slice(0, 40)} className="mb-4 text-[15px] leading-[1.6] text-paper-dim last:mb-0">
                   <LinkedEmail text={paragraph} />
                 </p>
               ))}

@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import SEO from "@/components/SEO";
 import JsonLd, { buildBreadcrumbSchema } from "@/components/JsonLd";
 import Label from "@/components/ui/Label";
-import { CONTACT_EMAIL } from "@/lib/site";
+import { CONTACT_EMAIL, CONTENT_MODIFIED } from "@/lib/site";
 import { useLocale } from "@/i18n/LocaleContext";
 import { pathFor } from "@/i18n/routes";
 
@@ -83,7 +83,7 @@ export default function PrivatumaPolitika() {
           <div className="max-w-[70ch]">
             <h1 className="max-w-[20ch] text-display-2 font-bold uppercase">Privātuma politika</h1>
             <p className="mt-6">
-              <Label>Pēdējoreiz atjaunināts: 2026-05-03</Label>
+              <Label>Pēdējoreiz atjaunināts: {CONTENT_MODIFIED}</Label>
             </p>
 
             <div className="mt-12">
@@ -97,9 +97,9 @@ export default function PrivatumaPolitika() {
               <Section title="2. Kādus datus ievācu">
                 <BulletList
                   items={[
-                    "Vārds un uzvārds, e-pasts un projekta apraksts, ko iesniedz caur kontaktu formu.",
-                    "Sīkdatnes (cookies), ja esi piekritis to izmantošanai (Google Consent Mode v2).",
-                    "Tehniska informācija - IP adrese, pārlūks, lapas, ko apmeklē - anonimizētā formā.",
+                    "Kontaktformā: vārds un uzvārds, e-pasts, izvēlētais pakalpojums, budžeta diapazons, vēlamais termiņš un projekta apraksts.",
+                    "Tehniskie dati, ko fiksē hostings (Vercel) - IP adrese un pieprasījuma laiks. Tos lieto tikai lapas darbībai un formas ātruma ierobežojumam.",
+                    "Analītikas sīkdatnes netiek uzstādītas: mājaslapā pagaidām nav ne Google Analytics, ne cita mērījuma. Ja tas mainīsies, tas notiks tikai pēc tavas piekrišanas (Google Consent Mode v2).",
                   ]}
                 />
               </Section>
@@ -109,7 +109,7 @@ export default function PrivatumaPolitika() {
                   items={[
                     "Lai atbildētu uz tavu pieprasījumu un sagatavotu projekta piedāvājumu.",
                     "Lai uzturētu un uzlabotu mājaslapas darbību.",
-                    "Anonīma analīze (kad būs aktivizēts), lai saprastu, kāds saturs ir noderīgs.",
+                    "Ja piekrīti analītikai - lai saprastu, kāds saturs ir noderīgs. Šobrīd analītika nav uzstādīta.",
                   ]}
                 />
               </Section>
@@ -133,19 +133,25 @@ export default function PrivatumaPolitika() {
                 />
               </Section>
 
-              <Section title="6. Sīkdatnes">
+              <Section title="6. Sīkdatnes un piekrišana">
                 <p>
-                  Mājaslapā tiek lietotas tikai tehniski nepieciešamās sīkdatnes (sesijas pārvaldība) un, ja
-                  piekrīti, anonīmas analītikas sīkdatnes. Piekrišanu jebkurā brīdī vari mainīt, izdzēšot
-                  sīkdatnes pārlūkprogrammā.
+                  Šobrīd mājaslapa neuzstāda nevienu sīkdatni. Tava izvēle par sīkdatnēm glabājas pārlūka
+                  lokālajā krātuvē (localStorage) ar nosaukumu <code>cookie_consent_v1</code> - tā nav
+                  sīkdatne un netiek sūtīta serverim. Ja nākotnē tiks pievienota analītika, tā ielādēsies
+                  tikai pēc piekrišanas: Google Consent Mode v2 noklusējums lapā ir „liegts”.
+                </p>
+                <p>
+                  Piekrišanu jebkurā brīdī vari mainīt kājenes saitē „Sīkdatņu iestatījumi” - tā atver
+                  paziņojumu no jauna. Sīkdatņu dzēšana pārlūkā šo izvēli neatiestata.
                 </p>
               </Section>
 
               <Section title="7. Datu nodošana trešajām personām">
                 <p>
-                  Tavus datus nenododu trešajām personām, izņemot pakalpojumu sniedzējus, kas nepieciešami
-                  mājaslapas darbībai (hostings - Vercel; e-pasta sūtīšana - Resend, kad būs aktivizēts).
-                  Šie partneri ir atbilstoši GDPR.
+                  Tavus datus nenododu trešajām personām, izņemot divus pakalpojumu sniedzējus, kas
+                  nepieciešami mājaslapas darbībai: hostings - Vercel Inc.; kontaktformas vēstuļu piegāde -
+                  Resend. Abi šos datus apstrādā manā uzdevumā un atbilst GDPR prasībām. Pieteikums netiek
+                  glabāts nevienā datubāzē - tas aiziet uz manu e-pastu un paliek tur.
                 </p>
               </Section>
 

@@ -4,6 +4,7 @@ import { BUILD_YEAR, CONTACT_EMAIL, SOCIAL } from "@/lib/site";
 import MediaPlaceholder, { SHOW_PLACEHOLDERS } from "./direction/MediaPlaceholder";
 import Label from "./ui/Label";
 import LanguageSwitch from "./LanguageSwitch";
+import { openCookieSettings } from "./CookieBanner";
 
 /**
  * Kājene kā kolofons, ne kā vietnes karte.
@@ -103,6 +104,16 @@ export default function Footer() {
             >
               {t.footer.privacy}
             </Link>
+            {/* Piekrišanu varēja dot, bet ne atsaukt: josla neatgriezās, un
+                politikā ierakstītais ceļš (izdzēst sīkdatnes pārlūkā) izvēli
+                neatiestatīja, jo tā glabājas localStorage. */}
+            <button
+              type="button"
+              onClick={openCookieSettings}
+              className="inline-flex min-h-[44px] items-center font-label text-label text-on-paper-dim transition-colors duration-300 hover:text-amber-paper active:text-amber-paper"
+            >
+              {t.cookies.settings}
+            </button>
             <LanguageSwitch onPaper />
           </div>
         </div>
