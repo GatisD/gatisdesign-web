@@ -312,7 +312,10 @@ export default function ProjectDetail() {
           Mobilajā kolonnas saliekas vienā, un telefons paliek savā platumā, jo
           izstiepts pāri visai lapai tas vairs nav telefons. */}
       {project.shot ? (
-        <Section rhythm="md" ariaLabel={isLv ? "Ekrānuzņēmumi" : "Browser views"}>
+        <Section rhythm="md" labelledBy="ekrani-h">
+          <SectionTitle id="ekrani-h" className="mb-[clamp(22px,3vw,36px)]">
+            {isLv ? "Ekrānuzņēmumi" : "Screens"}
+          </SectionTitle>
           <div className="grid gap-grid md:grid-cols-[3fr_1fr] md:items-start">
             <Reveal className="overflow-hidden rounded-card border border-line bg-ink-card">
               <PicturePortfolio
@@ -329,7 +332,7 @@ export default function ProjectDetail() {
             </Reveal>
             <Reveal
               delay={0.1}
-              className="w-[58%] justify-self-center overflow-hidden rounded-card border border-line bg-ink-card md:w-full md:justify-self-stretch"
+              className="w-[58%] max-w-[200px] justify-self-center overflow-hidden rounded-card border border-line bg-ink-card md:w-full"
             >
               <PicturePortfolio
                 src={project.shot.mobile.src}
@@ -345,7 +348,7 @@ export default function ProjectDetail() {
             </Reveal>
           </div>
           <p className="mt-5">
-            <Label>{isLv ? "Dators 1440 px un telefons 390 px" : "Desktop 1440 px and phone 390 px"}</Label>
+            <Label>{isLv ? "Sākumlapa datorā un telefonā" : "Home page on desktop and phone"}</Label>
           </p>
         </Section>
       ) : null}

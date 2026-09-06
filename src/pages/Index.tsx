@@ -222,12 +222,7 @@ export default function Index() {
           nāk pēc darba, ne tā vietā. Logotipi ir vienkrāsaini - sk.
           src/data/clients.ts. */}
       <section className="border-y border-line bg-ink-850" aria-labelledby="klienti-h">
-        <div className="mx-auto flex max-w-wrap flex-col gap-5 px-5 py-8 sm:px-8 md:flex-row md:items-center md:gap-10 lg:px-10">
-          <h2 id="klienti-h" className="shrink-0">
-            <Label caps>Klienti, ar kuriem strādāju</Label>
-          </h2>
-          <ClientMarquee />
-        </div>
+        <ClientMarquee headingId="klienti-h" heading="Klienti, ar kuriem strādāju" />
       </section>
 
       {/* Atsauksmes ar vārdu, uzņēmumu un rezultātu. Sadaļa ir uzbūvēta, bet

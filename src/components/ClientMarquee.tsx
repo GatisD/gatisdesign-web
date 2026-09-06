@@ -1,4 +1,6 @@
+import { useState } from "react";
 import PicturePortfolio from "@/components/PicturePortfolio";
+import Label from "@/components/ui/Label";
 import { clientLogos, clientLogoPath } from "@/data/clients";
 
 /**
@@ -10,14 +12,19 @@ import { clientLogos, clientLogoPath } from "@/data/clients";
  * no gala, un šuve nav redzama. Otrais saraksts ir `aria-hidden`, jo ekrāna
  * lasītājam tie ir tie paši četrpadsmit klienti, ne divdesmit astoņi.
  *
- * Kursors joslu aptur (`animation-play-state`), un tas pats notiek, kad iekšā
- * ieiet fokuss ar tabulatoru - citādi ar tastatūru joslu nevar apskatīt.
+ * Apturēšana ir trijos veidos, un pirmais no tiem ir vienīgais, kas strādā bez
+ * peles: **poga**. Kursors un fokuss joslu aptur arī, bet uz to paļauties nedrīkst
+ * - joslā nav neviena fokusējama elementa, tāpēc `:focus-within` pats par sevi
+ * neiedegtos nekad, un skāriena ekrānā hover nav vispār. Kustība ilgst 40 s,
+ * tātad krietni virs piecām sekundēm, un WCAG 2.2.2 prasa mehānismu, ne kursoru.
  *
- * `prefers-reduced-motion: reduce` gadījumā celiņš vienkārši aplaužas rindās un
- * stāv uz vietas (sk. `.marquee` iekš index.css); dublikāts tur ir paslēpts, lai
- * neviens logotips neparādās divreiz.
+ * `prefers-reduced-motion: reduce` gadījumā celiņš kļūst par režģi un stāv uz
+ * vietas (sk. `.marquee` iekš index.css); dublikāts tur ir paslēpts, lai neviens
+ * logotips neparādās divreiz, un poga ir paslēpta, jo apturēt nav ko.
  */
-export default function ClientMarquee() {
+export default function ClientMarquee({ headingId, heading }: { headingId: string; heading: string }) {
+  const [paused, setPaused] = useState(false);
+
   const list = (duplicate: boolean) => (
     <ul
       className="marquee-list flex shrink-0 items-center gap-x-[clamp(28px,4vw,56px)] gap-y-6 pe-[clamp(28px,4vw,56px)]"
@@ -41,10 +48,29 @@ export default function ClientMarquee() {
   );
 
   return (
-    <div className="marquee min-w-0 flex-1">
-      <div className="marquee-track flex items-center">
-        {list(false)}
-        {list(true)}
+    <div className="mx-auto flex max-w-wrap flex-col gap-5 px-5 py-8 sm:px-8 md:flex-row md:items-start md:gap-10 lg:px-10">
+      {/* Virsraksts un poga vienā kolonnā. `items-start`, ne `items-center`:
+          pie trīs rindu režģa (reduced motion) etiķete nostājās pretī vidējai
+          rindai un lasījās kā tās paraksts, ne kā bloka virsraksts. */}
+      <div className="flex shrink-0 flex-col items-start gap-1.5 md:pt-1">
+        <h2 id={headingId}>
+          <Label caps>{heading}</Label>
+        </h2>
+        <button
+          type="button"
+          onClick={() => setPaused((v) => !v)}
+          aria-pressed={paused}
+          className="font-label text-label uppercase text-paper-faint underline-offset-4 transition-colors duration-300 hover:text-amber hover:underline focus-visible:text-amber motion-reduce:hidden"
+        >
+          {paused ? "Turpināt" : "Apturēt"}
+        </button>
+      </div>
+
+      <div className="marquee min-w-0 flex-1" data-paused={paused || undefined}>
+        <div className="marquee-track flex items-center">
+          {list(false)}
+          {list(true)}
+        </div>
       </div>
     </div>
   );

@@ -176,21 +176,6 @@
     }
   }
 
-  /* Bezgalīga logo josla. Loop dzīvo uz .marquee-track; hover pauze notiek ar
-     animation-play-state, nekad ar JS transform uz tā paša elementa. */
-  .marquee-track {
-    animation: marquee var(--marquee-duration, 40s) linear infinite;
-  }
-  .marquee:hover .marquee-track,
-  .marquee:focus-within .marquee-track {
-    animation-play-state: paused;
-  }
-  @keyframes marquee {
-    to {
-      transform: translateX(-50%);
-    }
-  }
-
   /* Darbu režģis pēc filtra maiņas: vilnis, ne pārlēciens. Bāzes stāvoklis
      ir gala stāvoklis, tāpēc bez JS un bez animācijām kartes vienkārši ir. */
   @media (prefers-reduced-motion: no-preference) {
@@ -268,7 +253,8 @@
     will-change: transform;
   }
   .marquee:hover .marquee-track,
-  .marquee:focus-within .marquee-track {
+  .marquee:focus-within .marquee-track,
+  .marquee[data-paused="true"] .marquee-track {
     animation-play-state: paused;
   }
   @keyframes marquee-x {
@@ -286,10 +272,28 @@
       width: 100%;
     }
     .marquee-track .marquee-list {
+      /* Režģis, ne `flex-wrap`. Ar dažāda platuma logotipiem aplauzta rinda
+         nedod nevienu vertikālu asi: pie 390 px sanāca astoņas ragainas rindas
+         gandrīz pilna ekrāna augstumā. */
+      display: grid;
+      /* `auto-fit`, ne fiksēts kolonnu skaits: joslas platums atkarīgs no
+         virsraksta kolonnas, un ar septiņām kolonnām platākie logotipi izlīda
+         pāri savai šūnai un pārklāja kaimiņu. */
+      grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
+      align-items: center;
+      justify-items: center;
+      gap: 26px 28px;
       width: 100%;
       flex-shrink: 1;
-      flex-wrap: wrap;
       padding-inline-end: 0;
+    }
+    .marquee-track .marquee-list > li {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+    }
+    .marquee-track .marquee-list img {
+      max-width: 100%;
     }
     .marquee-track .marquee-list[aria-hidden="true"] {
       display: none;

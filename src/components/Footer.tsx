@@ -111,8 +111,10 @@ export default function Footer() {
         <div className="mt-10 flex flex-col gap-4 border-t border-line-paper pt-5 sm:flex-row sm:items-center sm:justify-between">
           <Label tone="on-paper">{t.footer.location}</Label>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            {/* Tikai gads. Vārds jau stāv kolofona zīmē virs saitēm, un
+                trešais "Gatis Design" vienā kājenē ir atkārtojums, ne uzsvars. */}
             <Label tone="on-paper" caps>
-              {BUILD_YEAR} · Gatis Design
+              {BUILD_YEAR}
             </Label>
             <Link
               to={path("privacy")}

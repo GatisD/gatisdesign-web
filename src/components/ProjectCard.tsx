@@ -86,6 +86,11 @@ export default function ProjectCard({
       to={`${path("portfolio")}/${project.slug}`}
       className="group flex h-full flex-col gap-[18px]"
     >
+      {/* Divi ietvari, ne viens: ārējais tur telefonu, iekšējais griež datora
+          kadru. Ja telefons stāv kadra `overflow-hidden` iekšienē, tas nosēžas
+          uz attēla labās apakšas - tieši uz tās malas, kuras dēļ sānu griezums
+          vispār tika atcelts. Tagad tas atbalstās pret kartes stūri no ārpuses. */}
+      <span className="relative block">
       <span
         className={cn("relative block overflow-hidden rounded-card border border-line bg-ink-card", frame)}
         style={frame ? undefined : { aspectRatio: `${cover.width} / ${cover.height}` }}
@@ -109,9 +114,12 @@ export default function ProjectCard({
           )}
         />
 
-        {/* Telefona kadrs stūrī. `alt=""` - datora kadrs to pašu darbu jau ir
-            nosaucis, un divas reizes viens nosaukums ir troksnis, ne informācija.
-            Kadrs nepiedalās hover mērogā: kustība pieder lielajam attēlam. */}
+      </span>
+
+        {/* Telefona kadrs kartes stūrī. `alt=""` - datora kadrs to pašu darbu jau
+            ir nosaucis, un divas reizes viens nosaukums ir troksnis, ne
+            informācija. Kadrs nepiedalās hover mērogā: kustība pieder lielajam
+            attēlam. */}
         {phone ? (
           <PicturePortfolio
             src={phone.src}
@@ -121,7 +129,7 @@ export default function ProjectCard({
             loading="lazy"
             priority="low"
             decoding="async"
-            className="absolute bottom-[6%] end-[5%] hidden h-[64%] w-auto rounded-[7px] border border-line bg-ink-card object-cover object-top [box-shadow:var(--shadow-panel)] sm:block"
+            className="absolute -bottom-2 -end-2 hidden h-[46%] w-auto rounded-[7px] border border-line bg-ink-card object-cover object-top [box-shadow:var(--shadow-panel)] sm:block"
           />
         ) : null}
       </span>

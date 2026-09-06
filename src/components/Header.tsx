@@ -149,6 +149,14 @@ export default function Header() {
                   e.preventDefault();
                   setServicesOpen((v) => !v);
                 }}
+                // Saite ar aria-expanded uzvedas kā poga, bet atstarpes taustiņš
+                // saitei neko nedara - to jāpieliek ar roku, citādi ar tastatūru
+                // sarakstu var atvērt tikai ar Enter.
+                onKeyDown={(e) => {
+                  if (e.key !== " ") return;
+                  e.preventDefault();
+                  setServicesOpen((v) => !v);
+                }}
                 className={cn(
                   "nav-underline relative inline-flex cursor-pointer items-center gap-1.5 text-[16px] font-medium transition-colors duration-300 active:text-amber",
                   SERVICE_KEYS.some((k) => pathname === path(k))
