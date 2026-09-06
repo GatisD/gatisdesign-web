@@ -104,26 +104,6 @@ export type StatItem = {
   label: string;
 };
 
-/**
- * Klientu vārdi uzticības joslai. Nāk no darbu sadaļas punktiem: pirmie pieci
- * ir nosaukti darbi (vārds pirms pirmā punkta), pēdējais punkts ir uzskaitījums
- * aiz kola. Neviens vārds šeit netiek pierakstīts klāt ar roku - ja saturā
- * klients pazūd, tas pazūd arī no joslas.
- */
-export const trustClients: string[] = (worksSection.bullets ?? []).flatMap((bullet) => {
-  const colon = bullet.indexOf(": ");
-  if (bullet.startsWith("Citi klienti") && colon > -1) {
-    return bullet
-      .slice(colon + 2)
-      .replace(/\.$/, "")
-      .split(",")
-      .map((name) => name.trim())
-      .filter(Boolean);
-  }
-  const dot = bullet.indexOf(". ");
-  return dot > -1 ? [bullet.slice(0, dot).trim()] : [];
-});
-
 /** Skaitļu sadaļas bullets: "100+ pabeigtu projektu: ..." */
 export const statItems: StatItem[] = (statsSection.bullets ?? []).map((bullet) => {
   const match = /^(\d+)(\+?)\s+(.+)$/.exec(bullet.trim());

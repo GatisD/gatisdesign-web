@@ -61,6 +61,22 @@ export default function Footer() {
           />
 
           <div className="flex flex-col gap-6">
+            {/* Kolofona zīme. Uz papīra lauva ir tintē, ne papīrā - tas pats
+                fails, cita krāsa (public/media/lauva-tumsa.svg). alt tukšs, jo
+                vārds ir blakus tekstā. */}
+            <Link to={path("home")} className="flex w-fit items-center gap-3">
+              <img
+                src="/media/lauva-tumsa.svg"
+                alt=""
+                width="24"
+                height="40"
+                className="h-10 w-auto shrink-0"
+              />
+              <span className="text-[19px] font-bold tracking-[-0.02em] text-on-paper md:text-[20px]">
+                Gatis Design
+              </span>
+            </Link>
+
             <nav aria-label={t.nav.services}>
               <ul className="flex flex-wrap items-center gap-x-7 gap-y-0">
                 {pages.map((item) => (

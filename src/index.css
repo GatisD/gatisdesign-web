@@ -249,6 +249,47 @@
     to { stroke-dashoffset: 0; }
   }
 
+  /* Klientu logotipu josla.
+
+     Celiņš iet par tieši -50% no sava platuma - tik daudz, cik aizņem pirmais
+     no diviem identiskiem sarakstiem, tāpēc cilpa aizveras bez lēciena. Malas
+     nav nogrieztas, bet izgaist: bez maskas josla beidzas ar pusi logotipa, un
+     tas lasās kā kļūda, ne kā kustība. */
+  .marquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 40px, #000 calc(100% - 40px), transparent);
+    mask-image: linear-gradient(to right, transparent, #000 40px, #000 calc(100% - 40px), transparent);
+  }
+  .marquee-track {
+    animation: marquee-x 40s linear infinite;
+    will-change: transform;
+  }
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track {
+    animation-play-state: paused;
+  }
+  @keyframes marquee-x {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    /* Bez kustības josla ir režģis: viens saraksts, aplauzts rindās. */
+    .marquee {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+    .marquee-track {
+      animation: none;
+      width: 100%;
+    }
+    .marquee-track .marquee-list {
+      flex-wrap: wrap;
+    }
+    .marquee-track .marquee-list[aria-hidden="true"] {
+      display: none;
+    }
+  }
+
   /* Navigācijas pasvītrojums no kreisās. */
   .nav-underline::after {
     content: "";

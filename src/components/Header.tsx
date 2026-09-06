@@ -101,6 +101,16 @@ export default function Header() {
       to={path("home")}
       className="inline-flex min-h-[44px] shrink-0 items-center leading-none transition-colors duration-300 active:text-amber"
     >
+      {/* Lauva ir dekors blakus pašam vārdam, tāpēc alt ir tukšs: ar
+          alt="Gatis Design" ekrāna lasītājs saiti nolasītu "Gatis Design Gatis
+          Design Rīga". */}
+      <img
+        src="/media/lauva.svg"
+        alt=""
+        width="18"
+        height="30"
+        className="me-2.5 h-[30px] w-auto shrink-0"
+      />
       <span className="flex items-baseline gap-1.5">
         <span className="text-[19px] font-bold tracking-[-0.02em] text-paper md:text-[20px]">Gatis Design</span>
         <Label caps className="text-[11px]">

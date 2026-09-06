@@ -11,6 +11,7 @@ import MediaPlaceholder, { SHOW_PLACEHOLDERS } from "@/components/direction/Medi
 import Band from "@/components/direction/Band";
 import { Section, SectionTitle, LabelRow, ProseColumns } from "@/components/direction/Section";
 import ProjectCard from "@/components/ProjectCard";
+import ClientMarquee from "@/components/ClientMarquee";
 import LinkedText from "@/components/content/LinkedText";
 import Testimonials from "@/components/content/Testimonials";
 import { useLocale } from "@/i18n/LocaleContext";
@@ -27,7 +28,6 @@ import {
   homeContent,
   serviceCards,
   servicesSection,
-  trustClients,
   worksSection,
 } from "@/content/home";
 
@@ -218,20 +218,15 @@ export default function Index() {
         </Reveal>
       </Section>
 
-      {/* Klientu vārdi pieder darbiem, ne atsevišķai "uzticības joslai" tūlīt
-          aiz hero: tur tā ir logo siena no cita žanra lapas. */}
+      {/* Klientu josla stāv AIZ darbu izlases, ne tūlīt aiz hero: pierādījums
+          nāk pēc darba, ne tā vietā. Logotipi ir vienkrāsaini - sk.
+          src/data/clients.ts. */}
       <section className="border-y border-line bg-ink-850" aria-labelledby="klienti-h">
-        <div className="mx-auto flex max-w-wrap flex-col gap-4 px-5 py-8 sm:px-8 md:flex-row md:items-baseline md:gap-10 lg:px-10">
+        <div className="mx-auto flex max-w-wrap flex-col gap-5 px-5 py-8 sm:px-8 md:flex-row md:items-center md:gap-10 lg:px-10">
           <h2 id="klienti-h" className="shrink-0">
             <Label caps>Klienti, ar kuriem strādāju</Label>
           </h2>
-          <ul className="flex flex-wrap gap-x-7 gap-y-2">
-            {trustClients.map((name) => (
-              <li key={name} className="text-[clamp(1rem,1.3vw,1.18rem)] text-paper-2">
-                {name}
-              </li>
-            ))}
-          </ul>
+          <ClientMarquee />
         </div>
       </section>
 
