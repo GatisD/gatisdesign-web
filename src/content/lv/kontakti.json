@@ -9,7 +9,7 @@
       "heading": "Ko rakstīt, lai atbilde būtu noderīga",
       "kicker": "Pirms raksti",
       "body": [
-        "Jo konkrētāks apraksts, jo konkrētāka atbilde. Tehniskā specifikācija nav vajadzīga - pietiek ar to, ko tu pats jau zini par savu situāciju. Piecas konkrētas rindas noder vairāk nekā divas lappuses vispārīgu vārdu."
+        "Jo konkrētāks apraksts, jo konkrētāka atbilde. Tehniskā specifikācija nav vajadzīga: piecas konkrētas rindas noder vairāk nekā divas lappuses vispārīgu vārdu."
       ],
       "bullets": [
         "Kas šobrīd nestrādā: mājaslapa nenes pieprasījumus, zīmols izskatās novecojis, komanda tērē stundas manuālam darbam.",
@@ -31,23 +31,23 @@
       "heading": "Kas notiek pēc pieprasījuma",
       "kicker": "Trīs soļi",
       "body": [
-        "Nekādu daudzpakāpju pārdošanas piltuvju. Trīs soļi no vēstules līdz skaidram piedāvājumam."
+        "Nekādu daudzpakāpju pārdošanas piltuvju: trīs soļi no vēstules līdz skaidram piedāvājumam."
       ],
       "steps": [
         {
           "title": "Atbilde",
           "meta": "1 darba diena",
-          "text": "Izlasu aprakstu un atbildu ar pirmajiem jautājumiem vai uzreiz piedāvāju laiku sarunai. Ja projekts man neder, pasaku to tūlīt, nevis pēc nedēļas."
+          "text": "Izlasu aprakstu un atbildu ar pirmajiem jautājumiem vai uzreiz piedāvāju laiku sarunai. Ja projekts man neder, pasaku to tūlīt, ne pēc nedēļas."
         },
         {
           "title": "Saruna",
           "meta": "20-30 minūtes",
-          "text": "Zvans vai videozvans. Runājam par problēmu, ne par manu pieredzi. Pēc šīs sarunas parasti ir skaidrs, vai risinājums ir jauna mājaslapa, zīmols, automatizācija vai trīs izmaiņas esošajā lapā."
+          "text": "Zvans vai videozvans. Runājam par problēmu, ne par manu pieredzi. Pēc sarunas parasti ir skaidrs, vai risinājums ir jauna mājaslapa, zīmols, automatizācija vai trīs izmaiņas esošajā lapā."
         },
         {
           "title": "Piedāvājums",
           "meta": "2-3 darba dienas",
-          "text": "Rakstisks piedāvājums ar apjomu, fiksētu cenu un termiņu datumos. Bez slēptām pozīcijām. Ja piekrīti, sākam ar 50% priekšapmaksu."
+          "text": "Rakstisks piedāvājums ar apjomu, fiksētu cenu un termiņu datumos, bez slēptām pozīcijām. Ja piekrīti, sākam ar 50% priekšapmaksu."
         }
       ]
     },
@@ -56,7 +56,7 @@
       "kicker": "Forma",
       "body": [
         "Aizpildītā forma nonāk tieši manā e-pastā. Neviens cits to nelasa, un tavs apraksts nekur netiek publicēts.",
-        "Budžeta diapazonu formā jautāju apzināti. Ja tev ir 800 EUR, bet risinājums maksā 6000 EUR, to ir vērts zināt pirmajā minūtē, nevis pēc trešās sarunas. Diapazons nav galīgā cena - tas ir orientieris, no kura sākas saruna par apjomu."
+        "Budžeta diapazonu jautāju apzināti: ja tev ir 800 EUR, bet risinājums maksā 6000 EUR, to ir vērts zināt pirmajā minūtē, ne pēc trešās sarunas."
       ]
     },
     {
@@ -71,7 +71,7 @@
       "heading": "Ko es nedaru",
       "kicker": "Godīgi uzreiz",
       "body": [
-        "Tā nav augstprātība, bet laika taupīšana. Ir projekti, kuros es nebūšu labākā izvēle."
+        "Tā nav augstprātība, bet laika taupīšana: ir projekti, kuros es nebūšu labākā izvēle."
       ],
       "bullets": [
         "Neuzņemos projektus, kuros vienīgais kritērijs ir zemākā cena. Ja izvēle notiek pēc tabulas ar trim tāmēm, atradīsi lētāku.",
@@ -85,15 +85,15 @@
   "faq": [
     {
       "q": "Cik ilgi jāgaida atbilde?",
-      "a": "Vienas darba dienas laikā. Ja raksti piektdienas vakarā, atbilde būs pirmdienā. Ja divu dienu laikā nekas nav pienācis, visticamāk vēstule iekritusi surogātpasta mapē - raksti vēlreiz tieši uz connect@gatisdesign.com."
+      "a": "Ne ilgāk par vienu darba dienu. Ja raksti piektdienas vakarā, atbilde būs pirmdienā. Ja divu dienu laikā nekas nav pienācis, visticamāk, vēstule iekritusi surogātpasta mapē - raksti vēlreiz tieši uz connect@gatisdesign.com."
     },
     {
       "q": "Vai pirmā konsultācija ir par maksu?",
-      "a": "Nē. Pirmā saruna, 20-30 minūtes, ir bez maksas un bez saistībām. Tajā izrunājam problēmu un noskaidrojam, vai es esmu īstais cilvēks tās risināšanai. Maksā tikai darbs, kas sākas pēc piedāvājuma apstiprināšanas."
+      "a": "Nē. Pirmā saruna, 20-30 minūtes, ir bez maksas un bez saistībām. Maksā tikai darbs, kas sākas pēc piedāvājuma apstiprināšanas."
     },
     {
       "q": "Kā notiek apmaksa?",
-      "a": "50% pēc vienošanās, 50% pēc darba nodošanas. Rēķina apmaksas termiņš ir 5 darba dienas, rēķinus izrakstu bez PVN. Cena piedāvājumā ir fiksēta - ja apjoms mainās darba gaitā, par to vienojamies rakstiski, pirms turpinu."
+      "a": "50% pēc vienošanās, 50% pēc darba nodošanas. Rēķina apmaksas termiņš ir 5 darba dienas, rēķinus izrakstu bez PVN. Cena piedāvājumā ir fiksēta: ja apjoms mainās darba gaitā, par to vienojamies rakstiski, pirms turpinu."
     },
     {
       "q": "Vai strādā ar ārzemju klientiem?",
@@ -101,7 +101,7 @@
     },
     {
       "q": "Vai vari pārņemt jau iesāktu projektu?",
-      "a": "Jā, un tas notiek bieži. Pirms piekrītu, izvērtēju jau paveikto: koda kvalitāti, hostingu, piekļuves, licences. Reizēm lētāk ir pabeigt esošo, reizēm - pārtaisīt no nulles. Pasaku godīgi, kurš variants ir labāks tev, arī tad, ja man izdevīgāks būtu otrs."
+      "a": "Jā, un tas notiek bieži. Pirms piekrītu, izvērtēju jau paveikto: koda kvalitāti, hostingu, piekļuves, licences. Reizēm lētāk ir pabeigt esošo, reizēm pārtaisīt no nulles. Pasaku godīgi, kurš variants ir labāks tev, arī tad, ja man izdevīgāks būtu otrs."
     }
   ],
   "heroLede": "Pastāsti, kas šobrīd nestrādā un kad tam jābūt gatavam. Atbildu vienas darba dienas laikā, un pēc pirmās sarunas tu saņem fiksētu tāmi ar termiņu."

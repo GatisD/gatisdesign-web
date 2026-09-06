@@ -6,7 +6,7 @@ import type { ContentSectionData, ServiceContent } from "./types";
  * gramatikas pārbaudi - šis modulis tos tikai izgriež gabalos, nekad nepārraksta.
  *
  * home.json ir uzrakstīts kā satura specifikācija: kickeri ir redakcionāli
- * marķieri ("Hero", "Skaitļi"), bullet punktos ir iekodēts mērķa ceļš aiz "->",
+ * marķieri ("Sākums", "Skaitļi"), bullet punktos ir iekodēts mērķa ceļš aiz "->",
  * un pēdējā sadaļa ir redakcijas piezīme, kas lapā nav jārāda. Tāpēc sadaļas
  * šeit tiek meklētas pēc kickera, nevis pēc indeksa: ja saturs mainās, būve
  * krīt ar skaidru kļūdu, nevis klusi izmet sadaļu no lapas.
@@ -19,7 +19,7 @@ function sectionByKicker(kicker: string): ContentSectionData {
   return section;
 }
 
-export const heroSection = sectionByKicker("Hero");
+export const heroSection = sectionByKicker("Sākums");
 export const chainSection = sectionByKicker("Bez aģentūras");
 export const servicesSection = sectionByKicker("Pakalpojumi");
 export const worksSection = sectionByKicker("Darbi");
