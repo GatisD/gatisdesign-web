@@ -309,7 +309,9 @@ function checkDist(dist) {
       }
       // Katrs skaitlis pie "publicēti darbi" un "published works", ne tikai
       // pirmais: viena vieta failā var palikt atpakaļ, un tieši tā notiek.
-      for (const [phrase, count] of llms.matchAll(/(\d+) (?:publicēti darbi|published works)/g)) {
+      const counted = /(\d+) (?:publicēti darbi|published works)|Publicētie darbi: (\d+)/g;
+      for (const [phrase, a, b] of llms.matchAll(counted)) {
+        const count = a ?? b;
         if (Number(count) !== total) {
           errors.push(`llms.txt saka "${phrase}", bet dist satur ${total} projektu lapas`);
         }
@@ -318,7 +320,7 @@ function checkDist(dist) {
       if (listed !== indexable) {
         errors.push(`llms.txt uzskaita ${listed} projektu lapas, sitemapā to ir ${indexable}`);
       }
-      if (!llms.includes(`uzskaitīti ${indexable},`)) {
+      if (!llms.includes(`uzskaitīti tie ${indexable},`)) {
         errors.push(`llms.txt nesaka, ka uzskaitītas tieši ${indexable} projektu lapas`);
       }
     }

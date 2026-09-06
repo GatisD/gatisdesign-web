@@ -21,7 +21,7 @@ type Filter = "all" | ProjectCategory;
  * projekti", un pēc tam, kad 4. kārta pievienoja desmit vietnes, meta apraksts
  * apgalvoja vienu skaitli, bet lapa rādīja citu.
  */
-const META_DESCRIPTION = `${projects.length} publicēti darbi: mājaslapu izstrādes piemēri, logo un zīmola darbi. Estire, Box Latvia, ROIS.lv, Apmeklē.lv. Katram norādīts klients un mana loma.`;
+const META_DESCRIPTION = `${projects.length} publicēti darbi: mājaslapu izstrāde, logo un zīmola dizains. Estire, Box Latvia, ROIS.lv, Apmeklē.lv. Katram darbam norādīts klients un mana loma.`;
 
 /**
  * Divas sadaļas zem režģa. Teksts dzīvo šeit, ne satura failā, jo /portfolio
