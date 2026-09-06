@@ -20,7 +20,7 @@
     },
     {
       "kicker": "Bez aģentūras",
-      "heading": "Viena cilvēka ķēde: zīmols, lapa, aģenti, redzamība",
+      "heading": "Viena cilvēka ķēde no zīmola līdz redzamībai",
       "body": [
         "Vairums uzņēmumu savu digitālo daļu pērk pa gabaliem. Logo no viena, lapa no otra, SEO no trešā, un neviens neatbild par to, kā tas viss sader kopā. Visu ķēdi daru pats, tāpēc zīmola krāsas, lapas struktūra un tas, ko par uzņēmumu pasaka ChatGPT, nāk no vienas galvas.",
         "Praktiski tas nozīmē, ka tu raksti cilvēkam, kurš darbu arī izdara, nevis projektu vadītājam, kas jautājumu pārsūta tālāk. Ja pēc palaišanas kaut kas jālabo, es to izdaru pats, parasti tajā pašā dienā.",
@@ -29,7 +29,7 @@
     },
     {
       "kicker": "Pakalpojumi",
-      "heading": "Četri pakalpojumi, viena atbildība",
+      "heading": "Mājaslapu dizains un izstrāde, zīmola identitāte, AI aģenti un redzamība",
       "body": [
         "Katrs pakalpojums darbojas atsevišķi, bet kopā tie ietaupa laiku un naudu: viens cilvēks zina, kāpēc lapā ir tieši šī krāsa, šī struktūra un šis teksts.",
         "Cenas ir bez PVN, jo neesmu PVN maksātājs. Katrs projekts sākas ar fiksētu tāmi, nevis ar stundu uzskaiti darba gaitā."
@@ -124,26 +124,24 @@
         "E-pasts: connect@gatisdesign.com",
         "Kontaktforma: /kontakti"
       ]
-    },
-    {
-      "kicker": "REDAKCIJAI - nepublicēt lapā",
-      "heading": "Alternatīvie h1 varianti",
-      "body": [
-        "Apstiprinātais h1: Tava lapa izskatās labi, bet nenes pieprasījumus. Esmu web dizainers Rīgā, kurš to salabo.",
-        "Alternatīva 1: Lapa, kas izskatās labi, bet nepārdod, ir izmaksas. Esmu web dizainers Rīgā, kurš to maina.",
-        "Alternatīva 2: Pieprasījumi nenāk ne no lapas, ne no Google. Esmu web dizainers Rīgā, kurš salabo abus galus.",
-        "Piezīme: neviens variants nesatur frāzi „mājaslapu izstrāde”, lai nekanibalizētu lapu /majaslapu-izstrade. Primārais atslēgvārds „web dizainers Rīgā” ir h1, pirmajā atbildē un sadaļā „Īsi par mani”."
-      ]
     }
   ],
   "faq": [
     {
       "q": "Cik maksā mājaslapa?",
-      "a": "Mājaslapa sākas no 500 EUR par vienas lapas landing page ar dizainu, kodu un pamata SEO. Korporatīvā lapa ar vairākām sadaļām, saturu divās valodās un formu mērījumiem parasti izmaksā 1200-2500 EUR. Cena ir fiksēta pirms darba sākuma un bez PVN."
+      "a": "Vienas lapas mājaslapa (landing page) ar dizainu, kodu un pamata SEO maksā no 500 EUR. Pilna uzņēmuma mājaslapa ar vairākām sadaļām, saturu divās valodās un pieprasījumu mērīšanu maksā 900-1500 EUR. Cena ir fiksēta pirms darba sākuma. Neesmu PVN maksātājs, tāpēc norādītā summa ir galīga."
+    },
+    {
+      "q": "Cik maksā mājaslapas dizains?",
+      "a": "Mājaslapas dizains parasti nav atsevišķa prece: to pasūta kopā ar izstrādi, un tad viena lapa maksā no 500 EUR, bet pilna mājaslapa 900-1500 EUR. Ja dizainu vajag atsevišķi, jo izstrādi veic kāds cits, cenu nosaku pēc apjoma - uzraksti, cik lapu un kādi ekrāni vajadzīgi."
+    },
+    {
+      "q": "Kāda ir atšķirība starp web dizainu un mājaslapas izstrādi?",
+      "a": "Web dizains ir lapas izskats un tas, kā tajā pārvietoties: izkārtojums, krāsas, fonti, ekrānu secība. Izstrāde ir tas, kas notiek pēc tam - dizains kļūst par strādājošu lapu ar formām, ātrumu un administrācijas paneli. Es daru abus, tāpēc dizains nekad nav bilde, ko pēc tam kāds cits mēģina pārlikt kodā."
     },
     {
       "q": "Cik ilgi aizņem mājaslapas izveide?",
-      "a": "Vienas lapas landing page ir gatava 1-2 nedēļās. Korporatīvā mājaslapa ar 5-10 sadaļām aizņem 3-6 nedēļas. Termiņš ir vairāk atkarīgs no tā, cik ātri saņemu saturu, fotogrāfijas un atbildes uz jautājumiem, nekā no paša dizaina."
+      "a": "Vienas lapas mājaslapa (landing page) ir gatava 1-2 nedēļās. Pilnai uzņēmuma mājaslapai ar 5-10 sadaļām vajag 3-5 nedēļas. Termiņš ir vairāk atkarīgs no tā, cik ātri saņemu saturu, fotogrāfijas un atbildes uz jautājumiem, nekā no paša dizaina."
     },
     {
       "q": "Vai strādā tikai ar klientiem Rīgā?",
