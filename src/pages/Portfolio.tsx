@@ -8,7 +8,7 @@ import { Section, SectionTitle } from "@/components/direction/Section";
 import LinkedText from "@/components/content/LinkedText";
 import ProjectCard from "@/components/ProjectCard";
 import ClosingLine from "@/components/content/ClosingLine";
-import { projects, CATEGORY_LABEL, type ProjectCategory } from "@/data/projects";
+import { CATEGORY_LABEL, indexableProjects, projects, type ProjectCategory } from "@/data/projects";
 import { useLocale } from "@/i18n/LocaleContext";
 import { pathFor } from "@/i18n/routes";
 import { CONTACT_EMAIL, SITE_URL } from "@/lib/site";
@@ -79,8 +79,10 @@ export default function Portfolio() {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Gatis Daugavieša darbi",
-    numberOfItems: projects.length,
-    itemListElement: projects.map((project, i) => ({
+    // Sarakstā tikai tie darbi, kuriem ir sava indeksējama lapa. Nosaukt
+    // `noindex` adresi strukturētā sarakstā nozīmē aicināt to indeksēt.
+    numberOfItems: indexableProjects.length,
+    itemListElement: indexableProjects.map((project, i) => ({
       "@type": "ListItem",
       position: i + 1,
       name: project.title,

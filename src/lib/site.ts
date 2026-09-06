@@ -47,6 +47,12 @@ export const PERSON_OCCUPATION = {
   ],
 };
 
+/**
+ * Amats vienā vietā. Četras lapas apraksta VIENU `@id` (`#gatis`); ja tekstu
+ * raksta ar roku katrā, parsētājs saņem divus amatus vienam cilvēkam.
+ */
+export const PERSON_JOB_TITLE = PERSON_OCCUPATION.name;
+
 /** Darba vieta. `nationality` apzināti nav - faktos ir atrašanās vieta, ne pilsonība. */
 export const WORK_LOCATION = {
   "@type": "Place",

@@ -19,20 +19,14 @@ import { pathFor, type RouteKey } from "@/i18n/routes";
 import {
   CONTACT_EMAIL,
   CONTENT_MODIFIED,
+  KNOWS_ABOUT,
+  PERSON_JOB_TITLE,
   PERSON_OCCUPATION,
   PERSON_SAME_AS,
   SITE_NAME,
   SITE_URL,
   WORK_LOCATION,
 } from "@/lib/site";
-
-const SERVICE_KEYS = ["services.brand", "services.web", "services.ai", "services.seo"] as const;
-const LABEL_BY_KEY = {
-  "services.brand": "brand",
-  "services.web": "web",
-  "services.ai": "ai",
-  "services.seo": "seo",
-} as const;
 
 /**
  * Skaitļu josla ir TIKAI šeit - zem portreta, kur tā ir biogrāfijas daļa.
@@ -56,7 +50,7 @@ export default function ParMani() {
     "@id": PERSON_ID,
     name: "Gatis Daugavietis",
     alternateName: SITE_NAME,
-    jobTitle: "Web dizainers un izstrādātājs",
+    jobTitle: PERSON_JOB_TITLE,
     description: aboutContent.directAnswer,
     url: SITE_URL,
     mainEntityOfPage: abs("about"),
@@ -64,7 +58,7 @@ export default function ParMani() {
     image: `${SITE_URL}/og-image.png`,
     address: { "@type": "PostalAddress", addressLocality: "Rīga", addressCountry: "LV" },
     knowsLanguage: ["lv", "en"],
-    knowsAbout: SERVICE_KEYS.map((key) => t.services[LABEL_BY_KEY[key]]),
+    knowsAbout: KNOWS_ABOUT,
     // Abi faili apraksta VIENU `@id`. Ja tie atšķiras, parseris redz divus
     // dažādus cilvēkus ar vienu identifikatoru, tāpēc lauki nāk no vienas
     // konstantes (src/lib/site.ts), ne no divām kopijām.

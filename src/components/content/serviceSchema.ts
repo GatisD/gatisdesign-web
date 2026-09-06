@@ -1,4 +1,15 @@
-import { SITE_URL, SITE_NAME, CONTACT_EMAIL, CONTENT_MODIFIED, AREA_SERVED } from "@/lib/site";
+import {
+  AREA_SERVED,
+  CONTACT_EMAIL,
+  CONTENT_MODIFIED,
+  KNOWS_ABOUT,
+  PERSON_JOB_TITLE,
+  PERSON_OCCUPATION,
+  PERSON_SAME_AS,
+  SITE_NAME,
+  SITE_URL,
+  WORK_LOCATION,
+} from "@/lib/site";
 import { buildBreadcrumbSchema } from "@/components/JsonLd";
 import { priceRangeFor } from "@/content";
 import type { ServiceContent } from "@/content/types";
@@ -19,14 +30,16 @@ const provider = {
   "@id": `${SITE_URL}/#gatis`,
   name: "Gatis Daugavietis",
   alternateName: SITE_NAME,
-  jobTitle: "Dizainers un izstrādātājs",
+  jobTitle: PERSON_JOB_TITLE,
   url: SITE_URL,
   email: CONTACT_EMAIL,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Rīga",
-    addressCountry: "LV",
-  },
+  address: WORK_LOCATION.address,
+  // Tie paši lauki, kas pārējās trīs lapās: viens `@id` nedrīkst nest divus
+  // amatus un divas prasmju kopas.
+  hasOccupation: PERSON_OCCUPATION,
+  workLocation: WORK_LOCATION,
+  knowsAbout: KNOWS_ABOUT,
+  sameAs: PERSON_SAME_AS,
 };
 
 /**

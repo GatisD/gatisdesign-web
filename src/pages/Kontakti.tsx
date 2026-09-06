@@ -15,6 +15,7 @@ import { useLocale } from "@/i18n/LocaleContext";
 import { pathFor } from "@/i18n/routes";
 import {
   CONTACT_EMAIL,
+  PERSON_JOB_TITLE,
   PERSON_OCCUPATION,
   PERSON_SAME_AS,
   SITE_NAME,
@@ -51,7 +52,7 @@ export default function Kontakti() {
       "@id": `${SITE_URL}/#gatis`,
       name: "Gatis Daugavietis",
       alternateName: SITE_NAME,
-      jobTitle: "Web dizainers un izstrādātājs",
+      jobTitle: PERSON_JOB_TITLE,
       url: SITE_URL,
       email: CONTACT_EMAIL,
       address: { "@type": "PostalAddress", addressLocality: "Rīga", addressCountry: "LV" },
