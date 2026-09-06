@@ -1,5 +1,5 @@
 import Reveal from "@/components/animations/Reveal";
-import LinkedEmail from "./LinkedEmail";
+import LinkedText from "./LinkedText";
 import type { FaqItem } from "@/content/types";
 
 /**
@@ -33,7 +33,7 @@ export default function FaqList({ items }: { items: FaqItem[] }) {
             {item.q}
           </dt>
           <dd className="m-0 max-w-[62ch] text-[16px] leading-[1.6] text-paper-2">
-            <LinkedEmail text={item.a} />
+            <LinkedText text={item.a} />
           </dd>
         </Reveal>
       ))}

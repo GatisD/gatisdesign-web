@@ -7,6 +7,7 @@
   "directAnswer": "Daļa klientu vairs nepārlūko Google desmit zilās saites - viņi jautā ChatGPT vai paļaujas uz Google AI kopsavilkumu, un tur tavas lapas nav. GEO optimizācija panāk, ka modelis tevi nosauc un citē. Darba pamatā ir tehniskais SEO, citējami fragmenti un schema markup. Audits līdz 5 lapām maksā 300 EUR, ieviešana sākas no 700 EUR, pirmās izmaiņas redzamas 6-10 nedēļās.",
   "sections": [
     {
+      "kicker": "Divas nozīmes",
       "heading": "Kas ir GEO optimizācija un kāpēc šis termins mulsina",
       "body": [
         "Pieprasījumi kļūst retāki, kaut arī lapa nav mainījusies un Google pozīcijas ir tur, kur bijušas. Daļa klientu vairs nemeklē tā, kā agrāk: viņi uzraksta jautājumu ChatGPT vai izlasa Google AI kopsavilkumu lapas augšā un tālāk vairs neritina. Google rezultātu lapā cilvēks redz desmit saites un izvēlas pats. Ģeneratīvajā atbildē modelis izvēlas viņa vietā: uzraksta vienu atbildi un piemin trīs līdz astoņus avotus. Ja tavas lapas starp tiem nav, tu neesi otrajā vietā - tu tajā atbildē neparādies vispār, un par to pat neuzzini, jo nav neviena klikšķa, ko saskaitīt.",
@@ -82,6 +83,7 @@
       ]
     },
     {
+      "kicker": "Renderēšana",
       "heading": "Kāpēc ar JavaScript renderēts saturs AI atbildēs neeksistē",
       "body": [
         "Googlebot JavaScript izpilda, kaut arī ar aizkavi. Lielākā daļa AI botu to nedara. GPTBot, PerplexityBot un ClaudeBot paņem servera atsūtīto HTML un lasa tikai to, kas tajā jau ir. Ja saturs parādās vienīgi pēc tam, kad pārlūkā nostrādā React vai Vue, botam tava lapa ir tukša.",
@@ -165,19 +167,37 @@
       ]
     },
     {
+      "kicker": "Process",
       "heading": "Kā es strādāju: no audita līdz mērāmai redzamībai",
       "body": [
         "Es strādāju viens un visu daru pats. Nav klientu vadītāja, kas pārstāsta izstrādātāja vārdus, un nav atskaišu par darbu, kas nav padarīts. Tas pats cilvēks, kurš uztaisa dizainu, uzraksta arī kodu un schema bloku.",
         "Audits vienmēr ir pirmais. Es nepārdodu abonementu lapai, kuras problēmas vēl neredzu. Auditā redzamā aina bieži maina plānu: reizēm satura darbs vispār nav vajadzīgs, jo pietiek ar renderēšanas labojumu.",
-        "Mērīšana sākas vienlaikus ar pirmo bloku, nevis beigās, jo bez sākuma punkta izaugsmi nevar pierādīt. Sākuma punktu nofiksēju pirms pirmās izmaiņas: pozīcijas, apmeklējums, botu pieprasījumi un atbildes uz jautājumu komplektu katrā modelī.",
-        "Process pa soļiem:"
+        "Mērīšana sākas vienlaikus ar pirmo bloku, nevis beigās, jo bez sākuma punkta izaugsmi nevar pierādīt. Sākuma punktu nofiksēju pirms pirmās izmaiņas: pozīcijas, apmeklējums, botu pieprasījumi un atbildes uz jautājumu komplektu katrā modelī."
       ],
-      "bullets": [
-        "1. solis, audits, 3-5 darba dienas: tehniskā pārbaude, renderēšana bez JavaScript, Search Console dati, schema stāvoklis, iekšējā sasaiste, konkurentu momentuzņēmums.",
-        "2. solis, tehniskais bloks, 1-2 nedēļas: renderēšana, ātrums, statusa kodi, canonical un hreflang, robots.txt, sitemap.",
-        "3. solis, saturs, 2-4 nedēļas: tiešā atbilde pirmajos simts vārdos, cenas ar skaitļiem, FAQ bloks, citējami fragmenti.",
-        "4. solis, entitātes: Google Business Profile, katalogi, profili, viena un tā pati uzņēmuma apraksta versija visur.",
-        "5. solis, mērīšana un uzturēšana: fiksēts jautājumu komplekts, servera žurnāli, ikmēneša atskaite."
+      "steps": [
+        {
+          "title": "Audits",
+          "meta": "3-5 darba dienas",
+          "text": "Tehniskā pārbaude, renderēšana bez JavaScript, Search Console dati, schema stāvoklis, iekšējā sasaiste, konkurentu momentuzņēmums."
+        },
+        {
+          "title": "Tehniskais bloks",
+          "meta": "1-2 nedēļas",
+          "text": "Renderēšana, ātrums, statusa kodi, canonical un hreflang, robots.txt, sitemap."
+        },
+        {
+          "title": "Saturs",
+          "meta": "2-4 nedēļas",
+          "text": "Tiešā atbilde pirmajos simts vārdos, cenas ar skaitļiem, FAQ bloks, citējami fragmenti."
+        },
+        {
+          "title": "Entitātes",
+          "text": "Google Business Profile, katalogi, profili, viena un tā pati uzņēmuma apraksta versija visur."
+        },
+        {
+          "title": "Mērīšana un uzturēšana",
+          "text": "Fiksēts jautājumu komplekts, servera žurnāli, ikmēneša atskaite."
+        }
       ]
     },
     {
@@ -244,6 +264,7 @@
       ]
     },
     {
+      "kicker": "Godīgi",
       "heading": "Ko reāli var solīt un ko nevar",
       "body": [
         "Šī sadaļa parasti pārdod labāk nekā visas pārējās kopā, jo tā ir vienīgā, kuru neviens nekopē.",

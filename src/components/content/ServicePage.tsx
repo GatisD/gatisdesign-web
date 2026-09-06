@@ -4,16 +4,16 @@ import JsonLd from "@/components/JsonLd";
 import Button from "@/components/ui/Button";
 import MagneticButton from "@/components/animations/MagneticButton";
 import Reveal from "@/components/animations/Reveal";
+import ClosingLine from "./ClosingLine";
 import PageHero from "@/components/direction/PageHero";
 import Band from "@/components/direction/Band";
-import { Section, SectionTitle, LabelRow } from "@/components/direction/Section";
+import { Section, SectionTitle } from "@/components/direction/Section";
 import ContentSections, { priceSection, tocFor } from "./ContentSections";
 import FaqList from "./FaqList";
 import { buildServiceSchema } from "./serviceSchema";
 import { serviceContent, type ServiceRouteKey } from "@/content";
 import { headingId } from "@/content/slug";
 import { useLocale } from "@/i18n/LocaleContext";
-import { CONTACT_EMAIL } from "@/lib/site";
 
 const SERVICE_KEYS: ServiceRouteKey[] = [
   "services.brand",
@@ -134,9 +134,11 @@ export default function ServicePage({ routeKey }: { routeKey: ServiceRouteKey })
         </div>
       </PageHero>
 
+      {/* Etiķešu budžets ir uz LAPU, ne uz izsaukumu: 2 + 2 = 4, un vairāk par
+          četrām sānu etiķetēm 14 sekciju dokumentā vairs nav ritms, bet raksts. */}
       <ContentSections sections={first} labelBudget={2} />
       <Band poster={media.band.poster} text={media.band.text} />
-      <ContentSections sections={rest} labelBudget={1} />
+      <ContentSections sections={rest} labelBudget={2} />
 
       {/* ============ JAUTĀJUMI ============ */}
       <Section rhythm="lg" surface="ink-850" labelledBy="jautajumi">
@@ -176,27 +178,11 @@ export default function ServicePage({ routeKey }: { routeKey: ServiceRouteKey })
       </Section>
 
       {/* ============ SĀKSIM ============ */}
-      <Section rhythm="lg" surface="ink-950" labelledBy="saksim">
-        <SectionTitle id="saksim" className="mb-[clamp(22px,3vw,34px)] scroll-mt-24">
-          {isLv ? "Pastāsti, kas tev jāatrisina" : "Tell me what needs solving"}
-        </SectionTitle>
-        <LabelRow label={isLv ? "Atbilde 1 darba dienā" : "Reply in 1 working day"}>
-          {content.cta ? (
-            <p className="max-w-[58ch] text-[17px] leading-[1.6] text-paper-2">{content.cta}</p>
-          ) : null}
-          <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
-            <MagneticButton>
-              <Button to={path("contact")}>{t.nav.cta}</Button>
-            </MagneticButton>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="inline-block border-b border-line-amber py-1.5 text-[clamp(1rem,1.4vw,1.2rem)] text-paper transition-colors duration-300 hover:text-amber"
-            >
-              {CONTACT_EMAIL}
-            </a>
-          </div>
-        </LabelRow>
-      </Section>
+      {/* Viena rinda, ne bloks: pilnais noslēgums ar to pašu virsrakstu, etiķeti
+          un pill bija astoņās lapās. Pilnā forma paliek sākumlapā; te ir lapas
+          paša noslēguma teikums ar e-pasta saiti. Darbība pirmajā ekrānā jau ir
+          (PageHero children). */}
+      {content.cta ? <ClosingLine text={content.cta} /> : null}
     </>
   );
 }

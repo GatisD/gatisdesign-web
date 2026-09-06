@@ -123,14 +123,7 @@
     {
       "heading": "Kur es iesaku naudu netērēt",
       "body": [
-        "Šo sarakstu rakstu tāpēc, ka puse sarunu par AI aģentiem beidzas ar to, ka automatizācija konkrētajā gadījumā neatmaksājas. Labāk to pateikt pirmajā sarunā nekā pēc trešā rēķina."
-      ],
-      "bullets": [
-        "Process notiek piecas reizes gadā. Cilvēks to izdarīs ātrāk, nekā es to uzbūvēšu",
-        "Dati ir papīrā vai skenētos PDF bez struktūras. Vispirms jāsakārto dati, tad jārunā par aģentiem",
-        "Process mainās katru mēnesi, jo vēl nav izlemts, kā tam jāstrādā. Automatizēts haoss ir tikai ātrāks haoss",
-        "Uzņēmums grib čatbotu, jo konkurentam ir čatbots. Tas nav mērķis, tas ir vizuāls elements",
-        "Uzdevumam vajadzīgs cilvēka spriedums par cenu, līgumu vai izņēmumu. Tur aģents var sagatavot materiālu, bet lēmumu pieņem cilvēks"
+        "Puse sarunu par AI aģentiem beidzas ar to, ka automatizācija konkrētajā gadījumā neatmaksājas: process notiek piecas reizes gadā, dati ir skenētos PDF bez struktūras, process vēl mainās katru mēnesi vai lēmumu tik un tā pieņem cilvēks. Labāk to pateikt pirmajā sarunā nekā pēc trešā rēķina - kur es kopumā neesmu īstā izvēle, ir /par-mani."
       ]
     },
     {
@@ -183,12 +176,29 @@
         "Piecos soļos, ar pauzi pēc otrā. Pēc audita var apstāties un neko nebūvēt - tas ir normāls iznākums, un audita dokumentu var īstenot arī bez manis.",
         "Auditu ieskaitu izstrādes cenā, ja darbu turpinām."
       ],
-      "bullets": [
-        "Saruna, 45 minūtes. Tu pastāsti, kur laiks pazūd. Es pasaku, vai tur ir ko automatizēt",
-        "Procesu audits, no 400 EUR. Uzrakstu procesu soli pa solim ar laikiem, atzīmēju automatizējamos posmus un aprēķinu izmaksas",
-        "Prototips vienam procesam. Strādā ar reāliem datiem, bet paralēli manuālajam ceļam",
-        "Pārslēgšana. Divas nedēļas abi ceļi strādā vienlaikus, salīdzinām rezultātus, tad manuālo izslēdzam",
-        "Uzraudzība. Paziņojumi par kļūdām, ikmēneša pārskats, labojumi, kad kāda platforma maina API"
+      "steps": [
+        {
+          "title": "Saruna",
+          "meta": "45 minūtes",
+          "text": "Tu pastāsti, kur laiks pazūd. Es pasaku, vai tur ir ko automatizēt."
+        },
+        {
+          "title": "Procesu audits",
+          "meta": "no 400 EUR",
+          "text": "Uzrakstu procesu soli pa solim ar laikiem, atzīmēju automatizējamos posmus un aprēķinu izmaksas."
+        },
+        {
+          "title": "Prototips vienam procesam",
+          "text": "Strādā ar reāliem datiem, bet paralēli manuālajam ceļam."
+        },
+        {
+          "title": "Pārslēgšana",
+          "text": "Divas nedēļas abi ceļi strādā vienlaikus, salīdzinām rezultātus, tad manuālo izslēdzam."
+        },
+        {
+          "title": "Uzraudzība",
+          "text": "Paziņojumi par kļūdām, ikmēneša pārskats, labojumi, kad kāda platforma maina API."
+        }
       ]
     },
     {

@@ -6,7 +6,6 @@ import Button from "@/components/ui/Button";
 import Label from "@/components/ui/Label";
 import Reveal, { stagger } from "@/components/animations/Reveal";
 import LineReveal from "@/components/animations/LineReveal";
-import MagneticButton from "@/components/animations/MagneticButton";
 import { Section, SectionTitle, LabelRow } from "@/components/direction/Section";
 import PicturePortfolio from "@/components/PicturePortfolio";
 import NotFound from "./NotFound";
@@ -17,6 +16,7 @@ import { CONTACT_EMAIL, SITE_URL } from "@/lib/site";
 /** Projekta ceļš vienā valodā. Slug abās valodās ir viens, prefikss - no ROUTES. */
 const projectPath = (slug: string, locale: Locale) => `${pathFor("portfolio", locale)}/${slug}`;
 import ProjectCard from "@/components/ProjectCard";
+import ClosingLine from "@/components/content/ClosingLine";
 import {
   projectBySlug,
   projectNeighbours,
@@ -422,24 +422,14 @@ export default function ProjectDetail() {
       ) : null}
 
       {/* ============ SĀKSIM ============ */}
-      <Section rhythm="lg" surface="ink-950" labelledBy="projekts-cta-h">
-        <SectionTitle id="projekts-cta-h" className="mb-[clamp(22px,3vw,34px)]">
-          {isLv ? "Vajag līdzīgu risinājumu?" : "Need something similar?"}
-        </SectionTitle>
-        <LabelRow label={isLv ? "Atbilde 1 darba dienā" : "Reply in 1 working day"}>
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
-            <MagneticButton>
-              <Button to={path("contact")}>{t.nav.cta}</Button>
-            </MagneticButton>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="inline-block border-b border-line-amber py-1.5 text-[clamp(1rem,1.4vw,1.2rem)] text-paper transition-colors duration-300 hover:text-amber"
-            >
-              {CONTACT_EMAIL}
-            </a>
-          </div>
-        </LabelRow>
-      </Section>
+      <ClosingLine
+        text={
+          isLv
+            ? `Vajag līdzīgu risinājumu? Uzraksti uz ${CONTACT_EMAIL} un pastāsti, kas tev jāatrisina.`
+            : `Need something similar? Write to ${CONTACT_EMAIL} and tell me what you need to solve.`
+        }
+        note={isLv ? "Atbilde 1 darba dienā" : "Reply in 1 working day"}
+      />
 
       {/* ============ LIGHTBOX ============ */}
       {lightbox !== null && gallery[lightbox] ? (

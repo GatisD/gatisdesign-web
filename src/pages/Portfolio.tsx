@@ -3,11 +3,10 @@ import SEO from "@/components/SEO";
 import JsonLd, { buildBreadcrumbSchema } from "@/components/JsonLd";
 import Reveal from "@/components/animations/Reveal";
 import LineReveal from "@/components/animations/LineReveal";
-import MagneticButton from "@/components/animations/MagneticButton";
-import Button from "@/components/ui/Button";
 import Label from "@/components/ui/Label";
-import { Section, SectionTitle, LabelRow } from "@/components/direction/Section";
+import { Section } from "@/components/direction/Section";
 import ProjectCard from "@/components/ProjectCard";
+import ClosingLine from "@/components/content/ClosingLine";
 import { projects, CATEGORY_LABEL, type ProjectCategory } from "@/data/projects";
 import { useLocale } from "@/i18n/LocaleContext";
 import { pathFor } from "@/i18n/routes";
@@ -37,7 +36,7 @@ const FRAME = [
 const FRAME_RATIO = [7 / 4.4, 5 / 3.2, 4 / 3, 4 / 3, 4 / 3];
 
 export default function Portfolio() {
-  const { locale, t, path } = useLocale();
+  const { locale, t } = useLocale();
   const [filter, setFilter] = useState<Filter>("all");
   const isLv = locale === "lv";
 
@@ -185,29 +184,14 @@ export default function Portfolio() {
       </Section>
 
       {/* ============ SĀKSIM ============ */}
-      <Section rhythm="lg" surface="ink-950" labelledBy="portfolio-cta-h">
-        <SectionTitle id="portfolio-cta-h" className="mb-[clamp(22px,3vw,34px)]">
-          {isLv ? "Vai nākamais darbs būs tavs?" : "Will the next one be yours?"}
-        </SectionTitle>
-        <LabelRow label={isLv ? "Atbilde 1 darba dienā" : "Reply in 1 working day"}>
-          <p className="max-w-[58ch] text-[17px] leading-[1.6] text-paper-2">
-            {isLv
-              ? "Uzraksti, ko tev vajag - godīgi novērtēšu, cik tas prasīs laika un naudas, un pēc pirmās sarunas tu saņemsi fiksētu tāmi ar termiņu."
-              : "Tell me what you need. I will give you an honest estimate of time and cost, and a fixed quote after the first call."}
-          </p>
-          <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
-            <MagneticButton>
-              <Button to={path("contact")}>{t.nav.cta}</Button>
-            </MagneticButton>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="inline-block border-b border-line-amber py-1.5 text-[clamp(1rem,1.4vw,1.2rem)] text-paper transition-colors duration-300 hover:text-amber"
-            >
-              {CONTACT_EMAIL}
-            </a>
-          </div>
-        </LabelRow>
-      </Section>
+      <ClosingLine
+        text={
+          isLv
+            ? `Uzraksti uz ${CONTACT_EMAIL}, ko tev vajag - godīgi novērtēšu, cik tas prasīs laika un naudas, un pēc pirmās sarunas saņemsi fiksētu tāmi ar termiņu.`
+            : `Write to ${CONTACT_EMAIL} and tell me what you need. I will give you an honest estimate of time and cost, and a fixed quote after the first call.`
+        }
+        note={isLv ? "Atbilde 1 darba dienā" : "Reply in 1 working day"}
+      />
     </>
   );
 }

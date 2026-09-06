@@ -3,20 +3,20 @@
   "title": "Mājaslapu izstrāde",
   "metaTitle": "Mājaslapu izstrāde: cena no 500 EUR",
   "metaDescription": "Mājaslapu izstrāde ar fiksētu cenu: landing page no 500 EUR, pilna lapa 900-1500 EUR, interneta veikals no 2500 EUR. Neesmu PVN maksātājs - cena ir galīga.",
-  "h1": "Mājaslapu izstrāde, kas nes pieteikumus",
-  "directAnswer": "Visbiežākais iemesls, kāpēc mani uzrunā, ir lapa, kas izskatās pieklājīgi, bet nenes pieteikumus. Mājaslapu izstrādi sāku ar struktūru un vienu skaidru darbību katrā lapā. Landing page maksā no 500 EUR, pilna uzņēmuma mājaslapa 900-1500 EUR, e-komercija divās valodās no 2500 EUR. Termiņš - no 5 darba dienām līdz 10 nedēļām. Neesmu PVN maksātājs, tāpēc norādītā cena ir gala cena.",
+  "h1": "Mājaslapu izstrāde, kas nes pieprasījumus",
+  "directAnswer": "Visbiežākais iemesls, kāpēc mani uzrunā, ir lapa, kas izskatās pieklājīgi, bet nenes pieprasījumus. Mājaslapu izstrādi sāku ar struktūru un vienu skaidru darbību katrā lapā. Landing page maksā no 500 EUR, pilna uzņēmuma mājaslapa 900-1500 EUR, e-komercija divās valodās no 2500 EUR. Termiņš - no 5 darba dienām līdz 10 nedēļām. Neesmu PVN maksātājs, tāpēc norādītā summa ir galīga.",
   "sections": [
     {
       "kicker": "Cenas",
       "heading": "Cik maksā mājaslapas izveide",
       "body": [
-        "Ja tu šo lasi, situācija visdrīzāk ir viena no divām: lapa ir, bet no tās nenāk pieteikumi, vai arī lapas nav vispār un nav skaidrs, cik tas maksās un cik ilgi vilksies. Cenas jautājumu nokārtoju uzreiz: cena ir zemāk, tabulā, ar konkrētiem skaitļiem. Rādu to publiski, jo pusē sarunu pirmais jautājums tāpat ir par budžetu, un mums abiem ir vienkāršāk, ja jau pirms zvana ir skaidrs, vai esam vienā cenu diapazonā.",
+        "Ja tu šo lasi, situācija visdrīzāk ir viena no divām: lapa ir, bet no tās nenāk pieprasījumi, vai arī lapas nav vispār un nav skaidrs, cik tas maksās un cik ilgi vilksies. Cenas jautājumu nokārtoju uzreiz: cena ir zemāk, tabulā, ar konkrētiem skaitļiem. Rādu to publiski, jo pusē sarunu pirmais jautājums tāpat ir par budžetu, un mums abiem ir vienkāršāk, ja jau pirms zvana ir skaidrs, vai esam vienā cenu diapazonā.",
         "Viena lieta jāpasaka uzreiz: es neesmu PVN maksātājs. Kad konkurents raksta „no 999 EUR”, pie tā parasti vēl jāpieskaita PVN un reālais rēķins ir 1208,79 EUR. Mani 900 EUR ir 900 EUR arī rēķinā. Ja sarunā nosauktā summa ir vienāda, starpība ir 21%.",
         "Cenu nosaka trīs lietas: lapu skaits, valodu skaits un tas, cik daudz satura man jāsagatavo pašam. Ja teksti un fotogrāfijas ir gatavi, projekts virzās ātrāk un maksā mazāk. Ja teksti jāraksta no nulles un jāorganizē fotosesija, tas ir atsevišķs darbs ar atsevišķu cenu.",
         "Cenu uz augšu ceļ katra papildu valoda (apmēram +30% no bāzes), interneta veikala funkcionalitāte, integrācijas ar CRM vai grāmatvedības sistēmu, kalkulatori un konfiguratori. Cenu zemāk tur gatavs saturs, skaidra struktūra un viens lēmumu pieņēmējs klienta pusē. Lielākus projektus dalu divās daļās: 50% sākumā, 50% pirms palaišanas."
       ],
       "table": {
-        "caption": "Cenas ir gala cenas. Es neesmu PVN maksātājs, tāpēc pie šiem skaitļiem nekas netiek pieskaitīts.",
+        "caption": "Cenas ir galīgas: neesmu PVN maksātājs, tāpēc pie šiem skaitļiem nekas netiek pieskaitīts.",
         "columns": [
           "Risinājums",
           "Cena",
@@ -71,7 +71,7 @@
         "Būve kodā vai WordPress uzstādīšana ar sakārtotu administratora daļu",
         "Tehniskais SEO: title un meta apraksti, virsrakstu hierarhija, sitemap.xml, robots.txt, schema.org strukturētie dati",
         "Google Analytics 4 un Google Search Console pieslēgšana, mērķdarbību uzstādīšana",
-        "Kontaktformas ar pārbaudītu e-pasta piegādi, lai pieteikumi nenonāktu mēstulēs",
+        "Kontaktformas ar pārbaudītu e-pasta piegādi, lai pieprasījumi nenonāktu mēstulēs",
         "SSL sertifikāts, 301 pāradresācijas no vecās lapas, sakārtota 404 lapa",
         "Ātruma optimizācija: attēli WebP formātā, fonti lokāli, bez lieku skriptu slāņa",
         "Īsa video pamācība, kā pašam labot saturu tieši tavā lapā"
@@ -79,7 +79,7 @@
     },
     {
       "kicker": "Struktūra",
-      "heading": "Struktūra, kas pārvērš apmeklētājus pieteikumos",
+      "heading": "Struktūra, kas pārvērš apmeklētājus pieprasījumos",
       "body": [
         "Lielākā daļa uzņēmumu lapu ir uzbūvētas no uzņēmuma skatpunkta: par mums, mūsu vēsture, mūsu vērtības un tikai kaut kur pēc tam pakalpojumi. Apmeklētājs ienāk ar citu jautājumu - vai šis uzņēmums var atrisināt manu problēmu, cik tas maksās un cik ilgi tas prasīs.",
         "Tāpēc katru lapu būvēju ap vienu darbību. Ja lapā ir piecas vienlīdz svarīgas pogas, nav nevienas.",
@@ -90,7 +90,7 @@
         "Pirmais ekrāns bez metaforām pasaka, ko tu dari un kam. Apmeklētājs izlemj piecās sekundēs, vai lasīt tālāk.",
         "Cena vai vismaz cenu diapazons ir redzams. Lapas bez cenām saņem vairāk zvanu, bet sliktāku: cilvēki zvana, lai noskaidrotu, vai vispār to var atļauties.",
         "Pierādījumi: reāli darbi, klientu nosaukumi, atsauksmes ar vārdu. Attēlu bankas fotogrāfija ar smaidošu komandu nepierāda neko.",
-        "Viena skaidra darbība katrā lapā: zvans, forma vai tikšanās pieteikums. Forma ar trim laukiem tiek aizpildīta biežāk nekā forma ar desmit.",
+        "Viena skaidra darbība katrā lapā: zvans, forma vai tikšanās pieprasījums. Forma ar trim laukiem tiek aizpildīta biežāk nekā forma ar desmit.",
         "FAQ ar reāliem jautājumiem, kurus klienti uzdod pa telefonu. Tieši šo satura daļu AI meklētāji citē visbiežāk."
       ]
     },
@@ -146,13 +146,37 @@
         "Strādāju viens. Starp mums nav projektu vadītāja, kas pārstāsta tavus vārdus dizainerim un dizainera vārdus programmētājam. Tas nozīmē īsākus termiņus un to, ka par katru soli atbild viens cilvēks.",
         "Kopā tas ir no 3 nedēļām maziem projektiem līdz 10 nedēļām e-komercijai. Termiņi turas, ja atbildes nāk 1-2 dienu laikā. Visbiežākais iemesls, kāpēc projekts velkas, nav izstrāde, bet saturs no klienta puses. Tieši tāpēc otrajā solī es tekstus un fotogrāfijas pieprasu rakstiski, pirms sāku zīmēt."
       ],
-      "bullets": [
-        "1. Saruna un piedāvājums, 1-2 dienas. Uzdodu jautājumus par biznesu, konkurentiem un to, kas lapai jāpanāk. Atsūtu fiksētu cenu un termiņu rakstiski, nevis vārdu „no”.",
-        "2. Struktūra un saturs, 3-7 dienas. Salieku lapu karti un katras lapas struktūru. Šeit kļūst redzams, kur satura trūkst. Ja tekstus raksti tu, tie jāiedod šajā solī.",
-        "3. Dizains, 5-10 dienas. Rādu sākumlapu un vienu iekšējo lapu. Divas labojumu kārtas ir cenā. Kad dizains ir apstiprināts, izkārtojumu no pamatiem vairs nemainām.",
-        "4. Būve, 7-15 dienas. Lapa top testa adresē, kuru vari atvērt jebkurā brīdī, nevis tikai gala prezentācijā. Paralēli uzstādu analītiku un tehnisko SEO.",
-        "5. Testēšana, 2-3 dienas. Formas, mobilā versija reālā ierīcē, ātrums PageSpeed testā, saites, pārlūki, 404 kļūdas.",
-        "6. Palaišana, 1 diena. Pārceļu lapu uz tavu domēnu, uzstādu SSL sertifikātu, izveidoju 301 pāradresācijas no vecajām saitēm un iesniedzu sitemap.xml Google Search Console kontā."
+      "steps": [
+        {
+          "title": "Saruna un piedāvājums",
+          "meta": "1-2 dienas",
+          "text": "Uzdodu jautājumus par biznesu, konkurentiem un to, kas lapai jāpanāk. Atsūtu fiksētu cenu un termiņu rakstiski, nevis vārdu „no”."
+        },
+        {
+          "title": "Struktūra un saturs",
+          "meta": "3-7 dienas",
+          "text": "Salieku lapu karti un katras lapas struktūru. Šeit kļūst redzams, kur satura trūkst. Ja tekstus raksti tu, tie jāiedod šajā solī."
+        },
+        {
+          "title": "Dizains",
+          "meta": "5-10 dienas",
+          "text": "Rādu sākumlapu un vienu iekšējo lapu. Divas labojumu kārtas ir cenā. Kad dizains ir apstiprināts, izkārtojumu no pamatiem vairs nemainām."
+        },
+        {
+          "title": "Būve",
+          "meta": "7-15 dienas",
+          "text": "Lapa top testa adresē, kuru vari atvērt jebkurā brīdī, nevis tikai gala prezentācijā. Paralēli uzstādu analītiku un tehnisko SEO."
+        },
+        {
+          "title": "Testēšana",
+          "meta": "2-3 dienas",
+          "text": "Formas, mobilā versija reālā ierīcē, ātrums PageSpeed testā, saites, pārlūki, 404 kļūdas."
+        },
+        {
+          "title": "Palaišana",
+          "meta": "1 diena",
+          "text": "Pārceļu lapu uz tavu domēnu, uzstādu SSL sertifikātu, izveidoju 301 pāradresācijas no vecajām saitēm un iesniedzu sitemap.xml Google Search Console kontā."
+        }
       ]
     },
     {
@@ -173,7 +197,7 @@
       ],
       "bullets": [
         "Estire: lapa uzbūvēta kodā un darbojas Vercel platformā. Izvēlējos kodu, nevis WordPress, jo saturs mainās reti, bet ātrums un dizaina precizitāte bija svarīgi. Hostings praktiski neko nemaksā un ikmēneša uzturēšana nav vajadzīga.",
-        "Universal Solutions: lapa ar pilnu GDPR risinājumu - piekrišana sīkdatnēm, Consent Mode v2 un formu vēstules, ko piegādā atsevišķa infrastruktūra, lai pieteikumi nepazustu mēstulēs.",
+        "Universal Solutions: lapa ar pilnu GDPR risinājumu - piekrišana sīkdatnēm, Consent Mode v2 un formu vēstules, ko piegādā atsevišķa infrastruktūra, lai pieprasījumi nepazustu mēstulēs.",
         "Valis Stomatoloģija: klīnikas lapa, kurā galvenā darbība ir pieraksts pie ārsta. Struktūru veidoju ap šo vienu darbību, nevis ap uzņēmuma vēsturi.",
         "Lauvas Zobs: neliels zīmols, kuram viss vajadzīgais ietilpa dažās lapās. Šeit strādā landing page loģika - viens vēstījums, viena darbība, bez liekām sadaļām."
       ]
@@ -205,14 +229,7 @@
       "kicker": "Godīgi",
       "heading": "Kad es neesmu īstā izvēle",
       "body": [
-        "Ne katrs projekts ir mans un to labāk pateikt uzreiz, nevis pēc mēneša.",
-        "Pēdējais punkts sarakstā zemāk ir tas, ar ko sākas vairums vilšanos. Tāpēc pirms projekta pajautāju, no kurienes plānots dabūt apmeklētājus. Ja skaidras atbildes nav, par to ir vērts runāt pirms lapas, nevis pēc tam."
-      ],
-      "bullets": [
-        "Budžets zem 500 EUR. Par to naudu var nopirkt gatavu tēmu un salikt pašam. Tas ir godīgs risinājums, tikai ne mans darbs.",
-        "Lapa vajadzīga parīt. Reālais minimums ir apmēram nedēļa vienai lapai, un tikai tad, ja saturs jau ir gatavs.",
-        "Vajadzīga aģentūra ar komandu, klientu vadītāju un divām prezentācijām nedēļā. Es strādāju viens: lēmumi ir ātrāki, bet projektu skaits vienlaikus ir ierobežots.",
-        "Gaidas, ka jaunā lapa pati atnesīs klientus. Lapa pārvērš apmeklētājus pieteikumos. Bet apmeklētāji uz to vēl ir jāatved - ar reklāmu, saturu vai meklētāju."
+        "Ne katrs projekts ir mans, un to labāk pateikt uzreiz. Ja budžets ir zem 500 EUR, ja lapa vajadzīga parīt, ja meklē aģentūru ar komandu vai ja gaidi, ka lapa pati atvedīs apmeklētājus, es nebūšu labākā izvēle - pilns saraksts ir /par-mani."
       ]
     },
     {
@@ -227,7 +244,7 @@
   "faq": [
     {
       "q": "Cik maksā mājaslapas izveide?",
-      "a": "Vienas lapas mājaslapa (landing page) maksā no 500 EUR, pilna uzņēmuma mājaslapa 900-1500 EUR, interneta veikals divās valodās no 2500 EUR. Pilns cenrādis ar to, kas katrā cenā ietilpst, ir tabulā „Cenas un termiņi” šajā lapā."
+      "a": "Vienas lapas mājaslapa (landing page) maksā no 500 EUR. Pilns cenrādis ar termiņiem un to, kas katrā cenā ietilpst, ir tabulā „Cenas un termiņi” šīs lapas augšdaļā."
     },
     {
       "q": "Cik ilgā laikā tiek izstrādāta mājaslapa?",
@@ -239,7 +256,7 @@
     },
     {
       "q": "Vai cenai jāpieskaita PVN?",
-      "a": "Nē. Neesmu PVN maksātājs, tāpēc rēķinā ir tieši tā summa, kas saskaņota piedāvājumā. Apmaksas termiņš ir 5 darbadienas, lielākus projektus dalu divās daļās."
+      "a": "Nē. Neesmu PVN maksātājs, tāpēc cenu tabulā redzamie skaitļi ir tie paši, kas nonāk rēķinā. Apmaksas termiņš ir 5 darbadienas, lielākus projektus dalu divās daļās."
     },
     {
       "q": "Vai varēšu pats labot saturu?",
@@ -256,12 +273,12 @@
   ],
   "internalLinks": [
     "/zimola-identitate - enkurs „zīmola identitāte un logotips”; sadaļā „Kas ir iekļauts cenā”, pie individuālā dizaina",
-    "/seo-geo-aeo - enkurs „atsevišķs SEO darbs ar saturu un saitēm”; FAQ atbildē par redzamību Google un sadaļā „Struktūra, kas pārvērš apmeklētājus pieteikumos” pie AI meklētājiem",
-    "/ai-agenti - enkurs „AI aģents mājaslapā”; sadaļā „Kas notiek pēc palaišanas”, pie pieteikumu apstrādes",
+    "/seo-geo-aeo - enkurs „atsevišķs SEO darbs ar saturu un saitēm”; FAQ atbildē par redzamību Google un sadaļā „Struktūra, kas pārvērš apmeklētājus pieprasījumos” pie AI meklētājiem",
+    "/ai-agenti - enkurs „AI aģents mājaslapā”; sadaļā „Kas notiek pēc palaišanas”, pie pieprasījumu apstrādes",
     "/portfolio - enkurs „pilns darbu portfolio”; sadaļas „Reāli piemēri” beigās",
     "/par-mani - enkurs „18 gadu pieredze”; sadaļās „Reāli piemēri” un „Kad es neesmu īstā izvēle”",
     "/kontakti - enkurs „uzraksti man”; sadaļā „Kā sākt” un pēc cenu tabulas"
   ],
   "cta": "Uzraksti uz connect@gatisdesign.com - atsūtīšu konkrētu cenu un termiņu vienas darba dienas laikā.",
-  "heroLede": "Lapa, kas nenes pieteikumus, ir tikai izdevumi. Sāku ar struktūru un vienu skaidru darbību katrā lapā. Cenas un termiņi ir tabulā zemāk."
+  "heroLede": "Lapa, kas nenes pieprasījumus, ir tikai izdevumi. Sāku ar struktūru un vienu skaidru darbību katrā lapā. Cenas un termiņi ir tabulā zemāk."
 }

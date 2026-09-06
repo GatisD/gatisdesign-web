@@ -1,16 +1,14 @@
 import SEO from "@/components/SEO";
 import JsonLd, { buildBreadcrumbSchema } from "@/components/JsonLd";
-import Button from "@/components/ui/Button";
 import Label from "@/components/ui/Label";
 import Reveal, { stagger } from "@/components/animations/Reveal";
 import LineReveal from "@/components/animations/LineReveal";
-import MagneticButton from "@/components/animations/MagneticButton";
 import CountUp from "@/components/animations/CountUp";
 import MediaPlaceholder from "@/components/direction/MediaPlaceholder";
-import { Section, SectionTitle, LabelRow } from "@/components/direction/Section";
+import { Section, SectionTitle } from "@/components/direction/Section";
 import ContentSections from "@/components/content/ContentSections";
+import ClosingLine from "@/components/content/ClosingLine";
 import FaqList from "@/components/content/FaqList";
-import LinkedEmail from "@/components/content/LinkedEmail";
 import { aboutContent } from "@/content/pages";
 import { statItems } from "@/content/home";
 import { useLocale } from "@/i18n/LocaleContext";
@@ -34,7 +32,7 @@ const LABEL_BY_KEY = {
 const FACTS = statItems.filter((stat) => !(stat.value === 1 && stat.suffix === ""));
 
 export default function ParMani() {
-  const { locale, t, path } = useLocale();
+  const { locale, t } = useLocale();
   const isLv = locale === "lv";
   const noindex = !isLv;
 
@@ -146,26 +144,7 @@ export default function ParMani() {
       </Section>
 
       {/* ============ SĀKSIM ============ */}
-      <Section rhythm="lg" surface="ink-950" labelledBy="saksim">
-        <SectionTitle id="saksim" className="mb-[clamp(22px,3vw,34px)]">
-          {isLv ? "Pastāsti, kas tev jāatrisina" : "Tell me what needs solving"}
-        </SectionTitle>
-        <LabelRow label={isLv ? "Atbilde 1 darba dienā" : "Reply in 1 working day"}>
-          {aboutContent.cta ? (
-            <p className="max-w-[58ch] text-[17px] leading-[1.6] text-paper-2">
-              <LinkedEmail text={aboutContent.cta} />
-            </p>
-          ) : null}
-          <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
-            <MagneticButton>
-              <Button to={path("contact")}>{t.nav.cta}</Button>
-            </MagneticButton>
-            <Button to={path("portfolio")} variant="link">
-              {t.nav.portfolio}
-            </Button>
-          </div>
-        </LabelRow>
-      </Section>
+      {aboutContent.cta ? <ClosingLine text={aboutContent.cta} /> : null}
     </>
   );
 }

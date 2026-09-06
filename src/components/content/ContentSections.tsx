@@ -1,6 +1,6 @@
 import Reveal, { stagger } from "@/components/animations/Reveal";
 import { Section, LabelRow, ProseColumns } from "@/components/direction/Section";
-import LinkedEmail from "./LinkedEmail";
+import LinkedText from "./LinkedText";
 import PriceTable from "./PriceTable";
 import StepFlow from "./StepFlow";
 import { headingId } from "@/content/slug";
@@ -122,7 +122,7 @@ export default function ContentSections({
                 key={paragraph.slice(0, 48)}
                 className={`max-w-[64ch] text-[17px] leading-[1.6] text-paper-2 ${i > 0 ? "mt-5" : ""}`}
               >
-                <LinkedEmail text={paragraph} />
+                <LinkedText text={paragraph} />
               </p>
             ))}
           </>
@@ -141,7 +141,7 @@ export default function ContentSections({
                 {section.body.map((paragraph, i) => (
                   <Reveal key={paragraph.slice(0, 48)} delay={stagger(i, 2)}>
                     <p className="max-w-[58ch] text-[17px] leading-[1.6] text-paper-2">
-                      <LinkedEmail text={paragraph} />
+                      <LinkedText text={paragraph} />
                     </p>
                   </Reveal>
                 ))}
@@ -165,7 +165,7 @@ export default function ContentSections({
                         }`}
                       >
                         <p className="text-[16px] leading-[1.55] text-paper-2">
-                          <LinkedEmail text={bullet} />
+                          <LinkedText text={bullet} />
                         </p>
                       </Reveal>
                     ))}

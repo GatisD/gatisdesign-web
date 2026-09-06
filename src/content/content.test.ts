@@ -12,6 +12,10 @@ function allStrings(key: ServiceRouteKey): string[] {
   for (const section of content.sections) {
     if (section.kicker) out.push(section.kicker);
     out.push(section.heading, ...section.body, ...(section.bullets ?? []));
+    for (const step of section.steps ?? []) {
+      out.push(step.title, step.text);
+      if (step.meta) out.push(step.meta);
+    }
     if (section.table) out.push(section.table.caption, ...section.table.columns, ...section.table.rows.flat());
   }
   for (const item of content.faq) out.push(item.q, item.a);
@@ -51,6 +55,17 @@ describe("pakalpojumu saturs", () => {
   it.each(entries)("%s: tekstos ir tikai īsā defise", (key) => {
     for (const text of allStrings(key)) {
       expect(text, text.slice(0, 60)).not.toMatch(/[–—]/);
+    }
+  });
+
+  it.each(entries)("%s: katram procesa solim ir virsraksts un teksts", (_key, content) => {
+    for (const section of content.sections) {
+      for (const step of section.steps ?? []) {
+        expect(step.title.length, step.title).toBeGreaterThan(2);
+        expect(step.text.length, step.title).toBeGreaterThan(20);
+        // Numuru zīmē StepFlow (01, 02, ...), tāpēc virsrakstā tā nav.
+        expect(step.title, step.title).not.toMatch(/^\d/);
+      }
     }
   });
 

@@ -13,6 +13,7 @@
       ]
     },
     {
+      "kicker": "Process",
       "heading": "Kā es strādāju",
       "body": [
         "Process ir vienāds visiem projektiem. Zemāk ir seši soļi un pie katra skaidri pateikts, ko dari tu un ko daru es."
@@ -41,7 +42,7 @@
         {
           "title": "Publicēšana",
           "meta": "Tu: dod zaļo gaismu. Es: pārceļu, pārbaudu, pieslēdzu mērīšanu.",
-          "text": "Pirms publicēšanas eju cauri pārbaudes sarakstam: ātrums, mobilā versija, formas, e-pastu piegāde, pāradresācijas no vecajām saitēm, analītika un pieteikumu mērīšana. Pēc palaišanas pats pārbaudu, vai pirmie pieprasījumi tiešām nonāk līdz tavai pastkastei."
+          "text": "Pirms publicēšanas eju cauri pārbaudes sarakstam: ātrums, mobilā versija, formas, e-pastu piegāde, pāradresācijas no vecajām saitēm, analītika un pieprasījumu mērīšana. Pēc palaišanas pats pārbaudu, vai pirmie pieprasījumi tiešām nonāk līdz tavai pastkastei."
         },
         {
           "title": "Pēc palaišanas",
@@ -64,6 +65,7 @@
       ]
     },
     {
+      "kicker": "Godīgi",
       "heading": "Kad viens cilvēks nav pareizā izvēle",
       "body": [
         "Šo es saku pirms līguma, ne pēc tā. Ir projekti, kuros viens cilvēks ir slikta izvēle, un tad godīgākā atbilde ir komanda vai aģentūra.",
@@ -98,6 +100,7 @@
       ]
     },
     {
+      "kicker": "Sākums",
       "heading": "Kā sākas sadarbība",
       "body": [
         "Raksti uz connect@gatisdesign.com un pastāsti trīs lietas: ko dari, kas pašlaik nestrādā un kad tam jābūt atrisinātam. Ar šīm trim rindām pietiek, lai es pateiktu, vai varu palīdzēt."

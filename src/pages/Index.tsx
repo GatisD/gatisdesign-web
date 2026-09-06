@@ -1,4 +1,3 @@
-import { Fragment, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import JsonLd from "@/components/JsonLd";
@@ -12,8 +11,10 @@ import MediaPlaceholder, { SHOW_PLACEHOLDERS } from "@/components/direction/Medi
 import Band from "@/components/direction/Band";
 import { Section, SectionTitle, LabelRow, ProseColumns } from "@/components/direction/Section";
 import ProjectCard from "@/components/ProjectCard";
+import LinkedText from "@/components/content/LinkedText";
 import { useLocale } from "@/i18n/LocaleContext";
 import { ROUTES, type RouteKey } from "@/i18n/routes";
+import { routeKeyForLvPath } from "@/components/content/LinkedText";
 import { CONTACT_EMAIL, CONTENT_MODIFIED, SITE_NAME, SITE_URL, SOCIAL } from "@/lib/site";
 import { featured, projectBySlug, projects, type Project } from "@/data/projects";
 import {
@@ -28,46 +29,6 @@ import {
   trustClients,
   worksSection,
 } from "@/content/home";
-
-/* ------------------------------------------------------------------ *
- * Teksta palīgi. Saturs nāk no home.json un netiek pārrakstīts - šeit
- * tam tikai tiek pielikts marķējums.
- * ------------------------------------------------------------------ */
-
-/** LV ceļš saturā -> maršruta atslēga, lai saite strādā arī zem /en. */
-const ROUTE_KEY_BY_LV_PATH = Object.fromEntries(
-  (Object.keys(ROUTES) as RouteKey[]).map((key) => [ROUTES[key].lv, key]),
-) as Record<string, RouteKey>;
-
-const LINK_TOKEN = new RegExp(`(${CONTACT_EMAIL.replace(/\./g, "\\.")}|/[a-z-]+)`, "g");
-const INLINE_LINK = "border-b border-line-amber transition-colors duration-300 hover:text-amber";
-
-/** Rindkopa, kurā saturā ierakstītie ceļi un e-pasts kļūst par īstām saitēm. */
-function LinkedText({ text }: { text: string }): ReactNode {
-  const { path } = useLocale();
-  return (
-    <>
-      {text.split(LINK_TOKEN).map((part, i) => {
-        if (part === CONTACT_EMAIL) {
-          return (
-            <a key={i} href={`mailto:${CONTACT_EMAIL}`} className={INLINE_LINK}>
-              {part}
-            </a>
-          );
-        }
-        const key = ROUTE_KEY_BY_LV_PATH[part];
-        if (key) {
-          return (
-            <Link key={i} to={path(key)} className={INLINE_LINK}>
-              {part}
-            </Link>
-          );
-        }
-        return <Fragment key={i}>{part}</Fragment>;
-      })}
-    </>
-  );
-}
 
 /* ------------------------------------------------------------------ *
  * Strukturētie dati
@@ -199,9 +160,9 @@ export default function Index() {
 
             <Reveal delay={0.3} className="flex flex-wrap items-center gap-x-8 gap-y-4 md:justify-end">
               <MagneticButton>
-                <Button to={path(ROUTE_KEY_BY_LV_PATH[heroCtas[0].target])}>{heroCtas[0].label}</Button>
+                <Button to={path(routeKeyForLvPath(heroCtas[0].target))}>{heroCtas[0].label}</Button>
               </MagneticButton>
-              <Button to={path(ROUTE_KEY_BY_LV_PATH[heroCtas[1].target])} variant="link">
+              <Button to={path(routeKeyForLvPath(heroCtas[1].target))} variant="link">
                 {heroCtas[1].label}
               </Button>
             </Reveal>
@@ -309,7 +270,7 @@ export default function Index() {
                 className={`border-t border-line ${i === serviceCards.length - 1 ? "border-b" : ""}`}
               >
                 <Link
-                  to={path(ROUTE_KEY_BY_LV_PATH[card.target])}
+                  to={path(routeKeyForLvPath(card.target))}
                   className="group grid grid-cols-1 gap-x-8 gap-y-3 py-7 transition-colors duration-300 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_160px]"
                 >
                   <h3 className="text-h3 font-medium text-paper transition-colors duration-300 group-hover:text-amber">

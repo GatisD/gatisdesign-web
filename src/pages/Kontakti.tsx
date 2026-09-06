@@ -6,7 +6,7 @@ import LineReveal from "@/components/animations/LineReveal";
 import { Section, SectionTitle, LabelRow } from "@/components/direction/Section";
 import ContactForm from "@/components/ContactForm";
 import FaqList from "@/components/content/FaqList";
-import LinkedEmail from "@/components/content/LinkedEmail";
+import LinkedText from "@/components/content/LinkedText";
 import StepFlow from "@/components/content/StepFlow";
 import { contactContent, contactSections } from "@/content/pages";
 import { headingId } from "@/content/slug";
@@ -122,7 +122,7 @@ export default function Kontakti() {
               </p>
               {contacts.body.map((paragraph) => (
                 <p key={paragraph.slice(0, 40)} className="mt-3 text-[15px] leading-[1.6] text-paper-dim">
-                  <LinkedEmail text={paragraph} />
+                  <LinkedText text={paragraph} />
                 </p>
               ))}
             </div>
@@ -136,7 +136,7 @@ export default function Kontakti() {
             <div className="border-s border-line ps-5">
               {form.body.map((paragraph) => (
                 <p key={paragraph.slice(0, 40)} className="mb-4 text-[15px] leading-[1.6] text-paper-dim last:mb-0">
-                  <LinkedEmail text={paragraph} />
+                  <LinkedText text={paragraph} />
                 </p>
               ))}
             </div>
@@ -149,7 +149,7 @@ export default function Kontakti() {
               </h2>
               {reply.body.map((paragraph) => (
                 <p key={paragraph.slice(0, 40)} className="mb-4 text-[16px] leading-[1.6] text-paper-dim last:mb-0">
-                  <LinkedEmail text={paragraph} />
+                  <LinkedText text={paragraph} />
                 </p>
               ))}
             </div>
@@ -160,7 +160,7 @@ export default function Kontakti() {
               </h2>
               {steps.body.map((paragraph) => (
                 <p key={paragraph.slice(0, 40)} className="mb-6 text-[16px] leading-[1.6] text-paper-dim last:mb-6">
-                  <LinkedEmail text={paragraph} />
+                  <LinkedText text={paragraph} />
                 </p>
               ))}
               {steps.steps ? <StepFlow steps={steps.steps} /> : null}
@@ -179,7 +179,7 @@ export default function Kontakti() {
         <LabelRow label={brief.kicker}>
           {brief.body.map((paragraph) => (
             <p key={paragraph.slice(0, 40)} className="mb-5 max-w-[64ch] text-[17px] leading-[1.6] text-paper-2 last:mb-0">
-              <LinkedEmail text={paragraph} />
+              <LinkedText text={paragraph} />
             </p>
           ))}
           {brief.bullets ? (
@@ -195,7 +195,7 @@ export default function Kontakti() {
                   }`}
                 >
                   <p className="text-[16px] leading-[1.55] text-paper-2">
-                    <LinkedEmail text={bullet} />
+                    <LinkedText text={bullet} />
                   </p>
                 </Reveal>
               ))}
@@ -214,7 +214,7 @@ export default function Kontakti() {
         <LabelRow label={limits.kicker}>
           {limits.body.map((paragraph) => (
             <p key={paragraph.slice(0, 40)} className="mb-5 max-w-[64ch] text-[17px] leading-[1.6] text-paper-2 last:mb-0">
-              <LinkedEmail text={paragraph} />
+              <LinkedText text={paragraph} />
             </p>
           ))}
           {limits.bullets ? (
@@ -230,7 +230,7 @@ export default function Kontakti() {
                   }`}
                 >
                   <p className="text-[16px] leading-[1.55] text-paper-2">
-                    <LinkedEmail text={bullet} />
+                    <LinkedText text={bullet} />
                   </p>
                 </Reveal>
               ))}
