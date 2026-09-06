@@ -12,6 +12,7 @@ import Band from "@/components/direction/Band";
 import { Section, SectionTitle, LabelRow, ProseColumns } from "@/components/direction/Section";
 import ProjectCard from "@/components/ProjectCard";
 import LinkedText from "@/components/content/LinkedText";
+import Testimonials from "@/components/content/Testimonials";
 import { useLocale } from "@/i18n/LocaleContext";
 import { ROUTES, type RouteKey } from "@/i18n/routes";
 import { routeKeyForLvPath } from "@/components/content/LinkedText";
@@ -246,6 +247,11 @@ export default function Index() {
           </ul>
         </div>
       </section>
+
+      {/* Atsauksmes ar vārdu, uzņēmumu un rezultātu. Sadaļa ir uzbūvēta, bet
+          izslēgta (src/content/testimonials.ts) - kamēr atsauksmju nav, tā
+          nerenderē neko, nevis rāda tukšu rāmi. */}
+      <Testimonials />
 
       {/* ============ JOSLA ============ */}
       <Band

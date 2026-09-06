@@ -1,6 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
 import { useLocale } from "@/i18n/LocaleContext";
-import { LOCALES, pathFor, pathForPathname, type Locale, type RouteKey } from "@/i18n/routes";
+import {
+  LANGUAGE_SWITCH_VISIBLE,
+  LOCALES,
+  pathFor,
+  pathForPathname,
+  type Locale,
+  type RouteKey,
+} from "@/i18n/routes";
 import { cn } from "@/lib/utils";
 
 /**
@@ -22,8 +29,12 @@ export default function LanguageSwitch({
 }) {
   const { locale, t } = useLocale();
   const { pathname } = useLocation();
+  // Kamēr EN saturs nav uzrakstīts, pārslēga nav vispār (sk. LANGUAGE_SWITCH_VISIBLE).
+  // Nav arī "drīzumā" pogas ar aria-disabled: poga, kas neko nedara, ir
+  // sliktāka par tās neesamību.
   const target = (l: Locale): string =>
     (routeKey ? pathFor(routeKey, l) : pathForPathname(pathname, l)) ?? pathFor("home", l);
+  if (!LANGUAGE_SWITCH_VISIBLE) return null;
   return (
     <div role="group" aria-label={t.lang.label} className="inline-flex items-center gap-1">
       {LOCALES.map((l: Locale, i) => (

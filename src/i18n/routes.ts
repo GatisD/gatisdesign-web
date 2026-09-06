@@ -16,6 +16,22 @@ export const ROUTES = {
 
 export type RouteKey = keyof typeof ROUTES;
 
+/**
+ * Vai LV/EN pārslēgs ir redzams galvenē un kājenē.
+ *
+ * `false`, kamēr `src/content/en/*.json` nav uzrakstīti. Iemesls ir vienkāršs:
+ * pārslēgs bija dzīvs, bet /en rādīja latviešu tekstu ar angļu navigāciju -
+ * ārzemju apmeklētājam, kurš nospieda EN, tas lasās kā salauzta lapa. Četri
+ * tirgi (LV, EE, LT, ASV) ir viens no trim skaitļiem lapā "Par mani", tāpēc
+ * tieši šis apmeklētājs nav rets.
+ *
+ * EN lapas paliek uzbūvētas ar `noindex` un ārpus sitemap; hreflang pāri
+ * paliek, jo lapas eksistē un ir sasniedzamas pēc tiešas adreses. Kad
+ * tulkojums ir gatavs: šo uz `true`, `noindex` nost (visur `const noindex =
+ * !isLv`) un EN maršruti atpakaļ sitemapā (vite.config.ts).
+ */
+export const LANGUAGE_SWITCH_VISIBLE = false;
+
 export function pathFor(key: RouteKey, locale: Locale): string {
   return ROUTES[key][locale];
 }
