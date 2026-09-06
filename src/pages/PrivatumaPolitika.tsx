@@ -99,7 +99,7 @@ export default function PrivatumaPolitika() {
                   items={[
                     "Kontaktformā: vārds un uzvārds, e-pasts, izvēlētais pakalpojums, budžeta diapazons, vēlamais termiņš un projekta apraksts.",
                     "Tehniskie dati, ko fiksē hostings (Vercel) - IP adrese un pieprasījuma laiks. Tos lieto tikai lapas darbībai un formas ātruma ierobežojumam.",
-                    "Analītikas sīkdatnes netiek uzstādītas: mājaslapā pagaidām nav ne Google Analytics, ne cita mērījuma. Ja tas mainīsies, tas notiks tikai pēc tavas piekrišanas (Google Consent Mode v2).",
+                    "Ja piekrīti analītikai - Google Analytics 4 sīkdatnes (_ga un _ga_*). Tās glabā nejaušu apmeklētāja identifikatoru, nevis vārdu vai e-pastu. Bez piekrišanas tās netiek uzstādītas.",
                   ]}
                 />
               </Section>
@@ -109,7 +109,7 @@ export default function PrivatumaPolitika() {
                   items={[
                     "Lai atbildētu uz tavu pieprasījumu un sagatavotu projekta piedāvājumu.",
                     "Lai uzturētu un uzlabotu mājaslapas darbību.",
-                    "Ja piekrīti analītikai - lai saprastu, kāds saturs ir noderīgs. Šobrīd analītika nav uzstādīta.",
+                    "Ja piekrīti analītikai - lai saprastu, kuras lapas noder un kur cilvēki apstājas.",
                   ]}
                 />
               </Section>
@@ -135,10 +135,17 @@ export default function PrivatumaPolitika() {
 
               <Section title="6. Sīkdatnes un piekrišana">
                 <p>
-                  Šobrīd mājaslapa neuzstāda nevienu sīkdatni. Tava izvēle par sīkdatnēm glabājas pārlūka
-                  lokālajā krātuvē (localStorage) ar nosaukumu <code>cookie_consent_v1</code> - tā nav
-                  sīkdatne un netiek sūtīta serverim. Ja nākotnē tiks pievienota analītika, tā ielādēsies
-                  tikai pēc piekrišanas: Google Consent Mode v2 noklusējums lapā ir „liegts”.
+                  Bez tavas piekrišanas mājaslapa neuzstāda nevienu sīkdatni. Ja piekrīti, ielādējas
+                  Google Analytics 4 caur Google Tag Manager un uzstāda divas sīkdatnes -{" "}
+                  <code>_ga</code> un <code>_ga_*</code>. Tās satur nejaušu identifikatoru, nevis tavus
+                  datus, un glabājas līdz 14 mēnešiem. IP adresi Google Analytics neglabā - to izmanto
+                  tikai, lai noteiktu aptuveno atrašanās vietu, un pēc tam atmet.
+                </p>
+                <p>
+                  Tava izvēle glabājas pārlūka lokālajā krātuvē (localStorage) ar nosaukumu{" "}
+                  <code>cookie_consent_v1</code> - šis ieraksts nav sīkdatne un netiek sūtīts serverim.
+                  Piekrišanas noklusējums lapā ir „liegts” (Google Consent Mode v2), tāpēc bez tavas
+                  izvēles analītika nesāk darboties.
                 </p>
                 <p>
                   Piekrišanu jebkurā brīdī vari mainīt kājenes saitē „Sīkdatņu iestatījumi” - tā atver
@@ -148,10 +155,11 @@ export default function PrivatumaPolitika() {
 
               <Section title="7. Datu nodošana trešajām personām">
                 <p>
-                  Tavus datus nenododu trešajām personām, izņemot divus pakalpojumu sniedzējus, kas
+                  Tavus datus nenododu trešajām personām, izņemot trīs pakalpojumu sniedzējus, kas
                   nepieciešami mājaslapas darbībai: hostings - Vercel Inc.; kontaktformas vēstuļu piegāde -
-                  Resend. Abi šos datus apstrādā manā uzdevumā un atbilst GDPR prasībām. Pieprasījums netiek
-                  glabāts nevienā datubāzē - tas nonāk manā e-pastā un paliek tur.
+                  Resend; apmeklējuma statistika (ar tavu piekrišanu) - Google Ireland Limited. Visi trīs
+                  apstrādā šos datus manā uzdevumā un atbilst GDPR prasībām. Pieprasījums netiek glabāts
+                  nevienā datubāzē - tas nonāk manā e-pastā un paliek tur.
                 </p>
               </Section>
 

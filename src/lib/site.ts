@@ -21,7 +21,7 @@ export const SOCIAL = {
  * atjaunots. Dzīvo šeit, ne schema modulī, lai sākumlapa un "Par mani" to
  * varētu paņemt, neievelkot bundlē visu četru pakalpojumu lapu saturu.
  */
-export const CONTENT_MODIFIED = "2026-09-05";
+export const CONTENT_MODIFIED = "2026-09-06";
 
 /**
  * Gads kājenes kolofonā. Konstante, ne `new Date().getFullYear()` render laikā:
