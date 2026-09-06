@@ -58,7 +58,7 @@
       }
     },
     {
-      "kicker": "Kas ietilpst",
+      "kicker": "Bez papildu rēķina",
       "heading": "Kas ir iekļauts cenā",
       "body": [
         "Cenā ir nevis tikai skaisti dizaina faili, bet viss, kas vajadzīgs, lai lapa strādātu no pirmās dienas. Neesmu redzējis nevienu gadījumu, kurā klientam būtu noderējis dizains bez uzstādītas analītikas vai bez pārbaudītas kontaktformas.",
@@ -78,7 +78,7 @@
       ]
     },
     {
-      "kicker": "Struktūra",
+      "kicker": "Piecas sekundes",
       "heading": "Struktūra, kas pārvērš apmeklētājus pieprasījumos",
       "body": [
         "Lielākā daļa uzņēmumu lapu ir uzbūvētas no uzņēmuma skatpunkta: par mums, mūsu vēsture, mūsu vērtības un tikai kaut kur pēc tam pakalpojumi. Apmeklētājs ienāk ar citu jautājumu - vai šis uzņēmums var atrisināt manu problēmu, cik tas maksās un cik ilgi tas prasīs.",
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "kicker": "Darbi",
+      "kicker": "Desmit klienti",
       "heading": "Reāli piemēri",
       "body": [
         "Starp klientiem ir MLM Cargo, ARM Metals, Tavasdurvis, Box Latvia, Tenter, Improvement, Cafeteria, Forevolt, DarbaGuru un Apmeklē.lv. Loģistika, ražošana, tirdzniecība, medicīna, pakalpojumi. 18 gadu pieredze un klienti Latvijā, Igaunijā, Lietuvā un ASV."
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "kicker": "Pēc palaišanas",
+      "kicker": "50-150 EUR/mēn",
       "heading": "Kas notiek pēc palaišanas",
       "body": [
         "Palaišana nav finiša līnija. Pirmajās nedēļās kļūst redzams, ko cilvēki lapā dara patiesībā, nevis ko mēs abi bijām iedomājušies.",
@@ -244,7 +244,7 @@
   "faq": [
     {
       "q": "Cik maksā mājaslapas izveide?",
-      "a": "Vienas lapas mājaslapa (landing page) maksā no 500 EUR. Pilns cenrādis ar termiņiem un to, kas katrā cenā ietilpst, ir tabulā „Cenas un termiņi” šīs lapas augšdaļā."
+      "a": "Vienas lapas mājaslapa (landing page) maksā no 500 EUR. Pilns cenrādis ar termiņiem un to, kas katrā cenā ietilpst, ir cenu tabulā šīs lapas augšdaļā."
     },
     {
       "q": "Cik ilgā laikā tiek izstrādāta mājaslapa?",

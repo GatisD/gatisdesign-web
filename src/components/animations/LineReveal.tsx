@@ -66,7 +66,17 @@ export default function LineReveal({
   }, []);
 
   return (
-    <Tag ref={ref} id={id} className={["line-reveal", visible && "is-visible", className].filter(Boolean).join(" ")}>
+    <Tag
+      ref={ref}
+      id={id}
+      // `overflow-wrap: anywhere` nostrādā TIKAI tad, kad vārds citādi izlīstu
+      // no lapas. Latviešu salikteņi displeja mērogā pie 320 px ir tieši tāds
+      // gadījums, un nogriezts vārds ar `overflow-x: clip` ir sliktāks par
+      // pārnestu vārdu.
+      className={["line-reveal [overflow-wrap:anywhere]", visible && "is-visible", className]
+        .filter(Boolean)
+        .join(" ")}
+    >
       {lines.map((line, i) => (
         <span
           key={line}

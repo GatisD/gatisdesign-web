@@ -83,12 +83,12 @@ export default function CookieBanner() {
       // Kompakta rinda, ne bloks. Iepriekš josla aizņēma 20% mobilā ekrāna un
       // pie 1280x800 aizsedza kontaktu formas pirmo lauku - lapa prasīja
       // atbildi uz jautājumu par sīkdatnēm, pirms ļāva sākt rakstīt.
-      className="fixed inset-x-0 bottom-0 z-[200] border-t border-line-strong bg-ink-950 px-4 py-3 md:px-6"
+      className="fixed inset-x-0 bottom-0 z-[200] border-t border-line-strong bg-ink-950 px-4 py-2.5 md:px-6 md:py-3"
     >
-      <div className="mx-auto flex max-w-wrap flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+      <div className="mx-auto flex max-w-wrap flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
         {/* Rindas garums ir ierobežots arī te: pie 1440 px josla bija vienīgā
             vieta lapā, kur teksta rinda pārsniedza 100 zīmes. */}
-        <p className="max-w-[78ch] text-[14px] leading-[1.45] text-paper-2 md:text-[15px]">
+        <p className="max-w-[78ch] text-[13px] leading-[1.4] text-paper-2 sm:text-[14px] md:text-[15px]">
           {t.cookies.text}{" "}
           <Link
             to={path("privacy")}
@@ -104,14 +104,14 @@ export default function CookieBanner() {
           <button
             type="button"
             onClick={() => store("necessary")}
-            className="min-h-[44px] flex-1 whitespace-nowrap rounded-full border border-line-strong px-4 text-[14px] text-paper transition-colors duration-300 hover:border-amber hover:text-amber active:border-amber active:text-amber sm:flex-initial sm:px-5"
+            className="min-h-[44px] flex-1 whitespace-nowrap rounded-full border border-line-strong px-4 text-[13px] text-paper transition-colors duration-300 hover:border-amber hover:text-amber active:border-amber active:text-amber sm:flex-initial sm:px-5 sm:text-[14px]"
           >
             {t.cookies.necessaryOnly}
           </button>
           <button
             type="button"
             onClick={() => store("all")}
-            className="min-h-[44px] flex-1 whitespace-nowrap rounded-full bg-paper px-4 text-[14px] font-medium text-ink-900 transition-colors duration-300 hover:bg-amber hover:text-on-amber active:bg-amber-soft active:text-on-amber sm:flex-initial sm:px-5"
+            className="min-h-[44px] flex-1 whitespace-nowrap rounded-full bg-paper px-4 text-[13px] font-medium text-ink-900 transition-colors duration-300 hover:bg-amber hover:text-on-amber active:bg-amber-soft active:text-on-amber sm:flex-initial sm:px-5 sm:text-[14px]"
           >
             {t.cookies.acceptAll}
           </button>

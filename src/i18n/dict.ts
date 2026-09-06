@@ -37,7 +37,7 @@ export const dict = {
       cta: "Uz sākumu",
     },
     cookies: {
-      text: "Šobrīd sīkdatnes neizmantoju. Ja piekrīti, vēlāk pievienošu anonīmu analītiku. Vairāk -",
+      text: "Sīkdatnes neizmantoju. Ja piekrīti, vēlāk pievienošu anonīmu analītiku. Vairāk -",
       privacyLink: "privātuma politikā",
       acceptAll: "Pieņemt visas",
       necessaryOnly: "Tikai vajadzīgās",
@@ -131,7 +131,7 @@ export const dict = {
       cta: "Go to homepage",
     },
     cookies: {
-      text: "No cookies are set right now. If you agree, I will add anonymous analytics later. More in the",
+      text: "No cookies are set. If you agree, I will add anonymous analytics later. More in the",
       privacyLink: "privacy policy",
       acceptAll: "Accept all",
       necessaryOnly: "Only necessary",

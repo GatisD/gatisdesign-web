@@ -27,13 +27,24 @@ const MAX_LABELS = 3;
 
 /**
  * Etiķete, kas atkārto savu virsrakstu, neko nepasaka. "(Struktūra)" blakus
- * virsrakstam "Struktūra, kas pārvērš apmeklētājus pieteikumos" ir tikai
+ * virsrakstam "Struktūra, kas pārvērš apmeklētājus pieprasījumos" ir tikai
  * 340 px kolonna ar to pašu vārdu. Referencē etiķete nes CITU informāciju
  * nekā virsraksts, tāpēc te tā tiek rādīta tikai tad, kad tā to dara.
+ *
+ * Divas pārbaudes, ne viena. Prefiksa pārbaude viena pati palaida cauri
+ * "(Pēc palaišanas)" pie virsraksta "Kas notiek pēc palaišanas" un
+ * "(Zīmola grāmata)" pie "Kas ir zīmola grāmata un kad tā tiešām vajadzīga" -
+ * abos gadījumos etiķetē nebija neviena vārda, kura virsrakstā jau nebūtu.
+ * Tāpēc otrā pārbaude ir vārdu kopa: ja katrs etiķetes vārds jau ir
+ * virsrakstā, etiķete ir atkārtojums neatkarīgi no vārdu secības.
  */
 function labelAddsMeaning(kicker: string, heading: string): boolean {
-  const norm = (s: string) => s.toLowerCase().replace(/[^a-zāčēģīķļņšūž ]/g, "");
-  return !norm(heading).startsWith(norm(kicker));
+  const norm = (s: string) => s.toLowerCase().replace(/[^a-zāčēģīķļņšūž0-9 ]/g, " ").replace(/\s+/g, " ").trim();
+  const normHeading = norm(heading);
+  if (normHeading.startsWith(norm(kicker))) return false;
+  const headingWords = new Set(normHeading.split(" "));
+  const kickerWords = norm(kicker).split(" ").filter(Boolean);
+  return !kickerWords.every((word) => headingWords.has(word));
 }
 
 type Form = "table" | "prose" | "label";
@@ -44,11 +55,33 @@ function formFor(section: ContentSectionData, index: number): Form {
   return index % 2 === 0 ? "prose" : "label";
 }
 
-/** Ritms mainās pēc satura garuma, ne pēc kārtas numura. */
-function rhythmFor(section: ContentSectionData): "sm" | "md" | "lg" {
+/**
+ * Ritms pēc tā, KAS sadaļā ir, ne tikai cik tur vārdu.
+ *
+ * Iepriekš slieksnis bija tikai vārdu skaits, un lapas otrā puse - piecas
+ * teksta sadaļas pēc kārtas bez neviena cita objekta - iznāca `sm·sm·sm·sm·sm`.
+ * Pirmajā pusē ritms bija `lg·sm·md·lg·sm·md`, otrajā - taisna līnija.
+ * Tāpēc: tabulai `lg`, procesa soļiem un garam sarakstam `md`, un trešā
+ * vienāda atkāpe pēc kārtas tiek pacelta par vienu soli.
+ */
+const RHYTHM_ORDER = ["sm", "md", "lg"] as const;
+type Rhythm = (typeof RHYTHM_ORDER)[number];
+
+function baseRhythm(section: ContentSectionData): Rhythm {
   if (section.table) return "lg";
+  if (section.steps?.length) return "md";
+  if ((section.bullets?.length ?? 0) >= 5) return "md";
   const words = section.body.join(" ").split(/\s+/).length;
   return words > 130 ? "md" : "sm";
+}
+
+/** Paceļ atkāpi, ja tā būtu trešā vienāda pēc kārtas. */
+function rhythmFor(section: ContentSectionData, recent: Rhythm[]): Rhythm {
+  const base = baseRhythm(section);
+  const twoSame = recent.length >= 2 && recent.slice(-2).every((r) => r === base);
+  if (!twoSame) return base;
+  const next = RHYTHM_ORDER[Math.min(RHYTHM_ORDER.indexOf(base) + 1, RHYTHM_ORDER.length - 1)];
+  return next;
 }
 
 /**
@@ -80,7 +113,9 @@ export function tocFor(sections: ContentSectionData[]): Array<{ id: string; labe
     );
   if (steps) out.push({ id: headingId(steps.heading), label: "Process" });
   out.push({ id: "jautajumi", label: "Jautājumi" });
-  out.push({ id: "saksim", label: "Sāksim" });
+  // "Sāksim" te vairs nav: kopš noslēgums ir viena rinda bez virsraksta,
+  // enkurs veda uz vietu, kur nospiedējam nav nekāda apstiprinājuma, ka viņš ir
+  // nonācis. Darbība tagad ir hero blokā, pirmajā ekrānā.
   return out;
 }
 
@@ -97,11 +132,14 @@ export default function ContentSections({
   labelBudget?: number;
 }) {
   let labelsUsed = 0;
+  const recentRhythms: Rhythm[] = [];
 
   return (
     <>
       {sections.map((section, index) => {
         const form = formFor(section, index);
+        const rhythm = rhythmFor(section, recentRhythms);
+        recentRhythms.push(rhythm);
         const id = headingId(section.heading);
         const surface = index % 2 === 1 ? "ink-850" : "ink";
         let label: string | undefined;
@@ -129,7 +167,7 @@ export default function ContentSections({
         );
 
         return (
-          <Section key={section.heading} rhythm={rhythmFor(section)} surface={surface} labelledBy={id}>
+          <Section key={section.heading} rhythm={rhythm} surface={surface} labelledBy={id}>
             <Reveal>
               <h2 id={id} className="mb-[clamp(24px,3vw,40px)] max-w-[20ch] text-h2 font-medium scroll-mt-24">
                 {section.heading}

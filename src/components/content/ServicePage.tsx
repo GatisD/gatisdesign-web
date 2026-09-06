@@ -179,7 +179,11 @@ export default function ServicePage({
                 to={path(key)}
                 className="group flex items-center justify-between gap-6 py-6 text-paper transition-colors duration-300 hover:text-amber"
               >
-                <span className="text-h3 font-medium">{t.services[LABEL_BY_KEY[key]]}</span>
+                {/* Zem sm displeja mērogs ir par lielu vienai rindai: "AI aģenti un
+                    automatizācija" ir 26 zīmes, un pēc atkāpēm un svītras paliek ~270 px. */}
+                <span className="text-[clamp(1.125rem,4.6vw,1.5rem)] font-medium tracking-[-0.03em] sm:text-h3">
+                  {t.services[LABEL_BY_KEY[key]]}
+                </span>
                 <span
                   aria-hidden="true"
                   className="h-px w-14 origin-right shrink-0 scale-x-[.55] bg-paper-faint transition-[transform,background-color] duration-300 ease-dir group-hover:scale-x-100 group-hover:bg-amber"
