@@ -289,7 +289,12 @@ export default function ProjectDetail() {
           {facts.map((fact, i) => (
             <div
               key={fact.term}
-              className="border-line py-5 pe-6 [&:not(:last-child)]:border-e [&:nth-child(-n+2)]:border-b md:[&:nth-child(-n+2)]:border-b-0"
+              /* Atdalītājs pieder kolonnai, kas rindā NAV pirmā (border-s + ps-6),
+                 nevis tai, kas nav pēdējā. Ar `border-e` līnija pielipa nākamās
+                 kolonnas tekstam, un mobilajā otrās kolonnas labā mala uzzīmēja
+                 svītru pie satura malas. Rindas platums mainās (2 -> 4 kolonnas),
+                 tāpēc nosacījums ir uz nth-child(2n+1) un nth-child(4n+1). */
+              className="border-line py-5 pe-6 [&:not(:nth-child(2n+1))]:border-s [&:not(:nth-child(2n+1))]:ps-6 [&:nth-child(-n+2)]:border-b md:[&:not(:nth-child(4n+1))]:border-s md:[&:not(:nth-child(4n+1))]:ps-6 md:[&:nth-child(-n+2)]:border-b-0"
             >
               <dt>
                 <Label>{fact.term}</Label>

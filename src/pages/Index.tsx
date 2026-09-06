@@ -174,19 +174,6 @@ export default function Index() {
               <MediaPlaceholder text="Portrets vai 15 sekunžu video darba vidē - vēl jāuzņem" />
             </div>
           ) : null}
-
-          <Reveal delay={0.38} className="mt-[clamp(26px,3.4vw,44px)]">
-            <div className="grid border border-line-amber sm:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-              <p className="border-b border-line-amber px-4 py-3 sm:border-b-0 sm:border-e">
-                <Label tone="amber">Gatis Design · Rīga · kopš 2008</Label>
-              </p>
-              <p className="px-4 py-3">
-                <Label tone="amber">
-                  Lapa, kas izskatās labi, bet nenes pieprasījumus, ir tikai izdevumi.
-                </Label>
-              </p>
-            </div>
-          </Reveal>
         </div>
       </section>
 

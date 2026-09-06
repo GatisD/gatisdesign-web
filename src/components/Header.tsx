@@ -140,13 +140,33 @@ export default function Header() {
                   setServicesOpen((v) => !v);
                 }}
                 className={cn(
-                  "nav-underline relative cursor-pointer text-[16px] font-medium transition-colors duration-300 active:text-amber",
+                  "nav-underline relative inline-flex cursor-pointer items-center gap-1.5 text-[16px] font-medium transition-colors duration-300 active:text-amber",
                   SERVICE_KEYS.some((k) => pathname === path(k))
                     ? "text-paper [--underline:1]"
                     : "text-paper-2 hover:text-paper",
                 )}
               >
                 {t.nav.services}
+                {/* Stāvokli nes aria-expanded; bultiņa ir tā paša stāvokļa
+                    redzamā puse, tāpēc aria-hidden - citādi ekrāna lasītājs
+                    pieteiktu to pašu divreiz. */}
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  width="13"
+                  height="13"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className={cn(
+                    "shrink-0 transition-transform duration-300 ease-dir motion-reduce:transition-none",
+                    servicesOpen && "rotate-180",
+                  )}
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
               </a>
               {servicesOpen ? (
                 <div

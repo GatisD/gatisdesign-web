@@ -1,22 +1,12 @@
-import { useEffect } from "react";
-import { useLocation, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { LocaleProvider } from "@/i18n/LocaleContext";
 import { dict } from "@/i18n/dict";
 import type { Locale } from "@/i18n/routes";
 import Header from "./Header";
 import Footer from "./Footer";
 import SmoothScroll from "./SmoothScroll";
+import ScrollManager from "./ScrollManager";
 import CookieBanner from "./CookieBanner";
-
-function ScrollToTopOnNav() {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "instant" });
-    }
-  }, [pathname]);
-  return null;
-}
 
 /**
  * Lapas ietvars.
@@ -38,7 +28,7 @@ export default function Layout({ locale }: { locale: Locale }) {
       </a>
       <SmoothScroll />
       <div className="flex min-h-screen flex-col bg-ink-900 text-paper">
-        <ScrollToTopOnNav />
+        <ScrollManager />
         <Header />
         <main id="saturs" className="flex flex-1 flex-col">
           <Outlet />
