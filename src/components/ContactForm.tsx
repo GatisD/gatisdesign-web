@@ -150,7 +150,7 @@ export default function ContactForm({ className }: { className?: string }) {
             reset();
             setStatus({ state: "idle" });
           }}
-          className="mt-7 inline-flex min-h-[52px] items-center rounded-full border border-line-strong px-6 text-[16px] text-paper transition-colors duration-300 hover:border-amber hover:text-amber"
+          className="mt-7 inline-flex min-h-[52px] items-center rounded-full border border-line-strong px-6 text-[16px] text-paper transition-colors duration-300 hover:border-amber hover:text-amber active:border-amber active:text-amber"
         >
           {t.form.successAgain}
         </button>
@@ -232,7 +232,7 @@ export default function ContactForm({ className }: { className?: string }) {
             {BUDGET_VALUES.map((value) => (
               <label
                 key={value}
-                className="group cursor-pointer rounded-field border border-line px-4 py-3 text-[15px] text-paper-2 transition-[border-color,color,background-color] duration-300 hover:border-line-strong has-[:checked]:border-amber has-[:checked]:bg-amber has-[:checked]:text-on-amber has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-amber"
+                className="group cursor-pointer rounded-field border border-line px-4 py-3 text-[15px] text-paper-2 transition-[border-color,color,background-color] duration-300 hover:border-line-strong active:border-amber has-[:checked]:border-amber has-[:checked]:bg-amber has-[:checked]:text-on-amber has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-amber"
               >
                 <input
                   type="radio"
@@ -349,7 +349,7 @@ export default function ContactForm({ className }: { className?: string }) {
           type="submit"
           disabled={isSubmitting}
           aria-busy={isSubmitting}
-          className="inline-flex min-h-[56px] items-center justify-center gap-3 rounded-full bg-paper px-8 py-4 text-[17px] font-medium text-ink-900 transition-[background-color,color,opacity] duration-300 hover:bg-amber hover:text-on-amber disabled:cursor-not-allowed disabled:opacity-60 md:min-h-16 md:px-9 md:py-[18px] md:text-[18px]"
+          className="inline-flex min-h-[56px] items-center justify-center gap-3 rounded-full bg-paper px-8 py-4 text-[17px] font-medium text-ink-900 transition-[background-color,color,opacity,transform] duration-300 hover:bg-amber hover:text-on-amber active:translate-y-px active:bg-amber-soft active:text-on-amber disabled:cursor-not-allowed disabled:opacity-60 disabled:active:translate-y-0 md:min-h-16 md:px-9 md:py-[18px] md:text-[18px]"
         >
           {isSubmitting ? (
             <>

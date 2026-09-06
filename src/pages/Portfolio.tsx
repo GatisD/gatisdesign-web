@@ -129,7 +129,7 @@ export default function Portfolio() {
                 onClick={() => setFilter(item.key)}
                 aria-pressed={active}
                 className={cn(
-                  "relative inline-flex min-h-[44px] items-center gap-2 text-[16px] transition-colors duration-300",
+                  "relative inline-flex min-h-[44px] items-center gap-2 text-[16px] transition-colors duration-300 active:text-paper",
                   active ? "text-paper" : "text-paper-dim hover:text-paper",
                 )}
               >

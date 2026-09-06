@@ -43,6 +43,49 @@
   /** Teksts uz vara pildījuma (pogas). */
   --on-amber: #1a1206;
 
+  /* --- Pārklājumi (scrim) ---
+   * Grafīts kā RGB kanāli, lai caurspīdīgums nāktu no tokena, ne no ar roku
+   * ierakstīta `rgba(13,11,9,.55)` četros komponentu failos. Katram kadram sava
+   * līkne: hero un lapas galva pieaug uz apakšu (teksts sēž apakšā), josla -
+   * uz labo pusi (teksts sēž pa labi), projekta vāks ir tumšākais, jo zem tā
+   * ir svešas krāsas ekrānuzņēmums.
+   */
+  --ink-rgb: 13 11 9;
+  --scrim-hero: linear-gradient(
+    180deg,
+    rgb(var(--ink-rgb) / 0.44) 0%,
+    rgb(var(--ink-rgb) / 0.18) 28%,
+    rgb(var(--ink-rgb) / 0.66) 58%,
+    rgb(var(--ink-rgb) / 0.94) 92%
+  );
+  /* Pakalpojumu lapu galva. Augšējie divi stopi ir gaišāki nekā agrāk (.55/.38
+   * -> .35/.22): kopā ar kadra brightness .45 augšējie 250 px pie 390 px bija
+   * melns laukums ar vāju gaismas svītru, un cilvēks tur redzēja nevis kadru,
+   * bet kļūdu. Apakšējie divi paliek gandrīz necaurspīdīgi - tur sēž ievads,
+   * un pie kadra gaišākā punkta kontrasts bija nokritis līdz 2,5:1. */
+  --scrim-page: linear-gradient(
+    180deg,
+    rgb(var(--ink-rgb) / 0.35) 0%,
+    rgb(var(--ink-rgb) / 0.22) 24%,
+    rgb(var(--ink-rgb) / 0.88) 54%,
+    rgb(var(--ink-rgb) / 0.98) 80%
+  );
+  --scrim-band: linear-gradient(
+    90deg,
+    rgb(var(--ink-rgb) / 0.3) 0%,
+    rgb(var(--ink-rgb) / 0.2) 38%,
+    rgb(var(--ink-rgb) / 0.88) 62%,
+    rgb(var(--ink-rgb) / 0.94) 100%
+  );
+  --scrim-cover: linear-gradient(
+    180deg,
+    rgb(var(--ink-rgb) / 0.62) 0%,
+    rgb(var(--ink-rgb) / 0.34) 30%,
+    rgb(var(--ink-rgb) / 0.84) 62%,
+    rgb(var(--ink-rgb) / 0.98) 94%
+  );
+  --shadow-panel: 0 40px 80px -40px rgb(0 0 0 / 0.9);
+
   /* --- Līnijas --- */
   --line: rgba(239, 232, 220, 0.14);
   --line-strong: rgba(239, 232, 220, 0.22);
@@ -67,7 +110,10 @@
   --wrap: 1440px;
 
   /* --- Displeja mērogs (uppercase, LV garumzīmes prasa line-height >= 1.04) --- */
-  --display-1: clamp(2.375rem, 8.4vw, 7rem);      /* 38 -> 112 px */
+  /* Apakšējā robeža ir 36, ne 38 px: pie 320 px "PIEPRASĪJUMUS." aizņēma
+     282 px pieejamo 280 px vietā, un `overflow-x: clip` to slēpa, nevis
+     atrisināja. 36 px tur pašu garāko latviešu virsraksta vārdu iekšā. */
+  --display-1: clamp(2.25rem, 8.4vw, 7rem);       /* 36 -> 112 px */
   --display-2: clamp(2.125rem, 7vw, 5.75rem);     /* 34 -> 92 px */
   --giant: clamp(2.75rem, 9vw, 10.5rem);          /* 44 -> 168 px sekciju virsraksti */
   --h2: clamp(1.75rem, 3.6vw, 4rem);              /* 28 -> 64 px */

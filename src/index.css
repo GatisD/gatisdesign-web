@@ -118,6 +118,40 @@
     clip-path: none;
     transform: none;
   }
+  /* 3 s avārijas taimeris - tas pats, kas ir `.reveal`, un tieši tāpēc, ka
+     `.line-reveal` ir KATRAS lapas h1 un LCP teksts. Ja bundle nepienāk, tiek
+     bloķēts vai kavējas, virsraksts bez šī likuma paliek nogriezts uz visiem
+     laikiem. Taimeris šauj tikai tik ilgi, kamēr nav [data-js] (to uzliek
+     pirmais efekts pēc hidratācijas), citādi tas nostrādātu arī normālā sesijā.
+
+     Kustību ceļš un bezkustības ceļš ir uzrakstīti abi: pie
+     `prefers-reduced-motion: reduce` head skripts `data-reveal` neuzliek, bet,
+     ja lietotājs iestatījumu ieslēdz pēc ielādes, virsrakstam jāparādās uzreiz
+     un bez animācijas, nevis jāgaida taimeris. */
+  @media (prefers-reduced-motion: no-preference) {
+    [data-reveal="on"]:not([data-js]) .line-reveal > span {
+      animation: line-rise 0.86s var(--ease-settle) 3s forwards;
+    }
+    [data-reveal="on"]:not([data-js]) .reveal .rail-draw {
+      animation: rail-restore 0.4s linear 3s forwards;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal="on"]:not([data-js]) .line-reveal > span {
+      animation: none;
+      clip-path: none;
+      transform: none;
+    }
+    [data-reveal="on"]:not([data-js]) .reveal .rail-draw {
+      animation: none;
+      transform: scaleY(1);
+    }
+  }
+  @keyframes rail-restore {
+    to {
+      transform: scaleY(1);
+    }
+  }
   [data-reveal="on"] .line-reveal:focus-within > span {
     animation: none;
     clip-path: none;
@@ -275,12 +309,19 @@
     }
   }
 
+  /* Drukā viss ir redzams. Selektoru specifiskumam te jābūt vismaz tikpat
+     augstam, cik avārijas taimera likumiem augstāk (tie sēž zem
+     `prefers-reduced-motion: no-preference`, kas drukājot arī ir patiess) -
+     citādi taimera 3 s aizture uzvarētu un lapa aizietu uz printeri bez
+     virsraksta. */
   @media print {
     [data-reveal="on"] .reveal,
     [data-reveal="on"]:not([data-js]) .reveal,
     [data-reveal="on"] .reveal.is-visible,
     [data-reveal="on"] .line-reveal > span,
-    [data-reveal="on"] .line-reveal.is-visible > span {
+    [data-reveal="on"]:not([data-js]) .line-reveal > span,
+    [data-reveal="on"] .line-reveal.is-visible > span,
+    [data-reveal="on"]:not([data-js]) .reveal .rail-draw {
       opacity: 1;
       animation: none;
       transform: none;

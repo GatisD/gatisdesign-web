@@ -102,7 +102,7 @@ export default function Footer() {
             </Label>
             <Link
               to={path("privacy")}
-              className="font-label text-label text-on-paper-dim transition-colors duration-300 hover:text-amber-paper"
+              className="inline-flex min-h-[44px] items-center font-label text-label text-on-paper-dim transition-colors duration-300 hover:text-amber-paper active:text-amber-paper"
             >
               {t.footer.privacy}
             </Link>

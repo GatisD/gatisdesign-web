@@ -22,10 +22,7 @@ export default function Band({
       <div
         aria-hidden="true"
         className="absolute inset-0 -z-[1]"
-        style={{
-          background:
-            "linear-gradient(90deg, rgba(13,11,9,.30) 0%, rgba(13,11,9,.20) 38%, rgba(13,11,9,.88) 62%, rgba(13,11,9,.94) 100%)",
-        }}
+        style={{ background: "var(--scrim-band)" }}
       />
       <div className="relative mx-auto flex h-full max-w-wrap items-center px-5 sm:px-8 lg:px-10">
         <p className="ml-auto max-w-[42ch] text-[clamp(1.05rem,1.7vw,1.5rem)] leading-[1.4] text-paper md:w-[46%]">

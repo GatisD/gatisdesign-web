@@ -10,7 +10,12 @@ import type { Project } from "@/data/projects";
  *
  * Attēls ir vienīgā vieta lapā, kur `scale` uz hover ir saturs, ne triks:
  * ekrānuzņēmums pietuvojas, un kļūst redzams, ka aiz kartes ir īsta lapa.
- * Amplitūda apzināti maza (1,03) - tas ir apstiprinājums, ne šovs.
+ * Amplitūda apzināti maza (1,03), un tā notiek TIKAI tur, kur kursors reāli
+ * eksistē (`@media (hover: hover)`): mobilajā hover nav, un transformācija tur
+ * bija tikai kadru cena. Vienā kartē ir viens vizuāls notikums - attēls; agrāk
+ * tam blakus gāja arī nosaukuma nobīde par 4 px, un tas bija trešais signāls
+ * vienam un tam pašam klikšķim (hallmark m1). Nosaukumam palicis tikai krāsas
+ * maiņa.
  *
  * `contrast(.96) saturate(.9)` tur 18 svešu zīmolu krāsas vienā reģistrā ar
  * grafīta lapu; hover tās atgriež pilnā spilgtumā.
@@ -77,13 +82,14 @@ export default function ProjectCard({
             fits ? "object-cover object-[top_center]" : "object-contain p-5 md:p-7",
             "[filter:contrast(.96)_saturate(.9)]",
             "transition-[transform,filter] duration-[1100ms] ease-dir",
-            "group-hover:scale-[1.03] group-hover:[filter:contrast(1)_saturate(1)]",
+            "group-hover:[filter:contrast(1)_saturate(1)]",
+            "[@media(hover:hover)]:group-hover:scale-[1.03]",
           )}
         />
       </span>
 
       <span className="flex flex-col gap-1 px-1">
-        <span className="flex items-baseline gap-2 text-[17px] font-medium text-paper transition-transform duration-500 ease-dir group-hover:translate-x-1 md:text-[18px]">
+        <span className="flex items-baseline gap-2 text-[17px] font-medium text-paper transition-colors duration-300 group-hover:text-amber md:text-[18px]">
           {project.title}
         </span>
         <Label>{meta}</Label>

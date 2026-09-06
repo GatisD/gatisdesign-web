@@ -35,7 +35,8 @@ export default function LanguageSwitch({
             rel="alternate"
             aria-current={l === locale ? "true" : undefined}
             className={cn(
-              "inline-flex min-h-[44px] items-center font-label text-label uppercase transition-colors duration-300",
+              // 44 px abos virzienos: augstums bija 44, platums 15.
+              "inline-flex min-h-[44px] min-w-[44px] items-center justify-center font-label text-label uppercase transition-colors duration-300",
               l === locale
                 ? onPaper
                   ? "text-on-paper"

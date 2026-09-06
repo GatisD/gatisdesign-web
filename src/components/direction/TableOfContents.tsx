@@ -6,6 +6,11 @@ import Label from "@/components/ui/Label";
  * Iemesls ir mērāms: šīs lapas ir 2500-3300 vārdu gari dokumenti, un cenu
  * tabula dažās no tām ir desmitā sadaļa. Bez enkuriem cilvēks, kurš atnāca
  * pēc cenas, to meklē ar ritināšanu.
+ *
+ * Klikšķa lauks ir 44 px augsts, apakšsvītra paliek pie teksta. Nomērīts bija
+ * 46x16 un 60x16 - 16 px augsta josla, kas domāta pieskārienam. `--underline`
+ * tiek uzstādīts uz saites, ne uz iekšējā span, lai apakšsvītra parādās arī
+ * tad, kad pirksts trāpa atkāpē, ne burtos.
  */
 export default function TableOfContents({
   items,
@@ -23,9 +28,9 @@ export default function TableOfContents({
           <li key={item.id}>
             <a
               href={`#${item.id}`}
-              className="nav-underline relative text-[15px] text-paper-2 transition-colors duration-300 hover:text-amber md:text-[16px]"
+              className="inline-flex min-h-[44px] items-center text-[15px] text-paper-2 transition-colors duration-300 hover:text-amber hover:[--underline:1] focus-visible:[--underline:1] active:text-amber md:text-[16px]"
             >
-              {item.label}
+              <span className="nav-underline relative">{item.label}</span>
             </a>
           </li>
         ))}

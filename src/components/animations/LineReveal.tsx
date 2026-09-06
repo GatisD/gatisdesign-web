@@ -5,9 +5,21 @@ import { useEffect, useRef, useState, type CSSProperties, type ElementType } fro
  * Rindas padod kā masīvu - vārdu-pa-vārdam reveal pie piecu rindu virsraksta
  * ilgtu divas sekundes, un lietotājs to gaidītu pirms pirmā satura.
  *
- * SSG kadrā teksts ir REDZAMS: slēpšana notiek tikai zem `html[data-reveal="on"]`
- * (sk. src/index.css `.line-reveal`). Atsevišķas rindas ir <span>, tāpēc
- * ekrānlasītājs virsrakstu nolasa kā vienu teikumu.
+ * SSG kadrā teksts ir REDZAMS: slēpšana notiek tikai zem `html[data-reveal="on"]`,
+ * ko uzliek inline <head> skripts (index.html) un ko tas NEUZLIEK, ja pārlūks
+ * ziņo `prefers-reduced-motion: reduce`. Tāpēc šeit nav ne inline `opacity: 0`,
+ * ne JS mērījuma: bez kustības, bez JS un drukājot virsraksts vienkārši ir.
+ * Slēpšanas, atklāsmes, `prefers-reduced-motion` un 3 s avārijas taimera
+ * likumi dzīvo vienuviet - src/index.css `.line-reveal` blokā.
+ * Atsevišķas rindas ir <span>, tāpēc ekrānlasītājs virsrakstu nolasa kā vienu
+ * teikumu.
+ *
+ * ATSTARPE starp rindām ir ĪSTA rakstzīme, ne tikai bloka robeža. Renderētajā
+ * DOM `display: block` vārdus atdala, bet `textContent` deva
+ * "Mājaslapuizstrāde" - un tieši to redz katrs teksta izvilcējs, kas
+ * nerenderē CSS (kopēšana, `document.title`, AI atbilžu dzinēji, kurus
+ * robots.txt un llms.txt te īpaši ielaiž). Atstarpe rindas beigās izkārtojumā
+ * sabrūk un vizuāli neko nemaina.
  */
 export default function LineReveal({
   as: Tag = "h1",
@@ -67,7 +79,7 @@ export default function LineReveal({
             .join(" ")}
           style={{ "--line-index": i } as CSSProperties}
         >
-          {line}
+          {i < lines.length - 1 ? `${line} ` : line}
         </span>
       ))}
     </Tag>

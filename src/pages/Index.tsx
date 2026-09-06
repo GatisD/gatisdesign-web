@@ -175,10 +175,7 @@ export default function Index() {
         <div
           aria-hidden="true"
           className="absolute inset-0 -z-[1]"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(13,11,9,.44) 0%, rgba(13,11,9,.18) 28%, rgba(13,11,9,.66) 58%, rgba(13,11,9,.94) 92%)",
-          }}
+          style={{ background: "var(--scrim-hero)" }}
         />
 
         <div className="relative mx-auto w-full max-w-wrap px-5 sm:px-8 lg:px-10">

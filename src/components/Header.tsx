@@ -83,25 +83,30 @@ export default function Header() {
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     cn(
-      "nav-underline relative text-[16px] font-medium transition-colors duration-300",
+      "nav-underline relative text-[16px] font-medium transition-colors duration-300 active:text-amber",
       isActive ? "text-paper [--underline:1]" : "text-paper-2 hover:text-paper",
     );
 
   const mobileLinkClass = ({ isActive }: { isActive: boolean }) =>
     cn(
-      "flex min-h-[52px] items-center border-b border-line text-[clamp(1.25rem,5vw,1.6rem)] transition-colors duration-300",
+      "flex min-h-[52px] items-center border-b border-line text-[clamp(1.25rem,5vw,1.6rem)] transition-colors duration-300 active:text-amber",
       isActive ? "text-amber" : "text-paper hover:text-amber",
     );
 
+  // Ārējais elements dod 44 px klikšķa lauku, iekšējais - bāzes līnijas
+  // līdzinājumu starp 19 px vārdzīmi un 11 px mono pilsētu. Ja abus liktu uz
+  // viena elementa, `items-baseline` 44 px kastē vārdzīmi pieceltu augšā.
   const wordmark = (
     <Link
       to={path("home")}
-      className="flex shrink-0 items-baseline gap-1.5 leading-none"
+      className="inline-flex min-h-[44px] shrink-0 items-center leading-none transition-colors duration-300 active:text-amber"
     >
-      <span className="text-[19px] font-bold tracking-[-0.02em] text-paper md:text-[20px]">Gatis Design</span>
-      <Label caps className="text-[11px]">
-        Rīga
-      </Label>
+      <span className="flex items-baseline gap-1.5">
+        <span className="text-[19px] font-bold tracking-[-0.02em] text-paper md:text-[20px]">Gatis Design</span>
+        <Label caps className="text-[11px]">
+          Rīga
+        </Label>
+      </span>
     </Link>
   );
 
@@ -139,7 +144,7 @@ export default function Header() {
               {servicesOpen ? (
                 <div
                   id={panelId}
-                  className="absolute right-0 top-[calc(100%+18px)] z-10 w-[300px] rounded-card border border-line bg-ink-card p-2 shadow-[0_40px_80px_-40px_rgba(0,0,0,.9)]"
+                  className="absolute right-0 top-[calc(100%+18px)] z-10 w-[300px] rounded-card border border-line bg-ink-card p-2 [box-shadow:var(--shadow-panel)]"
                 >
                   <ul>
                     {SERVICE_KEYS.map((key) => (
