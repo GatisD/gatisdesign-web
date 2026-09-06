@@ -23,6 +23,7 @@ import {
   SITE_URL,
   WORK_LOCATION,
 } from "@/lib/site";
+import { PERSON_BASE, faqPageNode } from "@/lib/schema-nodes";
 
 /**
  * Kontakti.
@@ -48,30 +49,12 @@ export default function Kontakti() {
     name: contactContent.h1,
     description: contactContent.metaDescription,
     url: `${SITE_URL}${pathFor("contact", locale)}`,
-    mainEntity: {
-      "@type": "Person",
-      "@id": `${SITE_URL}/#gatis`,
-      name: "Gatis Daugavietis",
-      alternateName: SITE_NAME,
-      jobTitle: PERSON_JOB_TITLE,
-      url: SITE_URL,
-      email: CONTACT_EMAIL,
-      address: { "@type": "PostalAddress", addressLocality: "Rīga", addressCountry: "LV" },
-      hasOccupation: PERSON_OCCUPATION,
-      workLocation: WORK_LOCATION,
-      sameAs: PERSON_SAME_AS,
-    },
+    mainEntity: PERSON_BASE,
+
   };
 
-  const faqPageSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: contactContent.faq.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
-    })),
-  };
+  const faqPageSchema = faqPageNode(contactContent.faq);
+
 
   const breadcrumbSchema = buildBreadcrumbSchema([
     { name: isLv ? "Sākums" : "Home", path: pathFor("home", locale) },

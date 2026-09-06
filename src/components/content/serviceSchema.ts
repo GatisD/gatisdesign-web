@@ -14,6 +14,7 @@ import { buildBreadcrumbSchema } from "@/components/JsonLd";
 import { priceRangeFor } from "@/content";
 import type { ServiceContent } from "@/content/types";
 import { pathFor, type Locale, type RouteKey } from "@/i18n/routes";
+import { personNode, faqPageNode } from "@/lib/schema-nodes";
 
 const abs = (p: string) => `${SITE_URL}${p}`;
 
@@ -22,25 +23,7 @@ const abs = (p: string) => `${SITE_URL}${p}`;
  * aprakstu. Bez tā Google un AI modeļiem šī ir vairākas dažādas personas ar
  * vienu vārdu.
  */
-const provider = {
-  // `@context` ir tāpēc, ka šis mezgls masīvā stāv patstāvīgi. Bez konteksta
-  // stingrā JSON-LD apstrādē tas zaudē vārdnīcu, un `@type` kļūst par tekstu.
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": `${SITE_URL}/#gatis`,
-  name: "Gatis Daugavietis",
-  alternateName: SITE_NAME,
-  jobTitle: PERSON_JOB_TITLE,
-  url: SITE_URL,
-  email: CONTACT_EMAIL,
-  address: WORK_LOCATION.address,
-  // Tie paši lauki, kas pārējās trīs lapās: viens `@id` nedrīkst nest divus
-  // amatus un divas prasmju kopas.
-  hasOccupation: PERSON_OCCUPATION,
-  workLocation: WORK_LOCATION,
-  knowsAbout: KNOWS_ABOUT,
-  sameAs: PERSON_SAME_AS,
-};
+const provider = personNode();
 
 /**
  * Service + FAQPage + BreadcrumbList vienā masīvā. Cenu diapazons nāk no lapas
@@ -84,15 +67,8 @@ export function buildServiceSchema(
     };
   }
 
-  const faq = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: content.faq.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
-    })),
-  };
+  const faq = faqPageNode(content.faq);
+
 
   const breadcrumb = buildBreadcrumbSchema([
     { name: locale === "lv" ? "Sākums" : "Home", path: pathFor("home", locale) },

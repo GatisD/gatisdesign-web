@@ -44,6 +44,7 @@ import {
   servicesSection,
   worksSection,
 } from "@/content/home";
+import { personNode, faqPageNode } from "@/lib/schema-nodes";
 
 /* ------------------------------------------------------------------ *
  * Strukturētie dati
@@ -53,26 +54,13 @@ const postalAddress = { "@type": "PostalAddress", addressLocality: "Rīga", addr
 const PERSON_ID = `${SITE_URL}/#gatis`;
 const BUSINESS_ID = `${SITE_URL}/#business`;
 
-const homePersonSchema = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": PERSON_ID,
-  name: "Gatis Daugavietis",
-  alternateName: SITE_NAME,
-  jobTitle: PERSON_JOB_TITLE,
+const homePersonSchema = personNode({
   description: homeContent.directAnswer,
-  url: SITE_URL,
-  email: CONTACT_EMAIL,
   image: `${SITE_URL}/og-image.png`,
-  address: postalAddress,
   knowsLanguage: ["lv", "en"],
-  knowsAbout: KNOWS_ABOUT,
-  hasOccupation: PERSON_OCCUPATION,
-  workLocation: WORK_LOCATION,
   worksFor: { "@id": BUSINESS_ID },
-  sameAs: PERSON_SAME_AS,
   dateModified: CONTENT_MODIFIED,
-};
+});
 
 const homeServiceSchema = {
   "@context": "https://schema.org",
@@ -133,17 +121,10 @@ const homeServiceSchema = {
  * tikai `<script>` blokā būtu slēpta iezīmēšana, un Google strukturēto datu
  * politika to aizliedz. Avots abiem ir viens - `homeContent.faq`.
  */
-const homeFaqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
+const homeFaqSchema = faqPageNode(homeContent.faq, {
   "@id": `${SITE_URL}/#faq`,
   inLanguage: "lv",
-  mainEntity: homeContent.faq.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a },
-  })),
-};
+});
 
 const homeWebsiteSchema = {
   "@context": "https://schema.org",

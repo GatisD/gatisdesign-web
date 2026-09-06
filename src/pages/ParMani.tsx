@@ -28,6 +28,7 @@ import {
   SITE_URL,
   WORK_LOCATION,
 } from "@/lib/site";
+import { personNode, faqPageNode } from "@/lib/schema-nodes";
 
 /**
  * Skaitļu josla ir TIKAI šeit - zem portreta, kur tā ir biogrāfijas daļa.
@@ -45,42 +46,20 @@ export default function ParMani() {
   const abs = (key: RouteKey) => `${SITE_URL}${pathFor(key, locale)}`;
   const PERSON_ID = `${SITE_URL}/#gatis`;
 
-  const personSchema = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": PERSON_ID,
-    name: "Gatis Daugavietis",
-    alternateName: SITE_NAME,
-    jobTitle: PERSON_JOB_TITLE,
+  const personSchema = personNode({
     description: aboutContent.directAnswer,
-    url: SITE_URL,
     mainEntityOfPage: abs("about"),
-    email: CONTACT_EMAIL,
     image: `${SITE_URL}/og-image.png`,
-    address: { "@type": "PostalAddress", addressLocality: "Rīga", addressCountry: "LV" },
     knowsLanguage: ["lv", "en"],
-    knowsAbout: KNOWS_ABOUT,
-    // Abi faili apraksta VIENU `@id`. Ja tie atšķiras, parseris redz divus
-    // dažādus cilvēkus ar vienu identifikatoru, tāpēc lauki nāk no vienas
-    // konstantes (src/lib/site.ts), ne no divām kopijām.
-    hasOccupation: PERSON_OCCUPATION,
-    workLocation: WORK_LOCATION,
-    sameAs: PERSON_SAME_AS,
     dateModified: CONTENT_MODIFIED,
-  };
+  });
+
 
   // FAQPage satur arī tos jautājumus, kas lapā netiek rādīti (piem. "Kas ir
   // Gatis Daugavietis?"): visa lapa jau ir atbilde uz to, un redzams jautājums
   // to atkārtotu trešo reizi, bet strukturētajos datos tas ir vietā.
-  const faqPageSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [...aboutContent.faq, ...(aboutContent.faqSchemaOnly ?? [])].map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
-    })),
-  };
+  const faqPageSchema = faqPageNode([...aboutContent.faq, ...(aboutContent.faqSchemaOnly ?? [])]);
+
 
   const breadcrumbSchema = buildBreadcrumbSchema([
     { name: isLv ? "Sākums" : "Home", path: pathFor("home", locale) },
