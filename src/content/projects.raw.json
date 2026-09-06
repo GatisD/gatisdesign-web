@@ -715,5 +715,242 @@
     "coverHint": "public/portfolio/web-design-cover-43.jpg",
     "galleryCount": 3,
     "needsInput": "Šī kolekcija pārklājas ar jaunajiem atsevišķajiem web ierakstiem un tajā ir tikai 3 attēli. Vai to paturam, vai izjaucam pa atsevišķiem projektiem?"
+  },
+  {
+    "id": "termokoksne",
+    "slug": "termokoksne",
+    "category": "web",
+    "client": "Termokoksne",
+    "year": null,
+    "yearEstimated": true,
+    "roleKind": "solo",
+    "roleLabel": "Izstrāde un uzturēšana",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://termokoksne.lv",
+    "externalStatus": "live",
+    "stack": [
+      "WordPress",
+      "Elementor",
+      "WPML"
+    ],
+    "titleLv": "Termokoksne - termiski apstrādāta koka vietne",
+    "summaryLv": "Termiski apstrādāta koka fasāžu un terašu materiālu vietne ar katalogu, galeriju un partneru sadaļu. Saturs ir divās valodās, un sākumlapa no pirmā ekrāna ved uz katalogu.",
+    "coverHint": "shots/termokoksne.jpg",
+    "needsInput": "Kurā gadā tapa termokoksne.lv un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
+  },
+  {
+    "id": "psl",
+    "slug": "psl",
+    "category": "web",
+    "client": "PSL",
+    "year": null,
+    "yearEstimated": true,
+    "roleKind": "solo",
+    "roleLabel": "Izstrāde un uzturēšana",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://psl.lv",
+    "externalStatus": "live",
+    "stack": [
+      "WordPress",
+      "Elementor"
+    ],
+    "titleLv": "PSL - auto nomas un servisa vietne",
+    "summaryLv": "Auto nomas un servisa uzņēmuma vietne ar ilgtermiņa nomas, mazlietotu auto un autoservisa sadaļām. Sākumlapā piedāvājumu pavada video, un blakus stāv piecas darbības pogas, tostarp pieteikšanās testa braucienam un saziņa WhatsApp.",
+    "coverHint": "shots/psl.jpg",
+    "needsInput": "Kurā gadā tapa psl.lv un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
+  },
+  {
+    "id": "laluna",
+    "slug": "laluna",
+    "category": "web",
+    "client": "Laluna",
+    "year": null,
+    "yearEstimated": true,
+    "roleKind": "solo",
+    "roleLabel": "Izstrāde un uzturēšana",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://laluna.lv",
+    "externalStatus": "live",
+    "stack": [
+      "WordPress",
+      "Elementor"
+    ],
+    "titleLv": "Laluna - Toyota pārstāvja vietne",
+    "summaryLv": "Toyota pārstāvja vietne ar jaunu un lietotu auto katalogu, finansēšanas, servisa un Toyota Business sadaļām. Zem kampaņas kadra ir rinda ar pieteikšanās pogām: testa brauciens, piedāvājums, serviss un virsbūves remonts.",
+    "coverHint": "shots/laluna.jpg",
+    "needsInput": "Kurā gadā tapa laluna.lv un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
+  },
+  {
+    "id": "salonsobjekts",
+    "slug": "salonsobjekts",
+    "category": "web",
+    "client": "Salons Objekts",
+    "year": null,
+    "yearEstimated": true,
+    "roleKind": "solo",
+    "roleLabel": "Izstrāde un uzturēšana",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://salonsobjekts.lv",
+    "externalStatus": "live",
+    "stack": [
+      "WordPress",
+      "Elementor",
+      "WooCommerce"
+    ],
+    "titleLv": "Salons Objekts - apdares materiālu vietne",
+    "summaryLv": "Iekštelpu apdares materiālu salona vietne ar produktu katalogu, projektu sadaļu un grozu. Sākumlapa ir kategoriju režģis, kurā katra kartīte ved uz savu materiālu grupu.",
+    "coverHint": "shots/salonsobjekts.jpg",
+    "needsInput": "Kurā gadā tapa salonsobjekts.lv un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
+  },
+  {
+    "id": "globaltac",
+    "slug": "globaltac",
+    "category": "web",
+    "client": "Global Tactical Equipment",
+    "year": null,
+    "yearEstimated": true,
+    "roleKind": "solo",
+    "roleLabel": "Izstrāde un uzturēšana",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://globaltac.lv",
+    "externalStatus": "live",
+    "stack": [
+      "WordPress",
+      "Elementor",
+      "WooCommerce"
+    ],
+    "titleLv": "Global Tactical Equipment - taktiskā aprīkojuma veikals",
+    "summaryLv": "Taktiskā aprīkojuma interneta veikals ar vairāku valodu pārslēgu un grozu. Uzreiz aiz pirmā ekrāna ir pārstāvēto zīmolu rinda un tieša saite uz veikalu.",
+    "coverHint": "shots/globaltac.jpg",
+    "needsInput": "Kurā gadā tapa globaltac.lv un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
+  },
+  {
+    "id": "oakabbq",
+    "slug": "oakabbq",
+    "category": "web",
+    "client": "Oak'A BBQ",
+    "year": null,
+    "yearEstimated": true,
+    "roleKind": "solo",
+    "roleLabel": "Izstrāde un uzturēšana",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://oakabbq.com",
+    "externalStatus": "live",
+    "stack": [
+      "WordPress",
+      "Elementor",
+      "WooCommerce"
+    ],
+    "titleLv": "Oak'A BBQ - grila mērču veikals",
+    "summaryLv": "Grila mērču un garšvielu zīmola interneta veikals ar veikala, apmācību un kultūras sadaļu. Sākumlapas pirmais ekrāns ir akcijas kampaņa ar tās darbības datumiem.",
+    "coverHint": "shots/oakabbq.jpg",
+    "needsInput": "Kurā gadā tapa oakabbq.com un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
+  },
+  {
+    "id": "sinuuksed",
+    "slug": "sinuuksed",
+    "category": "web",
+    "client": "Sinu Uksed",
+    "year": null,
+    "yearEstimated": true,
+    "roleKind": "solo",
+    "roleLabel": "Izstrāde un uzturēšana",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://sinuuksed.ee",
+    "externalStatus": "live",
+    "stack": [
+      "WordPress",
+      "Elementor"
+    ],
+    "titleLv": "Sinu Uksed - durvju un logu vietne Igaunijā",
+    "summaryLv": "Igauņu durvju un logu tirgotāja vietne ar katalogu, atsauksmēm un biežāk uzdoto jautājumu sadaļu. Sākumlapa piedāvājumu dala trīs daļās - ārdurvis, iekšdurvis un logi - un strādā igauņu un krievu valodā.",
+    "coverHint": "shots/sinuuksed.jpg",
+    "needsInput": "Kurā gadā tapa sinuuksed.ee un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
+  },
+  {
+    "id": "profdurys",
+    "slug": "profdurys",
+    "category": "web",
+    "client": "Prof Durys",
+    "year": null,
+    "yearEstimated": true,
+    "roleKind": "solo",
+    "roleLabel": "Izstrāde un uzturēšana",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://profdurys.lt",
+    "externalStatus": "live",
+    "stack": [
+      "WordPress",
+      "Elementor",
+      "WooCommerce"
+    ],
+    "titleLv": "Prof Durys - durvju vietne Lietuvā",
+    "summaryLv": "Lietuviešu durvju tirgotāja vietne ar katalogu, pakalpojumu un atsauksmju sadaļu. Sākumlapā piedāvājums ir sadalīts attēlu kartītēs, un vietne strādā lietuviešu un krievu valodā.",
+    "coverHint": "shots/profdurys.jpg",
+    "needsInput": "Kurā gadā tapa profdurys.lt un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
+  },
+  {
+    "id": "inovat",
+    "slug": "inovat",
+    "category": "web",
+    "client": "Inovat",
+    "year": null,
+    "yearEstimated": true,
+    "roleKind": "solo",
+    "roleLabel": "Izstrāde un uzturēšana",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://inovat.lv",
+    "externalStatus": "live",
+    "stack": [
+      "WordPress",
+      "Elementor",
+      "WooCommerce"
+    ],
+    "titleLv": "Inovat - saules enerģijas preču veikals",
+    "summaryLv": "Saules enerģijas un būvniecības preču interneta veikals ar kategoriju sarakstu sākumlapas malā. Katalogā ir saules paneļi, invertori, akumulatori, siltumsūkņi un skrūvpāļi, atsevišķi ir klientu servisa un uzņēmumu sadaļa.",
+    "coverHint": "shots/inovat.jpg",
+    "needsInput": "Kurā gadā tapa inovat.lv un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
+  },
+  {
+    "id": "nervostrong-veikals",
+    "slug": "nervostrong-veikals",
+    "category": "web",
+    "client": "Nervostrong Medica",
+    "year": null,
+    "yearEstimated": true,
+    "roleKind": "solo",
+    "roleLabel": "Izstrāde un uzturēšana",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://veikals.nervostrong.com",
+    "externalStatus": "live",
+    "stack": [
+      "WordPress",
+      "Elementor",
+      "WooCommerce"
+    ],
+    "titleLv": "Nervostrong - uztura bagātinātāju veikals",
+    "summaryLv": "Uztura bagātinātāju zīmola interneta veikals ar produktu lapām, blogu un grozu. Sākumlapas kampaņas kadrs ved uz produktu, zem tā stāv pircēju iecienītāko preču rinda.",
+    "coverHint": "shots/nervostrong-veikals.jpg",
+    "needsInput": "Kurā gadā tapa veikals.nervostrong.com un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
   }
 ]

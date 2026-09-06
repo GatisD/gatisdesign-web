@@ -42,7 +42,7 @@ export default function ClientMarquee() {
 
   return (
     <div className="marquee min-w-0 flex-1">
-      <div className="marquee-track flex w-max items-center">
+      <div className="marquee-track flex items-center">
         {list(false)}
         {list(true)}
       </div>

@@ -20,6 +20,24 @@
         ],
         "createdAt": "2026-09-06T04:53:23.863Z",
         "reason": "Darbu kartes attēla pietuvinājums 1.03 ir šīs lapas vienīgais satura hover: ekrānuzņēmums pienāk tuvāk, un kļūst redzams, ka aiz kartes ir īsta lapa. Ierobežots ar @media (hover:hover), tāpēc mobilajā tā nav vispār. Dokumentēts ProjectCard.tsx komentārā."
+      },
+      {
+        "rule": "marquee",
+        "value": "*",
+        "files": [
+          "dist/**"
+        ],
+        "createdAt": "2026-09-06T10:32:54.389Z",
+        "reason": "Klientu logotipu josla sākumlapā - Gata pieprasīts risinājums (kārta 4, 5. punkts). Josla nav dekors: tā ir vienīgā vieta, kur 14 klientu zīmes ietilpst vienā rindā, neizvēršoties par logo sienu. Atbildīgā versija: aptur uz kursora un fokusa, prefers-reduced-motion pārslēdz uz statisku režģi bez dublikāta, logotipi ir vienkrāsaini, lazy un ar izmēriem."
+      },
+      {
+        "rule": "marquee",
+        "value": "*",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-09-06T10:32:54.408Z",
+        "reason": "Tā pati klientu logotipu josla avotā (.marquee/.marquee-track). Iemesls sakrīt ar dist ignorējumu."
       }
     ]
   }

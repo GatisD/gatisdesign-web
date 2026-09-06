@@ -59,6 +59,12 @@ export interface Project {
   /** Rādāms gads vai gadu diapazons. Nav klāt, ja gads ir tikai minējums. */
   year?: string;
   cover: ProjectImage;
+  /**
+   * Pārlūka kadri: dators 1440x900 un telefons 390x844, uzņemti vienā piegājienā
+   * ar to pašu rīku. Ir tikai mājaslapām, kuras var atvērt - zīmola darbiem un
+   * arhivētām lapām kadra nav.
+   */
+  shot?: { desktop: ProjectImage; mobile: ProjectImage; mobileSmall: ProjectImage };
   /** Tikai kolekcijām - pilna darbu galerija. */
   gallery?: ProjectImage[];
   /** Kā galerija izkārtojas lapā. Ir tikai tad, ja galerija ir. */
@@ -127,6 +133,19 @@ const ORDER = [
   "110m2",
   "green-bay",
   "forevolt",
+  // Uzturēšanas un pārbūves darbi, kas 2026-09-06 pievienoti no dzīvajām lapām.
+  // Secība te ir alfabētiska tikai tāpēc, ka gads vēl nav apstiprināts nevienam
+  // no tiem (sk. needsInput iekš projects.raw.json).
+  "globaltac",
+  "inovat",
+  "laluna",
+  "nervostrong-veikals",
+  "oakabbq",
+  "profdurys",
+  "psl",
+  "salonsobjekts",
+  "sinuuksed",
+  "termokoksne",
 ];
 
 export const CATEGORY_LABEL: Record<ProjectCategory, string> = {
@@ -160,6 +179,9 @@ export const EXTERNAL_STATUS_NOTE: Record<ExternalStatus, string> = {
 };
 
 const sizes = imageSizes as Record<string, { width: number; height: number }>;
+
+/** Vai attēls ar šo ceļu ir manifestā (tātad reāli guļ public mapē). */
+const hasImage = (src: string) => src in sizes;
 
 function image(src: string, alt: string, caption?: string): ProjectImage {
   const size = sizes[src];
@@ -223,7 +245,29 @@ function buildSiteProjects(): Project[] {
       const alt = LOGO_COVER_IDS.has(entry.id)
         ? `${clientName} logotips`
         : `${clientName} mājaslapas ekrānuzņēmums`;
-      return toProject(entry, image(`/portfolio/sites/${entry.id}-cover.jpg`, alt));
+
+      /**
+       * Vāks nāk no pārlūka kadra, ja tāds ir. Vecie 16:9 vāki bija griezti no
+       * kadra malām, un tieši malās sēž logotips un galvenā poga - Estire
+       * kartītē bija nogriezts gan "ESTIRE", gan "ZVANĪT". Pārlūka kadrs 1440x900
+       * ir 16:10 un kartītē iet iekšā bez horizontāla griezuma.
+       */
+      const shotSrc = `/portfolio/shots/${entry.slug}.jpg`;
+      const cover = hasImage(shotSrc)
+        ? image(shotSrc, alt)
+        : image(`/portfolio/sites/${entry.id}-cover.jpg`, alt);
+      const project = toProject(entry, cover);
+
+      const mobileSrc = `/portfolio/shots/${entry.slug}-mobile.jpg`;
+      const mobileSmallSrc = `/portfolio/shots/${entry.slug}-mobile-sm.jpg`;
+      if (hasImage(shotSrc) && hasImage(mobileSrc) && hasImage(mobileSmallSrc)) {
+        project.shot = {
+          desktop: image(shotSrc, `${clientName} mājaslapa datora ekrānā`),
+          mobile: image(mobileSrc, `${clientName} mājaslapa telefona ekrānā`),
+          mobileSmall: image(mobileSmallSrc, `${clientName} mājaslapa telefona ekrānā`),
+        };
+      }
+      return project;
     });
 }
 

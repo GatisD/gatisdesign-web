@@ -261,6 +261,9 @@
     mask-image: linear-gradient(to right, transparent, #000 40px, #000 calc(100% - 40px), transparent);
   }
   .marquee-track {
+    /* Platums nāk no satura, ne no Tailwind `w-max`: bez tā -50% nav vienāds ar
+       viena saraksta platumu, un cilpā parādās lēciens. */
+    width: max-content;
     animation: marquee-x 40s linear infinite;
     will-change: transform;
   }
@@ -283,7 +286,10 @@
       width: 100%;
     }
     .marquee-track .marquee-list {
+      width: 100%;
+      flex-shrink: 1;
       flex-wrap: wrap;
+      padding-inline-end: 0;
     }
     .marquee-track .marquee-list[aria-hidden="true"] {
       display: none;

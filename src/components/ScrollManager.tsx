@@ -52,19 +52,28 @@ export default function ScrollManager() {
     };
   }, []);
 
-  // Pozīcija tiek pierakstīta ritinot, lai pēc "atpakaļ" tā jau būtu zināma.
+  // Pozīcija tiek pierakstīta ritinot. Klausītājs ir viens uz visu sesiju un
+  // lasa atslēgu no ref, tāpēc maršruta maiņa to nepārtrauc.
   useEffect(() => {
-    keyRef.current = location.key;
     const onScroll = () => positions.set(keyRef.current, window.scrollY);
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      positions.set(keyRef.current, window.scrollY);
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, [location.key]);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useIsoLayoutEffect(() => {
     if (typeof window === "undefined") return;
+
+    /**
+     * Aizejošās lapas pozīcija tiek nolasīta ŠEIT un pirms jebkura lēciena.
+     * Šis efekts izpildās pirms kadra, un logā vēl stāv iepriekšējās lapas
+     * ritinājums. Ja to pierakstīja pasīvais efekts (tas iet pēc kadra), tur
+     * jau bija jaunās lapas nulle - un "atpakaļ" atgriezās lapas augšā, nevis
+     * tur, kur cilvēks bija.
+     */
+    if (keyRef.current !== location.key) {
+      positions.set(keyRef.current, window.scrollY);
+      keyRef.current = location.key;
+    }
 
     if (location.hash) {
       const id = decodeURIComponent(location.hash.slice(1));

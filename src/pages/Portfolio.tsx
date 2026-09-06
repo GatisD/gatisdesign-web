@@ -169,6 +169,7 @@ export default function Portfolio() {
                 eager={i === 0}
                 frame={FRAME[i % FRAME.length]}
                 frameRatio={FRAME_RATIO[i % FRAME_RATIO.length]}
+                devicePair
               />
             </div>
           ))}

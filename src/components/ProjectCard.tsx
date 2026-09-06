@@ -28,6 +28,7 @@ export default function ProjectCard({
   eager = false,
   frame,
   frameRatio,
+  devicePair = false,
 }: {
   project: Project;
   eager?: boolean;
@@ -42,6 +43,13 @@ export default function ProjectCard({
    * kadru aizpilda vai ietilpst tajā - sk. komentāru pie `fits` zemāk.
    */
   frameRatio?: number;
+  /**
+   * Mājaslapu kartēm - telefona kadrs kartes stūrī. Rādīts tikai tur, kur tas ir
+   * saturs, ne rota: portfolio režģī, kur cilvēks salīdzina darbus. Sākumlapas
+   * izlasē kadrs paliek viens, jo tur kartes ir lielākas un mazais telefons
+   * blakus lielajam ekrānam sāktu skaitīt pikseļus, ne darbus.
+   */
+  devicePair?: boolean;
 }) {
   const { path } = useLocale();
   const { cover } = project;
@@ -57,8 +65,21 @@ export default function ProjectCard({
    * kadrā ietilpst pilnībā uz kartes fona - labāk redzēt visu darbu ar malu,
    * nekā pusi no tā bez malas.
    */
+  const phone = devicePair ? project.shot?.mobileSmall : undefined;
+
+  /**
+   * Pārlūka kadrs kartē NEKAD netiek griezts no malām. Tieši malās sēž tas, kas
+   * kartei dod jēgu - klienta logotips pa kreisi un galvenā poga pa labi - un
+   * `object-cover` tos nogrieza: Estire kartē no "ESTIRE" palika "TIRE" un no
+   * "Beramkravu" palika "amkravu". Kartes kadra proporcija pie 1440 px ir ~1,28,
+   * kadra proporcija ir 1,6, tāpēc pilns platums nozīmē šauras joslas augšā un
+   * apakšā. Josla uz kartes fona ir godīgāka par pusi no lapas.
+   */
+  const isBrowserShot = project.shot?.desktop.src === cover.src;
+
   const coverRatio = cover.width / cover.height;
-  const fits = frameRatio ? Math.max(coverRatio / frameRatio, frameRatio / coverRatio) <= 1.18 : true;
+  const fits =
+    isBrowserShot ? false : frameRatio ? Math.max(coverRatio / frameRatio, frameRatio / coverRatio) <= 1.18 : true;
 
   return (
     <Link
@@ -79,13 +100,30 @@ export default function ProjectCard({
           decoding={eager ? "sync" : "async"}
           className={cn(
             "h-full w-full",
-            fits ? "object-cover object-[top_center]" : "object-contain p-5 md:p-7",
+            fits ? "object-cover object-[top_center]" : "object-contain",
+            fits || isBrowserShot ? null : "p-5 md:p-7",
             "[filter:contrast(.96)_saturate(.9)]",
             "transition-[transform,filter] duration-[1100ms] ease-dir",
             "group-hover:[filter:contrast(1)_saturate(1)]",
             "[@media(hover:hover)]:group-hover:scale-[1.03]",
           )}
         />
+
+        {/* Telefona kadrs stūrī. `alt=""` - datora kadrs to pašu darbu jau ir
+            nosaucis, un divas reizes viens nosaukums ir troksnis, ne informācija.
+            Kadrs nepiedalās hover mērogā: kustība pieder lielajam attēlam. */}
+        {phone ? (
+          <PicturePortfolio
+            src={phone.src}
+            alt=""
+            width={phone.width}
+            height={phone.height}
+            loading="lazy"
+            priority="low"
+            decoding="async"
+            className="absolute bottom-[6%] end-[5%] hidden h-[64%] w-auto rounded-[7px] border border-line bg-ink-card object-cover object-top [box-shadow:var(--shadow-panel)] sm:block"
+          />
+        ) : null}
       </span>
 
       <span className="flex flex-col gap-1 px-1">

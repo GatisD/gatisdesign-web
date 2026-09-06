@@ -305,6 +305,51 @@ export default function ProjectDetail() {
         </dl>
       </section>
 
+      {/* ============ PĀRLŪKA KADRI ============ */}
+      {/* Divi kadri, ne viens: mājaslapa nav attēls, tā ir divas dažādas lapas
+          vienā adresē. Telefona kadrs stāv blakus, ne zem - blakus tie ir
+          salīdzināmi, un tieši salīdzinājums ir tas, ko šeit ir vērts rādīt.
+          Mobilajā kolonnas saliekas vienā, un telefons paliek savā platumā, jo
+          izstiepts pāri visai lapai tas vairs nav telefons. */}
+      {project.shot ? (
+        <Section rhythm="md" ariaLabel={isLv ? "Pārlūka kadri" : "Browser views"}>
+          <div className="grid gap-grid md:grid-cols-[3fr_1fr] md:items-start">
+            <Reveal className="overflow-hidden rounded-card border border-line bg-ink-card">
+              <PicturePortfolio
+                src={project.shot.desktop.src}
+                alt={project.shot.desktop.alt}
+                width={project.shot.desktop.width}
+                height={project.shot.desktop.height}
+                loading="lazy"
+                priority="low"
+                decoding="async"
+                sizes="(min-width: 768px) 72vw, 92vw"
+                className="h-auto w-full"
+              />
+            </Reveal>
+            <Reveal
+              delay={0.1}
+              className="w-[58%] justify-self-center overflow-hidden rounded-card border border-line bg-ink-card md:w-full md:justify-self-stretch"
+            >
+              <PicturePortfolio
+                src={project.shot.mobile.src}
+                alt={project.shot.mobile.alt}
+                width={project.shot.mobile.width}
+                height={project.shot.mobile.height}
+                loading="lazy"
+                priority="low"
+                decoding="async"
+                sizes="(min-width: 768px) 24vw, 54vw"
+                className="h-auto w-full"
+              />
+            </Reveal>
+          </div>
+          <p className="mt-5">
+            <Label>{isLv ? "Dators 1440 px un telefons 390 px" : "Desktop 1440 px and phone 390 px"}</Label>
+          </p>
+        </Section>
+      ) : null}
+
       {/* ============ APRAKSTS UN SAITE ============ */}
       <Section rhythm="md" labelledBy="par-projektu-h">
           <SectionTitle id="par-projektu-h" className="mb-[clamp(22px,3vw,36px)]">
