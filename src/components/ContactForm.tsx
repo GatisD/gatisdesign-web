@@ -6,6 +6,7 @@ import { useLocale } from "@/i18n/LocaleContext";
 import type { Dict } from "@/i18n/dict";
 import Label from "@/components/ui/Label";
 import { CONTACT_EMAIL } from "@/lib/site";
+import Turnstile, { TURNSTILE_FIELD, turnstileEnabled } from "@/components/Turnstile";
 import { cn } from "@/lib/utils";
 import { BUDGET_VALUES, FIELD_LIMITS, SERVICE_VALUES } from "../../api/_lib/contact-fields";
 import { contactSchema, type ContactFormValues } from "../../api/_lib/contact-schema";
@@ -63,6 +64,10 @@ export default function ContactForm({ className }: { className?: string }) {
   const { t, path, locale } = useLocale();
   const [status, setStatus] = useState<Status>({ state: "idle" });
   const [shake, setShake] = useState(false);
+  // Turnstile pilnvara. Glabājas `ref`, ne `state`: tās maiņa nav iemesls
+  // pārzīmēt formu, un iesniegšanas brīdī vajadzīga pēdējā vērtība.
+  const turnstileToken = useRef("");
+  const [turnstileReset, setTurnstileReset] = useState(0);
   const formRef = useRef<HTMLFormElement>(null);
 
   const {
@@ -96,7 +101,11 @@ export default function ContactForm({ className }: { className?: string }) {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, locale }),
+        body: JSON.stringify({
+          ...values,
+          locale,
+          ...(turnstileEnabled ? { [TURNSTILE_FIELD]: turnstileToken.current } : {}),
+        }),
       });
       const data = (await response.json().catch(() => null)) as ApiResponse | null;
 
@@ -123,11 +132,17 @@ export default function ContactForm({ className }: { className?: string }) {
         if (reported.length > 0) setFocus(reported[0][0]);
         setStatus({ state: "error", messageKey: "validation", code });
         setShake(true);
+        if (turnstileEnabled) setTurnstileReset((n) => n + 1);
         return;
       }
 
-      setStatus({ state: "error", messageKey: code === "rate_limit" ? "rateLimit" : "server", code });
+      setStatus({
+        state: "error",
+        messageKey: code === "turnstile" ? "turnstile" : code === "rate_limit" ? "rateLimit" : "server",
+        code,
+      });
       setShake(true);
+      if (turnstileEnabled) setTurnstileReset((n) => n + 1);
     } catch {
       // Tīkls nokrita vai atbilde nepienāca. To parādām kā tīkla kļūdu, nevis
       // slēpjam aiz "forma vēl nav savienota".
@@ -329,6 +344,14 @@ export default function ContactForm({ className }: { className?: string }) {
       <p id="consent-error" role="alert" className={cn("mt-2", ERROR_SLOT)}>
         {errors.consent ? errorText(errors.consent.message) : ""}
       </p>
+
+      <Turnstile
+        onToken={(token) => {
+          turnstileToken.current = token;
+        }}
+        resetSignal={turnstileReset}
+        locale={locale}
+      />
 
       {failure ? (
         <div role="alert" className="mt-7 rounded-field border border-amber px-5 py-4 text-[15px]">
