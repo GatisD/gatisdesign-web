@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useLocale } from "@/i18n/LocaleContext";
-import { CONTACT_EMAIL, SOCIAL } from "@/lib/site";
+import { BUILD_YEAR, CONTACT_EMAIL, SOCIAL } from "@/lib/site";
 import MediaPlaceholder, { SHOW_PLACEHOLDERS } from "./direction/MediaPlaceholder";
 import Label from "./ui/Label";
 import LanguageSwitch from "./LanguageSwitch";
@@ -39,9 +39,6 @@ export default function Footer() {
   const linkCls =
     "inline-flex min-h-[44px] items-center text-[16px] text-on-paper transition-colors duration-300 hover:text-amber-paper md:text-[17px]";
 
-  // Vienīgais atļautais new Date() render laikā - gads mainās reizi gadā, un
-  // būves un hidratācijas brīdis praktiski vienmēr sakrīt (projekta CLAUDE.md).
-  const year = new Date().getFullYear();
 
   return (
     <footer className="on-paper bg-paper text-on-paper">
@@ -98,7 +95,7 @@ export default function Footer() {
           <Label tone="on-paper">{t.footer.location}</Label>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <Label tone="on-paper" caps>
-              {year} · Gatis Design
+              {BUILD_YEAR} · Gatis Design
             </Label>
             <Link
               to={path("privacy")}

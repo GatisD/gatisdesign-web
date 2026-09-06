@@ -45,8 +45,12 @@ const priorityByRoute: Record<string, number> = {
 for (const key of highPriorityKeys) {
   priorityByRoute[ROUTES[key].lv] = 0.8;
 }
+// Projektu lapa ar tukšu aprakstu nav 0,8 vērta: piedāvāt Google 23 gandrīz
+// vienādi plānas lapas ar vienu prioritāti nozīmē teikt, ka tās visas ir vienlīdz
+// svarīgas, arī tās piecas, kurās nav neviena teikuma par darbu. Lapas paliek
+// indeksējamas (index, follow) - tas ir apzināts lēmums, ne noindex.
 for (const p of projects) {
-  priorityByRoute[`${ROUTES.portfolio.lv}/${p.slug}`] = 0.8;
+  priorityByRoute[`${ROUTES.portfolio.lv}/${p.slug}`] = p.summary ? 0.8 : 0.5;
 }
 
 // https://vitejs.dev/config/

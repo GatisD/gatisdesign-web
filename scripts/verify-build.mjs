@@ -1,108 +1,334 @@
-import { readFileSync, existsSync } from "node:fs";
-import { join } from "node:path";
+import { readFileSync, existsSync, readdirSync, statSync, cpSync, rmSync, writeFileSync } from "node:fs";
+import { join, relative, sep } from "node:path";
+import { tmpdir } from "node:os";
 
-const DIST = join(process.cwd(), "dist");
-const errors = [];
+/**
+ * Būves vārti.
+ *
+ * Noteikums: katram vārtam jābūt tādam, ka to var salauzt un tas to pamana.
+ * `node scripts/verify-build.mjs --selftest` paņem dist kopiju, ievieš tajā
+ * zināmi sliktus paraugus un pieprasa, lai katrs no tiem KRIT - pozitīvā
+ * kontrole (tīra kopija) tajā pašā piegājienā. Vārti, kas nekad nav redzējuši
+ * savu kļūdu, ir tikai iekārtas troksnis.
+ *
+ * Vēsture: iepriekšējā versija pārbaudīja 2 lapas no 66, pielaida vienas
+ * `text-label` klases zudumu (skaitīja pa lapu, ne pa elementu) un pavisam
+ * nezināja par noteikumu "EN lapa ir noindex, kamēr nav EN satura" - tieši tas
+ * vienā lapā no 35 arī bija pazudis.
+ */
 
-function read(p) {
-  const full = join(DIST, p);
-  return existsSync(full) ? readFileSync(full, "utf8") : null;
+const ROOT = process.cwd();
+const AI_BOTS = [
+  "GPTBot",
+  "OAI-SearchBot",
+  "ChatGPT-User",
+  "ClaudeBot",
+  "anthropic-ai",
+  "Claude-User",
+  "PerplexityBot",
+  "Perplexity-User",
+  "Google-Extended",
+  "Applebot-Extended",
+];
+
+/** Visi dist HTML faili, ceļš ar / arī uz Windows. */
+function htmlPages(dist) {
+  const out = [];
+  const walk = (dir) => {
+    for (const entry of readdirSync(dir)) {
+      const full = join(dir, entry);
+      if (statSync(full).isDirectory()) walk(full);
+      else if (entry.endsWith(".html")) out.push(relative(dist, full).split(sep).join("/"));
+    }
+  };
+  walk(dist);
+  return out.sort();
 }
 
-// 1. robots.txt nedrīkst būt pārrakstīts ar noklusējumu
-const robots = read("robots.txt");
-if (!robots) {
-  errors.push("dist/robots.txt neeksistē");
-} else {
-  // GPTBot ir apmācībai, bet ChatGPT meklēšanas rezultāti nāk no OAI-SearchBot,
-  // un AI Overviews - no Google-Extended. Trūkstošs bots nav sintakses kļūda,
-  // tāpēc to nepamana neviens cits, kā tikai šie vārti.
-  for (const bot of [
-    "GPTBot",
-    "OAI-SearchBot",
-    "ChatGPT-User",
-    "ClaudeBot",
-    "anthropic-ai",
-    "Claude-User",
-    "PerplexityBot",
-    "Perplexity-User",
-    "Google-Extended",
-    "Applebot-Extended",
-  ]) {
+const attr = (html, re) => {
+  const m = html.match(re);
+  return m ? m[1] : null;
+};
+
+const isEnPage = (page) => page === "en.html" || page.startsWith("en/");
+const isNotFound = (page) => page === "404.html" || page === "en/404.html";
+
+function checkDist(dist) {
+  const errors = [];
+  const read = (p) => {
+    const full = join(dist, p);
+    return existsSync(full) ? readFileSync(full, "utf8") : null;
+  };
+
+  // 1. robots.txt: trūkstošs AI bots nav sintakses kļūda, tāpēc to nepamana neviens cits.
+  const robots = read("robots.txt");
+  if (!robots) errors.push("dist/robots.txt neeksistē");
+  else for (const bot of AI_BOTS) {
     if (!robots.includes(bot)) errors.push(`robots.txt trūkst ${bot} sadaļas`);
   }
-}
 
-// 2. hreflang: katrā lapā jābūt abām valodām un x-default
-for (const page of ["index.html", "kontakti.html", "en/contact.html"]) {
-  const html = read(page);
-  if (!html) { errors.push(`dist/${page} neeksistē`); continue; }
-  if (!html.includes('hreflang="lv"')) errors.push(`${page}: trūkst hreflang lv`);
-  if (!html.includes('hreflang="en"')) errors.push(`${page}: trūkst hreflang en`);
-  if (!html.includes('hreflang="x-default"')) errors.push(`${page}: trūkst x-default`);
-}
+  const pages = htmlPages(dist);
+  if (pages.length < 60) errors.push(`dist satur tikai ${pages.length} HTML lapas - gaidītas vismaz 60`);
+  if (!existsSync(join(dist, "404.html"))) errors.push("dist/404.html neeksistē");
 
-// 3. lang atribūts atbilst valodai
-const enHtml = read("en/contact.html");
-if (enHtml && !/<html[^>]*lang="en"/.test(enHtml)) errors.push("en/contact.html: <html lang> nav en");
+  const seen = { title: new Map(), description: new Map(), canonical: new Map() };
 
-// 4. og:image ir absolūts un nedublējas
-for (const page of ["index.html", "en/contact.html"]) {
-  const html = read(page);
-  if (!html) continue;
-  const m = [...html.matchAll(/property="og:image"\s+content="([^"]+)"/g)];
-  if (m.length === 0) errors.push(`${page}: nav og:image`);
-  if (m.length > 1) errors.push(`${page}: og:image dublējas ${m.length}x`);
-  for (const [, url] of m) {
-    if (!url.startsWith("https://")) errors.push(`${page}: og:image nav absolūts (${url})`);
-  }
-}
+  for (const page of pages) {
+    const html = read(page);
+    if (!html) continue;
+    const where = `${page}:`;
 
-// 5. Mono etiķetes izmērs. `text-label` ir mūsu pašu fonta izmērs, un
-// tailwind-merge to bez konfigurācijas uzskata par krāsu un izmet. Simptoms
-// bija kluss: klase kodā, likums CSS, bet lapā 12 px vietā 16-17 px.
-for (const page of ["index.html", "majaslapu-izstrade.html"]) {
-  const html = read(page);
-  if (!html) continue;
-  const fontLabel = (html.match(/font-label/g) ?? []).length;
-  const textLabel = (html.match(/text-label/g) ?? []).length;
-  if (fontLabel > 0 && textLabel < fontLabel) {
-    errors.push(`${page}: mono etiķetēm pazudis izmērs (font-label ${fontLabel}, text-label ${textLabel})`);
-  }
-}
+    // 2. lang atbilst valodai.
+    const lang = attr(html, /<html[^>]*\blang="([^"]+)"/);
+    const wantLang = isEnPage(page) ? "en" : "lv";
+    if (lang !== wantLang) errors.push(`${where} <html lang> ir ${lang ?? "nav"}, gaidīts ${wantLang}`);
 
-// 6. sitemap satur ceļus un neatkārtojas
-const sitemap = read("sitemap.xml");
-if (!sitemap) errors.push("dist/sitemap.xml neeksistē");
-else {
-  const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-  if (new Set(locs).size !== locs.length) errors.push("sitemap satur dublētus URL");
-  // Sitemap nedrīkst piedāvāt Google lapu, kas pati sevi aizliedz indeksēt.
-  // Šis vārts turēs arī tad, kad EN tulkojums būs gatavs un EN atgriezīsies
-  // sitemapā - tad noindex tur vairs nebūs, un vārts nostrādās pats no sevis.
-  for (const loc of locs) {
-    const p = new URL(loc).pathname.replace(/\/$/, "");
-    const file = p === "" ? "index.html" : `${p.slice(1)}.html`;
-    const html = read(file) ?? read(`${p.slice(1)}/index.html`);
-    if (html && /name="robots"[^>]*content="[^"]*noindex/.test(html)) {
-      errors.push(`sitemap satur noindex lapu: ${p}`);
+    // 3. hreflang pāri un x-default katrā maršruta lapā.
+    if (!isNotFound(page)) {
+      for (const tag of ['hreflang="lv"', 'hreflang="en"', 'hreflang="x-default"']) {
+        if (!html.includes(tag)) errors.push(`${where} trūkst ${tag}`);
+      }
+    }
+
+    // 4. og:image absolūts un tikai viens.
+    const og = [...html.matchAll(/<meta[^>]*property="og:image"[^>]*content="([^"]+)"/g)];
+    if (og.length === 0) errors.push(`${where} nav og:image`);
+    if (og.length > 1) errors.push(`${where} og:image dublējas ${og.length}x`);
+    for (const [, url] of og) {
+      if (!url.startsWith("https://")) errors.push(`${where} og:image nav absolūts (${url})`);
+    }
+
+    // 5. Mono etiķetes izmērs PA ELEMENTU, ne pa lapu. `text-label` ir mūsu
+    //    pašu izmērs, un tailwind-merge to bez konfigurācijas uzskata par krāsu
+    //    un izmet. Iepriekšējā skaitīšana pa lapu pielaida vienas etiķetes
+    //    zudumu, jo LanguageSwitch atdalītājs lieto `text-label` bez
+    //    `font-label` un skaitītājam bija +1 rezerve.
+    for (const [, cls] of html.matchAll(/class="([^"]*\bfont-label\b[^"]*)"/g)) {
+      // Der `text-label` (12 px tokens) vai apzināti uzstādīts cits izmērs
+      // (galvenes vārdzīmē etiķete ir 11 px). Nedrīkst būt tikai fonts bez
+      // izmēra - tieši tad tailwind-merge klasi klusi izmet.
+      if (!/\btext-label\b/.test(cls) && !/\btext-\[[^\]]+\]/.test(cls)) {
+        errors.push(`${where} font-label bez izmēra klases: class="${cls.slice(0, 90)}"`);
+      }
+    }
+
+    // 6. EN lapas ir noindex, kamēr src/content/en/ nav. Kad EN saturs būs
+    //    gatavs, šis vārts jāizņem kopā ar `const noindex = !isLv`.
+    const noindex = /name="robots"[^>]*content="[^"]*noindex/.test(html);
+    if (isEnPage(page) && !noindex) errors.push(`${where} EN lapa bez noindex`);
+
+    // 7. Virsraksts, apraksts, canonical - katrā lapā, un unikāli starp tām
+    //    lapām, kuras Google drīkst indeksēt.
+    const title = attr(html, /<title[^>]*>([^<]*)<\/title>/);
+    const description = attr(html, /<meta[^>]*name="description"[^>]*content="([^"]*)"/);
+    const canonical = attr(html, /<link[^>]*rel="canonical"[^>]*href="([^"]*)"/);
+    if (!title || title.length < 10) errors.push(`${where} nav derīga <title>`);
+    if (!description || description.length < 50) errors.push(`${where} nav derīga meta description`);
+    if (isNotFound(page)) {
+      // 404 lapai canonical uz citu lapu ir pretrunīgs signāls: "neindeksē
+      // mani" un "īstā lapa ir sākumlapa" vienlaikus.
+      if (canonical) errors.push(`${where} 404 lapai ir canonical (${canonical})`);
+    } else if (!canonical || !canonical.startsWith("https://")) {
+      errors.push(`${where} nav absolūta canonical`);
+    }
+    if (!noindex && !isNotFound(page)) {
+      for (const [field, value] of [["title", title], ["description", description], ["canonical", canonical]]) {
+        if (!value) continue;
+        const first = seen[field].get(value);
+        if (first) errors.push(`${where} ${field} sakrīt ar ${first}`);
+        else seen[field].set(value, page);
+      }
+    }
+
+    // 8. h1 rindas atdala īsta atstarpe. Bez tās `textContent` deva
+    //    "Mājaslapuizstrāde" - tieši to redz katrs teksta izvilcējs, kas
+    //    nerenderē CSS.
+    const h1 = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
+    if (!h1) errors.push(`${where} nav <h1>`);
+    else {
+      const lines = [...h1[1].matchAll(/<span[^>]*>([\s\S]*?)<\/span>/g)].map((m) => m[1]);
+      for (let i = 0; i < lines.length - 1; i += 1) {
+        if (!/\s$/.test(lines[i])) {
+          errors.push(`${where} h1 rindas bez atstarpes: ${JSON.stringify(lines.join(""))}`);
+          break;
+        }
+      }
     }
   }
 
-  // 6. Katram sitemap URL jābūt reālam failam. Sitemap ar 404 lapām ir
-  // sliktāks par sitemap bez tām - Search Console tās skaita kā kļūdas.
-  for (const loc of locs) {
-    const p = new URL(loc).pathname.replace(/\/$/, "");
-    const file = p === "" ? "index.html" : `${p.slice(1)}.html`;
-    if (!existsSync(join(DIST, file)) && !existsSync(join(DIST, p.slice(1), "index.html"))) {
-      errors.push(`sitemap norāda uz neeksistējošu lapu: ${p}`);
+  // 9. index.html galvas atsauces norāda uz reāliem failiem (apple-touch-icon
+  //    404 katram iOS pamana tikai šis vārts).
+  const index = read("index.html");
+  if (index) {
+    const head = index.slice(0, index.indexOf("</head>"));
+    for (const [, href] of head.matchAll(/(?:href|src)="(\/[^"]+)"/g)) {
+      const clean = href.split("?")[0].split("#")[0];
+      if (clean.startsWith("//")) continue;
+      if (!existsSync(join(dist, clean.slice(1)))) errors.push(`index.html galva norāda uz neesošu failu: ${clean}`);
     }
   }
+
+  // 10. sitemap: bez dublikātiem, bez noindex lapām, bez mirušiem URL.
+  const sitemap = read("sitemap.xml");
+  if (!sitemap) errors.push("dist/sitemap.xml neeksistē");
+  else {
+    const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+    if (new Set(locs).size !== locs.length) errors.push("sitemap satur dublētus URL");
+    for (const loc of locs) {
+      const p = new URL(loc).pathname.replace(/\/$/, "");
+      const file = p === "" ? "index.html" : `${p.slice(1)}.html`;
+      const html = read(file) ?? read(`${p.slice(1)}/index.html`);
+      if (!html) errors.push(`sitemap norāda uz neeksistējošu lapu: ${p}`);
+      else if (/name="robots"[^>]*content="[^"]*noindex/.test(html)) {
+        errors.push(`sitemap satur noindex lapu: ${p}`);
+      }
+    }
+  }
+
+  // 11. Kontaktu lapā nonāk KATRA satura sadaļa. Pretējais virziens - sadaļa
+  //     ir JSON, lapa to nerāda - iepriekš nebija segts ne ar testu, ne ar
+  //     vārtiem, un trīs sadaļas klusi nebija lapā.
+  const kontakti = read("kontakti.html");
+  const contentPath = join(ROOT, "src/content/lv/kontakti.json");
+  if (kontakti && existsSync(contentPath)) {
+    const text = kontakti
+      .replace(/<script[\s\S]*?<\/script>/g, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&quot;/g, '"')
+      .replace(/&#x27;|&#39;/g, "'")
+      .replace(/&amp;/g, "&")
+      .replace(/\s+/g, " ");
+    const content = JSON.parse(readFileSync(contentPath, "utf8"));
+    for (const section of content.sections) {
+      const probe = (section.body?.[0] ?? "").slice(0, 60).replace(/\s+/g, " ").trim();
+      if (probe && !text.includes(probe)) {
+        errors.push(`kontakti.html trūkst sadaļas "${section.heading}" teksta`);
+      }
+    }
+  }
+
+  return errors;
 }
 
+/* ------------------------------------------------------------------ *
+ * Selftests: katram vārtam sava zināmi sliktā kopija.
+ * ------------------------------------------------------------------ */
+
+const MUTATIONS = [
+  {
+    name: "robots.txt bez GPTBot",
+    apply: (d) => writeFileSync(join(d, "robots.txt"), readFileSync(join(d, "robots.txt"), "utf8").replace(/GPTBot/g, "NavBot")),
+  },
+  {
+    name: "viena text-label klase pazudusi",
+    apply: (d) => {
+      const p = join(d, "index.html");
+      const html = readFileSync(p, "utf8");
+      writeFileSync(p, html.replace(/(class="[^"]*\bfont-label\b[^"]*)\btext-label\b/, "$1"));
+    },
+  },
+  {
+    name: "EN lapa bez noindex",
+    apply: (d) => {
+      const p = join(d, "en/privacy-policy.html");
+      writeFileSync(p, readFileSync(p, "utf8").replace(/<meta[^>]*name="robots"[^>]*>/, ""));
+    },
+  },
+  {
+    name: "h1 rindas salipušas",
+    apply: (d) => {
+      const p = join(d, "majaslapu-izstrade.html");
+      writeFileSync(p, readFileSync(p, "utf8").replace(/(<h1[^>]*>[\s\S]*?<\/h1>)/, (m) => m.replace(/ <\/span>/g, "</span>")));
+    },
+  },
+  {
+    name: "sitemap ar neesošu lapu",
+    apply: (d) => {
+      const p = join(d, "sitemap.xml");
+      writeFileSync(p, readFileSync(p, "utf8").replace("</urlset>", "<url><loc>https://gatisdesign.com/nav-tada</loc></url></urlset>"));
+    },
+  },
+  {
+    name: "galvā atsauce uz neesošu failu",
+    apply: (d) => {
+      const p = join(d, "index.html");
+      writeFileSync(p, readFileSync(p, "utf8").replace("<head>", '<head><link rel="icon" href="/nav-tada-ikona.png"/>'));
+    },
+  },
+  {
+    name: "kontaktu sadaļa pazudusi no lapas",
+    apply: (d) => {
+      const p = join(d, "kontakti.html");
+      const html = readFileSync(p, "utf8");
+      writeFileSync(p, html.replace(/Strādāju viens, tāpēc katru pieteikumu/g, "").replace(/Strādāju viens, tāpēc katru pieprasījumu/g, ""));
+    },
+  },
+  {
+    name: "404 lapai uzlikts canonical",
+    apply: (d) => {
+      const p = join(d, "404.html");
+      writeFileSync(p, readFileSync(p, "utf8").replace("<head>", '<head><link rel="canonical" href="https://gatisdesign.com"/>'));
+    },
+  },
+];
+
+function selftest(dist) {
+  const base = join(tmpdir(), `verify-build-selftest-${process.pid}`);
+  rmSync(base, { recursive: true, force: true });
+  let failures = 0;
+
+  const clean = join(base, "clean");
+  cpSync(dist, clean, { recursive: true });
+  const cleanErrors = checkDist(clean);
+  if (cleanErrors.length) {
+    failures += 1;
+    console.error("  pozitīvā kontrole (tīra kopija) KRITA:");
+    for (const e of cleanErrors) console.error("     -", e);
+  } else {
+    console.log("  pozitīvā kontrole (tīra kopija): iziet, kā jābūt");
+  }
+
+  for (const [i, mutation] of MUTATIONS.entries()) {
+    const dir = join(base, `bad-${i}`);
+    cpSync(dist, dir, { recursive: true });
+    mutation.apply(dir);
+    const errors = checkDist(dir);
+    if (errors.length === 0) {
+      failures += 1;
+      console.error(`  "${mutation.name}": vārti to NEPAMANĪJA`);
+    } else {
+      console.log(`  "${mutation.name}": noķerts (${errors.length}) - ${errors[0].slice(0, 90)}`);
+    }
+    rmSync(dir, { recursive: true, force: true });
+  }
+
+  rmSync(base, { recursive: true, force: true });
+  return failures;
+}
+
+/* ------------------------------------------------------------------ */
+
+const DIST = join(ROOT, "dist");
+if (!existsSync(DIST)) {
+  console.error("Būves vārti KRITA: dist/ neeksistē");
+  process.exit(1);
+}
+
+if (process.argv.includes("--selftest")) {
+  console.log("Būves vārtu selftests:");
+  const failures = selftest(DIST);
+  if (failures) {
+    console.error(`Selftests KRITA: ${failures} vārti nedara to, ko sola`);
+    process.exit(1);
+  }
+  console.log("Selftests: visi vārti ķer savu kļūdu");
+  process.exit(0);
+}
+
+const errors = checkDist(DIST);
 if (errors.length) {
   console.error("Būves vārti KRITA:");
   for (const e of errors) console.error("  -", e);
   process.exit(1);
 }
-console.log("Būves vārti: viss kārtībā");
+console.log(`Būves vārti: viss kārtībā (${htmlPages(DIST).length} lapas)`);

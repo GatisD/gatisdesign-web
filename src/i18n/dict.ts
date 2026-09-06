@@ -33,7 +33,7 @@ export const dict = {
     },
     notFound: {
       title: "Šādas lapas nav",
-      body: "Iespējams, adrese ir mainīta vai ierakstīta ar kļūdu.",
+      body: "Iespējams, adrese ir mainīta vai ierakstīta ar kļūdu. Sāc no sākumlapas vai apskati darbus.",
       cta: "Uz sākumu",
     },
     cookies: {
@@ -125,7 +125,7 @@ export const dict = {
     },
     notFound: {
       title: "This page does not exist",
-      body: "The address may have changed or contains a typo.",
+      body: "The address may have changed or contains a typo. Start from the homepage or take a look at the work.",
       cta: "Go to homepage",
     },
     cookies: {

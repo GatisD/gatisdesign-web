@@ -5,10 +5,20 @@ interface JsonLdProps {
   data: Record<string, unknown> | Record<string, unknown>[];
 }
 
+/**
+ * `<` tiek aizstāts ar `\u003c`. Šodien viss schema saturs nāk no repo, tāpēc
+ * XSS te nav; bet `</script>` teksta vidū aizvērtu tagu, un brīdis, kad kāds
+ * lauks sāk nākt no ārpuses, ir tieši tas brīdis, kad neviens vairs neatceras
+ * pārbaudīt šo rindu.
+ */
+function safeJson(data: JsonLdProps["data"]): string {
+  return JSON.stringify(data).replace(/</g, "\\u003c");
+}
+
 export default function JsonLd({ data }: JsonLdProps) {
   return (
     <Helmet>
-      <script type="application/ld+json">{JSON.stringify(data)}</script>
+      <script type="application/ld+json">{safeJson(data)}</script>
     </Helmet>
   );
 }

@@ -22,3 +22,12 @@ export const SOCIAL = {
  * varētu paņemt, neievelkot bundlē visu četru pakalpojumu lapu saturu.
  */
 export const CONTENT_MODIFIED = "2026-09-05";
+
+/**
+ * Gads kājenes kolofonā. Konstante, ne `new Date().getFullYear()` render laikā:
+ * projekta noteikums aizliedz `new Date()` renderā, un izņēmums "gads mainās
+ * reizi gadā" nozīmē, ka reizi gadā serverī izrenderētais HTML un pārlūkā
+ * hidratētais koks 31. decembra vakarā atšķiras. Atjauno kopā ar
+ * CONTENT_MODIFIED.
+ */
+export const BUILD_YEAR = Number(CONTENT_MODIFIED.slice(0, 4));

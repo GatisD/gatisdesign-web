@@ -64,7 +64,7 @@ export default function Kontakti() {
     { name: t.nav.contact, path: pathFor("contact", locale) },
   ]);
 
-  const { brief, steps, contacts, limits } = contactSections;
+  const { brief, reply, form, steps, contacts, limits } = contactSections;
 
   return (
     <>
@@ -101,7 +101,19 @@ export default function Kontakti() {
       <Section rhythm="md" ariaLabel={isLv ? "Pieteikums" : "Enquiry"}>
         <div className="grid gap-x-16 gap-y-14 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-start">
           <div id={FORM_ANCHOR} className="scroll-mt-24">
-            <h2 className="mb-8 text-h3 font-medium text-paper">{t.form.title}</h2>
+            <h2 className="mb-5 text-h3 font-medium text-paper">{t.form.title}</h2>
+            {/* Formas ievads nāk no satura, ne no koda: tur ir pateikts, kas ar
+                aizpildīto formu notiek un kāpēc formā vispār jautāju budžeta
+                diapazonu. Abas rindkopas bija uzrakstītas un izgājušas
+                gramatikas pārbaudi, bet lapā nenonāca. */}
+            {form.body.map((paragraph) => (
+              <p
+                key={paragraph.slice(0, 40)}
+                className="mb-4 max-w-[62ch] text-[16px] leading-[1.6] text-paper-dim last:mb-8"
+              >
+                <LinkedEmail text={paragraph} />
+              </p>
+            ))}
             <ContactForm />
           </div>
 
@@ -123,10 +135,28 @@ export default function Kontakti() {
               ))}
             </div>
 
+            {/* Atbildes laiks ar norādi par surogātpasta mapi. Tas ir vienīgais
+                teikums lapā, kas pasaka, ko darīt, ja atbilde nepienāk. */}
             <div>
-              <h2 id={headingId(steps.heading)} className="mb-6 text-h3 font-medium scroll-mt-24">
+              <h2 id={headingId(reply.heading)} className="mb-4 text-h3 font-medium scroll-mt-24">
+                {reply.heading}
+              </h2>
+              {reply.body.map((paragraph) => (
+                <p key={paragraph.slice(0, 40)} className="mb-4 text-[16px] leading-[1.6] text-paper-dim last:mb-0">
+                  <LinkedEmail text={paragraph} />
+                </p>
+              ))}
+            </div>
+
+            <div>
+              <h2 id={headingId(steps.heading)} className="mb-4 text-h3 font-medium scroll-mt-24">
                 {steps.heading}
               </h2>
+              {steps.body.map((paragraph) => (
+                <p key={paragraph.slice(0, 40)} className="mb-6 text-[16px] leading-[1.6] text-paper-dim last:mb-6">
+                  <LinkedEmail text={paragraph} />
+                </p>
+              ))}
               {steps.steps ? <StepFlow steps={steps.steps} /> : null}
             </div>
           </div>

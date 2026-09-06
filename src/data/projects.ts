@@ -236,6 +236,45 @@ export function projectsByCategory(category: ProjectCategory): Project[] {
   return projects.filter((p) => p.category === category);
 }
 
+/**
+ * Cik daudz šai lapai ir ko lasīt. Skaitlis nāk TIKAI no tā, kas datos jau ir -
+ * apraksts, gads, tehnoloģijas, galerija, dzīva saite - un no tā, cik daudz
+ * satura lapā vispār var salikt. Nekas netiek izdomāts klāt.
+ *
+ * Lieto divās vietās: sitemap prioritātē (lapa ar tukšu aprakstu nav 0,8 vērta)
+ * un testā, kas neļauj sākumlapas izlasē nokļūt lapai bez apraksta.
+ */
+export function richness(project: Project): number {
+  return (
+    (project.summary ? 2 : 0) +
+    (project.year ? 1 : 0) +
+    (project.stack?.length ? 1 : 0) +
+    (project.gallery?.length ? 2 : 0) +
+    (project.externalUrl ? 1 : 0)
+  );
+}
+
+/** Lapas, kurās nav neviena paša teikuma par projektu. */
+export const thinSlugs: string[] = projects.filter((p) => !p.summary).map((p) => p.slug);
+
+/**
+ * Saistītie darbi: tā pati kategorija un vismaz viens kopīgs pakalpojums,
+ * saraksta secībā, bagātākie pa priekšu. Nākamais projekts tiek izlaists - tas
+ * lapā jau ir kā atsevišķs bloks, un divas vienādas saites blakus ir tikai
+ * atkārtojums.
+ */
+export function relatedProjects(slug: string, limit = 3): Project[] {
+  const current = projectBySlug(slug);
+  if (!current) return [];
+  const skip = new Set([slug, projectNeighbours(slug)?.next.slug]);
+  const score = (p: Project) =>
+    p.services.filter((s) => current.services.includes(s)).length * 10 + richness(p);
+  return projects
+    .filter((p) => !skip.has(p.slug) && p.category === current.category)
+    .sort((a, b) => score(b) - score(a))
+    .slice(0, limit);
+}
+
 /** Iepriekšējais un nākamais saraksta secībā, ar apli galos. */
 export function projectNeighbours(slug: string): { prev: Project; next: Project } | null {
   const idx = projects.findIndex((p) => p.slug === slug);

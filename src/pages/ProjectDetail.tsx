@@ -11,10 +11,16 @@ import { Section, SectionTitle, LabelRow } from "@/components/direction/Section"
 import PicturePortfolio from "@/components/PicturePortfolio";
 import NotFound from "./NotFound";
 import { useLocale } from "@/i18n/LocaleContext";
+import { pathFor, type Locale } from "@/i18n/routes";
 import { CONTACT_EMAIL, SITE_URL } from "@/lib/site";
+
+/** Projekta ceļš vienā valodā. Slug abās valodās ir viens, prefikss - no ROUTES. */
+const projectPath = (slug: string, locale: Locale) => `${pathFor("portfolio", locale)}/${slug}`;
+import ProjectCard from "@/components/ProjectCard";
 import {
   projectBySlug,
   projectNeighbours,
+  relatedProjects,
   CATEGORY_TAG,
   EXTERNAL_STATUS_NOTE,
   SERVICE_LABEL,
@@ -22,10 +28,35 @@ import {
   type Project,
 } from "@/data/projects";
 
+/**
+ * Fakti par projektu vienā teikumu virknē.
+ *
+ * Nekas netiek izdomāts: viss salikts no laukiem, kas datos jau ir - nozare,
+ * klients, loma, gads, pakalpojumi. Piecām lapām no 23 apraksta nav vispār, un
+ * līdz šim tur bija tikai "Cafeteria. Izstrāde ROIS komandā." - 38 zīmes gan
+ * lapā, gan meta aprakstā.
+ */
+function factualSentence(project: Project): string {
+  const services = project.services.map((s) => SERVICE_LABEL[s]).join(", ");
+  return [
+    `${CATEGORY_TAG[project.category]} klientam ${project.client}.`,
+    `Loma: ${project.role.label}${project.year ? `, ${project.year}` : ""}.`,
+    services ? `Pakalpojumi: ${services}.` : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
+/** Meta apraksts: apraksts, ja tāds ir, plus lomas un gada rinda. */
+function metaDescription(project: Project): string {
+  if (!project.summary) return factualSentence(project);
+  return `${project.summary} ${project.role.label}${project.year ? `, ${project.year}` : ""}.`;
+}
+
 /** Domēns bez protokola - saites tekstam. */
 const prettyUrl = (url: string) => url.replace(/^https?:\/\//, "").replace(/\/$/, "");
 
-function buildCreativeWorkSchema(project: Project) {
+function buildCreativeWorkSchema(project: Project, locale: Locale) {
   const person = { "@type": "Person", "@id": `${SITE_URL}/#gatis`, name: "Gatis Daugavietis", url: SITE_URL };
   // ROIS projektos autors nav viens cilvēks - shēmā to nedrīkst noklusēt.
   const creator =
@@ -37,10 +68,10 @@ function buildCreativeWorkSchema(project: Project) {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     name: project.title,
-    url: `${SITE_URL}/portfolio/${project.slug}`,
+    url: `${SITE_URL}${projectPath(project.slug, locale)}`,
     image: `${SITE_URL}${project.cover.src}`,
     creator,
-    inLanguage: "lv",
+    inLanguage: locale,
   };
   if (project.summary) schema.description = project.summary;
   if (project.year && /^\d{4}$/.test(project.year)) schema.dateCreated = project.year;
@@ -86,6 +117,9 @@ export default function ProjectDetail() {
   const { slug = "" } = useParams<{ slug: string }>();
   const project = projectBySlug(slug);
   const nav = projectNeighbours(slug);
+  // Tā pati kategorija un kopīgs pakalpojums. Nākamais projekts te netiek
+  // atkārtots - tas lapā jau ir kā atsevišķs bloks.
+  const related = relatedProjects(slug);
   const gallery = project?.gallery ?? [];
   const [lightbox, setLightbox] = useState<number | null>(null);
   const [loaded, setLoaded] = useState(false);
@@ -142,11 +176,11 @@ export default function ProjectDetail() {
       <SEO
         locale={locale}
         title={project.title}
-        description={project.summary || `${project.client}. ${project.role.label}.`}
+        description={metaDescription(project)}
         image={project.cover.src}
         alternates={[
-          { locale: "lv", path: `/portfolio/${project.slug}` },
-          { locale: "en", path: `/en/portfolio/${project.slug}` },
+          { locale: "lv", path: projectPath(project.slug, "lv") },
+          { locale: "en", path: projectPath(project.slug, "en") },
         ]}
         // EN saturs vēl nav tulkots, tāpēc /en rāda LV tekstu ar noindex.
         noindex={!isLv}
@@ -154,11 +188,11 @@ export default function ProjectDetail() {
       <JsonLd
         data={[
           buildBreadcrumbSchema([
-            { name: isLv ? "Sākums" : "Home", path: "/" },
-            { name: t.nav.portfolio, path: "/portfolio" },
-            { name: project.title, path: `/portfolio/${project.slug}` },
+            { name: isLv ? "Sākums" : "Home", path: pathFor("home", locale) },
+            { name: t.nav.portfolio, path: pathFor("portfolio", locale) },
+            { name: project.title, path: projectPath(project.slug, locale) },
           ]),
-          buildCreativeWorkSchema(project),
+          buildCreativeWorkSchema(project, locale),
         ]}
       />
 
@@ -223,15 +257,16 @@ export default function ProjectDetail() {
       </section>
 
       {/* ============ APRAKSTS UN SAITE ============ */}
-      {project.summary || project.externalUrl || project.stack ? (
-        <Section rhythm="md" labelledBy="par-projektu-h">
+      <Section rhythm="md" labelledBy="par-projektu-h">
           <SectionTitle id="par-projektu-h" className="mb-[clamp(22px,3vw,36px)]">
             {isLv ? "Par projektu" : "About the project"}
           </SectionTitle>
           <LabelRow label={isLv ? "Uzdevums" : "Brief"}>
-            {project.summary ? (
-              <p className="max-w-[64ch] text-[17px] leading-[1.6] text-paper-2">{project.summary}</p>
-            ) : null}
+            {/* Ja apraksta nav, lapa nepaliek tukša un neizdomā tekstu: rāda
+                faktus, kas datos jau ir. */}
+            <p className="max-w-[64ch] text-[17px] leading-[1.6] text-paper-2">
+              {project.summary || factualSentence(project)}
+            </p>
 
             {project.stack && project.stack.length > 0 ? (
               <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2" aria-label={isLv ? "Tehnoloģijas" : "Stack"}>
@@ -256,8 +291,7 @@ export default function ProjectDetail() {
               ) : null}
             </div>
           </LabelRow>
-        </Section>
-      ) : null}
+      </Section>
 
       {/* ============ GALERIJA ============ */}
       {gallery.length === 0 ? (
@@ -335,6 +369,22 @@ export default function ProjectDetail() {
               </li>
             ))}
           </ul>
+        </Section>
+      ) : null}
+
+      {/* ============ SAISTĪTIE DARBI ============ */}
+      {related.length > 0 ? (
+        <Section rhythm="md" labelledBy="saistitie-darbi-h">
+          <SectionTitle id="saistitie-darbi-h" className="mb-[clamp(22px,3vw,36px)]">
+            {isLv ? "Līdzīgi darbi" : "Similar work"}
+          </SectionTitle>
+          <div className="grid gap-grid md:grid-cols-3">
+            {related.map((item, i) => (
+              <Reveal key={item.slug} delay={stagger(i, 3)}>
+                <ProjectCard project={item} frame="h-[clamp(180px,20vw,300px)]" frameRatio={4 / 3} />
+              </Reveal>
+            ))}
+          </div>
         </Section>
       ) : null}
 

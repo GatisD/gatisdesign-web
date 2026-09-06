@@ -6,6 +6,9 @@ import {
   draftSlugs,
   projectBySlug,
   projectNeighbours,
+  relatedProjects,
+  richness,
+  thinSlugs,
   featured,
   SERVICE_ROUTE_KEY,
 } from "./projects";
@@ -117,6 +120,42 @@ describe("portfolio projekti", () => {
     expect(featured).toHaveLength(5);
     for (const slug of featured) {
       expect(projectBySlug(slug), slug).toBeDefined();
+    }
+  });
+
+  it("izcelti tiek tikai darbi, par kuriem ir ko lasīt", () => {
+    // Sākumlapas izlasē un saraksta priekšgalā nedrīkst nokļūt lapa bez
+    // apraksta: tieši tur cilvēks klikšķina pirmo reizi.
+    for (const slug of featured) {
+      const project = projectBySlug(slug)!;
+      expect(project.summary.length, slug).toBeGreaterThan(40);
+      expect(richness(project), slug).toBeGreaterThanOrEqual(3);
+    }
+    for (const project of projects.slice(0, 5)) {
+      expect(project.summary.length, project.slug).toBeGreaterThan(0);
+    }
+  });
+
+  it("plānās lapas ir zināmas un uzskaitītas", () => {
+    // Ja apraksts kādai no tām tiek uzrakstīts, šis tests krīt un atgādina
+    // pārbaudīt sitemap prioritāti (vite.config.ts liek 0,5 tieši šīm).
+    expect([...thinSlugs].sort()).toEqual(["cafeteria", "forevolt", "green-bay", "obsidian", "varloz"]);
+    for (const slug of thinSlugs) {
+      expect(featured, slug).not.toContain(slug);
+    }
+  });
+
+  it("saistītie darbi neatkārto ne sevi, ne nākamo projektu", () => {
+    for (const project of projects) {
+      const related = relatedProjects(project.slug);
+      expect(related.length, project.slug).toBeLessThanOrEqual(3);
+      const next = projectNeighbours(project.slug)!.next.slug;
+      for (const item of related) {
+        expect(item.slug, project.slug).not.toBe(project.slug);
+        expect(item.slug, project.slug).not.toBe(next);
+        expect(item.category, project.slug).toBe(project.category);
+      }
+      expect(new Set(related.map((r) => r.slug)).size).toBe(related.length);
     }
   });
 });

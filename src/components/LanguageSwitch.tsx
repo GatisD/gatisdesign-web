@@ -1,11 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import { useLocale } from "@/i18n/LocaleContext";
-import { LOCALES, pathFor, routeKeyForPath, type Locale, type RouteKey } from "@/i18n/routes";
+import { LOCALES, pathFor, pathForPathname, type Locale, type RouteKey } from "@/i18n/routes";
 import { cn } from "@/lib/utils";
 
 /**
  * Valodas pārslēgs. Pāra lapa nāk no ROUTES kartes, ne no URL manipulācijas -
  * tāpēc /majaslapu-izstrade ved uz /en/website-development, ne uz /en/majaslapu-izstrade.
+ * Projektu lapām, kurām ROUTES atslēgas nav, pāri dod `pathForPathname` - tas
+ * paņem slug un pieliek to pie ROUTES.portfolio maršruta. Iepriekš tur atslēga
+ * bija null, un pārslēgs no katras no 23 projektu lapām veda uz /en sākumlapu.
  *
  * `onPaper` maina krāsas kājenes papīra fonam: tumšās virsmas vara tur ir
  * 2,60:1 un neder ne tekstam, ne aktīvajam stāvoklim.
@@ -19,7 +22,8 @@ export default function LanguageSwitch({
 }) {
   const { locale, t } = useLocale();
   const { pathname } = useLocation();
-  const key = routeKey ?? routeKeyForPath(pathname) ?? "home";
+  const target = (l: Locale): string =>
+    (routeKey ? pathFor(routeKey, l) : pathForPathname(pathname, l)) ?? pathFor("home", l);
   return (
     <div role="group" aria-label={t.lang.label} className="inline-flex items-center gap-1">
       {LOCALES.map((l: Locale, i) => (
@@ -30,7 +34,7 @@ export default function LanguageSwitch({
             </span>
           ) : null}
           <Link
-            to={pathFor(key, l)}
+            to={target(l)}
             hrefLang={l}
             rel="alternate"
             aria-current={l === locale ? "true" : undefined}

@@ -29,6 +29,29 @@ export function projectPath(slug: Record<Locale, string>, locale: Locale): strin
   return `${pathFor("portfolio", locale)}/${slug[locale]}`;
 }
 
+/**
+ * Pāra lapas ceļš citā valodā - arī tur, kur maršruta atslēgas nav.
+ *
+ * Projektu lapas (`/portfolio/:slug`) ROUTES kartē neeksistē, tāpēc
+ * `routeKeyForPath` tām atgrieza null un valodas pārslēgs no
+ * /portfolio/estire veda uz /en (sākumlapu), nevis uz /en/portfolio/estire.
+ * Slug abās valodās ir viens un tas pats (sk. ProjectDetail `alternates`),
+ * tāpēc prefikss tiek ņemts no ROUTES.portfolio, ne salikts ar rokām.
+ */
+export function pathForPathname(pathname: string, locale: Locale): string | null {
+  const clean = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
+  const key = routeKeyForPath(clean);
+  if (key) return pathFor(key, locale);
+  for (const from of LOCALES) {
+    const prefix = `${ROUTES.portfolio[from]}/`;
+    if (clean.startsWith(prefix)) {
+      const slug = clean.slice(prefix.length);
+      if (slug && !slug.includes("/")) return `${pathFor("portfolio", locale)}/${slug}`;
+    }
+  }
+  return null;
+}
+
 /** Meklē maršruta atslēgu pēc ceļa. Vajadzīgs valodas pārslēgam, lai tas zina pāra lapu. */
 export function routeKeyForPath(pathname: string): RouteKey | null {
   const clean = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;

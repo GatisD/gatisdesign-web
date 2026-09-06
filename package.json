@@ -17,7 +17,9 @@
     "preview": "vite preview",
     "images:webp": "node scripts/convert-webp.mjs",
     "images:covers": "node scripts/smart-covers.mjs",
-    "images:media": "node scripts/prepare-media.mjs"
+    "images:media": "node scripts/prepare-media.mjs",
+    "images:icons": "node scripts/prepare-icons.mjs",
+    "verify:build": "node scripts/verify-build.mjs --selftest"
   },
   "dependencies": {
     "@fontsource-variable/epilogue": "^5.3.0",

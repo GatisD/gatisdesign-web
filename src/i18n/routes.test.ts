@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { LOCALES, ROUTES, pathFor, alternatesFor, routeKeyForPath } from "./routes";
+import { LOCALES, ROUTES, pathFor, pathForPathname, alternatesFor, routeKeyForPath } from "./routes";
 
 describe("routes karte", () => {
   it("katram maršrutam ir abas valodas", () => {
@@ -34,5 +34,18 @@ describe("routes karte", () => {
     expect(routeKeyForPath("/en/contact")).toBe("contact");
     expect(routeKeyForPath("/en/contact/")).toBe("contact");
     expect(routeKeyForPath("/nav-tadas-lapas")).toBeNull();
+  });
+
+  it("pathForPathname atrod pāri arī projektu lapām", () => {
+    // Šīm lapām ROUTES atslēgas nav, un valodas pārslēgs no tām veda uz /en.
+    expect(pathForPathname("/portfolio/estire", "en")).toBe("/en/portfolio/estire");
+    expect(pathForPathname("/en/portfolio/estire", "lv")).toBe("/portfolio/estire");
+    expect(pathForPathname("/portfolio/estire/", "en")).toBe("/en/portfolio/estire");
+    // Maršruta lapas iet pa ROUTES, ne pa slug ceļu.
+    expect(pathForPathname("/majaslapu-izstrade", "en")).toBe("/en/website-development");
+    expect(pathForPathname("/portfolio", "en")).toBe("/en/portfolio");
+    // Nezināms ceļš neizdomā pāri.
+    expect(pathForPathname("/nav-tadas-lapas", "en")).toBeNull();
+    expect(pathForPathname("/portfolio/a/b", "en")).toBeNull();
   });
 });

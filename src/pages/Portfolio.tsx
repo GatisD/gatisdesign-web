@@ -10,6 +10,7 @@ import { Section, SectionTitle, LabelRow } from "@/components/direction/Section"
 import ProjectCard from "@/components/ProjectCard";
 import { projects, CATEGORY_LABEL, type ProjectCategory } from "@/data/projects";
 import { useLocale } from "@/i18n/LocaleContext";
+import { pathFor } from "@/i18n/routes";
 import { CONTACT_EMAIL, SITE_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -68,7 +69,7 @@ export default function Portfolio() {
       "@type": "ListItem",
       position: i + 1,
       name: project.title,
-      url: `${SITE_URL}/portfolio/${project.slug}`,
+      url: `${SITE_URL}${pathFor("portfolio", locale)}/${project.slug}`,
     })),
   };
 
@@ -85,8 +86,8 @@ export default function Portfolio() {
       <JsonLd
         data={[
           buildBreadcrumbSchema([
-            { name: isLv ? "Sākums" : "Home", path: "/" },
-            { name: t.nav.portfolio, path: "/portfolio" },
+            { name: isLv ? "Sākums" : "Home", path: pathFor("home", locale) },
+            { name: t.nav.portfolio, path: pathFor("portfolio", locale) },
           ]),
           listSchema,
         ]}
