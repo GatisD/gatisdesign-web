@@ -10,10 +10,9 @@
       "kicker": "Pamats",
       "heading": "Kas beidzas, kad aģents sāk strādāt",
       "body": [
-        "Neviens vairs nepārceļ pieprasījumus no reklāmas konta uz CRM sistēmu, neviens nekopē skaitļus atskaitē un neviens vakarā nedomā, vai kāds klients ir palicis bez atbildes. Tas, kas to izdara, ir programma ar trim daļām: trigeris, kas to palaiž, piekļuve sistēmām, kurās tā strādā, un loģika, kas izlemj, ko darīt ar katru gadījumu. Viss pārējais ir iepakojums.",
-        "Praksē lielākajai daļai automatizāciju valodas modelis vispār nav vajadzīgs. Ja pieprasījums no reklāmas formas jāieliek CRM sistēmā ar pareizo avotu un atbildīgo, tur nav ko domāt - tur ir noteikumi. Modelis vajadzīgs tikai tur, kur ienāk nestrukturēts teksts: klienta e-pasts ar jautājumu, rēķins PDF formātā, brīvā formā uzrakstīta piezīme. Šo robežu es novelku, pirms sāku būvēt, jo plūsma bez modeļa ir lētāka, ātrāka un neizdomā neko klāt.",
-        "Trešais variants ir AI čatbots mājaslapai. Tas ir tas pats aģents, tikai ar vienu kanālu - sarunas logu. Uz to attiecas tas pats noteikums: čatbots, kuram nav piekļuves reāliem datiem par cenām, pieejamību un pasūtījumiem, ir dārga FAQ lapa.",
-        "Ja process nav uzrakstīts uz papīra, nav ko automatizēt. Pirmais solis vienmēr ir procesa apraksts, ne rīka izvēle."
+        "Neviens vairs nepārceļ pieprasījumus no reklāmas konta uz CRM, nekopē skaitļus atskaitē un vakarā nedomā, vai kāds klients ir palicis bez atbildes. To izdara programma ar trim daļām: trigeris, piekļuve sistēmām un loģika, kas izlemj, ko darīt ar katru gadījumu.",
+        "Lielākajai daļai automatizāciju valodas modelis nav vajadzīgs: ja pieprasījums no reklāmas formas jāieliek CRM sistēmā ar pareizo avotu un atbildīgo, tur ir noteikumi, ne domāšana. Modelis vajadzīgs tur, kur ienāk nestrukturēts teksts: klienta e-pasts, rēķins PDF formātā, brīvā formā uzrakstīta piezīme. Plūsma bez modeļa ir lētāka un ātrāka, un tā neizdomā neko klāt.",
+        "Trešais variants ir AI čatbots mājaslapai: tas pats aģents ar vienu kanālu. Bez piekļuves reāliem datiem par cenām, pieejamību un pasūtījumiem čatbots ir dārga FAQ lapa. Un, ja process nav uzrakstīts uz papīra, nav ko automatizēt."
       ],
       "bullets": [
         "Trigeris: mājaslapas forma, webhook, ienākošs e-pasts, laika grafiks vai jauns ieraksts datubāzē",
@@ -27,9 +26,8 @@
       "kicker": "Piemērs",
       "heading": "Kā izskatās viena reāla plūsma ar laika zīmogiem",
       "body": [
-        "Šis ir Tenter reklāmas pieprasījumu ceļš. Pirms automatizācijas pārdevējs jaunu pieprasījumu redzēja tikai tad, kad kāds atvēra Meta Business Suite un lejupielādēja failu. Reizēm tajā pašā dienā, reizēm nākamajā.",
-        "Starp formas aizpildīšanu un paziņojumu pārdevēja telefonā tagad paiet mazāk nekā piecas minūtes. Svarīgākais nav ātrums pats par sevi, bet tas, ka neviens pieprasījums nepazūd un katram ir zināms avots. Kad avots ir zināms, reklāmas budžetu var dalīt pēc rezultāta, nevis pēc sajūtas.",
-        "Tā pati loģika der arī mājaslapas formām. Formas dati aiziet pa to pašu ceļu, tāpēc CRM sistēmā ir viens pieprasījumu saraksts, ne trīs atsevišķas pastkastes un viena Excel tabula."
+        "Tenter reklāmas pieprasījumu ceļš. Pirms automatizācijas pārdevējs jaunu pieprasījumu redzēja tikai tad, kad kāds atvēra Meta Business Suite un lejupielādēja failu: reizēm tajā pašā dienā, reizēm nākamajā.",
+        "Tagad starp formas aizpildīšanu un paziņojumu pārdevēja telefonā paiet mazāk nekā piecas minūtes. Svarīgākais nav ātrums, bet tas, ka neviens pieprasījums nepazūd un katram ir zināms avots: tad reklāmas budžetu var dalīt pēc rezultāta, ne pēc sajūtas."
       ],
       "bullets": [
         "14:32 - cilvēks telefonā aizpilda un nosūta Meta lead formu",
@@ -45,15 +43,15 @@
       "kicker": "Ko esmu būvējis",
       "heading": "Automatizācijas, kas šobrīd strādā",
       "body": [
-        "Zemāk ir darbi, kas reāli strādā ikdienā, ne demonstrācijas. Katrs no tiem sākās ar vienu procesu, kurā kāds cilvēks katru dienu pārnesa datus no vienas vietas uz otru. Daļa no tiem sākas ar [mājaslapu formu savienošanu ar CRM](/majaslapu-izstrade), un publicētie darbi ir [portfolio sadaļā](/portfolio).",
-        "Klienti, ar kuriem strādāju: Tenter, Estire, MLM Cargo, ARM Metals, Tavasdurvis, Box Latvia, Universal Solutions, Improvement. Ne visiem no tiem vajag aģentu. Daļai pietiek ar vienu pareizi savienotu formu un atskaiti, kas atnāk pati."
+        "Zemāk ir darbi, kas strādā ikdienā, ne demonstrācijas. Katrs sākās ar vienu procesu, kurā cilvēks katru dienu pārnesa datus no vienas vietas uz otru. Daļa sākās ar [mājaslapu formu savienošanu ar CRM](/majaslapu-izstrade); publicētie darbi ir [portfolio sadaļā](/portfolio).",
+        "Klienti: Tenter, Estire, MLM Cargo, ARM Metals, Tavasdurvis, Box Latvia, Universal Solutions, Improvement. Ne visiem vajag aģentu - daļai pietiek ar vienu pareizi savienotu formu un atskaiti, kas atnāk pati."
       ],
       "bullets": [
         "Tenter: pieprasījumi no Meta lead formām nonāk Odoo CRM sistēmā caur Cloudflare Worker. Plūsma strādā 24/7, pati atrod jaunas reklāmas formas, pārbauda dublikātus un saglabā UTM laukus.",
         "Tenter: Odoo procesu automatizācija - pieprasījumu stadijas, atbildīgo piešķiršana, atgādinājumi par darījumiem, kas stāv uz vietas, paziņojumi Telegram kanālā.",
-        "Atskaišu ģenerēšana: dati no Meta un Google Ads API tiek savākti, salīdzināti ar iepriekšējo periodu un pārvērsti gatavā dokumentā. Cilvēks lasa secinājumus, nevis kopē skaitļus.",
+        "Atskaišu ģenerēšana: dati no Meta un Google Ads API tiek savākti, salīdzināti ar iepriekšējo periodu un pārvērsti gatavā dokumentā. Cilvēks lasa secinājumus, ne kopē skaitļus.",
         "Mājaslapu formu savienošana ar CRM: pieprasījums no WordPress vai React lapas nonāk CRM sistēmā ar avotu, nevis e-pastā, kurā tas pazūd starp ziņām.",
-        "Sava grāmatvedība: ikmēneša abonementu rēķini izveidojas paši, PDF aiziet klientam, es redzu tikai to, kas nav apmaksāts.",
+        "Mana grāmatvedība: ikmēneša abonementu rēķini izveidojas paši, PDF aiziet klientam, es redzu tikai to, kas nav apmaksāts.",
         "MCP integrācijas: 22 WordPress vietnes pārvaldu vienā saskarnē - satura izmaiņas, atjauninājumi un diagnostika bez atsevišķas pieteikšanās katrā vietnē."
       ]
     },
@@ -61,12 +59,11 @@
       "kicker": "Cenas",
       "heading": "Cik maksā AI aģentu izstrāde",
       "body": [
-        "Cena ir atkarīga no tā, cik sistēmas jāsavieno un cik daudz izņēmumu ir procesā. Divām sistēmām ar skaidru loģiku ir viena cena. Piecām sistēmām, no kurām divām nav normālas API, tā ir pavisam cita.",
-        "Cenas ir galīgas: neesmu PVN maksātājs, tāpēc rēķinam nekas netiek pievienots. Apmaksa 50% sākumā, 50% pēc nodošanas. Apmaksas termiņš 5 darba dienas.",
-        "Manā cenā nav iekļautas trešo pušu izmaksas: hostings plūsmām, modeļa API tokeni, n8n vai Cloudflare abonements. Vienai vidēja apjoma plūsmai tās parasti ir 5-40 EUR mēnesī. Es tās aprēķinu jau auditā, lai pēc pusgada rēķinā nebūtu pārsteigumu."
+        "Cena ir atkarīga no tā, cik sistēmas jāsavieno un cik daudz izņēmumu ir procesā. Divām sistēmām ar skaidru loģiku ir viena cena; piecām, no kurām divām nav normālas API, pavisam cita.",
+        "Apmaksa 50% sākumā, 50% pēc nodošanas, apmaksas termiņš 5 darba dienas. Cenā nav trešo pušu izmaksu: hostings plūsmām, modeļa API tokeni, n8n vai Cloudflare abonements. Vidēja apjoma plūsmai tās parasti ir 5-40 EUR mēnesī, un tās aprēķinu jau auditā."
       ],
       "table": {
-        "caption": "Cenas bez PVN. Termiņi rēķināti no brīža, kad saņemta piekļuve sistēmām.",
+        "caption": "Cenas ir galīgas: neesmu PVN maksātājs, tāpēc šiem skaitļiem nekas netiek pieskaitīts. Termiņi rēķināti no brīža, kad saņemta piekļuve sistēmām.",
         "columns": [
           "Pakalpojums",
           "Cena",
@@ -94,7 +91,7 @@
           ],
           [
             "Uzraudzība un uzturēšana",
-            "no 100 EUR/mēn",
+            "no 100 EUR mēnesī",
             "Paziņojumi par kļūdām, labojumi pēc API izmaiņām, ikmēneša pārskats par izpildēm",
             "abonements"
           ],
@@ -110,7 +107,7 @@
     {
       "heading": "Kur automatizācija atmaksājas",
       "body": [
-        "Pieci nosacījumi, kurus pārbaudu, pirms piedāvāju izstrādi. Ja process atbilst vismaz trim, sarunu ir vērts turpināt."
+        "Pieci nosacījumi, kurus pārbaudu pirms piedāvājuma. Ja process atbilst vismaz trim, sarunu ir vērts turpināt."
       ],
       "bullets": [
         "Process atkārtojas vismaz 20 reizes mēnesī un katrā reizē soļi ir tie paši",
@@ -123,25 +120,24 @@
     {
       "heading": "Kur es iesaku naudu netērēt",
       "body": [
-        "Puse sarunu par AI aģentiem beidzas ar to, ka automatizācija konkrētajā gadījumā neatmaksājas: process notiek piecas reizes gadā, dati ir skenētos PDF failos bez struktūras, process vēl mainās katru mēnesi vai lēmumu tāpat pieņem cilvēks. Labāk to pateikt pirmajā sarunā nekā pēc trešā rēķina - par to, kādos gadījumos es kopumā neesmu īstā izvēle, esmu uzrakstījis /par-mani."
+        "Puse sarunu par AI aģentiem beidzas ar to, ka automatizācija neatmaksājas: process notiek piecas reizes gadā, dati ir skenētos PDF failos bez struktūras, process vēl mainās katru mēnesi vai lēmumu tāpat pieņem cilvēks. Par to, [kad es kopumā neesmu īstā izvēle](/par-mani), esmu uzrakstījis atsevišķi."
       ]
     },
     {
       "kicker": "Mērījumi",
       "heading": "Kā es mēru ietaupījumu",
       "body": [
-        "Pirms izstrādes es uzrakstu divus skaitļus: cik minūšu process aizņem tagad un cik reižu mēnesī tas notiek. Pēc pārslēgšanas mēru tos pašus divus vēlreiz. Bez pirmā mērījuma otrais neko nenozīmē.",
-        "Piemērs ar reāliem apjomiem. 40 pieprasījumu mēnesī. Katra manuālā pārnešana no reklāmas konta uz CRM ar avota atzīmēšanu aizņem 6 minūtes. Tās ir 4 stundas mēnesī. Ja stundas izmaksas ir 15 EUR, tas ir 60 EUR mēnesī jeb 720 EUR gadā. Automatizācija par 1200 EUR ar 100 EUR mēneša uzturēšanu pēc šī rēķina vien neatmaksājas nekad.",
-        "Tāpēc laika ietaupījums nav vienīgais rādītājs. Otrais ir reakcijas laiks. Kad pieprasījums pārdevēju sasniedz piecās minūtēs, nevis nākamajā dienā, sarunu sāk ievērojami lielāka daļa cilvēku. Trešais ir pazudušie pieprasījumi - tie, kas iekrita e-pastā atvaļinājuma laikā vai palika CSV failā. Ja no 40 pieprasījumiem mēnesī pazūd divi un vidējais darījums ir 800 EUR, tas ir cits rēķins nekā 60 EUR par laiku.",
-        "Auditā es šos skaitļus salieku kopā un pasaku godīgi, ja iznāk, ka konkrētajam procesam automatizācija neatmaksājas. Tad audits ir maksājis 400 EUR, ne 2500 EUR."
+        "Pirms izstrādes uzrakstu divus skaitļus: cik minūšu process aizņem tagad un cik reižu mēnesī tas notiek. Pēc pārslēgšanas mēru tos pašus vēlreiz - bez pirmā mērījuma otrais neko nenozīmē.",
+        "Piemērs ar reāliem apjomiem: 40 pieprasījumi mēnesī, katra manuālā pārnešana uz CRM ar avota atzīmēšanu 6 minūtes. Tās ir 4 stundas mēnesī; ja stundas izmaksas ir 15 EUR, tas ir 60 EUR mēnesī jeb 720 EUR gadā. Automatizācija par 1200 EUR ar 100 EUR mēneša uzturēšanu pēc šī rēķina vien neatmaksājas nekad.",
+        "Tāpēc mēru vēl divas lietas. Reakcijas laiks: kad pieprasījums pārdevēju sasniedz piecās minūtēs, ne nākamajā dienā, sarunu sāk lielāka daļa cilvēku. Pazudušie pieprasījumi: ja no 40 pieprasījumiem mēnesī pazūd divi un vidējais darījums ir 800 EUR, tas ir cits rēķins nekā 60 EUR par laiku."
       ]
     },
     {
       "kicker": "Kur dati paliek",
       "heading": "Drošība un datu apstrāde",
       "body": [
-        "Automatizācija nozīmē, ka programmai ir piekļuve uzņēmuma datiem. Tāpēc drošība nav papildinājums beigās, tā ir daļa no arhitektūras.",
-        "Ja uzņēmumam ir prasība, ka dati nedrīkst pamest ES, to var atrisināt - vai nu bez modeļa vispār, vai ar modeli, kas darbojas ES reģionā. Tas jāzina pirms izstrādes, ne pēc."
+        "Automatizācija nozīmē, ka programmai ir piekļuve uzņēmuma datiem, tāpēc drošība nav papildinājums beigās, bet daļa no arhitektūras.",
+        "Ja uzņēmumam ir prasība, ka dati nedrīkst pamest ES, to var atrisināt: vai nu bez modeļa vispār, vai ar modeli, kas darbojas ES reģionā. Tas jāzina pirms izstrādes, ne pēc."
       ],
       "bullets": [
         "Katrai sistēmai savs tokens ar minimālajām tiesībām. Aģents, kas ieraksta datus CRM sistēmā, nevar dzēst datubāzi",
@@ -157,8 +153,7 @@
       "kicker": "Rīki",
       "heading": "Ar ko strādāju",
       "body": [
-        "Rīku izvēlos pēc tā, kas uzņēmumā jau ir, ne pēc tā, ko man ērtāk pārdot. Ja komanda grib plūsmu redzēt un pati labot, būvēju vizuālā rīkā. Ja apjoms ir liels vai loģika sarežģīta, rakstu kodu.",
-        "Kods un konti paliek klientam. Es neveidoju risinājumus, kas darbojas tikai uz mana servera un ko nevar paņemt līdzi."
+        "Rīku izvēlos pēc tā, kas uzņēmumā jau ir, ne pēc tā, ko man ērtāk pārdot: ja komanda grib plūsmu redzēt un pati labot, būvēju vizuālā rīkā; ja apjoms ir liels vai loģika sarežģīta, rakstu kodu. Kods un konti paliek klientam."
       ],
       "bullets": [
         "n8n un Activepieces, kad komanda grib plūsmu redzēt un pati veikt vienkāršas izmaiņas",
@@ -173,8 +168,7 @@
       "kicker": "Process",
       "heading": "Kā notiek darbs",
       "body": [
-        "Piecos soļos, ar pauzi pēc otrā. Pēc audita var apstāties un neko nebūvēt - tas ir normāls iznākums, un audita dokumentu var īstenot arī bez manis.",
-        "Auditu ieskaitu izstrādes cenā, ja darbu turpinām."
+        "Piecos soļos, ar pauzi pēc otrā: pēc audita var apstāties un neko nebūvēt, un audita dokumentu var īstenot arī bez manis. Auditu ieskaitu izstrādes cenā, ja darbu turpinām."
       ],
       "steps": [
         {
@@ -204,16 +198,15 @@
     {
       "heading": "Šī lapa ir par iekšējiem procesiem",
       "body": [
-        "AI aģenti šeit nozīmē uzņēmuma iekšējo darbu: datus, plūsmas, CRM, atskaites. Tas nav tas pats, kas uzņēmuma redzamība AI atbildēs.",
-        "Ja jautājums ir par to, kā ChatGPT, Perplexity un Google AI Overviews atbildēs nonāk tavs uzņēmums, nevis konkurents, tas ir cits darbs - [SEO, GEO un AEO](/seo-geo-aeo). Abās jomās lieto vienus un tos pašus vārdus, bet risināmie uzdevumi ir pavisam dažādi, un es tos nejaucu vienā piedāvājumā."
+        "AI aģenti šeit nozīmē uzņēmuma iekšējo darbu: datus, plūsmas, CRM, atskaites. Ja jautājums ir par to, kā ChatGPT un Google AI Overviews atbildēs nonāk tavs uzņēmums, ne konkurents, tas ir cits darbs - [SEO, GEO un AEO](/seo-geo-aeo). Vienā piedāvājumā es abus nejaucu."
       ]
     },
     {
       "kicker": "Sākums",
       "heading": "Ar ko sākt",
       "body": [
-        "[Uzraksti man](/kontakti) uz connect@gatisdesign.com un apraksti vienu procesu, kas komandai atņem visvairāk laika. Nevajag tehnisko specifikāciju - pietiek aprakstīt, kas notiek pa soļiem un cik bieži. Atbildu vienas darba dienas laikā ar godīgu aplēsi: vai to ir vērts automatizēt, aptuveni cik tas maksās un cik ilgi tas aizņems.",
-        "Strādāju viens, [18 gadu pieredze web izstrādē un dizainā](/par-mani). Tas nozīmē, ka tu runā ar to pašu cilvēku, kurš raksta kodu, un ka vienlaikus uzņemto projektu skaits ir ierobežots. Ja automatizācija ir daļa no plašāka projekta, tajā parasti ietilpst arī [zīmola identitāte](/zimola-identitate) un mājaslapa."
+        "[Uzraksti man](/kontakti) uz connect@gatisdesign.com un apraksti vienu procesu, kas komandai atņem visvairāk laika. Pietiek aprakstīt, kas notiek pa soļiem un cik bieži. Atbildu vienas darba dienas laikā ar aplēsi: vai to ir vērts automatizēt, cik tas maksās un cik ilgi aizņems.",
+        "Strādāju viens - [18 gadu pieredze web izstrādē un dizainā](/par-mani) - tāpēc vienlaikus uzņemto projektu skaits ir ierobežots."
       ]
     }
   ],
@@ -224,19 +217,19 @@
     },
     {
       "q": "Cik ilgi aizņem izstrāde?",
-      "a": "Procesu audits 5-7 darba dienas. Viena procesa automatizācija 2-3 nedēļas, no kurām divas ir izstrāde un viena - testi ar reāliem datiem. Kompleksa integrācija 4-8 nedēļas. Termiņu visbiežāk nosaka nevis izstrāde, bet piekļuves saņemšana: reklāmas konts, CRM lietotājs, API atslēgas. To ir vērts sakārtot, pirms sākam."
+      "a": "Procesu audits 5-7 darba dienas, viena procesa automatizācija 2-3 nedēļas, kompleksa integrācija 4-8 nedēļas. Termiņu visbiežāk nosaka nevis izstrāde, bet piekļuves saņemšana: reklāmas konts, CRM lietotājs, API atslēgas. To ir vērts sakārtot, pirms sākam."
     },
     {
       "q": "Vai man tiešām vajag AI, vai pietiek ar parastu automatizāciju?",
-      "a": "Lielākajai daļai uzņēmuma procesu valodas modelis nav vajadzīgs. Ja dati ir strukturēti un noteikumi skaidri, plūsma bez modeļa ir lētāka, ātrāka un paredzamāka. Modelis vajadzīgs tur, kur ienāk brīvs teksts: klientu e-pasti, PDF, ziņas čatā. Auditā es pasaku, kurā tavā procesā modelis dod rezultātu un kurā tas nozīmē tikai papildu izmaksas."
+      "a": "Lielākajai daļai uzņēmuma procesu valodas modelis nav vajadzīgs. Ja dati ir strukturēti un noteikumi skaidri, plūsma bez modeļa ir lētāka, ātrāka un paredzamāka. Modelis vajadzīgs tur, kur ienāk brīvs teksts: klientu e-pasti, PDF, ziņas čatā. Auditā pasaku, kuros tavos procesos modelis dod rezultātu un kuros tas rada tikai papildu izmaksas."
     },
     {
       "q": "Vai automatizācija strādās ar manu CRM?",
-      "a": "Ja CRM sistēmai ir API vai webhook atbalsts, jā. Esmu strādājis ar Odoo, Pipedrive un uz WordPress veidotām sistēmām. Ja API nav, risinājums ir starpslānis: dati iet caur datubāzi vai failu apmaiņu, un tas prasa vairāk laika un naudas. Šo pārbaudu jau pirmajā sarunā, jo tieši tas visvairāk ietekmē gan cenu, gan termiņu."
+      "a": "Ja CRM sistēmai ir API vai webhook atbalsts, jā. Esmu strādājis ar Odoo, Pipedrive un uz WordPress veidotām sistēmām. Ja API nav, dati iet caur datubāzi vai failu apmaiņu, un tas prasa vairāk laika un naudas. To pārbaudu jau pirmajā sarunā, jo tas visvairāk ietekmē cenu un termiņu."
     },
     {
       "q": "Kas notiek, ja automatizācija salūst?",
-      "a": "Plūsma apstājas un sūta paziņojumu, nevis klusē un turpina rakstīt nepareizus datus. Katra izpilde ir žurnālā ar laiku un rezultātu, tāpēc redzams, kurā solī un kāpēc kļūda notikusi. Uzturēšanas abonementā no 100 EUR mēnesī ietilpst kļūdu izsekošana un labojumi, kad Meta, Google vai CRM maina savu API. Manuālais ceļš vienmēr paliek atvērts."
+      "a": "Plūsma apstājas un sūta paziņojumu, nevis klusē un turpina rakstīt nepareizus datus. Katra izpilde ir žurnālā ar laiku un rezultātu, tāpēc redzams, kurā solī kļūda notikusi. Uzturēšanas abonementā no 100 EUR mēnesī ietilpst kļūdu izsekošana un labojumi, kad Meta, Google vai CRM maina savu API. Manuālais ceļš vienmēr paliek atvērts."
     },
     {
       "q": "Vai mani dati nonāk AI modeļa apmācībā?",
@@ -244,17 +237,17 @@
     },
     {
       "q": "Vai varu paņemt aģentu līdzi, ja pārtraucam sadarbību?",
-      "a": "Jā. Kods, plūsmas un konti ir uz klienta vārda, ne uz mana. Nododu dokumentāciju: kur kas atrodas, kādi ir tokeni un ko darīt, ja kaut kas apstājas. Neveidoju risinājumus, kas darbojas tikai tāpēc, ka man ir piekļuve. Ja gribi, sistēmu pārņem tava komanda vai cits izstrādātājs."
+      "a": "Jā. Kods, plūsmas un konti ir uz klienta vārda, ne uz mana. Nododu dokumentāciju: kur kas atrodas, kādi ir tokeni un ko darīt, ja kaut kas apstājas. Neveidoju risinājumus, kas darbojas tikai tāpēc, ka man ir piekļuve."
     }
   ],
   "internalLinks": [
     "/seo-geo-aeo - enkurs „SEO, GEO un AEO” sadaļā „Šī lapa ir par iekšējiem procesiem”. Vienīgā saite uz šo lapu, lai netiktu jaukta iekšējo procesu automatizācija ar redzamību meklētājos un AI atbildēs",
-    "/majaslapu-izstrade - enkurs „mājaslapu formu savienošana ar CRM” vai „mājaslapu izstrāde” sadaļā „Automatizācijas, kas šobrīd strādā”",
+    "/majaslapu-izstrade - enkurs „mājaslapu formu savienošana ar CRM” sadaļā „Automatizācijas, kas šobrīd strādā”",
     "/zimola-identitate - enkurs „zīmola identitāte” sadaļā „Ar ko sākt” (kad automatizācija ir daļa no plašāka projekta)",
-    "/portfolio - enkurs „portfolio darbi” sadaļā „Automatizācijas, kas šobrīd strādā”",
-    "/par-mani - enkurs „18 gadu pieredze web izstrādē un dizainā” sadaļā „Ar ko sākt”",
+    "/portfolio - enkurs „portfolio sadaļā” sadaļā „Automatizācijas, kas šobrīd strādā”",
+    "/par-mani - enkurs „kad es kopumā neesmu īstā izvēle” un „18 gadu pieredze web izstrādē un dizainā”",
     "/kontakti - enkurs „uzraksti man” sadaļā „Ar ko sākt”"
   ],
-  "cta": "Uzraksti uz connect@gatisdesign.com un apraksti vienu procesu, kas komandai atņem visvairāk laika. Atbildu vienas darba dienas laikā ar aplēsi: vai to ir vērts automatizēt, cik tas maksās un cik ilgi tas aizņems.",
+  "cta": "Raksti uz connect@gatisdesign.com un apraksti vienu procesu, kas komandai atņem visvairāk laika. Atbildu vienas darba dienas laikā ar aplēsi: vai to ir vērts automatizēt, cik tas maksās un cik ilgi tas aizņems.",
   "heroLede": "Kāds komandā joprojām ar rokām pārceļ pieprasījumus no reklāmas konta uz CRM. Es būvēju aģentus, kas to dara paši - ar laika zīmogiem un pārbaudēm."
 }
