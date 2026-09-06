@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import sitemap from "vite-plugin-sitemap";
 import { ROUTES, type RouteKey } from "./src/i18n/routes";
-import { projects } from "./src/data/projects";
+import { projects, indexableProjects } from "./src/data/projects";
 
 // Sitemap ir vienots patiesības avots: bāzes maršruti nāk no ROUTES (abas valodas),
 // portfolio detail lapas (dinamiskās /portfolio/:slug lapas, sk. src/App.tsx
@@ -26,7 +26,9 @@ import { projects } from "./src/data/projects";
 const baseRoutes = Object.values(ROUTES)
   .map((p) => p.lv)
   .filter((route) => route !== ROUTES.home.lv);
-const portfolioDetailRoutes = projects.map((p) => `${ROUTES.portfolio.lv}/${p.slug}`);
+// Projektu lapas BEZ apraksta sitemapā neiet: tām ir `noindex`, un sitemap ar
+// noindex lapām dod Search Console tikpat daudz kļūdu, cik lapu.
+const portfolioDetailRoutes = indexableProjects.map((p) => `${ROUTES.portfolio.lv}/${p.slug}`);
 const dynamicRoutes = [...baseRoutes, ...portfolioDetailRoutes];
 
 // Prioritāte pa maršrutu: sākumlapai augstākā, pakalpojumu un portfolio
@@ -45,12 +47,8 @@ const priorityByRoute: Record<string, number> = {
 for (const key of highPriorityKeys) {
   priorityByRoute[ROUTES[key].lv] = 0.8;
 }
-// Projektu lapa ar tukšu aprakstu nav 0,8 vērta: piedāvāt Google 23 gandrīz
-// vienādi plānas lapas ar vienu prioritāti nozīmē teikt, ka tās visas ir vienlīdz
-// svarīgas, arī tās piecas, kurās nav neviena teikuma par darbu. Lapas paliek
-// indeksējamas (index, follow) - tas ir apzināts lēmums, ne noindex.
-for (const p of projects) {
-  priorityByRoute[`${ROUTES.portfolio.lv}/${p.slug}`] = p.summary ? 0.8 : 0.5;
+for (const p of indexableProjects) {
+  priorityByRoute[`${ROUTES.portfolio.lv}/${p.slug}`] = 0.8;
 }
 
 // https://vitejs.dev/config/
