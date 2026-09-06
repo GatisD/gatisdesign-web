@@ -10,10 +10,68 @@ type Consent = "all" | "necessary" | null;
 // Window.gtag ir deklarēts src/vite-env.d.ts (viens avots, lai izvairītos no konfliktējošām deklarācijām)
 
 /**
- * Atver joslu no jauna. Izvēle glabājas `localStorage`, ne sīkdatnē, tāpēc
- * privātuma politikas vecais padoms "izdzēs sīkdatnes pārlūkprogrammā" to
- * neatiestatīja - vienīgais ceļš atpakaļ bija tāds, kas nestrādā. Kājenes
- * saite sauc šo funkciju.
+ * Domēni, ar kuriem Google Analytics varēja uzstādīt savu sīkdatni.
+ *
+ * Sīkdatni dzēš TIKAI tas pats domēna un ceļa pāris, ar kuru tā uzstādīta.
+ * GA raksta uz reģistrējamā domēna ar punktu priekšā (`.gatisdesign.com`);
+ * lokāli un preview vidē domēna atribūta var nebūt vispār. Tāpēc dzēšam pa
+ * visiem trim variantiem - lieks `Max-Age=0` neko nesabojā, bet izlaists
+ * variants nozīmē, ka sīkdatne paliek.
+ */
+function gaCookieDomains(host: string): string[] {
+  const labels = host.split(".");
+  const registrable = labels.length > 2 ? labels.slice(-2).join(".") : host;
+  return ["", host, `.${registrable}`];
+}
+
+/**
+ * Izdzēš `_ga` un `_ga_<mērījuma ID>` sīkdatnes.
+ *
+ * Bez šī atteikums bija tikai vārdos: nomērīts 2026-09-06, ka pēc "Tikai
+ * vajadzīgās" abas GA sīkdatnes palika pārlūkā un turpināja ceļot uz Google ar
+ * to pašu pseidonīmo identifikatoru, kas radās piekrišanas laikā.
+ */
+function clearAnalyticsCookies(): void {
+  if (typeof document === "undefined") return;
+  const domains = gaCookieDomains(window.location.hostname);
+  for (const raw of document.cookie.split(";")) {
+    const name = raw.split("=")[0]?.trim();
+    if (!name || !name.startsWith("_ga")) continue;
+    for (const domain of domains) {
+      document.cookie = `${name}=; Max-Age=0; path=/${domain ? `; domain=${domain}` : ""}`;
+    }
+  }
+}
+
+/**
+ * Piekrišanas signāls uz Google - ABOS virzienos.
+ *
+ * Iepriekš `update` aizgāja tikai ar "granted". Atteikums pēc piekrišanas
+ * nesūtīja neko, tāpēc GTM sesijā piekrišana palika spēkā līdz nākamajai lapas
+ * ielādei, un divi hiti aizgāja ar `gcs=G111` jau pēc atteikuma.
+ */
+function applyConsent(consent: Exclude<Consent, null>): void {
+  if (typeof window === "undefined") return;
+  const value = consent === "all" ? "granted" : "denied";
+  window.gtag?.("consent", "update", {
+    ad_storage: value,
+    ad_user_data: value,
+    ad_personalization: value,
+    analytics_storage: value,
+  });
+  // Dzēšana iet PĒC signāla: pretējā secībā GA paspēj uzstādīt sīkdatni no jauna.
+  if (value === "denied") clearAnalyticsCookies();
+}
+
+/**
+ * Atver joslu no jauna UN atsauc jau doto piekrišanu. Izvēle glabājas
+ * `localStorage`, ne sīkdatnē, tāpēc privātuma politikas vecais padoms "izdzēs
+ * sīkdatnes pārlūkprogrammā" to neatiestatīja - vienīgais ceļš atpakaļ bija
+ * tāds, kas nestrādā. Kājenes saite sauc šo funkciju.
+ *
+ * Atiestatīšana ir arī atsaukums, ne tikai jautājuma atkārtošana: cilvēks, kurš
+ * spiež "Sīkdatņu iestatījumi", ir izteicis gribu, un līdz jaunai izvēlei
+ * pareizais stāvoklis ir "liegts".
  */
 export function openCookieSettings(): void {
   if (typeof window === "undefined") return;
@@ -22,6 +80,7 @@ export function openCookieSettings(): void {
   } catch {
     // Privātais režīms vai bloķēta krātuve - josla parādīsies jebkurā gadījumā.
   }
+  applyConsent("necessary");
   window.dispatchEvent(new Event(RESET_EVENT));
 }
 
@@ -38,8 +97,10 @@ export default function CookieBanner() {
     return () => window.removeEventListener(RESET_EVENT, onReset);
   }, []);
 
+  // Abi virzieni, ne tikai "all": saglabāts atteikums katrā lapas ielādē
+  // atkārto `denied` un iztīra to, ko iepriekšēja piekrišana bija uzstādījusi.
   useEffect(() => {
-    if (consent === "all") applyConsent("all");
+    if (consent !== null) applyConsent(consent);
   }, [consent]);
 
   function readStored(): Consent {
@@ -48,17 +109,6 @@ export default function CookieBanner() {
       return stored === "all" || stored === "necessary" ? stored : null;
     } catch {
       return null;
-    }
-  }
-
-  function applyConsent(c: Consent) {
-    if (c === "all" && typeof window !== "undefined" && window.gtag) {
-      window.gtag("consent", "update", {
-        ad_storage: "granted",
-        ad_user_data: "granted",
-        ad_personalization: "granted",
-        analytics_storage: "granted",
-      });
     }
   }
 
