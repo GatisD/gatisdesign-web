@@ -96,7 +96,7 @@ export const dict = {
         rateLimit: "Pārāk daudz mēģinājumu īsā laikā. Mēģini vēlreiz pēc dažām minūtēm.",
         network: "Neizdevās sazināties ar serveri. Pārbaudi savienojumu un mēģini vēlreiz.",
         server: "Serverī radās kļūda, un vēstule netika nosūtīta.",
-        turnstile: "Neizdevās pārbaudīt, ka pieprasījumu sūta cilvēks. Pārlādē lapu un mēģini vēlreiz.",
+        turnstile: "Neizdevās pārbaudīt, vai pieprasījumu sūta cilvēks. Pārlādē lapu un mēģini vēlreiz.",
       },
     },
   },
