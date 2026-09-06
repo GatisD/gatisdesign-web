@@ -169,8 +169,17 @@ export default function Index() {
       <JsonLd data={[homeWebsiteSchema, homePersonSchema, homeServiceSchema, homeFaqSchema]} />
 
       {/* ============ HERO ============ */}
+      {/* Hero augstums ir piesiets EKRĀNA PROPORCIJAI, ne platumam.
+          `88vh` ar `justify-end` ir laba kompozīcija platā ekrānā: liels kadrs,
+          virsraksts zemu. Šaurā un garā ekrānā tā pati formula rada caurumu, jo
+          saturs ir tikpat garš, bet augstums nav - starpība nokrīt tukšumā.
+          Nomērīts pirms labojuma: 329 px (38% ekrāna) uz 390x844, 407 px (43%)
+          uz 430x932 un 487 px (47%) uz planšetes 768x1024.
+          Platums to nešķir - planšete ir platāka par telefonu un cieta tāpat.
+          Šķir proporcija: `min-aspect-ratio: 4/3` ieslēdz vh tikai tur, kur
+          ekrāns tiešām ir plats, un pārējiem paliek fiksēts augstums. */}
       <section
-        className="relative isolate flex min-h-[clamp(560px,88vh,880px)] flex-col justify-end overflow-hidden bg-ink-900 pb-[clamp(28px,4vw,44px)] pt-[clamp(104px,18vw,220px)]"
+        className="relative isolate flex min-h-[540px] flex-col justify-end overflow-hidden bg-ink-900 pb-[clamp(28px,4vw,44px)] pt-[clamp(104px,18vw,220px)] sm:min-h-[600px] [@media(min-aspect-ratio:4/3)]:min-h-[clamp(560px,88vh,880px)]"
         aria-labelledby="hero-h"
       >
         <HeroMedia className="-z-[2]" poster="/media/hero-workshop.jpg" position="center 40%" eager drift brightness={0.5} />
