@@ -171,7 +171,23 @@ neatbild vispār.
 | Atsauksmes | 3 atsauksmes ar vārdu, uzņēmumu, amatu un rezultātu -> `src/content/testimonials.ts`, `TESTIMONIALS_ENABLED = true` | Sadaļa nerenderējas |
 | Portrets un video | Faili -> `public/media/` | Vietturi produkcijā nerenderējas |
 | 5 dziļās case study lapas | Uzdevums / ko izdarīju / kas mainījās, 250-400 vārdi | 5 lapām nav apraksta, tām sitemap prioritāte ir 0,5 |
-| CSP `script-src` | Nonce caur edge middleware | `'unsafe-inline'` - vite-react-ssg katrā lapā ieraksta savu hidratācijas skriptu ar atšķirīgu saturu, tāpēc jaucējsummas statiskā galvenē nav iespējamas. Ārējie skriptu avoti jau tagad ir aizliegti |
+| CSP `script-src` | Nonce caur edge middleware | `'unsafe-inline'` - vite-react-ssg katrā lapā ieraksta savu hidratācijas skriptu ar atšķirīgu saturu, tāpēc jaucējsummas statiskā galvenē nav iespējamas. No ārējiem skriptu avotiem atļauts tikai `googletagmanager.com` |
+
+### CSP un mērījumu rīki
+
+`vercel.json` CSP atļauj tieši tos avotus, kas tiešām strādā. Katram jaunam
+mērījumu rīkam avoti jāpieliek ATSEVIŠĶI - citādi skripts tiek klusi bloķēts un
+izskatās, ka tags ir salauzts:
+
+| Rīks | Kas jāpieliek |
+|---|---|
+| Google Tag Manager, GA4 | jau ir: `script-src`, `img-src`, `connect-src` |
+| Meta Pixel | `script-src https://connect.facebook.net`, `img-src https://www.facebook.com`, `connect-src https://www.facebook.com` |
+| Microsoft Clarity | `script-src https://www.clarity.ms`, `connect-src https://*.clarity.ms https://*.bing.com` |
+
+GTM Preview (Tag Assistant) šo CSP neiztur - tā pārklājumam vajag
+`tagmanager.google.com` skriptus, stilus un iframe. Tas ir apzināti: tagu
+pārbaudei lieto headless zondi, ne Preview.
 | react-router 7 | Migrācija | Divas `npm audit` moderate rindas, kas šajā kodā nav izmantojamas |
 
 ---
