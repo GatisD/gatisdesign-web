@@ -61,7 +61,11 @@ const FIELD_INPUT = cn(FIELD_BASE, "min-h-[56px] py-4 md:min-h-16");
 const ERROR_SLOT = "min-h-[19px] text-[14px] leading-[1.35] text-amber";
 
 /** Cik ilgi iesniegšana gaida Cloudflare pilnvaru, pirms padodas. */
-const TURNSTILE_WAIT_MS = 10_000;
+// 20 s, ne 10. Managed režīmā Cloudflare dažiem apmeklētājiem rāda interaktīvu
+// izaicinājumu, un desmit sekundes tam ir par maz: cilvēks vēl nav paspējis
+// atbildēt, kad forma jau padodas. 2026-09-07 forma klusi neizsūtīja nevienu
+// pieprasījumu 20 stundas pēc Turnstile ieslēgšanas.
+const TURNSTILE_WAIT_MS = 20_000;
 
 /** Servera kļūdas kods -> teksts. Plakana tabula, ne ligzdoti trejnieki. */
 const MESSAGE_BY_CODE: Record<string, ErrorKey> = {
@@ -409,7 +413,22 @@ export default function ContactForm({ className }: { className?: string }) {
           <p className="mt-2 text-paper-2">
             {t.form.failureFallback}{" "}
             <a
-              href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`${t.form.kicker}: ${getValues("name") || ""}`.trim())}`}
+              // Ziņa iet LĪDZI, ne tikai vārds. Ja robotu pārbaude neizdodas,
+              // cilvēks ir jau uzrakstījis tekstu - likt viņam to rakstīt vēlreiz
+              // nozīmē pazaudēt pieprasījumu tieši tajā brīdī, kad tas ir gatavs.
+              href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+                `${t.form.kicker}: ${getValues("name") || ""}`.trim(),
+              )}&body=${encodeURIComponent(
+                [
+                  getValues("name") && `Vards: ${getValues("name")}`,
+                  getValues("email") && `E-pasts: ${getValues("email")}`,
+                  getValues("service") && `Pakalpojums: ${getValues("service")}`,
+                  getValues("budget") && `Budzets: ${getValues("budget")}`,
+                  getValues("message") && `\n${getValues("message")}`,
+                ]
+                  .filter(Boolean)
+                  .join("\n"),
+              )}`}
               className="border-b border-line-amber text-paper transition-colors duration-300 hover:text-amber"
             >
               {CONTACT_EMAIL}
