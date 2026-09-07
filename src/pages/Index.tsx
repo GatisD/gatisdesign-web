@@ -251,7 +251,7 @@ export default function Index() {
               <ProjectCard
                 project={project}
                 eager={i === 0}
-                frame="h-[clamp(210px,30vw,500px)]"
+                frame="md:h-[clamp(210px,30vw,500px)]"
                 frameRatio={i === 0 ? 7 / 4.4 : 5 / 3.2}
               />
             </Reveal>
@@ -261,7 +261,7 @@ export default function Index() {
         <div className="mt-grid grid gap-grid md:grid-cols-12">
           {rowBottom.map((project, i) => (
             <Reveal key={project.slug} delay={stagger(i, 3)} className="md:col-span-4">
-              <ProjectCard project={project} frame="h-[clamp(190px,22vw,360px)]" frameRatio={4 / 3} />
+              <ProjectCard project={project} frame="md:h-[clamp(190px,22vw,360px)]" frameRatio={4 / 3} />
             </Reveal>
           ))}
         </div>

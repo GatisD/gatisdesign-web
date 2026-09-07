@@ -58,14 +58,27 @@ const BRAND_NOTE =
 const SPAN = ["md:col-span-7", "md:col-span-5", "md:col-span-4", "md:col-span-4", "md:col-span-4"];
 /** Augstums, ne proporcija: vienā rindā visām kartēm jābeidzas vienā līnijā. */
 const FRAME = [
-  "h-[clamp(210px,30vw,500px)]",
-  "h-[clamp(210px,30vw,500px)]",
-  "h-[clamp(190px,22vw,360px)]",
-  "h-[clamp(190px,22vw,360px)]",
-  "h-[clamp(190px,22vw,360px)]",
+  "md:h-[clamp(210px,30vw,500px)]",
+  "md:h-[clamp(210px,30vw,500px)]",
+  "md:h-[clamp(190px,22vw,360px)]",
+  "md:h-[clamp(190px,22vw,360px)]",
+  "md:h-[clamp(190px,22vw,360px)]",
 ];
-/** Kadra proporcija - pēc tās karte izlemj, vai attēls aizpilda vai ietilpst. */
-const FRAME_RATIO = [7 / 4.4, 5 / 3.2, 4 / 3, 4 / 3, 4 / 3];
+/**
+ * Kadra proporcija - pēc tās karte izlemj, vai attēls aizpilda vai ietilpst.
+ *
+ * Skaitļi ir MĒRĪTI, ne izrēķināti no kolonnu skaita. Kadra augstums ir `30vw`
+ * un `22vw`, bet platums - daļa no režģa, tāpēc īstā proporcija ar kolonnu
+ * attiecību nesakrīt. Vecās vērtības (7/4,4 un 5/3,2) nāca no kolonnām un bija
+ * stipri garām: otrajai flīzei tur stāvēja 1,56, kamēr īstā ir 1,27. Sekas -
+ * Box Latvia vāks tika griezts par 21%.
+ *
+ * Mērīts dzīvā lapā: 1280 px [1,80 1,27 1,36], 1440 px [1,81 1,28 1,38],
+ * 1680 px un platāk [1,57 1,11 1,21] - tur augstuma `clamp` sasniedz griestus.
+ * Ņemtas biežākā diapazona vērtības; platos ekrānos novirze paliek `fits`
+ * pielaides (1,18) iekšienē vai noved uz "ietilpst", kas nekad negriež.
+ */
+const FRAME_RATIO = [1.8, 1.27, 1.36, 1.36, 1.36];
 
 export default function Portfolio() {
   const { locale, t } = useLocale();

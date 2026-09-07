@@ -453,9 +453,13 @@
 .stack-atspidums {
   background:
     radial-gradient(circle, rgb(239 232 220 / 0.2) 1px, transparent 1px) 0 0 / 26px 26px,
-    radial-gradient(62% 140% at 50% 50%, rgb(223 84 30 / 0.34) 0%, rgb(223 84 30 / 0.1) 44%, transparent 72%);
-  -webkit-mask-image: radial-gradient(70% 120% at 50% 50%, #000 0%, #000 52%, transparent 88%);
-  mask-image: radial-gradient(70% 120% at 50% 50%, #000 0%, #000 52%, transparent 88%);
+    radial-gradient(60% 88% at 50% 50%, rgb(223 84 30 / 0.34) 0%, rgb(223 84 30 / 0.1) 42%, transparent 70%);
+  /* Vertikālais rādiuss ir ZEM 100% ar nolūku. Ar 140% gaisma nepaspēja izdzist
+     līdz kastes malai, un mala to nogrieza - telefonā tur bija redzama asa
+     horizontāla robeža, krāsas lēciens par 49 vienībām vienā pikselī. Tagad gan
+     gaisma, gan maska beidzas pirms malas, un kaste nekur neparādās. */
+  -webkit-mask-image: radial-gradient(72% 82% at 50% 50%, #000 0%, #000 38%, transparent 90%);
+  mask-image: radial-gradient(72% 82% at 50% 50%, #000 0%, #000 38%, transparent 90%);
 }
 
 @media (prefers-reduced-motion: no-preference) {

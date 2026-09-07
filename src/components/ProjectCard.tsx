@@ -92,8 +92,29 @@ export default function ProjectCard({
           vispār tika atcelts. Tagad tas atbalstās pret kartes stūri no ārpuses. */}
       <span className="relative block">
       <span
-        className={cn("relative block overflow-hidden rounded-card border border-line bg-ink-card", frame)}
-        style={frame ? undefined : { aspectRatio: `${cover.width} / ${cover.height}` }}
+        className={cn(
+          "relative block w-full overflow-hidden rounded-card border border-line bg-ink-card",
+          // Proporcija zem `md`, augstums no `md` uz augšu - sk. komentāru zemāk.
+          "aspect-[var(--vaka-prop)]",
+          frame ? "md:aspect-auto" : null,
+          frame,
+        )}
+        /*
+         * Kāpēc proporcija ir CSS mainīgajā, ne inline `aspectRatio`:
+         *
+         * Fiksētais augstums pastāv tāpēc, ka darbvirsmā vienā rindā stāv dažāda
+         * platuma kartes (7+5, 4+4+4), un vienāda proporcija tur dotu nesakrītošas
+         * apakšas. Telefonā rindā ir VIENA karte, tāpēc augstums tur neko
+         * nesaskaņo - toties tas uzspieda kadram proporciju 1,85, kurā 1,41
+         * platuma vāks tika nogriezts par ceturtdaļu (mērīts 390 px logā:
+         * Digitālais Dzintars 76% redzams, Box Latvia 86%).
+         *
+         * Inline `aspectRatio` to nerisināja, bet salauza darbvirsmu: kad
+         * augstums ir noteikts un platums nāk no režģa, `aspect-ratio` sāka
+         * noteikt PLATUMU, un 7/12 kolonnas karte kļuva 621 px plata 790 px
+         * vietā. Tāpēc proporcija ir klase, ko `md:aspect-auto` izslēdz.
+         */
+        style={{ ["--vaka-prop" as string]: `${cover.width} / ${cover.height}` }}
       >
         <PicturePortfolio
           src={cover.src}
