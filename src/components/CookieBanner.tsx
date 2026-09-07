@@ -64,6 +64,17 @@ function applyConsent(consent: Exclude<Consent, null>): void {
     ad_personalization: value,
     analytics_storage: value,
   });
+  // Notikums dataLayer, ne tikai `consent update`.
+  //
+  // Kāpēc abi: Consent Mode signāls pietiek GA4 birkai, kas piekrišanu apstrādā
+  // pati. Pielāgotai HTML birkai ar "vajadzīga papildu piekrišana" ar to NEPIETIEK -
+  // tās trigeris (visas lapas) nostrādā, pirms cilvēks ir atbildējis, un pēc
+  // atbildes GTM to vairs neatkārto. Nomērīts dzīvajā lapā 2026-09-07: piekrišanas
+  // stāvoklis GTM bija `analytics_storage: true`, bet birka neizpildījās ne pirmajā,
+  // ne otrajā lapas atvērumā. Šis notikums dod trigeri, kas nostrādā PĒC atbildes.
+  if (value === "granted") {
+    window.dataLayer?.push({ event: "consent_granted" });
+  }
   // Dzēšana iet PĒC signāla: pretējā secībā GA paspēj uzstādīt sīkdatni no jauna.
   if (value === "denied") clearAnalyticsCookies();
 }
