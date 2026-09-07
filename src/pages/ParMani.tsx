@@ -8,7 +8,6 @@ import Reveal, { stagger } from "@/components/animations/Reveal";
 import LineReveal from "@/components/animations/LineReveal";
 import { h1Lines } from "@/content/h1";
 import CountUp from "@/components/animations/CountUp";
-import MediaPlaceholder from "@/components/direction/MediaPlaceholder";
 import { Section, SectionTitle } from "@/components/direction/Section";
 import ContentSections from "@/components/content/ContentSections";
 import ClosingLine from "@/components/content/ClosingLine";
@@ -29,6 +28,7 @@ import {
   WORK_LOCATION,
 } from "@/lib/site";
 import { personNode, faqPageNode } from "@/lib/schema-nodes";
+import PicturePortfolio from "@/components/PicturePortfolio";
 
 /**
  * Skaitļu josla ir TIKAI šeit - zem portreta, kur tā ir biogrāfijas daļa.
@@ -84,10 +84,21 @@ export default function ParMani() {
         <HeroMedia className="-z-[2]" poster="/media/hero-about.jpg" eager brightness={0.42} position="center 45%" />
         <div aria-hidden="true" className="absolute inset-0 -z-[1]" style={{ background: "var(--scrim-page)" }} />
         <div className="mx-auto grid w-full max-w-wrap gap-x-14 gap-y-10 px-5 sm:px-8 lg:px-10 md:grid-cols-2 md:items-end">
-          <MediaPlaceholder
-            text={isLv ? "Portrets vai 15 sekunžu video darba vidē - vēl jāuzņem" : "Portrait or a 15 second workshop video - still to be shot"}
-            ratio="4 / 5"
-            className="md:max-w-[440px]"
+          {/* Portrets, ne vietturis. `alt` apraksta cilvēku, ne failu: ekrāna
+              lasītājam "portrets" neko nepasaka, bet vārds pasaka. Attēls ir
+              512x640 - tas ir avota izmērs, tāpēc slotu turam līdz 380 px, lai
+              tas paliktu ass arī uz retina ekrāna. */}
+          <PicturePortfolio
+            src="/media/gatis-portrets.jpg"
+            alt={isLv ? "Gatis Daugavietis" : "Gatis Daugavietis"}
+            width={512}
+            height={640}
+            widths={[256, 512]}
+            sizes="(min-width: 768px) 380px, 300px"
+            loading="eager"
+            priority="high"
+            className="w-full max-w-[300px] object-cover md:max-w-[380px]"
+            style={{ aspectRatio: "4 / 5" }}
           />
 
           <div>
