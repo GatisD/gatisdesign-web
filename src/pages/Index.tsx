@@ -7,6 +7,7 @@ import Reveal, { stagger } from "@/components/animations/Reveal";
 import LineReveal from "@/components/animations/LineReveal";
 import { h1Lines } from "@/content/h1";
 import MagneticButton from "@/components/animations/MagneticButton";
+import HeroGrafika from "@/components/direction/HeroGrafika";
 import HeroMedia from "@/components/direction/HeroMedia";
 import StackStrip from "@/components/direction/StackStrip";
 import MediaPlaceholder, { SHOW_PLACEHOLDERS } from "@/components/direction/MediaPlaceholder";
@@ -190,6 +191,7 @@ export default function Index() {
           className="absolute inset-0 -z-[1]"
           style={{ background: "var(--scrim-hero)" }}
         />
+        <HeroGrafika />
 
         <div className="relative mx-auto w-full max-w-wrap px-5 sm:px-8 lg:px-10">
           <LineReveal

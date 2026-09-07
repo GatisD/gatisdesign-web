@@ -407,17 +407,46 @@
   display: none;
 }
 
-/* Rīku kartes zem hero. Slīpums ir `rotate`, peldēšana ir `translate` - divas
-   atsevišķas īpašības, tāpēc kustību var apturēt, neiztaisnojot kompozīciju. */
+/* Rīku kartes zem hero - gaišs stikls.
+   Kāpēc gaišs: komplektā ir gan MELNA zīme (Vercel), gan BALTA (Notion), un
+   vienas pamatnes, uz kuras abas lasās, nav - izmērīts pa visiem caurspīdīguma
+   soļiem. Uz gaišas pamatnes turpretī katrs logotips stāv savā kanoniskajā
+   formā, tieši tādā, kādu zīmols pats lieto uz balta. To pašu dara Cloudflare.
+   Stiklu veido caurspīdīgums, fona izpludinājums, gaišā mala un iekšējā spīduma
+   svītra augšmalā; aiz rindas stāv silts atspīdums, ko stikls uzņem sevī.
+   Slīpums ir `rotate`, peldēšana - `translate`: divas atsevišķas īpašības, tāpēc
+   kustību var apturēt, neiztaisnojot kompozīciju. */
 .stack-karte {
   rotate: var(--slipums, 0deg);
+  background: linear-gradient(155deg, rgb(255 255 255 / 0.9) 0%, rgb(255 255 255 / 0.6) 100%);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
+  backdrop-filter: blur(14px) saturate(1.25);
+  border: 1px solid rgb(255 255 255 / 0.6);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.85),
+    0 18px 38px -14px rgb(0 0 0 / 0.7),
+    0 3px 8px rgb(0 0 0 / 0.35);
   transition:
     scale 0.4s var(--ease),
-    border-color 0.4s ease;
+    box-shadow 0.4s var(--ease);
 }
 .stack-karte:hover {
-  scale: 1.07;
-  border-color: var(--line-strong);
+  scale: 1.08;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.9),
+    0 26px 52px -14px rgb(0 0 0 / 0.78),
+    0 4px 10px rgb(0 0 0 / 0.4);
+}
+
+/* Silts atspīdums aiz rindas. Bez tā stiklam nav, ko izpludināt - sekcijas fons
+   ir plakans, un caurspīdīgums paliek tikai vārdos. */
+.stack-atspidums {
+  background: radial-gradient(
+    58% 130% at 50% 50%,
+    rgb(223 84 30 / 0.22) 0%,
+    rgb(223 84 30 / 0.07) 45%,
+    transparent 72%
+  );
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -435,4 +464,22 @@
       translate: 0 5px;
     }
   }
+}
+
+/* Hero punktu režģis. Maska to nodzēš uz apakšu, kur sākas virsraksts un
+   teksts - raibums zem burtiem maksā salasāmību, bet nedod neko pretī. */
+.hero-punkti {
+  background-image: radial-gradient(circle, rgba(239, 232, 220, 0.16) 1px, transparent 1px);
+  background-size: 30px 30px;
+  -webkit-mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.9) 0%, rgb(0 0 0 / 0.35) 42%, transparent 66%);
+  mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.9) 0%, rgb(0 0 0 / 0.35) 42%, transparent 66%);
+}
+
+/* Nospiedumteksts. Kontūra, ne pildījums: uz fotoattēla pildīts burts kļūtu par
+   dūņām. `text-stroke` bez prefiksa Safari vēl nepazīst, tāpēc abi. */
+.hero-nospiedums {
+  font-size: clamp(88px, 15vw, 232px);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(239, 232, 220, 0.13);
+  text-stroke: 1px rgba(239, 232, 220, 0.13);
 }
