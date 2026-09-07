@@ -265,8 +265,9 @@
     "year": 2026,
     "yearEstimated": false,
     "roleKind": "solo",
-    "roleLabel": "SEO un GEO stratēģija",
+    "roleLabel": "Mājaslapa, pierakstu sistēma un SEO",
     "services": [
+      "majaslapas",
       "seo"
     ],
     "externalUrl": "https://chipchop.lv",
@@ -276,8 +277,8 @@
       "Elementor",
       "Amelia"
     ],
-    "titleLv": "ChipChop Barbershop - lokālais SEO",
-    "summaryLv": "Salaspils frizētavas lokālā SEO un GEO plāns: schema, satura struktūra un Google profila optimizācija.",
+    "titleLv": "ChipChop Barbershop - mājaslapa ar pierakstiem",
+    "summaryLv": "Salaspils frizētavas mājaslapa ar tiešsaistes pierakstu sistēmu, kā arī lokālā SEO un GEO darbs: schema, satura struktūra un Google profila optimizācija.",
     "coverHint": "shots/chipchop.png"
   },
   {
