@@ -8,6 +8,7 @@ import LineReveal from "@/components/animations/LineReveal";
 import { h1Lines } from "@/content/h1";
 import MagneticButton from "@/components/animations/MagneticButton";
 import HeroMedia from "@/components/direction/HeroMedia";
+import StackStrip from "@/components/direction/StackStrip";
 import MediaPlaceholder, { SHOW_PLACEHOLDERS } from "@/components/direction/MediaPlaceholder";
 import Band from "@/components/direction/Band";
 import { Section, SectionTitle, LabelRow, ProseColumns } from "@/components/direction/Section";
@@ -226,6 +227,11 @@ export default function Index() {
           ) : null}
         </div>
       </section>
+
+      {/* ============ RĪKI ============ */}
+      {/* Tūlīt aiz virsraksta, pirms darbiem: vispirms cilvēks redz, AR KO strādāju,
+          un tikai pēc tam - ko esmu ar to uzbūvējis. */}
+      <StackStrip heading="Rīki, ar ko strādāju" />
 
       {/* ============ DARBI ============ */}
       <Section rhythm="lg" labelledBy="darbi-h">

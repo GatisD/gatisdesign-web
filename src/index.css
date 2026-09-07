@@ -406,3 +406,33 @@
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* Rīku kartes zem hero. Slīpums ir `rotate`, peldēšana ir `translate` - divas
+   atsevišķas īpašības, tāpēc kustību var apturēt, neiztaisnojot kompozīciju. */
+.stack-karte {
+  rotate: var(--slipums, 0deg);
+  transition:
+    scale 0.4s var(--ease),
+    border-color 0.4s ease;
+}
+.stack-karte:hover {
+  scale: 1.07;
+  border-color: var(--line-strong);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .stack-karte {
+    animation-name: stack-peld;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+  @keyframes stack-peld {
+    from {
+      translate: 0 -5px;
+    }
+    to {
+      translate: 0 5px;
+    }
+  }
+}
