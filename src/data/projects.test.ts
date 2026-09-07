@@ -98,8 +98,11 @@ describe("portfolio projekti", () => {
   });
 
   it("galerijas faili eksistē un tiem ir izmērs", () => {
+    // Skaitlis ir sargs: galerija, kas klusi pazūd no `portfolioWorks`, citādi
+    // lapā vienkārši vairs nav, un neviens tests to nepamana. Pievienojot
+    // kolekciju, šo skaitli maina APZINĀTI - tā ir vienīgā vieta, kur to dara.
     const withGallery = projects.filter((p) => p.gallery);
-    expect(withGallery.length).toBe(8);
+    expect(withGallery.length).toBe(9);
     for (const project of withGallery) {
       for (const img of project.gallery ?? []) {
         expect(img.width, img.src).toBeGreaterThan(0);

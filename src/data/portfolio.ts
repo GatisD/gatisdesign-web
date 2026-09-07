@@ -109,6 +109,39 @@ export const portfolioWorks: PortfolioWork[] = [
     ],
   },
   {
+    // Zīmes, kas parādītas materiālā - foliju, gravējumā, izšuvumā, apdrukā.
+    // Kadri ir vizualizācijas, ne fotogrāfijas no ražotnes: mokaps parāda zīmi
+    // uz materiāla, un tā ir sena prezentācijas forma, bet apgalvot, ka tieši
+    // šī vizītkarte tika iespiesta, nedrīkst. Tāpēc paraksti apraksta ZĪMI un
+    // materiālu, nevis stāsta par pasūtījumu vai tirāžu.
+    slug: "zimolu-zimes",
+    cover: "/portfolio/zimolu-zimes/zimolu-zimes-01.jpg",
+    layout: "grid",
+    gallery: [
+      { file: "zimolu-zimes-01", alt: "PAXMONT skrūves zīme vara folijā uz melnas kokvilnas vizītkartes" },
+      { file: "zimolu-zimes-02", alt: "Akmens1.lv zīme un uzraksts, iegravēts slīpētā tumšā granītā" },
+      { file: "zimolu-zimes-03", alt: "adamo.lv zīme izgaismotā akrilā uz tumšas mikrocementa sienas" },
+      { file: "zimolu-zimes-04", alt: "Guesthouse Vētras zīme, izdedzināta ozola atslēgu piekariņā" },
+      { file: "zimolu-zimes-05", alt: "Runar apaļā zīme ar rūnu kompasu, misiņā uz apdedzināta koka sienas" },
+      { file: "zimolu-zimes-06", alt: "Vāverkaķa zīme kā izšūts ielāps uz ādas virsmas" },
+      { file: "zimolu-zimes-07", alt: "Wavy Slats zīme uz rievotas koka latu sienas" },
+      { file: "zimolu-zimes-08", alt: "Metic zīme zeltā, kodināta tumšā metāla virsmā" },
+      { file: "zimolu-zimes-09", alt: "Bomis zīme tēraudā, piestiprināta pie stikla starpsienas" },
+      { file: "zimolu-zimes-10", alt: "Gtech.es Green Energy zīme uz zaļa linu grāmatas vāka" },
+      { file: "zimolu-zimes-11", alt: "ModuleList zīme, gravēta misiņa birkā uz ādas auklas" },
+      { file: "zimolu-zimes-12", alt: "No Bērza zīme uz tumša stikla pudeles ar ādas birku" },
+      { file: "zimolu-zimes-13", alt: "Party Box zīme hologrāfiskā folijā uz melnas dāvanu kastes" },
+      { file: "zimolu-zimes-14", alt: "Bonova zīme, aklā iespiedumā rokas papīrā ar plēstu malu" },
+      { file: "zimolu-zimes-15", alt: "LTECH zīme, iespiesta melnā anodēta alumīnija virsmā" },
+      { file: "zimolu-zimes-16", alt: "MLM Cargo zīme uz vaskota audekla ar misiņa cilpu" },
+      { file: "zimolu-zimes-17", alt: "Vita Bud produktu iepakojumi aptiekas plauktā" },
+      { file: "zimolu-zimes-18", alt: "Vendings.lv aplīmēts tirdzniecības automāts biroja vestibilā" },
+      { file: "zimolu-zimes-19", alt: "JurmalaEstate.lv zīme misiņa burtos uz rievotas riesta sienas reģistratūrā" },
+      { file: "zimolu-zimes-20", alt: "Holidays House zīmola komplekts uz ozola galda: veidlapa, vizītkartes un aploksne" },
+      { file: "zimolu-zimes-21", alt: "Darba Apģērbi zīme, izšūta uz augstas redzamības darba jakas" },
+    ],
+  },
+  {
     slug: "logo-branding",
     cover: "/portfolio/logo-branding/logo-branding-01.jpg",
     layout: "grid",

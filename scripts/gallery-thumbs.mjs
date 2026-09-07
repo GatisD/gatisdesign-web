@@ -15,7 +15,7 @@ import { fileURLToPath } from "node:url";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const PUB = join(ROOT, "public/portfolio");
 /** Kolekcijas, kas lapā ir režģis (sk. portfolio.ts layout: "grid"). */
-const GRID_DIRS = ["logo-branding"];
+const GRID_DIRS = ["logo-branding", "zimolu-zimes"];
 /**
  * Divi platumi, ne viens: mobilajā režģis ir divas kolonnas, tātad karte ir
  * ~175 CSS px un 2x ekrānā ~350 px. Ar vienu 640 px variantu telefons

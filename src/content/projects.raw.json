@@ -628,6 +628,27 @@
     "galleryCount": 16
   },
   {
+    "id": "zimolu-zimes",
+    "slug": "zimolu-zimes",
+    "category": "brand",
+    "client": "Dažādi klienti",
+    "year": 2026,
+    "yearEstimated": false,
+    "yearRange": "2015-2026",
+    "roleKind": "solo",
+    "roleLabel": "Zīmola zīmju izstrāde",
+    "services": [
+      "zimols"
+    ],
+    "externalUrl": null,
+    "externalStatus": null,
+    "stack": [],
+    "titleLv": "Zīmes materiālā",
+    "summaryLv": "Divdesmit viena zīmola zīme, parādīta uz materiāla, kurā tā beigās nonāk: folijā, gravējumā, izšuvumā un apdrukā. Latvijas, Lietuvas un Spānijas klientiem.",
+    "coverHint": "public/portfolio/zimolu-zimes/zimolu-zimes-01.jpg",
+    "galleryCount": 21
+  },
+  {
     "id": "logo-branding",
     "slug": "logo-branding",
     "category": "brand",
