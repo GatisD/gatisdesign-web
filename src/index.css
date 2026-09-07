@@ -477,13 +477,15 @@
   }
 }
 
-/* Hero punktu režģis. Maska to nodzēš uz apakšu, kur sākas virsraksts un
-   teksts - raibums zem burtiem maksā salasāmību, bet nedod neko pretī. */
-.hero-punkti {
-  background-image: radial-gradient(circle, rgba(239, 232, 220, 0.16) 1px, transparent 1px);
-  background-size: 30px 30px;
-  -webkit-mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.9) 0%, rgb(0 0 0 / 0.35) 42%, transparent 66%);
-  mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.9) 0%, rgb(0 0 0 / 0.35) 42%, transparent 66%);
+/* Hero ciparu lietus. Maska to nodzēš uz apakšu, kur sākas virsraksts un
+   teksts - raibums zem burtiem maksā salasāmību, bet nedod neko pretī. Tā pati
+   maska, kāda bija punktu režģim; mainījās tas, kas zem tās kustas.
+
+   Maska ir arī veiktspējas robeža, ne tikai gaumes: komponente zīmē tikai līdz
+   72% no augstuma, jo zemāk maska tāpat visu nodzēš. */
+.hero-cipari {
+  -webkit-mask-image: linear-gradient(to bottom, rgb(0 0 0 / 1) 0%, rgb(0 0 0 / 0.5) 44%, transparent 72%);
+  mask-image: linear-gradient(to bottom, rgb(0 0 0 / 1) 0%, rgb(0 0 0 / 0.5) 44%, transparent 72%);
 }
 
 /* Nospiedumteksts. Kontūra, ne pildījums: uz fotoattēla pildīts burts kļūtu par
