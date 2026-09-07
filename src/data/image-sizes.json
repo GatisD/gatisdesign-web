@@ -863,6 +863,18 @@
     "width": 1440,
     "height": 900
   },
+  "/portfolio/shots/olive-mebeles-mobile-sm.jpg": {
+    "width": 260,
+    "height": 563
+  },
+  "/portfolio/shots/olive-mebeles-mobile.jpg": {
+    "width": 780,
+    "height": 1688
+  },
+  "/portfolio/shots/olive-mebeles.jpg": {
+    "width": 1440,
+    "height": 900
+  },
   "/portfolio/shots/profdurys-mobile-sm.jpg": {
     "width": 260,
     "height": 563
@@ -980,6 +992,18 @@
     "height": 1688
   },
   "/portfolio/shots/valis.jpg": {
+    "width": 1440,
+    "height": 900
+  },
+  "/portfolio/shots/videastone-mobile-sm.jpg": {
+    "width": 260,
+    "height": 563
+  },
+  "/portfolio/shots/videastone-mobile.jpg": {
+    "width": 780,
+    "height": 1688
+  },
+  "/portfolio/shots/videastone.jpg": {
     "width": 1440,
     "height": 900
   },

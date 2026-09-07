@@ -116,6 +116,8 @@ const ORDER = [
   "rois-lv",
   "logo-branding",
   "universal-solutions",
+  "videastone",
+  "olive-mebeles",
   "darbaguru",
   "apmekle",
   "lucky-punch",
