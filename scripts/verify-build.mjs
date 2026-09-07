@@ -417,6 +417,29 @@ function checkDist(dist) {
     }
   }
 
+
+  // 20. Publisks projekts nesaitē uz izstrādes vidi.
+  //
+  //     `mebelumontaza-web.vercel.app` bija publiski saitēts kā klienta darbs.
+  //     Tāda adrese klientam neko nepierāda, tā mainīsies, un portfolio saite,
+  //     kas pēc mēneša ved uz 404, ir sliktāka par saites neesamību. Statuss
+  //     `development` saiti noņem un paskaidro, kāpēc tās nav.
+  {
+    const rawPath = join(ROOT, "src/content/projects.raw.json");
+    const draftPath = join(ROOT, "src/content/projects.draft.json");
+    if (existsSync(rawPath) && existsSync(draftPath)) {
+      const raw = JSON.parse(readFileSync(rawPath, "utf8"));
+      const melnraksts = new Set(JSON.parse(readFileSync(draftPath, "utf8")).map((p) => p.slug));
+      const DEV = /\.vercel\.app|\.netlify\.app|\.pages\.dev|localhost|\.rois\.lv|\.gatisdesign\.com/;
+      for (const p of raw) {
+        if (melnraksts.has(p.slug)) continue;
+        if (p.externalStatus === "live" && p.externalUrl && DEV.test(p.externalUrl)) {
+          errors.push(`projekts "${p.slug}" publiski saitē uz izstrādes vidi: ${p.externalUrl}`);
+        }
+      }
+    }
+  }
+
   return errors;
 }
 

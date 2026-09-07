@@ -18,7 +18,7 @@ Gatis Daugavietis strādā viens - no pirmās sarunas līdz publicēšanai un ar
 - [Sākumlapa](https://gatisdesign.com/): mājaslapu dizains, zīmols, AI aģenti un redzamība - visu izdara viens cilvēks.
 - [Par mani](https://gatisdesign.com/par-mani): 18 gadu pieredze dizainā un izstrādē, darba gaita soli pa solim, klientu profils un robežas, kad viens cilvēks nav pareizā izvēle.
 - [Kontakti](https://gatisdesign.com/kontakti): atbildu vienas darba dienas laikā; pēc sarunas nosūtu piedāvājumu ar cenu un termiņu. E-pasts: connect@gatisdesign.com. Atrašanās vieta - Rīga.
-- [Darbu izlase](https://gatisdesign.com/portfolio): 39 publicēti darbi - katram norādīts klients un mana loma. Zemāk uzskaitīti tie 35, kuriem ir sava lapa ar aprakstu.
+- [Darbu izlase](https://gatisdesign.com/portfolio): 38 publicēti darbi - katram norādīts klients un mana loma. Zemāk uzskaitīti tie 34, kuriem ir sava lapa ar aprakstu.
 - [Privātuma politika](https://gatisdesign.com/privatuma-politika): kādi dati tiek vākti un kāpēc.
 
 ## Biežākie jautājumi
@@ -34,7 +34,7 @@ Gatis Daugavietis strādā viens - no pirmās sarunas līdz publicēšanai un ar
 
 - Pieredze: 18 gadi, kopš 2008. gada
 - Pabeigti projekti: vairāk nekā 100
-- Publicētie darbi: 39, katram norādīts klients un mana loma
+- Publicētie darbi: 38, katram norādīts klients un mana loma
 - Tirgi: Latvija, Igaunija, Lietuva, ASV
 - Saziņas valodas: latviešu un angļu
 - Platformas un tehnoloģijas: WordPress, Shopify; kodā rakstītas lapas ar React un Vite
@@ -58,7 +58,6 @@ Gatis Daugavietis strādā viens - no pirmās sarunas līdz publicēšanai un ar
 - [Box Latvia - pārvākšanās un noliktavu serviss](https://gatisdesign.com/portfolio/box-latvia-web): vietne ar trim pakalpojumu virzieniem - pārvākšanās, noliktavas un nekustamais īpašums. Zīmols un izstrāde, ROIS komandā.
 - [Lauvas Zobs - stomatoloģijas klīnika](https://gatisdesign.com/portfolio/lauvas-zobs): daudzprofilu stomatoloģijas klīnikas vietne ar pakalpojumu lapām, speciālistu profiliem un saturu divās valodās. Izstrāde ROIS komandā.
 - [Valis Stomatoloģija - klīnikas vietne](https://gatisdesign.com/portfolio/valis): zobu implantācijas klīnikas vietne ar pieraksta formu, divu filiāļu kontaktiem un pakalpojumu sadaļām. Izstrāde ROIS komandā.
-- [Lucky Punch - enerģijas dzēriena veikals](https://gatisdesign.com/portfolio/lucky-punch): Shopify veikals enerģijas dzēriena zīmolam, ar cīņas sporta vizuālo valodu, LV un EN versiju, divām valūtām. Izstrāde ROIS komandā.
 - [Termokoksne - termiski apstrādāta koka vietne](https://gatisdesign.com/portfolio/termokoksne): termiski apstrādāta koka fasāžu un terašu materiālu vietne ar katalogu, galeriju un partneru sadaļu. Izstrāde un uzturēšana.
 - [Salons Objekts - apdares materiālu vietne](https://gatisdesign.com/portfolio/salonsobjekts): apdares materiālu salona vietne ar produktu katalogu, projektu sadaļu un grozu. Izstrāde un uzturēšana.
 - [Laluna - Toyota pārstāvja vietne](https://gatisdesign.com/portfolio/laluna): toyota pārstāvja vietne ar jaunu un lietotu auto katalogu, finansēšanas, servisa un Toyota Business sadaļām. Izstrāde un uzturēšana.
@@ -105,6 +104,6 @@ Gatis Daugavietis strādā viens - no pirmās sarunas līdz publicēšanai un ar
 - [Brand identity (EN)](https://gatisdesign.com/en/brand-identity): logo with 3-4 concepts 500-700 EUR, brand book 350-500 EUR, extended brand book with strategy 3000 EUR, print materials 120-900 EUR.
 - [SEO, GEO and AEO (EN)](https://gatisdesign.com/en/seo-geo-aeo): audit 300-800 EUR by page count, AI SEO base implementation 700 EUR, standard implementation 1200 EUR, maintenance from 80 EUR per month.
 - [AI agents (EN)](https://gatisdesign.com/en/ai-agents): process audit from 400 EUR, one automation 900-1800 EUR, multi-system integration from 2500 EUR, monitoring from 100 EUR per month.
-- [Portfolio (EN)](https://gatisdesign.com/en/portfolio): 39 published works, each listing the client and my role.
+- [Portfolio (EN)](https://gatisdesign.com/en/portfolio): 38 published works, each listing the client and my role.
 - [About (EN)](https://gatisdesign.com/en/about): designer and developer in Riga, 18 years of experience, working solo.
 - [Contact (EN)](https://gatisdesign.com/en/contact): connect@gatisdesign.com, Riga, Latvia, reply within one working day.

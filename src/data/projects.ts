@@ -23,7 +23,7 @@ import { portfolioWorks, galleryPath, type GalleryLayout } from "./portfolio";
 import type { RouteKey } from "../i18n/routes";
 
 export type ProjectCategory = "web" | "brand";
-export type ExternalStatus = "live" | "archived" | "none";
+export type ExternalStatus = "live" | "archived" | "development" | "none";
 export type ServiceKey = "zimols" | "majaslapas" | "seo";
 export type RoleKind = "solo" | "rois";
 
@@ -175,6 +175,10 @@ export const SERVICE_LABEL: Record<ServiceKey, string> = {
 export const EXTERNAL_STATUS_NOTE: Record<ExternalStatus, string> = {
   live: "",
   archived: "Mājaslapa vairs nav pieejama",
+  // Izstrādes vidi publiski nesaitējam: adrese mainīsies, un `vercel.app` vai
+  // apakšdomēns uz manas lapas klientam neko nepierāda. Piezīme ir tāpēc, ka
+  // saite bez paskaidrojuma vienkārši trūkst, un tas izskatās pēc kļūdas.
+  development: "Vietne vēl top - publiskā adrese sekos",
   none: "",
 };
 
@@ -219,7 +223,7 @@ function toProject(entry: RawProject, cover: ProjectImage): Project {
     summary: entry.summaryLv ?? "",
     role: { kind: entry.roleKind === "rois" ? "rois" : "solo", label: entry.roleLabel },
     services: entry.services.filter((s): s is ServiceKey => s in SERVICE_ROUTE_KEY),
-    externalStatus: entry.externalStatus === "live" ? "live" : entry.externalStatus === "archived" ? "archived" : "none",
+    externalStatus: entry.externalStatus === "live" ? "live" : entry.externalStatus === "archived" ? "archived" : entry.externalStatus === "development" ? "development" : "none",
     cover,
   };
   // Saiti rādām tikai tad, ja vietne tiešām ir dzīva.

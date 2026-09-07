@@ -73,5 +73,27 @@
     "summaryLv": "Bērnu rotaļlietu Shopify veikala tehniskie labojumi grozā un pasūtījumu sinhronizācija ar noliktavu.",
     "coverHint": "shots/minismaidins.png",
     "holdReason": "Gatis 2026-09-07: neliekam portfolio."
+  },
+  {
+    "id": "lucky-punch",
+    "slug": "lucky-punch",
+    "category": "web",
+    "client": "Lucky Punch",
+    "year": 2024,
+    "yearEstimated": true,
+    "roleKind": "rois",
+    "roleLabel": "Izstrāde ROIS komandā",
+    "services": [
+      "majaslapas"
+    ],
+    "externalUrl": "https://luckypunch.lv",
+    "externalStatus": "live",
+    "stack": [
+      "Shopify"
+    ],
+    "titleLv": "Lucky Punch - enerģijas dzēriena veikals",
+    "summaryLv": "Enerģijas dzēriena zīmola Shopify veikals ar cīņas sporta vizuālo valodu, LV/EN un divām valūtām.",
+    "coverHint": "shots/luckypunch.png",
+    "holdReason": "Gatis 2026-09-07: neņemam ārā, projekts nebūs viņa."
   }
 ]
