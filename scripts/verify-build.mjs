@@ -543,9 +543,17 @@ const MUTATIONS = [
   },
   {
     name: "darbu skaits tekstā atpalicis no datiem",
+    // Skaitli NOLASA no faila, ne ieraksta te. Iepriekš mutācija bija piesieta
+    // "33 publicēti darbi"; kad darbu kļuva 38, tā vairs neko neaizvietoja, un
+    // selftests ziņoja, ka vārti neķer savu kļūdu - kaut vārti bija veseli.
+    // Novecojis tests klusi izslēdz vārtus, un tas ir sliktāk par tā neesamību.
     apply: (d) => {
       const p = join(d, "llms.txt");
-      writeFileSync(p, readFileSync(p, "utf8").replace(/33 publicēti darbi/g, "23 publicēti darbi"));
+      const teksts = readFileSync(p, "utf8");
+      const m = teksts.match(/(\d+) publicēti darbi/);
+      if (!m) throw new Error("llms.txt nesatur darbu skaitu - mutācijai nav ko mainīt");
+      const cits = Number(m[1]) - 10;
+      writeFileSync(p, teksts.replaceAll(`${m[1]} publicēti darbi`, `${cits} publicēti darbi`));
     },
   },
   {
