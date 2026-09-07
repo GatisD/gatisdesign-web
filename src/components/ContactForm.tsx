@@ -87,6 +87,7 @@ export default function ContactForm({ className }: { className?: string }) {
   const turnstileWaiter = useRef<((token: string) => void) | null>(null);
   const [turnstileReset, setTurnstileReset] = useState(0);
   const formRef = useRef<HTMLFormElement>(null);
+  const successRef = useRef<HTMLDivElement>(null);
 
   const {
     register,
@@ -107,6 +108,27 @@ export default function ContactForm({ className }: { className?: string }) {
     const id = window.setTimeout(() => setShake(false), 420);
     return () => window.clearTimeout(id);
   }, [shake]);
+
+  /**
+   * Pēc nosūtīšanas skats jāaizved pie apstiprinājuma.
+   *
+   * Veiksmes kartīte ir daudz zemāka par formu, kuru tā aizstāj. Ja cilvēks
+   * poga nospieda lapas apakšā, skats paliek turpat - tagad tukšumā zem īsākā
+   * satura - un apstiprinājums paliek augstu virs ekrāna. Izskatās, ka nekas
+   * nenotika, un cilvēks sūta vēlreiz.
+   *
+   * Fokuss uz kartīti risina to pašu ekrānlasītājam: forma pazuda, un fokuss
+   * citādi nokristu uz <body>. `preventScroll` neļauj fokusam raut skatu
+   * paralēli mīkstajai ritināšanai.
+   */
+  useEffect(() => {
+    if (status.state !== "success") return;
+    const el = successRef.current;
+    if (!el) return;
+    const klusaKustiba = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollIntoView({ behavior: klusaKustiba ? "auto" : "smooth", block: "center" });
+    el.focus({ preventScroll: true });
+  }, [status.state]);
 
   /** Pieņem pilnvaru un atmodina iesniegšanu, ja tā gaida. */
   function receiveTurnstileToken(token: string): void {
@@ -208,7 +230,14 @@ export default function ContactForm({ className }: { className?: string }) {
 
   if (status.state === "success") {
     return (
-      <div className={cn("rounded-card border border-line bg-ink-850 p-6 text-paper md:p-9", className)}>
+      <div
+        ref={successRef}
+        tabIndex={-1}
+        className={cn(
+          "rounded-card border border-line bg-ink-850 p-6 text-paper focus:outline-none md:p-9",
+          className,
+        )}
+      >
         <span
           className="flex h-12 w-12 items-center justify-center rounded-full bg-amber text-on-amber"
           aria-hidden="true"
