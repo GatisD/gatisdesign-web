@@ -18,7 +18,7 @@ Gatis Daugavietis strādā viens - no pirmās sarunas līdz publicēšanai un ar
 - [Sākumlapa](https://gatisdesign.com/): mājaslapu dizains, zīmols, AI aģenti un redzamība - visu izdara viens cilvēks.
 - [Par mani](https://gatisdesign.com/par-mani): 18 gadu pieredze dizainā un izstrādē, darba gaita soli pa solim, klientu profils un robežas, kad viens cilvēks nav pareizā izvēle.
 - [Kontakti](https://gatisdesign.com/kontakti): atbildu vienas darba dienas laikā; pēc sarunas nosūtu piedāvājumu ar cenu un termiņu. E-pasts: connect@gatisdesign.com. Atrašanās vieta - Rīga.
-- [Darbu izlase](https://gatisdesign.com/portfolio): 33 publicēti darbi - katram norādīts klients un mana loma. Zemāk uzskaitīti tie 29, kuriem ir sava lapa ar aprakstu.
+- [Darbu izlase](https://gatisdesign.com/portfolio): 38 publicēti darbi - katram norādīts klients un mana loma. Zemāk uzskaitīti tie 34, kuriem ir sava lapa ar aprakstu.
 - [Privātuma politika](https://gatisdesign.com/privatuma-politika): kādi dati tiek vākti un kāpēc.
 
 ## Biežākie jautājumi
@@ -34,7 +34,7 @@ Gatis Daugavietis strādā viens - no pirmās sarunas līdz publicēšanai un ar
 
 - Pieredze: 18 gadi, kopš 2008. gada
 - Pabeigti projekti: vairāk nekā 100
-- Publicētie darbi: 33, katram norādīts klients un mana loma
+- Publicētie darbi: 38, katram norādīts klients un mana loma
 - Tirgi: Latvija, Igaunija, Lietuva, ASV
 - Saziņas valodas: latviešu un angļu
 - Platformas un tehnoloģijas: WordPress, Shopify; kodā rakstītas lapas ar React un Vite
@@ -78,6 +78,11 @@ Gatis Daugavietis strādā viens - no pirmās sarunas līdz publicēšanai un ar
 - [Digitālais Dzintars - kultūras zīmols](https://gatisdesign.com/portfolio/digitalaisdzintars): atjaunots zīmols Liepājas digitālās kultūras platformai: plakāti, afišas un identitātes elementi. Zīmola izstrāde, 2024.
 - [DarbaGuru - logo un mazā zīmola grāmata](https://gatisdesign.com/portfolio/darbaguru): logo personāla vadības ārpakalpojumu uzņēmumam un neliela zīmola grāmata ar krāsu un logo lietojuma noteikumiem. Logo un zīmola grāmata, ROIS komandā.
 - [Varloz - logo un vizītkartes](https://gatisdesign.com/portfolio/varloz): grieķu pārtikas zīmola logotips un vizītkartes, veidoti kopā ar klientu. Logo un vizītkartes, ROIS komandā.
+- [Improvement - beramkravu un bruģēšanas vietne](https://gatisdesign.com/portfolio/improvement): divvalodu vietne ar WooCommerce materiālu katalogu, cenu pieprasījumu un prerenderētām lapām. Dizains un izstrāde, 2026.
+- [Tenter - jumta kopņu ražotāja vietne](https://gatisdesign.com/portfolio/tenter): WordPress vietnes attīstība ar landing lapām, trīsvalodu FAQ un tehnisko SEO; blakus tam grafiskais dizains un Odoo sistēmas uzturēšana. Mājaslapas izstrāde, grafiskais dizains, Odoo uzturēšana.
+- [8kājis - attīstošo rotaļlietu veikals](https://gatisdesign.com/portfolio/8kajis): Shopify veikala pārcelšana uz WooCommerce ar 135 produktiem, split ekrāna ievadu un sensorās telpas sadaļu; tapis LIAA projekta ietvaros. Dizains un izstrāde, 2026.
+- [SZ Audit & Tax - zīmols un vietne](https://gatisdesign.com/portfolio/santa-zvejniece): pilna vizuālā identitāte audita un nodokļu konsultāciju uzņēmumam un uz tās uzbūvēta audit.lv vietne. Zīmola izstrāde ROIS komandā.
+- [ChipChop Barbershop - lokālais SEO](https://gatisdesign.com/portfolio/chipchop): Salaspils frizētavas lokālā SEO un GEO plāns - schema, satura struktūra un Google profila optimizācija. SEO un GEO stratēģija, 2026.
 - [Logo un zīmolu kolekcija](https://gatisdesign.com/portfolio/logo-branding): atlasīti logotipu un zīmolu identitātes darbi no 18 gadu prakses - 70 darbi dažādās nozarēs. Dizains, 2008-2026.
 - [Ilustrāciju kolekcija](https://gatisdesign.com/portfolio/illustrations): ilustrācijas zīmoliem, no produktu ikonām un T kreklu apdrukām līdz veselām ilustrāciju sistēmām. Dizains, 2012-2026.
 - [Plakātu un drukas kolekcija](https://gatisdesign.com/portfolio/print): plakāti, afišas, bukleti un drukas materiāli, kuros svarīga katra detaļa - no burtu izvēles līdz papīram. Dizains, 2010-2026.
@@ -99,6 +104,6 @@ Gatis Daugavietis strādā viens - no pirmās sarunas līdz publicēšanai un ar
 - [Brand identity (EN)](https://gatisdesign.com/en/brand-identity): logo with 3-4 concepts 500-700 EUR, brand book 350-500 EUR, extended brand book with strategy 3000 EUR, print materials 120-900 EUR.
 - [SEO, GEO and AEO (EN)](https://gatisdesign.com/en/seo-geo-aeo): audit 300-800 EUR by page count, AI SEO base implementation 700 EUR, standard implementation 1200 EUR, maintenance from 80 EUR per month.
 - [AI agents (EN)](https://gatisdesign.com/en/ai-agents): process audit from 400 EUR, one automation 900-1800 EUR, multi-system integration from 2500 EUR, monitoring from 100 EUR per month.
-- [Portfolio (EN)](https://gatisdesign.com/en/portfolio): 33 published works, each listing the client and my role.
+- [Portfolio (EN)](https://gatisdesign.com/en/portfolio): 38 published works, each listing the client and my role.
 - [About (EN)](https://gatisdesign.com/en/about): designer and developer in Riga, 18 years of experience, working solo.
 - [Contact (EN)](https://gatisdesign.com/en/contact): connect@gatisdesign.com, Riga, Latvia, reply within one working day.

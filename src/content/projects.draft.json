@@ -26,35 +26,6 @@
     "holdReason": "CRC vēl nav klients - dizaina atjaunošanas piedāvājums nav akceptēts. Rādīšu tikai pēc līguma."
   },
   {
-    "id": "improvement",
-    "slug": "improvement",
-    "category": "web",
-    "client": "Improvement",
-    "year": 2026,
-    "yearEstimated": false,
-    "roleKind": "solo",
-    "roleLabel": "Dizains un izstrāde",
-    "services": [
-      "majaslapas",
-      "seo"
-    ],
-    "externalUrl": "https://improvement.rois.lv",
-    "externalStatus": "live",
-    "stack": [
-      "React",
-      "Vite",
-      "TypeScript",
-      "Tailwind",
-      "WooCommerce REST",
-      "Vercel"
-    ],
-    "titleLv": "Improvement - beramkravu un bruģēšanas vietne",
-    "summaryLv": "Divvalodu vietne ar WooCommerce materiālu katalogu, cenu pieprasījumu un prerenderētām lapām SEO dēļ.",
-    "coverHint": "shots/improvement.png",
-    "needsInput": "Vai Improvement drīkst rādīt portfolio, ņemot vērā 1500 EUR parādu un 22.07 apturēšanas scenāriju? Un vai rādām improvement.rois.lv (rebuild) vai gaidām cutover uz improvement.lv?",
-    "holdReason": "Sadarbība ir apturēta neapmaksāta rēķina dēļ. Rādīšu, kad situācija būs atrisināta."
-  },
-  {
     "id": "lk-landscape",
     "slug": "lk-landscape",
     "category": "web",
@@ -78,33 +49,7 @@
     "titleLv": "LK Landscape - ainavu arhitektes portfolio",
     "summaryLv": "Ainavu arhitektes portfolio ar darbu galeriju, LV/EN pārslēgu un mierīgu, gaišu tipogrāfisko sistēmu.",
     "coverHint": "shots/laura.png",
-    "needsInput": "Vai Laura piekrīt publiskam portfolio ierakstam? Lapa vēl dzīvo uz manas testa subdomēnas, kontaktforma nesūta e-pastu un Instagram saite ir placeholder.",
-    "holdReason": "Nav klientes piekrišanas publiskam ierakstam, un lapa vēl ir testa apakšdomēnā."
-  },
-  {
-    "id": "chipchop",
-    "slug": "chipchop",
-    "category": "web",
-    "client": "ChipChop Barbershop",
-    "year": 2026,
-    "yearEstimated": false,
-    "roleKind": "solo",
-    "roleLabel": "SEO un GEO stratēģija",
-    "services": [
-      "seo"
-    ],
-    "externalUrl": "https://chipchop.lv",
-    "externalStatus": "live",
-    "stack": [
-      "WordPress",
-      "Elementor",
-      "Amelia"
-    ],
-    "titleLv": "ChipChop Barbershop - lokālais SEO",
-    "summaryLv": "Salaspils frizētavas lokālā SEO un GEO plāns: schema, satura struktūra un Google profila optimizācija.",
-    "coverHint": "shots/chipchop.png",
-    "needsInput": "Plāns ir sagatavots, bet ieviešana ir HOLD un uz lapas nekas nav mainīts. Vai to vispār likt portfolio, vai gaidām reālus rezultātus? Lapas dizains nav mans.",
-    "holdReason": "SEO un GEO plāns ir sagatavots, bet ieviešana ir apturēta - lapā nekas nav mainīts."
+    "holdReason": "Gatis 2026-09-07: neliekam portfolio."
   },
   {
     "id": "minismaidins",
@@ -128,81 +73,6 @@
     "titleLv": "MiniSmaidiņš - Shopify veikala uzturēšana",
     "summaryLv": "Bērnu rotaļlietu Shopify veikala tehniskie labojumi grozā un pasūtījumu sinhronizācija ar noliktavu.",
     "coverHint": "shots/minismaidins.png",
-    "needsInput": "Kas tieši ir mans devums? Atmiņā ir tikai Admin API piekļuve, pasūtījumu sync un plānoti tēmas labojumi - nav pierādījuma par dizainu vai veikala izstrādi. Varbūt šis nav portfolio ieraksts.",
-    "holdReason": "Nav skaidrs, kas tieši ir mans devums, tāpēc ierakstu vēl nevar uzrakstīt godīgi."
-  },
-  {
-    "id": "tenter",
-    "slug": "tenter",
-    "category": "web",
-    "client": "Tenter Latvija",
-    "year": 2026,
-    "yearEstimated": true,
-    "roleKind": "solo",
-    "roleLabel": "Izstrāde un uzturēšana",
-    "services": [
-      "majaslapas",
-      "seo"
-    ],
-    "externalUrl": "https://tenter.lv",
-    "externalStatus": "live",
-    "stack": [
-      "WordPress",
-      "Breakdance",
-      "Yoast",
-      "GPTranslate"
-    ],
-    "titleLv": "Tenter - jumta kopņu ražotāja vietne",
-    "summaryLv": "Jumta kopņu ražotāja WordPress vietnes attīstība: landing lapas, trīsvalodu FAQ un tehniskais SEO.",
-    "coverHint": "shots/tenter.png",
-    "needsInput": "Kāda tieši ir mana loma tenter.lv? Neatrodu pierādījumu, ka esmu taisījis sākotnējo dizainu - zināmais ir landing lapas, FAQ sistēma, GTM/Consent un SEO labojumi. Vai to saukt par 'izstrāde un uzturēšana' un no kura gada?",
-    "holdReason": "Nav skaidra mana loma mājaslapas sākotnējā izstrādē. Jāprecizē, pirms publicēju."
-  },
-  {
-    "id": "8kajis",
-    "slug": "8kajis",
-    "category": "web",
-    "client": "8kājis (SIA Zingelis)",
-    "year": 2026,
-    "yearEstimated": false,
-    "roleKind": "solo",
-    "roleLabel": "Dizains un izstrāde",
-    "services": [
-      "majaslapas"
-    ],
-    "externalUrl": "https://8kajis.gatisdesign.com",
-    "externalStatus": "live",
-    "stack": [
-      "WordPress",
-      "WooCommerce",
-      "Elementor",
-      "Custom child theme"
-    ],
-    "titleLv": "8kājis - attīstošo rotaļlietu veikals",
-    "summaryLv": "Shopify veikala pārcelšana uz WooCommerce: 135 produkti, split ekrāna ievads un sensorās telpas sadaļa.",
-    "coverHint": "shots/8kajis.png",
-    "needsInput": "Vai drīkst saitēt uz būves vidi 8kajis.gatisdesign.com (noindex), vai gaidām go-live uz 8kajis.lv? Vai Rasa piekrīt publiskošanai?",
-    "holdReason": "Veikals pagaidām ir tikai izstrādes vidē ar noindex. Gaidu publiskošanu klienta domēnā."
-  },
-  {
-    "id": "santa-zvejniece",
-    "slug": "santa-zvejniece",
-    "category": "brand",
-    "client": "Santa Zvejniece",
-    "year": null,
-    "yearEstimated": false,
-    "roleKind": "rois",
-    "roleLabel": "Zīmola izstrāde ROIS komandā",
-    "services": [
-      "zimols"
-    ],
-    "externalUrl": null,
-    "externalStatus": null,
-    "stack": [],
-    "titleLv": "Santa Zvejniece - pilns uzņēmuma zīmols",
-    "summaryLv": null,
-    "coverHint": null,
-    "needsInput": "Nav ne vizuāļa, ne gada, ne nozares. ROIS clients.ts logo fails ir 'Audit.webp', kas jau iepriekš bija apšaubāms sasaistījums. Vajag īstos zīmola failus un aprakstu.",
-    "holdReason": "Nav ne zīmola vizuāļu, ne gada, ne nozares, un pieejamais logotipa fails, visticamāk, pieder citam klientam."
+    "holdReason": "Gatis 2026-09-07: neliekam portfolio."
   }
 ]

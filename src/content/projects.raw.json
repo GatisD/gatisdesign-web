@@ -77,8 +77,7 @@
     ],
     "titleLv": "Improvement - beramkravu un bruģēšanas vietne",
     "summaryLv": "Divvalodu vietne ar WooCommerce materiālu katalogu, cenu pieprasījumu un prerenderētām lapām SEO dēļ.",
-    "coverHint": "shots/improvement.png",
-    "needsInput": "Vai Improvement drīkst rādīt portfolio, ņemot vērā 1500 EUR parādu un 22.07 apturēšanas scenāriju? Un vai rādām improvement.rois.lv (rebuild) vai gaidām cutover uz improvement.lv?"
+    "coverHint": "shots/improvement.png"
   },
   {
     "id": "universal-solutions",
@@ -169,7 +168,7 @@
     "services": [
       "majaslapas"
     ],
-    "externalUrl": "https://8kajis.gatisdesign.com",
+    "externalUrl": "https://8kajis.lv",
     "externalStatus": "live",
     "stack": [
       "WordPress",
@@ -178,9 +177,8 @@
       "Custom child theme"
     ],
     "titleLv": "8kājis - attīstošo rotaļlietu veikals",
-    "summaryLv": "Shopify veikala pārcelšana uz WooCommerce: 135 produkti, split ekrāna ievads un sensorās telpas sadaļa.",
-    "coverHint": "shots/8kajis.png",
-    "needsInput": "Vai drīkst saitēt uz būves vidi 8kajis.gatisdesign.com (noindex), vai gaidām go-live uz 8kajis.lv? Vai Rasa piekrīt publiskošanai?"
+    "summaryLv": "Shopify veikala pārcelšana uz WooCommerce: 135 produkti, split ekrāna ievads un sensorās telpas sadaļa. Jaunā vietne tapa LIAA projekta ietvaros.",
+    "coverHint": "shots/8kajis.png"
   },
   {
     "id": "mebelu-montaza",
@@ -242,7 +240,7 @@
     "year": 2026,
     "yearEstimated": true,
     "roleKind": "solo",
-    "roleLabel": "Izstrāde un uzturēšana",
+    "roleLabel": "Mājaslapas izstrāde, grafiskais dizains, Odoo uzturēšana",
     "services": [
       "majaslapas",
       "seo"
@@ -256,9 +254,8 @@
       "GPTranslate"
     ],
     "titleLv": "Tenter - jumta kopņu ražotāja vietne",
-    "summaryLv": "Jumta kopņu ražotāja WordPress vietnes attīstība: landing lapas, trīsvalodu FAQ un tehniskais SEO.",
-    "coverHint": "shots/tenter.png",
-    "needsInput": "Kāda tieši ir mana loma tenter.lv? Neatrodu pierādījumu, ka esmu taisījis sākotnējo dizainu - zināmais ir landing lapas, FAQ sistēma, GTM/Consent un SEO labojumi. Vai to saukt par 'izstrāde un uzturēšana' un no kura gada?"
+    "summaryLv": "Jumta kopņu ražotāja WordPress vietnes attīstība: landing lapas, trīsvalodu FAQ un tehniskais SEO. Blakus vietnei - grafiskais dizains un Odoo sistēmas uzturēšana.",
+    "coverHint": "shots/tenter.png"
   },
   {
     "id": "chipchop",
@@ -281,8 +278,7 @@
     ],
     "titleLv": "ChipChop Barbershop - lokālais SEO",
     "summaryLv": "Salaspils frizētavas lokālā SEO un GEO plāns: schema, satura struktūra un Google profila optimizācija.",
-    "coverHint": "shots/chipchop.png",
-    "needsInput": "Plāns ir sagatavots, bet ieviešana ir HOLD un uz lapas nekas nav mainīts. Vai to vispār likt portfolio, vai gaidām reālus rezultātus? Lapas dizains nav mans."
+    "coverHint": "shots/chipchop.png"
   },
   {
     "id": "minismaidins",
@@ -499,15 +495,15 @@
     "roleKind": "rois",
     "roleLabel": "Zīmola izstrāde ROIS komandā",
     "services": [
-      "zimols"
+      "zimols",
+      "majaslapas"
     ],
-    "externalUrl": null,
-    "externalStatus": null,
+    "externalUrl": "https://audit.lv",
+    "externalStatus": "live",
     "stack": [],
-    "titleLv": "Santa Zvejniece - pilns uzņēmuma zīmols",
-    "summaryLv": null,
-    "coverHint": null,
-    "needsInput": "Nav ne vizuāļa, ne gada, ne nozares. ROIS clients.ts logo fails ir 'Audit.webp', kas jau iepriekš bija apšaubāms sasaistījums. Vajag īstos zīmola failus un aprakstu."
+    "titleLv": "SZ Audit & Tax - zīmols un vietne",
+    "summaryLv": "Pilna vizuālā identitāte audita un nodokļu konsultāciju uzņēmumam, un uz tās uzbūvēta audit.lv vietne.",
+    "coverHint": "shots/audit-lv.png"
   },
   {
     "id": "darbaguru",
