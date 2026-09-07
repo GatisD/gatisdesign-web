@@ -56,14 +56,16 @@ export default function ProjectCard({
   const meta = [project.role.label, project.year].filter(Boolean).join(" · ");
 
   /**
-   * `object-cover` griež malas, un tieši malās sēž tas, kas kartei dod jēgu:
-   * klienta virsraksts un logotips. Reāli nogriezts iznākums bija "APMEK",
-   * "BARE KNUCKL" un "ātne, dati un ksligais intelekts".
+   * Aizpildīt kadru ir NOKLUSĒJUMS, ne izņēmums.
    *
-   * Tāpēc aizpildīšana notiek tikai tad, kad attēla un kadra proporcijas ir
-   * tuvu (griezums zem ~18%). Kvadrātveida logo un platie ekrānuzņēmumi šaurā
-   * kadrā ietilpst pilnībā uz kartes fona - labāk redzēt visu darbu ar malu,
-   * nekā pusi no tā bez malas.
+   * Agrāk te bija pretēji: attēls aizpildīja kadru tikai tad, ja proporcijas
+   * sakrita ar 18% pielaidi, citādi stāvēja joslās uz kartes fona. Tas bija
+   * ķērpis, ne risinājums. Cēlonis bija kadros: 26 no 39 vākiem proporcija ir
+   * tieši 1,600, bet kadru proporcijas bija 1,28 / 1,38 / 1,81 - neviena tuvu.
+   * Rezultāts: 36 no 39 kartēm stāvēja joslās.
+   *
+   * Kadri tagad ir 1,58-1,60, tas ir, saskaņoti ar saturu, tāpēc griezums
+   * lielākajai daļai ir nulle un pārējiem zem 12%. Joslas vairs nav vajadzīgas.
    */
   const phone = devicePair ? project.shot?.mobileSmall : undefined;
 
@@ -77,9 +79,25 @@ export default function ProjectCard({
    */
   const isBrowserShot = project.shot?.desktop.src === cover.src;
 
+  /**
+   * Drošības tīkls, ne noklusējums. Ja kāds vēlāk pieliks portreta vāku (0,8)
+   * platā kadrā, `object-cover` no tā nogrieztu pusi klusi. Slieksnis 1,9 ir
+   * tur, kur griezums pārsniedz 47%: līdz turienei kompozīcija iztur, aiz tās
+   * vairs ne. Kvadrātveida kolekciju vāki (1,0 pret 1,59) paliek zem sliekšņa
+   * un aizpilda - pārbaudīts ar acīm: logotipu dēlim nogrieztā apakšējā daļa
+   * bija tumšs fotoattēls, un bez tā vāks kļuva labāks, ne sliktāks.
+   */
   const coverRatio = cover.width / cover.height;
-  const fits =
-    isBrowserShot ? false : frameRatio ? Math.max(coverRatio / frameRatio, frameRatio / coverRatio) <= 1.18 : true;
+  const parlieks = frameRatio ? Math.max(coverRatio / frameRatio, frameRatio / coverRatio) : 1;
+  const fits = parlieks <= 1.9;
+
+  /**
+   * Kur turēt griezumu. Pārlūka kadram - pie augšas: tur ir izvēlne un
+   * virsraksts, un apakšā parasti ir kājene, kas neko nepasaka. Visam
+   * pārējam - pa vidu: zīmola dēļiem un mokapiem objekts ir centrā, un augšas
+   * enkurs tiem nogrieztu tieši to, kas ir zemāk par vidu.
+   */
+  const enkurs = isBrowserShot ? "object-[top_center]" : "object-center";
 
   return (
     <Link
@@ -126,8 +144,7 @@ export default function ProjectCard({
           decoding={eager ? "sync" : "async"}
           className={cn(
             "h-full w-full",
-            fits ? "object-cover object-[top_center]" : "object-contain",
-            fits || isBrowserShot ? null : "p-5 md:p-7",
+            fits ? `object-cover ${enkurs}` : "object-contain p-5 md:p-7",
             "[filter:contrast(.96)_saturate(.9)]",
             "transition-[transform,filter] duration-[1100ms] ease-dir",
             "group-hover:[filter:contrast(1)_saturate(1)]",

@@ -55,30 +55,35 @@ const BRAND_NOTE =
  * Rindas iekšienē kadra proporcija ir VIENĀDA - nevienāds augstums vienā rindā
  * pie augšā līdzinātām kartēm lasās kā kļūda, ne kā ritms.
  */
-const SPAN = ["md:col-span-7", "md:col-span-5", "md:col-span-4", "md:col-span-4", "md:col-span-4"];
+/**
+ * Rinda pa divi, tad rinda pa trīs. Agrāk lielā rinda bija 7+5, un tieši tur
+ * bija neatrisināma vieta: vienā rindā kartēm jābeidzas vienā līnijā, tātad
+ * viens augstums, bet 783 px un 553 px platums ar vienu augstumu dod divas
+ * dažādas proporcijas (1,81 un 1,28). Vismaz vienam vākam kadrs vienmēr bija
+ * nepareizs. 6+6 to atrisina: vienāds platums, vienāds augstums, viena
+ * proporcija - un abas rindas var noregulēt uz to, kas vākos tiešām ir.
+ */
+const SPAN = ["md:col-span-6", "md:col-span-6", "md:col-span-4", "md:col-span-4", "md:col-span-4"];
 /** Augstums, ne proporcija: vienā rindā visām kartēm jābeidzas vienā līnijā. */
 const FRAME = [
-  "md:h-[clamp(210px,30vw,500px)]",
-  "md:h-[clamp(210px,30vw,500px)]",
-  "md:h-[clamp(190px,22vw,360px)]",
-  "md:h-[clamp(190px,22vw,360px)]",
-  "md:h-[clamp(190px,22vw,360px)]",
+  "md:h-[clamp(230px,29vw,417px)]",
+  "md:h-[clamp(230px,29vw,417px)]",
+  "md:h-[clamp(150px,18.9vw,273px)]",
+  "md:h-[clamp(150px,18.9vw,273px)]",
+  "md:h-[clamp(150px,18.9vw,273px)]",
 ];
 /**
- * Kadra proporcija - pēc tās karte izlemj, vai attēls aizpilda vai ietilpst.
+ * Kadra proporcija. Visiem kadriem tagad viena, un tā nav izvēlēta no gaisa:
+ * 26 no 39 vākiem proporcija ir tieši 1,600, vēl 7 ir 1,778. Kadrs 1,60 nozīmē
+ * NULLES griezumu divām trešdaļām karšu.
  *
- * Skaitļi ir MĒRĪTI, ne izrēķināti no kolonnu skaita. Kadra augstums ir `30vw`
- * un `22vw`, bet platums - daļa no režģa, tāpēc īstā proporcija ar kolonnu
- * attiecību nesakrīt. Vecās vērtības (7/4,4 un 5/3,2) nāca no kolonnām un bija
- * stipri garām: otrajai flīzei tur stāvēja 1,56, kamēr īstā ir 1,27. Sekas -
- * Box Latvia vāks tika griezts par 21%.
- *
- * Mērīts dzīvā lapā: 1280 px [1,80 1,27 1,36], 1440 px [1,81 1,28 1,38],
- * 1680 px un platāk [1,57 1,11 1,21] - tur augstuma `clamp` sasniedz griestus.
- * Ņemtas biežākā diapazona vērtības; platos ekrānos novirze paliek `fits`
- * pielaides (1,18) iekšienē vai noved uz "ietilpst", kas nekad negriež.
+ * Griesti (417 px un 273 px) sakrīt ar to platumu, kur karte pārstāj augt
+ * (668 px un 437 px pie >=1440 px). Bez tā augstums auga ar `vw`, kamēr
+ * konteiners pie 1440 px apstājās, un proporcija ceļoja: mērīts PIRMS 1,81 pie
+ * 1440 px pret 1,57 pie 1920 px vienai un tai pašai kartei. Tagad 1,55-1,60
+ * visā diapazonā.
  */
-const FRAME_RATIO = [1.8, 1.27, 1.36, 1.36, 1.36];
+const FRAME_RATIO = [1.59, 1.59, 1.59, 1.59, 1.59];
 
 export default function Portfolio() {
   const { locale, t } = useLocale();

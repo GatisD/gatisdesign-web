@@ -246,13 +246,17 @@ export default function Index() {
             <Reveal
               key={project.slug}
               delay={stagger(i, 2)}
-              className={i === 0 ? "md:col-span-7" : "md:col-span-5"}
+              /* 6+6, ne 7+5: vienā rindā kartēm jābeidzas vienā līnijā, tāpēc
+                 augstums ir viens, un divi dažādi platumi ar vienu augstumu dod
+                 divas dažādas proporcijas. Pie 7+5 Estire kadrs bija 1,81 un Box
+                 Latvia 1,28 - vienam no diviem vāks vienmēr bija nepareizā rāmī. */
+              className="md:col-span-6"
             >
               <ProjectCard
                 project={project}
                 eager={i === 0}
-                frame="md:h-[clamp(210px,30vw,500px)]"
-                frameRatio={i === 0 ? 7 / 4.4 : 5 / 3.2}
+                frame="md:h-[clamp(230px,29vw,417px)]"
+                frameRatio={1.59}
               />
             </Reveal>
           ))}

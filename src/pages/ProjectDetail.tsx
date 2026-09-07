@@ -10,6 +10,7 @@ import { Section, SectionTitle, LabelRow } from "@/components/direction/Section"
 import PicturePortfolio from "@/components/PicturePortfolio";
 import NotFound from "./NotFound";
 import { useLocale } from "@/i18n/LocaleContext";
+import { cn } from "@/lib/utils";
 import { pathFor, type Locale } from "@/i18n/routes";
 import { CONTACT_EMAIL, SITE_URL } from "@/lib/site";
 
@@ -533,7 +534,7 @@ export default function ProjectDetail() {
                      mērījums deva 1,46-1,52, un vairumam vāku proporcija ir 1,60,
                      tāpēc visi trīs stāvēja joslās. */
                   frame="md:h-[clamp(150px,18.9vw,273px)]"
-                  frameRatio={1.58}
+                  frameRatio={1.59}
                 />
               </Reveal>
             ))}
@@ -558,7 +559,9 @@ export default function ProjectDetail() {
                 </h2>
                 <p className="mt-3 text-[16px] text-paper-dim">{nav.next.client}</p>
               </div>
-              <span className="block h-[clamp(200px,26vw,320px)] overflow-hidden rounded-card border border-line bg-ink-card">
+              {/* 325 px, ne 320: kolonna ir 520 px plata, un 520/325 = 1,60 -
+                  tieši tā proporcija, kāda ir 26 no 39 vākiem. */}
+              <span className="block h-[clamp(200px,26vw,325px)] overflow-hidden rounded-card border border-line bg-ink-card">
                 <PicturePortfolio
                   src={nav.next.cover.src}
                   alt=""
@@ -566,7 +569,14 @@ export default function ProjectDetail() {
                   height={nav.next.cover.height}
                   loading="lazy"
                   decoding="async"
-                  className="h-full w-full object-cover object-[top_center] [filter:contrast(.96)_saturate(.9)] transition-transform duration-[1100ms] ease-dir group-hover:scale-[1.03]"
+                  /* Enkurs pēc vāka tipa, tāpat kā kartēs: pārlūka kadram pie
+                     augšas (tur ir izvēlne), pārējiem pa vidu. Ar augšas enkuru
+                     kvadrātveida kolekcijas vākam te tika nogriezti 38% no
+                     apakšas, un objekts tajos vākos ir centrā. */
+                  className={cn(
+                    "h-full w-full object-cover [filter:contrast(.96)_saturate(.9)] transition-transform duration-[1100ms] ease-dir group-hover:scale-[1.03]",
+                    nav.next.shot?.desktop.src === nav.next.cover.src ? "object-[top_center]" : "object-center",
+                  )}
                 />
               </span>
             </Link>
