@@ -126,7 +126,6 @@ const ORDER = [
   "obsidian",
   "print",
   "valis",
-  "web-design",
   "mebelu-montaza",
   "varloz",
   "box-latvia-web",

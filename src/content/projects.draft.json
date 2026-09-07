@@ -1,99 +1,121 @@
 [
-  {
-    "id": "crc-tech",
-    "slug": "crc-tech",
-    "category": "web",
-    "client": "CRC Technologies",
-    "year": 2026,
-    "yearEstimated": false,
-    "roleKind": "solo",
-    "roleLabel": "Dizains un izstrāde (demo)",
-    "services": [
-      "majaslapas"
-    ],
-    "externalUrl": "https://crc.rois.lv",
-    "externalStatus": "live",
-    "stack": [
-      "React",
-      "Vite",
-      "Tailwind",
-      "Cloudflare Workers"
-    ],
-    "titleLv": "CRC Technologies - redizaina demo",
-    "summaryLv": "Drukas un dokumentu pārvaldības uzņēmuma sākumlapas redizaina demo, kas tapa pirms piedāvājuma.",
-    "coverHint": "shots/crc.png",
-    "holdReason": "Gatis 2026-09-07: nerādām. CRC nav klients - piedāvājums nav akceptēts."
-  },
-  {
-    "id": "lk-landscape",
-    "slug": "lk-landscape",
-    "category": "web",
-    "client": "LK Landscape (Laura Kleinberga)",
-    "year": 2026,
-    "yearEstimated": false,
-    "roleKind": "solo",
-    "roleLabel": "Dizains un izstrāde",
-    "services": [
-      "majaslapas"
-    ],
-    "externalUrl": "https://laura.gatisdesign.com",
-    "externalStatus": "live",
-    "stack": [
-      "React",
-      "Vite",
-      "TypeScript",
-      "Tailwind",
-      "Cloudflare Workers"
-    ],
-    "titleLv": "LK Landscape - ainavu arhitektes portfolio",
-    "summaryLv": "Ainavu arhitektes portfolio ar darbu galeriju, LV/EN pārslēgu un mierīgu, gaišu tipogrāfisko sistēmu.",
-    "coverHint": "shots/laura.png",
-    "holdReason": "Gatis 2026-09-07: neliekam portfolio."
-  },
-  {
-    "id": "minismaidins",
-    "slug": "minismaidins",
-    "category": "web",
-    "client": "MiniSmaidiņš",
-    "year": 2026,
-    "yearEstimated": true,
-    "roleKind": "solo",
-    "roleLabel": "Tehniskā uzturēšana",
-    "services": [
-      "majaslapas"
-    ],
-    "externalUrl": "https://minismaidins.lv",
-    "externalStatus": "live",
-    "stack": [
-      "Shopify",
-      "Liquid",
-      "GitHub Actions"
-    ],
-    "titleLv": "MiniSmaidiņš - Shopify veikala uzturēšana",
-    "summaryLv": "Bērnu rotaļlietu Shopify veikala tehniskie labojumi grozā un pasūtījumu sinhronizācija ar noliktavu.",
-    "coverHint": "shots/minismaidins.png",
-    "holdReason": "Gatis 2026-09-07: neliekam portfolio."
-  },
-  {
-    "id": "lucky-punch",
-    "slug": "lucky-punch",
-    "category": "web",
-    "client": "Lucky Punch",
-    "year": 2024,
-    "yearEstimated": true,
-    "roleKind": "rois",
-    "roleLabel": "Izstrāde ROIS komandā",
-    "services": [
-      "majaslapas"
-    ],
-    "externalUrl": "https://luckypunch.lv",
-    "externalStatus": "live",
-    "stack": [
-      "Shopify"
-    ],
-    "titleLv": "Lucky Punch - enerģijas dzēriena veikals",
-    "summaryLv": "Enerģijas dzēriena zīmola Shopify veikals ar cīņas sporta vizuālo valodu, LV/EN un divām valūtām.",
-    "coverHint": "shots/luckypunch.png",
-    "holdReason": "Gatis 2026-09-07: neņemam ārā, projekts nebūs viņa."
-  }
+ {
+  "id": "crc-tech",
+  "slug": "crc-tech",
+  "category": "web",
+  "client": "CRC Technologies",
+  "year": 2026,
+  "yearEstimated": false,
+  "roleKind": "solo",
+  "roleLabel": "Dizains un izstrāde (demo)",
+  "services": [
+   "majaslapas"
+  ],
+  "externalUrl": "https://crc.rois.lv",
+  "externalStatus": "live",
+  "stack": [
+   "React",
+   "Vite",
+   "Tailwind",
+   "Cloudflare Workers"
+  ],
+  "titleLv": "CRC Technologies - redizaina demo",
+  "summaryLv": "Drukas un dokumentu pārvaldības uzņēmuma sākumlapas redizaina demo, kas tapa pirms piedāvājuma.",
+  "coverHint": "shots/crc.png",
+  "holdReason": "Gatis 2026-09-07: nerādām. CRC nav klients - piedāvājums nav akceptēts."
+ },
+ {
+  "id": "lk-landscape",
+  "slug": "lk-landscape",
+  "category": "web",
+  "client": "LK Landscape (Laura Kleinberga)",
+  "year": 2026,
+  "yearEstimated": false,
+  "roleKind": "solo",
+  "roleLabel": "Dizains un izstrāde",
+  "services": [
+   "majaslapas"
+  ],
+  "externalUrl": "https://laura.gatisdesign.com",
+  "externalStatus": "live",
+  "stack": [
+   "React",
+   "Vite",
+   "TypeScript",
+   "Tailwind",
+   "Cloudflare Workers"
+  ],
+  "titleLv": "LK Landscape - ainavu arhitektes portfolio",
+  "summaryLv": "Ainavu arhitektes portfolio ar darbu galeriju, LV/EN pārslēgu un mierīgu, gaišu tipogrāfisko sistēmu.",
+  "coverHint": "shots/laura.png",
+  "holdReason": "Gatis 2026-09-07: neliekam portfolio."
+ },
+ {
+  "id": "minismaidins",
+  "slug": "minismaidins",
+  "category": "web",
+  "client": "MiniSmaidiņš",
+  "year": 2026,
+  "yearEstimated": true,
+  "roleKind": "solo",
+  "roleLabel": "Tehniskā uzturēšana",
+  "services": [
+   "majaslapas"
+  ],
+  "externalUrl": "https://minismaidins.lv",
+  "externalStatus": "live",
+  "stack": [
+   "Shopify",
+   "Liquid",
+   "GitHub Actions"
+  ],
+  "titleLv": "MiniSmaidiņš - Shopify veikala uzturēšana",
+  "summaryLv": "Bērnu rotaļlietu Shopify veikala tehniskie labojumi grozā un pasūtījumu sinhronizācija ar noliktavu.",
+  "coverHint": "shots/minismaidins.png",
+  "holdReason": "Gatis 2026-09-07: neliekam portfolio."
+ },
+ {
+  "id": "lucky-punch",
+  "slug": "lucky-punch",
+  "category": "web",
+  "client": "Lucky Punch",
+  "year": 2024,
+  "yearEstimated": true,
+  "roleKind": "rois",
+  "roleLabel": "Izstrāde ROIS komandā",
+  "services": [
+   "majaslapas"
+  ],
+  "externalUrl": "https://luckypunch.lv",
+  "externalStatus": "live",
+  "stack": [
+   "Shopify"
+  ],
+  "titleLv": "Lucky Punch - enerģijas dzēriena veikals",
+  "summaryLv": "Enerģijas dzēriena zīmola Shopify veikals ar cīņas sporta vizuālo valodu, LV/EN un divām valūtām.",
+  "coverHint": "shots/luckypunch.png",
+  "holdReason": "Gatis 2026-09-07: neņemam ārā, projekts nebūs viņa."
+ },
+ {
+  "id": "web-design-collection",
+  "slug": "web-design",
+  "category": "web",
+  "client": "Dažādi klienti",
+  "year": 2026,
+  "yearEstimated": false,
+  "yearRange": "2010-2026",
+  "roleKind": "solo",
+  "roleLabel": "Dizains",
+  "services": [
+   "majaslapas"
+  ],
+  "externalUrl": null,
+  "externalStatus": null,
+  "stack": [],
+  "titleLv": "Web dizaina kolekcija",
+  "summaryLv": "Atlasīti mājaslapu dizaina darbi no dažādām nozarēm, ar fokusu uz lietojamību, veiktspēju un SEO.",
+  "coverHint": "public/portfolio/web-design-cover-43.jpg",
+  "galleryCount": 3,
+  "needsInput": "Šī kolekcija pārklājas ar jaunajiem atsevišķajiem web ierakstiem un tajā ir tikai 3 attēli. Vai to paturam, vai izjaucam pa atsevišķiem projektiem?"
+ }
 ]

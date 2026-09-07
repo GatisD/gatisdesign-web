@@ -26,6 +26,16 @@
       "source": "/work",
       "destination": "/portfolio",
       "permanent": true
+    },
+    {
+      "source": "/portfolio/web-design",
+      "destination": "/portfolio",
+      "permanent": false
+    },
+    {
+      "source": "/en/portfolio/web-design",
+      "destination": "/en/portfolio",
+      "permanent": false
     }
   ],
   "headers": [

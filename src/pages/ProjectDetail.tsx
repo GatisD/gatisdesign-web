@@ -523,7 +523,18 @@ export default function ProjectDetail() {
           <div className="grid gap-grid md:grid-cols-3">
             {related.map((item, i) => (
               <Reveal key={item.slug} delay={stagger(i, 3)}>
-                <ProjectCard project={item} frame="h-[clamp(180px,20vw,300px)]" frameRatio={4 / 3} />
+                <ProjectCard
+                  project={item}
+                  /* Trīs vienādas kolonnas dod tieši to pašu platumu, ko sākumlapas
+                     apakšējā rinda (437 px pie >=1440 px), tāpēc te der tas pats
+                     kadrs. `md:` prefikss ir svarīgs: bez tā fiksētais augstums
+                     nostrādāja arī telefonā, kur rindā ir viena karte un augstums
+                     nesaskaņo neko - tikai griež. Iepriekš te stāvēja 4/3, bet
+                     mērījums deva 1,46-1,52, un vairumam vāku proporcija ir 1,60,
+                     tāpēc visi trīs stāvēja joslās. */
+                  frame="md:h-[clamp(150px,18.9vw,273px)]"
+                  frameRatio={1.58}
+                />
               </Reveal>
             ))}
           </div>

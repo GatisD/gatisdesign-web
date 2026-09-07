@@ -713,28 +713,6 @@
   "galleryCount": 5
  },
  {
-  "id": "web-design-collection",
-  "slug": "web-design",
-  "category": "web",
-  "client": "Dažādi klienti",
-  "year": 2026,
-  "yearEstimated": false,
-  "yearRange": "2010-2026",
-  "roleKind": "solo",
-  "roleLabel": "Dizains",
-  "services": [
-   "majaslapas"
-  ],
-  "externalUrl": null,
-  "externalStatus": null,
-  "stack": [],
-  "titleLv": "Web dizaina kolekcija",
-  "summaryLv": "Atlasīti mājaslapu dizaina darbi no dažādām nozarēm, ar fokusu uz lietojamību, veiktspēju un SEO.",
-  "coverHint": "public/portfolio/web-design-cover-43.jpg",
-  "galleryCount": 3,
-  "needsInput": "Šī kolekcija pārklājas ar jaunajiem atsevišķajiem web ierakstiem un tajā ir tikai 3 attēli. Vai to paturam, vai izjaucam pa atsevišķiem projektiem?"
- },
- {
   "id": "termokoksne",
   "slug": "termokoksne",
   "category": "web",

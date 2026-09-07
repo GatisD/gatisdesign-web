@@ -104,8 +104,12 @@ describe("portfolio projekti", () => {
     // Skaitlis ir sargs: galerija, kas klusi pazūd no `portfolioWorks`, citādi
     // lapā vienkārši vairs nav, un neviens tests to nepamana. Pievienojot
     // kolekciju, šo skaitli maina APZINĀTI - tā ir vienīgā vieta, kur to dara.
+    //
+    // 9 -> 8: "Web dizaina kolekcija" pārcelta uz melnrakstiem (veci darbi,
+    // pagaidām atslēgti). Tieši tāpēc šis sargs pastāv - lai pazušana būtu
+    // lēmums, ne blakusefekts.
     const withGallery = projects.filter((p) => p.gallery);
-    expect(withGallery.length).toBe(9);
+    expect(withGallery.length).toBe(8);
     for (const project of withGallery) {
       for (const img of project.gallery ?? []) {
         expect(img.width, img.src).toBeGreaterThan(0);
