@@ -31,7 +31,12 @@ export default function Layout({ locale }: { locale: Locale }) {
       <div className="flex min-h-screen flex-col bg-ink-900 text-paper">
         <ScrollManager />
         <Header />
-        <main id="saturs" className="flex flex-1 flex-col">
+        {/* `tabIndex={-1}` nav dekors: bez tā `main` nav fokusējams, un gan
+            "Pāriet uz saturu" saite, gan poga uz lapas augšu fokusu te pārvieto
+            tikai daļēji - `element.focus()` uz nefokusējama elementa klusi
+            neizdara neko. Kontūru neuzliekam, jo šis nav lietotāja mērķis, uz
+            ko klikšķina; tas ir tikai fokusa pietura. */}
+        <main id="saturs" tabIndex={-1} className="flex flex-1 flex-col focus:outline-none">
           <Outlet />
         </main>
         <Footer />

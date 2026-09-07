@@ -1,0 +1,142 @@
+#!/usr/bin/env python3
+"""Search Console stāvoklis vienā skatā: vai Google jau ir ieraudzījis lapu.
+
+Kāpēc tas vajadzīgs: pēc redizaina 2026-09-06 Google sākumlapu pēdējoreiz bija
+rāpojis 23. augustā, un tā kanoniskā versija tam joprojām bija mirusī Adobe
+lapa (gatisdesign.myportfolio.com, kas jau dod 404). Tas pats sakārtojas pēc
+pārrāpošanas, bet tikai tad, ja kāds pamana, ka tas ir noticis. Šis skripts to
+pamana.
+
+Palaišana:
+    python3 scripts/gsc-status.py                # cilvēkam lasāms
+    python3 scripts/gsc-status.py --json         # mašīnai
+
+Piekļuve: gspread service account ar Full tiesībām uz sc-domain:gatisdesign.com.
+Atsevišķa OAuth nav vajadzīga.
+"""
+import json
+import sys
+import urllib.parse
+from datetime import date, timedelta
+
+from google.oauth2 import service_account
+from google.auth.transport.requests import AuthorizedSession
+
+SA = "/Users/gatisdaugavietis/.config/gspread/service_account.json"
+SITE = "sc-domain:gatisdesign.com"
+# Lapas, kas nes lielāko daļu nozīmes. Pilnu sarakstu dod sitemap; te ir tās,
+# kuru indeksācija ir svarīga pirmā.
+SVARIGAS = [
+    "https://gatisdesign.com/",
+    "https://gatisdesign.com/portfolio",
+    "https://gatisdesign.com/majaslapu-izstrade",
+    "https://gatisdesign.com/zimola-identitate",
+    "https://gatisdesign.com/seo-geo-aeo",
+    "https://gatisdesign.com/ai-agenti",
+    "https://gatisdesign.com/kontakti",
+]
+# Kanoniskā, kurai NEDRĪKST būt neviena lapa. Ja te vēl kāda parādās, redizains
+# Google acīs vēl nav noticis.
+MIRUSAIS_HOSTS = "myportfolio.com"
+
+
+def sesija():
+    creds = service_account.Credentials.from_service_account_file(
+        SA, scopes=["https://www.googleapis.com/auth/webmasters"]
+    )
+    return AuthorizedSession(creds)
+
+
+def sitemap(s):
+    site = urllib.parse.quote(SITE, safe="")
+    sm = urllib.parse.quote("https://gatisdesign.com/sitemap.xml", safe="")
+    r = s.get(f"https://www.googleapis.com/webmasters/v3/sites/{site}/sitemaps/{sm}")
+    if r.status_code != 200:
+        return {"kluda": f"HTTP {r.status_code}"}
+    d = r.json()
+    return {
+        "iesniegts": d.get("lastSubmitted"),
+        "lejupieladets": d.get("lastDownloaded"),
+        "kludas": int(d.get("errors", 0)),
+        "bridinajumi": int(d.get("warnings", 0)),
+        "adreses": next((int(c.get("submitted", 0)) for c in d.get("contents", [])), 0),
+    }
+
+
+def indekss(s):
+    out = []
+    for u in SVARIGAS:
+        r = s.post(
+            "https://searchconsole.googleapis.com/v1/urlInspection/index:inspect",
+            json={"inspectionUrl": u, "siteUrl": SITE, "languageCode": "lv"},
+        )
+        if r.status_code != 200:
+            out.append({"url": u, "kluda": f"HTTP {r.status_code}"})
+            continue
+        i = r.json().get("inspectionResult", {}).get("indexStatusResult", {})
+        kan = i.get("googleCanonical", "")
+        out.append({
+            "url": u,
+            "verdikts": i.get("verdict"),
+            "segums": i.get("coverageState"),
+            "rapots": i.get("lastCrawlTime"),
+            "kanoniska": kan,
+            "svesa_kanoniska": MIRUSAIS_HOSTS in kan,
+        })
+    return out
+
+
+def veiktspeja(s, dienas=7):
+    site = urllib.parse.quote(SITE, safe="")
+    beigas = date.today()
+    sakums = beigas - timedelta(days=dienas)
+    r = s.post(
+        f"https://www.googleapis.com/webmasters/v3/sites/{site}/searchAnalytics/query",
+        json={"startDate": str(sakums), "endDate": str(beigas), "rowLimit": 1},
+    )
+    rows = r.json().get("rows", [{}])
+    x = rows[0] if rows else {}
+    return {"dienas": dienas, "klikski": x.get("clicks", 0), "paradisanas": x.get("impressions", 0)}
+
+
+def main():
+    s = sesija()
+    dati = {"sitemap": sitemap(s), "indekss": indekss(s), "veiktspeja": veiktspeja(s)}
+
+    rapoti = sum(1 for x in dati["indekss"] if x.get("rapots"))
+    svesas = [x for x in dati["indekss"] if x.get("svesa_kanoniska")]
+    dati["kopsavilkums"] = {
+        "rapotas": rapoti,
+        "no": len(SVARIGAS),
+        "svesa_kanoniska": len(svesas),
+        "viss_kartiba": rapoti == len(SVARIGAS) and not svesas and dati["sitemap"].get("kludas") == 0,
+    }
+
+    if "--json" in sys.argv:
+        print(json.dumps(dati, ensure_ascii=False, indent=2))
+        return 0
+
+    sm = dati["sitemap"]
+    print(f"Sitemap: {sm.get('adreses')} adreses, {sm.get('kludas')} kļūdas, "
+          f"lejupielādēts {sm.get('lejupieladets')}")
+    v = dati["veiktspeja"]
+    print(f"Pēdējās {v['dienas']} dienas: {v['klikski']:.0f} klikšķi, {v['paradisanas']:.0f} parādīšanās")
+    print(f"\nRāpotas {rapoti} no {len(SVARIGAS)} svarīgajām lapām:")
+    for x in dati["indekss"]:
+        if x.get("kluda"):
+            print(f"  ? {x['url']:52s} {x['kluda']}")
+            continue
+        z = "OK " if x.get("rapots") and not x["svesa_kanoniska"] else "-- "
+        celzs = x["url"].replace("https://gatisdesign.com", "") or "/"
+        print(f"  {z}{celzs:26s} {str(x['segums'])[:44]}")
+        if x["svesa_kanoniska"]:
+            print(f"      !! Google kanoniskā joprojām: {x['kanoniska']}")
+    if dati["kopsavilkums"]["viss_kartiba"]:
+        print("\nViss kārtībā: visas svarīgās lapas rāpotas, sveša kanoniskā nav nevienai.")
+    else:
+        print(f"\nVēl nav pabeigts. Nerāpotas: {len(SVARIGAS)-rapoti}, ar svešu kanonisko: {len(svesas)}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
