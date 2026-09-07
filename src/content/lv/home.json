@@ -1,177 +1,169 @@
 {
-  "slug": "/",
-  "title": "Sākumlapa - Gatis Design",
-  "metaTitle": "Mājaslapu dizains, kas nes pieprasījumus",
-  "metaDescription": "Mājaslapu dizains un izstrāde ar 18 gadu pieredzi. Zīmolu, lapu, AI aģentus un redzamību Google un AI atbildēs - visu izdara viens cilvēks. Cenas no 500 EUR.",
-  "h1": "Lapa, kas nes pieprasījumus.",
-  "h1BreakAfter": 3,
-  "directAnswer": "Lapa izskatās kārtībā, bet pieprasījumu nav - ar to klienti pie manis nāk visbiežāk. Esmu Gatis Daugavietis, web dizainers un izstrādātājs Rīgā. Strādāju viens, bez aģentūras: uzzīmēju zīmolu, uzbūvēju lapu, pieslēdzu AI aģentus un atbildu par redzamību Google meklēšanā un AI atbildēs. Klienti Latvijā, Igaunijā, Lietuvā un ASV. Cenas no 500 EUR, pirmā versija parasti ir gatava 2-4 nedēļās.",
-  "sections": [
-    {
-      "kicker": "Sākums",
-      "heading": "Lapa, kas nes pieprasījumus.",
-      "body": [
-        "Mājaslapu dizainu, zīmolu, AI aģentus un redzamību Google meklēšanā un AI atbildēs - visu izdara viens cilvēks.",
-        "Salaboju to, kas neļauj lapai nest pieprasījumus: struktūru, ātrumu, tekstu un mērījumus. 18 gadu pieredze, 100+ projektu, klienti Latvijā, Igaunijā, Lietuvā un ASV."
-      ],
-      "bullets": [
-        "CTA 1 (primārā): Pastāsti par projektu -> /kontakti",
-        "CTA 2 (sekundārā): Apskati darbus -> /portfolio"
-      ]
-    },
-    {
-      "kicker": "Bez aģentūras",
-      "heading": "Viena cilvēka ķēde no zīmola līdz redzamībai",
-      "body": [
-        "Vairums uzņēmumu savu digitālo daļu pērk pa gabaliem: logo no viena, lapa no otra, SEO no trešā, un neviens neatbild par to, kā tas sader kopā. Visu ķēdi daru pats, tāpēc zīmola krāsas, lapas struktūra un tas, ko par uzņēmumu pasaka ChatGPT, nāk no vienas galvas.",
-        "Man ir gan dizainera, gan izstrādātāja pieredze: zīmēju to, ko pats spēju uzbūvēt, un būvēju to, kas lapā tiešām strādā - ātrumu, formas, mērījumus un saturu, kuru meklētāji saprot."
-      ]
-    },
-    {
-      "kicker": "Pakalpojumi",
-      "heading": "Mājaslapu dizains un izstrāde, zīmola identitāte, AI aģenti un redzamība",
-      "body": [
-        "Pakalpojumi darbojas arī atsevišķi, bet kopā tie ietaupa laiku un naudu: viens cilvēks zina, kāpēc lapā ir tieši šī krāsa, šī struktūra un šis teksts.",
-        "Cenas ir bez PVN, jo neesmu PVN maksātājs. Katrs projekts sākas ar fiksētu tāmi, nevis ar stundu uzskaiti darba gaitā."
-      ],
-      "bullets": [
-        "Zīmola identitāte. Logotips, krāsas, tipogrāfija un lietošanas noteikumi, ar kuriem zīmols izskatās vienādi gan uz auto sāna, gan Instagram profilā. No 500 EUR. -> /zimola-identitate",
-        "Mājaslapu izstrāde un dizains. Dizains, kods, saturs un hostings vienās rokās, WordPress vai React, ar ātrumu un mērījumiem no pirmās dienas. No 500 EUR. -> /majaslapu-izstrade",
-        "AI aģenti. Automatizācija pieprasījumu apstrādei, atskaitēm, satura sagatavošanai un datu apmaiņai starp sistēmām. Audits no 400 EUR. -> /ai-agenti",
-        "SEO, GEO un AEO. Panāku, lai tavu lapu atrastu gan Google meklēšanā, gan ChatGPT un Perplexity atbildēs. Audits no 300 EUR. -> /seo-geo-aeo"
-      ],
-      "table": {
-        "caption": "Sākuma cenas un termiņi (cenas bez PVN)",
-        "columns": [
-          "Pakalpojums",
-          "Sākuma cena",
-          "Parastais termiņš",
-          "Lapa"
-        ],
-        "rows": [
-          [
-            "Zīmola identitāte",
-            "no 500 EUR",
-            "2-3 nedēļas",
-            "/zimola-identitate"
-          ],
-          [
-            "Mājaslapu izstrāde un dizains",
-            "no 500 EUR",
-            "2-6 nedēļas",
-            "/majaslapu-izstrade"
-          ],
-          [
-            "AI aģenti un automatizācija",
-            "audits no 400 EUR",
-            "1-2 nedēļas",
-            "/ai-agenti"
-          ],
-          [
-            "SEO, GEO un AEO",
-            "audits no 300 EUR",
-            "1-2 nedēļas",
-            "/seo-geo-aeo"
-          ]
-        ]
-      }
-    },
-    {
-      "kicker": "Darbi",
-      "heading": "Darbi, ko vari apskatīt jau tagad",
-      "body": [
-        "Pilns saraksts ar attēliem ir sadaļā [mājaslapu un logo izstrādes piemēri](/portfolio). Šeit pieci darbi, kas parāda, cik dažādi projekti iet caur vienām rokām."
-      ],
-      "bullets": [
-        "Box Latvia. Pilna zīmola sistēma loģistikas uzņēmumam: logo, transportlīdzekļu marķējums, drukas materiāli un digitāla prezentācija.",
-        "Apmeklē.lv. Pakalpojumu platformas zīmols ar piktogrammu sistēmu, kas paliek salasāma arī telefona mazajā ekrānā.",
-        "Digitālais Dzintars. Atjaunots zīmols Liepājas kultūras platformai: plakāti, afišas un identitātes elementi, kuros dzintara mantojums satiekas ar digitālu estētiku.",
-        "Estire. Mājaslapa pārcelta uz Vercel: ātrāka ielāde un salabota pieprasījumu mērīšana, lai būtu redzams, no kurienes nāk zvani un pieprasījumi.",
-        "Universal Solutions. Jauna lapa ar pilnu GDPR risinājumu - piekrišanu sīkdatnēm - un e-pasta piegādes iestatījumiem, ar kuriem vēstules nonāk iesūtnē, nevis surogātpastā.",
-        "Citi klienti, ar kuriem strādāju vai esmu strādājis: MLM Cargo, ARM Metals, Tavasdurvis, Tenter, Improvement, Lucky Punch, Lauvas Zobs, Valis Stomatoloģija, Cafeteria, Forevolt, DarbaGuru, LimeBit."
-      ]
-    },
-    {
-      "kicker": "Skaitļi",
-      "heading": "Skaitļi, kas raksturo darbu",
-      "body": [
-        "Bez tukšām frāzēm par pieredzi. Četri skaitļi, ko var pārbaudīt darbu sadaļā un atsauksmēs."
-      ],
-      "bullets": [
-        "18 gadi web izstrādē un dizainā, kopš 2008. gada",
-        "100+ pabeigtu projektu: zīmolu, mājaslapu, interneta veikalu, kampaņu",
-        "4 tirgi: Latvija, Igaunija, Lietuva un ASV",
-        "1 kontaktpersona no pirmās sarunas līdz palaišanai un arī pēc tās"
-      ]
-    },
-    {
-      "kicker": "Par mani",
-      "heading": "Īsi par mani",
-      "body": [
-        "Mani sauc Gatis Daugavietis. Sāku ar grafisko dizainu, pēc tam iemācījos kodēt, jo man apnika skatīties, kā labs dizains sabrūk izstrādes gaitā. Esmu strādājis gan ar vietējiem uzņēmumiem, gan ar klientiem Igaunijā, Lietuvā un ASV; sapulces notiek attālināti, un tas nemaina ne termiņus, ne cenu.",
-        "Nesolu desmit cilvēku komandu, jo tādas nav. Garākā versija ar darba gaitu un rīkiem ir lapā [18 gadu pieredze dizainā un izstrādē](/par-mani)."
-      ]
-    },
-    {
-      "kicker": "Kontakti",
-      "heading": "Kā sākt",
-      "body": [
-        "Raksti uz connect@gatisdesign.com un pastāsti, kas jāizdara un kad tam jābūt gatavam. Pirmā saruna neko nemaksā.",
-        "Pēc tās saņem fiksētu tāmi ar termiņiem un skaidru sadalījumu: ko daru es un kas vajadzīgs no tavas puses. Ja tev labāk patīk forma, tā ir [kontaktu lapā](/kontakti)."
-      ],
-      "bullets": [
-        "E-pasts: connect@gatisdesign.com",
-        "Kontaktforma: /kontakti"
-      ]
-    }
-  ],
-  "faq": [
-    {
-      "q": "Cik maksā mājaslapa?",
-      "a": "Vienas lapas mājaslapa (landing page) ar dizainu, kodu un pamata SEO maksā no 500 EUR. Pilna uzņēmuma mājaslapa ar vairākām sadaļām, saturu divās valodās un pieprasījumu mērīšanu maksā 900-1500 EUR. Cena ir fiksēta pirms darba sākuma, un neesmu PVN maksātājs, tāpēc norādītā summa ir galīga."
-    },
-    {
-      "q": "Cik maksā mājaslapas dizains?",
-      "a": "Dizainu parasti pasūta kopā ar izstrādi: tad viena lapa maksā no 500 EUR, bet pilna mājaslapa 900-1500 EUR. Ja dizainu vajag atsevišķi, jo izstrādi veic kāds cits, cenu nosaku pēc apjoma - uzraksti, cik lapu vajag un kādi ekrāni nepieciešami."
-    },
-    {
-      "q": "Kāda ir atšķirība starp web dizainu un mājaslapas izstrādi?",
-      "a": "Web dizains ir lapas izskats un tas, kā tajā pārvietoties: izkārtojums, krāsas, fonti, ekrānu secība. Izstrāde ir tas, kas notiek pēc tam - dizains kļūst par strādājošu lapu ar formām, ātrumu un administrācijas paneli. Daru abus, tāpēc dizains nekad nav bilde, ko pēc tam kāds cits mēģina pārlikt kodā."
-    },
-    {
-      "q": "Cik ilgi aizņem mājaslapas izveide?",
-      "a": "Vienas lapas mājaslapa (landing page) ir gatava 1-2 nedēļās. Pilnai uzņēmuma mājaslapai ar 5-10 sadaļām vajag 3-5 nedēļas. Termiņš ir vairāk atkarīgs no tā, cik ātri saņemu saturu, fotogrāfijas un atbildes, nekā no paša dizaina."
-    },
-    {
-      "q": "Vai strādā tikai ar klientiem Rīgā?",
-      "a": "Nē. Strādāju no Rīgas, bet klienti ir arī Igaunijā, Lietuvā un ASV. Viss darbs notiek attālināti, sapulces - videozvanos, un attālums nemaina ne termiņus, ne cenu."
-    },
-    {
-      "q": "Vai tu esi aģentūra?",
-      "a": "Nē, esmu viens cilvēks ar 18 gadu pieredzi. Tu runā ar to pašu, kurš zīmē, kodē un pēc palaišanas labo. Lielākiem projektiem piesaistu pārbaudītus kolēģus, bet atbildība un saziņa paliek man."
-    },
-    {
-      "q": "Kādās platformās būvē mājaslapas?",
-      "a": "Visbiežāk WordPress, ja klients pats vēlas rediģēt saturu, un React, ja vajag ātrumu un netipisku funkcionalitāti. E-veikaliem izmantoju Shopify vai WooCommerce. Hostings parasti ir Vercel vai klienta esošais serveris."
-    },
-    {
-      "q": "Kas ir GEO un AEO un kāpēc tas man vajadzīgs?",
-      "a": "GEO un AEO ir lapas sagatavošana tā, lai to citētu AI atbildes: ChatGPT, Perplexity un Google AI Overviews. Praktiski tas nozīmē skaidras atbildes uz jautājumiem, konkrētus skaitļus, cenu tabulas un strukturētus datus. Daļa pircēju vairs neiet cauri desmit meklēšanas rezultātiem, bet izlasa vienu AI atbildi."
-    },
-    {
-      "q": "Ko dara AI aģents un cik tas maksā?",
-      "a": "AI aģents ir automatizācija, kas pārņem atkārtotu darbu: apstrādā pieprasījumus, sagatavo atskaites, pārnes datus starp CRM un mājaslapu, raksta satura melnrakstus. Sākums ir audits no 400 EUR, kurā novērtēju, kurus procesus ir vērts automatizēt un cik daudz laika tas ietaupa mēnesī."
-    }
-  ],
-  "internalLinks": [
-    "/zimola-identitate",
-    "/majaslapu-izstrade",
-    "/ai-agenti",
-    "/seo-geo-aeo",
-    "/portfolio",
-    "/par-mani",
-    "/kontakti"
-  ],
-  "cta": "Pastāsti par projektu: connect@gatisdesign.com vai /kontakti. Pirmā saruna neko nemaksā, pēc tās saņem fiksētu tāmi ar termiņiem.",
-  "heroLede": "Mājaslapu dizainu, zīmolu, AI aģentus un redzamību Google meklēšanā un AI atbildēs - visu izdara viens cilvēks."
+ "slug": "/",
+ "title": "Sākumlapa - Gatis Design",
+ "metaTitle": "Mājaslapu dizains, kas nes pieprasījumus",
+ "metaDescription": "Mājaslapu dizains un izstrāde ar 18 gadu pieredzi. Zīmolu, lapu, AI aģentus un redzamību Google un AI atbildēs - visu izdara viens cilvēks. Cenas no 500 EUR.",
+ "h1": "Lapa, kas nes pieprasījumus.",
+ "h1BreakAfter": 3,
+ "directAnswer": "Lapa izskatās kārtībā, bet pieprasījumu nav - ar to klienti pie manis nāk visbiežāk. Esmu Gatis Daugavietis, web dizainers un izstrādātājs Rīgā. Strādāju viens, bez aģentūras: uzzīmēju zīmolu, uzbūvēju lapu, pieslēdzu AI aģentus un atbildu par redzamību Google meklēšanā un AI atbildēs. Klienti Latvijā, Igaunijā, Lietuvā un ASV. Cenas no 500 EUR, pirmā versija parasti ir gatava 2-4 nedēļās.",
+ "sections": [
+  {
+   "kicker": "Sākums",
+   "heading": "Lapa, kas nes pieprasījumus.",
+   "body": [
+    "Mājaslapu dizainu, zīmolu, AI aģentus un redzamību Google meklēšanā un AI atbildēs - visu izdara viens cilvēks.",
+    "Salaboju to, kas neļauj lapai nest pieprasījumus: struktūru, ātrumu, tekstu un mērījumus. 18 gadu pieredze, 100+ projektu, klienti Latvijā, Igaunijā, Lietuvā un ASV."
+   ],
+   "bullets": [
+    "CTA 1 (primārā): Pastāsti par projektu -> /kontakti",
+    "CTA 2 (sekundārā): Apskati darbus -> /portfolio"
+   ]
+  },
+  {
+   "kicker": "Bez aģentūras",
+   "heading": "Viena cilvēka ķēde no zīmola līdz redzamībai",
+   "body": [
+    "Vairums uzņēmumu savu digitālo daļu pērk pa gabaliem: logo no viena, lapa no otra, SEO no trešā, un neviens neatbild par to, kā tas sader kopā. Visu ķēdi daru pats, tāpēc zīmola krāsas, lapas struktūra un tas, ko par uzņēmumu pasaka ChatGPT, nāk no vienas galvas.",
+    "Man ir gan dizainera, gan izstrādātāja pieredze: zīmēju to, ko pats spēju uzbūvēt, un būvēju to, kas lapā tiešām strādā - ātrumu, formas, mērījumus un saturu, kuru meklētāji saprot."
+   ]
+  },
+  {
+   "kicker": "Pakalpojumi",
+   "heading": "Mājaslapu dizains un izstrāde, zīmola identitāte, AI aģenti un redzamība",
+   "body": [
+    "Pakalpojumi darbojas arī atsevišķi, bet kopā tie ietaupa laiku un naudu: viens cilvēks zina, kāpēc lapā ir tieši šī krāsa, šī struktūra un šis teksts.",
+    "Cenas ir bez PVN, jo neesmu PVN maksātājs. Katrs projekts sākas ar fiksētu tāmi, nevis ar stundu uzskaiti darba gaitā."
+   ],
+   "bullets": [
+    "Zīmola identitāte. Logotips, krāsas, tipogrāfija un lietošanas noteikumi, ar kuriem zīmols izskatās vienādi gan uz auto sāna, gan Instagram profilā. No 500 EUR. -> /zimola-identitate",
+    "Mājaslapu izstrāde un dizains. Dizains, kods, saturs un hostings vienās rokās, WordPress vai React, ar ātrumu un mērījumiem no pirmās dienas. No 500 EUR. -> /majaslapu-izstrade",
+    "AI aģenti. Automatizācija pieprasījumu apstrādei, atskaitēm, satura sagatavošanai un datu apmaiņai starp sistēmām. Audits no 400 EUR. -> /ai-agenti",
+    "SEO, GEO un AEO. Panāku, lai tavu lapu atrastu gan Google meklēšanā, gan ChatGPT un Perplexity atbildēs. Audits no 300 EUR. -> /seo-geo-aeo"
+   ],
+   "table": {
+    "caption": "Sākuma cenas un termiņi (cenas bez PVN)",
+    "columns": [
+     "Pakalpojums",
+     "Sākuma cena",
+     "Parastais termiņš",
+     "Lapa"
+    ],
+    "rows": [
+     [
+      "Zīmola identitāte",
+      "no 500 EUR",
+      "2-3 nedēļas",
+      "/zimola-identitate"
+     ],
+     [
+      "Mājaslapu izstrāde un dizains",
+      "no 500 EUR",
+      "2-6 nedēļas",
+      "/majaslapu-izstrade"
+     ],
+     [
+      "AI aģenti un automatizācija",
+      "audits no 400 EUR",
+      "1-2 nedēļas",
+      "/ai-agenti"
+     ],
+     [
+      "SEO, GEO un AEO",
+      "audits no 300 EUR",
+      "1-2 nedēļas",
+      "/seo-geo-aeo"
+     ]
+    ]
+   }
+  },
+  {
+   "kicker": "Darbi",
+   "heading": "Darbi, ko vari apskatīt jau tagad",
+   "body": [
+    "Pilns saraksts ar attēliem ir sadaļā [mājaslapu un logo izstrādes piemēri](/portfolio). Šeit pieci darbi, kas parāda, cik dažādi projekti iet caur vienām rokām."
+   ]
+  },
+  {
+   "kicker": "Skaitļi",
+   "heading": "Skaitļi, kas raksturo darbu",
+   "body": [
+    "Bez tukšām frāzēm par pieredzi. Četri skaitļi, ko var pārbaudīt darbu sadaļā un atsauksmēs."
+   ],
+   "bullets": [
+    "18 gadi web izstrādē un dizainā, kopš 2008. gada",
+    "100+ pabeigtu projektu: zīmolu, mājaslapu, interneta veikalu, kampaņu",
+    "4 tirgi: Latvija, Igaunija, Lietuva un ASV",
+    "1 kontaktpersona no pirmās sarunas līdz palaišanai un arī pēc tās"
+   ]
+  },
+  {
+   "kicker": "Par mani",
+   "heading": "Īsi par mani",
+   "body": [
+    "Mani sauc Gatis Daugavietis. Sāku ar grafisko dizainu, pēc tam iemācījos kodēt, jo man apnika skatīties, kā labs dizains sabrūk izstrādes gaitā. Esmu strādājis gan ar vietējiem uzņēmumiem, gan ar klientiem Igaunijā, Lietuvā un ASV; sapulces notiek attālināti, un tas nemaina ne termiņus, ne cenu.",
+    "Nesolu desmit cilvēku komandu, jo tādas nav. Garākā versija ar darba gaitu un rīkiem ir lapā [18 gadu pieredze dizainā un izstrādē](/par-mani)."
+   ]
+  },
+  {
+   "kicker": "Kontakti",
+   "heading": "Kā sākt",
+   "body": [
+    "Raksti uz connect@gatisdesign.com un pastāsti, kas jāizdara un kad tam jābūt gatavam. Pirmā saruna neko nemaksā.",
+    "Pēc tās saņem fiksētu tāmi ar termiņiem un skaidru sadalījumu: ko daru es un kas vajadzīgs no tavas puses. Ja tev labāk patīk forma, tā ir [kontaktu lapā](/kontakti)."
+   ],
+   "bullets": [
+    "E-pasts: connect@gatisdesign.com",
+    "Kontaktforma: /kontakti"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Cik maksā mājaslapa?",
+   "a": "Vienas lapas mājaslapa (landing page) ar dizainu, kodu un pamata SEO maksā no 500 EUR. Pilna uzņēmuma mājaslapa ar vairākām sadaļām, saturu divās valodās un pieprasījumu mērīšanu maksā 900-1500 EUR. Cena ir fiksēta pirms darba sākuma, un neesmu PVN maksātājs, tāpēc norādītā summa ir galīga."
+  },
+  {
+   "q": "Cik maksā mājaslapas dizains?",
+   "a": "Dizainu parasti pasūta kopā ar izstrādi: tad viena lapa maksā no 500 EUR, bet pilna mājaslapa 900-1500 EUR. Ja dizainu vajag atsevišķi, jo izstrādi veic kāds cits, cenu nosaku pēc apjoma - uzraksti, cik lapu vajag un kādi ekrāni nepieciešami."
+  },
+  {
+   "q": "Kāda ir atšķirība starp web dizainu un mājaslapas izstrādi?",
+   "a": "Web dizains ir lapas izskats un tas, kā tajā pārvietoties: izkārtojums, krāsas, fonti, ekrānu secība. Izstrāde ir tas, kas notiek pēc tam - dizains kļūst par strādājošu lapu ar formām, ātrumu un administrācijas paneli. Daru abus, tāpēc dizains nekad nav bilde, ko pēc tam kāds cits mēģina pārlikt kodā."
+  },
+  {
+   "q": "Cik ilgi aizņem mājaslapas izveide?",
+   "a": "Vienas lapas mājaslapa (landing page) ir gatava 1-2 nedēļās. Pilnai uzņēmuma mājaslapai ar 5-10 sadaļām vajag 3-5 nedēļas. Termiņš ir vairāk atkarīgs no tā, cik ātri saņemu saturu, fotogrāfijas un atbildes, nekā no paša dizaina."
+  },
+  {
+   "q": "Vai strādā tikai ar klientiem Rīgā?",
+   "a": "Nē. Strādāju no Rīgas, bet klienti ir arī Igaunijā, Lietuvā un ASV. Viss darbs notiek attālināti, sapulces - videozvanos, un attālums nemaina ne termiņus, ne cenu."
+  },
+  {
+   "q": "Vai tu esi aģentūra?",
+   "a": "Nē, esmu viens cilvēks ar 18 gadu pieredzi. Tu runā ar to pašu, kurš zīmē, kodē un pēc palaišanas labo. Lielākiem projektiem piesaistu pārbaudītus kolēģus, bet atbildība un saziņa paliek man."
+  },
+  {
+   "q": "Kādās platformās būvē mājaslapas?",
+   "a": "Visbiežāk WordPress, ja klients pats vēlas rediģēt saturu, un React, ja vajag ātrumu un netipisku funkcionalitāti. E-veikaliem izmantoju Shopify vai WooCommerce. Hostings parasti ir Vercel vai klienta esošais serveris."
+  },
+  {
+   "q": "Kas ir GEO un AEO un kāpēc tas man vajadzīgs?",
+   "a": "GEO un AEO ir lapas sagatavošana tā, lai to citētu AI atbildes: ChatGPT, Perplexity un Google AI Overviews. Praktiski tas nozīmē skaidras atbildes uz jautājumiem, konkrētus skaitļus, cenu tabulas un strukturētus datus. Daļa pircēju vairs neiet cauri desmit meklēšanas rezultātiem, bet izlasa vienu AI atbildi."
+  },
+  {
+   "q": "Ko dara AI aģents un cik tas maksā?",
+   "a": "AI aģents ir automatizācija, kas pārņem atkārtotu darbu: apstrādā pieprasījumus, sagatavo atskaites, pārnes datus starp CRM un mājaslapu, raksta satura melnrakstus. Sākums ir audits no 400 EUR, kurā novērtēju, kurus procesus ir vērts automatizēt un cik daudz laika tas ietaupa mēnesī."
+  }
+ ],
+ "internalLinks": [
+  "/zimola-identitate",
+  "/majaslapu-izstrade",
+  "/ai-agenti",
+  "/seo-geo-aeo",
+  "/portfolio",
+  "/par-mani",
+  "/kontakti"
+ ],
+ "cta": "Pastāsti par projektu: connect@gatisdesign.com vai /kontakti. Pirmā saruna neko nemaksā, pēc tās saņem fiksētu tāmi ar termiņiem.",
+ "heroLede": "Mājaslapu dizainu, zīmolu, AI aģentus un redzamību Google meklēšanā un AI atbildēs - visu izdara viens cilvēks."
 }

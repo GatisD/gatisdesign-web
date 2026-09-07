@@ -27,6 +27,9 @@ export const servicesSection = sectionByKicker("Pakalpojumi");
  * 2026-09-06, ne pieņemts:
  *
  *   worksSection - renderējas TIKAI `body[0]` (Index.tsx caur `LinkedText`).
+ *     Te bija arī seši `bullets` ar darbu aprakstiem. Tie nerenderējās nekur:
+ *     tekstu varēja atrast tikai JS pakotnē, ne vienā HTML lapā, tātad ne
+ *     cilvēkam, ne meklētājam, ne AI. Izdzēsti 2026-09-07.
  *                  Virsraksts un seši projektu bullet punkti (~130 vārdi) lapā
  *                  neparādās nekur; tos pašus darbus rāda `projects.ts` kartes.
  *   statsSection - renderējas TIKAI `bullets`, un tikai caur `statItems` zemāk.
