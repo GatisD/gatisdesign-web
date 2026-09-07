@@ -15,6 +15,14 @@ import {
  * valodās glabā src/i18n/dict.ts, tāpēc serveris var atgriezt lauku kļūdas,
  * nezinot ne vārda apmeklētāja valodā.
  */
+/**
+ * Slazda lauka nosaukums. Apzināti bez nozīmes: `company` bija tieši tas vārds,
+ * ko pārlūks un paroļu pārvaldnieks aizpilda no kontaktu kartītes, un tad
+ * cilvēka pieteikums serverim izskatījās pēc robota. Autofill heiristikas
+ * strādā ar angļu lauku vārdiem, tāpēc latviskam vārdam tās nepieskaras.
+ */
+export const HONEYPOT_FIELD = "atsauce" as const;
+
 export const contactSchema = z.object({
   // Rindas pārtraukums vārdā nonāktu e-pasta `subject` rindā. Resend JSON API
   // to gandrīz noteikti noraidītu, bet shēma to nedrīkst atstāt Resend ziņā:
@@ -49,7 +57,7 @@ export const contactSchema = z.object({
     .refine((value) => value === true, { message: "consentRequired" }),
   locale: z.enum(FORM_LOCALES).optional().default("lv"),
   /** Slazds robotiem. Cilvēks šo lauku neredz, tāpēc tam jāpaliek tukšam. */
-  company: z.string().max(200).optional(),
+  [HONEYPOT_FIELD]: z.string().max(200).optional(),
 });
 
 /** Formas vērtības pēc parsēšanas (timeline un locale jau ar noklusējumu). */
@@ -59,7 +67,7 @@ export type ContactData = z.infer<typeof contactSchema>;
 export type ContactFormValues = z.input<typeof contactSchema>;
 
 /** Lauka nosaukums -> kļūdas atslēga, gatavs atdošanai klientam. */
-export type FieldErrors = Partial<Record<keyof ContactData | "company", string>>;
+export type FieldErrors = Partial<Record<keyof ContactData, string>>;
 
 export function fieldErrorsFrom(error: z.ZodError): FieldErrors {
   const out: FieldErrors = {};

@@ -98,7 +98,7 @@ export default function ContactForm({ className }: { className?: string }) {
     formState: { errors, isSubmitting },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { name: "", email: "", timeline: "", message: "", consent: false, company: "" },
+    defaultValues: { name: "", email: "", timeline: "", message: "", consent: false, atsauce: "" },
   });
 
   // Viena kratīšana, 400 ms, pie katras jaunas validācijas kļūdas.
@@ -365,17 +365,18 @@ export default function ContactForm({ className }: { className?: string }) {
         </div>
       </div>
 
-      {/* Slazds robotiem. `.sr-only` nozīmē "redzams TIKAI ekrānlasītājam" -
-          tieši pretēji slazda nolūkam: redzīgs lietotājs to neredzēja, bet
-          ekrānlasītāja lietotājs to dzirdēja un varēja aizpildīt, un tad
-          serveris atbild ok, vēstuli nesūtot. `aria-hidden` uz ietinošā div
-          izņem to arī no pieejamības koka; `tabindex=-1` jau izņēma no
-          tabulācijas. */}
-      <div className="sr-only" aria-hidden="true">
-        <label htmlFor="company" className="sr-only">
-          {t.form.honeypotLabel}
-        </label>
-        <input id="company" className="sr-only" type="text" tabIndex={-1} autoComplete="off" {...register("company")} />
+      {/* Slazds robotiem. Divas atsevišķas mācības vienā blokā:
+          1) `.sr-only` nozīmē "redzams TIKAI ekrānlasītājam" - tieši pretēji
+             slazda nolūkam, tāpēc `aria-hidden` un `tabindex=-1`;
+          2) lauks ar nosaukumu `company` ir pirmais, ko pārlūka un paroļu
+             pārvaldnieka autofill aizpilda no kontaktu kartītes. `.sr-only`
+             lauku no izkārtojuma neizņem, tāpēc autofill to redzēja un
+             aizpildīja, un cilvēka pieteikums serverim izskatījās pēc robota.
+             Tagad nosaukums ir bez nozīmes, un `display: none` izņem lauku arī
+             no autofill redzesloka. */}
+      <div style={{ display: "none" }} aria-hidden="true">
+        <label htmlFor="atsauce">{t.form.honeypotLabel}</label>
+        <input id="atsauce" type="text" tabIndex={-1} autoComplete="off" {...register("atsauce")} />
       </div>
 
       <div className="mt-7 flex items-start gap-3">

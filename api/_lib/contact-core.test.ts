@@ -9,6 +9,7 @@ import {
   type ContactConfig,
 } from "./contact-core.js";
 import type { EmailMessage } from "./contact-emails.js";
+import { contactSchema, HONEYPOT_FIELD } from "./contact-schema.js";
 
 const config: ContactConfig = {
   from: "Gatis Design <forma@send.gatisdesign.com>",
@@ -148,10 +149,10 @@ describe("kontaktformas serveris", () => {
     expect(mail.sent).toHaveLength(0);
   });
 
-  it("aizpildīts slazds atgriež 200, bet vēstule neaiziet", async () => {
+  it("aizpildīts slazds vairs neizmet pieteikumu - vēstule aiziet ar atzīmi", async () => {
     const mail = recorder();
     const result = await handleContact({
-      payload: { ...validPayload, company: "SIA Robots" },
+      payload: { ...validPayload, [HONEYPOT_FIELD]: "SIA Autofill" },
       ip: freshIp(),
       config,
       send: mail.send,
@@ -159,7 +160,39 @@ describe("kontaktformas serveris", () => {
 
     expect(result.status).toBe(200);
     expect(result.body).toEqual({ ok: true });
-    expect(mail.sent).toHaveLength(0);
+    // Paziņojums Gatim aiziet; automātiskā atbilde iesniedzējam - ne, jo pie
+    // robota adreses atlēciens sistu pa sūtītāja domēna reputāciju.
+    expect(mail.sent).toHaveLength(1);
+    expect(mail.sent[0].to).toBe(config.to);
+    expect(mail.sent[0].subject.startsWith("[slazds] ")).toBe(true);
+  });
+
+  it("`company` vairs nav slazds - 07.09. krava iet cauri normāli", async () => {
+    // Īstais defekts: pārlūka autofill aizpildīja lauku `company`, serveris
+    // atbildēja 200 ok, forma parādīja paldies, un vēstule neaizgāja nekur.
+    const mail = recorder();
+    const result = await handleContact({
+      payload: { ...validPayload, company: "SIA Autofill" },
+      ip: freshIp(),
+      config,
+      send: mail.send,
+    });
+
+    expect(result.status).toBe(200);
+    expect(mail.sent).toHaveLength(2);
+    expect(mail.sent[0].subject.startsWith("[slazds]")).toBe(false);
+  });
+
+  it("slazda lauks ir shēmā, un tā nosaukums nav autofill vārds", () => {
+    // Šis ir tas nemainīgais, kura trūkums 07.09. maksāja dienu pieteikumu:
+    // slazda nosaukumam jāpaliek tāds, ko autofill heiristikas nepazīst.
+    const autofillVardi = [
+      "company", "organization", "organisation", "address", "address-line1",
+      "phone", "tel", "url", "website", "fax", "title", "given-name",
+      "family-name", "country", "city", "postal-code", "name", "email",
+    ];
+    expect(Object.keys(contactSchema.shape)).toContain(HONEYPOT_FIELD);
+    expect(autofillVardi).not.toContain(HONEYPOT_FIELD);
   });
 
   it("pārsniedzot limitu, atgriež 429 ar Retry-After", async () => {

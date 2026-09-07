@@ -1,5 +1,5 @@
 import { buildAutoReplyEmail, buildNotificationEmail, type EmailMessage } from "./contact-emails.js";
-import { contactSchema, fieldErrorsFrom, type FieldErrors } from "./contact-schema.js";
+import { contactSchema, fieldErrorsFrom, HONEYPOT_FIELD, type FieldErrors } from "./contact-schema.js";
 
 /**
  * Kontaktformas loģika bez HTTP slāņa. Šeit nav ne req, ne res - tāpēc to var
@@ -191,14 +191,6 @@ export async function handleContact(input: HandleContactInput): Promise<ContactR
     };
   }
 
-  // Slazds robotiem. Aizpildīts lauks nozīmē robotu: atbildam 200, lai tas
-  // neuzzina par atsijāšanu, bet nekas netiek nosūtīts.
-  const honeypot = (input.payload as { company?: unknown } | null)?.company;
-  if (typeof honeypot === "string" && honeypot.trim() !== "") {
-    log.info("[contact] slazds nostrādāja, netiek sūtīts");
-    return { status: 200, body: { ok: true } };
-  }
-
   const retryAfter = checkRateLimit(input.ip, now);
   if (retryAfter > 0) {
     log.warn("[contact] pārāk daudz pieprasījumu no vienas adreses");
@@ -252,10 +244,25 @@ export async function handleContact(input: HandleContactInput): Promise<ContactR
   }
 
   const data = parsed.data;
-  const notification = buildNotificationEmail(data, {
+
+  // Slazdu lasām PĒC Turnstile, un aizpildīts slazds vairs NEIZMET pieteikumu.
+  // Robotus jau ir atsijājis Cloudflare; vienīgais reālais aizpildītājs, kas
+  // tiek līdz šejienei, ir pārlūka autofill. 2026-09-07 tieši tas notika ar
+  // cilvēka pieteikumu: serveris atbildēja "ok", forma parādīja paldies, un
+  // vēstule neaizgāja ne uz pastu, ne kaut kur citur. Kluss 200 nozīmē
+  // pazudušu klientu bez pēdām nevienā žurnālā, tāpēc tagad tas nonāk pastā
+  // ar atzīmi, un lēmumu pieņem cilvēks.
+  const slazds = (input.payload as Record<string, unknown> | null)?.[HONEYPOT_FIELD];
+  const slazdsAizpildits = typeof slazds === "string" && slazds.trim() !== "";
+  if (slazdsAizpildits) log.warn("[contact] slazds aizpildīts - sūtām ar atzīmi");
+
+  const pamatvestule = buildNotificationEmail(data, {
     from: input.config.from,
     to: input.config.to,
   });
+  const notification = slazdsAizpildits
+    ? { ...pamatvestule, subject: `[slazds] ${pamatvestule.subject}` }
+    : pamatvestule;
 
   let notificationId: string;
   try {
@@ -270,13 +277,17 @@ export async function handleContact(input: HandleContactInput): Promise<ContactR
 
   // Automātiskā atbilde ir papildinājums, ne nosacījums. Ja tā krīt,
   // pieteikums jau ir drošībā - atbildam 200 un pierakstām kļūdu.
-  try {
-    const reply = await input.send(
-      buildAutoReplyEmail(data, { from: input.config.from, replyTo: input.config.replyTo }),
-    );
-    log.info("[contact] automātiskā atbilde nosūtīta", { id: reply.id });
-  } catch (error) {
-    log.warn("[contact] automātiskā atbilde neizdevās", { reason: describeError(error) });
+  // Uz atzīmētu pieteikumu automātisko atbildi nesūtām: ja adrese tomēr izrādās
+  // robota, atlēciens sit pa send.gatisdesign.com reputāciju.
+  if (!slazdsAizpildits) {
+    try {
+      const reply = await input.send(
+        buildAutoReplyEmail(data, { from: input.config.from, replyTo: input.config.replyTo }),
+      );
+      log.info("[contact] automātiskā atbilde nosūtīta", { id: reply.id });
+    } catch (error) {
+      log.warn("[contact] automātiskā atbilde neizdevās", { reason: describeError(error) });
+    }
   }
 
   return { status: 200, body: { ok: true } };
