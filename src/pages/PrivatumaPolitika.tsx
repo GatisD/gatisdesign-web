@@ -100,7 +100,7 @@ export default function PrivatumaPolitika() {
                   items={[
                     "Kontaktformā: vārds un uzvārds, e-pasts, izvēlētais pakalpojums, budžeta diapazons, vēlamais termiņš un projekta apraksts.",
                     "Tehniskie dati, ko fiksē hostings (Vercel) - IP adrese un pieprasījuma laiks. Tos lieto tikai lapas darbībai un formas ātruma ierobežojumam.",
-                    `Ja piekrīti analītikai - Google Analytics 4 sīkdatnes (${cookieList("lv")}). Tās glabā nejaušu apmeklētāja identifikatoru, nevis vārdu vai e-pastu. Bez piekrišanas tās netiek uzstādītas.`,
+                    `Ja piekrīti analītikai - Google Analytics 4 un Microsoft Clarity sīkdatnes (${cookieList("lv")}). Tās glabā nejaušu apmeklētāja identifikatoru, nevis vārdu vai e-pastu. Bez piekrišanas tās netiek uzstādītas.`,
                   ]}
                 />
               </Section>
@@ -136,11 +136,17 @@ export default function PrivatumaPolitika() {
 
               <Section title="6. Sīkdatnes un piekrišana">
                 <p>
-                  Bez tavas piekrišanas mājaslapa neuzstāda nevienu sīkdatni. Ja piekrīti, ielādējas
-                  Google Analytics 4 caur Google Tag Manager un uzstāda {cookieCount("lv")} sīkdatnes -{" "}
-                  <code>{cookieList("lv")}</code>. Tās satur nejaušu identifikatoru, nevis tavus
-                  datus, un glabājas līdz 14 mēnešiem. IP adresi Google Analytics neglabā - to izmanto
-                  tikai, lai noteiktu aptuveno atrašanās vietu, un pēc tam atmet.
+                  Bez tavas piekrišanas mājaslapa neuzstāda nevienu sīkdatni. Ja piekrīti, caur Google
+                  Tag Manager ielādējas Google Analytics 4 un Microsoft Clarity, un tie uzstāda{" "}
+                  {cookieCount("lv")} sīkdatnes - <code>{cookieList("lv")}</code>. Tās satur nejaušu
+                  identifikatoru, nevis tavus datus, un glabājas līdz 14 mēnešiem. IP adresi Google
+                  Analytics neglabā - to izmanto tikai, lai noteiktu aptuveno atrašanās vietu, un pēc
+                  tam atmet.
+                </p>
+                <p>
+                  Microsoft Clarity papildus fiksē, kā lapa tiek lietota: ritināšanu, klikšķus un
+                  peles kustību. Ievadītos formas laukus un maksājumu datus tas neieraksta. To lietoju,
+                  lai redzētu, kur cilvēki apstājas, nevis lai atpazītu konkrētu cilvēku.
                 </p>
                 <p>
                   Tava izvēle glabājas pārlūka lokālajā krātuvē (localStorage) ar nosaukumu{" "}

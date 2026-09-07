@@ -14,6 +14,10 @@
 export const CONSENT_COOKIES = [
   { prefix: "_ga", zime: "_ga", riks: "Google Analytics 4" },
   { prefix: "_ga_", zime: "_ga_*", riks: "Google Analytics 4" },
+  // Microsoft Clarity, ieslēgts 2026-09-07. GTM birka prasa `analytics_storage`,
+  // tāpēc bez piekrišanas tā neielādējas vispār - pārbaudīts dzīvajā lapā.
+  { prefix: "_clck", zime: "_clck", riks: "Microsoft Clarity" },
+  { prefix: "_clsk", zime: "_clsk", riks: "Microsoft Clarity" },
 ] as const;
 
 /** Prefiksi tīrīšanai. Dublikāti nav problēma - `startsWith` tos sedz abus. */
