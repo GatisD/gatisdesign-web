@@ -103,13 +103,27 @@ def main():
     s = sesija()
     dati = {"sitemap": sitemap(s), "indekss": indekss(s), "veiktspeja": veiktspeja(s)}
 
-    rapoti = sum(1 for x in dati["indekss"] if x.get("rapots"))
-    svesas = [x for x in dati["indekss"] if x.get("svesa_kanoniska")]
+    # Trīs stāvokļi, ne divi. Iepriekš kopsavilkums skaitīja "rāpotas" un
+    # atsevišķi atzīmēja ar OK tikai tās bez svešas kanoniskās - divi dažādi
+    # skaitļi par vienu un to pašu rindu izskatījās pēc kļūdas.
+    def stavoklis(x):
+        if x.get("svesa_kanoniska"):
+            return "svesa"
+        seg = (x.get("segums") or "").lower()
+        if "indeks" in seg and "nav" not in seg:
+            return "indekseta"
+        return "rapota" if x.get("rapots") else "nezina"
+
+    for x in dati["indekss"]:
+        x["stavoklis"] = stavoklis(x)
+    skaits = {k: sum(1 for x in dati["indekss"] if x["stavoklis"] == k)
+              for k in ("indekseta", "rapota", "nezina", "svesa")}
+    svesas = [x for x in dati["indekss"] if x["stavoklis"] == "svesa"]
+    rapoti = skaits["indekseta"] + skaits["rapota"]
     dati["kopsavilkums"] = {
-        "rapotas": rapoti,
+        **skaits,
         "no": len(SVARIGAS),
-        "svesa_kanoniska": len(svesas),
-        "viss_kartiba": rapoti == len(SVARIGAS) and not svesas and dati["sitemap"].get("kludas") == 0,
+        "viss_kartiba": skaits["indekseta"] == len(SVARIGAS) and dati["sitemap"].get("kludas") == 0,
     }
 
     if "--json" in sys.argv:
@@ -121,20 +135,25 @@ def main():
           f"lejupielādēts {sm.get('lejupieladets')}")
     v = dati["veiktspeja"]
     print(f"Pēdējās {v['dienas']} dienas: {v['klikski']:.0f} klikšķi, {v['paradisanas']:.0f} parādīšanās")
-    print(f"\nRāpotas {rapoti} no {len(SVARIGAS)} svarīgajām lapām:")
+    print(f"\nNo {len(SVARIGAS)} svarīgajām lapām: {skaits['indekseta']} indeksētas, "
+          f"{skaits['rapota']} rāpotas bet vēl ne indeksā, {skaits['nezina']} Google nezina, "
+          f"{skaits['svesa']} ar svešu kanonisko")
+    ZIME = {"indekseta": "[+]", "rapota": "[~]", "nezina": "[ ]", "svesa": "[!]"}
     for x in dati["indekss"]:
         if x.get("kluda"):
-            print(f"  ? {x['url']:52s} {x['kluda']}")
+            print(f"  ?   {x['url']:52s} {x['kluda']}")
             continue
-        z = "OK " if x.get("rapots") and not x["svesa_kanoniska"] else "-- "
         celzs = x["url"].replace("https://gatisdesign.com", "") or "/"
-        print(f"  {z}{celzs:26s} {str(x['segums'])[:44]}")
-        if x["svesa_kanoniska"]:
+        print(f"  {ZIME[x['stavoklis']]} {celzs:26s} {str(x['segums'])[:44]}")
+        if x["stavoklis"] == "svesa":
             print(f"      !! Google kanoniskā joprojām: {x['kanoniska']}")
     if dati["kopsavilkums"]["viss_kartiba"]:
         print("\nViss kārtībā: visas svarīgās lapas rāpotas, sveša kanoniskā nav nevienai.")
     else:
-        print(f"\nVēl nav pabeigts. Nerāpotas: {len(SVARIGAS)-rapoti}, ar svešu kanonisko: {len(svesas)}")
+        atlicis = len(SVARIGAS) - skaits["indekseta"]
+        print(f"\nVēl nav pabeigts: {atlicis} no {len(SVARIGAS)} nav indeksā.")
+        if svesas:
+            print("Sākumlapas kanoniskā pārslēgsies pati pēc pārrāpošanas - tas ir gaidīšanas jautājums.")
     return 0
 
 
