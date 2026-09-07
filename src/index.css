@@ -396,3 +396,13 @@
     }
   }
 }
+
+/* Sānu ritināšanas rinda bez ritjoslas. Ritjosla te ir troksnis: rinda pati
+   beidzas aiz malas, un tas ir skaidrāks signāls nekā divu pikseļu svītra. */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

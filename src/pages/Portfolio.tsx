@@ -8,13 +8,29 @@ import { Section, SectionTitle } from "@/components/direction/Section";
 import LinkedText from "@/components/content/LinkedText";
 import ProjectCard from "@/components/ProjectCard";
 import ClosingLine from "@/components/content/ClosingLine";
-import { CATEGORY_LABEL, indexableProjects, projects, type ProjectCategory } from "@/data/projects";
+import {
+  indexableProjects,
+  PLATFORM_TAGS,
+  projects,
+  SERVICE_TAG,
+  type ServiceKey,
+} from "@/data/projects";
 import { useLocale } from "@/i18n/LocaleContext";
 import { pathFor } from "@/i18n/routes";
 import { CONTACT_EMAIL, SITE_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
-type Filter = "all" | ProjectCategory;
+/**
+ * Filtra atslēga. Prefikss nes šķirni, lai pakalpojums un tehnoloģija ar vienu
+ * un to pašu vārdu nekad nesajauktos: "s:" - pakalpojums, "t:" - tehnoloģija.
+ */
+type Filter = "all" | `s:${ServiceKey}` | `t:${string}`;
+
+interface FilterChip {
+  key: Filter;
+  label: string;
+  count: number;
+}
 
 /**
  * Darbu skaits nāk no datiem, ne no rokas. Iepriekš te stāvēja "23 pabeigti
@@ -56,24 +72,40 @@ export default function Portfolio() {
   const [filter, setFilter] = useState<Filter>("all");
   const isLv = locale === "lv";
 
-  const visible = useMemo(
-    () => (filter === "all" ? projects : projects.filter((p) => p.category === filter)),
-    [filter],
-  );
+  const visible = useMemo(() => {
+    if (filter === "all") return projects;
+    const vertiba = filter.slice(2);
+    return filter.startsWith("s:")
+      ? projects.filter((p) => p.services.includes(vertiba as ServiceKey))
+      : projects.filter((p) => p.stack?.includes(vertiba));
+  }, [filter]);
 
-  const filters: Array<{ key: Filter; label: string; count: number }> = [
-    { key: "all", label: isLv ? "Visi" : "All", count: projects.length },
-    {
-      key: "web",
-      label: CATEGORY_LABEL.web,
-      count: projects.filter((p) => p.category === "web").length,
-    },
-    {
-      key: "brand",
-      label: CATEGORY_LABEL.brand,
-      count: projects.filter((p) => p.category === "brand").length,
-    },
-  ];
+  /**
+   * Čipi un skaitļi nāk no datiem, ne no rokas. Skaitlis blakus tagam ir
+   * solījums: nospiežot, tik daudz darbu arī paliek redzami. Uzrakstīts ar roku
+   * tas noveco klusi - tieši tā, kā kādreiz noveco "23 pabeigti projekti"
+   * meta aprakstā.
+   *
+   * Pakalpojumi iet pirmie un skaitliskā secībā, tehnoloģijas aiz tiem: cilvēks
+   * vispirms zina, KO viņam vajag, un tikai pēc tam - uz kā.
+   */
+  const filters = useMemo<FilterChip[]>(() => {
+    const pakalpojumi = new Map<ServiceKey, number>();
+    const tehnologijas = new Map<string, number>();
+    for (const p of projects) {
+      for (const s of p.services) pakalpojumi.set(s, (pakalpojumi.get(s) ?? 0) + 1);
+      for (const t of p.stack ?? []) tehnologijas.set(t, (tehnologijas.get(t) ?? 0) + 1);
+    }
+    return [
+      { key: "all", label: isLv ? "Visi" : "All", count: projects.length },
+      ...[...pakalpojumi]
+        .sort((a, b) => b[1] - a[1])
+        .map(([k, count]): FilterChip => ({ key: `s:${k}`, label: SERVICE_TAG[k], count })),
+      ...PLATFORM_TAGS.map((t): FilterChip => ({ key: `t:${t}`, label: t, count: tehnologijas.get(t) ?? 0 }))
+        .filter((c) => c.count > 0)
+        .sort((a, b) => b.count - a.count),
+    ];
+  }, [isLv]);
 
   const listSchema = {
     "@context": "https://schema.org",
@@ -133,36 +165,40 @@ export default function Portfolio() {
 
       {/* ============ FILTRS ============ */}
       <div className="sticky top-16 z-40 border-y border-line bg-ink-900/90 backdrop-blur-md md:top-[72px]">
-        <div
-          role="group"
-          aria-label={isLv ? "Darbu filtrs" : "Work filter"}
-          className="mx-auto flex max-w-wrap flex-wrap items-center gap-x-8 gap-y-1 px-5 sm:px-8 lg:px-10 py-3"
-        >
-          {filters.map((item) => {
-            const active = item.key === filter;
-            return (
-              <button
-                key={item.key}
-                type="button"
-                onClick={() => setFilter(item.key)}
-                aria-pressed={active}
-                className={cn(
-                  "relative inline-flex min-h-[44px] items-center gap-2 text-[16px] transition-colors duration-300 active:text-paper",
-                  active ? "text-paper" : "text-paper-dim hover:text-paper",
-                )}
-              >
-                {item.label}
-                <span className="font-label text-label text-paper-faint">{item.count}</span>
-                <span
-                  aria-hidden="true"
+        {/* Viena rinda ar sānu ritināšanu, ne aplaušana: pie četrpadsmit tagiem
+            aplauzta čipu siena aizņemtu trešdaļu ekrāna un pastumtu pašus darbus
+            zem lokas. Ritjosla paslēpta - ka rinda turpinās, pasaka pati rinda,
+            kas beidzas aiz malas. */}
+        <div className="mx-auto max-w-wrap overflow-x-auto no-scrollbar">
+          <div
+            role="group"
+            aria-label={isLv ? "Darbu filtrs" : "Work filter"}
+            className="flex w-max items-center gap-2 px-5 py-3 sm:px-8 lg:px-10"
+          >
+            {filters.map((item) => {
+              const active = item.key === filter;
+              return (
+                <button
+                  key={item.key}
+                  type="button"
+                  onClick={() => setFilter(item.key)}
+                  aria-pressed={active}
                   className={cn(
-                    "absolute inset-x-0 bottom-1 h-[2px] origin-left bg-amber transition-transform duration-300 ease-dir",
-                    active ? "scale-x-100" : "scale-x-0",
+                    "inline-flex min-h-[44px] shrink-0 items-center gap-2 whitespace-nowrap rounded-full border px-4 text-[15px] transition-colors duration-300",
+                    active
+                      ? "border-amber bg-amber text-on-amber"
+                      : "border-line text-paper-dim hover:border-line-strong hover:text-paper active:text-paper",
                   )}
-                />
-              </button>
-            );
-          })}
+                >
+                  {item.label}
+                  {/* Skaitlis ir solījums: nospiežot, tik daudz darbu paliek. */}
+                  <span className={cn("font-label text-label", active ? "opacity-60" : "text-paper-faint")}>
+                    {item.count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 

@@ -12,8 +12,11 @@ import {
   indexableProjects,
   featured,
   SERVICE_ROUTE_KEY,
+  PLATFORM_TAGS,
+  SERVICE_TAG,
 } from "./projects";
 import rawJson from "../content/projects.raw.json";
+import draftJson from "../content/projects.draft.json";
 import { ROUTES } from "@/i18n/routes";
 
 const PUBLIC_DIR = join(process.cwd(), "public");
@@ -198,6 +201,31 @@ describe("portfolio projekti", () => {
         expect(item.category, project.slug).toBe(project.category);
       }
       expect(new Set(related.map((r) => r.slug)).size).toBe(related.length);
+    }
+  });
+
+  it("katrs filtra tehnoloģijas čips ir īsta rakstība datos", () => {
+    /*
+     * Čipa skaitlis nāk no datiem, bet pats vārds - no PLATFORM_TAGS. Ja datos
+     * tehnoloģiju pārsauks ("WordPress" -> "Wordpress"), skaitlis kļūs nulle,
+     * čips klusi pazudīs no rindas, un neviens to nepamanīs.
+     *
+     * Pārbaude iet pret VISIEM ierakstiem, arī melnrakstiem: nulle publicētu
+     * darbu ir likumīgs stāvoklis. Shopify šodien ir tieši tāds - abi darbi
+     * (Minismaidiņš, Lucky Punch) ir izņemti no publiskā saraksta, tāpēc čipa
+     * lapā nav, bet rakstība ir pareiza un gaida nākamo Shopify darbu.
+     */
+    const visiIeraksti = [...rawJson, ...draftJson];
+    for (const tag of PLATFORM_TAGS) {
+      const atrasts = visiIeraksti.some((p) => (p.stack ?? []).includes(tag));
+      expect(atrasts, `${tag} filtrā, bet tāda vārda datos nav`).toBe(true);
+    }
+  });
+
+  it("katram pakalpojumam ir īsā zīme filtram", () => {
+    const lietotie = new Set(projects.flatMap((p) => p.services));
+    for (const service of lietotie) {
+      expect(SERVICE_TAG[service], service).toBeTruthy();
     }
   });
 });

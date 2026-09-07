@@ -159,6 +159,33 @@ export const CATEGORY_TAG: Record<ProjectCategory, string> = {
   brand: "Zīmols un dizains",
 };
 
+/** Īsā zīme filtra pogai. SERVICE_LABEL ir par garu, lai stāvētu uz čipa. */
+export const SERVICE_TAG: Record<ServiceKey, string> = {
+  majaslapas: "Mājaslapas",
+  zimols: "Zīmols",
+  seo: "SEO",
+};
+
+/**
+ * Tehnoloģijas, kas filtrā parādās kā čips.
+ *
+ * Saraksts ir apzināti īss un rakstīts ar roku. `stack` datos ir arī Vite,
+ * Tailwind, TypeScript un Vercel - tie ir godīgi, un darba lapā tie ir
+ * redzami, bet neviens klients neizvēlas darbu pēc būves rīka. Filtrā paliek
+ * tikai tas, ko cilvēks nosauc pats, kad stāsta, ko viņam vajag.
+ *
+ * Ka katrs no šiem datos tiešām eksistē, sargā projects.test.ts - pārsaukums
+ * datos citādi klusi noņemtu čipu.
+ */
+export const PLATFORM_TAGS = [
+  "WordPress",
+  "WooCommerce",
+  "Shopify",
+  "Elementor",
+  "WPML",
+  "React",
+] as const;
+
 export const SERVICE_ROUTE_KEY: Record<ServiceKey, RouteKey> = {
   zimols: "services.brand",
   majaslapas: "services.web",
