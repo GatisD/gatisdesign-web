@@ -426,7 +426,7 @@
    stiklu izskatās tieši tāpat kā bez tā. */
 .stack-karte {
   rotate: var(--slipums, 0deg);
-  background: linear-gradient(155deg, rgb(255 255 255 / 0.78) 0%, rgb(255 255 255 / 0.44) 100%);
+  background: linear-gradient(155deg, rgb(255 255 255 / 0.86) 0%, rgb(255 255 255 / 0.58) 100%);
   -webkit-backdrop-filter: blur(18px) saturate(1.6) brightness(1.15);
   backdrop-filter: blur(18px) saturate(1.6) brightness(1.15);
   border: 1px solid rgb(255 255 255 / 0.55);
@@ -448,32 +448,17 @@
     0 4px 10px rgb(0 0 0 / 0.4);
 }
 
-/* Kas stāv AIZ stikla. Viens kluss silts atspīdums - bez tā izpludinājumam nav
-   ko izpludināt, un caurspīdīgums nav redzams.
+/* Aiz stikla nav nekā, un tas ir lēmums, ne izlaidums.
 
-   Punktu režģis te bija otrs slānis un ir izņemts. Uz silta oranža fona punkti
-   nelasījās kā faktūra, bet kā graudainība: divi konkurējoši raksti vienā
-   laukumā, no kuriem viens ir apaļš un otrs kvadrātisks. Josla ir zīmju rinda,
-   ne fons - viss, kas velk uzmanību no zīmēm, te ir troksnis.
+   Te bija silts oranžs atspīdums. Uz gandrīz melna fona vāja krāsa nevar būt
+   gluda: starp #0d0b09 un vāju oranžu ietilpst pārāk maz soļu, tāpēc pāreja
+   sanāk joslās, un blakus zīmēm tas lasās kā netīrs traips, ne kā gaisma.
+   Vājināšana to nelabo - jo vājāka gaisma, jo mazāk soļu un jo redzamākas
+   joslas. Vienīgais gluds variants uz šāda fona ir nekāds.
 
-   Gaisma ir gan vājāka (0,34 -> 0,15), gan platāka nekā agrāk. Spilgts šaurs
-   plankums ir FORMA, un forma prasa malu; plata vāja gaisma malas neprasa un
-   izskatās pēc apgaismojuma, ne pēc traipa.
-
-   Rādiuss ir ZEM 100% ar nolūku. Ar 140% gaisma nepaspēja izdzist līdz kastes
-   malai, un mala to nogrieza - telefonā tur bija redzama asa horizontāla
-   robeža, krāsas lēciens par 49 vienībām vienā pikselī. Tagad gan gaisma, gan
-   maska beidzas pirms malas, un kaste nekur neparādās. */
-.stack-atspidums {
-  background: radial-gradient(
-    64% 92% at 50% 50%,
-    rgb(223 84 30 / 0.15) 0%,
-    rgb(223 84 30 / 0.07) 46%,
-    transparent 74%
-  );
-  -webkit-mask-image: radial-gradient(76% 86% at 50% 50%, #000 0%, #000 34%, transparent 92%);
-  mask-image: radial-gradient(76% 86% at 50% 50%, #000 0%, #000 34%, transparent 92%);
-}
+   Bez tā zīmes izceļas VAIRĀK, ne mazāk: fonā vairs nav krāsas, kas ar tām
+   sacenstos. Stikls paliek stikls - kartei ir sava gaišā virsma, sava mala un
+   savas ēnas, un tieši tās, ne fons, dara to par karti. */
 
 @media (prefers-reduced-motion: no-preference) {
   .stack-karte {

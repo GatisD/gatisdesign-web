@@ -35,9 +35,7 @@ export default function StackStrip({ heading }: { heading: string }) {
           {heading}
         </h2>
 
-        <div className="relative">
-          <div aria-hidden="true" className="stack-atspidums pointer-events-none absolute inset-x-0 -inset-y-8" />
-        <ul className="relative flex flex-wrap items-center justify-center gap-[clamp(9px,1.25vw,18px)]">
+        <ul className="flex flex-wrap items-center justify-center gap-[clamp(9px,1.25vw,18px)]">
           {stackTools.map((tool, i) => (
             <li
               key={tool.slug}
@@ -67,7 +65,6 @@ export default function StackStrip({ heading }: { heading: string }) {
             </li>
           ))}
         </ul>
-        </div>
       </div>
     </section>
   );
