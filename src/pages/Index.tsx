@@ -261,7 +261,27 @@ export default function Index() {
         <div className="mt-grid grid gap-grid md:grid-cols-12">
           {rowBottom.map((project, i) => (
             <Reveal key={project.slug} delay={stagger(i, 3)} className="md:col-span-4">
-              <ProjectCard project={project} frame="md:h-[clamp(190px,22vw,360px)]" frameRatio={4 / 3} />
+              {/*
+                Kadra augstums un `frameRatio` ir VIENS lēmums, ne divi.
+                `frameRatio` nav vēlējums - tas ir apgalvojums par to, kādu
+                proporciju CSS reāli uzzīmē, un pēc tā karte izlemj, vai vāku
+                aizpildīt vai ietilpināt. Iepriekš te stāvēja 4/3 (1,333), bet
+                mērījums deva 1,215 pie 1920 px un 1,380 pie 1440 px: neviens
+                skaitlis nebija patiess, jo augstums auga ar `vw`, kamēr
+                konteinera platums pie 1440 px apstājās.
+
+                Tāpēc griesti (273 px) ir tieši tur, kur karte pārstāj augt
+                platumā (437 px pie >=1440 px), un `18.9vw` tos sasniedz tieši
+                pie 1440. Proporcija tagad ir 1,55-1,60 visā diapazonā.
+
+                1,58 ir izvēlēts, lai VISI trīs rindas vāki aizpildītu kadru.
+                Vāku proporcijas ir 1,415 / 1,778 / 1,600, un aizpildīšanas
+                slieksnis ir 18%, tāpēc derīgais logs ir 1,507-1,670. Ārpus tā
+                vismaz viens vāks nokrīt uz "ietilpināt" un stāv joslās - tieši
+                tas notika ar Apmeklē.lv (aizpildīja 68% no kadra pie 1920 px)
+                un Universal Solutions (76%).
+              */}
+              <ProjectCard project={project} frame="md:h-[clamp(150px,18.9vw,273px)]" frameRatio={1.58} />
             </Reveal>
           ))}
         </div>

@@ -1,4 +1,3 @@
-import Label from "@/components/ui/Label";
 import { stackTools } from "@/data/stack";
 
 /**
@@ -21,28 +20,28 @@ import { stackTools } from "@/data/stack";
  */
 
 /** Slīpums grādos. Neregulārs ritms, ne pieaugoša rinda - tā tā izskatītos pēc vēdekļa. */
-const SLIPUMI = [-6, 4, -3, 7, -5, 3, -7, 5, -2, 6, -4, 2];
+const SLIPUMI = [-6, 4, -3, 7, -5, 3, -7, 5, -2, 6, -4, 2, -5];
 /** Statiska vertikāla nobīde. Rinda viļņojas, bet paliek lasāma kā rinda. */
-const NOBIDES = [0, 14, -8, 10, -12, 6, 16, -6, 8, -10, 12, 0];
+const NOBIDES = [0, 14, -8, 10, -12, 6, 16, -6, 8, -10, 12, -4, 0];
 
 export default function StackStrip({ heading }: { heading: string }) {
   return (
     <section className="border-b border-line bg-ink-900 py-[clamp(34px,5vw,64px)]" aria-labelledby="stack-h">
       <div className="mx-auto w-full max-w-wrap px-5 sm:px-8 lg:px-10">
+        {/* Virsraksts ir tikai ekrānlasītājam. Redzamais uzraksts "Rīki, ar ko
+            strādāju" te bija un ir izņemts: zīmes pašas pasaka, kas tās ir, un
+            paraksts virs tām lasījās kā apakšvirsraksts sadaļai, kuras nav. */}
         <h2 id="stack-h" className="sr-only">
           {heading}
         </h2>
-        <div className="flex justify-center">
-          <Label>{heading}</Label>
-        </div>
 
         <div className="relative">
           <div aria-hidden="true" className="stack-atspidums pointer-events-none absolute inset-x-0 -inset-y-8" />
-        <ul className="relative mt-[clamp(20px,3vw,34px)] flex flex-wrap items-center justify-center gap-[clamp(10px,1.4vw,18px)]">
+        <ul className="relative flex flex-wrap items-center justify-center gap-[clamp(9px,1.25vw,18px)]">
           {stackTools.map((tool, i) => (
             <li
               key={tool.slug}
-              className="stack-karte grid h-[clamp(54px,6.4vw,76px)] w-[clamp(54px,6.4vw,76px)] shrink-0 place-items-center rounded-[clamp(14px,1.7vw,21px)] sm:[margin-top:var(--nobide)]"
+              className="stack-karte grid h-[clamp(52px,5.9vw,76px)] w-[clamp(52px,5.9vw,76px)] shrink-0 place-items-center rounded-[clamp(13px,1.6vw,21px)] sm:[margin-top:var(--nobide)]"
               style={{
                 ["--slipums" as string]: `${SLIPUMI[i % SLIPUMI.length]}deg`,
                 ["--nobide" as string]: `${NOBIDES[i % NOBIDES.length]}px`,
