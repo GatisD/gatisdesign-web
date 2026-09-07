@@ -365,7 +365,7 @@ export default function Index() {
         <ProseColumns>
           {chainSection.body.map((paragraph, i) => (
             <Reveal key={paragraph.slice(0, 40)} delay={stagger(i, 2)}>
-              <p className="mb-5 max-w-[62ch] text-[17px] leading-[1.6] text-paper-2 last:mb-0">
+              <p className="mb-5 max-w-[62ch] text-[17px] leading-[1.45] text-paper-2 last:mb-0">
                 {paragraph}
               </p>
             </Reveal>
@@ -380,7 +380,7 @@ export default function Index() {
         </SectionTitle>
         <LabelRow label="Rīgā kopš 2008">
           {aboutSection.body.map((paragraph) => (
-            <p key={paragraph.slice(0, 40)} className="mb-5 max-w-[64ch] text-[17px] leading-[1.6] text-paper-2 last:mb-0">
+            <p key={paragraph.slice(0, 40)} className="mb-5 max-w-[64ch] text-[17px] leading-[1.45] text-paper-2 last:mb-0">
               <LinkedText text={paragraph} />
             </p>
           ))}
@@ -398,7 +398,7 @@ export default function Index() {
           {contactSection.heading === "Kā sākt" ? "Pastāsti, kas tev jāatrisina" : contactSection.heading}
         </SectionTitle>
         <LabelRow label="Atbilde 1 darba dienā">
-          <p className="max-w-[58ch] text-[17px] leading-[1.6] text-paper-2">
+          <p className="max-w-[58ch] text-[17px] leading-[1.45] text-paper-2">
             <LinkedText text={contactSection.body[0]} />
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
@@ -414,7 +414,7 @@ export default function Index() {
               <span className="border-b border-line-amber pb-1.5">{CONTACT_EMAIL}</span>
             </a>
           </div>
-          <p className="mt-6 max-w-[58ch] text-[15px] leading-[1.6] text-paper-dim">
+          <p className="mt-6 max-w-[58ch] text-[15px] leading-[1.45] text-paper-dim">
             <LinkedText text={contactSection.body[1]} />
           </p>
         </LabelRow>

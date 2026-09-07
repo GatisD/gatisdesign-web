@@ -250,7 +250,7 @@ export default function Portfolio() {
               <SectionTitle id="darbu-veidi" className="mb-5">
                 Mājaslapas šajā sarakstā
               </SectionTitle>
-              <p className="max-w-[58ch] text-[16px] leading-[1.6] text-paper-2">
+              <p className="max-w-[58ch] text-[16px] leading-[1.45] text-paper-2">
                 <LinkedText text={WEB_NOTE} />
               </p>
             </div>
@@ -258,7 +258,7 @@ export default function Portfolio() {
               <SectionTitle id="zimola-darbi" className="mb-5">
                 Logo un zīmola darbi
               </SectionTitle>
-              <p className="max-w-[58ch] text-[16px] leading-[1.6] text-paper-2">
+              <p className="max-w-[58ch] text-[16px] leading-[1.45] text-paper-2">
                 <LinkedText text={BRAND_NOTE} />
               </p>
             </div>

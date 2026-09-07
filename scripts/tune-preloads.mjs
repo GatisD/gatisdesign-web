@@ -10,19 +10,29 @@ import { join } from "node:path";
  * lapā parādās vienā vietā (etiķetes sānu kolonnā, tabulu galvās, parakstos
  * zem attēliem) un nekad nav tas, ko cilvēks izlasa pirmo.
  *
- * Tāpēc preload paliek TIKAI diviem Epilogue failiem: tie nes virsrakstu un
- * pamattekstu, un tieši tie ir kritiskajā ceļā. DM Mono ielādējas parastā
- * kārtībā pēc CSS - `font-display: swap` nozīmē, ka etiķete uzreiz ir redzama
- * sistēmas monospace fontā un pārzīmējas, kad fonts pienāk.
+ * Tāpēc preload paliek TIKAI teksta fontiem: Epilogue nes virsrakstus, Host
+ * Grotesk - visu pārējo tekstu. Abiem vajag arī latin-ext apakškopu, jo tieši
+ * tur dzīvo latviešu garumzīmes un mīkstinājuma zīmes (ā ē ī ū ļ ķ ņ ģ š č ž);
+ * bez tās latviešu lapā pusi burtu zīmētu rezerves fonts.
+ *
+ * DM Mono ielādējas parastā kārtībā pēc CSS - `font-display: swap` nozīmē, ka
+ * etiķete uzreiz ir redzama sistēmas monospace fontā un pārzīmējas, kad fonts
+ * pienāk. Etiķetes lapā ir maz, un neviena no tām nav tas, ko cilvēks izlasa
+ * pirmo.
  *
  * Skripts ir daļa no `npm run build` un iet PIRMS būves vārtiem; vārti pēc tam
- * pārbauda, ka rezultāts ir tieši divi preload uz lapu.
+ * pārbauda, ka rezultāts ir tieši četri preload uz lapu.
  */
 
 const DIST = join(process.cwd(), "dist");
 
 /** Ko atstājam. Faila vārda sākums, jo Vite pieliek satura jaucējsummu. */
-const KEEP = ["epilogue-latin-wght-normal", "epilogue-latin-ext-wght-normal"];
+const KEEP = [
+  "epilogue-latin-wght-normal",
+  "epilogue-latin-ext-wght-normal",
+  "host-grotesk-latin-wght-normal",
+  "host-grotesk-latin-ext-wght-normal",
+];
 
 const PRELOAD = /<link\b[^>]*rel="preload"[^>]*as="font"[^>]*>/g;
 

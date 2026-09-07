@@ -14,6 +14,7 @@ export default {
       fontFamily: {
         sans: ["var(--font-sans)"],
         label: ["var(--font-label)"],
+        body: ["var(--font-body)"],
       },
       colors: {
         border: "var(--line)",

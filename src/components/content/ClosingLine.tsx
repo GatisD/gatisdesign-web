@@ -25,7 +25,7 @@ export default function ClosingLine({
   return (
     <Section rhythm="md" surface="ink-950" id="saksim" ariaLabel="Sāksim" className="scroll-mt-24">
       <div className="flex flex-col gap-3 border-t border-line pt-6 md:flex-row md:items-baseline md:justify-between md:gap-10">
-        <p className="max-w-[64ch] text-[17px] leading-[1.6] text-paper-2">
+        <p className="max-w-[64ch] text-[17px] leading-[1.45] text-paper-2">
           <LinkedText text={text} />
         </p>
         {note ? (

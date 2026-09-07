@@ -158,7 +158,7 @@ export default function ContentSections({
             {section.body.map((paragraph, i) => (
               <p
                 key={paragraph.slice(0, 48)}
-                className={`max-w-[64ch] text-[17px] leading-[1.6] text-paper-2 ${i > 0 ? "mt-5" : ""}`}
+                className={`max-w-[64ch] text-[17px] leading-[1.45] text-paper-2 ${i > 0 ? "mt-5" : ""}`}
               >
                 <LinkedText text={paragraph} />
               </p>
@@ -178,7 +178,7 @@ export default function ContentSections({
               <ProseColumns>
                 {section.body.map((paragraph, i) => (
                   <Reveal key={paragraph.slice(0, 48)} delay={stagger(i, 2)}>
-                    <p className="max-w-[58ch] text-[17px] leading-[1.6] text-paper-2">
+                    <p className="max-w-[58ch] text-[17px] leading-[1.45] text-paper-2">
                       <LinkedText text={paragraph} />
                     </p>
                   </Reveal>

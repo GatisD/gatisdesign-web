@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@fontsource-variable/epilogue": "^5.3.0",
+    "@fontsource-variable/host-grotesk": "^5.3.0",
     "@fontsource/dm-mono": "^5.3.0",
     "@hookform/resolvers": "^3.10.0",
     "clsx": "^2.1.1",

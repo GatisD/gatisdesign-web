@@ -22,13 +22,14 @@
     margin: 0;
     background: var(--ink-900);
     color: var(--paper);
-    font-family: var(--font-sans);
+    font-family: var(--font-body);
     font-synthesis-weight: none;
   }
   h1,
   h2,
   h3,
   h4 {
+    font-family: var(--font-sans);
     text-wrap: balance;
   }
   /* Vara fokusa gredzens. Uz papīra virsmām to pārraksta .on-paper bloks zemāk. */
@@ -409,21 +410,29 @@
 
 /* Rīku kartes zem hero - gaišs stikls.
    Kāpēc gaišs: komplektā ir gan MELNA zīme (Vercel), gan BALTA (Notion), un
-   vienas pamatnes, uz kuras abas lasās, nav - izmērīts pa visiem caurspīdīguma
-   soļiem. Uz gaišas pamatnes turpretī katrs logotips stāv savā kanoniskajā
-   formā, tieši tādā, kādu zīmols pats lieto uz balta. To pašu dara Cloudflare.
-   Stiklu veido caurspīdīgums, fona izpludinājums, gaišā mala un iekšējā spīduma
-   svītra augšmalā; aiz rindas stāv silts atspīdums, ko stikls uzņem sevī.
-   Slīpums ir `rotate`, peldēšana - `translate`: divas atsevišķas īpašības, tāpēc
-   kustību var apturēt, neiztaisnojot kompozīciju. */
+   vienas tumšas pamatnes, uz kuras lasās abas, nav - izmērīts pa visiem
+   caurspīdīguma soļiem. Uz gaišas pamatnes katrs logotips stāv savā kanoniskajā
+   formā, tieši tādā, kādu zīmols lieto uz balta.
+
+   Stiklu veido pieci slāņi, ne viens caurspīdīgums:
+     1) caurspīdīgs baltais slīpums - pietiekami gaišs zīmēm, pietiekami vājš,
+        lai cauri redzētu, kas ir aiz kartes;
+     2) fona izpludinājums ar piesātinājumu - aiz rindas stāv silts atspīdums un
+        punktu režģis, un tieši tie caur stiklu izplūst;
+     3) gaišā mala - stikla šķautne;
+     4) iekšējā spīduma svītra augšmalā - gaisma, kas atsitas pret šķautni;
+     5) iekšēja tumša svītra apakšmalā - stikla biezums.
+   Bez 2. slāņa satura caurspīdīgums paliek tikai vārdos: plakans fons caur
+   stiklu izskatās tieši tāpat kā bez tā. */
 .stack-karte {
   rotate: var(--slipums, 0deg);
-  background: linear-gradient(155deg, rgb(255 255 255 / 0.9) 0%, rgb(255 255 255 / 0.6) 100%);
-  -webkit-backdrop-filter: blur(14px) saturate(1.25);
-  backdrop-filter: blur(14px) saturate(1.25);
-  border: 1px solid rgb(255 255 255 / 0.6);
+  background: linear-gradient(155deg, rgb(255 255 255 / 0.78) 0%, rgb(255 255 255 / 0.44) 100%);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6) brightness(1.15);
+  backdrop-filter: blur(18px) saturate(1.6) brightness(1.15);
+  border: 1px solid rgb(255 255 255 / 0.55);
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.85),
+    inset 0 1px 0 rgb(255 255 255 / 0.95),
+    inset 0 -1px 0 rgb(0 0 0 / 0.14),
     0 18px 38px -14px rgb(0 0 0 / 0.7),
     0 3px 8px rgb(0 0 0 / 0.35);
   transition:
@@ -433,20 +442,20 @@
 .stack-karte:hover {
   scale: 1.08;
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.9),
+    inset 0 1px 0 rgb(255 255 255 / 1),
+    inset 0 -1px 0 rgb(0 0 0 / 0.16),
     0 26px 52px -14px rgb(0 0 0 / 0.78),
     0 4px 10px rgb(0 0 0 / 0.4);
 }
 
-/* Silts atspīdums aiz rindas. Bez tā stiklam nav, ko izpludināt - sekcijas fons
-   ir plakans, un caurspīdīgums paliek tikai vārdos. */
+/* Kas stāv AIZ stikla. Silts atspīdums plus punktu režģis - bez tiem
+   izpludinājumam nav ko izpludināt, un caurspīdīgums nav redzams. */
 .stack-atspidums {
-  background: radial-gradient(
-    58% 130% at 50% 50%,
-    rgb(223 84 30 / 0.22) 0%,
-    rgb(223 84 30 / 0.07) 45%,
-    transparent 72%
-  );
+  background:
+    radial-gradient(circle, rgb(239 232 220 / 0.2) 1px, transparent 1px) 0 0 / 26px 26px,
+    radial-gradient(62% 140% at 50% 50%, rgb(223 84 30 / 0.34) 0%, rgb(223 84 30 / 0.1) 44%, transparent 72%);
+  -webkit-mask-image: radial-gradient(70% 120% at 50% 50%, #000 0%, #000 52%, transparent 88%);
+  mask-image: radial-gradient(70% 120% at 50% 50%, #000 0%, #000 52%, transparent 88%);
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -41,7 +41,7 @@ export default function FaqList({ items }: { items: FaqItem[] }) {
                 <span className="absolute left-1/2 top-0 h-full w-[1.5px] -translate-x-1/2 bg-current" />
               </span>
             </summary>
-            <div className="max-w-[62ch] pb-7 text-[16px] leading-[1.6] text-paper-2">
+            <div className="max-w-[62ch] pb-7 text-[16px] leading-[1.45] text-paper-2">
               <LinkedText text={item.a} />
             </div>
           </details>

@@ -249,7 +249,7 @@ export default function ContactForm({ className }: { className?: string }) {
         <h3 className="mt-6 text-[clamp(1.35rem,2.4vw,1.8rem)] font-medium tracking-[-0.02em]">
           {t.form.successTitle}
         </h3>
-        <p className="mt-3 max-w-[52ch] text-[16px] leading-[1.6] text-paper-2">{t.form.successBody}</p>
+        <p className="mt-3 max-w-[52ch] text-[16px] leading-[1.45] text-paper-2">{t.form.successBody}</p>
         <button
           type="button"
           onClick={() => {
@@ -382,7 +382,7 @@ export default function ContactForm({ className }: { className?: string }) {
             <textarea
               id="message"
               rows={5}
-              className={cn(FIELD_BASE, "min-h-[150px] resize-y py-3.5 leading-[1.6]")}
+              className={cn(FIELD_BASE, "min-h-[150px] resize-y py-3.5 leading-[1.45]")}
               placeholder={t.form.messagePlaceholder}
               maxLength={FIELD_LIMITS.messageMax}
               aria-required="true"

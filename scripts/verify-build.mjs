@@ -140,18 +140,19 @@ function checkDist(dist) {
       }
     }
 
-    // 8. Fontu preload: tikai divi Epilogue faili. vite-react-ssg izliek
-    //    preload uz katru fontu failu, ko atrod CSS, un seši preload ar High
+    // 8. Fontu preload: tikai teksta fonti - Epilogue (virsraksti) un Host
+    //    Grotesk (viss pārējais teksts), katram latin un latin-ext. vite-react-ssg
+    //    izliek preload uz katru fontu failu, ko atrod CSS, un tie ar High
     //    prioritāti stāv tieši LCP attēla blakus (sk. scripts/tune-preloads.mjs).
     const preloads = [...html.matchAll(/<link\b[^>]*rel="preload"[^>]*as="font"[^>]*>/g)];
-    if (preloads.length !== 2) {
-      errors.push(`${where} fontu preload ir ${preloads.length}, gaidīti 2`);
+    if (preloads.length !== 4) {
+      errors.push(`${where} fontu preload ir ${preloads.length}, gaidīti 4`);
     }
     for (const [tag] of preloads) {
       const href = tag.match(/href="([^"]+)"/)?.[1] ?? "";
       if (!href.endsWith(".woff2")) errors.push(`${where} preload nav woff2: ${href}`);
-      if (!/epilogue-latin(-ext)?-wght-normal/.test(href)) {
-        errors.push(`${where} preload nav Epilogue teksta fonts: ${href}`);
+      if (!/(epilogue|host-grotesk)-latin(-ext)?-wght-normal/.test(href)) {
+        errors.push(`${where} preload nav teksta fonts: ${href}`);
       }
       if (href.startsWith("/") && !existsSync(join(dist, href.slice(1)))) {
         errors.push(`${where} preload norāda uz neesošu failu: ${href}`);

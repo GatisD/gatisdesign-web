@@ -39,7 +39,7 @@ function Card({ item }: { item: Testimonial }) {
       <p>
         <Label tone="amber">{item.result}</Label>
       </p>
-      <blockquote className="text-[17px] leading-[1.6] text-paper-2">{item.quote}</blockquote>
+      <blockquote className="text-[17px] leading-[1.45] text-paper-2">{item.quote}</blockquote>
       <figcaption className="mt-auto border-t border-line pt-4 text-[15px] text-paper">
         {item.name}
         <span className="block text-[14px] text-paper-dim">

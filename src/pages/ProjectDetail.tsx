@@ -364,7 +364,7 @@ export default function ProjectDetail() {
           <LabelRow label={isLv ? "Uzdevums" : "Brief"}>
             {/* Ja apraksta nav, lapa nepaliek tukša un neizdomā tekstu: rāda
                 faktus, kas datos jau ir. */}
-            <p className="max-w-[64ch] text-[17px] leading-[1.6] text-paper-2">
+            <p className="max-w-[64ch] text-[17px] leading-[1.45] text-paper-2">
               {project.summary || factualSentence(project)}
             </p>
 
