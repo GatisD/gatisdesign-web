@@ -12,6 +12,7 @@ import MediaPlaceholder, { SHOW_PLACEHOLDERS } from "@/components/direction/Medi
 import Band from "@/components/direction/Band";
 import { Section, SectionTitle, LabelRow, ProseColumns } from "@/components/direction/Section";
 import ProjectCard from "@/components/ProjectCard";
+import ServiceIcon from "@/components/ui/ServiceIcon";
 import ClientMarquee from "@/components/ClientMarquee";
 import LinkedText from "@/components/content/LinkedText";
 import FaqList from "@/components/content/FaqList";
@@ -305,8 +306,16 @@ export default function Index() {
                   to={path(routeKeyForLvPath(card.target))}
                   className="group grid grid-cols-1 gap-x-8 gap-y-3 py-7 transition-colors duration-300 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_160px]"
                 >
-                  <h3 className="text-h3 font-medium text-paper transition-colors duration-300 group-hover:text-amber">
-                    {card.title}
+                  {/* Ikona sēž virsraksta iekšienē, ne blakus kolonnā: tā
+                      pieder nosaukumam un ar to kopā maina krāsu. `aria-hidden`
+                      ikonai ir pašā komponentē, tāpēc virsraksta pieejamais
+                      teksts paliek tieši pakalpojuma nosaukums. */}
+                  <h3 className="flex items-start gap-3 text-h3 font-medium text-paper transition-colors duration-300 group-hover:text-amber">
+                    <ServiceIcon
+                      target={card.target}
+                      className="mt-[0.2em] shrink-0 text-paper-dim transition-colors duration-300 group-hover:text-amber"
+                    />
+                    <span>{card.title}</span>
                   </h3>
                   <p className="max-w-[46ch] text-[16px] leading-[1.55] text-paper-2 md:pt-2.5">
                     {card.description}
@@ -327,8 +336,9 @@ export default function Index() {
 
       {/* ============ JAUTĀJUMI ============ */}
       {/* Deviņi jautājumi ar cenām un termiņiem stāv tūlīt aiz cenu rindas: tie
-          atbild tieši uz to, ko pakalpojumu saraksts tikko pacēla. Atbildes ir
-          atvērtas, ne akordeonā - sk. FaqList. */}
+          atbild tieši uz to, ko pakalpojumu saraksts tikko pacēla. Rindas
+          atveras uz klikšķa, bet atbildes paliek HTML arī aizvērtas - sk.
+          FaqList. */}
       {/* Ritms `md`, ne `lg`: fons ir tas pats, kas pakalpojumu sadaļai, tāpēc
           divas `lg` atkāpes pēc kārtas telefonā deva 112 px tukšuma bez nevienas
           līnijas vai krāsas maiņas - caurums, ne robeža. */}

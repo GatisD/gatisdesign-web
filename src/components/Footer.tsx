@@ -14,7 +14,7 @@ import { openCookieSettings } from "./CookieBanner";
  * saišu rinda, e-pasts, kolofona rinda un vieta portretam, kā apstiprinātajā
  * kanvā: papīra inversija zem visas tumšās lapas.
  *
- * Krāsu piezīme: uz papīra fona vara #E0723C ir 2,60:1 un tekstam neder, tāpēc
+ * Krāsu piezīme: uz papīra fona vara #DF541E ir 3,18:1 un tekstam neder, tāpēc
  * saites un to hover stāvoklis lieto --amber-on-paper (#98461E, 5,34:1).
  */
 export default function Footer() {

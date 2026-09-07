@@ -7,8 +7,11 @@
  * Dizaina tokeni - virziens "Direction" (apstiprināta kanva 2026-09-05).
  *
  * Kontrasta vārti (WCAG 2.1 AA, pārbaudīts 2026-09-05):
- *   vara #E0723C uz grafīta #0D0B09 ........ 6,21:1  teksts un akcents - atļauts
- *   vara #E0723C uz papīra #EFE8DC ......... 2,60:1  KRĪT - tikai pildījums, nekad teksts
+ *   vara #DF541E uz grafīta #0D0B09 ........ 5,07:1  teksts un akcents - atļauts
+ *   vara #DF541E uz ink-850 #121010 ........ 4,90:1  teksts un akcents - atļauts
+ *   #1A1206 uz vara pildījuma ............. 4,79:1  pogu teksts - atļauts
+ *   vara #DF541E uz papīra #EFE8DC ......... 3,18:1  KRĪT - tikai pildījums, nekad teksts
+ *   #A23D16 uz papīra #EFE8DC .............. 5,36:1  teksts uz papīra - atļauts
  *   vara-dziļā #98461E uz papīra #EFE8DC ... 5,34:1  teksts uz papīra virsmām
  *   teksts #1A1206 uz vara pogas ........... 5,86:1
  *   papīrs-faint #948A7D uz kartes #161211 . 5,48:1  vismazākais sekundārais teksts
@@ -123,11 +126,11 @@
   --on-paper-dim: #5c544a;
 
   /* --- Vara --- */
-  --amber: #e0723c;
-  --amber-soft: #e99b75;
-  --amber-deep: #98461e;
-  /** Teksts un saites uz papīra virsmām. Uz papīra --amber ir 2,60:1 un krīt. */
-  --amber-on-paper: #98461e;
+  --amber: #df541e;
+  --amber-soft: #e87f56;
+  --amber-deep: #a23d16;
+  /** Teksts un saites uz papīra virsmām. Uz papīra --amber ir 3,18:1 un krīt. */
+  --amber-on-paper: #a23d16;
   /** Teksts uz vara pildījuma (pogas). */
   --on-amber: #1a1206;
 

@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { homeContent, heroCtas, serviceCards, statItems, worksSection } from "./home";
 import { ROUTES } from "@/i18n/routes";
+import ServiceIcon from "@/components/ui/ServiceIcon";
 
 /**
  * Sākumlapa saturu lasa no home.json ar regulārām izteiksmēm (bullet punktos ir
@@ -57,5 +58,14 @@ describe("sākumlapas saturs", () => {
   it("darbu sadaļai ir virsraksts un ievads", () => {
     expect(worksSection.heading.length).toBeGreaterThan(10);
     expect(worksSection.body[0]).toContain(ROUTES.portfolio.lv);
+  });
+
+  it("katram pakalpojumam ir sava ikona", () => {
+    // ServiceIcon pie nezināma ceļa atgriež null - ikona pazūd klusi, un lapa
+    // izskatās vienkārši nedaudz tukšāka. Ja pakalpojuma adresi maina vai
+    // pievieno piekto pakalpojumu, to jāpamana šeit, ne acīm pēc mēneša.
+    for (const card of serviceCards) {
+      expect(ServiceIcon({ target: card.target }), card.target).not.toBeNull();
+    }
   });
 });
