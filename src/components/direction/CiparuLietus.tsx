@@ -10,7 +10,7 @@ import { useEffect, useRef } from "react";
  * tieši virsū, tas ir tikko saskatāms. Tieši tas arī bija mērķis - fons, ne
  * priekšnesums.
  *
- * KRĀSA. Matrix zaļā šeit sadurtos ar visu pārējo: lapas akcents ir #FEBC11,
+ * KRĀSA. Matrix zaļā šeit sadurtos ar visu pārējo: lapas akcents ir #23D962,
  * un divas piesātinātas krāsas fonā cīnītos savā starpā. Cipari ir papīra
  * krāsā, un tikai kolonnas galva ik pa laikam iedegas akcenta krāsā.
  *
@@ -146,7 +146,7 @@ export default function CiparuLietus() {
           if (alfa < 0.004) continue;
           const c = k.zimes[(rinda + ASTE) % k.zimes.length];
           ctx!.fillStyle =
-            i === 0 && k.akcents ? `rgba(254, 188, 17, ${alfa * 1.3})` : `rgba(239, 232, 220, ${alfa})`;
+            i === 0 && k.akcents ? `rgba(35, 217, 98, ${alfa * 1.3})` : `rgba(242, 242, 242, ${alfa})`;
           ctx!.fillText(c, k.x, rinda * RINDA);
         }
       }

@@ -84,10 +84,10 @@ export default function ScrollToTop() {
       // klikšķus arī tad, kad to neredz.
       className={[
         "fixed right-5 z-[150] grid h-11 w-11 place-items-center rounded-full",
-        // Akcenta pildījums, tumša bultiņa. Uz dzeltenā #1A1206 ir 10,96:1;
-        // pati poga pret grafīta lapu ir 11,61:1, tāpēc malas tai vairs
+        // Akcenta pildījums, tumša bultiņa. Uz dzeltenā #1A1206 ir 10,49:1;
+        // pati poga pret grafīta lapu ir 10,49:1, tāpēc malas tai vairs
         // nevajag - uz tumša fona dzeltens aplis ir robeža pats par sevi.
-        "bg-amber text-on-amber [box-shadow:0_10px_30px_-12px_rgb(254_188_17_/_0.55)]",
+        "bg-amber text-on-amber [box-shadow:0_10px_30px_-12px_rgb(35_217_98_/_0.55)]",
         "transition-[opacity,transform,background-color] duration-300 ease-dir",
         "hover:bg-amber-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper",
         redzama ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-2",

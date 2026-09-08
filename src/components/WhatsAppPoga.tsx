@@ -10,8 +10,8 @@ import { WHATSAPP } from "@/lib/site";
  * kopā izskatās kā pāris, ne kā divi svešķermeņi. Ka aiz tās ir WhatsApp,
  * pasaka nosaukums, kas atveras uz hover, un `aria-label`.
  *
- * Uz dzeltenā pildījuma ikona un teksts ir tumši (#1A1206, 10,96:1). Balts uz
- * dzeltenā būtu 1,39:1 - tas nav lasāms nemaz.
+ * Uz dzeltenā pildījuma ikona un teksts ir tumši (#1A1206, 10,49:1). Balts uz
+ * zaļā būtu 1,68:1 - tas nav lasāms nemaz.
  *
  * KUSTĪBA IR VIENA, NE TRĪS. Reize pa reizei no pogas izplūst viens gaismas
  * gredzens. Tas ir pietiekami, lai acs to pamanītu perifērijā, un par maz, lai
@@ -38,7 +38,7 @@ export default function WhatsAppPoga() {
       title={virsraksts}
       className={[
         "wa-poga group fixed left-5 z-[150] inline-flex h-11 items-center gap-0 overflow-hidden rounded-full",
-        "bg-amber pe-0 ps-0 text-on-amber [box-shadow:0_10px_30px_-12px_rgb(254_188_17_/_0.55)]",
+        "bg-amber pe-0 ps-0 text-on-amber [box-shadow:0_10px_30px_-12px_rgb(35_217_98_/_0.55)]",
         "transition-[background-color,padding] duration-300 ease-dir",
         "hover:bg-amber-soft",
         "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper",

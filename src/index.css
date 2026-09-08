@@ -540,6 +540,6 @@
 .hero-nospiedums {
   font-size: clamp(88px, 15vw, 232px);
   color: transparent;
-  -webkit-text-stroke: 1px rgba(239, 232, 220, 0.13);
-  text-stroke: 1px rgba(239, 232, 220, 0.13);
+  -webkit-text-stroke: 1px rgba(242, 242, 242, 0.11);
+  text-stroke: 1px rgba(242, 242, 242, 0.11);
 }

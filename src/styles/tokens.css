@@ -6,26 +6,31 @@
 /*
  * Dizaina tokeni - virziens "Direction" (apstiprināta kanva 2026-09-05).
  *
- * AKCENTS NĀK NO LOGO. 2026-09-08 akcents nomainīts no vara #DF541E uz #FEBC11
- * - tieši to dzelteno, kas ir lauvas kronī (public/media/lauva.svg, .cls-1).
- * Iemesls bija redzams: kad zīme galvenē kļuva 64 px liela, kronis bija
- * vienīgais dzeltenais objekts visā lapā un lasījās kā svešķermenis.
+ * AKCENTS NĀK NO LOGO. 2026-09-08 akcents nomainīts uz Gata zaļo paleti
+ * (#23D962), un Gatis tajā pašā dienā pārkrāso lauvas kroni - tāpēc zīme un
+ * lapa paliek vienā sistēmā. Iepriekš tas bija kroņa dzeltenais #FEBC11, pirms
+ * tam vara #DF541E.
  *
  * Kontrasta vārti (WCAG 2.1 AA, pārmērīts 2026-09-08):
- *   kronis #FEBC11 uz grafīta #0D0B09 ...... 11,61:1  teksts un akcents - atļauts
- *   kronis #FEBC11 uz ink-850 #121010 ...... 11,21:1  teksts un akcents - atļauts
- *   kronis #FEBC11 uz ink-card #181513 ..... 10,74:1  teksts uz kartēm - atļauts
- *   #1A1206 uz kroņa pildījuma ............ 10,96:1  pogu teksts - atļauts
- *   kronis #FEBC11 uz papīra #EFE8DC ....... 1,39:1  KRĪT - nekad, ne pat pildījums
- *   #7A5801 uz papīra #EFE8DC .............. 5,35:1  teksts uz papīra - atļauts
- *   #AD7D01 uz grafīta #0D0B09 ............. 5,34:1  klusākais akcenta pildījums
- *   papīrs-faint #948A7D uz kartes #161211 . 5,48:1  vismazākais sekundārais teksts
+ *   zaļā #23D962 uz grafīta #0D0A0A ........ 10,49:1  teksts un akcents - atļauts
+ *   zaļā #23D962 uz ink-850 #121010 ........ 10,13:1  teksts un akcents - atļauts
+ *   #0D0A0A uz zaļā pildījuma ............. 10,49:1  pogu teksts - atļauts
+ *   zaļā-gaišā #3EE076 uz grafīta .......... 11,39:1  hover un aktīvais stāvoklis
+ *   zaļā-dziļā #21BF48 uz grafīta ........... 8,09:1  klusākais akcenta pildījums
+ *   zaļā #23D962 uz papīra #F2F2F2 .......... 1,68:1  KRĪT - nekad, ne pat pildījums
+ *   #127234 uz papīra #F2F2F2 ............... 5,29:1  teksts uz gaišas virsmas
+ *   papīrs #F2F2F2 uz grafīta .............. 17,62:1  pamatteksts
  *
- * Dzeltenais uz tumša ir DIVREIZ kontrastaināks par veco varu (11,61 pret
- * 5,07), bet uz papīra tas nav lietojams nemaz: 1,39:1 pret vara 3,18:1. Tāpēc
- * akcents joprojām ir DIVI tokeni, ne viens: --amber (tumšās virsmas,
- * pildījumi) un --amber-on-paper (teksts uz papīra kājenes). Tos nedrīkst
- * sajaukt vietām, un tagad kļūda būtu nesalīdzināmi redzamāka.
+ * DIVAS VĒRTĪBAS IR ATVASINĀTAS, NE DOTAS. Gata paletē visas trīs zaļās ir
+ * bāzes gaišumā vai tumšākas, bet sistēmai vajag arī GAIŠĀKU (hover un aktīvais
+ * stāvoklis) un daudz tumšāku (teksts uz gaišas virsmas). Abas rēķinātas tajā
+ * pašā tonī un piesātinājumā: --amber-soft L 56%, --amber-on-paper L 26%.
+ * Trešā Gata zaļā #1CA64C sistēmā vietas neatrada - tā ir tuvu #21BF48 (6,21
+ * pret 8,09 uz grafīta), un "dziļajam" pildījumam ir viena vieta, ne divas.
+ *
+ * Akcents joprojām ir DIVI tokeni, ne viens: --amber (tumšās virsmas,
+ * pildījumi) un --amber-on-paper (gaišas virsmas). Uz papīra zaļā ir 1,68:1 -
+ * neredzama.
  */
 
 /*
@@ -137,36 +142,41 @@
 :root {
   /* --- Grafīta virsmas --- */
   --ink-950: #0a0908;
-  --ink-900: #0d0b09;
+  --ink-900: #0d0a0a;
   --ink-850: #121010;
   /* Tie paši toņi kanālos. Tailwind caurspīdīguma modifikators (`bg-ink-900/85`)
      ar `var(--ink-900)` NEDARBOJAS - utilītklase vienkārši netiek ģenerēta un
      fons pazūd bez kļūdas. Šīs trīs virsmas lieto ar caurspīdīgumu (lipīgā
      galvene, filtru josla, lightbox fons), tāpēc tām vajag kanālus. */
   --ink-950-rgb: 10 9 8;
-  --ink-900-rgb: 13 11 9;
+  --ink-900-rgb: 13 10 10;
   --ink-850-rgb: 18 16 16;
   --ink-card: #161211;
   --ink-800: #181513;
   --ink-750: #211d1a;
 
   /* --- Papīrs --- */
-  --paper: #efe8dc;
-  --paper-2: #cfc5b6;
-  --paper-dim: #a69c8e;
-  --paper-faint: #948a7d;
+  /* Papīra rinda ir NEITRĀLA, ne silta. Agrāk tā bija #EFE8DC ar 37%
+     piesātinājumu - silts krēms, kas der vara un dzeltenam akcentam. Blakus
+     zaļajam tas pats siltums lasās kā nedaudz netīrs balts. Pakāpieni zem bāzes
+     pārkrāsoti tajā pašā GAIŠUMĀ, kāds tiem bija, tāpēc visi izmērītie
+     kontrasti paliek spēkā (starpība zem 0,5). */
+  --paper: #f2f2f2;
+  --paper-2: #c2c2c2;
+  --paper-dim: #9a9a9a;
+  --paper-faint: #888888;
   /* Uz papīra fona (kājene): teksts un sekundārais teksts */
   --on-paper: #0d0b09;
   --on-paper-dim: #5c544a;
 
   /* --- Vara --- */
-  --amber: #febc11;
-  --amber-soft: #fec93e;
-  --amber-deep: #ad7d01;
-  /** Teksts un saites uz papīra virsmām. Uz papīra --amber ir 1,39:1 - neredzams. */
-  --amber-on-paper: #7a5801;
+  --amber: #23d962;
+  --amber-soft: #3ee076;
+  --amber-deep: #21bf48;
+  /** Teksts un saites uz papīra virsmām. Uz papīra --amber ir 1,68:1 - neredzams. */
+  --amber-on-paper: #127234;
   /** Teksts uz vara pildījuma (pogas). */
-  --on-amber: #1a1206;
+  --on-amber: #0d0a0a;
 
   /* --- Pārklājumi (scrim) ---
    * Grafīts kā RGB kanāli, lai caurspīdīgums nāktu no tokena, ne no ar roku
@@ -217,7 +227,7 @@
   /* Saišu pasvītrojums. Ar veco varu saplūdusī krāsa uz grafīta bija 2,61:1,
      tas ir, ZEM 3:1, ko WCAG prasa saskarnes elementam; ar kroņa dzelteno tā ir
      4,09:1. Krāsas maiņa te salaboja arī to, ko neviens nebija pamanījis. */
-  --line-amber: rgba(254, 188, 17, 0.55);
+  --line-amber: rgba(35, 217, 98, 0.55);
   --line-on-paper: rgba(13, 11, 9, 0.16);
 
   /* --- Fonti --- */

@@ -16,7 +16,7 @@ import { openCookieSettings } from "./CookieBanner";
  *
  * TUMŠA, ne papīra. Līdz 2026-09-08 kājene bija gaišā papīra inversija zem
  * tumšās lapas. Tas maksāja vairāk, nekā deva: papīra virsmai vajadzēja savu
- * teksta krāsu, savu līniju krāsu, savu akcentu (#FEBC11 uz papīra ir 1,39:1
+ * teksta krāsu, savu līniju krāsu, savu akcentu (akcents uz papīra ir 1,68:1
  * un nav lietojams nemaz) un savu fokusa gredzenu - četri paralēli tokeni un
  * divi komponenšu karogi, lai viena sekcija būtu otrādi. Tagad lapa ir tumša
  * no augšas līdz apakšai, un kājeni no satura atdala tonis (ink-850), ne
