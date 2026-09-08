@@ -418,8 +418,8 @@
    caurspīdīguma soļiem. Uz gaišas pamatnes katrs logotips stāv savā kanoniskajā
    formā, tieši tādā, kādu zīmols lieto uz balta.
 
-   Kartītes brauc pa slaidera celiņu (sk. RĪKU SLAIDERIS zemāk); pašām tām
-   kustības nav, tikai hover pacēlums.
+   Kartītes brauc pa viļņoto slaidera līniju (vietu rēķina StackStrip.tsx);
+   pašām tām CSS kustības nav, tikai hover pacēlums.
 
    Stiklu veido pieci slāņi, ne viens caurspīdīgums:
      1) caurspīdīgs baltais slīpums - pietiekami gaišs zīmēm, pietiekami vājš,
@@ -468,47 +468,25 @@
 
 /* ==================== RĪKU SLAIDERIS ====================
 
-   Kartītes brauc pa raustītu zaļu līniju. Peldēšana un slīpums, kas te bija
-   statiskai rindai, ir izņemti: kartītes, kas šūpojas, kamēr brauc, izskatās
-   pēc trīces, ne pēc konveijera. Kustība ir vienā `transform` uz celiņa
-   (marquee-x - tie paši kadri, ko lieto klientu logo josla), un tā ir vienīgā
-   kustīgā daļa.
+   Kartītes brauc pa viegli viļņotu raustītu līniju; vietas rēķina JS (sk.
+   StackStrip.tsx - kāpēc ne CSS marquee), šeit ir tikai virsmas: josla ar
+   nogriešanu, SVG ceļš zem kartītēm un divi aizkari malās.
 
-   Aizkari malās: fiksēta platuma laukums ar backdrop-filter blur(5px) un
-   grafīta gradientu, kas ārmalā ir necaurspīdīgs. Maska uz paša aizkara padara
-   blur pakāpenisku - pie iekšmalas tā nav, pie ārmalas viss ir izplūdis un
-   tumšs. Aizkari ir KARTĪŠU BRĀĻI virs celiņa, ne vecāki, un joslai pašai
+   Aizkari: fiksēta platuma laukums ar backdrop-filter blur(5px) un grafīta
+   gradientu, kas ārmalā ir necaurspīdīgs. Maska uz paša aizkara padara blur
+   pakāpenisku. Aizkari ir KARTĪŠU BRĀĻI virs tām, ne vecāki, un joslai pašai
    nav ne maskas, ne filtra: gan viens, gan otrs uz vecāka kartīšu stiklam
-   atņemtu fonu (sk. .stikls-blur piezīmi par ligzdotu backdrop-filter).
-
-   Cena: celiņš ir viens kompozitora slānis, kartītes tajā jau tagad ir savi
-   slāņi (stikls), aizkari ir divi fiksēti laukumi. Pārmērīts headless pēc
-   uzbūves: sk. commit. */
+   atņemtu fonu (sk. .stikls-blur piezīmi par ligzdotu backdrop-filter). */
 .riki-josla {
   position: relative;
   overflow: hidden;
 }
-.riki-celins {
+.riki-cels {
   position: absolute;
-  inset-inline: 0;
-  top: 50%;
-  height: 1px;
-  translate: 0 -50%;
-  /* 7 px svītra, 9 px atstarpe, akcenta krāsā 55% - redzama kā līnija, ne
-     kā otra josla; kartītes pār to iet virsū un to aizsedz. */
-  background: repeating-linear-gradient(to right, rgb(30 215 96 / 0.55) 0 7px, transparent 7px 16px);
-}
-.riki-track {
-  position: relative;
-  /* Platums no satura: -50% tad ir tieši viena saraksta platums. */
-  width: max-content;
-  animation: marquee-x 48s linear infinite;
-  will-change: transform;
-}
-.riki-josla:hover .riki-track,
-.riki-josla:focus-within .riki-track,
-.riki-josla[data-paused="true"] .riki-track {
-  animation-play-state: paused;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 .riki-aizkars {
   position: absolute;
@@ -531,151 +509,6 @@
   background: linear-gradient(to left, var(--ink-900) 0%, rgb(var(--ink-900-rgb) / 0) 100%);
   -webkit-mask-image: linear-gradient(to left, #000 35%, transparent);
   mask-image: linear-gradient(to left, #000 35%, transparent);
-}
-@media (prefers-reduced-motion: reduce) {
-  /* Bez kustības josla ir režģis: viens saraksts, aplauzts rindās, bez
-     līnijas un aizkariem - tie ir kustības daļas, ne sastāvdaļas. */
-  .riki-track {
-    animation: none;
-    width: 100%;
-    justify-content: center;
-  }
-  .riki-track > ul {
-    flex-wrap: wrap;
-    justify-content: center;
-    row-gap: 14px;
-    padding-inline-end: 0;
-  }
-  .riki-track > ul[aria-hidden="true"],
-  .riki-aizkars,
-  .riki-celins {
-    display: none;
-  }
-}
-
-/* ==================== STIKLS ====================
-
-   Hover virsma vadīklām: galvenes saitēm, izvēlnes rindām, čipiem, kontūrpogām.
-   Ap elementu iedegas matēta stikla tablete - tā pati recepte, kas rīku
-   kartītēm hero apakšā (.stack-karte), tikai tumša un daudz vājāka: tur stikls
-   ir objekts, te tas ir stāvoklis.
-
-   Četri slāņi, un tikai viens no tiem ir izpludinājums:
-     1) balts tonis 11% - gaisma, ko stikls savāc;
-     2) mala 18% - šķautne;
-     3) spīduma svītra augšmalā un tumša svītra apakšmalā - biezums;
-     4) fona izpludinājums 14 px - tas, kas aiz stikla.
-   Kārtība ir apzināta: uz gluda tumša fona (forma lapas apakšā, kājene)
-   4. slānim nav ko izpludināt, un tableti tur notur pirmie trīs. Uz foto un
-   ciparu lietus aiz galvenes 4. slānis ir tas, kas atšķir stiklu no pelēka
-   taisnstūra.
-
-   VIENS SKAITLIS, NE ČETRI STĀVOKĻI. Visi slāņi ir reizināti ar --st (0 vai 1),
-   un stāvokļi maina tikai to. Pārejas iet uz pašām īpašībām (background-color,
-   border-color, box-shadow, backdrop-filter), tāpēc mainīgā lēciens 0 -> 1
-   ekrānā ir 300 ms pārplūde, ne klikšķis. Tā ir viena receptes definīcija
-   hover, fokusa, nospiediena, atvērta un aktīva stāvoklim - nevis četras
-   kopijas, kas ar laiku izšķirtos.
-
-   Hover tikai ierīcēm ar kursoru: pieskāriena ekrānā :hover paliek karājamies
-   pēc pieskāriena, un tablete tur iedegtos un neizdzistu. Tur atbildi dod
-   :active - nospiediena mirklī.
-
-   CENA. Katrs elements ar backdrop-filter ir atsevišķs kompozīcijas slānis,
-   arī miera stāvoklī ar blur(0). Četras galvenes tabletes ir četri slāņi -
-   nieks. Darbu kartēm tas nav paredzēts: 40 slāņu vienā skatā jau ir
-   ritināšanas bremze. Tāpēc bāzes klase ir bez blur, un blur ir modifikators
-   (.stikls-blur zemāk). */
-.stikls,
-.stikls-on {
-  --st: 0;
-  border: 1px solid rgb(255 255 255 / calc(0.18 * var(--st)));
-  background-color: rgb(255 255 255 / calc(0.11 * var(--st)));
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / calc(0.22 * var(--st))),
-    inset 0 -1px 0 rgb(0 0 0 / calc(0.3 * var(--st))),
-    0 12px 28px -14px rgb(0 0 0 / calc(0.7 * var(--st)));
-  transition:
-    color 0.3s var(--ease),
-    background-color 0.3s var(--ease),
-    border-color 0.3s var(--ease),
-    box-shadow 0.3s var(--ease);
-}
-/* 4. slānis ir modifikators, ne daļa no bāzes, un tam ir iemesls, ko redzēja
-   ekrānuzņēmums, ne teorija: rindas ar backdrop-filter IEKŠĀ stikla panelī
-   (kam pats ir backdrop-filter) Chrome zīmēja kā plakanus gaišākus
-   taisnstūrus - visas četras, arī tās, uz kurām kursora nebija, un arī ar
-   blur(0). Ligzdots backdrop-filter savu fonu nolasa no vecāka virsmas, ne no
-   lapas, un tur nav nekā, ko izpludināt. Tāpēc blur iet tikai tur, kur starp
-   elementu un lapu nav neviena cita stikla: uz četrām galvenes tabletēm. Tā
-   paša iemesla dēļ galvene pēc ritināšanas ir 90% grafīts BEZ blur - ar
-   savu blur tā padarītu par vecāku gan tabletes, gan paneli. */
-.stikls-blur {
-  -webkit-backdrop-filter: blur(calc(14px * var(--st)));
-  backdrop-filter: blur(calc(14px * var(--st)));
-  transition:
-    color 0.3s var(--ease),
-    background-color 0.3s var(--ease),
-    border-color 0.3s var(--ease),
-    box-shadow 0.3s var(--ease),
-    -webkit-backdrop-filter 0.3s var(--ease),
-    backdrop-filter 0.3s var(--ease);
-}
-/* Rāmis: čipiem un kontūrpogām mierā vajag redzamu malu - rinda ar desmit
-   izvēlēm bez malām ir tikai vārdi ar atstarpēm. Mala 14% mierā, 20% uz
-   hover; viss pārējais nāk no .stikls. */
-.stikls-rams {
-  border-color: rgb(255 255 255 / calc(0.14 + 0.06 * var(--st)));
-}
-/* Ieslēgtie stāvokļi. aria-current ir pašreizējā lapa vai valoda,
-   aria-pressed ir nospiestais filtrs, :has(:checked) ir atzīmētā formas
-   izvēle - visi ir stāvokļi, ko elements jau pasaka ekrānlasītājam, un
-   stikls seko tiem, ne atsevišķai klasei. */
-.stikls-on,
-.stikls:focus-visible,
-.stikls:active,
-.stikls[aria-pressed="true"],
-.stikls:has(:checked),
-.stikls-aktivs[aria-current] {
-  --st: 1;
-}
-@media (hover: hover) {
-  .stikls:hover {
-    --st: 1;
-  }
-}
-
-/* Panelis: statisks stikls ar saturu iekšā (Pakalpojumu saraksts). Tonis
-   gaišāks augšā, tumšāks apakšā - gaisma krīt no augšas; ēna ir liela un
-   mīksta, jo panelis KARĀJAS virs lapas, ne guļ uz tās. */
-.stikls-panelis {
-  background: linear-gradient(160deg, rgb(255 255 255 / 0.1) 0%, rgb(255 255 255 / 0.045) 100%);
-  border: 1px solid rgb(255 255 255 / 0.14);
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.16),
-    inset 0 -1px 0 rgb(0 0 0 / 0.35),
-    0 30px 60px -24px rgb(0 0 0 / 0.85);
-  -webkit-backdrop-filter: blur(22px) saturate(1.3);
-  backdrop-filter: blur(22px) saturate(1.3);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  /* Panelis ienāk no augšas 8 px un no caurspīdīga. Bez tā tas vienkārši
-     parādās - un divas lietas, kas notiek vienlaikus (bultiņa pagriežas,
-     panelis rodas), izskatās pēc lēciena, ne pēc atvēršanas. */
-  .izvelne-in {
-    animation: izvelne-in 0.28s var(--ease-settle) both;
-  }
-  @keyframes izvelne-in {
-    from {
-      opacity: 0;
-      translate: 0 -8px;
-    }
-    to {
-      opacity: 1;
-      translate: 0 0;
-    }
-  }
 }
 
 /* Fona kadri ir melnbalti VIENMĒR, bez hover.

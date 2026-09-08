@@ -1,69 +1,181 @@
-import { useState } from "react";
-import { useLocale } from "@/i18n/LocaleContext";
+import { useEffect, useRef } from "react";
 import { stackTools } from "@/data/stack";
 
 /**
- * Rīku slaideris zem hero.
+ * Rīku slaideris zem hero: kartītes brauc pa viegli viļņotu, raustītu zaļu
+ * līniju - "nedaudz kā amerikāņu kalniņi, bet ne daudz" (Gatis, 2026-09-08).
  *
- * 2026-09-08: bija peldoša, sašķiebta kartīšu rinda; Gatis gribēja, lai zīmes
- * SLĪD pa raustītu zaļu līniju kā slaideris - ģeometriski vienmērīgi, ar
- * lielāku atstarpi, un malās izplūst, kad aiziet. Tā tas ir tagad: krelles uz
- * auklas, kas lēni brauc pa kreisi.
+ * KĀPĒC JS, NE CSS MARQUEE. Taisnu celiņu var vilkt ar vienu `transform`
+ * animāciju (tā dara klientu logo josla). Viļņotam celiņam kartītes vertikālā
+ * vieta ir atkarīga no tās horizontālās vietas, un CSS to nevar sasaistīt
+ * atsaucīgi: `offset-path` koordinātas ir absolūti pikseļi, kas nesekotu
+ * platumam. Tāpēc viens rAF cikls rēķina katrai kartītei x (lineāri, ar
+ * pārnesi) un y = A·sin(2πx/λ), un tas pats sinuss zīmē līniju kā SVG ceļu.
+ * Kartītes tāpēc STĀV uz līnijas ar precizitāti līdz pikselim - to pārbauda
+ * mērījums, ne acs. Cena: 13 `transform` ieraksti kadrā, bez izkārtojuma; tas
+ * ir mazāk nekā ciparu lietus canvas hero fonā.
  *
- * Kustība ir tā pati, kas klientu logo joslai (sk. ClientMarquee): divi
- * identiski saraksti cits aiz cita un celiņš, kas pārvietojas tieši par pusi
- * sava platuma, tāpēc šuve nav redzama. Viss notiek ar `transform` uz
- * kompozitora - galvenais pavediens kadru nezīmē, un tas ir vienīgais
- * iemesls, kāpēc slaideris lapai maksā tik maz, cik maksā. Otrais saraksts
- * ir `aria-hidden`: ekrānlasītājam tie ir trīspadsmit rīki, ne divdesmit seši.
+ * ĢEOMETRIJA. Periods ir N·solis, kur solis = lielākais no (kadrs + divas
+ * kartītes) / N un (kartīte + 44 px). Platā ekrānā visas 13 kartītes ir uz
+ * ceļa vienlaikus ar vienādu soli; šaurā ekrānā solis paliek vismaz kartīte +
+ * 44 px, un daļa kartīšu gaida aiz malas. Abos gadījumos attālums starp
+ * kaimiņiem ir vienāds, un cilpai šuves nav: kartīte, kas aiziet pa kreisi
+ * aiz aizkara, atgriežas pa labi aiz aizkara.
  *
- * Malas izplūst ar diviem aizkariem (`.riki-aizkars`, src/index.css): katrs ir
- * fiksēta platuma laukums ar backdrop-filter blur un grafīta gradientu, kas
- * beigās kļūst necaurspīdīgs - zīme, kas tuvojas malai, kļūst gan neskaidra,
- * gan tumša, un tieši tā izskatās "aiziet". Aizkari ir kartīšu BRĀĻI, ne
- * vecāki: ligzdots backdrop-filter Chrome zīmē plakanu laukumu (sk. .stikls),
- * un maska uz vecāka kartīšu stiklam atņemtu fonu.
+ * BEZ JS un pirms hidratācijas kartītes stāv tajās pašās vietās pēc tās pašas
+ * formulas ar 1200 px platumu - statiska viļņota rinda, ne tukšums. Pēc
+ * pirmā mērījuma tās pārceļas uz īsto platumu.
  *
- * Apturēšana trijos veidos, un tikai pirmais strādā bez peles: poga (WCAG
- * 2.2.2 - kustība ilgst krietni virs piecām sekundēm, tāpēc vajag mehānismu, ne
- * kursoru). Kursors virs joslas aptur arī - tad kartīte var paaugstināties uz
- * hover, nebraucot prom no pirksta. `prefers-reduced-motion` gadījumā celiņš
- * stāv, zīmes aplaužas rindās, dublikāts, aizkari un līnija ir paslēpti.
+ * Aizkari malās (`.riki-aizkars`, src/index.css): fiksēta platuma laukumi ar
+ * blur un grafīta gradientu, kartīšu BRĀĻI, ne vecāki (ligzdots
+ * backdrop-filter Chrome zīmē plakanu laukumu, sk. .stikls-blur).
+ *
+ * PAUZE. Pogas nav - Gata lēmums pēc pirmās versijas ("bez tās pogas").
+ * Kustība apstājas, kamēr kursors ir virs joslas, kad josla ir aizritināta
+ * prom, kad cilne nav redzama, un pavisam pie `prefers-reduced-motion`. WCAG
+ * 2.2.2 gribētu arī mehānismu bez kursora; tas te ir apzināti atlikts, un ja
+ * audits to pieprasa, poga ir viena rinda.
  */
-export default function StackStrip({ heading }: { heading: string }) {
-  const { locale } = useLocale();
-  const lv = locale === "lv";
-  const [paused, setPaused] = useState(false);
 
-  const list = (duplicate: boolean) => (
-    <ul
-      className="flex shrink-0 items-center gap-[clamp(26px,3.4vw,56px)] pe-[clamp(26px,3.4vw,56px)]"
-      aria-hidden={duplicate || undefined}
-    >
-      {stackTools.map((tool) => (
-        <li
-          key={tool.slug}
-          className="stack-karte grid h-[clamp(52px,5.9vw,76px)] w-[clamp(52px,5.9vw,76px)] shrink-0 place-items-center rounded-[clamp(13px,1.6vw,21px)]"
-        >
-          {/* Zīmola SVG nāk gatavs, ar zīmola pašu krāsām. `dangerouslySetInnerHTML`
-              te ir drošs: saturs ir būves laika konstante šajā repo, ne ievade. */}
-          <svg
-            viewBox={tool.viewBox}
-            style={{ width: tool.w, height: tool.h }}
-            preserveAspectRatio="xMidYMid meet"
-            /* Vercel un Notion kontūra zīmējas ar `currentColor`. Uz gaišas
-               kartes tā ir tumša - tieši tā, kā abi zīmoli to lieto uz balta. */
-            color="#0d0b09"
-            aria-hidden="true"
-            dangerouslySetInnerHTML={{ __html: tool.body }}
-          />
-          {/* Zīme ir `aria-hidden`, nosaukums nāk no šejienes: ekrānlasītājam
-              josla ir rīku saraksts, ne attēlu rinda. */}
-          <span className="sr-only">{tool.name}</span>
-        </li>
-      ))}
-    </ul>
-  );
+/** Ātrums px sekundē. Tas pats, ko deva 48 s marquee cilpa. */
+const ATRUMS = 34;
+/** Viļņa garums px. Uz 1440 px ir ap 2,5 viļņi - redzams kā vilnis, ne kā zigzags. */
+const VILNIS = 560;
+/** Viļņa augstums no viduslīnijas px. 16 uz 76 px kartītes ir "nedaudz". */
+const AMPLITUDA = 16;
+/** Mazākā atstarpe starp kartītēm px. */
+const MIN_ATSTARPE = 44;
+/** Platums, ar ko rēķina pirms hidratācijas un bez JS. */
+const NOKLUSEJUMA_W = 1200;
+/** Kartītes izmērs pirms mērījuma (CSS clamp maksimums). */
+const NOKLUSEJUMA_FLIZE = 76;
+
+const N = stackTools.length;
+
+function vilnis(x: number): number {
+  return AMPLITUDA * Math.sin((2 * Math.PI * x) / VILNIS);
+}
+
+/** Solis un periods no kadra platuma un kartītes izmēra. */
+function geometrija(W: number, flize: number) {
+  const pad = flize;
+  const solis = Math.max((W + 2 * pad) / N, flize + MIN_ATSTARPE);
+  return { pad, solis, periods: solis * N };
+}
+
+/** Kartītes centrs uz ceļa pie nobrauktā attāluma `dist` (px, pa kreisi). */
+function centrs(i: number, dist: number, W: number, H: number, flize: number) {
+  const { pad, solis, periods } = geometrija(W, flize);
+  const raw = (i * solis - dist) % periods;
+  const x = (raw < 0 ? raw + periods : raw) - pad;
+  return { x, y: H / 2 + vilnis(x) };
+}
+
+function transformFor(i: number, dist: number, W: number, H: number, flize: number): string {
+  const c = centrs(i, dist, W, H, flize);
+  return `translate3d(${(c.x - flize / 2).toFixed(2)}px, ${(c.y - flize / 2).toFixed(2)}px, 0)`;
+}
+
+/** SVG ceļš līnijai: sinuss, ņemts ik pa 6 px. */
+function celaD(W: number, H: number): string {
+  let d = "";
+  for (let x = 0; x <= W + 6; x += 6) d += `${x ? " L" : "M"}${x} ${(H / 2 + vilnis(x)).toFixed(2)}`;
+  return d;
+}
+
+export default function StackStrip({ heading }: { heading: string }) {
+  const josla = useRef<HTMLDivElement>(null);
+  const cels = useRef<SVGSVGElement>(null);
+  const kartes = useRef<(HTMLLIElement | null)[]>([]);
+  const H0 = NOKLUSEJUMA_FLIZE + 2 * AMPLITUDA + 20;
+
+  useEffect(() => {
+    const el = josla.current;
+    if (!el) return;
+    const klusa = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let W = NOKLUSEJUMA_W;
+    let H = H0;
+    let flize = NOKLUSEJUMA_FLIZE;
+    let dist = 0;
+    let pedejais = 0;
+    let pauze = false;
+    let redzams = true;
+    let raf = 0;
+
+    function zimet() {
+      for (let i = 0; i < N; i += 1) {
+        const li = kartes.current[i];
+        if (li) li.style.transform = transformFor(i, dist, W, H, flize);
+      }
+    }
+
+    function izmeri() {
+      const r = el!.getBoundingClientRect();
+      W = Math.max(1, r.width);
+      H = Math.max(1, r.height);
+      flize = kartes.current[0]?.getBoundingClientRect().width || NOKLUSEJUMA_FLIZE;
+      const svg = cels.current;
+      if (svg) {
+        svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+        svg.firstElementChild?.setAttribute("d", celaD(W, H));
+      }
+      zimet();
+    }
+
+    function cikls(tagad: number) {
+      raf = window.requestAnimationFrame(cikls);
+      const dt = Math.min(tagad - pedejais, 100) / 1000;
+      pedejais = tagad;
+      if (!redzams || pauze) return;
+      dist += ATRUMS * dt;
+      zimet();
+    }
+
+    izmeri();
+    if (!klusa.matches) {
+      pedejais = performance.now();
+      raf = window.requestAnimationFrame(cikls);
+    }
+
+    const izmers = new ResizeObserver(() => izmeri());
+    izmers.observe(el);
+    const vero = new IntersectionObserver((ieraksti) => {
+      redzams = ieraksti.some((e) => e.isIntersecting);
+    });
+    vero.observe(el);
+    const cilne = () => {
+      redzams = document.visibilityState === "visible";
+    };
+    document.addEventListener("visibilitychange", cilne);
+    const ienak = () => {
+      pauze = true;
+    };
+    const iziet = () => {
+      pauze = false;
+    };
+    el.addEventListener("pointerenter", ienak);
+    el.addEventListener("pointerleave", iziet);
+    const rezims = () => {
+      if (klusa.matches) {
+        window.cancelAnimationFrame(raf);
+        raf = 0;
+      } else if (!raf) {
+        pedejais = performance.now();
+        raf = window.requestAnimationFrame(cikls);
+      }
+    };
+    klusa.addEventListener("change", rezims);
+
+    return () => {
+      window.cancelAnimationFrame(raf);
+      izmers.disconnect();
+      vero.disconnect();
+      document.removeEventListener("visibilitychange", cilne);
+      el.removeEventListener("pointerenter", ienak);
+      el.removeEventListener("pointerleave", iziet);
+      klusa.removeEventListener("change", rezims);
+    };
+  }, [H0]);
 
   return (
     <section className="border-b border-line bg-ink-900 py-[clamp(34px,5vw,64px)]" aria-labelledby="stack-h">
@@ -73,34 +185,46 @@ export default function StackStrip({ heading }: { heading: string }) {
         {heading}
       </h2>
 
-      {/* Josla ir pilna platuma, ne lapas kolonnas: konveijers, kas beidzas
-          pie satura malas, izskatās pēc nogrieztas tabulas; tāds, kas iet līdz
-          ekrāna malai un tur izplūst, izskatās pēc kustības cauri kadram. */}
-      <div className="riki-josla py-2" data-paused={paused || undefined}>
-        <div aria-hidden="true" className="riki-celins" />
-        <div className="riki-track flex items-center">
-          {list(false)}
-          {list(true)}
-        </div>
+      {/* Pilna platuma josla: konveijers iet līdz ekrāna malai un tur izplūst. */}
+      <div ref={josla} className="riki-josla h-[calc(clamp(52px,5.9vw,76px)+52px)]">
+        <svg
+          ref={cels}
+          aria-hidden="true"
+          className="riki-cels"
+          viewBox={`0 0 ${NOKLUSEJUMA_W} ${H0}`}
+          preserveAspectRatio="none"
+        >
+          {/* 7 px svītra, 9 px atstarpe, akcenta krāsā 55%: līnija, ne otra josla. */}
+          <path d={celaD(NOKLUSEJUMA_W, H0)} fill="none" stroke="#1ed760" strokeOpacity="0.55" strokeWidth="1" strokeDasharray="7 9" vectorEffect="non-scaling-stroke" />
+        </svg>
+        <ul className="absolute inset-0">
+          {stackTools.map((tool, i) => (
+            <li
+              key={tool.slug}
+              ref={(n) => {
+                kartes.current[i] = n;
+              }}
+              className="stack-karte absolute left-0 top-0 grid h-[clamp(52px,5.9vw,76px)] w-[clamp(52px,5.9vw,76px)] place-items-center rounded-[clamp(13px,1.6vw,21px)] will-change-transform"
+              style={{ transform: transformFor(i, 0, NOKLUSEJUMA_W, H0, NOKLUSEJUMA_FLIZE) }}
+            >
+              {/* Zīmola SVG nāk gatavs, ar zīmola pašu krāsām. `dangerouslySetInnerHTML`
+                  te ir drošs: saturs ir būves laika konstante šajā repo, ne ievade. */}
+              <svg
+                viewBox={tool.viewBox}
+                style={{ width: tool.w, height: tool.h }}
+                preserveAspectRatio="xMidYMid meet"
+                /* Vercel un Notion kontūra zīmējas ar `currentColor`. Uz gaišas
+                   kartes tā ir tumša - tieši tā, kā abi zīmoli to lieto uz balta. */
+                color="#0d0b09"
+                aria-hidden="true"
+                dangerouslySetInnerHTML={{ __html: tool.body }}
+              />
+              <span className="sr-only">{tool.name}</span>
+            </li>
+          ))}
+        </ul>
         <div aria-hidden="true" className="riki-aizkars riki-aizkars-k" />
         <div aria-hidden="true" className="riki-aizkars riki-aizkars-l" />
-      </div>
-
-      <div className="mx-auto flex w-full max-w-wrap justify-end px-5 pt-3 sm:px-8 lg:px-10">
-        <button
-          type="button"
-          onClick={() => setPaused((v) => !v)}
-          aria-pressed={paused}
-          // Lapā ir divas šādas pogas (klientu joslai ir sava). Pilnais
-          // nosaukums pasaka, kuru joslu tā aptur; redzamais vārds paliek tā
-          // sākumā, lai balss vadība "spied Apturēt" joprojām trāpa.
-          aria-label={
-            paused ? (lv ? "Turpināt rīku joslu" : "Resume the tools strip") : lv ? "Apturēt rīku joslu" : "Pause the tools strip"
-          }
-          className="font-label text-label uppercase text-paper-faint underline-offset-4 transition-colors duration-300 hover:text-amber hover:underline focus-visible:text-amber motion-reduce:hidden"
-        >
-          {paused ? (lv ? "Turpināt" : "Resume") : lv ? "Apturēt" : "Pause"}
-        </button>
       </div>
     </section>
   );
