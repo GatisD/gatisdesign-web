@@ -24,7 +24,11 @@ export default function SEO({ title, description, locale, routeKey, alternates, 
    * sākumlapa" ir divi pretēji signāli par vienu URL.
    */
   const canonical = self ? abs(self.path) : null;
-  const ogImage = abs(image ?? "/og-image.png");
+  // Noklusētais koplietošanas attēls. Jauns faila vārds 2026-09-08 ar nolūku:
+  // Telegram, Facebook un LinkedIn veco adresi tur kešā nedēļām, un pārģenerēts
+  // attēls ar to pašu vārdu tiem paliktu vecais. /og-image.png diskā paliek
+  // (tā pati bilde), lai jau nokopētās saites nedotu 404.
+  const ogImage = abs(image ?? "/og-gatisdesign.png");
   const lvAlt = alts.find((a) => a.locale === "lv");
   const ogUrl = canonical ?? SITE_URL;
 

@@ -49,7 +49,7 @@ export default function ParMani() {
   const personSchema = personNode({
     description: aboutContent.directAnswer,
     mainEntityOfPage: abs("about"),
-    image: `${SITE_URL}/og-image.png`,
+    image: `${SITE_URL}/og-gatisdesign.png`,
     knowsLanguage: ["lv", "en"],
     dateModified: CONTENT_MODIFIED,
   });

@@ -59,7 +59,7 @@ const BUSINESS_ID = `${SITE_URL}/#business`;
 
 const homePersonSchema = personNode({
   description: homeContent.directAnswer,
-  image: `${SITE_URL}/og-image.png`,
+  image: `${SITE_URL}/og-gatisdesign.png`,
   knowsLanguage: ["lv", "en"],
   worksFor: { "@id": BUSINESS_ID },
   dateModified: CONTENT_MODIFIED,
@@ -73,7 +73,7 @@ const homeServiceSchema = {
   description: homeContent.metaDescription,
   url: SITE_URL,
   email: CONTACT_EMAIL,
-  image: `${SITE_URL}/og-image.png`,
+  image: `${SITE_URL}/og-gatisdesign.png`,
   priceRange: "200-3000 EUR",
   currenciesAccepted: "EUR",
   // Google zināšanu panelis un zīmola bloks logo ņem TIKAI no `logo` lauka -
