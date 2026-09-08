@@ -32,11 +32,13 @@ import { stackTools } from "@/data/stack";
  * blur un grafīta gradientu, kartīšu BRĀĻI, ne vecāki (ligzdots
  * backdrop-filter Chrome zīmē plakanu laukumu, sk. .stikls-blur).
  *
- * PAUZE. Pogas nav - Gata lēmums pēc pirmās versijas ("bez tās pogas").
- * Kustība apstājas, kamēr kursors ir virs joslas, kad josla ir aizritināta
- * prom, kad cilne nav redzama, un pavisam pie `prefers-reduced-motion`. WCAG
- * 2.2.2 gribētu arī mehānismu bez kursora; tas te ir apzināti atlikts, un ja
- * audits to pieprasa, poga ir viena rinda.
+ * BEZ CILVĒKA. Josla nereaģē ne uz ko: nav pogas, nav pauzes uz kursoru, nav
+ * pacēluma uz hover, un kursors iet tai cauri (pointer-events: none) - Gata
+ * lēmums 2026-09-08: "viņas vienkārši tur slīd bez nekāda interaction".
+ * Kustība apstājas tikai tad, kad josla ir aizritināta prom, kad cilne nav
+ * redzama, un pavisam pie `prefers-reduced-motion`. WCAG 2.2.2 gribētu
+ * apturēšanas mehānismu; tas ir apzināti atlikts, un ja audits to pieprasa,
+ * poga ir viena rinda.
  */
 
 /** Ātrums px sekundē. Tas pats, ko deva 48 s marquee cilpa. */
@@ -114,7 +116,6 @@ export default function StackStrip({ heading }: { heading: string }) {
     let flize = NOKLUSEJUMA_FLIZE;
     let dist = 0;
     let pedejais = 0;
-    let pauze = false;
     let redzams = true;
     let raf = 0;
 
@@ -146,7 +147,7 @@ export default function StackStrip({ heading }: { heading: string }) {
       raf = window.requestAnimationFrame(cikls);
       const dt = Math.min(tagad - pedejais, 100) / 1000;
       pedejais = tagad;
-      if (!redzams || pauze) return;
+      if (!redzams) return;
       dist += ATRUMS * dt;
       zimet();
     }
@@ -167,14 +168,6 @@ export default function StackStrip({ heading }: { heading: string }) {
       redzams = document.visibilityState === "visible";
     };
     document.addEventListener("visibilitychange", cilne);
-    const ienak = () => {
-      pauze = true;
-    };
-    const iziet = () => {
-      pauze = false;
-    };
-    el.addEventListener("pointerenter", ienak);
-    el.addEventListener("pointerleave", iziet);
     const rezims = () => {
       if (klusa.matches) {
         window.cancelAnimationFrame(raf);
@@ -191,8 +184,6 @@ export default function StackStrip({ heading }: { heading: string }) {
       izmers.disconnect();
       vero.disconnect();
       document.removeEventListener("visibilitychange", cilne);
-      el.removeEventListener("pointerenter", ienak);
-      el.removeEventListener("pointerleave", iziet);
       klusa.removeEventListener("change", rezims);
     };
   }, [H0]);

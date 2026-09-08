@@ -419,7 +419,8 @@
    formā, tieši tādā, kādu zīmols lieto uz balta.
 
    Kartītes brauc pa viļņoto slaidera līniju (vietu rēķina StackStrip.tsx);
-   pašām tām CSS kustības nav, tikai hover pacēlums.
+   pašām tām CSS kustības nav, un nav arī hover: josla nereaģē uz cilvēku
+   (sk. StackStrip.tsx, BEZ CILVĒKA).
 
    Stiklu veido pieci slāņi, ne viens caurspīdīgums:
      1) caurspīdīgs baltais slīpums - pietiekami gaišs zīmēm, pietiekami vājš,
@@ -441,17 +442,6 @@
     inset 0 -1px 0 rgb(0 0 0 / 0.14),
     0 18px 38px -14px rgb(0 0 0 / 0.7),
     0 3px 8px rgb(0 0 0 / 0.35);
-  transition:
-    scale 0.4s var(--ease),
-    box-shadow 0.4s var(--ease);
-}
-.stack-karte:hover {
-  scale: 1.08;
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 1),
-    inset 0 -1px 0 rgb(0 0 0 / 0.16),
-    0 26px 52px -14px rgb(0 0 0 / 0.78),
-    0 4px 10px rgb(0 0 0 / 0.4);
 }
 
 /* Aiz stikla nav nekā, un tas ir lēmums, ne izlaidums.
@@ -480,6 +470,9 @@
 .riki-josla {
   position: relative;
   overflow: hidden;
+  /* Kursors iet cauri: josla nav vadīkla, un tai nav neviena stāvokļa, ko
+     cilvēks varētu mainīt. */
+  pointer-events: none;
 }
 .riki-cels {
   position: absolute;
