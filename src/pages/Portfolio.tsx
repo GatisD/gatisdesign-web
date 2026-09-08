@@ -182,7 +182,7 @@ export default function Portfolio() {
       </section>
 
       {/* ============ FILTRS ============ */}
-      <div className="sticky top-16 z-40 border-y border-line bg-ink-900/90 backdrop-blur-md md:top-[72px]">
+      <div className="sticky top-[var(--galvene)] z-40 border-y border-line bg-ink-900/90 backdrop-blur-md">
         {/* Viena rinda ar sānu ritināšanu, ne aplaušana: pie četrpadsmit tagiem
             aplauzta čipu siena aizņemtu trešdaļu ekrāna un pastumtu pašus darbus
             zem lokas. Ritjosla paslēpta - ka rinda turpinās, pasaka pati rinda,

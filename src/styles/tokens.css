@@ -228,6 +228,12 @@
   --gap-grid: clamp(16px, 2vw, 24px);
   --wrap: 1440px;
 
+  /* Galvenes augstums. Viens skaitlis, ne trīs: no tā ir atkarīga arī mobilā
+     izvēlne (sākas zem galvenes) un Darbu lapas filtru josla (pielīp zem tās).
+     Kamēr tas bija ierakstīts trijās vietās ar roku, tas bija tikai jautājums,
+     kura no trim aizmirsīsies. */
+  --galvene: 76px;
+
   /* --- Displeja mērogs (uppercase, LV garumzīmes prasa line-height >= 1.04) --- */
   /* Apakšējā robeža ir 36, ne 38 px: pie 320 px "PIEPRASĪJUMUS." aizņēma
      282 px pieejamo 280 px vietā, un `overflow-x: clip` to slēpa, nevis
@@ -241,4 +247,10 @@
   /* --- Kustība --- */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --galvene: 92px;
+  }
 }

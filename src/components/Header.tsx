@@ -103,16 +103,19 @@ export default function Header() {
       {/* Lauva ir dekors blakus pašam vārdam, tāpēc alt ir tukšs: ar
           alt="Gatis Design" ekrāna lasītājs saiti nolasītu divreiz.
 
-          40 px, ne 30: vecais vietturis bija vienkāršs siluets un turējās arī
-          mazs, bet īstajā zīmē ir krēpes un seja. Nomērīts uz ink-900 - pie
-          30 px no tās paliek balts plankums ar dzeltenu punktu virsū. 40 px
-          ietilpst galvenes 44 px joslā un seju jau var atšķirt. */}
+          52 px telefonā un 64 px darbvirsmā, agrāk 40 px abos. Zīmē ir krēpes
+          un seja, un pie 40 px no tās palika balts plankums ar dzeltenu punktu
+          virsū - detaļa bija, bet neviens to neredzēja.
+
+          Burtiskus 3x (120 px) galvene neiztur: tai vajadzētu 136 px joslu, kas
+          telefonā ir 16% no ekrāna un paliek tur visu laiku. 64 px ir lielākais,
+          pie kā josla vēl ir josla, ne baneris. */}
       <img
         src="/media/lauva.svg"
         alt=""
-        width="45"
-        height="40"
-        className="me-2.5 h-10 w-auto shrink-0"
+        width="72"
+        height="64"
+        className="me-3 h-[52px] w-auto shrink-0 md:h-16"
       />
       <span className="text-[19px] font-bold tracking-[-0.02em] text-paper md:text-[20px]">Gatis Design</span>
     </Link>
@@ -126,7 +129,7 @@ export default function Header() {
           scrolled ? "border-b border-line bg-ink-900/85 backdrop-blur-md" : "border-b border-transparent",
         )}
       >
-        <div className="mx-auto flex h-16 w-full max-w-wrap items-center justify-between gap-6 px-5 sm:px-8 lg:px-10 md:h-[72px]">
+        <div className="mx-auto flex h-[var(--galvene)] w-full max-w-wrap items-center justify-between gap-6 px-5 sm:px-8 lg:px-10">
           {wordmark}
 
           <nav aria-label={t.nav.services} className="hidden items-center gap-8 lg:flex">
@@ -251,7 +254,7 @@ export default function Header() {
       </header>
 
       {mobileOpen ? (
-        <div id={menuId} className="fixed inset-x-0 bottom-0 top-16 z-[100] overflow-y-auto bg-ink-900 md:top-[72px] lg:hidden">
+        <div id={menuId} className="fixed inset-x-0 bottom-0 top-[var(--galvene)] z-[100] overflow-y-auto bg-ink-900 lg:hidden">
           <nav aria-label={t.nav.services} className="flex flex-col px-5 sm:px-8 lg:px-10 pt-6">
             <NavLink to={path("portfolio")} className={mobileLinkClass}>
               {t.nav.portfolio}
