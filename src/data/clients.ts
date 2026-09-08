@@ -22,7 +22,12 @@ export interface ClientLogo {
 }
 
 export const clientLogos: ClientLogo[] = [
+  { slug: "rois-lv", name: "ROIS.lv", width: 106, height: 72 },
   { slug: "oakabbq", name: "Oak'A BBQ", width: 210, height: 72 },
+  { slug: "olive-mebeles", name: "Olīve Virtuves Mēbeles", width: 196, height: 72 },
+  { slug: "videastone", name: "Videa Stone", width: 280, height: 59 },
+  { slug: "termokoksne", name: "Termokoksne", width: 262, height: 72 },
+  { slug: "sinuuksed", name: "Sinu Uksed", width: 123, height: 72 },
   { slug: "estire", name: "Estire", width: 280, height: 65 },
   { slug: "tenter", name: "Tenter Latvija", width: 243, height: 72 },
   { slug: "box-latvia", name: "Box Latvia", width: 280, height: 51 },
