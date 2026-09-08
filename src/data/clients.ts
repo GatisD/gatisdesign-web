@@ -22,6 +22,7 @@ export interface ClientLogo {
 }
 
 export const clientLogos: ClientLogo[] = [
+  { slug: "oakabbq", name: "Oak'A BBQ", width: 210, height: 72 },
   { slug: "estire", name: "Estire", width: 280, height: 65 },
   { slug: "tenter", name: "Tenter Latvija", width: 243, height: 72 },
   { slug: "box-latvia", name: "Box Latvia", width: 280, height: 51 },
