@@ -100,24 +100,29 @@ export default function Header() {
       to={path("home")}
       className="inline-flex min-h-[44px] shrink-0 items-center leading-none transition-colors duration-300 active:text-amber"
     >
-      {/* Lauva ir dekors blakus pašam vārdam, tāpēc alt ir tukšs: ar
-          alt="Gatis Design" ekrāna lasītājs saiti nolasītu divreiz.
+      {/*
+        Horizontālais logo ietver arī vārdzīmi, tāpēc blakus vairs nav atsevišķa
+        teksta - ar to ekrānlasītājs saiti nolasītu divreiz. `alt` te NAV tukšs
+        tieši tāpēc: vārds tagad ir attēla iekšienē, un bez tā saitei nebūtu
+        nosaukuma vispār.
 
-          52 px telefonā un 64 px darbvirsmā, agrāk 40 px abos. Zīmē ir krēpes
-          un seja, un pie 40 px no tās palika balts plankums ar dzeltenu punktu
-          virsū - detaļa bija, bet neviens to neredzēja.
+        Augstums 56 px telefonā un 72 px darbvirsmā. Skaitlis izvēlēts pēc
+        lauvas, ne pēc visa bloka: zīmē lauva aizņem 83% no augstuma, tāpēc pie
+        72 px tā ir 60 px - tas pats, ko iepriekš deva atsevišķā 64 px zīme.
 
-          Burtiskus 3x (120 px) galvene neiztur: tai vajadzētu 136 px joslu, kas
-          telefonā ir 16% no ekrāna un paliek tur visu laiku. 64 px ir lielākais,
-          pie kā josla vēl ir josla, ne baneris. */}
+        SVG ir pārvērsts līknēs. Illustrator eksportēja vārdzīmi kā dzīvu tekstu
+        fontā Core Sans D 77 Cn Black; apmeklētāja pārlūkā tāda fonta nav, un tas
+        to aizvietotu ar noklusējuma - cita platuma, cita svara, bez slīpuma.
+        Pārbaudīts pret oriģinālu, renderējot abus 2800 px platumā: katrs burts
+        savā vietā ar 0-1 px atšķirību, pārējais ir malu izlīdzināšana.
+      */}
       <img
-        src="/media/lauva.svg"
-        alt=""
-        width="72"
-        height="64"
-        className="me-3 h-[52px] w-auto shrink-0 md:h-16"
+        src="/media/gd-logo-horizontal.svg"
+        alt="Gatis Design"
+        width="225"
+        height="72"
+        className="h-14 w-auto shrink-0 md:h-[72px]"
       />
-      <span className="text-[19px] font-bold tracking-[-0.02em] text-paper md:text-[20px]">Gatis Design</span>
     </Link>
   );
 

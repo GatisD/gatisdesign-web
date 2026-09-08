@@ -66,18 +66,16 @@ export default function Footer() {
           />
 
           <div className="flex flex-col gap-6">
-            {/* Kolofona zīme. alt tukšs, jo vārds ir blakus tekstā. */}
-            <Link to={path("home")} className="flex w-fit items-center gap-3">
+            {/* Kolofona zīme. Horizontālais logo ietver vārdzīmi, tāpēc blakus
+                vairs nav atsevišķa teksta. */}
+            <Link to={path("home")} className="flex w-fit items-center">
               <img
-                src="/media/lauva.svg"
-                alt=""
-                width="72"
-                height="64"
-                className="h-14 w-auto shrink-0 md:h-16"
+                src="/media/gd-logo-horizontal.svg"
+                alt="Gatis Design"
+                width="225"
+                height="72"
+                className="h-14 w-auto shrink-0 md:h-[72px]"
               />
-              <span className="text-[19px] font-bold tracking-[-0.02em] text-paper md:text-[20px]">
-                Gatis Design
-              </span>
             </Link>
 
             <nav aria-label={t.nav.services}>
