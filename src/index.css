@@ -15,6 +15,12 @@
     overflow-x: clip;
   }
   html {
+    /* Otrā vieta blakus index.html meta tagam: meta nostrādā pirms stila, šis
+       paliek spēkā arī tad, ja lapa tiek iegulta vai meta pazūd. Fons te ir
+       tāpēc, ka bez tā pārvilkšanas zona ekrāna malās rāda pārlūka pašas
+       krāsu, ne lapas. */
+    color-scheme: dark;
+    background: var(--ink-900);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
