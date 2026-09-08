@@ -6,17 +6,26 @@
 /*
  * Dizaina tokeni - virziens "Direction" (apstiprināta kanva 2026-09-05).
  *
- * Kontrasta vārti (WCAG 2.1 AA, pārbaudīts 2026-09-05):
- *   vara #DF541E uz grafīta #0D0B09 ........ 5,07:1  teksts un akcents - atļauts
- *   vara #DF541E uz ink-850 #121010 ........ 4,90:1  teksts un akcents - atļauts
- *   #1A1206 uz vara pildījuma ............. 4,79:1  pogu teksts - atļauts
- *   vara #DF541E uz papīra #EFE8DC ......... 3,18:1  KRĪT - tikai pildījums, nekad teksts
- *   #A23D16 uz papīra #EFE8DC .............. 5,36:1  teksts uz papīra - atļauts
- *   vara-dziļā #98461E uz papīra #EFE8DC ... 5,34:1  teksts uz papīra virsmām
- *   teksts #1A1206 uz vara pogas ........... 5,86:1
+ * AKCENTS NĀK NO LOGO. 2026-09-08 akcents nomainīts no vara #DF541E uz #FEBC11
+ * - tieši to dzelteno, kas ir lauvas kronī (public/media/lauva.svg, .cls-1).
+ * Iemesls bija redzams: kad zīme galvenē kļuva 64 px liela, kronis bija
+ * vienīgais dzeltenais objekts visā lapā un lasījās kā svešķermenis.
+ *
+ * Kontrasta vārti (WCAG 2.1 AA, pārmērīts 2026-09-08):
+ *   kronis #FEBC11 uz grafīta #0D0B09 ...... 11,61:1  teksts un akcents - atļauts
+ *   kronis #FEBC11 uz ink-850 #121010 ...... 11,21:1  teksts un akcents - atļauts
+ *   kronis #FEBC11 uz ink-card #181513 ..... 10,74:1  teksts uz kartēm - atļauts
+ *   #1A1206 uz kroņa pildījuma ............ 10,96:1  pogu teksts - atļauts
+ *   kronis #FEBC11 uz papīra #EFE8DC ....... 1,39:1  KRĪT - nekad, ne pat pildījums
+ *   #7A5801 uz papīra #EFE8DC .............. 5,35:1  teksts uz papīra - atļauts
+ *   #AD7D01 uz grafīta #0D0B09 ............. 5,34:1  klusākais akcenta pildījums
  *   papīrs-faint #948A7D uz kartes #161211 . 5,48:1  vismazākais sekundārais teksts
- * Tāpēc vara ir DIVI tokeni, ne viens: --amber (tumšās virsmas, pildījumi) un
- * --amber-on-paper (teksts uz papīra kājenes). Tos nedrīkst sajaukt vietām.
+ *
+ * Dzeltenais uz tumša ir DIVREIZ kontrastaināks par veco varu (11,61 pret
+ * 5,07), bet uz papīra tas nav lietojams nemaz: 1,39:1 pret vara 3,18:1. Tāpēc
+ * akcents joprojām ir DIVI tokeni, ne viens: --amber (tumšās virsmas,
+ * pildījumi) un --amber-on-paper (teksts uz papīra kājenes). Tos nedrīkst
+ * sajaukt vietām, un tagad kļūda būtu nesalīdzināmi redzamāka.
  */
 
 /*
@@ -151,11 +160,11 @@
   --on-paper-dim: #5c544a;
 
   /* --- Vara --- */
-  --amber: #df541e;
-  --amber-soft: #e87f56;
-  --amber-deep: #a23d16;
-  /** Teksts un saites uz papīra virsmām. Uz papīra --amber ir 3,18:1 un krīt. */
-  --amber-on-paper: #a23d16;
+  --amber: #febc11;
+  --amber-soft: #fec93e;
+  --amber-deep: #ad7d01;
+  /** Teksts un saites uz papīra virsmām. Uz papīra --amber ir 1,39:1 - neredzams. */
+  --amber-on-paper: #7a5801;
   /** Teksts uz vara pildījuma (pogas). */
   --on-amber: #1a1206;
 
@@ -205,7 +214,10 @@
   /* --- Līnijas --- */
   --line: rgba(239, 232, 220, 0.14);
   --line-strong: rgba(239, 232, 220, 0.22);
-  --line-amber: rgba(224, 114, 60, 0.55);
+  /* Saišu pasvītrojums. Ar veco varu saplūdusī krāsa uz grafīta bija 2,61:1,
+     tas ir, ZEM 3:1, ko WCAG prasa saskarnes elementam; ar kroņa dzelteno tā ir
+     4,09:1. Krāsas maiņa te salaboja arī to, ko neviens nebija pamanījis. */
+  --line-amber: rgba(254, 188, 17, 0.55);
   --line-on-paper: rgba(13, 11, 9, 0.16);
 
   /* --- Fonti --- */

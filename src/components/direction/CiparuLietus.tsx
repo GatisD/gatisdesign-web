@@ -10,9 +10,14 @@ import { useEffect, useRef } from "react";
  * tieši virsū, tas ir tikko saskatāms. Tieši tas arī bija mērķis - fons, ne
  * priekšnesums.
  *
- * KRĀSA. Matrix zaļā šeit sadurtos ar visu pārējo: lapas akcents ir #DF541E,
+ * KRĀSA. Matrix zaļā šeit sadurtos ar visu pārējo: lapas akcents ir #FEBC11,
  * un divas piesātinātas krāsas fonā cīnītos savā starpā. Cipari ir papīra
  * krāsā, un tikai kolonnas galva ik pa laikam iedegas akcenta krāsā.
+ *
+ * Akcenta reizinātājs ir 1,3, agrāk 2,1. Vecais oranžais bija TUMŠĀKS par
+ * papīra krāsu un tam vajadzēja pastiprinājumu, lai vispār būtu manāms;
+ * dzeltenais ir gandrīz tikpat gaišs kā papīrs, un ar 2,1 akcenta cipari
+ * sāktu mirgot kā brīdinājums, ne kā fons.
  *
  * KĀPĒC CANVAS, NE DOM. Piecdesmit kolonnas reizes astoņas rindas ir 400
  * elementu, kas mainās katrā kadrā. DOM to izdarītu ar 400 stila pārrēķiniem;
@@ -141,7 +146,7 @@ export default function CiparuLietus() {
           if (alfa < 0.004) continue;
           const c = k.zimes[(rinda + ASTE) % k.zimes.length];
           ctx!.fillStyle =
-            i === 0 && k.akcents ? `rgba(223, 84, 30, ${alfa * 2.1})` : `rgba(239, 232, 220, ${alfa})`;
+            i === 0 && k.akcents ? `rgba(254, 188, 17, ${alfa * 1.3})` : `rgba(239, 232, 220, ${alfa})`;
           ctx!.fillText(c, k.x, rinda * RINDA);
         }
       }
