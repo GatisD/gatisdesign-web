@@ -574,7 +574,10 @@ export default function ProjectDetail() {
                      kvadrātveida kolekcijas vākam te tika nogriezti 38% no
                      apakšas, un objekts tajos vākos ir centrā. */
                   className={cn(
-                    "h-full w-full object-cover [filter:contrast(.96)_saturate(.9)] transition-transform duration-[1100ms] ease-dir group-hover:scale-[1.03]",
+                    /* Tāpat kā "Līdzīgi darbi" kartes tieši virs tās: melnbalts
+                       mierā, krāsa uz hover. Bez tā vienā ekrānā stāvēja divas
+                       karšu rindas ar diviem dažādiem likumiem. */
+                    "h-full w-full object-cover [filter:grayscale(1)_contrast(.98)] transition-[transform,filter] duration-[700ms] ease-dir group-hover:scale-[1.03] group-hover:[filter:grayscale(0)_contrast(1)]",
                     nav.next.shot?.desktop.src === nav.next.cover.src ? "object-[top_center]" : "object-center",
                   )}
                 />

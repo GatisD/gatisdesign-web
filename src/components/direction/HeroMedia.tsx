@@ -47,12 +47,12 @@ export default function HeroMedia({
   }, [src]);
 
   /**
-   * Filtrs vairs nav inline virkne, bet CSS mainīgie: pelēkošana un tās
-   * atgriešanās uz hover dzīvo stila lapā (`.foto-melnbalts`), un inline stils
-   * to pārrakstītu - inline vienmēr uzvar pār klasi.
+   * Filtrs nav inline virkne, bet CSS mainīgie: pelēkošana dzīvo stila lapā
+   * (`.foto-melnbalts`), un inline stils to pārrakstītu - inline vienmēr uzvar
+   * pār klasi.
    *
-   * Attēli DISKĀ paliek krāsaini ar nolūku. Ja tos padarītu melnbaltus failā,
-   * uz hover nebūtu kam kļūt krāsainam; pelēkums ir izskats, ne saturs.
+   * Attēli DISKĀ paliek krāsaini ar nolūku: pelēkums ir izskats, ne saturs, un
+   * krāsu atgriezt vēlāk nozīmē vienu CSS rindu, ne 33 failu pārģenerēšanu.
    */
   const mainigie = {
     ["--foto-gaisums" as string]: String(brightness),
@@ -60,7 +60,7 @@ export default function HeroMedia({
   };
 
   return (
-    <div ref={wrap} className={cn("media-melnbalts absolute inset-0 overflow-hidden", drift && "media-drift", className)} aria-hidden={posterAlt ? undefined : true}>
+    <div ref={wrap} className={cn("absolute inset-0 overflow-hidden", drift && "media-drift", className)} aria-hidden={posterAlt ? undefined : true}>
       <PicturePortfolio
         src={poster}
         alt={posterAlt}
