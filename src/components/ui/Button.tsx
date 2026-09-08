@@ -26,6 +26,12 @@ type Props = {
  * pieskāriens mobilajā nedod nekādu apstiprinājumu - poga izskatās nespiesta,
  * līdz nomainās lapa, un cilvēks spiež otrreiz.
  *
+ * `outline` ir stikls (sk. .stikls src/index.css, 2026-09-08): mierā 14%
+ * mala, uz hover tā pati matētā tablete, kas galvenes saitēm un darbu filtra
+ * čipiem. Primārā paliek pilna balta ar zaļo hover - balta poga, kas uz hover
+ * kļūst caurspīdīga, izskatās, ka izdziest. Nospiediena atbilde kontūrai ir
+ * pats stikls (:active), ne nobīde par pikseli.
+ *
  * `link` variantam apakšsvītra sēž uz PAŠA teksta (iekšējs <span>), bet
  * klikšķa lauks ir 44 px augsts. Ja `border-b` būtu uz ārējā elementa,
  * apakšsvītra pēc lauka palielināšanas nokārtos 12 px zem teksta.
@@ -41,11 +47,14 @@ export default function Button({
   onClick,
 }: Props) {
   const cls = cn(
-    "inline-flex items-center justify-center gap-2 font-medium transition-[background-color,color,border-color,transform] duration-300 ease-dir",
+    "inline-flex items-center justify-center gap-2 font-medium",
+    // Kontūras variantam pārejas dod .stikls; utilītklase to pārrakstītu, un
+    // ēna tad lēktu, ne plūstu.
+    variant !== "outline" && "transition-[background-color,color,border-color,transform] duration-300 ease-dir",
     variant === "primary" &&
       "min-h-[56px] rounded-full bg-paper px-8 py-4 text-[17px] text-ink-900 hover:bg-amber hover:text-on-amber active:translate-y-px active:bg-amber-soft active:text-on-amber md:min-h-16 md:px-[34px] md:py-[18px] md:text-[18px]",
     variant === "outline" &&
-      "min-h-[56px] rounded-full border border-line-strong px-8 py-4 text-[17px] text-paper hover:border-amber hover:text-amber active:translate-y-px active:border-amber active:text-amber md:min-h-16 md:px-[34px] md:py-[18px] md:text-[18px]",
+      "stikls stikls-rams min-h-[56px] rounded-full px-8 py-4 text-[17px] text-paper active:text-amber md:min-h-16 md:px-[34px] md:py-[18px] md:text-[18px]",
     variant === "link" &&
       "min-h-[44px] py-1 text-[17px] text-paper hover:text-amber active:text-amber md:text-[18px]",
     disabled && "pointer-events-none cursor-not-allowed opacity-55",

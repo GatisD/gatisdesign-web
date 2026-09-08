@@ -46,7 +46,8 @@ export default function LanguageSwitch({ routeKey }: { routeKey?: RouteKey }) {
             aria-current={l === locale ? "true" : undefined}
             className={cn(
               // 44 px abos virzienos: augstums bija 44, platums 15.
-              "inline-flex min-h-[44px] min-w-[44px] items-center justify-center font-label text-label uppercase transition-colors duration-300",
+              // Tablete kā galvenē: pašreizējā valoda stāv stiklā (aria-current), otra iedegas uz hover.
+              "stikls stikls-aktivs inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full font-label text-label uppercase",
               l === locale ? "text-paper" : "text-paper-faint hover:text-amber",
             )}
           >

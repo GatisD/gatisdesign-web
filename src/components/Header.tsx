@@ -130,7 +130,9 @@ export default function Header() {
   // dalītājlīnijas (-mx-4) - tā stāv VIRS saraksta, ne tajā.
   const mobileLinkClass = ({ isActive }: { isActive: boolean }) =>
     cn(
-      "stikls stikls-aktivs -mx-4 my-1.5 flex min-h-[60px] items-center justify-between gap-4 rounded-[16px] px-4 text-[clamp(1.25rem,5vw,1.5rem)] text-paper active:text-amber",
+      // Uz īsiem ekrāniem (iPhone SE: 667 px) rindas ir 52 px, ne 60: septiņas
+      // rindas plus zvans citādi neietilpst, un zvans paliek zem malas.
+      "stikls stikls-aktivs -mx-4 my-1.5 flex min-h-[60px] items-center justify-between gap-4 rounded-[16px] px-4 text-[clamp(1.25rem,5vw,1.5rem)] text-paper active:text-amber [@media(max-height:700px)]:my-1 [@media(max-height:700px)]:min-h-[52px]",
       !isActive && "hover:text-amber",
     );
 
@@ -346,10 +348,14 @@ export default function Header() {
           // Apakšmala ir sīkdatņu joslas augstums (--bottom-bar; josla ir
           // z-200 un paliek redzama arī ar atvērtu izvēlni), lai tā neaizsegtu
           // ne pēdējo rindu, ne zvanu.
-          className="fixed inset-x-0 top-[var(--galvene)] z-[160] flex flex-col overflow-y-auto bg-ink-900 lg:hidden"
+          className="fixed inset-x-0 top-[var(--galvene)] z-[160] flex flex-col overflow-hidden bg-ink-900 lg:hidden"
           style={{ bottom: "var(--bottom-bar, 0px)" }}
         >
-          <nav aria-label={t.nav.services} className="px-5 pt-3 sm:px-8">
+          {/* Ritinās SARAKSTS, ne visa izvēlne: zvans apakšā ir piesprausts un
+              redzams vienmēr. Kad viss panelis ritinājās kopā, īsā skatā zvans
+              bija pusē nogriezts zem malas - un tieši tā poga, kuras dēļ
+              izvēlni telefonā atver. */}
+          <nav aria-label={t.nav.services} className="min-h-0 flex-1 overflow-y-auto px-5 pt-3 sm:px-8">
             <ul className="divide-y divide-line">
               {mobileRows.map((row) => (
                 <li key={row.key}>
@@ -361,16 +367,15 @@ export default function Header() {
               ))}
             </ul>
           </nav>
-          {/* Zvans apakšā, ne augšā: īkšķis telefonā ir apakšā, un saraksts
-              pēc pēdējās rindas beidzas tieši tur. `mt-auto` to piespiež pie
-              apakšmalas, kamēr saraksts ir īsāks par ekrānu; garākā ekrānā tas
-              ritinās līdzi. */}
-          <div className="mt-auto flex items-center justify-between gap-6 px-5 pb-10 pt-10 sm:px-8">
+          {/* Zvans apakšā, ne augšā: īkšķis telefonā ir apakšā. Bloks ir
+              ārpus ritināmā saraksta, tāpēc tas ir redzams arī tad, kad
+              saraksts ir garāks par ekrānu. */}
+          <div className="flex shrink-0 items-center justify-between gap-6 border-t border-line px-5 pb-8 pt-6 sm:px-8 [@media(max-height:700px)]:pb-5 [@media(max-height:700px)]:pt-4">
             <a
               href={PHONE.href}
               className="group inline-flex min-h-[44px] items-center gap-4 text-[16px] text-paper-dim transition-colors duration-300 hover:text-paper active:text-paper"
             >
-              <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-amber text-on-amber transition-colors duration-300 group-hover:bg-amber-soft group-active:bg-amber-soft">
+              <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-amber text-on-amber transition-colors duration-300 group-hover:bg-amber-soft group-active:bg-amber-soft [@media(max-height:700px)]:h-14 [@media(max-height:700px)]:w-14">
                 {/* Tā pati klausule, kas WhatsApp pogai - viena zīme vienai darbībai. */}
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path

@@ -555,14 +555,16 @@
 .stikls-rams {
   border-color: rgb(255 255 255 / calc(0.14 + 0.06 * var(--st)));
 }
-/* Ieslēgtie stāvokļi. aria-current ir pašreizējā lapa (navigācija),
-   aria-pressed ir nospiestais filtrs - abi ir stāvokļi, ko elements jau
-   pasaka ekrānlasītājam, un stikls seko tiem, ne atsevišķai klasei. */
+/* Ieslēgtie stāvokļi. aria-current ir pašreizējā lapa vai valoda,
+   aria-pressed ir nospiestais filtrs, :has(:checked) ir atzīmētā formas
+   izvēle - visi ir stāvokļi, ko elements jau pasaka ekrānlasītājam, un
+   stikls seko tiem, ne atsevišķai klasei. */
 .stikls-on,
 .stikls:focus-visible,
 .stikls:active,
 .stikls[aria-pressed="true"],
-.stikls-aktivs[aria-current="page"] {
+.stikls:has(:checked),
+.stikls-aktivs[aria-current] {
   --st: 1;
 }
 @media (hover: hover) {

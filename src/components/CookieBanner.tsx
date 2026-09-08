@@ -195,7 +195,7 @@ export default function CookieBanner() {
           <button
             type="button"
             onClick={() => store("necessary")}
-            className="min-h-[44px] flex-1 whitespace-nowrap rounded-full border border-line-strong px-4 text-[13px] text-paper transition-colors duration-300 hover:border-amber hover:text-amber active:border-amber active:text-amber sm:flex-initial sm:px-5 sm:text-[14px]"
+            className="stikls stikls-rams min-h-[44px] flex-1 whitespace-nowrap rounded-full px-4 text-[13px] text-paper active:text-amber sm:flex-initial sm:px-5 sm:text-[14px]"
           >
             {t.cookies.necessaryOnly}
           </button>

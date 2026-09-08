@@ -108,7 +108,7 @@ export default function Footer() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex h-11 w-11 items-center justify-center text-paper-dim transition-colors duration-300 hover:text-amber active:text-amber"
+                      className="stikls inline-flex h-11 w-11 items-center justify-center rounded-[12px] text-paper-dim hover:text-amber active:text-amber"
                     >
                       <svg
                         viewBox="0 0 24 24"

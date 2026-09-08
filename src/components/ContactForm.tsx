@@ -256,7 +256,7 @@ export default function ContactForm({ className }: { className?: string }) {
             reset();
             setStatus({ state: "idle" });
           }}
-          className="mt-7 inline-flex min-h-[52px] items-center rounded-full border border-line-strong px-6 text-[16px] text-paper transition-colors duration-300 hover:border-amber hover:text-amber active:border-amber active:text-amber"
+          className="stikls stikls-rams mt-7 inline-flex min-h-[52px] items-center rounded-full px-6 text-[16px] text-paper active:text-amber"
         >
           {t.form.successAgain}
         </button>
@@ -338,7 +338,7 @@ export default function ContactForm({ className }: { className?: string }) {
             {BUDGET_VALUES.map((value) => (
               <label
                 key={value}
-                className="group cursor-pointer rounded-field border border-line px-4 py-3 text-[15px] text-paper-2 transition-[border-color,color,background-color] duration-300 hover:border-line-strong active:border-amber has-[:checked]:border-amber has-[:checked]:bg-amber has-[:checked]:text-on-amber has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-amber"
+                className="stikls stikls-rams group cursor-pointer rounded-field px-4 py-3 text-[15px] text-paper-2 hover:text-paper has-[:checked]:text-amber has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-amber"
               >
                 <input
                   type="radio"
