@@ -245,11 +245,9 @@ export default function ProjectDetail() {
           { locale: "lv", path: projectPath(project.slug, "lv") },
           { locale: "en", path: projectPath(project.slug, "en") },
         ]}
-        // EN saturs vēl nav tulkots, tāpēc /en rāda LV tekstu ar noindex.
-        // Bez apraksta lapas vienīgais teksts ir salikts no metadatu laukiem -
-        // tāda lapa Google indeksā ir plāns saturs, tāpēc arī tā ir noindex,
-        // līdz `summaryLv` ir uzrakstīts (sk. indexableProjects).
-        noindex={!isLv || !project.summary}
+        // Lapa bez apraksta Google indeksā ir plāns saturs, tāpēc tā ir noindex
+        // abās valodās, līdz apraksts ir uzrakstīts (sk. indexableProjects).
+        noindex={!project.summary}
       />
       <JsonLd
         data={[

@@ -43,7 +43,6 @@ const FACTS = factsFrom(statItems);
 export default function ParMani({ content = aboutContent, stats = FACTS }: { content?: PageContent; stats?: StatItem[] }) {
   const { locale, t, path } = useLocale();
   const isLv = locale === "lv";
-  const noindex = !isLv;
 
   const abs = (key: RouteKey) => `${SITE_URL}${pathFor(key, locale)}`;
   const PERSON_ID = `${SITE_URL}/#gatis`;
@@ -75,7 +74,6 @@ export default function ParMani({ content = aboutContent, stats = FACTS }: { con
         locale={locale}
         title={content.metaTitle}
         description={content.metaDescription}
-        noindex={noindex}
       />
       <JsonLd data={[personSchema, faqPageSchema, breadcrumbSchema]} />
 

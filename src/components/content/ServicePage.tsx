@@ -51,11 +51,6 @@ export default function ServicePage({
   const hero = SERVICE_HERO[routeKey];
   const isLv = locale === "lv";
 
-  // EN saturs vēl nav uzrakstīts. Līdz tam EN maršruti rāda LV tekstu ar
-  // noindex, lai Google neindeksē latviešu saturu zem angļu URL, un EN URL
-  // nav sitemapā. Kad tulkojums ir gatavs: src/content/en/*.json, izvēle pēc
-  // locale, noindex nost un EN atpakaļ sitemapā (vite.config.ts).
-  const noindex = !isLv;
 
   const otherServices = SERVICE_KEYS.filter((key) => key !== routeKey);
 
@@ -76,7 +71,6 @@ export default function ServicePage({
         locale={locale}
         title={content.metaTitle}
         description={content.metaDescription}
-        noindex={noindex}
       />
       <JsonLd data={buildServiceSchema(content, routeKey, locale)} />
 

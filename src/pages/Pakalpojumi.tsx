@@ -39,7 +39,6 @@ export type PakalpojumiContent = typeof lvContent;
 export default function Pakalpojumi({ content = lvContent }: { content?: PakalpojumiContent }) {
   const { locale, path } = useLocale();
   const isLv = locale === "lv";
-  const noindex = !isLv;
   const url = `${SITE_URL}${path("services")}`;
 
   const cards = content.cards.map((card) => ({ ...card, key: routeKeyForPath(card.target) as RouteKey }));
@@ -81,7 +80,6 @@ export default function Pakalpojumi({ content = lvContent }: { content?: Pakalpo
         locale={locale}
         title={content.metaTitle}
         description={content.metaDescription}
-        noindex={noindex}
       />
       <JsonLd data={[collectionSchema, breadcrumbSchema]} />
 

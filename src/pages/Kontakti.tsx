@@ -43,7 +43,6 @@ const FORM_ANCHOR = "pieteikuma-forma";
 export default function Kontakti({ content = contactContent }: { content?: PageContent }) {
   const { locale, t, path } = useLocale();
   const isLv = locale === "lv";
-  const noindex = !isLv;
 
   const contactPointSchema = {
     "@context": "https://schema.org",
@@ -72,7 +71,6 @@ export default function Kontakti({ content = contactContent }: { content?: PageC
         locale={locale}
         title={content.metaTitle}
         description={content.metaDescription}
-        noindex={noindex}
       />
       <JsonLd data={[contactPointSchema, faqPageSchema, breadcrumbSchema]} />
 

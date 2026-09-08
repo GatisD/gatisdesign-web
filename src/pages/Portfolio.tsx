@@ -158,8 +158,6 @@ export default function Portfolio() {
         locale={locale}
         title={isLv ? "Mājaslapu un logo izstrādes piemēri" : "Website and logo design examples"}
         description={isLv ? META_DESCRIPTION : META_DESCRIPTION_EN}
-        // EN saturs vēl nav tulkots, tāpēc /en/portfolio rāda LV tekstu ar noindex.
-        noindex={!isLv}
       />
       <JsonLd
         data={[

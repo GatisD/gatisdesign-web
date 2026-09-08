@@ -28,7 +28,8 @@ export default function SEO({ title, description, locale, routeKey, alternates, 
   // Telegram, Facebook un LinkedIn veco adresi tur kešā nedēļām, un pārģenerēts
   // attēls ar to pašu vārdu tiem paliktu vecais. /og-image.png diskā paliek
   // (tā pati bilde), lai jau nokopētās saites nedotu 404.
-  const ogImage = abs(image ?? "/og-gatisdesign.png");
+  // Koplietošanas attēls valodā: EN lapām savs ar angļu virsrakstu (2026-09-08).
+  const ogImage = abs(image ?? (locale === "en" ? "/og-gatisdesign-en.png" : "/og-gatisdesign.png"));
   const lvAlt = alts.find((a) => a.locale === "lv");
   const ogUrl = canonical ?? SITE_URL;
 

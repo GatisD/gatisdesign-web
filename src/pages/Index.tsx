@@ -162,9 +162,6 @@ export default function Index({ home = homeLv }: { home?: HomeData }) {
     serviceCards,
   } = home;
 
-  // EN maršruti paliek noindex un ārpus sitemap, kamēr viss EN saturs nav
-  // pārbaudīts un slēdzis ieslēgts (sk. LANGUAGE_SWITCH_VISIBLE).
-  const noindex = !isLv;
 
   const works = bySlug(featured).map((p) => localized(p, locale));
   const rowTop = works.slice(0, 2);
@@ -177,7 +174,6 @@ export default function Index({ home = homeLv }: { home?: HomeData }) {
         locale={locale}
         title={homeContent.metaTitle}
         description={homeContent.metaDescription}
-        noindex={noindex}
       />
       <JsonLd data={homeSchemas(home, locale)} />
 

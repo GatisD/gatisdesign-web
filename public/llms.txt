@@ -2,7 +2,7 @@
 
 > Mājaslapu dizainers un izstrādātājs Rīgā. Zīmols, mājaslapa, AI aģenti un redzamība Google meklētājā un AI atbildēs - visu izdara viens cilvēks, bez aģentūras. 18 gadu pieredze kopš 2008. gada, vairāk nekā 100 pabeigtu projektu, klienti Latvijā, Igaunijā, Lietuvā un ASV.
 
-Pēdējoreiz atjaunināts: 2026-09-08. Kanoniskā versija ir latviešu valodā.
+Pēdējoreiz atjaunināts: 2026-09-08. Kanoniskā versija ir latviešu valodā; angļu versija ir sadaļā "English pages" un https://gatisdesign.com/en.
 
 Gatis Daugavietis strādā viens - no pirmās sarunas līdz publicēšanai un arī pēc tās. Viņš nav PVN maksātājs, tāpēc norādītā summa ir galīga: tai nekas netiek pieskaitīts. Apmaksas termiņš ir 5 darba dienas. Projekti tiek pārdoti ar fiksētu cenu un termiņu, nevis pēc stundas likmes; stundas likme 60 EUR attiecas tikai uz atsevišķiem darbiem jau esošā risinājumā.
 
@@ -13,6 +13,21 @@ Gatis Daugavietis strādā viens - no pirmās sarunas līdz publicēšanai un ar
 - [Logo izveide un zīmola identitāte](https://gatisdesign.com/zimola-identitate): logo ar 3-4 koncepcijām 500-700 EUR, izpilde 2-3 nedēļas. Esošā logo uzlabošana 200 EUR, zīmola grāmata 350-500 EUR, paplašināta zīmola grāmata ar stratēģiju 3000 EUR, drukas materiāli 120-900 EUR.
 - [SEO, GEO un AEO redzamība](https://gatisdesign.com/seo-geo-aeo): SEO audits līdz 5 lapām 300 EUR, līdz 10 lapām 500 EUR, līdz 20 lapām ar konkurentu analīzi 800 EUR. AI SEO bāzes ieviešana 700 EUR, standarta ieviešana 1200 EUR, uzturēšana no 80 EUR mēnesī.
 - [AI aģenti un procesu automatizācija](https://gatisdesign.com/ai-agenti): procesu audits un automatizācijas plāns no 400 EUR, viena procesa automatizācija 900-1800 EUR, vairāku sistēmu integrācija no 2500 EUR, uzraudzība no 100 EUR mēnesī.
+
+## English pages
+
+Every page also exists in English with the same content and prices; hreflang links pair the two versions.
+
+- [Home (EN)](https://gatisdesign.com/en): web design, brand, AI agents and visibility in Google and AI answers, all by one person.
+- [Services (EN)](https://gatisdesign.com/en/services): four services with starting prices and timelines.
+- [Website development (EN)](https://gatisdesign.com/en/website-development): landing page from 500 EUR, full website 900-1500 EUR, online store from 2500 EUR.
+- [Logo design and brand identity (EN)](https://gatisdesign.com/en/brand-identity): logo with 3-4 concepts 500-700 EUR, brand book from 350 EUR.
+- [SEO, GEO and AEO (EN)](https://gatisdesign.com/en/seo-geo-aeo): SEO audit from 300 EUR, AI SEO implementation from 700 EUR.
+- [AI agents and automation (EN)](https://gatisdesign.com/en/ai-agents): process audit from 400 EUR, one automation 900-1800 EUR.
+- [About (EN)](https://gatisdesign.com/en/about): 18 years of experience, how I work, when one person is not the right choice.
+- [Contact (EN)](https://gatisdesign.com/en/contact): reply within one business day; connect@gatisdesign.com.
+- [Work (EN)](https://gatisdesign.com/en/portfolio): the published projects with the client and my role.
+- [Privacy policy (EN)](https://gatisdesign.com/en/privacy-policy).
 
 ## Par mani un saziņa
 

@@ -112,10 +112,15 @@ function checkDist(dist) {
       }
     }
 
-    // 6. EN lapas ir noindex, kamēr src/content/en/ nav. Kad EN saturs būs
-    //    gatavs, šis vārts jāizņem kopā ar `const noindex = !isLv`.
+    // 6. EN lapas ir indeksējamas kopš 2026-09-08 (EN saturs ir). noindex EN
+    //    lapā ir kļūda, izņemot 404 un projektu lapas, kuru LV dvīnis arī ir
+    //    noindex (bez apraksta) - tur abas valodas ir vienādi plānas.
     const noindex = /name="robots"[^>]*content="[^"]*noindex/.test(html);
-    if (isEnPage(page) && !noindex) errors.push(`${where} EN lapa bez noindex`);
+    if (isEnPage(page) && noindex && !isNotFound(page)) {
+      const lvTwin = page.startsWith("en/portfolio/") ? page.slice(3) : null;
+      const twinNoindex = lvTwin ? /name="robots"[^>]*content="[^"]*noindex/.test(read(lvTwin) ?? "") : false;
+      if (!twinNoindex) errors.push(`${where} EN lapa ar noindex`);
+    }
 
     // 7. Virsraksts, apraksts, canonical - katrā lapā, un unikāli starp tām
     //    lapām, kuras Google drīkst indeksēt.
@@ -263,6 +268,10 @@ function checkDist(dist) {
     const inFile = new Set(links.map(([, url]) => url.replace(/\/$/, "")));
     const sitemapLocs = sitemap ? [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]) : [];
     for (const loc of sitemapLocs) {
+      // EN projektu lapas llms.txt neuzskaita atsevišķi: fails ir kanonisks
+      // latviski, EN darbu saraksts ir /en/portfolio, un 38 EN darbu rindas
+      // dublētu LV sarakstu bez jaunas informācijas modelim.
+      if (loc.includes("/en/portfolio/")) continue;
       if (!inFile.has(loc.replace(/\/$/, ""))) errors.push(`llms.txt trūkst sitemap adreses: ${loc}`);
     }
   }
@@ -290,8 +299,12 @@ function checkDist(dist) {
   {
     const detailPages = pages.filter((page) => /^portfolio\/[^/]+\.html$/.test(page));
     const total = detailPages.length;
+    // Tikai LV darbu lapas: llms.txt uzskaita LV sarakstu, EN dvīņi sitemapā
+    // ir tās pašas lapas otrā valodā, ne papildu darbi.
     const indexable = sitemap
-      ? [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].filter((m) => m[1].includes("/portfolio/")).length
+      ? [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].filter(
+          (m) => m[1].includes("/portfolio/") && !m[1].includes("/en/portfolio/"),
+        ).length
       : 0;
 
     if (total === 0) errors.push("dist nesatur nevienu projekta lapu");
@@ -496,10 +509,10 @@ const MUTATIONS = [
     },
   },
   {
-    name: "EN lapa bez noindex",
+    name: "EN lapa ar noindex",
     apply: (d) => {
       const p = join(d, "en/privacy-policy.html");
-      writeFileSync(p, readFileSync(p, "utf8").replace(/<meta[^>]*name="robots"[^>]*>/, ""));
+      writeFileSync(p, readFileSync(p, "utf8").replace(/(name="robots"[^>]*content=")index, follow/, "$1noindex, follow"));
     },
   },
   {

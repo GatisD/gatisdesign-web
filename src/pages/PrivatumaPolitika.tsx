@@ -54,10 +54,6 @@ function EmailLink() {
 export default function PrivatumaPolitika() {
   const { locale, t } = useLocale();
   const isLv = locale === "lv";
-  // Noteikums "EN lapas ir noindex, kamēr nav EN satura" bija ieviests 34 lapās
-  // no 35 - šī bija vienīgā, kas palika indeksējama ar latviešu tekstu zem
-  // lang="en" un self-canonical.
-  const noindex = !isLv;
   return (
     <>
       <SEO
@@ -69,7 +65,6 @@ export default function PrivatumaPolitika() {
             ? "Gatis Design privātuma politika - kā apstrādājam tavus datus, kādas ir tavas tiesības un kā ar mums sazināties."
             : "Gatis Design privacy policy - how we process your data, what your rights are and how to contact us."
         }
-        noindex={noindex}
       />
       <JsonLd
         data={buildBreadcrumbSchema([
