@@ -481,6 +481,41 @@
   }
 }
 
+/* Fona kadri: melnbalti mierā, krāsaini, kad pele ir tajā sadaļā.
+
+   Attēli diskā ir KRĀSAINI. Pelēkums ir izskats, ne saturs: ja faili būtu
+   melnbalti, uz hover nebūtu kam kļūt krāsainam, un atgriezt krāsu vēlāk
+   nozīmētu pārģenerēt visus 33 failus.
+
+   Hover ķer `:has()`, ne pats attēls. Kadrs ir `absolute inset-0` SEKCIJAS
+   iekšienē un satura BRĀLIS, ne vecāks - hover uz virsraksta tam nekad
+   nepieskartos. `*:has(> .media-melnbalts)` paņem tieši to elementu, kurā kadrs
+   sēž, tas ir, pašu sekciju.
+
+   `@media (hover: hover)`: uz pieskāriena ekrāniem hover nav, un tur fons
+   paliek melnbalts. Tas ir apzināti - efekts ir peles žests, ne slēptais saturs.
+
+   Ar `prefers-reduced-motion` pāreja ir tūlītēja, bet stāvokļi paliek: krāsas
+   atgriešanās ir informācija, 700 ms garš pārejas ceļš - nav. */
+.foto-melnbalts {
+  filter: grayscale(1) brightness(var(--foto-gaisums, 0.55)) saturate(0.85)
+    blur(var(--foto-izpludums, 0px));
+  transition: filter 700ms var(--ease);
+}
+
+@media (hover: hover) {
+  *:has(> .media-melnbalts):hover .foto-melnbalts {
+    filter: grayscale(0) brightness(var(--foto-gaisums, 0.55)) saturate(0.95)
+      blur(var(--foto-izpludums, 0px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .foto-melnbalts {
+    transition: none;
+  }
+}
+
 /* WhatsApp pogas gaismas gredzens.
 
    Viens gredzens ik pēc 5 s, ne pastāvīgs pulss: perifērijā acs to pamana, bet

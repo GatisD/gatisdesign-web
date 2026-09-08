@@ -46,10 +46,21 @@ export default function HeroMedia({
     return () => window.clearTimeout(id);
   }, [src]);
 
-  const filter = `brightness(${brightness}) saturate(.85)${blur ? " blur(1px)" : ""}`;
+  /**
+   * Filtrs vairs nav inline virkne, bet CSS mainīgie: pelēkošana un tās
+   * atgriešanās uz hover dzīvo stila lapā (`.foto-melnbalts`), un inline stils
+   * to pārrakstītu - inline vienmēr uzvar pār klasi.
+   *
+   * Attēli DISKĀ paliek krāsaini ar nolūku. Ja tos padarītu melnbaltus failā,
+   * uz hover nebūtu kam kļūt krāsainam; pelēkums ir izskats, ne saturs.
+   */
+  const mainigie = {
+    ["--foto-gaisums" as string]: String(brightness),
+    ["--foto-izpludums" as string]: blur ? "1px" : "0px",
+  };
 
   return (
-    <div ref={wrap} className={cn("absolute inset-0 overflow-hidden", drift && "media-drift", className)} aria-hidden={posterAlt ? undefined : true}>
+    <div ref={wrap} className={cn("media-melnbalts absolute inset-0 overflow-hidden", drift && "media-drift", className)} aria-hidden={posterAlt ? undefined : true}>
       <PicturePortfolio
         src={poster}
         alt={posterAlt}
@@ -60,8 +71,8 @@ export default function HeroMedia({
         sizes="100vw"
         width={1600}
         height={900}
-        className="media-settle absolute inset-0 h-full w-full object-cover"
-        style={{ objectPosition: position, filter }}
+        className="media-settle foto-melnbalts absolute inset-0 h-full w-full object-cover"
+        style={{ objectPosition: position, ...mainigie }}
       />
       {showVideo && src ? (
         <video
@@ -73,8 +84,8 @@ export default function HeroMedia({
           playsInline
           width={1600}
           height={900}
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{ objectPosition: position, filter }}
+          className="foto-melnbalts absolute inset-0 h-full w-full object-cover"
+          style={{ objectPosition: position, ...mainigie }}
         />
       ) : null}
     </div>

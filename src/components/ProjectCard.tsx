@@ -145,9 +145,14 @@ export default function ProjectCard({
           className={cn(
             "h-full w-full",
             fits ? `object-cover ${enkurs}` : "object-contain p-5 md:p-7",
-            "[filter:contrast(.96)_saturate(.9)]",
-            "transition-[transform,filter] duration-[1100ms] ease-dir",
-            "group-hover:[filter:contrast(1)_saturate(1)]",
+            /* Melnbalts mierā, krāsains uz hover. Režģī tas notur uzmanību
+               pie kompozīcijas, ne pie astoņpadsmit svešu zīmolu krāsām, kas
+               vienā ekrānā cīnās savā starpā; krāsa atgriežas tieši tai kartei,
+               uz kuras cilvēks skatās. Projekta LAPĀ iekšā vāks paliek
+               krāsains vienmēr - tur darbs jau ir izvēlēts. */
+            "[filter:grayscale(1)_contrast(.98)]",
+            "transition-[transform,filter] duration-[700ms] ease-dir",
+            "group-hover:[filter:grayscale(0)_contrast(1)]",
             "[@media(hover:hover)]:group-hover:scale-[1.03]",
           )}
         />
