@@ -2,23 +2,55 @@ import { useEffect, useId, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useLocale } from "@/i18n/LocaleContext";
 import { cn } from "@/lib/utils";
+import { PHONE } from "@/lib/site";
 import { getLenis } from "./SmoothScroll";
 import LanguageSwitch from "./LanguageSwitch";
-import Label from "./ui/Label";
 import type { RouteKey } from "@/i18n/routes";
 
 const SERVICE_KEYS: RouteKey[] = ["services.brand", "services.web", "services.ai", "services.seo"];
 const SERVICE_LABEL = { "services.brand": "brand", "services.web": "web", "services.ai": "ai", "services.seo": "seo" } as const;
+
+/** Chevron pa labi - izvēlnes rindas "tālāk" zīme. Viens līnijas biezums ar bultiņu un klausuli. */
+function Chevron({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      width="18"
+      height="18"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="m9 6 6 6-6 6" />
+    </svg>
+  );
+}
 
 /**
  * Galvene.
  *
  * Fons un apakšlīnija parādās tikai pēc 40 px ritināšanas - virs hero attēla
  * josla ar fonu nogriež kadru, un Direction galva ir daļa no attēla, ne josla
- * virs tā.
+ * virs tā. Fons ir 90% grafīts BEZ backdrop-blur: galvene ar savu blur kļūtu
+ * par vecāku stikla tabletēm un Pakalpojumu panelim, un ligzdots
+ * backdrop-filter Chrome zīmē kā plakanu laukumu (sk. .stikls-blur
+ * src/index.css). Blur te nes tabletes, ne josla.
  *
  * "Pakalpojumi" ir īsts atklājamais bloks ar četrām saitēm, nevis saite uz
  * lapu, kuras nav. Bez tā četri pakalpojumi navigācijā aizņemtu pusi joslas.
+ *
+ * STIKLS (2026-09-08). Hover uz saites vairs nav pasvītrojums, bet matēta
+ * stikla tablete ap tekstu (sk. .stikls src/index.css). Pasvītrojums paliek
+ * tikai aktīvajai lapai - tā cilvēks redz divas dažādas lietas ar diviem
+ * dažādiem žestiem: kur viņš IR (svītra) un kur var AIZIET (tablete).
+ * Pakalpojumu saraksts ir stikla panelis, un tā rindas uz hover kļūst par
+ * tableti ar bultiņu. Mobilā izvēlne ir rindu saraksts ar chevroniem, kur
+ * pašreizējā lapa ir stikla kartīte, un apakšā ir zvana poga: telefonā izvēlne
+ * ir īsākais ceļš līdz zvanam, un tur to arī meklē.
  */
 export default function Header() {
   const { t, path } = useLocale();
@@ -81,17 +113,30 @@ export default function Header() {
     };
   }, [mobileOpen, servicesOpen]);
 
-  const linkClass = ({ isActive }: { isActive: boolean }) =>
-    cn(
-      "nav-underline relative text-[16px] font-medium transition-colors duration-300 active:text-amber",
-      isActive ? "text-paper [--underline:1]" : "text-paper-2 hover:text-paper",
-    );
+  // Tablete: 44 px augsta, 1 rem iekšējā atkāpe, hover = stikls. Krāsu pāreju
+  // dod .stikls, tāpēc te nav transition-colors - divas pārejas uz vienas
+  // īpašības viena otru pārrakstītu.
+  const tablete = "stikls stikls-blur nav-tablete relative inline-flex min-h-[44px] items-center rounded-full px-4 text-[16px] font-medium";
 
+  const linkClass = ({ isActive }: { isActive: boolean }) =>
+    cn(tablete, "active:text-amber", isActive ? "text-paper [--underline:1]" : "text-paper-2 hover:text-paper");
+
+  // Mobilā rinda. Pašreizējā lapa ir stikla kartīte (aria-current), ne cita
+  // krāsa: kartīte ir tas pats žests, kas darbvirsmā hover, un tā lasās arī
+  // tad, ja cilvēks krāsas neatšķir. Kartīte ir par 16 px platāka nekā
+  // dalītājlīnijas (-mx-4) - tā stāv VIRS saraksta, ne tajā.
   const mobileLinkClass = ({ isActive }: { isActive: boolean }) =>
     cn(
-      "flex min-h-[52px] items-center border-b border-line text-[clamp(1.25rem,5vw,1.6rem)] transition-colors duration-300 active:text-amber",
-      isActive ? "text-amber" : "text-paper hover:text-amber",
+      "stikls stikls-aktivs -mx-4 my-1.5 flex min-h-[60px] items-center justify-between gap-4 rounded-[16px] px-4 text-[clamp(1.25rem,5vw,1.5rem)] text-paper active:text-amber",
+      !isActive && "hover:text-amber",
     );
+
+  const mobileRows: { key: RouteKey; label: string }[] = [
+    { key: "portfolio", label: t.nav.portfolio },
+    ...SERVICE_KEYS.map((key) => ({ key, label: t.services[SERVICE_LABEL[key as keyof typeof SERVICE_LABEL]] })),
+    { key: "about", label: t.nav.about },
+    { key: "contact", label: t.nav.contact },
+  ];
 
   // 44 px klikšķa lauks ap zīmi. Pilsēta blakus vārdam nestāv: tā ir kājenē
   // un strukturētajos datos, un galvenē tā tikai atkārtoja to pašu.
@@ -130,14 +175,16 @@ export default function Header() {
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500 ease-dir",
-          scrolled ? "border-b border-line bg-ink-900/85 backdrop-blur-md" : "border-b border-transparent",
+          "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color] duration-500 ease-dir",
+          scrolled ? "border-b border-line bg-ink-900/90" : "border-b border-transparent",
         )}
       >
         <div className="mx-auto flex h-[var(--galvene)] w-full max-w-wrap items-center justify-between gap-6 px-5 sm:px-8 lg:px-10">
           {wordmark}
 
-          <nav aria-label={t.nav.services} className="hidden items-center gap-8 lg:flex">
+          {/* -mr-4: tabletes iekšējā atkāpe ir 1 rem, un bez tā "Kontakti"
+              teksts stāvētu 16 px tālāk no lapas malas nekā logo no kreisās. */}
+          <nav aria-label={t.nav.services} className="-mr-4 hidden items-center gap-1 lg:flex">
             <NavLink to={path("portfolio")} className={linkClass}>
               {t.nav.portfolio}
             </NavLink>
@@ -164,7 +211,8 @@ export default function Header() {
                   setServicesOpen((v) => !v);
                 }}
                 className={cn(
-                  "nav-underline relative inline-flex cursor-pointer items-center gap-1.5 text-[16px] font-medium transition-colors duration-300 active:text-amber",
+                  tablete,
+                  "cursor-pointer gap-1.5 active:text-amber",
                   SERVICE_KEYS.some((k) => pathname === path(k))
                     ? "text-paper [--underline:1]"
                     : "text-paper-2 hover:text-paper",
@@ -195,16 +243,43 @@ export default function Header() {
               {servicesOpen ? (
                 <div
                   id={panelId}
-                  className="absolute right-0 top-[calc(100%+18px)] z-10 w-[300px] rounded-card border border-line bg-ink-card p-2 [box-shadow:var(--shadow-panel)]"
+                  className="stikls-panelis izvelne-in absolute right-0 top-[calc(100%+12px)] z-10 w-[340px] rounded-[20px] p-2.5"
                 >
-                  <ul>
+                  <ul className="flex flex-col gap-0.5">
                     {SERVICE_KEYS.map((key) => (
                       <li key={key}>
                         <NavLink
                           to={path(key)}
-                          className="flex min-h-[48px] items-center rounded-field px-4 text-[16px] text-paper-2 transition-colors duration-200 hover:bg-ink-800 hover:text-amber"
+                          className={({ isActive }) =>
+                            cn(
+                              "stikls group flex min-h-[54px] items-center justify-between gap-4 rounded-[14px] px-4 text-[16px]",
+                              isActive ? "text-paper" : "text-paper-2 hover:text-paper",
+                            )
+                          }
                         >
-                          {t.services[SERVICE_LABEL[key as keyof typeof SERVICE_LABEL]]}
+                          <span>{t.services[SERVICE_LABEL[key as keyof typeof SERVICE_LABEL]]}</span>
+                          {/* Bultiņa ienāk kopā ar tableti: no kreisās 4 px un
+                              no caurspīdīga. Rindā, uz kuras kursora nav, tās
+                              nav vispār - četras bultiņas vienā sarakstā būtu
+                              četri "spied šeit" bez adresāta. */}
+                          <span
+                            aria-hidden="true"
+                            className="inline-flex shrink-0 -translate-x-1 opacity-0 transition-[opacity,transform] duration-300 ease-dir group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              width="17"
+                              height="17"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="1.6"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <path d="M5 12h14" />
+                              <path d="m13 6 6 6-6 6" />
+                            </svg>
+                          </span>
                         </NavLink>
                       </li>
                     ))}
@@ -218,28 +293,29 @@ export default function Header() {
             </NavLink>
             <NavLink
               to={path("contact")}
-              className={({ isActive }) =>
-                cn(
-                  "nav-underline relative text-[16px] font-medium text-amber transition-colors duration-300",
-                  isActive && "[--underline:1]",
-                )
-              }
+              className={({ isActive }) => cn(tablete, "text-amber", isActive && "[--underline:1]")}
             >
               {t.nav.contact}
             </NavLink>
             <LanguageSwitch />
           </nav>
 
+          {/* Atvērtā stāvoklī poga ir stikla kvadrāts ar krustiņu - tas pats
+              stikls, kas izvēlnes rindām, tāpēc krustiņš izskatās pēc izvēlnes
+              daļas, ne pēc svešķermeņa virs tās. */}
           <button
             ref={toggleRef}
             type="button"
             onClick={() => setMobileOpen((v) => !v)}
             aria-expanded={mobileOpen}
             aria-controls={menuId}
-            className="-mr-2 inline-flex h-[46px] w-[46px] items-center justify-center text-paper transition-colors duration-300 hover:text-amber lg:hidden"
+            className={cn(
+              "stikls -mr-2 inline-flex h-[46px] w-[46px] items-center justify-center rounded-[12px] text-paper hover:text-amber lg:hidden",
+              mobileOpen && "stikls-on",
+            )}
           >
             <span className="sr-only">{mobileOpen ? t.nav.closeMenu : t.nav.openMenu}</span>
-            <span aria-hidden="true" className="flex w-8 flex-col gap-[6px]">
+            <span aria-hidden="true" className="flex w-7 flex-col gap-[6px]">
               <span
                 className={cn(
                   "h-px w-full bg-current transition-transform duration-300 ease-dir",
@@ -259,24 +335,52 @@ export default function Header() {
       </header>
 
       {mobileOpen ? (
-        <div id={menuId} className="fixed inset-x-0 bottom-0 top-[var(--galvene)] z-[100] overflow-y-auto bg-ink-900 lg:hidden">
-          <nav aria-label={t.nav.services} className="flex flex-col px-5 sm:px-8 lg:px-10 pt-6">
-            <NavLink to={path("portfolio")} className={mobileLinkClass}>
-              {t.nav.portfolio}
-            </NavLink>
-            {SERVICE_KEYS.map((key) => (
-              <NavLink key={key} to={path(key)} className={mobileLinkClass}>
-                {t.services[SERVICE_LABEL[key as keyof typeof SERVICE_LABEL]]}
-              </NavLink>
-            ))}
-            <NavLink to={path("about")} className={mobileLinkClass}>
-              {t.nav.about}
-            </NavLink>
-            <NavLink to={path("contact")} className={mobileLinkClass}>
-              {t.nav.contact}
-            </NavLink>
+        <div
+          id={menuId}
+          // z-160: virs peldošajām pogām (WhatsApp un "uz augšu" ir z-150).
+          // Citādi abas stāv izvēlnes apakšējā kreisajā stūrī tieši uz zvana
+          // pogas - ekrānuzņēmumā tur bija divas zaļas ripas viena uz otras.
+          // Apakšmala ir sīkdatņu joslas augstums (--bottom-bar; josla ir
+          // z-200 un paliek redzama arī ar atvērtu izvēlni), lai tā neaizsegtu
+          // ne pēdējo rindu, ne zvanu.
+          className="fixed inset-x-0 top-[var(--galvene)] z-[160] flex flex-col overflow-y-auto bg-ink-900 lg:hidden"
+          style={{ bottom: "var(--bottom-bar, 0px)" }}
+        >
+          <nav aria-label={t.nav.services} className="px-5 pt-3 sm:px-8">
+            <ul className="divide-y divide-line">
+              {mobileRows.map((row) => (
+                <li key={row.key}>
+                  <NavLink to={path(row.key)} className={mobileLinkClass}>
+                    <span>{row.label}</span>
+                    <Chevron className="shrink-0 text-paper-dim" />
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
           </nav>
-          <div className="px-5 sm:px-8 lg:px-10 pb-12 pt-8">
+          {/* Zvans apakšā, ne augšā: īkšķis telefonā ir apakšā, un saraksts
+              pēc pēdējās rindas beidzas tieši tur. `mt-auto` to piespiež pie
+              apakšmalas, kamēr saraksts ir īsāks par ekrānu; garākā ekrānā tas
+              ritinās līdzi. */}
+          <div className="mt-auto flex items-center justify-between gap-6 px-5 pb-10 pt-10 sm:px-8">
+            <a
+              href={PHONE.href}
+              className="group inline-flex min-h-[44px] items-center gap-4 text-[16px] text-paper-dim transition-colors duration-300 hover:text-paper active:text-paper"
+            >
+              <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-amber text-on-amber transition-colors duration-300 group-hover:bg-amber-soft group-active:bg-amber-soft">
+                {/* Tā pati klausule, kas WhatsApp pogai - viena zīme vienai darbībai. */}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+              {t.nav.call}
+            </a>
             <LanguageSwitch />
           </div>
         </div>

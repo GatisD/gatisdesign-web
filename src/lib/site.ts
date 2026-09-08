@@ -17,6 +17,16 @@ export const WHATSAPP = {
   href: "https://wa.me/37127112163",
 };
 
+/**
+ * Tālrunis zvanam. Tas pats numurs, kas WhatsApp, bet `tel:` saite - mobilajā
+ * izvēlnē "Zvanīt" atver zvanu, ne čatu. Ar plusu un bez atstarpēm: tā `tel:`
+ * shēmu saprot visi tālruņi.
+ */
+export const PHONE = {
+  href: "tel:+37127112163",
+  display: "+371 27112163",
+};
+
 export const SOCIAL = {
   dribbble: "https://dribbble.com/gdesign90",
   facebook: "https://facebook.com/GatisDesign",

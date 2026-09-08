@@ -14,6 +14,7 @@ export const dict = {
       cta: "Sākt projektu",
       openMenu: "Atvērt izvēlni",
       closeMenu: "Aizvērt izvēlni",
+      call: "Zvanīt",
       skipToContent: "Pāriet uz saturu",
     },
     services: {
@@ -111,6 +112,7 @@ export const dict = {
       cta: "Start a project",
       openMenu: "Open menu",
       closeMenu: "Close menu",
+      call: "Call",
       skipToContent: "Skip to content",
     },
     services: {
