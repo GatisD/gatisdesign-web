@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocale } from "@/i18n/LocaleContext";
 import PicturePortfolio from "@/components/PicturePortfolio";
 import Label from "@/components/ui/Label";
 import { clientLogos, clientLogoPath } from "@/data/clients";
@@ -24,6 +25,8 @@ import { clientLogos, clientLogoPath } from "@/data/clients";
  */
 export default function ClientMarquee({ headingId, heading }: { headingId: string; heading: string }) {
   const [paused, setPaused] = useState(false);
+  const { locale } = useLocale();
+  const lv = locale === "lv";
 
   const list = (duplicate: boolean) => (
     <ul
@@ -60,9 +63,14 @@ export default function ClientMarquee({ headingId, heading }: { headingId: strin
           type="button"
           onClick={() => setPaused((v) => !v)}
           aria-pressed={paused}
+          // Pilnais nosaukums: sākumlapā ir arī rīku joslas poga ar to pašu
+          // redzamo vārdu. Redzamais vārds paliek nosaukuma sākumā.
+          aria-label={
+            paused ? (lv ? "Turpināt klientu joslu" : "Resume the clients strip") : lv ? "Apturēt klientu joslu" : "Pause the clients strip"
+          }
           className="font-label text-label uppercase text-paper-faint underline-offset-4 transition-colors duration-300 hover:text-amber hover:underline focus-visible:text-amber motion-reduce:hidden"
         >
-          {paused ? "Turpināt" : "Apturēt"}
+          {paused ? (lv ? "Turpināt" : "Resume") : lv ? "Apturēt" : "Pause"}
         </button>
       </div>
 

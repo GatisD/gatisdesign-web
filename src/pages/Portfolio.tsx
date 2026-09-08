@@ -8,6 +8,7 @@ import { Section, SectionTitle } from "@/components/direction/Section";
 import LinkedText from "@/components/content/LinkedText";
 import ProjectCard from "@/components/ProjectCard";
 import ClosingLine from "@/components/content/ClosingLine";
+import ClientMarquee from "@/components/ClientMarquee";
 import {
   indexableProjects,
   PLATFORM_TAGS,
@@ -222,6 +223,15 @@ export default function Portfolio() {
           </div>
         </div>
       </div>
+
+      {/* ============ KLIENTI ============ */}
+      {/* Klientu josla tieši zem filtriem (Gatis, 2026-09-08): darbu lapā
+          cilvēks vispirms redz, KAM ir strādāts, tad pašus darbus. Tā pati
+          josla, kas sākumlapā, uz tā paša fona; augšējo līniju dod filtru
+          joslas apakšmala. */}
+      <section className="border-b border-line bg-ink-850" aria-labelledby="klienti-h">
+        <ClientMarquee headingId="klienti-h" heading={isLv ? "Klienti, ar kuriem strādāju" : "Clients I work with"} />
+      </section>
 
       {/* ============ REŽĢIS ============ */}
       <Section rhythm="lg" ariaLabel={isLv ? "Darbu saraksts" : "Work list"}>
