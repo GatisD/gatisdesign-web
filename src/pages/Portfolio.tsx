@@ -201,16 +201,19 @@ export default function Portfolio() {
                   type="button"
                   onClick={() => setFilter(item.key)}
                   aria-pressed={active}
+                  // Stikls, tas pats, kas galvenes tabletēm (sk. .stikls src/index.css):
+                  // hover iedegas, nospiestais (aria-pressed) paliek iedegts ar
+                  // akcenta tekstu. Bez .stikls-blur - josla pati ir ar blur, un
+                  // ligzdots backdrop-filter zīmējas plakans. Rāmis mierā 14%:
+                  // čipu rinda bez malām ir tikai vārdi ar atstarpēm.
                   className={cn(
-                    "inline-flex min-h-[44px] shrink-0 items-center gap-2 whitespace-nowrap rounded-full border px-4 text-[15px] transition-colors duration-300",
-                    active
-                      ? "border-amber bg-amber text-on-amber"
-                      : "border-line text-paper-dim hover:border-line-strong hover:text-paper active:text-paper",
+                    "stikls stikls-rams inline-flex min-h-[44px] shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-4 text-[15px]",
+                    active ? "text-amber" : "text-paper-dim hover:text-paper active:text-paper",
                   )}
                 >
                   {item.label}
                   {/* Skaitlis ir solījums: nospiežot, tik daudz darbu paliek. */}
-                  <span className={cn("font-label text-label", active ? "opacity-60" : "text-paper-faint")}>
+                  <span className={cn("font-label text-label", active ? "opacity-70" : "text-paper-faint")}>
                     {item.count}
                   </span>
                 </button>

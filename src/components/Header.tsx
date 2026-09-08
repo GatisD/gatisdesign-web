@@ -43,10 +43,13 @@ function Chevron({ className }: { className?: string }) {
  * "Pakalpojumi" ir īsts atklājamais bloks ar četrām saitēm, nevis saite uz
  * lapu, kuras nav. Bez tā četri pakalpojumi navigācijā aizņemtu pusi joslas.
  *
- * STIKLS (2026-09-08). Hover uz saites vairs nav pasvītrojums, bet matēta
- * stikla tablete ap tekstu (sk. .stikls src/index.css). Pasvītrojums paliek
- * tikai aktīvajai lapai - tā cilvēks redz divas dažādas lietas ar diviem
- * dažādiem žestiem: kur viņš IR (svītra) un kur var AIZIET (tablete).
+ * STIKLS (2026-09-08). Hover uz saites ir matēta stikla tablete ap tekstu
+ * (sk. .stikls src/index.css), un tā pati tablete paliek uz pašreizējās
+ * lapas saites (aria-current caur .stikls-aktivs). Sākumā aktīvajai lapai bija
+ * pasvītrojums, un tablete tikai hover; Gatis dzīvajā redzēja abus blakus un
+ * izvēlējās vienu virsmu: tablete, kas STĀV, ir lapa, kurā esi, tablete, kas
+ * SEKO kursoram, ir lapa, uz kuru vari aiziet. Atšķirība ir uzvedībā, ne
+ * formā, un tas ir mazāk vizuālu ideju vienā joslā.
  * Pakalpojumu saraksts ir stikla panelis, un tā rindas uz hover kļūst par
  * tableti ar bultiņu. Mobilā izvēlne ir rindu saraksts ar chevroniem, kur
  * pašreizējā lapa ir stikla kartīte, un apakšā ir zvana poga: telefonā izvēlne
@@ -116,10 +119,10 @@ export default function Header() {
   // Tablete: 44 px augsta, 1 rem iekšējā atkāpe, hover = stikls. Krāsu pāreju
   // dod .stikls, tāpēc te nav transition-colors - divas pārejas uz vienas
   // īpašības viena otru pārrakstītu.
-  const tablete = "stikls stikls-blur nav-tablete relative inline-flex min-h-[44px] items-center rounded-full px-4 text-[16px] font-medium";
+  const tablete = "stikls stikls-blur stikls-aktivs relative inline-flex min-h-[44px] items-center rounded-full px-4 text-[16px] font-medium";
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    cn(tablete, "active:text-amber", isActive ? "text-paper [--underline:1]" : "text-paper-2 hover:text-paper");
+    cn(tablete, "active:text-amber", isActive ? "text-paper" : "text-paper-2 hover:text-paper");
 
   // Mobilā rinda. Pašreizējā lapa ir stikla kartīte (aria-current), ne cita
   // krāsa: kartīte ir tas pats žests, kas darbvirsmā hover, un tā lasās arī
@@ -213,9 +216,9 @@ export default function Header() {
                 className={cn(
                   tablete,
                   "cursor-pointer gap-1.5 active:text-amber",
-                  SERVICE_KEYS.some((k) => pathname === path(k))
-                    ? "text-paper [--underline:1]"
-                    : "text-paper-2 hover:text-paper",
+                  // Saite, ne NavLink, tāpēc aria-current tai nav - aktīvo
+                  // stiklu ieslēdz klase, ja atvērta kāda no četrām lapām.
+                  SERVICE_KEYS.some((k) => pathname === path(k)) ? "stikls-on text-paper" : "text-paper-2 hover:text-paper",
                 )}
               >
                 {t.nav.services}
@@ -293,7 +296,7 @@ export default function Header() {
             </NavLink>
             <NavLink
               to={path("contact")}
-              className={({ isActive }) => cn(tablete, "text-amber", isActive && "[--underline:1]")}
+              className={cn(tablete, "text-amber")}
             >
               {t.nav.contact}
             </NavLink>

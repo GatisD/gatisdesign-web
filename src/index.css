@@ -343,24 +343,6 @@
     --underline: 1;
   }
 
-  /* Galvenes tablete. Hover te ir stikls (sk. .stikls zemāk), tāpēc
-     pasvītrojums vairs nereaģē uz hover - tas paliek tikai aktīvajai lapai
-     (--underline nāk no utilītklases). Svītra sēž zem paša teksta, ne zem visas
-     tabletes: kreisā un labā mala ir tabletes iekšējā atkāpe (1 rem), apakša
-     5 px virs tabletes malas. */
-  .nav-tablete::after {
-    content: "";
-    position: absolute;
-    left: 1rem;
-    right: 1rem;
-    bottom: 5px;
-    height: 1px;
-    background: currentColor;
-    transform: scaleX(var(--underline, 0));
-    transform-origin: left;
-    transition: transform 0.34s var(--ease);
-  }
-
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -387,8 +369,7 @@
     .check-draw {
       animation: none;
     }
-    .nav-underline::after,
-    .nav-tablete::after {
+    .nav-underline::after {
       transition: none;
     }
     *,
@@ -568,9 +549,19 @@
     -webkit-backdrop-filter 0.3s var(--ease),
     backdrop-filter 0.3s var(--ease);
 }
+/* Rāmis: čipiem un kontūrpogām mierā vajag redzamu malu - rinda ar desmit
+   izvēlēm bez malām ir tikai vārdi ar atstarpēm. Mala 14% mierā, 20% uz
+   hover; viss pārējais nāk no .stikls. */
+.stikls-rams {
+  border-color: rgb(255 255 255 / calc(0.14 + 0.06 * var(--st)));
+}
+/* Ieslēgtie stāvokļi. aria-current ir pašreizējā lapa (navigācija),
+   aria-pressed ir nospiestais filtrs - abi ir stāvokļi, ko elements jau
+   pasaka ekrānlasītājam, un stikls seko tiem, ne atsevišķai klasei. */
 .stikls-on,
 .stikls:focus-visible,
 .stikls:active,
+.stikls[aria-pressed="true"],
 .stikls-aktivs[aria-current="page"] {
   --st: 1;
 }
