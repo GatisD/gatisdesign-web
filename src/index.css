@@ -418,6 +418,9 @@
    caurspīdīguma soļiem. Uz gaišas pamatnes katrs logotips stāv savā kanoniskajā
    formā, tieši tādā, kādu zīmols lieto uz balta.
 
+   Kartītes brauc pa slaidera celiņu (sk. RĪKU SLAIDERIS zemāk); pašām tām
+   kustības nav, tikai hover pacēlums.
+
    Stiklu veido pieci slāņi, ne viens caurspīdīgums:
      1) caurspīdīgs baltais slīpums - pietiekami gaišs zīmēm, pietiekami vājš,
         lai cauri redzētu, kas ir aiz kartes;
@@ -429,7 +432,6 @@
    Bez 2. slāņa satura caurspīdīgums paliek tikai vārdos: plakans fons caur
    stiklu izskatās tieši tāpat kā bez tā. */
 .stack-karte {
-  rotate: var(--slipums, 0deg);
   background: linear-gradient(155deg, rgb(255 255 255 / 0.86) 0%, rgb(255 255 255 / 0.58) 100%);
   -webkit-backdrop-filter: blur(18px) saturate(1.6) brightness(1.15);
   backdrop-filter: blur(18px) saturate(1.6) brightness(1.15);
@@ -464,20 +466,90 @@
    sacenstos. Stikls paliek stikls - kartei ir sava gaišā virsma, sava mala un
    savas ēnas, un tieši tās, ne fons, dara to par karti. */
 
-@media (prefers-reduced-motion: no-preference) {
-  .stack-karte {
-    animation-name: stack-peld;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+/* ==================== RĪKU SLAIDERIS ====================
+
+   Kartītes brauc pa raustītu zaļu līniju. Peldēšana un slīpums, kas te bija
+   statiskai rindai, ir izņemti: kartītes, kas šūpojas, kamēr brauc, izskatās
+   pēc trīces, ne pēc konveijera. Kustība ir vienā `transform` uz celiņa
+   (marquee-x - tie paši kadri, ko lieto klientu logo josla), un tā ir vienīgā
+   kustīgā daļa.
+
+   Aizkari malās: fiksēta platuma laukums ar backdrop-filter blur(5px) un
+   grafīta gradientu, kas ārmalā ir necaurspīdīgs. Maska uz paša aizkara padara
+   blur pakāpenisku - pie iekšmalas tā nav, pie ārmalas viss ir izplūdis un
+   tumšs. Aizkari ir KARTĪŠU BRĀĻI virs celiņa, ne vecāki, un joslai pašai
+   nav ne maskas, ne filtra: gan viens, gan otrs uz vecāka kartīšu stiklam
+   atņemtu fonu (sk. .stikls-blur piezīmi par ligzdotu backdrop-filter).
+
+   Cena: celiņš ir viens kompozitora slānis, kartītes tajā jau tagad ir savi
+   slāņi (stikls), aizkari ir divi fiksēti laukumi. Pārmērīts headless pēc
+   uzbūves: sk. commit. */
+.riki-josla {
+  position: relative;
+  overflow: hidden;
+}
+.riki-celins {
+  position: absolute;
+  inset-inline: 0;
+  top: 50%;
+  height: 1px;
+  translate: 0 -50%;
+  /* 7 px svītra, 9 px atstarpe, akcenta krāsā 55% - redzama kā līnija, ne
+     kā otra josla; kartītes pār to iet virsū un to aizsedz. */
+  background: repeating-linear-gradient(to right, rgb(30 215 96 / 0.55) 0 7px, transparent 7px 16px);
+}
+.riki-track {
+  position: relative;
+  /* Platums no satura: -50% tad ir tieši viena saraksta platums. */
+  width: max-content;
+  animation: marquee-x 48s linear infinite;
+  will-change: transform;
+}
+.riki-josla:hover .riki-track,
+.riki-josla:focus-within .riki-track,
+.riki-josla[data-paused="true"] .riki-track {
+  animation-play-state: paused;
+}
+.riki-aizkars {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  width: clamp(72px, 11vw, 180px);
+  pointer-events: none;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+.riki-aizkars-k {
+  left: 0;
+  background: linear-gradient(to right, var(--ink-900) 0%, rgb(var(--ink-900-rgb) / 0) 100%);
+  -webkit-mask-image: linear-gradient(to right, #000 35%, transparent);
+  mask-image: linear-gradient(to right, #000 35%, transparent);
+}
+.riki-aizkars-l {
+  right: 0;
+  background: linear-gradient(to left, var(--ink-900) 0%, rgb(var(--ink-900-rgb) / 0) 100%);
+  -webkit-mask-image: linear-gradient(to left, #000 35%, transparent);
+  mask-image: linear-gradient(to left, #000 35%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  /* Bez kustības josla ir režģis: viens saraksts, aplauzts rindās, bez
+     līnijas un aizkariem - tie ir kustības daļas, ne sastāvdaļas. */
+  .riki-track {
+    animation: none;
+    width: 100%;
+    justify-content: center;
   }
-  @keyframes stack-peld {
-    from {
-      translate: 0 -5px;
-    }
-    to {
-      translate: 0 5px;
-    }
+  .riki-track > ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 14px;
+    padding-inline-end: 0;
+  }
+  .riki-track > ul[aria-hidden="true"],
+  .riki-aizkars,
+  .riki-celins {
+    display: none;
   }
 }
 
