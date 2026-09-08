@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import type { RouteRecord } from "vite-react-ssg";
 import Layout from "@/components/Layout";
 import Index from "./pages/Index";
+import Kluda from "./pages/Kluda";
 import { projects } from "@/data/projects";
 import { LOCALES, ROUTES, type Locale } from "@/i18n/routes";
 
@@ -20,7 +21,10 @@ function pagesFor(locale: Locale): RouteRecord[] {
   const en = locale === "en";
   const lazyOf = (load: () => Promise<{ default: ComponentType }>) => () =>
     load().then((m) => ({ Component: m.default }));
-  return [
+  // Katram bērnam sava kļūdu robeža: galvene un kājene paliek, kļūdu lapa
+  // nāk Outlet vietā. Saknes robeža (zemāk) ir tikai gadījumam, ja krīt pats Layout.
+  const kludasLapa = <Kluda locale={locale} />;
+  const pages: RouteRecord[] = [
     en
       ? { index: true, lazy: lazyOf(() => import("./pages/IndexEn")), entry: "src/pages/IndexEn.tsx" }
       : { index: true, Component: Index, entry: "src/pages/Index.tsx" },
@@ -91,12 +95,14 @@ function pagesFor(locale: Locale): RouteRecord[] {
       entry: "src/pages/NotFound.tsx",
     },
   ];
+  return pages.map((r) => ({ ...r, errorElement: kludasLapa }) as RouteRecord);
 }
 
 export const routes: RouteRecord[] = LOCALES.map((locale) => ({
   path: locale === "lv" ? "/" : "/en",
   element: <Layout locale={locale} />,
   entry: "src/components/Layout.tsx",
+  errorElement: <Kluda locale={locale} standalone />,
   children: pagesFor(locale),
 }));
 
