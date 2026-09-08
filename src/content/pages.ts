@@ -28,17 +28,21 @@ export function sectionByHeading(content: PageContent, pattern: RegExp): Content
  * Kontaktu lapas sadaļas pa lomām. Lapa tās liek divās kolonnās (saturs pa kreisi,
  * forma pa labi), tāpēc secība lapā nesakrīt ar secību failā.
  */
-export const contactSections = {
-  /** Ko rakstīt, lai atbilde būtu noderīga. */
-  brief: sectionByHeading(contactContent, /^Ko rakstīt/),
-  /** Atbildes laiks. */
-  reply: sectionByHeading(contactContent, /^Atbildu/),
-  /** Trīs soļi pēc pieteikuma. */
-  steps: sectionByHeading(contactContent, /^Kas notiek/),
-  /** Formas ievads (pati forma ir ContactForm komponente). */
-  form: sectionByHeading(contactContent, /^Pieteikuma forma/),
-  /** E-pasts, vieta, valodas. */
-  contacts: sectionByHeading(contactContent, /^Kontaktinformācija/),
-  /** Ko es nedaru. */
-  limits: sectionByHeading(contactContent, /^Ko es nedaru/),
-};
+export function contactSectionsFor(content: PageContent) {
+  return {
+    /** Ko rakstīt, lai atbilde būtu noderīga. */
+    brief: sectionByHeading(content, /^(Ko rakstīt|What to write)/),
+    /** Atbildes laiks. */
+    reply: sectionByHeading(content, /^(Atbildu|I reply)/),
+    /** Trīs soļi pēc pieteikuma. */
+    steps: sectionByHeading(content, /^(Kas notiek|What happens)/),
+    /** Formas ievads (pati forma ir ContactForm komponente). */
+    form: sectionByHeading(content, /^(Pieteikuma forma|Request form)/),
+    /** E-pasts, vieta, valodas. */
+    contacts: sectionByHeading(content, /^(Kontaktinformācija|Contact details)/),
+    /** Ko es nedaru. */
+    limits: sectionByHeading(content, /^(Ko es nedaru|What I do not do)/),
+  };
+}
+
+export const contactSections = contactSectionsFor(contactContent);

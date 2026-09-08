@@ -1,0 +1,324 @@
+{
+  "slug": "seo-geo-aeo",
+  "title": "GEO optimization, SEO and AEO",
+  "metaTitle": "SEO optimization and audit - price from 300 EUR",
+  "metaDescription": "SEO audit from 300 EUR, GEO and AEO implementation from 700 EUR. Fixed prices to get found in Google and quoted by ChatGPT. Riga, Baltics and the USA.",
+  "h1": "SEO, GEO and AEO optimization",
+  "h1BreakAfter": 4,
+  "directAnswer": "Some clients no longer browse Google's ten blue links - they ask ChatGPT or rely on Google's AI summary, and your site is not there. GEO optimization makes the model name you and quote you. The work is based on technical SEO, quotable fragments and schema markup. An audit of up to 5 pages costs 300 EUR, implementation starts from 700 EUR, the first changes are visible in 6-10 weeks.",
+  "sections": [
+    {
+      "kicker": "Two meanings",
+      "heading": "What GEO optimization is and why the term is confusing",
+      "body": [
+        "Leads become rarer even though the site has not changed and the Google rankings are where they were. In a results list a person sees ten links and chooses themselves; in a generative answer the model chooses for them and mentions three to eight sources. If your site is not there, you are not in second place - you do not appear in that answer at all, and you never find out, because there is no click to count.",
+        "GEO is Generative Engine Optimization: work that makes ChatGPT, Perplexity, Gemini and Google AI Overviews name your company and quote your site in their answers. In Latvia the abbreviation confuses people, because some understand it as geographic or local SEO. Both meanings are alive, and on this page I talk about both.",
+        "GEO is not separate magic on top of SEO. A large part of the work coincides with technical SEO: clean HTML, a fast page, an understandable structure, honest content. What is new is that the page is now also read by a model that cuts fragments out of it and retells them in its own answer."
+      ],
+      "bullets": [
+        "GEO as generative optimization: visibility in ChatGPT, Perplexity, Gemini and Google AI Overviews answers.",
+        "GEO as geographic SEO: visibility in Google Maps, the local results pack and queries with a city name.",
+        "The technical foundation is shared by both directions; what differs is the content and the way the result is measured."
+      ]
+    },
+    {
+      "heading": "SEO, GEO and AEO: how they differ",
+      "body": [
+        "Three abbreviations denote three goals, not three services. I do all three in one pass, because roughly two thirds of the work is shared.",
+        "The common foundation, also for local SEO, is one: a page that responds fast, is readable without JavaScript, is structured with honest headings and contains verifiable facts. Without it I do not sell a separate “GEO package”."
+      ],
+      "table": {
+        "caption": "Four directions, one technical foundation.",
+        "columns": [
+          "Approach",
+          "What is optimized",
+          "Where the result shows",
+          "How it is measured"
+        ],
+        "rows": [
+          [
+            "SEO",
+            "Content, structure, speed, internal linking, external links",
+            "In the Google and Bing results list",
+            "Rankings, clicks and impressions in Search Console data"
+          ],
+          [
+            "GEO (generative)",
+            "Fact density, quotable fragments, machine readability",
+            "In ChatGPT, Perplexity, Gemini and Google AI Overviews answers",
+            "How often the model names the brand and quotes the domain on a fixed set of questions"
+          ],
+          [
+            "AEO",
+            "Direct answers to specific questions",
+            "Featured snippets, the People Also Ask block and voice assistants",
+            "Snippet share and the number of question-form queries"
+          ],
+          [
+            "Local SEO (geographic GEO)",
+            "NAP data (name, address, phone), Google Business Profile, LocalBusiness schema",
+            "In Google Maps and the local results pack",
+            "Calls, directions and queries with a city name"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "How AI models choose what to quote",
+      "body": [
+        "The system splits the question into several queries, collects dozens of pages and builds the answer from short fragments. It is the fragment that gets quoted, not the page as a whole. The first requirement: every important paragraph has to be understandable on its own - a paragraph that starts with “as I mentioned above” says nothing when cut out.",
+        "The second requirement is numbers. “An individual approach to every client” is not quotable because it contains no information; “a full SEO audit of up to 5 pages costs 300 EUR and takes 3-5 business days” is quotable because it can be retold without changes.",
+        "The third requirement is entity clarity: who you are, what you do and where you work, and this information has to match on the website, in Google Business Profile, on LinkedIn and in directories. If on the website you are a designer and developer but in a directory a “marketing agency”, the model chooses the clearest source, and it is usually not yours."
+      ],
+      "bullets": [
+        "A fragment that is understandable without the rest of the page.",
+        "Concrete numbers, amounts, timelines and dates.",
+        "A heading phrased as a question, and the answer right below it.",
+        "Named clients, industries, cities and products instead of general terms.",
+        "An author with a first name, last name and experience, not an anonymous “our team”.",
+        "The same information about the company outside the website as well."
+      ]
+    },
+    {
+      "kicker": "Rendering",
+      "heading": "Why JavaScript-rendered content does not exist in AI answers",
+      "body": [
+        "Googlebot executes JavaScript, although with a delay. GPTBot, PerplexityBot and ClaudeBot do not - they read only the HTML sent by the server. If the content appears only after React or Vue runs in the browser, your page is empty to the bot, even though Google indexes it and the forms work. Google describes Googlebot's behavior in the [JavaScript SEO basics](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics).",
+        "The solution is server-side rendering, static generation or a prerender layer. On this page all the text is in the HTML before the first script, and that is why it can be quoted. Static rendering also solves speed, which is why I build [new websites](/majaslapu-izstrade) that way from the start. Older WordPress sites usually do not have this problem."
+      ],
+      "bullets": [
+        "Open the page source with Ctrl+U and search for a sentence from the page. If you find only an empty div, the content is rendered by the browser.",
+        "Run curl in the command line and check whether the text is in the server response at all.",
+        "Disable JavaScript in the browser's developer tools and reload the page. What you see is what the bot sees.",
+        "In Google Search Console's “URL inspection” tool compare the rendered and the raw HTML."
+      ]
+    },
+    {
+      "heading": "llms.txt and robots.txt for AI bots",
+      "body": [
+        "robots.txt determines access. I often find that a site is closed to AI bots by accident: a security plugin, a Cloudflare rule or a hosting switch called “AI protection” did it. The first job in every audit is to check whether the bots are allowed in at all.",
+        "llms.txt is a proposal, not a standard: a file in which a site lists its most important pages in a machine-readable form. No major model maker has confirmed reading it, so I prepare it - half an hour of work that breaks nothing - but I do not promise a result from it.",
+        "Boring things have a bigger impact than llms.txt: a valid sitemap.xml, correct HTTP status codes, canonicals without contradictions and pages that open in under two seconds on a mobile network.",
+        "The format is described by the [llms.txt specification](https://llmstxt.org/), and each bot's behavior by its owner's documentation: [OpenAI](https://platform.openai.com/docs/bots), [Anthropic](https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler) and [Perplexity](https://docs.perplexity.ai/guides/bots)."
+      ],
+      "bullets": [
+        "GPTBot, OAI-SearchBot and ChatGPT-User: OpenAI's bots for content collection and real-time search.",
+        "ClaudeBot and Claude-SearchBot: Anthropic.",
+        "PerplexityBot: Perplexity.",
+        "Google-Extended: Gemini and AI Overviews. Blocking it does not remove the page from the Google search index, but it removes it from AI answers.",
+        "Applebot-Extended: Apple's systems.",
+        "Bingbot: Bing and Copilot."
+      ]
+    },
+    {
+      "heading": "Schema markup: context a machine reads without guessing",
+      "body": [
+        "Schema markup is a JSON-LD block in the page code that tells the machine what a person reads from the design: this is a service, this is its price, this is a question and this is the answer. The types are maintained by [schema.org](https://schema.org/); the ones Google actually uses are listed in the [Google structured data documentation](https://developers.google.com/search/docs/appearance/structured-data/search-gallery).",
+        "Schema is not a ranking factor, and I do not promise it as a rankings booster. It reduces guessing: the less the parser has to guess, the greater the chance that the fragment is used in the right context and with the right price. The same applies to entity clarity outside the code, which is what [brand identity](/zimola-identitate) sorts out.",
+        "In 2023 Google switched off FAQ rich results for most sites, so the expandable questions no longer appear in the search engine. I keep the structure anyway, because AI parsers read it."
+      ],
+      "bullets": [
+        "Organization: what the company is, its logo and profiles on other platforms.",
+        "Service: for every service page, with a description and the area served.",
+        "FAQPage: for the question and answer block.",
+        "BreadcrumbList: for the navigation path.",
+        "LocalBusiness: for the address, phone and opening hours.",
+        "Article and Person: for the blog and the author, with a publication date."
+      ]
+    },
+    {
+      "heading": "If by GEO you mean geographic visibility",
+      "body": [
+        "Queries like “best dentist in Riga” or “door installation near me” bring clients who are ready to buy today, and the work list for these queries is different.",
+        "One warning: I do not make dozens of nearly identical pages with a swapped city name. Google calls these doorway pages and lowers their rankings, and AI models ignore them. A local page is valuable only with real content about the specific place: completed sites, delivery times, prices and a contact person.",
+        "Models answer local questions based also on Google Business Profile, directories, forums and reviews. If there is nothing about you there, a polished website alone will not change the answer."
+      ],
+      "bullets": [
+        "The same name, address and phone in all sources, down to the spelling.",
+        "A completed and maintained Google Business Profile with services, photos and replies to reviews.",
+        "LocalBusiness schema with the address, coordinates and opening hours.",
+        "A flow of reviews that does not stop after the first month.",
+        "Separate pages for cities only if each of them has its own content about the specific place."
+      ]
+    },
+    {
+      "heading": "The most common mistakes I find in audits",
+      "body": [
+        "The same list repeats in audits regardless of the industry and of how expensive the website was. Most of it can be fixed in two weeks; it gets expensive when the content has to be rewritten and the rendering rebuilt."
+      ],
+      "bullets": [
+        "The content is rendered by the browser, so the page is empty to AI bots.",
+        "Prices are not named anywhere, so the page cannot appear in an answer to a price question.",
+        "There is no H1 at all or there are three, and the heading hierarchy is broken for design reasons, not content.",
+        "There is no schema, or it is plugin-generated with empty fields.",
+        "Contact information differs between the website, Google Business Profile and directories.",
+        "A blog with 40 articles about everything and nothing, but without a single article about what the company actually sells.",
+        "Images without alt text and without a modern format, dragging down both speed and comprehensibility."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "How I work: from audit to measurable visibility",
+      "body": [
+        "I work alone: the same person who makes the design also writes the code and the schema block. Behind it are [18 years of experience in design and development](/par-mani).",
+        "The audit always comes first - I do not sell a subscription for a site whose problems I have not yet seen. The picture that emerges in the audit often changes the plan: sometimes the content work is not needed, because a rendering fix is enough.",
+        "Measurement starts with the first block, not at the end: before the first change I record the rankings, traffic, bot requests and the answers to a set of questions in every model."
+      ],
+      "steps": [
+        {
+          "title": "Audit",
+          "meta": "3-5 business days",
+          "text": "Technical check, rendering without JavaScript, Search Console data, the state of structured data (schema.org), internal linking, a competitor overview."
+        },
+        {
+          "title": "Technical block",
+          "meta": "1-2 weeks",
+          "text": "Rendering, speed, status codes, canonical and hreflang, robots.txt, sitemap."
+        },
+        {
+          "title": "Content",
+          "meta": "2-4 weeks",
+          "text": "The direct answer in the first hundred words, prices with numbers, an FAQ block, quotable fragments."
+        },
+        {
+          "title": "Entities",
+          "text": "Google Business Profile, directories, profiles, one and the same version of the company description everywhere."
+        },
+        {
+          "title": "Measurement and maintenance",
+          "text": "A fixed set of questions, server logs, a monthly report."
+        }
+      ]
+    },
+    {
+      "heading": "Prices",
+      "body": [
+        "The choice between Basic, Plus and PRO depends on the number of pages and on how deep we need to go. AI SEO implementation is separate work: there it is not about checking but about real changes on the site - schema, rendering, rewriting content in a quotable form, bot access and a measurement system.",
+        "Maintenance only makes sense once the foundational work is done. There are no long-term contracts; maintenance can be stopped with one month's notice."
+      ],
+      "table": {
+        "caption": "Prices are final: I am not a VAT payer, so nothing is added to these numbers. Payment is due in 5 business days.",
+        "columns": [
+          "Service",
+          "Scope",
+          "Price"
+        ],
+        "rows": [
+          [
+            "SEO Basic",
+            "up to 5 pages, a full technical and content audit",
+            "300 EUR"
+          ],
+          [
+            "SEO Plus",
+            "up to 10 pages, speed and AI optimization",
+            "500 EUR"
+          ],
+          [
+            "SEO PRO",
+            "up to 20 pages, competitor analysis",
+            "800 EUR"
+          ],
+          [
+            "AI SEO basic implementation",
+            "schema, bot access, quotable fragments for the main pages",
+            "700 EUR or two payments of 350 EUR"
+          ],
+          [
+            "AI SEO standard implementation",
+            "the basic scope, rendering, content rewriting, a measurement system",
+            "1200 EUR or two payments of 600 EUR"
+          ],
+          [
+            "SEO maintenance",
+            "monthly work, measurements and a report",
+            "from 80 EUR per month"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "How to measure visibility in AI answers",
+      "body": [
+        "ChatGPT has no Search Console of its own, and no tool shows the full picture. Promises of “full AI visibility control” are sales tricks.",
+        "The most important tool is a set of questions: I record whether the brand appears in the answer, in which position and which domain is quoted. Part of this tracking is taken over by [AI agents for content and measurement](/ai-agenti). Google Search Console does not show impressions from AI Overviews separately, so an exact number cannot be obtained from its data."
+      ],
+      "bullets": [
+        "Server logs: whether GPTBot, PerplexityBot and ClaudeBot enter the site at all, how often and which pages they take.",
+        "Analytics: visitors from chatgpt.com, perplexity.ai and copilot.microsoft.com. The number is usually lower than the real one, because some transitions come without a source.",
+        "A manual set of questions: 20-40 questions real clients actually ask; I enter them into every model on the same day every month.",
+        "Growth of brand queries in Search Console data: an indirect but credible signal, because after an AI recommendation a person often looks up the company name in Google."
+      ]
+    },
+    {
+      "kicker": "Honestly",
+      "heading": "What can realistically be promised and what cannot",
+      "body": [
+        "For a new site, first positions for the terms “SEO optimization” and “SEO services” are not reachable in 6-12 months: agencies with hundreds of pages and domain history have held them for years. What is reachable are longer queries with clear intent, niche questions and the questions people ask AI assistants in full sentences."
+      ],
+      "bullets": [
+        "I promise: pages that bots can read, and proof from the server logs that they read them.",
+        "I promise: content in a quotable form, with prices and timelines.",
+        "I promise: a measurement system with a fixed starting point and a monthly comparison.",
+        "I promise: an exact list of what was done, when and why.",
+        "I do not promise: position No. 1 or a guaranteed place in AI answers.",
+        "I do not promise: results within a month. Search engines and models have their own inertia."
+      ]
+    },
+    {
+      "heading": "Who I have worked with",
+      "body": [
+        "In manufacturing and construction: Tenter, ARM Metals, Estire and Improvement. In logistics and business services: MLM Cargo, Box Latvia, Universal Solutions and DarbaGuru. In retail and consumer services: Tavasdurvis, Lucky Punch, Cafeteria, Valis Stomatoloģija, Lauvas Zobs and Forevolt. In digital products: Apmeklē.lv, Digitālais Dzintars and LimeBit. The published work is in the [website and logo design examples](/portfolio).",
+        "In eighteen years I have worked with clients in Latvia, Estonia, Lithuania and the USA. Some projects are [new websites](/majaslapu-izstrade) with the SEO foundation laid during development, some are cleanups of existing sites. The industries differ, but the first problems are the same: content bots cannot read, prices named nowhere, and schema that is either missing or wrong."
+      ]
+    },
+    {
+      "heading": "Where to start",
+      "body": [
+        "Start with an audit for 300 EUR: I check up to five of the most important pages and send a list, sorted by importance, of what is holding back visibility in search engines and AI answers. You can use the list without me too, it is yours.",
+        "If you want me to implement the fixes, the cost starts from 700 EUR depending on the scope. Write to connect@gatisdesign.com or [contact me through the contact form](/kontakti) and include the site address - I send the first assessment within one business day."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is GEO optimization?",
+      "a": "GEO optimization, or Generative Engine Optimization, is work that makes ChatGPT, Perplexity, Gemini and Google AI Overviews name a company and quote its website in their answers. It includes technical cleanup, a quotable content structure and schema markup. In Latvia GEO sometimes also denotes geographic or local SEO, so the meaning is worth clarifying at the start of the conversation."
+    },
+    {
+      "q": "How does GEO differ from SEO?",
+      "a": "The goal of SEO is a position in the search engine results list; the goal of GEO is a quote in an AI-generated answer. The technical foundation is shared: a fast page, readable HTML, a clear structure. The form of the content differs: for SEO a good page as a whole is enough, but GEO needs individual paragraphs that are understandable even when pulled out of context."
+    },
+    {
+      "q": "How much do GEO and SEO optimization cost?",
+      "a": "A full audit of up to 5 pages costs 300 EUR, up to 10 pages with speed and AI optimization 500 EUR, up to 20 pages with competitor analysis 800 EUR. AI SEO implementation costs 700 EUR for the basic scope and 1200 EUR for the standard scope, both amounts can be split into two monthly payments. Maintenance starts from 80 EUR per month. Prices are final - I am not a VAT payer."
+    },
+    {
+      "q": "How long until results appear?",
+      "a": "Bots notice technical changes within 2-6 weeks. The first changes in AI answers I usually see 6-10 weeks after implementation. In classic Google search niche queries take 3-6 months, and more competitive terms a year or longer."
+    },
+    {
+      "q": "Can you guarantee that ChatGPT will recommend my company?",
+      "a": "No, and nobody can. Models answer inconsistently, and the same question on two days can give different sources. What can be guaranteed is the execution: that bots can access the site, that the content is readable without JavaScript, that the facts are in a quotable form, and that visibility is measured on a fixed set of questions every month."
+    },
+    {
+      "q": "Does llms.txt really work?",
+      "a": "llms.txt is a proposal, not an approved standard, and no major model maker has publicly confirmed reading it. I prepare it because it takes half an hour and breaks nothing, but I do not promise a result from it. A much bigger impact comes from a robots.txt without accidentally blocked AI bots, a valid sitemap.xml and content that is in the HTML."
+    },
+    {
+      "q": "Why does my React website not appear in AI answers?",
+      "a": "Most likely because the content is rendered by the browser. GPTBot, PerplexityBot and ClaudeBot do not execute JavaScript, so they receive empty HTML. Check the page source: if you cannot find the text there, the bots do not see it. The solution is server-side rendering, static generation or a prerender layer, and it is usually one week of work."
+    }
+  ],
+  "internalLinks": [
+    "/majaslapu-izstrade - anchor “new websites”, in the section about JavaScript-rendered content",
+    "/majaslapu-izstrade - anchor “new websites”, in “Who I have worked with”",
+    "/ai-agenti - anchor “AI agents for content and measurement”, in “How to measure visibility in AI answers”",
+    "/zimola-identitate - anchor “brand identity”, in the section about schema and entity clarity",
+    "/portfolio - anchor “website and logo design examples”, in “Who I have worked with”",
+    "/par-mani - anchor “18 years of experience in design and development”, in “How I work”",
+    "/kontakti - anchor “contact me through the contact form”, in the closing call"
+  ],
+  "cta": "Start with an audit for 300 EUR. Write to connect@gatisdesign.com and include the site address - I send the first assessment within one business day.",
+  "heroLede": "Some clients no longer search in Google - they ask ChatGPT, and your site is not there. I fix the technical base and the content so that the site appears in both places."
+}

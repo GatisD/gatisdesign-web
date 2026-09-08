@@ -90,7 +90,7 @@ export default function ServicePage({
         lede={content.heroLede ?? content.directAnswer}
         poster={hero.poster}
         posterPosition={hero.posterPosition}
-        toc={tocFor(content.sections)}
+        toc={tocFor(content.sections, locale)}
       >
         <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
           <MagneticButton>
@@ -109,7 +109,7 @@ export default function ServicePage({
       {/* Etiķešu budžets ir uz LAPU, ne uz izsaukumu: 2 + 2 = 4, un vairāk par
           četrām sānu etiķetēm 14 sekciju dokumentā vairs nav ritms, bet raksts. */}
       <ContentSections sections={first} labelBudget={2} />
-      <Band poster={hero.band.poster} text={hero.band.text} />
+      <Band poster={hero.band.poster} text={hero.band.text[locale]} />
       <ContentSections sections={rest} labelBudget={2} />
 
       {/* ============ JAUTĀJUMI ============ */}

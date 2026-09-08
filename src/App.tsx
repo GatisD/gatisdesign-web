@@ -1,3 +1,4 @@
+import type { ComponentType } from "react";
 import type { RouteRecord } from "vite-react-ssg";
 import Layout from "@/components/Layout";
 import Index from "./pages/Index";
@@ -10,35 +11,47 @@ function childPath(full: string, locale: Locale): string {
   return full.slice(prefix.length).replace(/^\//, "");
 }
 
+/**
+ * Katrai lapai divi gabali - LV un EN - ar savu saturu. Izvēle notiek šeit,
+ * maršrutā, ne komponentē: tā LV apmeklētājs nelejupielādē EN tekstu un
+ * otrādi, un komponentes paliek bez valodas dakšām saturā.
+ */
 function pagesFor(locale: Locale): RouteRecord[] {
+  const en = locale === "en";
+  const lazyOf = (load: () => Promise<{ default: ComponentType }>) => () =>
+    load().then((m) => ({ Component: m.default }));
   return [
-    { index: true, Component: Index, entry: "src/pages/Index.tsx" },
+    en
+      ? { index: true, lazy: lazyOf(() => import("./pages/IndexEn")), entry: "src/pages/IndexEn.tsx" }
+      : { index: true, Component: Index, entry: "src/pages/Index.tsx" },
     {
       path: childPath(ROUTES.services[locale], locale),
-      lazy: () => import("./pages/Pakalpojumi").then((m) => ({ Component: m.default })),
-      entry: "src/pages/Pakalpojumi.tsx",
+      lazy: lazyOf(() => (en ? import("./pages/PakalpojumiEn") : import("./pages/Pakalpojumi"))),
+      entry: en ? "src/pages/PakalpojumiEn.tsx" : "src/pages/Pakalpojumi.tsx",
     },
     {
       path: childPath(ROUTES["services.brand"][locale], locale),
-      lazy: () =>
-        import("./pages/services/ZimolaIdentitate").then((m) => ({ Component: m.default })),
-      entry: "src/pages/services/ZimolaIdentitate.tsx",
+      lazy: lazyOf(() =>
+        en ? import("./pages/services/ZimolaIdentitateEn") : import("./pages/services/ZimolaIdentitate"),
+      ),
+      entry: en ? "src/pages/services/ZimolaIdentitateEn.tsx" : "src/pages/services/ZimolaIdentitate.tsx",
     },
     {
       path: childPath(ROUTES["services.web"][locale], locale),
-      lazy: () =>
-        import("./pages/services/MajaslapuIzstrade").then((m) => ({ Component: m.default })),
-      entry: "src/pages/services/MajaslapuIzstrade.tsx",
+      lazy: lazyOf(() =>
+        en ? import("./pages/services/MajaslapuIzstradeEn") : import("./pages/services/MajaslapuIzstrade"),
+      ),
+      entry: en ? "src/pages/services/MajaslapuIzstradeEn.tsx" : "src/pages/services/MajaslapuIzstrade.tsx",
     },
     {
       path: childPath(ROUTES["services.ai"][locale], locale),
-      lazy: () => import("./pages/services/AiAgenti").then((m) => ({ Component: m.default })),
-      entry: "src/pages/services/AiAgenti.tsx",
+      lazy: lazyOf(() => (en ? import("./pages/services/AiAgentiEn") : import("./pages/services/AiAgenti"))),
+      entry: en ? "src/pages/services/AiAgentiEn.tsx" : "src/pages/services/AiAgenti.tsx",
     },
     {
       path: childPath(ROUTES["services.seo"][locale], locale),
-      lazy: () => import("./pages/services/SeoGeoAeo").then((m) => ({ Component: m.default })),
-      entry: "src/pages/services/SeoGeoAeo.tsx",
+      lazy: lazyOf(() => (en ? import("./pages/services/SeoGeoAeoEn") : import("./pages/services/SeoGeoAeo"))),
+      entry: en ? "src/pages/services/SeoGeoAeoEn.tsx" : "src/pages/services/SeoGeoAeo.tsx",
     },
     {
       path: childPath(ROUTES.portfolio[locale], locale),
@@ -53,13 +66,13 @@ function pagesFor(locale: Locale): RouteRecord[] {
     },
     {
       path: childPath(ROUTES.about[locale], locale),
-      lazy: () => import("./pages/ParMani").then((m) => ({ Component: m.default })),
-      entry: "src/pages/ParMani.tsx",
+      lazy: lazyOf(() => (en ? import("./pages/ParManiEn") : import("./pages/ParMani"))),
+      entry: en ? "src/pages/ParManiEn.tsx" : "src/pages/ParMani.tsx",
     },
     {
       path: childPath(ROUTES.contact[locale], locale),
-      lazy: () => import("./pages/Kontakti").then((m) => ({ Component: m.default })),
-      entry: "src/pages/Kontakti.tsx",
+      lazy: lazyOf(() => (en ? import("./pages/KontaktiEn") : import("./pages/Kontakti"))),
+      entry: en ? "src/pages/KontaktiEn.tsx" : "src/pages/Kontakti.tsx",
     },
     {
       path: childPath(ROUTES.privacy[locale], locale),

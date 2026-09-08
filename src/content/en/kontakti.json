@@ -1,0 +1,109 @@
+{
+  "cta": "Fill in the form or write to connect@gatisdesign.com. You will get a reply within one business day.",
+  "directAnswer": "Write to connect@gatisdesign.com or fill in the form - you will get a reply within one business day. A short description works best: what is not working right now, what the goal is and by which date it has to be done. After a 20-30 minute call I send a proposal with a fixed price and timeline. I ask for a budget range in the form on purpose - it saves time for both sides.",
+  "h1": "Tell me what needs fixing",
+  "h1BreakAfter": 3,
+  "metaTitle": "Contact - Gatis Daugavietis, web designer",
+  "metaDescription": "Write what needs solving and I reply within one business day. After a call you get a proposal with a price and a timeline. connect@gatisdesign.com, Riga.",
+  "sections": [
+    {
+      "heading": "What to write so the reply is useful",
+      "kicker": "Before you write",
+      "body": [
+        "The more specific the description, the more specific the reply. No technical specification is needed: five concrete lines are worth more than two pages of general words."
+      ],
+      "bullets": [
+        "What is not working right now: the website brings no leads, the brand looks dated, the team spends hours on manual work.",
+        "What the goal is: more leads, a new market, less routine, visibility in AI answers.",
+        "What already exists: a current website, a logo, copy, photos, a CRM.",
+        "The deadline and the budget range.",
+        "A link to your site and to one competitor's site that you like."
+      ]
+    },
+    {
+      "heading": "I reply within one business day",
+      "kicker": "Response time",
+      "body": [
+        "I work alone, so I read every request myself. You will get a reply within one business day - even when the reply is “this is not my kind of work, but I know who does it better”.",
+        "If nothing has arrived within two days, check your spam folder and write again directly to connect@gatisdesign.com."
+      ]
+    },
+    {
+      "heading": "What happens after your request",
+      "kicker": "Three steps",
+      "body": [
+        "No multi-stage sales funnels: three steps from your message to a clear proposal."
+      ],
+      "steps": [
+        {
+          "title": "Reply",
+          "meta": "1 business day",
+          "text": "I read the description and reply with the first questions, or offer a time for a call right away. If the project is not a fit for me, I say so immediately, not a week later."
+        },
+        {
+          "title": "Call",
+          "meta": "20-30 minutes",
+          "text": "A phone or video call. We talk about the problem, not about my experience. After the call it is usually clear whether the answer is a new website, a brand, automation or three changes to the existing site."
+        },
+        {
+          "title": "Proposal",
+          "meta": "2-3 business days",
+          "text": "A written proposal with the scope, a fixed price and dated deadlines, no hidden line items. If you agree, we start with a 50% advance payment."
+        }
+      ]
+    },
+    {
+      "heading": "Request form",
+      "kicker": "Form",
+      "body": [
+        "The completed form goes straight to my inbox. Nobody else reads it, and your description is never published anywhere.",
+        "I ask about the budget range on purpose: if you have 800 EUR but the solution costs 6000 EUR, that is worth knowing in the first minute, not after the third call."
+      ]
+    },
+    {
+      "heading": "Contact details",
+      "kicker": "Where to find me",
+      "body": [
+        "Email connect@gatisdesign.com is the fastest way.",
+        "I am based in Riga and work remotely with clients in Latvia, Estonia, Lithuania and the USA. Correspondence and calls in Latvian, English or Russian."
+      ]
+    },
+    {
+      "heading": "What I do not do",
+      "kicker": "Honest up front",
+      "body": [
+        "This is not arrogance but time-saving: there are projects where I will not be the best choice."
+      ],
+      "bullets": [
+        "I do not take projects where the only criterion is the lowest price. If the choice is made from a table of three quotes, you will find someone cheaper.",
+        "I do not take work that was due yesterday. Design made in a hurry looks like design made in a hurry.",
+        "I do not work without access to the person who makes the decisions. If every sentence has to be approved by a committee of five, the process will stall.",
+        "I do not start work with the brief “make something beautiful”. If there is no goal, there is nothing to measure.",
+        "I do not sell hours. I sell a result with a fixed price and a timeline."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How long does a reply take?",
+      "a": "No longer than one business day. If you write on a Friday evening, the reply comes on Monday. If nothing has arrived within two days, the message most likely landed in spam - write again directly to connect@gatisdesign.com."
+    },
+    {
+      "q": "Is the first consultation paid?",
+      "a": "No. The first call, 20-30 minutes, is free and without obligation. You only pay for the work that starts after the proposal is approved."
+    },
+    {
+      "q": "How does payment work?",
+      "a": "50% on agreement, 50% on delivery. Invoices are due in 5 business days and are issued without VAT. The price in the proposal is fixed: if the scope changes along the way, we agree on it in writing before I continue."
+    },
+    {
+      "q": "Do you work with clients abroad?",
+      "a": "Yes. Clients are in Latvia, Estonia, Lithuania and the USA. The work is remote, correspondence and calls in Latvian, English or Russian. I schedule calls around the client's time zone."
+    },
+    {
+      "q": "Can you take over a project that is already under way?",
+      "a": "Yes, and it happens often. Before I agree, I assess what has been done: code quality, hosting, access, licenses. Sometimes it is cheaper to finish the existing work, sometimes to rebuild from scratch. I tell you honestly which option is better for you, even when the other one would pay me more."
+    }
+  ],
+  "heroLede": "Tell me what is not working right now and when it has to be ready. I reply within one business day, and after the first call you get a fixed quote with a timeline."
+}

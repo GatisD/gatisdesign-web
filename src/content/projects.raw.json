@@ -22,7 +22,9 @@
    "Vercel"
   ],
   "titleLv": "Estire - bruģēšanas materiālu mājaslapa",
+  "titleEn": "Estire - paving materials website",
   "summaryLv": "Bruģakmens un beramkravu tirgotāja kodēta mājaslapa ar noliktavas katalogu un pieprasījumu formu.",
+  "summaryEn": "A coded website for a paving stone and bulk materials trader, with a warehouse catalog and a request form.",
   "coverHint": "shots/estire.png",
   "needsInput": "Kurā gadā tapa pirmā Estire versija? Zināms tikai, ka 2026-05-03 frontend pārcēlu no Lovable uz Vercel."
  },
@@ -49,7 +51,9 @@
    "Cloudflare Workers"
   ],
   "titleLv": "ROIS.lv - mārketinga aģentūras mājaslapa",
+  "titleEn": "ROIS.lv - marketing agency website",
   "summaryLv": "WordPress vietnes pilna pārbūve kodā: 30+ lapas, video atsauksmes, blogs un forma ar UTM atribūciju.",
+  "summaryEn": "A full rebuild of a WordPress site in code: 30+ pages, video testimonials, a blog and a form with UTM attribution.",
   "coverHint": "shots/rois.png"
  },
  {
@@ -76,7 +80,9 @@
    "Vercel"
   ],
   "titleLv": "Improvement - beramkravu un bruģēšanas vietne",
+  "titleEn": "Improvement - bulk materials and paving site",
   "summaryLv": "Divvalodu vietne ar WooCommerce materiālu katalogu, cenu pieprasījumu un prerenderētām lapām SEO dēļ.",
+  "summaryEn": "A bilingual site with a WooCommerce materials catalog, price requests and prerendered pages for SEO.",
   "coverHint": "shots/improvement.png"
  },
  {
@@ -101,7 +107,9 @@
    "Resend"
   ],
   "titleLv": "Universal Solutions - zinātnes un AI konsultācijas",
+  "titleEn": "Universal Solutions - science and AI consulting",
   "summaryLv": "Logo un mājaslapa datu analītikas uzņēmumam: pakalpojumi, vakances un formas uz Cloudflare Workers.",
+  "summaryEn": "Logo and website for a data analytics company: services, vacancies and forms on Cloudflare Workers.",
   "coverHint": "shots/universalsolutions.png"
  },
  {
@@ -126,7 +134,9 @@
    "Cloudflare Workers"
   ],
   "titleLv": "LK Landscape - ainavu arhitektes portfolio",
+  "titleEn": "LK Landscape - landscape architect's portfolio",
   "summaryLv": "Ainavu arhitektes portfolio ar darbu galeriju, LV/EN pārslēgu un mierīgu, gaišu tipogrāfisko sistēmu.",
+  "summaryEn": "A landscape architect's portfolio with a work gallery, an LV/EN switch and a calm, light typographic system.",
   "coverHint": "shots/laura.png",
   "needsInput": "Vai Laura piekrīt publiskam portfolio ierakstam? Lapa vēl dzīvo uz manas testa subdomēnas, kontaktforma nesūta e-pastu un Instagram saite ir placeholder."
  },
@@ -153,7 +163,9 @@
    "Upstash Redis"
   ],
   "titleLv": "Kuģi Kartupelis - tiešsaistes spēle",
+  "titleEn": "Kuģi Kartupelis - online game",
   "summaryLv": "Divu spēlētāju kuģu kaujas spēle ar dalāmu saiti, jūras kartes dizainu un servera pusē pārbaudītiem gājieniem.",
+  "summaryEn": "A two-player battleship game with a shareable link, a sea chart design and server-side validated moves.",
   "coverHint": "shots/kartupelis.png"
  },
  {
@@ -177,7 +189,9 @@
    "Custom child theme"
   ],
   "titleLv": "8kājis - attīstošo rotaļlietu veikals",
+  "titleEn": "8kājis - educational toy store",
   "summaryLv": "Shopify veikala pārcelšana uz WooCommerce: 135 produkti, split ekrāna ievads un sensorās telpas sadaļa. Jaunā vietne tapa LIAA projekta ietvaros.",
+  "summaryEn": "Moving a Shopify store to WooCommerce: 135 products, a split-screen intro and a sensory room section. The new site was built within an LIAA project.",
   "coverHint": "shots/8kajis.png"
  },
  {
@@ -203,7 +217,9 @@
    "Vercel"
   ],
   "titleLv": "Mēbeļu montāža - servisa mājaslapa",
+  "titleEn": "Furniture assembly - service website",
   "summaryLv": "Mēbeļu montāžas un pārvākšanās servisa vietne ar četrām pakalpojumu lapām, portfolio un pieteikuma formu.",
+  "summaryEn": "A furniture assembly and moving service site with four service pages, a portfolio and a request form.",
   "coverHint": "shots/mebelumontaza.png",
   "needsInput": "Vai Elvijam ir savs domēns, uz kuru saitēt? Šobrīd dzīvo tikai uz mebelumontaza-web.vercel.app."
  },
@@ -228,7 +244,9 @@
    "Cloudflare Workers"
   ],
   "titleLv": "CRC Technologies - redizaina demo",
+  "titleEn": "CRC Technologies - redesign demo",
   "summaryLv": "Drukas un dokumentu pārvaldības uzņēmuma sākumlapas redizaina demo, kas tapa pirms piedāvājuma.",
+  "summaryEn": "A home page redesign demo for a print and document management company, made before the proposal.",
   "coverHint": "shots/crc.png",
   "needsInput": "CRC vēl NAV klients - piedāvājums 2000 EUR nav akceptēts. Vai publisks demo ir OK, vai rādām tikai pēc līguma? Ja rādām, jāatzīmē, ka tas ir koncepts, ne klienta pasūtīts darbs."
  },
@@ -254,7 +272,9 @@
    "GPTranslate"
   ],
   "titleLv": "Tenter - jumta kopņu ražotāja vietne",
+  "titleEn": "Tenter - roof truss manufacturer's website",
   "summaryLv": "Jumta kopņu ražotāja WordPress vietnes attīstība: landing lapas, trīsvalodu FAQ un tehniskais SEO. Blakus vietnei - grafiskais dizains un Odoo sistēmas uzturēšana.",
+  "summaryEn": "Development of a roof truss manufacturer's WordPress site: landing pages, a trilingual FAQ and technical SEO. Alongside the site - graphic design and Odoo system maintenance.",
   "coverHint": "shots/tenter.png"
  },
  {
@@ -278,7 +298,9 @@
    "Amelia"
   ],
   "titleLv": "ChipChop Barbershop - mājaslapa ar pierakstiem",
+  "titleEn": "ChipChop Barbershop - website with bookings",
   "summaryLv": "Salaspils frizētavas mājaslapa ar tiešsaistes pierakstu sistēmu, kā arī lokālā SEO un GEO darbs: schema, satura struktūra un Google profila optimizācija.",
+  "summaryEn": "A Salaspils barbershop website with an online booking system, plus local SEO and GEO work: schema, content structure and Google profile optimization.",
   "coverHint": "shots/chipchop.png"
  },
  {
@@ -301,7 +323,9 @@
    "GitHub Actions"
   ],
   "titleLv": "MiniSmaidiņš - Shopify veikala uzturēšana",
+  "titleEn": "MiniSmaidiņš - Shopify store maintenance",
   "summaryLv": "Bērnu rotaļlietu Shopify veikala tehniskie labojumi grozā un pasūtījumu sinhronizācija ar noliktavu.",
+  "summaryEn": "Technical fixes to the cart of a children's toy Shopify store and order synchronization with the warehouse.",
   "coverHint": "shots/minismaidins.png",
   "needsInput": "Kas tieši ir mans devums? Atmiņā ir tikai Admin API piekļuve, pasūtījumu sync un plānoti tēmas labojumi - nav pierādījuma par dizainu vai veikala izstrādi. Varbūt šis nav portfolio ieraksts."
  },
@@ -323,7 +347,9 @@
    "Shopify"
   ],
   "titleLv": "Lucky Punch - enerģijas dzēriena veikals",
+  "titleEn": "Lucky Punch - energy drink store",
   "summaryLv": "Enerģijas dzēriena zīmola Shopify veikals ar cīņas sporta vizuālo valodu, LV/EN un divām valūtām.",
+  "summaryEn": "A Shopify store for an energy drink brand with a combat sports visual language, LV/EN and two currencies.",
   "coverHint": "shots/luckypunch.png",
   "needsInput": "Kurā gadā taisījām un kas tieši bija mans darbs (dizains, tēmas izstrāde, produktu setup)? Gads 2024 ir minējums. Ekrānattēlā redzams sīkdatņu banneris - vajag uzņemt no jauna."
  },
@@ -347,7 +373,9 @@
    "WPML"
   ],
   "titleLv": "Lauvas Zobs - zobārstniecības klīnika",
+  "titleEn": "Lauvas Zobs - dental clinic",
   "summaryLv": "Daudzprofilu stomatoloģijas klīnikas vietne ar pakalpojumu lapām, speciālistiem un divvalodu saturu.",
+  "summaryEn": "A multi-specialty dental clinic website with service pages, specialists and bilingual content.",
   "coverHint": "shots/lauvaszobs.png",
   "needsInput": "Gads ir minējums (lapas kājenē 2025). Kas bija mana daļa - dizains, būve vai abi?"
  },
@@ -370,7 +398,9 @@
    "Elementor"
   ],
   "titleLv": "Valis Stomatoloģija - klīnikas vietne",
+  "titleEn": "Valis Stomatoloģija - clinic website",
   "summaryLv": "Zobu implantācijas klīnikas vietne ar pieteikuma plūsmu, divu filiāļu kontaktiem un pakalpojumiem.",
+  "summaryEn": "A dental implant clinic website with a request flow, contacts for two branches and services.",
   "coverHint": "shots/valis.png",
   "needsInput": "Gads nav zināms - 2024 ir minējums. Kas bija mana daļa projektā?"
  },
@@ -390,7 +420,9 @@
   "externalStatus": "live",
   "stack": [],
   "titleLv": "Cafeteria - mājaslapas izstrāde",
+  "titleEn": "Cafeteria - website development",
   "summaryLv": null,
+  "summaryEn": null,
   "coverHint": "shots/cafeteria.png",
   "needsInput": "Ekrānattēls ir Cloudflare bota pārbaudes lapa, ne saits - vajag jaunu ekrānattēlu no brauzera. Nezinu ne nozari, ne gadu, ne manu lomu. Ko Cafeteria dara un ko mēs viņiem uztaisījām?"
  },
@@ -410,7 +442,9 @@
   "externalStatus": "archived",
   "stack": [],
   "titleLv": "Forevolt - mājaslapas izstrāde",
+  "titleEn": "Forevolt - website development",
   "summaryLv": null,
+  "summaryEn": null,
   "coverHint": null,
   "needsInput": "forevolt.com vairs nedzīvo - domēns ir GoDaddy pārdošanas lapa, un ekrānattēls ir 'Access Denied'. Vai ir saglabāti vizuāļi vai Wayback kadrs? Ja nav, iesaku izmest no portfolio."
  },
@@ -436,7 +470,9 @@
    "WPML"
   ],
   "titleLv": "Box Latvia - pārvākšanās un noliktavu serviss",
+  "titleEn": "Box Latvia - moving and storage service",
   "summaryLv": "Trīs pakalpojumu virzienu vietne: pārvākšanās serviss, noliktavas un nekustamais īpašums ar cenu pieprasījumu.",
+  "summaryEn": "A site for three service lines: moving services, storage and real estate, with price requests.",
   "coverHint": "shots/boxlatvia.png",
   "needsInput": "Gads 2023 ņemts no zīmola darba portfolio.ts - vai mājaslapa tapa tajā pašā gadā? Zīmols ir atsevišķs ieraksts (box-latvia)."
  },
@@ -456,7 +492,9 @@
   "externalStatus": "archived",
   "stack": [],
   "titleLv": "Green Bay - e-komercija",
+  "titleEn": "Green Bay - e-commerce",
   "summaryLv": null,
+  "summaryEn": null,
   "coverHint": "assets/clients/Greenbay.webp",
   "needsInput": "Nav ne domēna, ne ekrānattēla - greenbay.lv un greenbay.eu neatbild. Kāds ir īstais domēns, ko tieši uztaisījām un kurā gadā? Bez vizuāļa šo nevar rādīt."
  },
@@ -482,7 +520,9 @@
    "Rank Math"
   ],
   "titleLv": "110m2 - tipveida privātmāju vietne",
+  "titleEn": "110m2 - standard house designs website",
   "summaryLv": "Tipveida privātmāju vietne ar izmaksu kalkulatoru, trīs valodu pārslēgu un SEO optimizētu bloga sadaļu.",
+  "summaryEn": "A standard house designs website with a cost calculator, a three-language switch and an SEO-optimized blog section.",
   "coverHint": null,
   "needsInput": "Nav ekrānattēla - vajag uzņemt 110m2.lv. Mans dokumentētais darbs ir bloga raksti, SEO un valodu pārslēga labojums; vai mājaslapas izstrāde arī bija mūsu?"
  },
@@ -503,7 +543,9 @@
   "externalStatus": "live",
   "stack": [],
   "titleLv": "SZ Audit & Tax - zīmols un vietne",
+  "titleEn": "SZ Audit & Tax - brand and website",
   "summaryLv": "Pilna vizuālā identitāte audita un nodokļu konsultāciju uzņēmumam, un uz tās uzbūvēta audit.lv vietne.",
+  "summaryEn": "A full visual identity for an audit and tax consulting company, and the audit.lv website built on it.",
   "coverHint": "shots/audit-lv.png"
  },
  {
@@ -522,7 +564,9 @@
   "externalStatus": "live",
   "stack": [],
   "titleLv": "DarbaGuru - logo un mazais brandbook",
+  "titleEn": "DarbaGuru - logo and small brand book",
   "summaryLv": "Personāla vadības ārpakalpojuma uzņēmuma logo un neliels brandbook ar krāsu un logo lietojuma noteikumiem.",
+  "summaryEn": "Logo for an HR outsourcing company and a small brand book with color and logo usage rules.",
   "coverHint": "assets/clients/DarbaGuru.webp",
   "needsInput": "Vāks: darbaguru.lv ekrānattēls rāda mājaslapu, ko mēs netaisījām - vākam vajag logo vai brandbook lapas. Kurā gadā tapa un vai brandbook fails vēl ir saglabāts?"
  },
@@ -542,7 +586,9 @@
   "externalStatus": null,
   "stack": [],
   "titleLv": "Obsidian - logo un vizītkartes",
+  "titleEn": "Obsidian - logo and business cards",
   "summaryLv": null,
+  "summaryEn": null,
   "coverHint": "assets/clients/Obisdian.webp",
   "needsInput": "Zināms tikai 'Logo un vizītkaršu izstrāde' no ROIS klientu saraksta. Vajag nozari, gadu un vizītkaršu vizuāļus - viens logo fails portfolio kartei ir par maz."
  },
@@ -562,7 +608,9 @@
   "externalStatus": null,
   "stack": [],
   "titleLv": "Varloz - logo un vizītkartes",
+  "titleEn": "Varloz - logo and business cards",
   "summaryLv": "Grieķu pārtikas zīmola logotips un vizītkartes, veidoti kopā ar klientu.",
+  "summaryEn": "Logo and business cards for a Greek food brand, created together with the client.",
   "coverHint": "assets/clients/Varloz.webp",
   "needsInput": "Vizītkaršu vizuālis ir (no Gata Instagram ieraksta 2023-06-19), nozare arī - grieķu pārtika. Trūkst gada, kad darbs tapa."
  },
@@ -582,7 +630,9 @@
   "externalStatus": null,
   "stack": [],
   "titleLv": "Box Latvia - zīmola identitāte",
+  "titleEn": "Box Latvia - brand identity",
   "summaryLv": "Loģistikas zīmola identitāte: logo, transportlīdzekļu marķējums, drukas materiāli un digitālā prezentācija.",
+  "summaryEn": "A logistics brand identity: logo, vehicle livery, print materials and a digital presentation.",
   "coverHint": "public/portfolio/box-latvia-cover-43.jpg",
   "galleryCount": 12
  },
@@ -602,7 +652,9 @@
   "externalStatus": null,
   "stack": [],
   "titleLv": "Apmeklē.lv - pakalpojumu platformas zīmols",
+  "titleEn": "Apmeklē.lv - services platform brand",
   "summaryLv": "Latvijā veidotas pakalpojumu platformas identitāte ar minimālu piktogrammu un zaļu akcenta krāsu.",
+  "summaryEn": "The identity of a Latvian-made services platform with a minimal pictogram and a green accent color.",
   "coverHint": "public/portfolio/apmekle-cover-sq.jpg",
   "galleryCount": 9,
   "needsInput": "Vai Apmeklē.lv zīmols bija Gata solo darbs, vai ROIS pasūtījums? Esošajā portfolio.ts loma nav norādīta."
@@ -623,7 +675,9 @@
   "externalStatus": null,
   "stack": [],
   "titleLv": "Digitālais Dzintars - kultūras zīmols",
+  "titleEn": "Digitālais Dzintars - culture brand",
   "summaryLv": "Liepājas digitālās kultūras platformas zīmola atjaunošana ar plakātiem, afišām un identitātes elementiem.",
+  "summaryEn": "A brand refresh for Liepāja's digital culture platform with posters, playbills and identity elements.",
   "coverHint": "public/portfolio/digitalaisdzintars-cover-45.jpg",
   "galleryCount": 16
  },
@@ -644,7 +698,9 @@
   "externalStatus": null,
   "stack": [],
   "titleLv": "Zīmes materiālā",
+  "titleEn": "Marks in material",
   "summaryLv": "Divdesmit viena zīmola zīme, parādīta uz materiāla, kurā tā beigās nonāk: folijā, gravējumā, izšuvumā un apdrukā. Latvijas, Lietuvas un Spānijas klientiem.",
+  "summaryEn": "Twenty-one brand marks, shown on the material they end up in: foil, engraving, embroidery and print. For clients in Latvia, Lithuania and Spain.",
   "coverHint": "public/portfolio/zimolu-zimes/zimolu-zimes-01.jpg",
   "galleryCount": 21
  },
@@ -665,7 +721,9 @@
   "externalStatus": null,
   "stack": [],
   "titleLv": "Logo un zīmolu kolekcija",
+  "titleEn": "Logo and brand collection",
   "summaryLv": "Atlasīti logotipu un zīmola identitātes darbi no 18 gadu prakses - 70 darbu dažādās nozarēs.",
+  "summaryEn": "Selected logo and brand identity work from 18 years of practice - 70 pieces across industries.",
   "coverHint": "public/portfolio/logo-branding-cover-sq.jpg",
   "galleryCount": 70
  },
@@ -686,7 +744,9 @@
   "externalStatus": null,
   "stack": [],
   "titleLv": "Ilustrāciju kolekcija",
+  "titleEn": "Illustration collection",
   "summaryLv": "Ilustrācijas zīmoliem - no produktu ikonām un t-kreklu drukām līdz veselām ilustrāciju sistēmām.",
+  "summaryEn": "Illustrations for brands - from product icons and t-shirt prints to whole illustration systems.",
   "coverHint": "public/portfolio/illustrations-cover-sq.jpg",
   "galleryCount": 8,
   "needsInput": "Kategorija: shēmā ir tikai 'web' un 'brand'. Ilustrācijas un druka ieliktas zem 'brand' - vai vajag trešo kategoriju 'dizains'?"
@@ -708,7 +768,9 @@
   "externalStatus": null,
   "stack": [],
   "titleLv": "Plakātu un drukas kolekcija",
+  "titleEn": "Poster and print collection",
   "summaryLv": "Plakāti, afišas, bukleti un drukas materiāli, kuros svarīga katra detaļa - no tipogrāfijas līdz papīram.",
+  "summaryEn": "Posters, playbills, brochures and print materials where every detail matters - from typography to paper.",
   "coverHint": "public/portfolio/print-cover-45.jpg",
   "galleryCount": 5
  },
@@ -732,7 +794,9 @@
    "WPML"
   ],
   "titleLv": "Termokoksne - termiski apstrādāta koka vietne",
+  "titleEn": "Termokoksne - thermally modified wood website",
   "summaryLv": "Termiski apstrādāta koka fasāžu un terašu materiālu vietne ar katalogu, galeriju un partneru sadaļu. Saturs ir divās valodās, un sākumlapa no pirmā ekrāna ved uz katalogu.",
+  "summaryEn": "A site for thermally modified wood facade and terrace materials with a catalog, a gallery and a partners section. The content is in two languages, and the home page leads to the catalog from the first screen.",
   "coverHint": "shots/termokoksne.jpg",
   "needsInput": "Kurā gadā tapa termokoksne.lv un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
  },
@@ -755,7 +819,9 @@
    "Elementor"
   ],
   "titleLv": "PSL - auto nomas un servisa vietne",
+  "titleEn": "PSL - car rental and service website",
   "summaryLv": "Auto nomas un servisa uzņēmuma vietne ar ilgtermiņa nomas, mazlietotu auto un servisa sadaļām. Sākumlapā piedāvājumu pavada video, un blakus ir piecas pogas, tostarp pieteikšanās testa braucienam un saziņa WhatsApp lietotnē.",
+  "summaryEn": "A car rental and service company website with long-term rental, used car and service sections. On the home page the offer is accompanied by a video, with five buttons next to it, including a test drive request and WhatsApp contact.",
   "coverHint": "shots/psl.jpg",
   "needsInput": "Kurā gadā tapa psl.lv un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
  },
@@ -778,7 +844,9 @@
    "Elementor"
   ],
   "titleLv": "Laluna - Toyota pārstāvja vietne",
+  "titleEn": "Laluna - Toyota dealer website",
   "summaryLv": "Toyota pārstāvja vietne ar jaunu un lietotu auto katalogu, finansēšanas, servisa un Toyota Business sadaļām. Zem kampaņas attēla ir pogu rinda: testa brauciens, piedāvājums, serviss un virsbūves remonts.",
+  "summaryEn": "A Toyota dealer website with a new and used car catalog, financing, service and Toyota Business sections. Under the campaign image is a row of buttons: test drive, offer, service and body repair.",
   "coverHint": "shots/laluna.jpg",
   "needsInput": "Kurā gadā tapa laluna.lv un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
  },
@@ -802,7 +870,9 @@
    "WooCommerce"
   ],
   "titleLv": "Salons Objekts - apdares materiālu vietne",
+  "titleEn": "Salons Objekts - finishing materials website",
   "summaryLv": "Apdares materiālu salona vietne ar produktu katalogu, projektu sadaļu un grozu. Sākumlapa ir kategoriju režģis, kurā katra kartīte ved uz savu materiālu grupu.",
+  "summaryEn": "A finishing materials showroom website with a product catalog, a projects section and a cart. The home page is a category grid where every card leads to its material group.",
   "coverHint": "shots/salonsobjekts.jpg",
   "needsInput": "Kurā gadā tapa salonsobjekts.lv un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
  },
@@ -826,7 +896,9 @@
    "WooCommerce"
   ],
   "titleLv": "Global Tactical Equipment - taktiskā aprīkojuma veikals",
+  "titleEn": "Global Tactical Equipment - tactical gear store",
   "summaryLv": "Taktiskā aprīkojuma interneta veikals ar valodu pārslēdzēju un grozu. Uzreiz zem pirmā ekrāna ir pārstāvēto zīmolu rinda un tieša saite uz katalogu.",
+  "summaryEn": "A tactical equipment online store with a language switch and a cart. Right below the first screen is a row of represented brands and a direct link to the catalog.",
   "coverHint": "shots/globaltac.jpg",
   "needsInput": "Kurā gadā tapa globaltac.lv un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
  },
@@ -850,7 +922,9 @@
    "WooCommerce"
   ],
   "titleLv": "Oak'A BBQ - grila mērču veikals",
+  "titleEn": "Oak'A BBQ - grill sauce store",
   "summaryLv": "Grila mērču un garšvielu zīmola interneta veikals ar apmācību un kultūras sadaļām. Sākumlapas pirmajā ekrānā ir akcija ar norises datumiem.",
+  "summaryEn": "An online store for a grill sauce and spice brand with training and culture sections. The home page opens with a promotion and its dates.",
   "coverHint": "shots/oakabbq.jpg",
   "needsInput": "Kurā gadā tapa oakabbq.com un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
  },
@@ -873,7 +947,9 @@
    "Elementor"
   ],
   "titleLv": "Sinu Uksed - durvju un logu vietne Igaunijā",
+  "titleEn": "Sinu Uksed - doors and windows website in Estonia",
   "summaryLv": "Igaunijas durvju un logu tirgotāja vietne ar katalogu, atsauksmēm un biežāk uzdoto jautājumu sadaļu. Sākumlapā piedāvājums ir sadalīts trīs daļās: ārdurvis, iekšdurvis un logi. Vietne ir pieejama igauņu un krievu valodā.",
+  "summaryEn": "An Estonian door and window retailer's website with a catalog, testimonials and an FAQ section. On the home page the offer is split in three: exterior doors, interior doors and windows. The site is available in Estonian and Russian.",
   "coverHint": "shots/sinuuksed.jpg",
   "needsInput": "Kurā gadā tapa sinuuksed.ee un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
  },
@@ -897,7 +973,9 @@
    "WooCommerce"
   ],
   "titleLv": "Prof Durys - durvju vietne Lietuvā",
+  "titleEn": "Prof Durys - doors website in Lithuania",
   "summaryLv": "Lietuvas durvju tirgotāja vietne ar katalogu, pakalpojumu sadaļu un atsauksmēm. Sākumlapā piedāvājums ir sadalīts attēlu kartītēs, un vietne ir pieejama lietuviešu un krievu valodā.",
+  "summaryEn": "A Lithuanian door retailer's website with a catalog, a services section and testimonials. On the home page the offer is split into image cards, and the site is available in Lithuanian and Russian.",
   "coverHint": "shots/profdurys.jpg",
   "needsInput": "Kurā gadā tapa profdurys.lt un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
  },
@@ -921,7 +999,9 @@
    "WooCommerce"
   ],
   "titleLv": "Inovat - saules enerģijas preču veikals",
+  "titleEn": "Inovat - solar energy products store",
   "summaryLv": "Saules enerģijas un būvniecības preču interneta veikals ar kategoriju sarakstu sākumlapas malā. Katalogā ir saules paneļi, invertori, akumulatori, siltumsūkņi un skrūvpāļi. Atsevišķi ir klientu apkalpošanas sadaļa un sadaļa uzņēmumiem.",
+  "summaryEn": "An online store for solar energy and construction products with a category list in the home page sidebar. The catalog holds solar panels, inverters, batteries, heat pumps and screw piles. There are separate customer service and business sections.",
   "coverHint": "shots/inovat.jpg",
   "needsInput": "Kurā gadā tapa inovat.lv un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
  },
@@ -945,7 +1025,9 @@
    "WooCommerce"
   ],
   "titleLv": "Nervostrong - uztura bagātinātāju veikals",
+  "titleEn": "Nervostrong - dietary supplements store",
   "summaryLv": "Uztura bagātinātāju zīmola interneta veikals ar produktu lapām, blogu un grozu. Sākumlapas kampaņas attēls ved uz produktu, zem tā ir pircēju iecienītāko preču rinda.",
+  "summaryEn": "An online store for a dietary supplement brand with product pages, a blog and a cart. The home page campaign image leads to a product, below it is a row of customer favorites.",
   "coverHint": "shots/nervostrong-veikals.jpg",
   "needsInput": "Kurā gadā tapa veikals.nervostrong.com un kāda tieši ir mana loma - izstrāde, pārbūve vai tikai uzturēšana? Līdz atbildei gads netiek rādīts, un loma ir vispārīga."
  },
@@ -967,7 +1049,9 @@
    "Shopify"
   ],
   "titleLv": "Videa Stone - akmens virsmu veikala SEO un GEO",
+  "titleEn": "Videa Stone - SEO and GEO for a stone surfaces store",
   "summaryLv": "SEO un GEO angļu valodā Shopify veikalam, kas piegādā akmens virsmas Ziemeļeiropas tirgum. Atslēgvārdu izpēte, produktu un kolekciju teksti, strukturētie dati un redzamība AI atbildēs.",
+  "summaryEn": "SEO and GEO in English for a Shopify store that delivers stone surfaces to the Northern European market. Keyword research, product and collection copy, structured data and visibility in AI answers.",
   "coverHint": null
  },
  {
@@ -989,7 +1073,9 @@
    "Strapi"
   ],
   "titleLv": "Olīve Virtuves Mēbeles - virtuvju vietnes SEO un GEO",
+  "titleEn": "Olīve Virtuves Mēbeles - SEO and GEO for a kitchen website",
   "summaryLv": "SEO un GEO virtuvju ražotāja vietnei, kas būvēta ar Next.js un Strapi. Pozīcijas meklēšanā jau bija augstas, tāpēc darbs iet uz to, cik bieži lapu no meklēšanas atver: virsraksti, apraksti un strukturētie dati.",
+  "summaryEn": "SEO and GEO for a kitchen manufacturer's website built with Next.js and Strapi. Search rankings were already high, so the work goes into how often the page is opened from search: titles, descriptions and structured data.",
   "coverHint": null
  },
  {
@@ -1012,7 +1098,9 @@
    "Elementor"
   ],
   "titleLv": "Tavas Durvis - durvju veikals ar piecām tirdzniecības vietām",
+  "titleEn": "Tavas Durvis - door store with five sales points",
   "summaryLv": "Durvju veikals ar plašu katalogu - ārdurvis noliktavā, privātmāju durvis, iekšdurvis un siltumnīcas. Vietne apkalpo piecas tirdzniecības vietas: Rīgā, Talsos, Preiļos, Jelgavā un Valmierā.",
+  "summaryEn": "A door store with a wide catalog - exterior doors in stock, doors for private houses, interior doors and greenhouses. The site serves five sales points: Riga, Talsi, Preiļi, Jelgava and Valmiera.",
   "coverHint": "shots/tavasdurvis.jpg",
   "needsInput": "Kurā gadā tapa tavasdurvis.lv? Gatis 2026-09-08 apstiprināja, ka vietni būvēja pats. Līdz atbildei gads netiek rādīts."
  },
@@ -1036,7 +1124,9 @@
    "Elementor"
   ],
   "titleLv": "MLM Cargo - beramkravu piegādes vietne",
+  "titleEn": "MLM Cargo - bulk materials delivery website",
   "summaryLv": "Beramo būvmateriālu vietne ar piegādi Rīgā: šķembas, drupināts betons, asfalts, smilts, grants un melnzeme, katram materiālam sava sadaļa. Atsevišķi rādīta grunts izvešana.",
+  "summaryEn": "A bulk construction materials website with delivery in Riga: crushed stone, crushed concrete, asphalt, sand, gravel and topsoil, each material with its own section. Soil removal is shown separately.",
   "coverHint": "shots/mlmcargo.jpg",
   "needsInput": "Kurā gadā tapa mlmcargo.lv? Gatis 2026-09-08 apstiprināja, ka vietni būvēja pats. Līdz atbildei gads netiek rādīts."
  },
@@ -1058,7 +1148,9 @@
    "WordPress"
   ],
   "titleLv": "Delkors - mēbeļu ražotne un vizuālā reklāma",
+  "titleEn": "Delkors - furniture factory and visual advertising",
   "summaryLv": "Uzņēmumam ir divi nesaistīti darbības virzieni, tāpēc vietne sākas ar izvēli: mēbeļu ražotne vai vizuālā reklāma. Katra puse ved uz savu pakalpojumu sadaļu. Vietne tapa LIAA projekta ietvaros.",
+  "summaryEn": "The company has two unrelated lines of business, so the site starts with a choice: furniture factory or visual advertising. Each side leads to its own services section. The site was built within an LIAA project.",
   "coverHint": "shots/delkors.jpg",
   "needsInput": "Kurā gadā tapa delkors.lv un kāds bija LIAA projekta nosaukums? Līdz atbildei gads netiek rādīts."
  }

@@ -22,10 +22,11 @@ import {
   projectBySlug,
   projectNeighbours,
   relatedProjects,
-  CATEGORY_TAG,
-  EXTERNAL_STATUS_NOTE,
-  SERVICE_LABEL,
   SERVICE_ROUTE_KEY,
+  categoryTag,
+  externalStatusNote,
+  localized,
+  serviceLabel,
   type Project,
 } from "@/data/projects";
 
@@ -39,10 +40,19 @@ import {
  */
 const lowerFirst = (s: string) => (s ? s[0].toLocaleLowerCase("lv") + s.slice(1) : s);
 
-function factualSentence(project: Project): string {
-  const services = project.services.map((s) => SERVICE_LABEL[s]).join(", ");
+function factualSentence(project: Project, locale: Locale): string {
+  const services = project.services.map((s) => serviceLabel(locale)[s]).join(", ");
+  if (locale !== "lv") {
+    return [
+      `${categoryTag(locale)[project.category]} for ${project.client}.`,
+      `Role: ${project.role.label.toLowerCase()}${project.year ? `, ${project.year}` : ""}.`,
+      services ? `Services: ${services}.` : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+  }
   return [
-    `${CATEGORY_TAG[project.category]} klientam ${project.client}.`,
+    `${categoryTag(locale)[project.category]} klientam ${project.client}.`,
     // Aiz kola latviski seko mazais burts, ja aiz tā nav īpašvārds. Lomas
     // apzīmējums datos sākas ar lielo ("Izstrāde ROIS komandā").
     `Loma: ${lowerFirst(project.role.label)}${project.year ? `, ${project.year}` : ""}.`,
@@ -53,8 +63,8 @@ function factualSentence(project: Project): string {
 }
 
 /** Meta apraksts: apraksts, ja tāds ir, plus lomas un gada rinda. */
-function metaDescription(project: Project): string {
-  if (!project.summary) return factualSentence(project);
+function metaDescription(project: Project, locale: Locale): string {
+  if (!project.summary) return factualSentence(project, locale);
   return `${project.summary} ${project.role.label}${project.year ? `, ${project.year}` : ""}.`;
 }
 
@@ -120,11 +130,13 @@ function useCoverParallax() {
 export default function ProjectDetail() {
   const { locale, t, path } = useLocale();
   const { slug = "" } = useParams<{ slug: string }>();
-  const project = projectBySlug(slug);
-  const nav = projectNeighbours(slug);
+  const projectRaw = projectBySlug(slug);
+  const project = projectRaw ? localized(projectRaw, locale) : undefined;
+  const navRaw = projectNeighbours(slug);
+  const nav = navRaw ? { prev: localized(navRaw.prev, locale), next: localized(navRaw.next, locale) } : null;
   // Tā pati kategorija un kopīgs pakalpojums. Nākamais projekts te netiek
   // atkārtots - tas lapā jau ir kā atsevišķs bloks.
-  const related = relatedProjects(slug);
+  const related = relatedProjects(slug).map((item) => localized(item, locale));
   const gallery = project?.gallery ?? [];
   const isGrid = project?.galleryLayout === "grid";
   const [lightbox, setLightbox] = useState<number | null>(null);
@@ -198,15 +210,21 @@ export default function ProjectDetail() {
   if (!project) return <NotFound />;
 
   const isLv = locale === "lv";
-  const statusNote = EXTERNAL_STATUS_NOTE[project.externalStatus];
-  const linkLabel = project.category === "brand" ? "Klienta mājaslapa" : "Apskatīt mājaslapu";
+  const statusNote = externalStatusNote(locale)[project.externalStatus];
+  const linkLabel = isLv
+    ? project.category === "brand"
+      ? "Klienta mājaslapa"
+      : "Apskatīt mājaslapu"
+    : project.category === "brand"
+      ? "Client website"
+      : "Visit the website";
 
   const facts: Array<{ term: string; value: string }> = [
-    { term: "Klients", value: project.client },
-    { term: "Loma", value: project.role.label },
-    { term: "Nozare", value: CATEGORY_TAG[project.category] },
+    { term: isLv ? "Klients" : "Client", value: project.client },
+    { term: isLv ? "Loma" : "Role", value: project.role.label },
+    { term: isLv ? "Nozare" : "Industry", value: categoryTag(locale)[project.category] },
   ];
-  if (project.year) facts.push({ term: "Gads", value: project.year });
+  if (project.year) facts.push({ term: isLv ? "Gads" : "Year", value: project.year });
 
   // Virsraksts divās rindās, ja nosaukums ir garš - uppercase displejs vienā
   // rindā pie 132 px izlien no lapas.
@@ -221,7 +239,7 @@ export default function ProjectDetail() {
       <SEO
         locale={locale}
         title={project.title}
-        description={metaDescription(project)}
+        description={metaDescription(project, locale)}
         image={project.cover.src}
         alternates={[
           { locale: "lv", path: projectPath(project.slug, "lv") },
@@ -366,7 +384,7 @@ export default function ProjectDetail() {
             {/* Ja apraksta nav, lapa nepaliek tukša un neizdomā tekstu: rāda
                 faktus, kas datos jau ir. */}
             <p className="max-w-[64ch] text-[17px] leading-[1.45] text-paper-2">
-              {project.summary || factualSentence(project)}
+              {project.summary || factualSentence(project, locale)}
             </p>
 
             {project.stack && project.stack.length > 0 ? (
@@ -507,7 +525,7 @@ export default function ProjectDetail() {
                   to={path(SERVICE_ROUTE_KEY[service])}
                   className="inline-flex min-h-[44px] items-center border-b border-line-amber text-[17px] text-paper transition-colors duration-300 hover:text-amber"
                 >
-                  {SERVICE_LABEL[service]}
+                  {serviceLabel(locale)[service]}
                 </Link>
               </li>
             ))}

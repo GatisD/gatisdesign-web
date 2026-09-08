@@ -1,0 +1,254 @@
+{
+  "slug": "ai-agenti",
+  "title": "AI agent development and process automation",
+  "metaTitle": "AI agents and automation for businesses",
+  "metaDescription": "AI automation for companies where data is still moved from one system to another by hand. Process audit from 400 EUR, one agent 900-1800 EUR.",
+  "h1": "AI agents and automation",
+  "h1BreakAfter": 3,
+  "directAnswer": "Every day someone on the team moves leads from the ad account to the CRM, copies numbers into reports and notices a mistake too late. I build AI agents and automated flows that do this work without a human and lose nothing. One process from start to finish costs 900-1800 EUR, a process audit from 400 EUR, development takes 2-8 weeks. I work with companies in Latvia, Estonia and Lithuania.",
+  "sections": [
+    {
+      "kicker": "Basis",
+      "heading": "What ends when the agent starts working",
+      "body": [
+        "Nobody moves leads from the ad account to the CRM anymore, copies numbers into a report, or wonders in the evening whether some client was left without a reply. A program does it, with three parts: a trigger, access to the systems and the logic that decides what to do with each case.",
+        "Most automations do not need a language model: if a lead from an ad form has to go into the CRM with the right source and owner, that is rules, not thinking. A model is needed where unstructured text comes in: a client's email, an invoice in PDF, a free-form note. A flow without a model is cheaper and faster, and it makes nothing up.",
+        "The third variant is an AI chatbot for the website: the same agent with one channel. Without access to real data on prices, availability and orders, a chatbot is an expensive FAQ page. And if the process is not written down on paper, there is nothing to automate."
+      ],
+      "bullets": [
+        "Trigger: a website form, a webhook, an incoming email, a schedule or a new record in a database",
+        "Access: CRM, email, Google Sheets, the website, the ad account, the accounting system",
+        "Logic: rules where the answer is unambiguous; a model where text has to be understood",
+        "Log: every run with time, input data and result, so that what happened can be checked",
+        "Human: one owner who receives error notifications and can stop the flow"
+      ]
+    },
+    {
+      "kicker": "Example",
+      "heading": "What one real flow looks like, with timestamps",
+      "body": [
+        "The Tenter ad lead path. Before automation, a salesperson saw a new lead only when someone opened Meta Business Suite and downloaded a file: sometimes the same day, sometimes the next.",
+        "Now less than five minutes pass between the form being filled in and the notification on the salesperson's phone. The most important thing is not the speed but that no lead gets lost and every one has a known source: then the ad budget can be split by results, not by feel."
+      ],
+      "bullets": [
+        "14:32 - a person fills in and submits a Meta lead form on their phone",
+        "14:35 - a Cloudflare Worker picks up the new lead IDs from the Graph API every five minutes and requests the full data",
+        "14:35:02 - a duplicate check by phone and email, so the same person does not create two records",
+        "14:35:03 - a new lead is created in the Odoo CRM with all UTM fields: source, campaign, ad",
+        "14:35:04 - the lead is assigned to an owner by product group",
+        "14:35:05 - the salesperson receives a notification with the name, the phone number and which ad the person came from",
+        "08:35 the next morning - a daily summary: how many leads, from which campaigns, how many are still without a reply"
+      ]
+    },
+    {
+      "kicker": "What I have built",
+      "heading": "Automations that are running right now",
+      "body": [
+        "Below is work that runs every day, not demos. Each started with one process in which a person moved data from one place to another every day. Some started with [connecting website forms to a CRM](/majaslapu-izstrade); the published work is in the [portfolio section](/portfolio).",
+        "Clients: Tenter, Estire, MLM Cargo, ARM Metals, Tavasdurvis, Box Latvia, Universal Solutions, Improvement. Not everyone needs an agent - for some, one correctly connected form and a report that arrives by itself is enough."
+      ],
+      "bullets": [
+        "Tenter: leads from Meta lead forms reach the Odoo CRM through a Cloudflare Worker. The flow runs 24/7, finds new ad forms by itself, checks for duplicates and keeps the UTM fields.",
+        "Tenter: Odoo process automation - lead stages, owner assignment, reminders about deals that are standing still, notifications in a Telegram channel.",
+        "Report generation: data from the Meta and Google Ads APIs is collected, compared with the previous period and turned into a finished document. A human reads the conclusions, not copies the numbers.",
+        "Connecting website forms to a CRM: a request from a WordPress or React site lands in the CRM with its source, not in an inbox where it gets lost between messages.",
+        "My own bookkeeping: monthly subscription invoices are created by themselves, the PDF goes to the client, and I only see what has not been paid.",
+        "MCP integrations: I manage 22 WordPress sites in one interface - content changes, updates and diagnostics without logging into each site separately."
+      ]
+    },
+    {
+      "kicker": "Prices",
+      "heading": "How much does AI agent development cost",
+      "body": [
+        "The price depends on how many systems have to be connected and how many exceptions the process has. Two systems with clear logic have one price; five, two of which have no proper API, quite another.",
+        "Payment 50% at the start, 50% after handover, due in 5 business days. The price does not include third-party costs: hosting for the flows, model API tokens, an n8n or Cloudflare subscription. For a medium-sized flow these are usually 5-40 EUR per month, and I calculate them already in the audit."
+      ],
+      "table": {
+        "caption": "Prices are final: I am not a VAT payer, so nothing is added to these numbers. Timelines count from the moment access to the systems is received.",
+        "columns": [
+          "Service",
+          "Price",
+          "What is included",
+          "Timeline"
+        ],
+        "rows": [
+          [
+            "Process audit and automation plan",
+            "from 400 EUR",
+            "A step-by-step description of the process, a list of stages that can be automated, a cost and savings calculation",
+            "5-7 business days"
+          ],
+          [
+            "One agent or automation (one process from start to finish)",
+            "900-1800 EUR",
+            "Development, tests with real data, documentation, two weeks in which the automation runs in parallel with the manual path",
+            "2-3 weeks"
+          ],
+          [
+            "Complex integration (CRM, reports, several data sources)",
+            "from 2500 EUR",
+            "Several interconnected flows, data synchronization, report generation, a permissions model",
+            "4-8 weeks"
+          ],
+          [
+            "Monitoring and maintenance",
+            "from 100 EUR per month",
+            "Error notifications, fixes after API changes, a monthly summary of runs",
+            "subscription"
+          ],
+          [
+            "Separate work and consulting",
+            "60 EUR/h",
+            "Changes to an existing flow, team training, technical consulting",
+            "by agreement"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "Where automation pays off",
+      "body": [
+        "Five conditions I check before making a proposal. If the process meets at least three, the conversation is worth continuing."
+      ],
+      "bullets": [
+        "The process repeats at least 20 times a month and the steps are the same every time",
+        "A mistake costs money: a missed lead, a wrong invoice, a forgotten reminder",
+        "The data is already digital and the systems have an API or a webhook",
+        "The process has been stable for at least half a year and nobody intends to change it",
+        "There is one person who owns this process and can say how it should work"
+      ]
+    },
+    {
+      "heading": "Where I advise not to spend the money",
+      "body": [
+        "Half of the conversations about AI agents end with automation not paying off: the process happens five times a year, the data is in scanned PDFs without structure, the process still changes every month, or a human makes the decision anyway. I have written separately about [when I am not the right choice in general](/par-mani)."
+      ]
+    },
+    {
+      "kicker": "Measurement",
+      "heading": "How I measure the savings",
+      "body": [
+        "Before development I write down two numbers: how many minutes the process takes now and how many times a month it happens. After the switch I measure the same ones again - without the first measurement the second means nothing.",
+        "An example with real volumes: 40 leads a month, each manual transfer to the CRM with source tagging 6 minutes. That is 4 hours a month; at an hourly cost of 15 EUR it is 60 EUR a month or 720 EUR a year. An automation at 1200 EUR with 100 EUR monthly maintenance never pays off on this calculation alone.",
+        "So I measure two more things. Response time: when a lead reaches the salesperson in five minutes rather than the next day, a larger share of people start the conversation. Lost leads: if two out of 40 leads a month get lost and the average deal is 800 EUR, that is a different calculation than 60 EUR for time."
+      ]
+    },
+    {
+      "kicker": "Where the data stays",
+      "heading": "Security and data processing",
+      "body": [
+        "Automation means a program has access to company data, so security is not an add-on at the end but part of the architecture.",
+        "If the company requires that data must not leave the EU, that can be solved: either without a model at all, or with a model running in an EU region. This has to be known before development, not after."
+      ],
+      "bullets": [
+        "Every system gets its own token with minimal permissions. An agent that writes data into the CRM cannot delete the database",
+        "Tokens live in environment variables or a separate key vault, never in code and never in the repository",
+        "I send the model only the fields the task needs. Name, phone and address are usually not among them",
+        "Every run is written to a log: time, input data, result, error. Without a log there is nothing to diagnose",
+        "Deletions and actions involving money require human approval. The agent prepares, the human approves",
+        "In case of an error the flow stops and sends a notification, instead of staying silent and continuing to write wrong data",
+        "GDPR: I describe where the data goes, how long it is stored and who the sub-processors are. That is one document, not a separate project"
+      ]
+    },
+    {
+      "kicker": "Tools",
+      "heading": "What I work with",
+      "body": [
+        "I choose the tool by what the company already has, not by what is more convenient for me to sell: if the team wants to see the flow and edit it themselves, I build in a visual tool; if the volume is large or the logic complex, I write code. The code and the accounts stay with the client."
+      ],
+      "bullets": [
+        "n8n and Activepieces, when the team wants to see the flow and make simple changes themselves",
+        "Cloudflare Workers and Python, when the flow is complex, the volume is large or API limits have to be handled",
+        "Odoo, WordPress and Shopify - the systems where the client's data already lives",
+        "Meta Graph API, Google Ads API, Google Sheets and Docs API, email APIs",
+        "Claude and OpenAI APIs where text understanding is really needed",
+        "MCP integrations, when an AI assistant has to work directly with the company's systems"
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "How the work goes",
+      "body": [
+        "In five steps, with a pause after the second: after the audit you can stop and build nothing, and the audit document can be implemented without me too. I credit the audit against the development price if we continue the work."
+      ],
+      "steps": [
+        {
+          "title": "Conversation",
+          "meta": "45 minutes",
+          "text": "You tell me where the time goes. I tell you whether there is something there to automate."
+        },
+        {
+          "title": "Process audit",
+          "meta": "from 400 EUR",
+          "text": "I write down the process step by step with time spent, mark the stages that can be automated and calculate the costs."
+        },
+        {
+          "title": "Prototype for one process",
+          "text": "Works with real data, but in parallel with the manual path."
+        },
+        {
+          "title": "Switch-over",
+          "text": "For two weeks both paths run at the same time, we compare the results, then we switch the manual one off."
+        },
+        {
+          "title": "Monitoring",
+          "text": "Error notifications, a monthly summary, fixes when a platform changes its API."
+        }
+      ]
+    },
+    {
+      "heading": "This page is about internal processes",
+      "body": [
+        "AI agents here mean a company's internal work: data, flows, CRM, reports. If the question is how your company, and not a competitor, gets into ChatGPT and Google AI Overviews answers, that is different work - [SEO, GEO and AEO](/seo-geo-aeo). I do not mix the two in one proposal."
+      ]
+    },
+    {
+      "kicker": "Start",
+      "heading": "Where to start",
+      "body": [
+        "[Write to me](/kontakti) at connect@gatisdesign.com and describe one process that takes the most time from the team. It is enough to describe what happens step by step and how often. I reply within one business day with an estimate: whether it is worth automating, how much it will cost and how long it will take.",
+        "I work alone - [18 years of experience in web development and design](/par-mani) - so the number of projects taken on at the same time is limited."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How much does AI agent development cost?",
+      "a": "A process audit with an automation plan costs from 400 EUR, one agent or automation 900-1800 EUR. The other items, including integrations and maintenance, are in the price table on this page."
+    },
+    {
+      "q": "How long does development take?",
+      "a": "A process audit 5-7 business days, automation of one process 2-3 weeks, a complex integration 4-8 weeks. The timeline is most often set not by development but by receiving access: the ad account, a CRM user, API keys. It is worth sorting these out before we start."
+    },
+    {
+      "q": "Do I really need AI, or is ordinary automation enough?",
+      "a": "Most business processes do not need a language model. If the data is structured and the rules are clear, a flow without a model is cheaper, faster and more predictable. A model is needed where free text comes in: client emails, PDFs, chat messages. In the audit I tell you in which of your processes a model delivers results and in which it only adds cost."
+    },
+    {
+      "q": "Will the automation work with my CRM?",
+      "a": "If the CRM has an API or webhook support, yes. I have worked with Odoo, Pipedrive and WordPress-based systems. If there is no API, the data goes through a database or file exchange, and that takes more time and money. I check this in the first conversation, because it affects the price and timeline the most."
+    },
+    {
+      "q": "What happens if the automation breaks?",
+      "a": "The flow stops and sends a notification, instead of staying silent and continuing to write wrong data. Every run is in the log with time and result, so it is visible at which step the error occurred. The maintenance subscription from 100 EUR per month includes error tracking and fixes when Meta, Google or the CRM change their API. The manual path always stays open."
+    },
+    {
+      "q": "Does my data end up in AI model training?",
+      "a": "No, if a business API is used. Anthropic and OpenAI API requests are not used for model training by default, unlike the free chat interfaces. On top of that I send the model only the fields the task needs - the client's name, phone and address are usually not among them. If the requirement is that data does not leave the EU, we solve that before development."
+    },
+    {
+      "q": "Can I take the agent with me if we end the collaboration?",
+      "a": "Yes. The code, the flows and the accounts are in the client's name, not mine. I hand over documentation: where everything is, what the tokens are and what to do if something stops. I do not build solutions that work only because I have access."
+    }
+  ],
+  "internalLinks": [
+    "/seo-geo-aeo - anchor “SEO, GEO and AEO” in “This page is about internal processes”. The only link to that page, so that internal process automation is not confused with visibility in search engines and AI answers",
+    "/majaslapu-izstrade - anchor “connecting website forms to a CRM” in “Automations that are running right now”",
+    "/zimola-identitate - anchor “brand identity” in “Where to start” (when automation is part of a wider project)",
+    "/portfolio - anchor “portfolio section” in “Automations that are running right now”",
+    "/par-mani - anchors “when I am not the right choice in general” and “18 years of experience in web development and design”",
+    "/kontakti - anchor “write to me” in “Where to start”"
+  ],
+  "cta": "Write to connect@gatisdesign.com and describe one process that takes the most time from the team. I reply within one business day with an estimate: whether it is worth automating, how much it will cost and how long it will take.",
+  "heroLede": "Someone on the team is still moving leads from the ad account to the CRM by hand. I build agents that do it themselves - with timestamps and checks."
+}

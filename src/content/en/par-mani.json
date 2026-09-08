@@ -1,0 +1,138 @@
+{
+  "metaTitle": "Gatis Daugavietis - web designer in Riga",
+  "metaDescription": "I am Gatis Daugavietis, a designer and developer in Riga with 18 years of experience. I work alone: brand identity, websites, AI agents, SEO/GEO/AEO visibility.",
+  "h1": "Gatis Daugavietis",
+  "h1BreakAfter": 1,
+  "directAnswer": "I am Gatis Daugavietis, a web designer and developer in Riga with 18 years of experience. I work alone, without an agency, and take a project from the first call to publication. There are four lines of work: brand identity, website development, AI agents and automation, SEO/GEO/AEO visibility. Clients are in Latvia, Estonia, Lithuania and the USA. Contact: connect@gatisdesign.com.",
+  "sections": [
+    {
+      "heading": "Who I am and what I solve",
+      "body": [
+        "Most people write to me not because they need design, but because something is not working. The website looks like 2015 and brings in no leads. The materials look as if five different companies had made them. A competitor shows up first in search. Every day the team spends half an hour rewriting the same answers that could have been prepared automatically long ago.",
+        "Eighteen years of experience is not a diploma on the wall here: most of what can go wrong in a project, I have already seen. When the hosting dies on a Friday evening, when an update breaks the request form, when a month later one more language is suddenly needed - it is not my first time. That is the only thing experience really gives: fewer surprises for you."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "How I work",
+      "body": [
+        "The process is the same for every project. Six steps, and for each one it is stated what you do and what I do."
+      ],
+      "steps": [
+        {
+          "title": "Conversation",
+          "meta": "You: one conversation. Me: questions and research.",
+          "text": "At the start I do not want to see a mood board. I want to know how you make money, why clients choose you and where the process breaks. I ask the uncomfortable questions and research your current site, analytics and closest competitors myself."
+        },
+        {
+          "title": "Scope and price",
+          "meta": "You: approve or decline. Me: write down what is included and what is not.",
+          "text": "You receive a written scope with a price and a timeline, and it also lists what is not included. Most disputes arise because one side assumes something is included and the other assumes the opposite."
+        },
+        {
+          "title": "Design",
+          "meta": "You: comments in one round. Me: mockups with your real content.",
+          "text": "I show mockups with your real copy and images, not with placeholder text in which everything always looks good. Two rounds of changes are usually enough, and the third one is included."
+        },
+        {
+          "title": "Development",
+          "meta": "You: wait and answer questions. Me: build and test.",
+          "text": "I build what was approved and test it on a phone, on a tablet and on a slow connection. If I see that the approved solution works worse in practice than in the mockup, I say so instead of building it silently."
+        },
+        {
+          "title": "Launch",
+          "meta": "You: give the green light. Me: migrate, check, connect measurement.",
+          "text": "I go through a checklist: speed, mobile version, forms, email delivery, redirects from old links, analytics and lead tracking. After the launch I check that the first requests actually reach your inbox."
+        },
+        {
+          "title": "After launch",
+          "meta": "You: write when something is needed. Me: respond.",
+          "text": "A month after publication I look at the data and tell you what I see: where people leave the site, which section does not work, what is worth redoing. If you want, I keep maintaining the site; if not, the access stays with you."
+        }
+      ]
+    },
+    {
+      "heading": "Why one person and not an agency",
+      "body": [
+        "At an agency your project is sold by one person, planned by a second, designed by a third and coded by a fourth. Your idea reaches the developer as a third-hand retelling, and something is lost at every handover. With me nobody hands the project to anybody. There is another side too: one person means one calendar, and that is a real limitation."
+      ],
+      "bullets": [
+        "You get the answer from the person who knows the project, not from a project manager who first has to ask the developer.",
+        "You do not pay for internal meetings where your project is retold to three people.",
+        "Decisions are fast. A change that takes a week of alignment at an agency takes one conversation here.",
+        "Two years later I still know why every solution is exactly the way it is, and I can explain it."
+      ]
+    },
+    {
+      "kicker": "Honestly",
+      "heading": "When one person is not the right choice",
+      "body": [
+        "I say this before the contract, not after it. If this is your situation, I will tell you in the first call and sometimes recommend a specific team I have worked with."
+      ],
+      "bullets": [
+        "A large scope and an immovable deadline at the same time. An online store with 3000 products that has to open before Black Friday needs several people working in parallel. One person has no backup: if I fall ill, the deadline moves.",
+        "Constant daily presence. If you need someone who sits in your Slack channel every day and answers within 15 minutes, that is not my working model - I run several projects in parallel.",
+        "A full set of materials. If one project needs video, a photo shoot, print, media planning and a large advertising budget, I will make the design and the site, but the rest needs a team.",
+        "A heavy internal approval process. If every decision is approved by five departments and a lawyer, the speed of the project no longer depends on me, and you pay for waiting."
+      ]
+    },
+    {
+      "heading": "Four lines of work I do myself",
+      "body": [
+        "I do four things, and in practice they almost always come together. A new brand without a website is half the job, and a website without visibility is a business card nobody finds."
+      ],
+      "bullets": [
+        "[Brand identity](/zimola-identitate). Logo, colors, typography, usage rules and ready-made templates. It stops materials from being made from scratch every time and never looking like one company.",
+        "[Website development](/majaslapu-izstrade). WordPress, React or a static site. I choose the technology by what you will have to maintain afterwards. From a single campaign page (landing page) to a multilingual site connected to a CRM.",
+        "[AI agents and automation](/ai-agenti). Lead processing, reply drafts, data transfer between systems, reports that prepare themselves. It stops a person from spending eight hours a week on work a machine can do.",
+        "[SEO, GEO and AEO visibility](/seo-geo-aeo). Classic search engine optimization and the same work for AI answers: ChatGPT, Google AI Overviews, Perplexity. The technical base, content structure and data a model can read and quote."
+      ]
+    },
+    {
+      "heading": "Who I work with",
+      "body": [
+        "Clients are in Latvia, Estonia, Lithuania and the USA; multilingual sites and remote work are my everyday routine. Industries: manufacturing and construction, metalworking, logistics, healthcare, e-commerce and local service businesses.",
+        "What matters is not the industry but whether the company has a person who can make a decision and give me the real numbers. Among the clients: Estire, MLM Cargo, ARM Metals, Tavasdurvis, Box Latvia, Universal Solutions, Lucky Punch, Lauvas Zobs, Valis Stomatoloģija, Apmeklē.lv, Digitālais Dzintars."
+      ]
+    },
+    {
+      "kicker": "Start",
+      "heading": "How the collaboration starts",
+      "body": [
+        "Write to connect@gatisdesign.com and tell me three things: what you do, what is not working right now and when it has to be solved. Three lines are enough for me to say whether I can help."
+      ],
+      "bullets": [
+        "You get a reply within one business day.",
+        "The first call costs nothing, and it is not a presentation but questions.",
+        "If the project is not a fit for me, I say so right away, not after three calls.",
+        "You receive a written proposal with the scope, price and timeline within two to three business days after the call."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do you work alone or with a team?",
+      "a": "Alone. The same person you have the first call with also designs, codes and responds after the launch. If a project needs a photographer or video, I bring in a separate specialist, but the responsibility for the result stays with me."
+    },
+    {
+      "q": "When is an agency a better choice than you?",
+      "a": "When there is a large scope and an immovable deadline at the same time, when you need daily presence in your team, when one project has to pull together video, print and media planning, or when every decision is approved by five departments. In those cases I say so in the first call."
+    },
+    {
+      "q": "How much does a project cost?",
+      "a": "Prices are public: every service page has a table with amounts and timelines. You get the exact amount for your scope in a written proposal after the first call, together with a timeline and a list of what is not included in the work."
+    },
+    {
+      "q": "How do I get in touch with you?",
+      "a": "Write to connect@gatisdesign.com. Tell me what you do, what is not working and when it has to be ready. I reply within one business day."
+    }
+  ],
+  "cta": "Write to connect@gatisdesign.com - tell me what you do and what is not working. I will reply within one business day.",
+  "faqSchemaOnly": [
+    {
+      "q": "Who is Gatis Daugavietis?",
+      "a": "A web designer and developer in Riga with 18 years of experience. I work alone, without an agency, in four lines: brand identity, website development, AI agents and automation, SEO/GEO/AEO visibility. Clients are in Latvia, Estonia, Lithuania and the USA."
+    }
+  ],
+  "heroLede": "My name is Gatis Daugavietis. For eighteen years I have been designing and building websites and brands in Riga. I work alone, without an agency, and take a project from the first call to launch and beyond."
+}

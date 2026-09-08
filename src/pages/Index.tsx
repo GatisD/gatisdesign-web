@@ -35,18 +35,9 @@ import {
   SITE_URL,
   WORK_LOCATION,
 } from "@/lib/site";
-import { featured, projectBySlug, projects, type Project } from "@/data/projects";
-import {
-  aboutSection,
-  chainSection,
-  contactSection,
-  heroCtas,
-  heroSection,
-  homeContent,
-  serviceCards,
-  servicesSection,
-  worksSection,
-} from "@/content/home";
+import { featured, localized, projectBySlug, projects, type Project } from "@/data/projects";
+import { homeLv, type HomeData } from "@/content/home";
+import type { Locale } from "@/i18n/routes";
 import { personNode, faqPageNode } from "@/lib/schema-nodes";
 
 /* ------------------------------------------------------------------ *
@@ -57,6 +48,9 @@ const postalAddress = { "@type": "PostalAddress", addressLocality: "Rīga", addr
 const PERSON_ID = `${SITE_URL}/#gatis`;
 const BUSINESS_ID = `${SITE_URL}/#business`;
 
+/** Strukturētie dati no padotā satura, ne no moduļa līmeņa LV konstantēm. */
+function homeSchemas(home: HomeData, locale: Locale): Record<string, unknown>[] {
+  const { content: homeContent, serviceCards } = home;
 const homePersonSchema = personNode({
   description: homeContent.directAnswer,
   image: `${SITE_URL}/og-gatisdesign.png`,
@@ -109,7 +103,7 @@ const homeServiceSchema = {
   dateModified: CONTENT_MODIFIED,
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Pakalpojumi",
+    name: locale === "lv" ? "Pakalpojumi" : "Services",
     itemListElement: serviceCards.map((card) => ({
       "@type": "Offer",
       itemOffered: { "@type": "Service", name: card.title, url: `${SITE_URL}${card.target}` },
@@ -126,7 +120,7 @@ const homeServiceSchema = {
  */
 const homeFaqSchema = faqPageNode(homeContent.faq, {
   "@id": `${SITE_URL}/#faq`,
-  inLanguage: "lv",
+  inLanguage: locale,
 });
 
 const homeWebsiteSchema = {
@@ -139,6 +133,8 @@ const homeWebsiteSchema = {
   publisher: { "@id": PERSON_ID },
   about: { "@id": BUSINESS_ID },
 };
+  return [homeWebsiteSchema, homePersonSchema, homeServiceSchema, homeFaqSchema];
+}
 
 const bySlug = (slugs: string[]): Project[] =>
   slugs.map((slug) => projectBySlug(slug)).filter(Boolean) as Project[];
@@ -147,16 +143,30 @@ const bySlug = (slugs: string[]): Project[] =>
  * Lapa
  * ------------------------------------------------------------------ */
 
-export default function Index() {
+/**
+ * Saturs nāk kā props: LV pēc noklusējuma, EN caur IndexEn apvalku ar
+ * src/content/en/home.json. Tā LV pakotnē nav EN teksta un otrādi.
+ */
+export default function Index({ home = homeLv }: { home?: HomeData }) {
   const { locale, t, path } = useLocale();
   const isLv = locale === "lv";
+  const {
+    content: homeContent,
+    heroSection,
+    chainSection,
+    servicesSection,
+    worksSection,
+    aboutSection,
+    contactSection,
+    heroCtas,
+    serviceCards,
+  } = home;
 
-  // EN sākumlapas saturs vēl nav uzrakstīts, tāpēc /en rāda LV tekstu ar
-  // noindex, lai Google neindeksē latviešu saturu zem angļu URL. Tāpēc EN
-  // maršruti arī nav sitemapā (sk. vite.config.ts).
+  // EN maršruti paliek noindex un ārpus sitemap, kamēr viss EN saturs nav
+  // pārbaudīts un slēdzis ieslēgts (sk. LANGUAGE_SWITCH_VISIBLE).
   const noindex = !isLv;
 
-  const works = bySlug(featured);
+  const works = bySlug(featured).map((p) => localized(p, locale));
   const rowTop = works.slice(0, 2);
   const rowBottom = works.slice(2, 5);
 
@@ -169,7 +179,7 @@ export default function Index() {
         description={homeContent.metaDescription}
         noindex={noindex}
       />
-      <JsonLd data={[homeWebsiteSchema, homePersonSchema, homeServiceSchema, homeFaqSchema]} />
+      <JsonLd data={homeSchemas(home, locale)} />
 
       {/* ============ HERO ============ */}
       {/* Hero augstums ir piesiets EKRĀNA PROPORCIJAI, ne platumam.
@@ -233,12 +243,12 @@ export default function Index() {
       {/* ============ RĪKI ============ */}
       {/* Tūlīt aiz virsraksta, pirms darbiem: vispirms cilvēks redz, AR KO strādāju,
           un tikai pēc tam - ko esmu ar to uzbūvējis. */}
-      <StackStrip heading="Rīki, ar ko strādāju" />
+      <StackStrip heading={isLv ? "Rīki, ar ko strādāju" : "Tools I work with"} />
 
       {/* ============ DARBI ============ */}
       <Section rhythm="lg" labelledBy="darbi-h">
         <SectionTitle id="darbi-h" size="giant" className="mb-[clamp(32px,5vw,64px)]">
-          Darbu izlase
+          {isLv ? "Darbu izlase" : "Selected work"}
         </SectionTitle>
 
         <div className="grid gap-grid md:grid-cols-12">
@@ -295,7 +305,7 @@ export default function Index() {
             <LinkedText text={worksSection.body[0]} />
           </p>
           <Button to={path("portfolio")} variant="link" className="self-start">
-            Visi {projects.length} darbi
+            {isLv ? `Visi ${projects.length} darbi` : `All ${projects.length} projects`}
           </Button>
         </Reveal>
       </Section>
@@ -304,7 +314,7 @@ export default function Index() {
           nāk pēc darba, ne tā vietā. Logotipi ir vienkrāsaini - sk.
           src/data/clients.ts. */}
       <section className="border-y border-line bg-ink-850" aria-labelledby="klienti-h">
-        <ClientMarquee headingId="klienti-h" heading="Klienti, ar kuriem strādāju" />
+        <ClientMarquee headingId="klienti-h" heading={isLv ? "Klienti, ar kuriem strādāju" : "Clients I work with"} />
       </section>
 
       {/* Atsauksmes ar vārdu, uzņēmumu un rezultātu. Sadaļa ir uzbūvēta, bet
@@ -315,7 +325,11 @@ export default function Index() {
       {/* ============ JOSLA ============ */}
       <Band
         poster="/media/band-craft.jpg"
-        text="Vienalga, kur tu sāc: ar tukšu lapu vai ar tādu, kas neko nenes. Es to aizvedu līdz versijai, kas strādā."
+        text={
+          isLv
+            ? "Vienalga, kur tu sāc: ar tukšu lapu vai ar tādu, kas neko nenes. Es to aizvedu līdz versijai, kas strādā."
+            : "Wherever you start: with a blank page or with one that brings nothing. I take it to a version that works."
+        }
       />
 
       {/* ============ PAKALPOJUMI ============ */}
@@ -324,7 +338,7 @@ export default function Index() {
           {servicesSection.heading}
         </SectionTitle>
 
-        <LabelRow label={`${serviceCards.length} pakalpojumi · no 300 EUR`}>
+        <LabelRow label={isLv ? `${serviceCards.length} pakalpojumi · no 300 EUR` : `${serviceCards.length} services · from 300 EUR`}>
           <ul>
             {serviceCards.map((card, i) => (
               <Reveal
@@ -361,13 +375,13 @@ export default function Index() {
             ))}
           </ul>
           <p className="pt-6">
-            <Label>Norādītās cenas ir galīgās - neesmu PVN maksātājs.</Label>
+            <Label>{isLv ? "Norādītās cenas ir galīgās - neesmu PVN maksātājs." : "The prices shown are final - I am not a VAT payer."}</Label>
           </p>
           {/* Pārskata lapa ar visiem četriem vienā skatā (2026-09-08). Saraksts
               te paliek - tas ir cenu ledger, lapa ir kartes ar plašāku tekstu. */}
           <p className="pt-5">
             <Button to={path("services")} variant="link">
-              Visi pakalpojumi
+              {t.nav.allServices}
             </Button>
           </p>
         </LabelRow>
@@ -383,7 +397,7 @@ export default function Index() {
           līnijas vai krāsas maiņas - caurums, ne robeža. */}
       <Section rhythm="md" labelledBy="jautajumi-h">
         <SectionTitle id="jautajumi-h" className="mb-[clamp(30px,4vw,56px)]">
-          Biežākie jautājumi
+          {isLv ? "Biežākie jautājumi" : "Frequently asked questions"}
         </SectionTitle>
         <FaqList items={homeContent.faq} />
       </Section>
@@ -407,9 +421,9 @@ export default function Index() {
       {/* ============ PAR MANI ============ */}
       <Section rhythm="md" labelledBy="par-h">
         <SectionTitle id="par-h" className="mb-[clamp(26px,3.4vw,44px)]">
-          Viens cilvēks, kurš atbild par rezultātu
+          {isLv ? "Viens cilvēks, kurš atbild par rezultātu" : "One person responsible for the result"}
         </SectionTitle>
-        <LabelRow label="Rīgā kopš 2008">
+        <LabelRow label={isLv ? "Rīgā kopš 2008" : "In Riga since 2008"}>
           {aboutSection.body.map((paragraph) => (
             <p key={paragraph.slice(0, 40)} className="mb-5 max-w-[64ch] text-[17px] leading-[1.45] text-paper-2 last:mb-0">
               <LinkedText text={paragraph} />
@@ -426,9 +440,13 @@ export default function Index() {
       {/* ============ SĀKSIM ============ */}
       <Section rhythm="lg" surface="ink-950" labelledBy="kontakti-h">
         <SectionTitle id="kontakti-h" className="mb-[clamp(22px,3vw,34px)]">
-          {contactSection.heading === "Kā sākt" ? "Pastāsti, kas tev jāatrisina" : contactSection.heading}
+          {contactSection.heading === "Kā sākt"
+            ? "Pastāsti, kas tev jāatrisina"
+            : contactSection.heading === "How to start"
+              ? "Tell me what needs fixing"
+              : contactSection.heading}
         </SectionTitle>
-        <LabelRow label="Atbilde 1 darba dienā">
+        <LabelRow label={isLv ? "Atbilde 1 darba dienā" : "Reply within 1 business day"}>
           <p className="max-w-[58ch] text-[17px] leading-[1.45] text-paper-2">
             <LinkedText text={contactSection.body[0]} />
           </p>

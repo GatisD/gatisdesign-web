@@ -10,7 +10,8 @@ import ContactForm from "@/components/ContactForm";
 import FaqList from "@/components/content/FaqList";
 import LinkedText from "@/components/content/LinkedText";
 import StepFlow from "@/components/content/StepFlow";
-import { contactContent, contactSections } from "@/content/pages";
+import { contactContent, contactSectionsFor } from "@/content/pages";
+import type { PageContent } from "@/content/types";
 import { headingId } from "@/content/slug";
 import { useLocale } from "@/i18n/LocaleContext";
 import { pathFor } from "@/i18n/routes";
@@ -38,7 +39,8 @@ import { PERSON_BASE, faqPageNode } from "@/lib/schema-nodes";
 
 const FORM_ANCHOR = "pieteikuma-forma";
 
-export default function Kontakti() {
+/** Saturs kā props: LV pēc noklusējuma, EN caur KontaktiEn apvalku. */
+export default function Kontakti({ content = contactContent }: { content?: PageContent }) {
   const { locale, t, path } = useLocale();
   const isLv = locale === "lv";
   const noindex = !isLv;
@@ -46,14 +48,14 @@ export default function Kontakti() {
   const contactPointSchema = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    name: contactContent.h1,
-    description: contactContent.metaDescription,
+    name: content.h1,
+    description: content.metaDescription,
     url: `${SITE_URL}${pathFor("contact", locale)}`,
     mainEntity: PERSON_BASE,
 
   };
 
-  const faqPageSchema = faqPageNode(contactContent.faq);
+  const faqPageSchema = faqPageNode(content.faq);
 
 
   const breadcrumbSchema = buildBreadcrumbSchema([
@@ -61,15 +63,15 @@ export default function Kontakti() {
     { name: t.nav.contact, path: pathFor("contact", locale) },
   ]);
 
-  const { brief, reply, form, steps, contacts, limits } = contactSections;
+  const { brief, reply, form, steps, contacts, limits } = contactSectionsFor(content);
 
   return (
     <>
       <SEO
         routeKey="contact"
         locale={locale}
-        title={contactContent.metaTitle}
-        description={contactContent.metaDescription}
+        title={content.metaTitle}
+        description={content.metaDescription}
         noindex={noindex}
       />
       <JsonLd data={[contactPointSchema, faqPageSchema, breadcrumbSchema]} />
@@ -89,7 +91,7 @@ export default function Kontakti() {
           <LineReveal
             as="h1"
             id="kontakti-h"
-            lines={h1Lines(contactContent.h1, contactContent.h1BreakAfter)}
+            lines={h1Lines(content.h1, content.h1BreakAfter)}
             className="text-display-2 font-bold uppercase text-paper"
           />
           <Reveal delay={0.2} className="mt-[clamp(18px,2.4vw,28px)] max-w-[62ch]">
@@ -97,7 +99,7 @@ export default function Kontakti() {
               <span aria-hidden="true" className="text-amber">
                 &#8627;
               </span>{" "}
-              {contactContent.heroLede ?? contactContent.directAnswer}
+              {content.heroLede ?? content.directAnswer}
             </p>
           </Reveal>
         </div>
@@ -246,7 +248,7 @@ export default function Kontakti() {
         <SectionTitle id="jautajumi" size="giant" className="mb-[clamp(28px,4vw,56px)] scroll-mt-24">
           {isLv ? "Jautājumi" : "Questions"}
         </SectionTitle>
-        <FaqList items={contactContent.faq} />
+        <FaqList items={content.faq} />
       </Section>
     </>
   );

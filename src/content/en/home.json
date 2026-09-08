@@ -1,0 +1,169 @@
+{
+  "slug": "/",
+  "title": "Home - Gatis Design",
+  "metaTitle": "Web design that brings in leads",
+  "metaDescription": "Web design and development, 18 years of experience. Brand, website, AI agents and visibility in Google and AI answers, all done by one person. Prices from 500 EUR.",
+  "h1": "A website that brings in leads.",
+  "h1BreakAfter": 3,
+  "directAnswer": "The site looks fine, but there are no leads - that is the most common reason clients come to me. I am Gatis Daugavietis, a web designer and developer in Riga. I work alone, without an agency: I design the brand, build the site, connect AI agents and take responsibility for visibility in Google search and AI answers. Clients in Latvia, Estonia, Lithuania and the USA. Prices from 500 EUR, the first version is usually ready in 2-4 weeks.",
+  "sections": [
+    {
+      "kicker": "Home",
+      "heading": "A website that brings in leads.",
+      "body": [
+        "Web design, brand, AI agents and visibility in Google search and AI answers - all done by one person.",
+        "I fix what stops a site from bringing in leads: structure, speed, copy and measurement. 18 years of experience, 100+ projects, clients in Latvia, Estonia, Lithuania and the USA."
+      ],
+      "bullets": [
+        "CTA 1 (primary): Tell me about your project -> /kontakti",
+        "CTA 2 (secondary): See the work -> /portfolio"
+      ]
+    },
+    {
+      "kicker": "No agency",
+      "heading": "One person's chain from brand to visibility",
+      "body": [
+        "Most companies buy their digital presence in pieces: a logo from one supplier, a site from another, SEO from a third, and nobody is responsible for how it fits together. I do the whole chain myself, so the brand colors, the site structure and what ChatGPT says about the company come from one head.",
+        "I have both a designer's and a developer's experience: I design what I can build myself, and I build what actually works on a site - speed, forms, measurement and content that search engines understand."
+      ]
+    },
+    {
+      "kicker": "Services",
+      "heading": "Web design and development, brand identity, AI agents and visibility",
+      "body": [
+        "The services work on their own too, but together they save time and money: one person knows why the site has exactly this color, this structure and this copy.",
+        "Prices are without VAT because I am not a VAT payer. Every project starts with a fixed quote, not with hourly tracking along the way."
+      ],
+      "bullets": [
+        "Brand identity. Logo, colors, typography and usage rules that keep the brand looking the same on the side of a truck and in an Instagram profile. From 500 EUR. -> /zimola-identitate",
+        "Website design and development. Design, code, content and hosting in one pair of hands, WordPress or React, with speed and measurement from day one. From 500 EUR. -> /majaslapu-izstrade",
+        "AI agents. Automation for lead processing, reports, content preparation and data exchange between systems. Audit from 400 EUR. -> /ai-agenti",
+        "SEO, GEO and AEO. I make sure your site is found both in Google search and in ChatGPT and Perplexity answers. Audit from 300 EUR. -> /seo-geo-aeo"
+      ],
+      "table": {
+        "caption": "Starting prices and timelines (prices without VAT)",
+        "columns": [
+          "Service",
+          "Starting price",
+          "Typical timeline",
+          "Page"
+        ],
+        "rows": [
+          [
+            "Brand identity",
+            "from 500 EUR",
+            "2-3 weeks",
+            "/zimola-identitate"
+          ],
+          [
+            "Website design and development",
+            "from 500 EUR",
+            "2-6 weeks",
+            "/majaslapu-izstrade"
+          ],
+          [
+            "AI agents and automation",
+            "audit from 400 EUR",
+            "1-2 weeks",
+            "/ai-agenti"
+          ],
+          [
+            "SEO, GEO and AEO",
+            "audit from 300 EUR",
+            "1-2 weeks",
+            "/seo-geo-aeo"
+          ]
+        ]
+      }
+    },
+    {
+      "kicker": "Work",
+      "heading": "Work you can look at right now",
+      "body": [
+        "The full list with images is in the [website and logo design examples](/portfolio) section. Here are five projects that show how different work goes through one pair of hands."
+      ]
+    },
+    {
+      "kicker": "Numbers",
+      "heading": "Numbers that describe the work",
+      "body": [
+        "No empty phrases about experience. Four numbers you can check in the work section and in the references."
+      ],
+      "bullets": [
+        "18 years in web development and design, since 2008",
+        "100+ completed projects: brands, websites, online stores, campaigns",
+        "4 markets: Latvia, Estonia, Lithuania and the USA",
+        "1 contact person from the first call to launch and beyond"
+      ]
+    },
+    {
+      "kicker": "About me",
+      "heading": "Briefly about me",
+      "body": [
+        "My name is Gatis Daugavietis. I started with graphic design, then learned to code because I was tired of watching good design fall apart during development. I have worked with local companies and with clients in Estonia, Lithuania and the USA; meetings are remote, and that changes neither the timelines nor the price.",
+        "I do not promise a team of ten, because there is none. The longer version with the working process and tools is on the page [18 years of experience in design and development](/par-mani)."
+      ]
+    },
+    {
+      "kicker": "Contact",
+      "heading": "How to start",
+      "body": [
+        "Write to connect@gatisdesign.com and tell me what needs to be done and when it has to be ready. The first call costs nothing.",
+        "After it you get a fixed quote with deadlines and a clear split: what I do and what is needed from your side. If you prefer a form, it is on the [contact page](/kontakti)."
+      ],
+      "bullets": [
+        "Email: connect@gatisdesign.com",
+        "Contact form: /kontakti"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How much does a website cost?",
+      "a": "A one-page website (landing page) with design, code and basic SEO costs from 500 EUR. A full company website with several sections, content in two languages and lead tracking costs 900-1500 EUR. The price is fixed before the work starts, and I am not a VAT payer, so the amount shown is final."
+    },
+    {
+      "q": "How much does website design cost?",
+      "a": "Design is usually ordered together with development: then one page costs from 500 EUR and a full website 900-1500 EUR. If you need the design on its own because someone else does the development, I set the price by scope - write how many pages you need and which screens are required."
+    },
+    {
+      "q": "What is the difference between web design and website development?",
+      "a": "Web design is how the site looks and how you move through it: layout, colors, fonts, the sequence of screens. Development is what happens next - the design becomes a working site with forms, speed and an admin panel. I do both, so the design is never a picture that someone else then tries to turn into code."
+    },
+    {
+      "q": "How long does it take to build a website?",
+      "a": "A one-page website (landing page) is ready in 1-2 weeks. A full company website with 5-10 sections needs 3-5 weeks. The timeline depends more on how quickly I receive content, photos and answers than on the design itself."
+    },
+    {
+      "q": "Do you only work with clients in Riga?",
+      "a": "No. I work from Riga, but clients are also in Estonia, Lithuania and the USA. All work is remote, meetings are video calls, and distance changes neither the timelines nor the price."
+    },
+    {
+      "q": "Are you an agency?",
+      "a": "No, I am one person with 18 years of experience. You talk to the same person who designs, codes and fixes things after launch. For larger projects I bring in trusted colleagues, but the responsibility and the communication stay with me."
+    },
+    {
+      "q": "Which platforms do you build websites on?",
+      "a": "Most often WordPress, when the client wants to edit the content themselves, and React, when speed and non-standard functionality are needed. For online stores I use Shopify or WooCommerce. Hosting is usually Vercel or the client's existing server."
+    },
+    {
+      "q": "What are GEO and AEO and why do I need them?",
+      "a": "GEO and AEO mean preparing a site so that AI answers quote it: ChatGPT, Perplexity and Google AI Overviews. In practice that means clear answers to questions, concrete numbers, price tables and structured data. Some buyers no longer go through ten search results but read one AI answer."
+    },
+    {
+      "q": "What does an AI agent do and how much does it cost?",
+      "a": "An AI agent is automation that takes over repetitive work: it processes leads, prepares reports, moves data between the CRM and the website, drafts content. It starts with an audit from 400 EUR, in which I assess which processes are worth automating and how much time that saves per month."
+    }
+  ],
+  "internalLinks": [
+    "/zimola-identitate",
+    "/majaslapu-izstrade",
+    "/ai-agenti",
+    "/seo-geo-aeo",
+    "/portfolio",
+    "/par-mani",
+    "/kontakti"
+  ],
+  "cta": "Tell me about your project: connect@gatisdesign.com or /kontakti. The first call costs nothing, and after it you get a fixed quote with deadlines.",
+  "heroLede": "Web design, brand, AI agents and visibility in Google search and AI answers - all done by one person."
+}

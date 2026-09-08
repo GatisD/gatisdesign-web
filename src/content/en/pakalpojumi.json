@@ -1,0 +1,78 @@
+{
+  "slug": "pakalpojumi",
+  "metaTitle": "Services: websites, brand, AI agents and SEO",
+  "metaDescription": "Websites from 500 EUR, brand identity from 500 EUR, AI agents from 400 EUR, SEO and GEO audit from 300 EUR. Fixed price and timeline, one person, no VAT.",
+  "h1": "Services",
+  "lede": "Brand, website, AI agents and visibility in Google and AI answers. Each service works on its own, but together they save time and money: one person knows why the site has exactly this color, this structure and this copy.",
+  "cards": [
+    {
+      "target": "/zimola-identitate",
+      "label": "brand",
+      "title": "Brand identity",
+      "lead": "Logo, colors, typography and usage rules that keep the brand looking the same on the side of a truck and in an Instagram profile.",
+      "includes": [
+        "Logo with 3-4 concepts",
+        "Brand book",
+        "Print materials"
+      ],
+      "price": "from 500 EUR",
+      "term": "2-3 weeks",
+      "poster": "/media/hero-brand.jpg",
+      "posterPosition": "center 40%"
+    },
+    {
+      "target": "/majaslapu-izstrade",
+      "label": "website",
+      "title": "Website design and development",
+      "lead": "Design, code, content and hosting in one pair of hands, WordPress or React, with speed and measurement from day one.",
+      "includes": [
+        "Landing page or full site",
+        "Online store in two languages",
+        "Maintenance after launch"
+      ],
+      "price": "from 500 EUR",
+      "term": "2-6 weeks",
+      "poster": "/media/hero-web.jpg",
+      "posterPosition": "center 40%"
+    },
+    {
+      "target": "/ai-agenti",
+      "label": "automation",
+      "title": "AI agents and automation",
+      "lead": "Agents that move leads, prepare reports and exchange data between systems - with timestamps and checks, without human hands.",
+      "includes": [
+        "Process audit and plan",
+        "One agent for one process",
+        "Integration between systems"
+      ],
+      "price": "audit from 400 EUR",
+      "term": "1-2 weeks",
+      "poster": "/media/hero-ai.jpg",
+      "posterPosition": "center 40%"
+    },
+    {
+      "target": "/seo-geo-aeo",
+      "label": "visibility",
+      "title": "SEO, GEO and AEO",
+      "lead": "I make sure your site is found both in Google search and in ChatGPT and Perplexity answers - with a technical base, quotable fragments and measurement.",
+      "includes": [
+        "Technical and content audit",
+        "AI SEO implementation",
+        "Monthly maintenance"
+      ],
+      "price": "audit from 300 EUR",
+      "term": "1-2 weeks",
+      "poster": "/media/hero-seo.jpg",
+      "posterPosition": "center 40%"
+    }
+  ],
+  "note": "The prices shown are final - I am not a VAT payer.",
+  "together": {
+    "heading": "How it works together",
+    "body": [
+      "The usual order is brand, then site, then visibility: the mark and colors define how the site looks, the site structure defines what search engines and AI models read from it, and automation takes over the leads once they start coming in.",
+      "Every project starts with a fixed quote, not with hourly tracking along the way. A test address is available from the first week, and after the final payment the client receives all access credentials and the source code."
+    ]
+  },
+  "cta": "Write to connect@gatisdesign.com - I will send a concrete price and timeline within one business day."
+}

@@ -2,57 +2,67 @@ import homeJson from "./lv/home.json";
 import type { ContentSectionData, ServiceContent } from "./types";
 
 /**
- * Sākumlapas saturs. Teksti nāk no src/content/lv/home.json, kas jau ir izgājis
- * gramatikas pārbaudi - šis modulis tos tikai izgriež gabalos, nekad nepārraksta.
+ * Sākumlapas saturs. Teksti nāk no src/content/<valoda>/home.json, kas jau ir
+ * izgājuši gramatikas pārbaudi - šis modulis tos tikai padara lasāmus kodam un
+ * nekad nepārraksta.
  *
- * home.json ir uzrakstīts kā satura specifikācija: kickeri ir redakcionāli
- * marķieri ("Sākums", "Skaitļi"), bullet punktos ir iekodēts mērķa ceļš aiz "->",
- * un pēdējā sadaļa ir redakcijas piezīme, kas lapā nav jārāda. Tāpēc sadaļas
- * šeit tiek meklētas pēc kickera, nevis pēc indeksa: ja saturs mainās, būve
- * krīt ar skaidru kļūdu, nevis klusi izmet sadaļu no lapas.
+ * `buildHome` ir tīra funkcija no JSON uz gatavām sadaļām un kartēm, tāpēc
+ * viens un tas pats kods apkalpo LV un EN failu (2026-09-08). Sadaļas meklē
+ * pēc kickera ABĀS valodās, ne pēc indeksa: ja saturā mainās secība, lapa
+ * joprojām saliek pareizās sadaļas, bet, ja sadaļa pazūd, būve krīt ar skaidru
+ * kļūdu. Kolonnas cenu tabulā atrod pēc virsraksta abās valodās.
+ *
+ * LV atvasinājumi paliek eksportēti ar tiem pašiem vārdiem (heroCtas,
+ * serviceCards, statItems ...), jo tos lieto testi un Par mani skaitļu josla.
  */
-export const homeContent = homeJson as ServiceContent;
 
-function sectionByKicker(kicker: string): ContentSectionData {
-  const section = homeContent.sections.find((s) => s.kicker === kicker);
-  if (!section) throw new Error(`home.json: nav sadaļas ar kickeri "${kicker}"`);
-  return section;
+/** Kickeri abās valodās. Sadaļu atrod pēc jebkura no tiem. */
+const KICKERS = {
+  hero: ["Sākums", "Home"],
+  chain: ["Bez aģentūras", "No agency"],
+  services: ["Pakalpojumi", "Services"],
+  works: ["Darbi", "Work"],
+  stats: ["Skaitļi", "Numbers"],
+  about: ["Par mani", "About me"],
+  contact: ["Kontakti", "Contact"],
+} as const;
+
+export type HomeCta = { label: string; target: string };
+
+export type ServiceCard = {
+  title: string;
+  description: string;
+  price: string;
+  term?: string;
+  target: string;
+};
+
+export type StatItem = {
+  value: number;
+  suffix: string;
+  label: string;
+};
+
+export interface HomeData {
+  content: ServiceContent;
+  heroSection: ContentSectionData;
+  chainSection: ContentSectionData;
+  servicesSection: ContentSectionData;
+  worksSection: ContentSectionData;
+  statsSection: ContentSectionData;
+  aboutSection: ContentSectionData;
+  contactSection: ContentSectionData;
+  heroCtas: HomeCta[];
+  serviceCards: ServiceCard[];
+  statItems: StatItem[];
 }
 
-export const heroSection = sectionByKicker("Sākums");
-export const chainSection = sectionByKicker("Bez aģentūras");
-export const servicesSection = sectionByKicker("Pakalpojumi");
-/**
- * UZMANĪBU: no šīm divām sadaļām lapā nonāk tikai daļa. Mērīts dist/index.html
- * 2026-09-06, ne pieņemts:
- *
- *   worksSection - renderējas TIKAI `body[0]` (Index.tsx caur `LinkedText`).
- *     Te bija arī seši `bullets` ar darbu aprakstiem. Tie nerenderējās nekur:
- *     tekstu varēja atrast tikai JS pakotnē, ne vienā HTML lapā, tātad ne
- *     cilvēkam, ne meklētājam, ne AI. Izdzēsti 2026-09-07.
- *                  Virsraksts un seši projektu bullet punkti (~130 vārdi) lapā
- *                  neparādās nekur; tos pašus darbus rāda `projects.ts` kartes.
- *   statsSection - renderējas TIKAI `bullets`, un tikai caur `statItems` zemāk.
- *                  Virsraksts un `body` (~25 vārdi) lapā neparādās.
- *
- * Tas nav bojājums, bet arī nav acīmredzams: fails izskatās kā lapas saturs, un
- * teksts tajā izskatās publicēts. Pirms rediģē šīs divas sadaļas, zini, ka lielākā
- * daļa no tā, ko tur uzrakstīsi, lapā nenonāks. Lēmums, vai tekstu dzēst vai
- * izcelt lapā, ir Gata - tāpēc te ir piezīme, ne dzēšana.
- */
-export const worksSection = sectionByKicker("Darbi");
-export const statsSection = sectionByKicker("Skaitļi");
-export const aboutSection = sectionByKicker("Par mani");
-export const contactSection = sectionByKicker("Kontakti");
-
-/** "... -> /kontakti" -> ["...", "/kontakti"] */
 function splitTarget(bullet: string): [string, string] {
   const at = bullet.lastIndexOf("->");
   if (at === -1) throw new Error(`home.json: bullet bez mērķa ceļa: ${bullet}`);
   return [bullet.slice(0, at).trim(), bullet.slice(at + 2).trim()];
 }
 
-/** Teikumi no viena bullet punkta, bez beigu punkta katrā. */
 function sentences(text: string): string[] {
   return text
     .split(/\.\s+/)
@@ -60,71 +70,88 @@ function sentences(text: string): string[] {
     .filter(Boolean);
 }
 
-export type HomeCta = { label: string; target: string };
+export function buildHome(content: ServiceContent): HomeData {
+  const sectionByKicker = (names: readonly string[]): ContentSectionData => {
+    const section = content.sections.find((s) => s.kicker !== undefined && names.includes(s.kicker));
+    if (!section) throw new Error(`home.json: nav sadaļas ar kickeru ${names.join(" / ")}`);
+    return section;
+  };
 
-/** Hero bullets: "CTA 1 (primārā): Pastāsti par projektu -> /kontakti" */
-export const heroCtas: HomeCta[] = (heroSection.bullets ?? []).map((bullet) => {
-  const [body, target] = splitTarget(bullet);
-  const label = body.replace(/^CTA\s+\d+\s*\([^)]*\)\s*:\s*/, "").trim();
-  if (!label || label === body) throw new Error(`home.json: neatpazīts CTA punkts: ${bullet}`);
-  return { label, target };
-});
+  const heroSection = sectionByKicker(KICKERS.hero);
+  const servicesSection = sectionByKicker(KICKERS.services);
+  const statsSection = sectionByKicker(KICKERS.stats);
 
-export type ServiceCard = {
-  /** Pakalpojuma nosaukums (bullet pirmais teikums). */
-  title: string;
-  /** Viens teikums par pakalpojumu. */
-  description: string;
-  /** Sākuma cena tā, kā tā uzrakstīta saturā ("No 500 EUR", "Audits no 400 EUR"). */
-  price: string;
-  /** Parastais termiņš no cenu tabulas ("2-3 nedēļas"), ja tabulā ir šī lapa. */
-  term?: string;
-  /** LV ceļš uz dziļo lapu. */
-  target: string;
-};
+  const heroCtas: HomeCta[] = (heroSection.bullets ?? []).map((bullet) => {
+    const [body, target] = splitTarget(bullet);
+    const label = body.replace(/^CTA\s+\d+\s*\([^)]*\)\s*:\s*/, "").trim();
+    if (!label || label === body) throw new Error(`home.json: neatpazīts CTA punkts: ${bullet}`);
+    return { label, target };
+  });
+
+  const serviceCards: ServiceCard[] = (() => {
+    const table = servicesSection.table;
+    const termByPath = new Map<string, string>();
+    if (table) {
+      const termColumn = table.columns.findIndex((c) => /termiņ|timeline/i.test(c));
+      const pathColumn = table.columns.findIndex((c) => /lapa|page/i.test(c));
+      if (termColumn >= 0 && pathColumn >= 0) {
+        for (const row of table.rows) termByPath.set(row[pathColumn], row[termColumn]);
+      }
+    }
+    return (servicesSection.bullets ?? []).map((bullet) => {
+      const [body, target] = splitTarget(bullet);
+      const parts = sentences(body);
+      const priceAt = parts.findIndex((p) => p.includes("EUR"));
+      if (parts.length < 3 || priceAt < 1) {
+        throw new Error(`home.json: neatpazīts pakalpojuma punkts: ${bullet}`);
+      }
+      return {
+        title: parts[0],
+        description: `${parts.slice(1, priceAt).join(". ")}.`,
+        price: parts[priceAt],
+        term: termByPath.get(target),
+        target,
+      };
+    });
+  })();
+
+  const statItems: StatItem[] = (statsSection.bullets ?? []).map((bullet) => {
+    const match = /^(\d+)(\+?)\s+(.+)$/.exec(bullet.trim());
+    if (!match) throw new Error(`home.json: neatpazīts skaitļa punkts: ${bullet}`);
+    return { value: Number(match[1]), suffix: match[2], label: match[3] };
+  });
+
+  return {
+    content,
+    heroSection,
+    chainSection: sectionByKicker(KICKERS.chain),
+    servicesSection,
+    worksSection: sectionByKicker(KICKERS.works),
+    statsSection,
+    aboutSection: sectionByKicker(KICKERS.about),
+    contactSection: sectionByKicker(KICKERS.contact),
+    heroCtas,
+    serviceCards,
+    statItems,
+  };
+}
 
 /**
- * Pakalpojumu kartes. Nosaukums, apraksts un cena nāk no bullet punkta,
- * termiņš - no tās pašas sadaļas cenu tabulas (savienojums pēc lapas ceļa).
+ * Skaitļu josla lapā "Par mani": "1 kontaktpersona" izņemts, to pasaka
+ * virsraksts. Dzīvo te, ne komponentē, lai LV un EN lieto vienu filtru.
  */
-export const serviceCards: ServiceCard[] = (() => {
-  const table = servicesSection.table;
-  const termByPath = new Map<string, string>();
-  if (table) {
-    const termColumn = table.columns.findIndex((c) => /termiņ/i.test(c));
-    const pathColumn = table.columns.findIndex((c) => /lapa/i.test(c));
-    if (termColumn >= 0 && pathColumn >= 0) {
-      for (const row of table.rows) termByPath.set(row[pathColumn], row[termColumn]);
-    }
-  }
+export const factsFrom = (items: StatItem[]) => items.filter((stat) => !(stat.value === 1 && stat.suffix === ""));
 
-  return (servicesSection.bullets ?? []).map((bullet) => {
-    const [body, target] = splitTarget(bullet);
-    const parts = sentences(body);
-    const priceAt = parts.findIndex((p) => p.includes("EUR"));
-    if (parts.length < 3 || priceAt < 1) {
-      throw new Error(`home.json: neatpazīts pakalpojuma punkts: ${bullet}`);
-    }
-    return {
-      title: parts[0],
-      description: `${parts.slice(1, priceAt).join(". ")}.`,
-      price: parts[priceAt],
-      term: termByPath.get(target),
-      target,
-    };
-  });
-})();
-
-export type StatItem = {
-  value: number;
-  /** "+" vai tukšs. */
-  suffix: string;
-  label: string;
-};
-
-/** Skaitļu sadaļas bullets: "100+ pabeigtu projektu: ..." */
-export const statItems: StatItem[] = (statsSection.bullets ?? []).map((bullet) => {
-  const match = /^(\d+)(\+?)\s+(.+)$/.exec(bullet.trim());
-  if (!match) throw new Error(`home.json: neatpazīts skaitļa punkts: ${bullet}`);
-  return { value: Number(match[1]), suffix: match[2], label: match[3] };
-});
+/** LV sākumlapa - noklusējums un testu avots. */
+export const homeLv: HomeData = buildHome(homeJson as ServiceContent);
+export const homeContent = homeLv.content;
+export const heroSection = homeLv.heroSection;
+export const chainSection = homeLv.chainSection;
+export const servicesSection = homeLv.servicesSection;
+export const worksSection = homeLv.worksSection;
+export const statsSection = homeLv.statsSection;
+export const aboutSection = homeLv.aboutSection;
+export const contactSection = homeLv.contactSection;
+export const heroCtas = homeLv.heroCtas;
+export const serviceCards = homeLv.serviceCards;
+export const statItems = homeLv.statItems;

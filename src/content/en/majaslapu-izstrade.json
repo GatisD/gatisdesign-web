@@ -1,0 +1,278 @@
+{
+  "slug": "majaslapu-izstrade",
+  "title": "Website development",
+  "metaTitle": "Website development: price from 500 EUR",
+  "metaDescription": "Website development at a fixed price: landing page from 500 EUR, full website 900-1500 EUR, online store from 2500 EUR. I am not a VAT payer - the price is final.",
+  "h1": "Website development",
+  "h1BreakAfter": 1,
+  "directAnswer": "I start website development with structure and one clear action on every page. A one-page website (landing page) costs from 500 EUR, a full company website 900-1500 EUR, an online store in two languages from 2500 EUR. Timeline - from 5 business days to 10 weeks. I am not a VAT payer, so the amount shown is final.",
+  "sections": [
+    {
+      "kicker": "Prices",
+      "heading": "How much does building a website cost",
+      "body": [
+        "I am not a VAT payer. When a competitor writes “from 999 EUR”, VAT is added on top and the invoice says 1208.79 EUR. My 900 EUR is 900 EUR on the invoice too: if the quoted amount is the same, the difference is 21%.",
+        "The price is set by the number of pages, the number of languages and how much of the content I prepare. Ready copy and photos make the project faster and cheaper; writing from scratch and a photo shoot are separate line items.",
+        "The price goes up with each additional language (+30% of the base), store functionality, integrations with a CRM or accounting system, calculators and configurators. Larger projects I split in two parts: 50% at the start, 50% before launch."
+      ],
+      "table": {
+        "caption": "Prices are final: I am not a VAT payer, so nothing is added to these numbers.",
+        "columns": [
+          "Solution",
+          "Price",
+          "Timeline",
+          "Intended for"
+        ],
+        "rows": [
+          [
+            "Landing page (one page)",
+            "from 500 EUR",
+            "5-10 business days",
+            "One service, one campaign, one action"
+          ],
+          [
+            "Full website (WordPress or React)",
+            "900-1500 EUR",
+            "3-5 weeks",
+            "A company with several services, 5-15 pages"
+          ],
+          [
+            "E-commerce in two languages",
+            "from 2500 EUR",
+            "6-10 weeks",
+            "An online store with payments and delivery"
+          ],
+          [
+            "Basic maintenance",
+            "50-80 EUR/mo",
+            "-",
+            "Updates, backups, security, monitoring"
+          ],
+          [
+            "Full maintenance package",
+            "100-150 EUR/mo",
+            "-",
+            "Everything above plus content changes and SEO monitoring"
+          ]
+        ]
+      }
+    },
+    {
+      "kicker": "No extra invoice",
+      "heading": "What is included in the price",
+      "body": [
+        "Outside the price and agreed separately: domain and hosting (they are yours, registered in your company's name), photos, copywriting from scratch, paid plugin licenses and translations. I can arrange these, but as separate line items, not as costs hidden in the base price."
+      ],
+      "bullets": [
+        "Structure and sitemap: what is on every page and in which order the visitor reads it",
+        "Custom design, not a purchased theme with a swapped logo. The mark itself I make separately: [brand identity and logo](/zimola-identitate)",
+        "Responsive layout for phone, tablet and desktop; the mobile version is tested on a real device, not in a simulator",
+        "Building in code or setting up WordPress with a tidy admin area",
+        "Technical SEO: titles and meta descriptions, heading hierarchy, sitemap.xml, robots.txt, schema.org structured data",
+        "Connecting Google Analytics 4 and Google Search Console, setting up conversion goals",
+        "Contact forms with verified email delivery, so that requests do not end up in spam",
+        "SSL certificate, 301 redirects from the old site, a proper 404 page",
+        "Speed optimization: images in WebP, fonts served locally, no unnecessary script layer",
+        "A short video tutorial on how to edit the content yourself, made on your actual site"
+      ]
+    },
+    {
+      "kicker": "Five seconds",
+      "heading": "A structure that turns visitors into leads",
+      "body": [
+        "Most company websites are built from the company's point of view: about us, history, values, and only then the services. The visitor comes in with a different question - will this company solve my problem, how much will it cost and how long will it take. That is why I build every page around one action: if a page has five equally important buttons, it has none.",
+        "Visibility in AI answers is no longer a niche: some people look for the answer in the ChatGPT window or in Google's AI summary, and only concretely written text gets there - numbers, prices, timelines, names. [Separate SEO work on content and links](/seo-geo-aeo) applies the same principle to the whole site.",
+        "If you already have a site and it is not bad, a new one is not always needed: sometimes the right answer is to redo two pages and fix the speed - for a third of the price of a new site."
+      ],
+      "bullets": [
+        "The first screen says without metaphors what you do and for whom. The visitor decides in five seconds.",
+        "The price, or at least a price range, is visible. Sites without prices get more calls, but worse ones.",
+        "Proof: real work, client names, testimonials with a name. A stock photo of a smiling team proves nothing.",
+        "One clear action on every page. A form with three fields gets filled in more often than a form with ten.",
+        "An FAQ with the real questions clients ask on the phone. This is the part AI search engines quote most often."
+      ]
+    },
+    {
+      "kicker": "Technology",
+      "heading": "WordPress or code - when to choose which",
+      "body": [
+        "I have no favorite. I choose by what will happen to the site after a year, not by what is more convenient for me to build.",
+        "I take WordPress when the content lives: a blog, news, a catalog, several people writing. You change the copy yourself, without a developer, and the price for that is maintenance - without regular updates, after a year you have not a website but a security problem.",
+        "I take code when the content changes rarely and what matters most is speed with precise design. Such a site is prepared before it is opened, hosting on Vercel often costs 0 EUR, and an attacker has nothing to grab: there is no admin panel and no database."
+      ],
+      "table": {
+        "caption": "How I choose between WordPress and a coded solution",
+        "columns": [
+          "Criterion",
+          "WordPress",
+          "Code (React or a static site)"
+        ],
+        "rows": [
+          [
+            "When I choose it",
+            "Content changes often, a blog, catalog or store is needed",
+            "Content is stable, speed and precise design matter"
+          ],
+          [
+            "Who edits the content",
+            "The client, in a visual editor",
+            "I do - or I connect a light CMS if frequent editing is needed"
+          ],
+          [
+            "Speed",
+            "Good, if set up correctly and without a layer of unnecessary plugins",
+            "Best - the page is prepared before it is opened"
+          ],
+          [
+            "Security and maintenance",
+            "Regular updates are mandatory",
+            "No admin panel and no database to break into"
+          ],
+          [
+            "Costs after launch",
+            "Hosting plus maintenance 50-150 EUR/mo",
+            "Hosting often 0 EUR, maintenance as needed"
+          ]
+        ]
+      }
+    },
+    {
+      "kicker": "Process",
+      "heading": "How the work goes: steps and timelines",
+      "body": [
+        "I work alone: there is no project manager between us retelling your words to a designer and the designer's words to a programmer.",
+        "In total it is from 3 weeks for small projects to 10 weeks for e-commerce. What most often stretches a project is not development but content from the client's side - so I ask for copy and photos in the second step, before I start designing."
+      ],
+      "steps": [
+        {
+          "title": "Conversation and proposal",
+          "meta": "1-2 days",
+          "text": "I ask questions about the business, the competitors and what the site has to achieve. I send a fixed price and timeline in writing, not the word “from”."
+        },
+        {
+          "title": "Structure and content",
+          "meta": "3-7 days",
+          "text": "I put together the sitemap and the structure of every page. This is where it becomes visible where content is missing. If you write the copy, it has to be handed over in this step."
+        },
+        {
+          "title": "Design",
+          "meta": "5-10 days",
+          "text": "I show the home page and one inner page. Two rounds of changes are included in the price. After approval I no longer change the layout from the ground up."
+        },
+        {
+          "title": "Build",
+          "meta": "7-15 days",
+          "text": "The site takes shape at a test address you can open at any moment, not only at the final presentation. In parallel I set up analytics and technical SEO."
+        },
+        {
+          "title": "Testing",
+          "meta": "2-3 days",
+          "text": "Forms, the mobile version on a real device, speed in the PageSpeed test, links, browsers, 404 errors."
+        },
+        {
+          "title": "Launch",
+          "meta": "1 day",
+          "text": "I move the site to your domain, set up the SSL certificate, create 301 redirects from the old links and submit sitemap.xml in the Google Search Console account."
+        }
+      ]
+    },
+    {
+      "kicker": "Speed",
+      "heading": "Speed and Core Web Vitals",
+      "body": [
+        "Google measures three metrics that are part of the algorithm: LCP - how fast the main content appears (target under 2.5 seconds), INP - how fast the page responds to a click (under 200 ms), CLS - how much the content jumps while loading (under 0.1).",
+        "A slow site costs twice: the visitor leaves before seeing the offer, and Google shows it below a faster competitor. What slows things down is not the hosting but unoptimized images straight from the camera and five plugins that do the same thing.",
+        "What I do: I convert images to WebP in specific sizes, keep fonts on my own server, inline the critical CSS and defer the rest. I measure in mobile mode - that is where the numbers are worst and where most of the visitors are.",
+        "The last step of the test cannot be measured: I open every finished site on my own phone and go through it as a visitor. A simulator does not show that a button is too small for a thumb or that text on an image is unreadable in the sun."
+      ]
+    },
+    {
+      "kicker": "Ten clients",
+      "heading": "Real examples",
+      "body": [
+        "Among the clients are MLM Cargo, ARM Metals, Tavasdurvis, Box Latvia, Tenter, Improvement, Cafeteria, Forevolt, DarbaGuru and Apmeklē.lv: logistics, manufacturing, retail, healthcare, services. [18 years of experience](/par-mani), clients in Latvia, Estonia, Lithuania and the USA. All the work can be seen in the [portfolio section](/portfolio)."
+      ],
+      "bullets": [
+        "Estire: a coded site on Vercel. The content changes rarely, but speed and design precision matter; hosting costs practically nothing and monthly maintenance is not needed.",
+        "Universal Solutions: a full GDPR solution - cookie consent, Consent Mode v2 and form emails delivered by a separate infrastructure so that requests do not get lost in spam.",
+        "Valis Stomatoloģija: a clinic site where the main action is booking an appointment. The structure is built around this one action, not around the company's history.",
+        "Lauvas Zobs: a small brand for which everything needed fit in a few pages - one message, one action."
+      ]
+    },
+    {
+      "kicker": "50-150 EUR/mo",
+      "heading": "What happens after launch",
+      "body": [
+        "Launch is not the finish line. Two weeks after it I look into the analytics: where visitors stop, which pages nobody opens, whether the forms are filled in to the end. From that usually follow two or three small changes, and they are included in the price. If requests are processed by hand, this stage can be taken over by an [AI agent on the website](/ai-agenti).",
+        "After that you either maintain the site yourself - I hand over the access and a tutorial - or leave it to me. Maintenance is not mandatory, but a WordPress site without updates becomes a security risk within a year."
+      ],
+      "bullets": [
+        "Basic maintenance, 50-80 EUR/mo: WordPress core, theme and plugin updates, daily backups with rollback to the previous version, security and uptime monitoring, light technical support.",
+        "Full package, 100-150 EUR/mo: everything above plus content changes (new pages, products, news), Search Console and ranking monitoring, a monthly report and a speed check."
+      ]
+    },
+    {
+      "kicker": "Riga and beyond",
+      "heading": "Website development in Riga and remotely",
+      "body": [
+        "I am in Riga. If you like to talk in person, we meet; the rest happens remotely, and that is how most clients work. The structure lives in one shared document, the design comes as a link you can comment on, and you can open the site in progress at any moment. Correspondence in Latvian or English.",
+        "I have built multilingual sites both in WordPress with WPML and in code. If you are planning the Estonian or Lithuanian market, it is worth talking about languages before the structure: later it costs more."
+      ]
+    },
+    {
+      "kicker": "Honestly",
+      "heading": "When I am not the right choice",
+      "body": [
+        "If the budget is under 500 EUR, if the site is needed the day after tomorrow, if you are looking for an agency with a team, or if you expect the site to bring visitors by itself, I am not the right choice. The full list is in the section [When one person is not the right choice](/par-mani)."
+      ]
+    },
+    {
+      "kicker": "Start",
+      "heading": "How to start",
+      "body": [
+        "Write to connect@gatisdesign.com and tell me three things: what your company does, what you have now (site, domain, copy, photos) and when it is needed. That is enough for a concrete price and timeline, not the word “from”.",
+        "I reply within one business day. If the project is not mine, I will say so right away and, if I can, suggest whom to turn to."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How much does building a website cost?",
+      "a": "A one-page website (landing page) costs from 500 EUR. The full price list with timelines and what each price includes is in the price table at the top of this page."
+    },
+    {
+      "q": "How long does it take to develop a website?",
+      "a": "A landing page takes 5-10 business days, a full website 3-5 weeks, e-commerce in two languages 6-10 weeks. The timeline holds if content and answers come within 1-2 days; the most common reason for delay is not development but waiting for copy and photos."
+    },
+    {
+      "q": "Which is better - WordPress or a coded site?",
+      "a": "WordPress fits when the content changes often and you want to edit it yourself: a blog, news, a catalog. A coded site fits when the content is stable and speed with precise design matters: it loads faster, hosting often costs 0 EUR and monthly maintenance is practically not needed. I make the choice in the first conversation and explain it."
+    },
+    {
+      "q": "Does VAT have to be added to the price?",
+      "a": "No. I am not a VAT payer, so the numbers in the price table are the same ones that end up on the invoice. Payment is due in 5 business days; larger projects I split in two parts."
+    },
+    {
+      "q": "Will I be able to edit the content myself?",
+      "a": "Yes. On a WordPress site you edit the content in a visual editor in the browser, and after launch I hand over the access and a short video tutorial about your specific site. On coded sites I make the content changes, or I connect a light CMS if you plan to edit often."
+    },
+    {
+      "q": "Who owns the domain, the hosting and the site's code?",
+      "a": "You do. The domain is registered in your company's name, the hosting account is yours, and after the final payment you receive all access credentials and the source code. If you ever want to change developers, you leave with the whole site."
+    },
+    {
+      "q": "Will the new website be visible in Google?",
+      "a": "The technical part is included: titles and meta descriptions, heading structure, sitemap.xml, schema.org structured data, speed and submitting the site in Google Search Console. With that the site gets indexed. Rankings for keywords with heavy competition require separate SEO work on content and links - that is a different service."
+    }
+  ],
+  "internalLinks": [
+    "/zimola-identitate - anchor “brand identity and logo”; in “What is included in the price”, at custom design",
+    "/seo-geo-aeo - anchor “separate SEO work on content and links”; in the FAQ answer about visibility in Google and in “A structure that turns visitors into leads”",
+    "/ai-agenti - anchor “AI agent on the website”; in “What happens after launch”",
+    "/portfolio - anchor “portfolio section”; at the end of “Real examples”",
+    "/par-mani - anchor “18 years of experience”; in “Real examples” and “When I am not the right choice”",
+    "/kontakti - anchor “write to me”; in “How to start” and after the price table"
+  ],
+  "cta": "Write to connect@gatisdesign.com - I will send a concrete price and timeline within one business day.",
+  "heroLede": "A site that brings no leads is just an expense. I start with structure and one clear action on every page. Prices and timelines are in the table below."
+}

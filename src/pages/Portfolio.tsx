@@ -13,7 +13,8 @@ import {
   indexableProjects,
   PLATFORM_TAGS,
   projects,
-  SERVICE_TAG,
+  localized,
+  serviceTag,
   type ServiceKey,
 } from "@/data/projects";
 import { useLocale } from "@/i18n/LocaleContext";
@@ -39,6 +40,7 @@ interface FilterChip {
  * apgalvoja vienu skaitli, bet lapa rādīja citu.
  */
 const META_DESCRIPTION = `${projects.length} publicēti darbi: mājaslapu izstrāde, logo un zīmola dizains. Estire, Box Latvia, ROIS.lv, Apmeklē.lv. Katram darbam norādīts klients un mana loma.`;
+const META_DESCRIPTION_EN = `${projects.length} published projects: website development, logo and brand design. Estire, Box Latvia, ROIS.lv, Apmeklē.lv. Each project lists the client and my role.`;
 
 /**
  * Divas sadaļas zem režģa. Teksts dzīvo šeit, ne satura failā, jo /portfolio
@@ -47,6 +49,12 @@ const META_DESCRIPTION = `${projects.length} publicēti darbi: mājaslapu izstr�
  */
 const WEB_NOTE =
   "Darbu sarakstā ir divi tehnoloģiju ceļi. WordPress ar Elementor vai Breakdance - tad, kad saturu pēc palaišanas maina klients pats; tā uzbūvēta lielākā daļa šo lapu. Kodēta lapa ar React un Vite - tad, kad saturs mainās reti, bet svarīgi ir ātrums un dizaina precizitāte: Estire, ROIS.lv, Universal Solutions. Atsevišķa grupa ir veikali WooCommerce vai Shopify vidē, kā arī daudzvalodu lapas ar WPML. Cenas un termiņus katram no šiem ceļiem atradīsi lapā [Mājaslapu izstrāde](/majaslapu-izstrade).";
+
+const WEB_NOTE_EN =
+  "The list has two technology paths. WordPress with Elementor or Breakdance - when the client changes the content themselves after launch; most of these sites are built that way. A coded site with React and Vite - when the content changes rarely but speed and design precision matter: Estire, ROIS.lv, Universal Solutions. A separate group is stores on WooCommerce or Shopify, plus multilingual sites with WPML. Prices and timelines for each of these paths are on the page [Website development](/majaslapu-izstrade).";
+
+const BRAND_NOTE_EN =
+  "This section has both full identities with a brand book and print materials, and standalone logos. Box Latvia is a logistics brand with vehicle livery, Apmeklē.lv a platform mark that has to work at app icon size, Digitālais Dzintars a poster and playbill system. Some of the work I made in the ROIS team, some alone, and each piece says which. Prices are on the page [Logo design and brand identity](/zimola-identitate).";
 
 const BRAND_NOTE =
   "Šajā sadaļā ir gan pilnas identitātes ar zīmola grāmatu un drukas materiāliem, gan atsevišķi logotipi. Box Latvia ir loģistikas zīmols ar transportlīdzekļu marķējumu, Apmeklē.lv - platformas zīme, kurai jāstrādā lietotnes ikonas izmērā, Digitālais Dzintars - plakātu un afišu sistēma. Daļu darbu veidoju ROIS komandā, daļu viens pats, un pie katra tas ir norādīts. Cenas ir lapā [Logo izveide un zīmola identitāte](/zimola-identitate).";
@@ -91,12 +99,14 @@ export default function Portfolio() {
   const [filter, setFilter] = useState<Filter>("all");
   const isLv = locale === "lv";
 
+  // Lokalizēti darbi: EN virsraksti, apraksti un lomas, ja tie ir datos.
+  const items = useMemo(() => projects.map((p) => localized(p, locale)), [locale]);
   const visible = useMemo(() => {
-    if (filter === "all") return projects;
+    if (filter === "all") return items;
     const vertiba = filter.slice(2);
     return filter.startsWith("s:")
-      ? projects.filter((p) => p.services.includes(vertiba as ServiceKey))
-      : projects.filter((p) => p.stack?.includes(vertiba));
+      ? items.filter((p) => p.services.includes(vertiba as ServiceKey))
+      : items.filter((p) => p.stack?.includes(vertiba));
   }, [filter]);
 
   /**
@@ -111,7 +121,7 @@ export default function Portfolio() {
   const filters = useMemo<FilterChip[]>(() => {
     const pakalpojumi = new Map<ServiceKey, number>();
     const tehnologijas = new Map<string, number>();
-    for (const p of projects) {
+    for (const p of items) {
       for (const s of p.services) pakalpojumi.set(s, (pakalpojumi.get(s) ?? 0) + 1);
       for (const t of p.stack ?? []) tehnologijas.set(t, (tehnologijas.get(t) ?? 0) + 1);
     }
@@ -119,17 +129,17 @@ export default function Portfolio() {
       { key: "all", label: isLv ? "Visi" : "All", count: projects.length },
       ...[...pakalpojumi]
         .sort((a, b) => b[1] - a[1])
-        .map(([k, count]): FilterChip => ({ key: `s:${k}`, label: SERVICE_TAG[k], count })),
+        .map(([k, count]): FilterChip => ({ key: `s:${k}`, label: serviceTag(locale)[k], count })),
       ...PLATFORM_TAGS.map((t): FilterChip => ({ key: `t:${t}`, label: t, count: tehnologijas.get(t) ?? 0 }))
         .filter((c) => c.count > 0)
         .sort((a, b) => b.count - a.count),
     ];
-  }, [isLv]);
+  }, [isLv, items, locale]);
 
   const listSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Gatis Daugavieša darbi",
+    name: isLv ? "Gatis Daugavieša darbi" : "Work by Gatis Daugavietis",
     // Sarakstā tikai tie darbi, kuriem ir sava indeksējama lapa. Nosaukt
     // `noindex` adresi strukturētā sarakstā nozīmē aicināt to indeksēt.
     numberOfItems: indexableProjects.length,
@@ -146,8 +156,8 @@ export default function Portfolio() {
       <SEO
         routeKey="portfolio"
         locale={locale}
-        title="Mājaslapu un logo izstrādes piemēri"
-        description={META_DESCRIPTION}
+        title={isLv ? "Mājaslapu un logo izstrādes piemēri" : "Website and logo design examples"}
+        description={isLv ? META_DESCRIPTION : META_DESCRIPTION_EN}
         // EN saturs vēl nav tulkots, tāpēc /en/portfolio rāda LV tekstu ar noindex.
         noindex={!isLv}
       />
@@ -167,7 +177,7 @@ export default function Portfolio() {
           <LineReveal
             as="h1"
             id="darbi-h"
-            lines={["Mājaslapu un logo", "izstrādes piemēri"]}
+            lines={isLv ? ["Mājaslapu un logo", "izstrādes piemēri"] : ["Website and logo", "design examples"]}
             className="text-display-2 font-bold uppercase text-paper"
           />
           <Reveal delay={0.2} className="mt-[clamp(22px,3vw,38px)] max-w-[62ch]">
@@ -175,8 +185,9 @@ export default function Portfolio() {
               <span aria-hidden="true" className="text-amber">
                 &#8627;
               </span>{" "}
-              Projekti, kas strādā arī ārpus prezentācijas. Katram darbam norādīts klients un mana
-              loma - daļu veidoju ROIS komandā, daļu viens pats.
+              {isLv
+                ? "Projekti, kas strādā arī ārpus prezentācijas. Katram darbam norādīts klients un mana loma - daļu veidoju ROIS komandā, daļu viens pats."
+                : "Projects that work outside the presentation too. Each one lists the client and my role - some I made in the ROIS team, some alone."}
             </p>
           </Reveal>
         </div>
@@ -279,18 +290,18 @@ export default function Portfolio() {
           <div className="grid gap-x-12 gap-y-10 md:grid-cols-2">
             <div>
               <SectionTitle id="darbu-veidi" className="mb-5">
-                Mājaslapas šajā sarakstā
+                {isLv ? "Mājaslapas šajā sarakstā" : "Websites in this list"}
               </SectionTitle>
               <p className="max-w-[58ch] text-[16px] leading-[1.45] text-paper-2">
-                <LinkedText text={WEB_NOTE} />
+                <LinkedText text={isLv ? WEB_NOTE : WEB_NOTE_EN} />
               </p>
             </div>
             <div>
               <SectionTitle id="zimola-darbi" className="mb-5">
-                Logo un zīmola darbi
+                {isLv ? "Logo un zīmola darbi" : "Logo and brand work"}
               </SectionTitle>
               <p className="max-w-[58ch] text-[16px] leading-[1.45] text-paper-2">
-                <LinkedText text={BRAND_NOTE} />
+                <LinkedText text={isLv ? BRAND_NOTE : BRAND_NOTE_EN} />
               </p>
             </div>
           </div>

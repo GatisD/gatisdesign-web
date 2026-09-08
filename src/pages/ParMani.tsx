@@ -13,7 +13,8 @@ import ContentSections from "@/components/content/ContentSections";
 import ClosingLine from "@/components/content/ClosingLine";
 import FaqList from "@/components/content/FaqList";
 import { aboutContent } from "@/content/pages";
-import { statItems } from "@/content/home";
+import type { PageContent } from "@/content/types";
+import { factsFrom, statItems, type StatItem } from "@/content/home";
 import { useLocale } from "@/i18n/LocaleContext";
 import { pathFor, type RouteKey } from "@/i18n/routes";
 import {
@@ -36,9 +37,10 @@ import PicturePortfolio from "@/components/PicturePortfolio";
  * izņemts pavisam: to pašu pasaka virsraksts "Viens cilvēks, kurš atbild par
  * rezultātu", un skaitlis "1" statistikas joslā ir teikums, izģērbts par datiem.
  */
-const FACTS = statItems.filter((stat) => !(stat.value === 1 && stat.suffix === ""));
+const FACTS = factsFrom(statItems);
 
-export default function ParMani() {
+/** Saturs un skaitļi kā props: LV pēc noklusējuma, EN caur ParManiEn apvalku. */
+export default function ParMani({ content = aboutContent, stats = FACTS }: { content?: PageContent; stats?: StatItem[] }) {
   const { locale, t, path } = useLocale();
   const isLv = locale === "lv";
   const noindex = !isLv;
@@ -47,7 +49,7 @@ export default function ParMani() {
   const PERSON_ID = `${SITE_URL}/#gatis`;
 
   const personSchema = personNode({
-    description: aboutContent.directAnswer,
+    description: content.directAnswer,
     mainEntityOfPage: abs("about"),
     image: `${SITE_URL}/og-gatisdesign.png`,
     knowsLanguage: ["lv", "en"],
@@ -58,7 +60,7 @@ export default function ParMani() {
   // FAQPage satur arī tos jautājumus, kas lapā netiek rādīti (piem. "Kas ir
   // Gatis Daugavietis?"): visa lapa jau ir atbilde uz to, un redzams jautājums
   // to atkārtotu trešo reizi, bet strukturētajos datos tas ir vietā.
-  const faqPageSchema = faqPageNode([...aboutContent.faq, ...(aboutContent.faqSchemaOnly ?? [])]);
+  const faqPageSchema = faqPageNode([...content.faq, ...(content.faqSchemaOnly ?? [])]);
 
 
   const breadcrumbSchema = buildBreadcrumbSchema([
@@ -71,8 +73,8 @@ export default function ParMani() {
       <SEO
         routeKey="about"
         locale={locale}
-        title={aboutContent.metaTitle}
-        description={aboutContent.metaDescription}
+        title={content.metaTitle}
+        description={content.metaDescription}
         noindex={noindex}
       />
       <JsonLd data={[personSchema, faqPageSchema, breadcrumbSchema]} />
@@ -105,7 +107,7 @@ export default function ParMani() {
             <LineReveal
               as="h1"
               id="par-h"
-              lines={h1Lines(aboutContent.h1, aboutContent.h1BreakAfter)}
+              lines={h1Lines(content.h1, content.h1BreakAfter)}
               className="text-display-2 font-bold uppercase text-paper"
             />
             <Reveal delay={0.2} className="mt-[clamp(20px,3vw,34px)] max-w-[54ch]">
@@ -113,7 +115,7 @@ export default function ParMani() {
                 <span aria-hidden="true" className="text-amber">
                   &#8627;
                 </span>{" "}
-                {aboutContent.heroLede ?? aboutContent.directAnswer}
+                {content.heroLede ?? content.directAnswer}
               </p>
             </Reveal>
             {/* Lapā nebija nevienas pogas: 1408 vārdi par to, kā es strādāju,
@@ -139,7 +141,7 @@ export default function ParMani() {
       {/* ============ SKAITĻI ============ */}
       <section className="border-y border-line bg-ink-900" aria-label={isLv ? "Skaitļi" : "Numbers"}>
         <div className="mx-auto grid max-w-wrap gap-8 px-5 py-10 sm:grid-cols-3 sm:px-8 lg:px-10">
-          {FACTS.map((stat, i) => (
+          {stats.map((stat, i) => (
             <Reveal key={stat.label} delay={stagger(i, 3)} y={14}>
               <p className="flex flex-col gap-2">
                 <span className="text-[clamp(2.1rem,4vw,2.9rem)] font-semibold leading-none tracking-[-0.04em] text-paper">
@@ -154,18 +156,18 @@ export default function ParMani() {
       </section>
 
       {/* ============ SATURA SADAĻAS ============ */}
-      <ContentSections sections={aboutContent.sections} />
+      <ContentSections sections={content.sections} />
 
       {/* ============ JAUTĀJUMI ============ */}
       <Section rhythm="lg" surface="ink-850" labelledBy="jautajumi">
         <SectionTitle id="jautajumi" size="giant" className="mb-[clamp(28px,4vw,56px)] scroll-mt-24">
           {isLv ? "Jautājumi" : "Questions"}
         </SectionTitle>
-        <FaqList items={aboutContent.faq} />
+        <FaqList items={content.faq} />
       </Section>
 
       {/* ============ SĀKSIM ============ */}
-      {aboutContent.cta ? <ClosingLine text={aboutContent.cta} /> : null}
+      {content.cta ? <ClosingLine text={content.cta} /> : null}
     </>
   );
 }

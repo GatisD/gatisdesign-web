@@ -8,7 +8,7 @@ import HeroMedia from "@/components/direction/HeroMedia";
 import PageHero from "@/components/direction/PageHero";
 import { Section, SectionTitle, ProseColumns } from "@/components/direction/Section";
 import ClosingLine from "@/components/content/ClosingLine";
-import content from "@/content/lv/pakalpojumi.json";
+import lvContent from "@/content/lv/pakalpojumi.json";
 import { useLocale } from "@/i18n/LocaleContext";
 import { routeKeyForPath, type RouteKey } from "@/i18n/routes";
 import { SITE_URL } from "@/lib/site";
@@ -33,7 +33,10 @@ import { SITE_URL } from "@/lib/site";
  * EN maršruts /en/services rāda LV tekstu ar noindex - tas pats stāvoklis,
  * kāds ir pārējām lapām, kamēr EN saturs nav uzrakstīts.
  */
-export default function Pakalpojumi() {
+export type PakalpojumiContent = typeof lvContent;
+
+/** Saturs kā props: LV pēc noklusējuma, EN caur PakalpojumiEn apvalku. */
+export default function Pakalpojumi({ content = lvContent }: { content?: PakalpojumiContent }) {
   const { locale, path } = useLocale();
   const isLv = locale === "lv";
   const noindex = !isLv;

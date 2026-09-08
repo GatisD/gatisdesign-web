@@ -1,4 +1,5 @@
 import Label from "@/components/ui/Label";
+import { useLocale } from "@/i18n/LocaleContext";
 
 /**
  * Mini satura rādītājs pakalpojumu lapas hero apakšā.
@@ -14,15 +15,17 @@ import Label from "@/components/ui/Label";
  */
 export default function TableOfContents({
   items,
-  heading = "Šajā lapā",
+  heading,
 }: {
   items: Array<{ id: string; label: string }>;
   heading?: string;
 }) {
+  const { locale } = useLocale();
+  const virsraksts = heading ?? (locale === "lv" ? "Šajā lapā" : "On this page");
   if (items.length === 0) return null;
   return (
-    <nav aria-label={heading} className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
-      <Label caps>{heading}</Label>
+    <nav aria-label={virsraksts} className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
+      <Label caps>{virsraksts}</Label>
       <ul className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
         {items.map((item) => (
           <li key={item.id}>

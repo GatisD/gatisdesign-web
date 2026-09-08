@@ -20,7 +20,7 @@ import rawJson from "../content/projects.raw.json";
 import draftJson from "../content/projects.draft.json";
 import imageSizes from "./image-sizes.json";
 import { portfolioWorks, galleryPath, type GalleryLayout } from "./portfolio";
-import type { RouteKey } from "../i18n/routes";
+import type { Locale, RouteKey } from "../i18n/routes";
 
 export type ProjectCategory = "web" | "brand";
 export type ExternalStatus = "live" | "archived" | "development" | "none";
@@ -51,6 +51,9 @@ export interface Project {
   title: string;
   /** Tukša virkne, ja apraksta vēl nav. Netiek izdomāts. */
   summary: string;
+  /** EN virsraksts un apraksts; ja nav, `localized` atstāj LV. */
+  titleEn?: string;
+  summaryEn?: string;
   role: ProjectRole;
   services: ServiceKey[];
   externalUrl?: string;
@@ -87,6 +90,8 @@ interface RawProject {
   stack: string[];
   titleLv: string;
   summaryLv: string | null;
+  titleEn?: string;
+  summaryEn?: string | null;
   coverHint: string | null;
   galleryCount?: number;
   needsInput?: string;
@@ -216,6 +221,65 @@ export const EXTERNAL_STATUS_NOTE: Record<ExternalStatus, string> = {
   none: "",
 };
 
+/* ------------------------------------------------------------------ *
+ * EN etiķetes un lokalizācija (2026-09-08).
+ *
+ * Dati paliek vienā sarakstā ar LV kā pamatu: `titleEn`/`summaryEn` stāv
+ * blakus LV laukiem tajā pašā ierakstā, un lomas, kategoriju un pakalpojumu
+ * etiķetes ir kartes no LV vērtības uz EN. `localized()` neko nemaina datos -
+ * tas atgriež kopiju ar EN tekstu tur, kur tas ir, un LV tur, kur nav, lai
+ * lapa nekad nerāda tukšumu.
+ * ------------------------------------------------------------------ */
+export const CATEGORY_TAG_EN: Record<ProjectCategory, string> = { web: "Website", brand: "Brand and design" };
+export const SERVICE_TAG_EN: Record<ServiceKey, string> = { majaslapas: "Websites", zimols: "Brand", seo: "SEO" };
+export const SERVICE_LABEL_EN: Record<ServiceKey, string> = {
+  zimols: "Brand identity",
+  majaslapas: "Website development",
+  seo: "SEO, GEO and AEO",
+};
+export const EXTERNAL_STATUS_NOTE_EN: Record<ExternalStatus, string> = {
+  live: "",
+  archived: "The website is no longer available",
+  development: "The site is still in progress - the public address will follow",
+  none: "",
+};
+/** Lomas etiķete LV -> EN. Nezināma LV etiķete paliek LV, ne tukša. */
+export const ROLE_LABEL_EN: Record<string, string> = {
+  Dizains: "Design",
+  "Dizains un izstrāde": "Design and development",
+  "Dizains un izstrāde (demo)": "Design and development (demo)",
+  "Izstrāde ROIS komandā": "Development in the ROIS team",
+  "Izstrāde un SEO ROIS komandā": "Development and SEO in the ROIS team",
+  "Izstrāde un uzturēšana": "Development and maintenance",
+  "Logo un brandbook ROIS komandā": "Logo and brand book in the ROIS team",
+  "Logo un vizītkartes ROIS komandā": "Logo and business cards in the ROIS team",
+  "Mājaslapa, pierakstu sistēma un SEO": "Website, booking system and SEO",
+  "Mājaslapas izstrāde, grafiskais dizains, Odoo uzturēšana": "Website development, graphic design, Odoo maintenance",
+  "SEO un GEO ROIS komandā": "SEO and GEO in the ROIS team",
+  "Tehniskā uzturēšana": "Technical maintenance",
+  "Zīmola izstrāde": "Brand development",
+  "Zīmola izstrāde ROIS komandā": "Brand development in the ROIS team",
+  "Zīmola zīmju izstrāde": "Brand mark design",
+  "Zīmols un izstrāde ROIS komandā": "Brand and development in the ROIS team",
+  "Zīmols, dizains un izstrāde": "Brand, design and development",
+};
+export const categoryTag = (locale: Locale) => (locale === "lv" ? CATEGORY_TAG : CATEGORY_TAG_EN);
+export const serviceTag = (locale: Locale) => (locale === "lv" ? SERVICE_TAG : SERVICE_TAG_EN);
+export const serviceLabel = (locale: Locale) => (locale === "lv" ? SERVICE_LABEL : SERVICE_LABEL_EN);
+export const externalStatusNote = (locale: Locale) => (locale === "lv" ? EXTERNAL_STATUS_NOTE : EXTERNAL_STATUS_NOTE_EN);
+
+export function localized(project: Project, locale: Locale): Project {
+  if (locale === "lv") return project;
+  const title = project.titleEn ?? project.title;
+  return {
+    ...project,
+    title,
+    summary: project.summaryEn ?? project.summary,
+    role: { ...project.role, label: ROLE_LABEL_EN[project.role.label] ?? project.role.label },
+    cover: project.cover.alt === project.title ? { ...project.cover, alt: title } : project.cover,
+  };
+}
+
 const sizes = imageSizes as Record<string, { width: number; height: number }>;
 
 /** Vai attēls ar šo ceļu ir manifestā (tātad reāli guļ public mapē). */
@@ -255,6 +319,8 @@ function toProject(entry: RawProject, cover: ProjectImage): Project {
     client: entry.client,
     title: entry.titleLv,
     summary: entry.summaryLv ?? "",
+    ...(entry.titleEn ? { titleEn: entry.titleEn } : {}),
+    ...(entry.summaryEn ? { summaryEn: entry.summaryEn } : {}),
     role: { kind: entry.roleKind === "rois" ? "rois" : "solo", label: entry.roleLabel },
     services: entry.services.filter((s): s is ServiceKey => s in SERVICE_ROUTE_KEY),
     externalStatus: entry.externalStatus === "live" ? "live" : entry.externalStatus === "archived" ? "archived" : entry.externalStatus === "development" ? "development" : "none",

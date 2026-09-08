@@ -20,7 +20,7 @@ export const serviceContent: Record<ServiceRouteKey, ServiceContent> = {
 };
 
 /** Abonementa un stundas likmes cenu diapazonā neietilpst - tās nav projekta cena. */
-const RECURRING = /\/mēn|mēnesī|\/h\b|stundā/i;
+const RECURRING = /\/mēn|mēnesī|\/h\b|stundā|\/mo\b|per month|monthly|hour/i;
 
 /**
  * Cenu diapazons no lapas cenu tabulas. Ņem tikai kolonnas, kuru galvā ir
@@ -42,7 +42,7 @@ export function priceRangeFor(
     if (!table) continue;
 
     const priceColumns = table.columns
-      .map((column, index) => (/cena/i.test(column) ? index : -1))
+      .map((column, index) => (/cena|price/i.test(column) ? index : -1))
       .filter((index) => index >= 0);
     if (priceColumns.length === 0) continue;
 

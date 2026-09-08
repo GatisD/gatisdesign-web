@@ -92,15 +92,25 @@ function rhythmFor(section: ContentSectionData, recent: Rhythm[]): Rhythm {
  */
 export function priceSection(sections: ContentSectionData[]): ContentSectionData | undefined {
   return (
-    sections.find((s) => s.table?.columns.some((c) => /cena/i.test(c))) ??
+    sections.find((s) => s.table?.columns.some((c) => /cena|price/i.test(c))) ??
     sections.find((s) => s.table)
   );
 }
 
-export function tocFor(sections: ContentSectionData[]): Array<{ id: string; label: string }> {
+/** Satura rādītāja etiķetes. Angliski tās pašas trīs, un satura virsraksti abās valodās. */
+const TOC_LABELS = {
+  lv: { prices: "Cenas", process: "Process", faq: "Jautājumi" },
+  en: { prices: "Prices", process: "Process", faq: "Questions" },
+} as const;
+
+export function tocFor(
+  sections: ContentSectionData[],
+  locale: keyof typeof TOC_LABELS = "lv",
+): Array<{ id: string; label: string }> {
+  const labels = TOC_LABELS[locale];
   const out: Array<{ id: string; label: string }> = [];
   const prices = priceSection(sections);
-  if (prices) out.push({ id: headingId(prices.heading), label: "Cenas" });
+  if (prices) out.push({ id: headingId(prices.heading), label: labels.prices });
   // Procesu meklē gan pēc `steps` masīva, gan pēc virsraksta: trīs lapas to
   // saturā tur kā numurētu sarakstu, un bez otrā ceļa satura rādītājā pazuda
   // vienīgais enkurs septiņām vidus sadaļām 14 000 px garā lapā.
@@ -108,11 +118,12 @@ export function tocFor(sections: ContentSectionData[]): Array<{ id: string; labe
     sections.find((s) => s.steps) ??
     sections.find(
       (s) =>
-        /^(kā notiek|kā sāk|process|darba gaita|kā es strādāju)/i.test(s.heading) ||
-        s.kicker === "Process",
+        /^(kā notiek|kā sāk|process|darba gaita|kā es strādāju|how the work|how i work|how we start|where to start|the process)/i.test(
+          s.heading,
+        ) || s.kicker === "Process",
     );
-  if (steps) out.push({ id: headingId(steps.heading), label: "Process" });
-  out.push({ id: "jautajumi", label: "Jautājumi" });
+  if (steps) out.push({ id: headingId(steps.heading), label: labels.process });
+  out.push({ id: "jautajumi", label: labels.faq });
   // "Sāksim" te vairs nav: kopš noslēgums ir viena rinda bez virsraksta,
   // enkurs veda uz vietu, kur nospiedējam nav nekāda apstiprinājuma, ka viņš ir
   // nonācis. Darbība tagad ir hero blokā, pirmajā ekrānā.
