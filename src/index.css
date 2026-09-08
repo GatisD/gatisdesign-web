@@ -481,6 +481,47 @@
   }
 }
 
+/* WhatsApp pogas gaismas gredzens.
+
+   Viens gredzens ik pēc 5 s, ne pastāvīgs pulss: perifērijā acs to pamana, bet
+   lasīšanu tas netraucē. `::after` ar `pointer-events: none` - gredzens nekad
+   neķer klikšķus, un pogas laukums paliek tieši tik liels, cik izskatās.
+
+   Animācija dzīvo TIKAI `no-preference` blokā. Pastāvīga pulsējoša kustība ir
+   tieši tas, ko `prefers-reduced-motion` izslēdz, tāpēc tur gredzena nav
+   vispār, un poga paliek klusa stikla ripa. */
+.wa-poga::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: 2.75rem;
+  border-radius: 9999px;
+  border: 1px solid var(--amber);
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wa-poga::after {
+    animation: wa-gredzens 5s var(--ease, ease-out) infinite;
+  }
+  @keyframes wa-gredzens {
+    0% {
+      scale: 1;
+      opacity: 0.5;
+    }
+    18% {
+      scale: 1.55;
+      opacity: 0;
+    }
+    100% {
+      scale: 1.55;
+      opacity: 0;
+    }
+  }
+}
+
 /* Hero ciparu lietus. Maska to nodzēš uz apakšu, kur sākas virsraksts un
    teksts - raibums zem burtiem maksā salasāmību, bet nedod neko pretī. Tā pati
    maska, kāda bija punktu režģim; mainījās tas, kas zem tās kustas.

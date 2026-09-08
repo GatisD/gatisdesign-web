@@ -8,6 +8,7 @@ import SmoothScroll from "./SmoothScroll";
 import ScrollManager from "./ScrollManager";
 import CookieBanner from "./CookieBanner";
 import ScrollToTop from "./ScrollToTop";
+import WhatsAppPoga from "./WhatsAppPoga";
 
 /**
  * Lapas ietvars.
@@ -41,6 +42,7 @@ export default function Layout({ locale }: { locale: Locale }) {
         </main>
         <Footer />
         <CookieBanner />
+        <WhatsAppPoga />
         <ScrollToTop />
       </div>
     </LocaleProvider>

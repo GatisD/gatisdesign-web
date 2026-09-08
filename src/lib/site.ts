@@ -6,6 +6,17 @@ export const SITE_NAME = "Gatis Design";
 export const SITE_TAGLINE = "Brand identity ar 18 gadu pieredzi";
 export const CONTACT_EMAIL = "connect@gatisdesign.com";
 
+/**
+ * WhatsApp. `wa.me` prasa numuru BEZ plusa, atstarpēm un iekavām - ar tiem
+ * saite atveras, bet sarunu neatver, un cilvēks nonāk tukšā WhatsApp logā.
+ * `display` ir tas pats numurs cilvēkam lasāmā formā.
+ */
+export const WHATSAPP = {
+  number: "37127112163",
+  display: "+371 27112163",
+  href: "https://wa.me/37127112163",
+};
+
 export const SOCIAL = {
   dribbble: "https://dribbble.com/gdesign90",
   facebook: "https://facebook.com/GatisDesign",
