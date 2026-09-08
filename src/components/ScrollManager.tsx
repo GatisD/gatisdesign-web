@@ -21,8 +21,18 @@ import { getLenis } from "./SmoothScroll";
  * pirmā kadra - citādi jaunā lapa uz mirkli pazibsni vecajā ritinājumā.
  */
 
-/** Fiksētās galvenes augstums (72 px) plus gaiss, lai virsraksts nelīp pie joslas. */
-const HEADER_OFFSET = 96;
+/**
+ * Fiksētās galvenes augstums plus gaiss, lai virsraksts nelīp pie joslas.
+ *
+ * Nāk no `--galvene` (76 px telefonā, 92 px no md), ne no konstantes: te stāvēja
+ * 96 px, kas bija patiess, kamēr galvene bija 72 px. Pēc logo palielināšanas
+ * galvene kļuva 92 px, un hash saite virsrakstu novietoja 4 px zem joslas.
+ */
+function headerOffset(): number {
+  const v = getComputedStyle(document.documentElement).getPropertyValue("--galvene").trim();
+  const px = parseFloat(v);
+  return (Number.isFinite(px) ? px : 92) + 24;
+}
 
 /** location.key -> ritinājums. Dzīvo tikai sesijas laikā, kā pati vēsture. */
 const positions = new Map<string, number>();
@@ -79,7 +89,7 @@ export default function ScrollManager() {
       const id = decodeURIComponent(location.hash.slice(1));
       const el = document.getElementById(id);
       if (el) {
-        jumpTo(el.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET);
+        jumpTo(el.getBoundingClientRect().top + window.scrollY - headerOffset());
         return;
       }
     }
