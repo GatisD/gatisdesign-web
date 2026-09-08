@@ -4,11 +4,18 @@ import { useEffect, useRef } from "react";
  * Ciparu lietus hero fonā - punktu režģa vietā.
  *
  * Atsauce bija Matrix stila ciparu plūsma, bet ar vienu skaidru norādi: DAUDZ
- * mazāk. Tāpēc te nav ne zaļās krāsas, ne blīvās sienas. Cipari ir papīra
- * krāsā ar 7-20% caurspīdīgumu, kolonnas stāv 30 px viena no otras, un aste ir
- * desmit rindas gara. Efekts ir jūtams kā kustība perifērijā; ja tam skatās
- * tieši virsū, tas ir tikko saskatāms. Tieši tas arī bija mērķis - fons, ne
- * priekšnesums.
+ * mazāk. Tāpēc te nav ne zaļās sienas, ne blīvuma. Cipari ir papīra krāsā ar
+ * līdz 26% caurspīdīgumu, kolonnas stāv ~100 px viena no otras (14 kolonnas
+ * uz 1440 px, 4 uz telefona), zīme ir 20 px, rinda 32 px, aste astoņas rindas.
+ * Efekts ir jūtams kā kustība perifērijā; ja tam skatās tieši virsū, tas ir
+ * tikko saskatāms. Tieši tas arī bija mērķis - fons, ne priekšnesums.
+ *
+ * 2026-09-08 pārskatīts pēc Gata atsauces attēla (izvēlnes kadrs ar cipariem
+ * fonā): tur cipari ir LIELI un RETI - viena kolonna redzamā joslā, zīme
+ * lielāka par tekstu blakus, rindu atstarpe ap pusotru zīmes augstumu. Pirmā
+ * versija ar 30 px soli un 16 px zīmi bija sīka un blīva - vairāk pēc
+ * trokšņa, mazāk pēc lietus. Retāks lietus ar lielākiem pilieniem lasās kā
+ * atsevišķas kolonnas, un tieši tā izskatās atsauce.
  *
  * KRĀSA. Matrix zaļā šeit sadurtos ar visu pārējo: lapas akcents ir #1ED760,
  * un divas piesātinātas krāsas fonā cīnītos savā starpā. Cipari ir papīra
@@ -19,7 +26,7 @@ import { useEffect, useRef } from "react";
  * dzeltenais ir gandrīz tikpat gaišs kā papīrs, un ar 2,1 akcenta cipari
  * sāktu mirgot kā brīdinājums, ne kā fons.
  *
- * KĀPĒC CANVAS, NE DOM. Piecdesmit kolonnas reizes astoņas rindas ir 400
+ * KĀPĒC CANVAS, NE DOM. Četrpadsmit kolonnas reizes astoņas rindas ir 112
  * elementu, kas mainās katrā kadrā. DOM to izdarītu ar 400 stila pārrēķiniem;
  * canvas to uzzīmē vienā gājienā, bez izkārtojuma.
  *
@@ -41,12 +48,17 @@ import { useEffect, useRef } from "react";
 /** Ko zīmējam. Tikai cipari - burti fonā sāktu izskatīties pēc teksta. */
 const ZIMES = "0123456789";
 
-/** Kolonnu solis pikseļos. Tas pats ritms, kāds bija punktu režģim (30 px). */
-const SOLIS = 30;
+/** Vēlamais kolonnu solis pikseļos. Īsto soli rēķina uzbūve: kolonnas izklāj
+    vienmērīgi pa visu platumu, tāpēc solis ir ap šo skaitli, ne tieši tas. */
+const SOLIS = 104;
+/** Mazākais kolonnu skaits - telefonā ar 104 px soli sanāktu trīs. */
+const MIN_KOLONNAS = 3;
 /** Rindas augstums pikseļos. */
-const RINDA = 22;
-/** Astes garums rindās. */
-const ASTE = 10;
+const RINDA = 32;
+/** Zīmes izmērs pikseļos. Ap 0,6 no rindas: atsaucē starp cipariem ir gaiss. */
+const ZIME_PX = 20;
+/** Astes garums rindās. Ar 32 px rindu astoņas rindas ir 256 px - pietiek. */
+const ASTE = 8;
 /** Kadru ilgums milisekundēs (16 fps). */
 const KADRS = 62;
 
@@ -106,15 +118,19 @@ export default function CiparuLietus() {
       canvas!.width = Math.round(platums * dpr);
       canvas!.height = Math.round(augstums * dpr);
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx!.font = `${RINDA - 6}px "DM Mono", ui-monospace, SFMono-Regular, Menlo, monospace`;
+      ctx!.font = `${ZIME_PX}px "DM Mono", ui-monospace, SFMono-Regular, Menlo, monospace`;
       ctx!.textBaseline = "top";
 
       rindas = dzilums();
-      const skaits = Math.max(6, Math.floor(platums / SOLIS));
-      const atlikums = platums - (skaits - 1) * SOLIS;
+      // Kolonnu skaits no platuma, solis no skaita: tā kolonnas vienmēr ir
+      // vienmērīgi pa visu joslu un neviena nestāv aiz malas. Iepriekšējā
+      // formula (fiksēts solis, minimums 6) ar 104 px soli telefonā liktu
+      // kolonnas ārpus kadra.
+      const skaits = Math.max(MIN_KOLONNAS, Math.round(platums / SOLIS));
+      const solis = platums / skaits;
 
       kolonnas = Array.from({ length: skaits }, (_, i) => ({
-        x: atlikums / 2 + i * SOLIS,
+        x: solis / 2 + i * solis,
         // Sākumā kolonnas ir IZKLĀTAS pa visu joslu, ne sarindotas virs tās.
         // Ienākšanu dod caurspīdības kāpums un ātruma grūdiens, ne tukšums:
         // ar visām kolonnām virs kadra pirmās divas sekundes lapa atvērās ar
@@ -123,7 +139,7 @@ export default function CiparuLietus() {
         atrums: 2.8 + Math.random() * 4,
         spilgtums: 0.35 + Math.random() * 0.65,
         zimes: Array.from({ length: rindas + ASTE + 2 }, zime),
-        akcents: Math.random() < 0.16,
+        akcents: Math.random() < 0.12,
       }));
     }
 
@@ -142,7 +158,9 @@ export default function CiparuLietus() {
           // Aste izdziest ar kvadrātu, ne lineāri: lineāra aste izskatās pēc
           // svītras, kvadrātiskā - pēc pēdas, kas paliek aiz kustības.
           const izdzisums = (1 - i / ASTE) ** 2;
-          const alfa = 0.2 * k.spilgtums * izdzisums * ienak;
+          // 0,26, agrāk 0,2: zīmju ir četras reizes mazāk, katra var būt
+          // nedaudz redzamāka, un kopējais fona svars paliek mazāks nekā bija.
+          const alfa = 0.26 * k.spilgtums * izdzisums * ienak;
           if (alfa < 0.004) continue;
           const c = k.zimes[(rinda + ASTE) % k.zimes.length];
           ctx!.fillStyle =
@@ -160,7 +178,7 @@ export default function CiparuLietus() {
         k.y = -ASTE - Math.random() * 6;
         k.atrums = 2.8 + Math.random() * 4;
         k.spilgtums = 0.35 + Math.random() * 0.65;
-        k.akcents = Math.random() < 0.16;
+        k.akcents = Math.random() < 0.12;
       }
       // Viena zīme kolonnā nomainās uz katru soli. Tā plūsma mirgo, bet
       // nemirgo visa uzreiz.
