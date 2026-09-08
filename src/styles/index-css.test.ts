@@ -28,6 +28,7 @@ const SADALAS: Array<[string, string]> = [
   ["klientu josla", ".marquee-track {"],
   ["melnbaltie foni", ".foto-melnbalts {"],
   ["navigācijas pasvītrojums", ".nav-underline::after {"],
+  ["pakalpojumu kartes", ".pak-karte {"],
 ];
 
 describe("index.css pamatsadaļas", () => {

@@ -363,6 +363,13 @@ export default function Index() {
           <p className="pt-6">
             <Label>Norādītās cenas ir galīgās - neesmu PVN maksātājs.</Label>
           </p>
+          {/* Pārskata lapa ar visiem četriem vienā skatā (2026-09-08). Saraksts
+              te paliek - tas ir cenu ledger, lapa ir kartes ar plašāku tekstu. */}
+          <p className="pt-5">
+            <Button to={path("services")} variant="link">
+              Visi pakalpojumi
+            </Button>
+          </p>
         </LabelRow>
       </Section>
 

@@ -629,6 +629,64 @@
   }
 }
 
+/* ==================== PAKALPOJUMU KARTES ====================
+
+   /pakalpojumi četras kartes. Katrai fonā ir pakalpojuma lapas galvas kadrs
+   melnbalts un lēnā dreifā (HeroMedia drift) - kustība ir visu laiku, ne tikai
+   uz hover, tāpēc lapa dzīvo arī tad, kad kursors stāv mierā. Uz hover kadrs
+   iegūst krāsu un gaismu (tas pats žests, kas darbu kartēm), karte paceļas
+   4 px, mala iedegas, ikona un bultiņa pakustas. Visas pārejas ir uz
+   kompozitora īpašībām (filter, translate, color), izkārtojums nemainās.
+
+   Hover tikai ierīcēm ar kursoru - pieskāriena ekrānā tas paliktu karājoties. */
+.pak-karte {
+  border: 1px solid rgb(255 255 255 / 0.1);
+  background: var(--ink-card);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.06),
+    0 24px 48px -32px rgb(0 0 0 / 0.8);
+  transition:
+    border-color 0.5s var(--ease),
+    box-shadow 0.5s var(--ease),
+    translate 0.5s var(--ease);
+}
+.pak-karte .foto-melnbalts {
+  transition: filter 0.7s var(--ease);
+}
+.pak-karte .pak-ikona {
+  transition:
+    color 0.4s var(--ease),
+    translate 0.4s var(--ease);
+}
+.pak-karte .pak-vairak {
+  transition: color 0.4s var(--ease);
+}
+.pak-karte .pak-vairak svg {
+  transition: translate 0.4s var(--ease);
+}
+@media (hover: hover) {
+  .pak-karte:hover {
+    border-color: rgb(255 255 255 / 0.22);
+    translate: 0 -4px;
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.16),
+      0 36px 64px -32px rgb(0 0 0 / 0.9);
+  }
+  .pak-karte:hover .foto-melnbalts {
+    filter: grayscale(0) brightness(0.5) saturate(1);
+  }
+  .pak-karte:hover .pak-ikona {
+    color: var(--amber);
+    translate: 0 -2px;
+  }
+  .pak-karte:hover .pak-vairak {
+    color: var(--amber);
+  }
+  .pak-karte:hover .pak-vairak svg {
+    translate: 4px 0;
+  }
+}
+
 /* Fona kadri ir melnbalti VIENMĒR, bez hover.
 
    Sākotnēji tiem bija tas pats "krāsa uz hover" kā darbu kartēm, un tas bija

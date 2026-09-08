@@ -1,0 +1,78 @@
+{
+  "slug": "pakalpojumi",
+  "metaTitle": "Pakalpojumi: mājaslapas, zīmols, AI aģenti un SEO",
+  "metaDescription": "Mājaslapas no 500 EUR, zīmols no 500 EUR, AI aģenti no 400 EUR, SEO un GEO audits no 300 EUR. Fiksēta cena un termiņš, viens cilvēks visā ķēdē, bez PVN.",
+  "h1": "Pakalpojumi",
+  "lede": "Zīmols, mājaslapa, AI aģenti un redzamība Google un AI atbildēs. Katrs pakalpojums darbojas arī atsevišķi, bet kopā tie ietaupa laiku un naudu: viens cilvēks zina, kāpēc lapā ir tieši šī krāsa, šī struktūra un šis teksts.",
+  "cards": [
+    {
+      "target": "/zimola-identitate",
+      "label": "zīmols",
+      "title": "Zīmola identitāte",
+      "lead": "Logotips, krāsas, tipogrāfija un lietošanas noteikumi, ar kuriem zīmols izskatās vienādi gan uz auto sāna, gan Instagram profilā.",
+      "includes": [
+        "Logo ar 3-4 koncepcijām",
+        "Zīmola grāmata",
+        "Drukas materiāli"
+      ],
+      "price": "no 500 EUR",
+      "term": "2-3 nedēļas",
+      "poster": "/media/hero-brand.jpg",
+      "posterPosition": "center 40%"
+    },
+    {
+      "target": "/majaslapu-izstrade",
+      "label": "mājaslapa",
+      "title": "Mājaslapu izstrāde un dizains",
+      "lead": "Dizains, kods, saturs un hostings vienās rokās, WordPress vai React, ar ātrumu un mērījumiem no pirmās dienas.",
+      "includes": [
+        "Landing page vai pilna lapa",
+        "Interneta veikals divās valodās",
+        "Uzturēšana pēc palaišanas"
+      ],
+      "price": "no 500 EUR",
+      "term": "2-6 nedēļas",
+      "poster": "/media/hero-web.jpg",
+      "posterPosition": "center 40%"
+    },
+    {
+      "target": "/ai-agenti",
+      "label": "automatizācija",
+      "title": "AI aģenti un automatizācija",
+      "lead": "Aģenti, kas pārceļ pieprasījumus, sagatavo atskaites un apmaina datus starp sistēmām - ar laika zīmogiem un pārbaudēm, bez cilvēka rokām.",
+      "includes": [
+        "Procesu audits un plāns",
+        "Aģents vienam procesam",
+        "Integrācija starp sistēmām"
+      ],
+      "price": "audits no 400 EUR",
+      "term": "1-2 nedēļas",
+      "poster": "/media/hero-ai.jpg",
+      "posterPosition": "center 40%"
+    },
+    {
+      "target": "/seo-geo-aeo",
+      "label": "redzamība",
+      "title": "SEO, GEO un AEO",
+      "lead": "Panāku, lai tavu lapu atrastu gan Google meklēšanā, gan ChatGPT un Perplexity atbildēs - ar tehnisko bāzi, citējamiem fragmentiem un mērījumiem.",
+      "includes": [
+        "Tehniskais un satura audits",
+        "AI SEO ieviešana",
+        "Ikmēneša uzturēšana"
+      ],
+      "price": "audits no 300 EUR",
+      "term": "1-2 nedēļas",
+      "poster": "/media/hero-seo.jpg",
+      "posterPosition": "center 40%"
+    }
+  ],
+  "note": "Norādītās cenas ir galīgās - neesmu PVN maksātājs.",
+  "together": {
+    "heading": "Kā tas darbojas kopā",
+    "body": [
+      "Parastā secība ir zīmols, tad lapa, tad redzamība: zīme un krāsas nosaka lapas izskatu, lapas struktūra nosaka, ko meklētāji un AI modeļi no tās nolasa, un automatizācija pieņem pieprasījumus, kad tie sāk nākt.",
+      "Katrs projekts sākas ar fiksētu tāmi, nevis ar stundu uzskaiti darba gaitā. Testa adrese ir pieejama no pirmās nedēļas, un pēc gala norēķina klients saņem visas piekļuves un pirmkodu."
+    ]
+  },
+  "cta": "Uzraksti uz connect@gatisdesign.com - atsūtīšu konkrētu cenu un termiņu vienas darba dienas laikā."
+}

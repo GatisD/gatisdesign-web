@@ -34,6 +34,7 @@ const dynamicRoutes = [...baseRoutes, ...portfolioDetailRoutes];
 // Prioritāte pa maršrutu: sākumlapai augstākā, pakalpojumu un portfolio
 // lapām vidēja, pārējām (par mani/kontakti/privātuma politika) zemāka caur "*".
 const highPriorityKeys: RouteKey[] = [
+  "services",
   "services.brand",
   "services.web",
   "services.ai",

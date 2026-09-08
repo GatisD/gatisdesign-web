@@ -8,6 +8,7 @@ export const dict = {
     nav: {
       home: "Sākums",
       services: "Pakalpojumi",
+      allServices: "Visi pakalpojumi",
       portfolio: "Darbi",
       about: "Par mani",
       contact: "Kontakti",
@@ -106,6 +107,7 @@ export const dict = {
     nav: {
       home: "Home",
       services: "Services",
+      allServices: "All services",
       portfolio: "Work",
       about: "About",
       contact: "Contact",

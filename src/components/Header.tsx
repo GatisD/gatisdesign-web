@@ -128,17 +128,23 @@ export default function Header() {
   // krāsa: kartīte ir tas pats žests, kas darbvirsmā hover, un tā lasās arī
   // tad, ja cilvēks krāsas neatšķir. Kartīte ir par 16 px platāka nekā
   // dalītājlīnijas (-mx-4) - tā stāv VIRS saraksta, ne tajā.
-  const mobileLinkClass = ({ isActive }: { isActive: boolean }) =>
-    cn(
-      // Uz īsiem ekrāniem (iPhone SE: 667 px) rindas ir 52 px, ne 60: septiņas
-      // rindas plus zvans citādi neietilpst, un zvans paliek zem malas.
-      "stikls stikls-aktivs -mx-4 my-1.5 flex min-h-[60px] items-center justify-between gap-4 rounded-[16px] px-4 text-[clamp(1.25rem,5vw,1.5rem)] text-paper active:text-amber [@media(max-height:700px)]:my-1 [@media(max-height:700px)]:min-h-[52px]",
-      !isActive && "hover:text-amber",
-    );
+  // Pakalpojumu rindas ir ievilktas zem "Pakalpojumi": tā saraksts pasaka, ka
+  // četras ir vienas sadaļas daļas, ne četras vienādas lapas blakus Darbiem.
+  const mobileLinkClass =
+    (sub: boolean) =>
+    ({ isActive }: { isActive: boolean }) =>
+      cn(
+        // Uz īsiem ekrāniem (iPhone SE: 667 px) rindas ir 52 px, ne 60: astoņas
+        // rindas plus zvans citādi neietilpst, un zvans paliek zem malas.
+        "stikls stikls-aktivs -mx-4 my-1.5 flex min-h-[60px] items-center justify-between gap-4 rounded-[16px] px-4 text-paper active:text-amber [@media(max-height:700px)]:my-1 [@media(max-height:700px)]:min-h-[52px]",
+        sub ? "ps-9 text-[clamp(1.05rem,4.2vw,1.25rem)] [@media(max-height:700px)]:min-h-[46px]" : "text-[clamp(1.25rem,5vw,1.5rem)]",
+        !isActive && "hover:text-amber",
+      );
 
-  const mobileRows: { key: RouteKey; label: string }[] = [
+  const mobileRows: { key: RouteKey; label: string; sub?: boolean }[] = [
     { key: "portfolio", label: t.nav.portfolio },
-    ...SERVICE_KEYS.map((key) => ({ key, label: t.services[SERVICE_LABEL[key as keyof typeof SERVICE_LABEL]] })),
+    { key: "services", label: t.nav.services },
+    ...SERVICE_KEYS.map((key) => ({ key, label: t.services[SERVICE_LABEL[key as keyof typeof SERVICE_LABEL]], sub: true })),
     { key: "about", label: t.nav.about },
     { key: "contact", label: t.nav.contact },
   ];
@@ -195,12 +201,12 @@ export default function Header() {
             </NavLink>
 
             <div ref={servicesRef} className="relative">
-              {/* Saite, ne poga: bez JS <button> neko nedarīja, un četras
-                  pakalpojumu lapas bija sasniedzamas tikai no kājenes. Ar JS
-                  klikšķis atver sarakstu (preventDefault), bez JS tas aizved uz
-                  pirmo pakalpojumu lapu. */}
+              {/* Saite, ne poga: bez JS <button> neko nedarīja. Ar JS klikšķis
+                  atver sarakstu (preventDefault), bez JS tas aizved uz visu
+                  pakalpojumu lapu /pakalpojumi (2026-09-08; agrāk uz pirmo
+                  pakalpojumu, jo kopējās lapas nebija). */}
               <a
-                href={path("services.web")}
+                href={path("services")}
                 aria-expanded={servicesOpen}
                 aria-controls={panelId}
                 onClick={(e) => {
@@ -220,7 +226,9 @@ export default function Header() {
                   "cursor-pointer gap-1.5 active:text-amber",
                   // Saite, ne NavLink, tāpēc aria-current tai nav - aktīvo
                   // stiklu ieslēdz klase, ja atvērta kāda no četrām lapām.
-                  SERVICE_KEYS.some((k) => pathname === path(k)) ? "stikls-on text-paper" : "text-paper-2 hover:text-paper",
+                  [...SERVICE_KEYS, "services" as RouteKey].some((k) => pathname === path(k))
+                    ? "stikls-on text-paper"
+                    : "text-paper-2 hover:text-paper",
                 )}
               >
                 {t.nav.services}
@@ -288,6 +296,30 @@ export default function Header() {
                         </NavLink>
                       </li>
                     ))}
+                    {/* Visu pakalpojumu lapa kā pēdējā rinda ar līniju virs tās:
+                        četras ir izvēles, piektā ir pārskats. */}
+                    <li className="mt-1 border-t border-line pt-1">
+                      <NavLink
+                        to={path("services")}
+                        className={({ isActive }) =>
+                          cn(
+                            "stikls group flex min-h-[54px] items-center justify-between gap-4 rounded-[14px] px-4 text-[16px]",
+                            isActive ? "text-paper" : "text-paper-2 hover:text-paper",
+                          )
+                        }
+                      >
+                        <span>{t.nav.allServices}</span>
+                        <span
+                          aria-hidden="true"
+                          className="inline-flex shrink-0 -translate-x-1 opacity-0 transition-[opacity,transform] duration-300 ease-dir group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100"
+                        >
+                          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M5 12h14" />
+                            <path d="m13 6 6 6-6 6" />
+                          </svg>
+                        </span>
+                      </NavLink>
+                    </li>
                   </ul>
                 </div>
               ) : null}
@@ -359,7 +391,7 @@ export default function Header() {
             <ul className="divide-y divide-line">
               {mobileRows.map((row) => (
                 <li key={row.key}>
-                  <NavLink to={path(row.key)} className={mobileLinkClass}>
+                  <NavLink to={path(row.key)} className={mobileLinkClass(Boolean(row.sub))}>
                     <span>{row.label}</span>
                     <Chevron className="shrink-0 text-paper-dim" />
                   </NavLink>

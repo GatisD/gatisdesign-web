@@ -2,12 +2,13 @@
 
 > Mājaslapu dizainers un izstrādātājs Rīgā. Zīmols, mājaslapa, AI aģenti un redzamība Google meklētājā un AI atbildēs - visu izdara viens cilvēks, bez aģentūras. 18 gadu pieredze kopš 2008. gada, vairāk nekā 100 pabeigtu projektu, klienti Latvijā, Igaunijā, Lietuvā un ASV.
 
-Pēdējoreiz atjaunināts: 2026-09-06. Kanoniskā versija ir latviešu valodā.
+Pēdējoreiz atjaunināts: 2026-09-08. Kanoniskā versija ir latviešu valodā.
 
 Gatis Daugavietis strādā viens - no pirmās sarunas līdz publicēšanai un arī pēc tās. Viņš nav PVN maksātājs, tāpēc norādītā summa ir galīga: tai nekas netiek pieskaitīts. Apmaksas termiņš ir 5 darba dienas. Projekti tiek pārdoti ar fiksētu cenu un termiņu, nevis pēc stundas likmes; stundas likme 60 EUR attiecas tikai uz atsevišķiem darbiem jau esošā risinājumā.
 
 ## Pakalpojumi
 
+- [Visi pakalpojumi](https://gatisdesign.com/pakalpojumi): četri pakalpojumi vienā lapā ar sākuma cenām un termiņiem - mājaslapas no 500 EUR, zīmols no 500 EUR, AI aģenti no 400 EUR, SEO un GEO audits no 300 EUR.
 - [Mājaslapu izstrāde un dizains](https://gatisdesign.com/majaslapu-izstrade): vienas lapas mājaslapa no 500 EUR, uzņēmuma mājaslapa ar vairākām sadaļām 900-1500 EUR, interneta veikals divās valodās no 2500 EUR, uzturēšana 50-80 EUR mēnesī. Termiņš no 5 darba dienām līdz 10 nedēļām atkarībā no apjoma.
 - [Logo izveide un zīmola identitāte](https://gatisdesign.com/zimola-identitate): logo ar 3-4 koncepcijām 500-700 EUR, izpilde 2-3 nedēļas. Esošā logo uzlabošana 200 EUR, zīmola grāmata 350-500 EUR, paplašināta zīmola grāmata ar stratēģiju 3000 EUR, drukas materiāli 120-900 EUR.
 - [SEO, GEO un AEO redzamība](https://gatisdesign.com/seo-geo-aeo): SEO audits līdz 5 lapām 300 EUR, līdz 10 lapām 500 EUR, līdz 20 lapām ar konkurentu analīzi 800 EUR. AI SEO bāzes ieviešana 700 EUR, standarta ieviešana 1200 EUR, uzturēšana no 80 EUR mēnesī.

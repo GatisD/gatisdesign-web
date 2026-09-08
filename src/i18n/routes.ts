@@ -4,6 +4,7 @@ export const DEFAULT_LOCALE: Locale = "lv";
 
 export const ROUTES = {
   home: { lv: "/", en: "/en" },
+  services: { lv: "/pakalpojumi", en: "/en/services" },
   "services.brand": { lv: "/zimola-identitate", en: "/en/brand-identity" },
   "services.web": { lv: "/majaslapu-izstrade", en: "/en/website-development" },
   "services.ai": { lv: "/ai-agenti", en: "/en/ai-agents" },

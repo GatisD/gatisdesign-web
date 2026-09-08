@@ -27,6 +27,7 @@ export default function Footer() {
 
   const pages = [
     { to: path("portfolio"), label: t.nav.portfolio },
+    { to: path("services"), label: t.nav.allServices },
     { to: path("services.brand"), label: t.services.brand },
     { to: path("services.web"), label: t.services.web },
     { to: path("services.ai"), label: t.services.ai },

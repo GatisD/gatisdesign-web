@@ -14,6 +14,11 @@ function pagesFor(locale: Locale): RouteRecord[] {
   return [
     { index: true, Component: Index, entry: "src/pages/Index.tsx" },
     {
+      path: childPath(ROUTES.services[locale], locale),
+      lazy: () => import("./pages/Pakalpojumi").then((m) => ({ Component: m.default })),
+      entry: "src/pages/Pakalpojumi.tsx",
+    },
+    {
       path: childPath(ROUTES["services.brand"][locale], locale),
       lazy: () =>
         import("./pages/services/ZimolaIdentitate").then((m) => ({ Component: m.default })),

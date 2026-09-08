@@ -455,6 +455,7 @@ function checkDist(dist) {
  */
 const H1_SOURCE = {
   "index.html": "home.json",
+  "pakalpojumi.html": "pakalpojumi.json",
   "zimola-identitate.html": "zimola-identitate.json",
   "majaslapu-izstrade.html": "majaslapu-izstrade.json",
   "ai-agenti.html": "ai-agenti.json",
