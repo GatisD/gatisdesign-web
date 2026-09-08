@@ -110,17 +110,27 @@ const LOGO_COVER_IDS = new Set(["cafeteria", "forevolt", "green-bay", "darbaguru
  * nesanāk vienveidīgs un logo vāki nesakrājas cits virs cita.
  */
 const ORDER = [
-  "box-latvia",
-  "estire",
-  "digitalaisdzintars",
+  // Pirmie desmit ir Gata izvēle 2026-09-08, ne alfabēts un ne datums: saraksta
+  // sākums ir vitrīna, un tur stāv tas, ko viņš grib rādīt vispirms.
   "rois-lv",
+  "oakabbq",
+  "olive-mebeles",
+  "videastone",
+  // Šeit pieder arī Tavas durvis, bet tāda projekta datos vēl nav - sk.
+  // projects.raw.json, tur ir tikai profdurys (LT) un sinuuksed (EE).
+  "termokoksne",
+  "sinuuksed",
+  "estire",
+  "improvement",
+  "tenter",
+
+  // Tālāk viss pārējais iepriekšējā secībā.
+  "box-latvia",
+  "digitalaisdzintars",
   "logo-branding",
   "universal-solutions",
-  "videastone",
-  "olive-mebeles",
   "darbaguru",
   "apmekle",
-  "lucky-punch",
   "illustrations",
   "lauvas-zobs",
   "obsidian",
@@ -134,20 +144,15 @@ const ORDER = [
   "110m2",
   "green-bay",
   "forevolt",
-  // Uzturēšanas un pārbūves darbi, kas 2026-09-06 pievienoti no dzīvajām lapām.
-  // Secība te ir alfabētiska tikai tāpēc, ka gads vēl nav apstiprināts nevienam
-  // no tiem (sk. needsInput iekš projects.raw.json).
   "globaltac",
   "inovat",
   "laluna",
   "nervostrong-veikals",
-  "oakabbq",
   "profdurys",
   "psl",
   "salonsobjekts",
-  "sinuuksed",
-  "termokoksne",
 ];
+
 
 export const CATEGORY_LABEL: Record<ProjectCategory, string> = {
   web: "Mājaslapas",
@@ -408,15 +413,18 @@ export function projectNeighbours(slug: string): { prev: Project; next: Project 
 }
 
 /**
- * Sākumlapas izlase - tieši tie pieci darbi, kas nosaukti home.json darbu
- * sadaļā, tajā pašā secībā. Režģis tos liek divās rindās (7+5, tad 4+4+4),
- * un rindas iekšienē kadru proporcija ir vienāda: nevienāds augstums rindā
- * lasās kā kļūda, ne kā ritms.
+ * Sākumlapas izlase - pirmie pieci no ORDER, tajā pašā secībā. Agrāk te bija
+ * cits saraksts, kas atkārtoja home.json darbu sadaļas punktus; tie punkti
+ * 2026-09-07 tika izdzēsti (nerenderējās nekur), tāpēc atkārtot vairs nav ko.
+ * Tagad ir viena patiesība: ja maina ORDER sākumu, mainās arī vitrīna.
+ *
+ * Režģis tos liek divās rindās (6+6, tad 4+4+4), un rindas iekšienē kadru
+ * proporcija ir vienāda: nevienāds augstums rindā lasās kā kļūda, ne kā ritms.
  */
 export const featured: string[] = [
-  "estire",
-  "box-latvia",
-  "digitalaisdzintars",
-  "apmekle",
-  "universal-solutions",
+  "rois-lv",
+  "oakabbq",
+  "olive-mebeles",
+  "videastone",
+  "termokoksne",
 ];
