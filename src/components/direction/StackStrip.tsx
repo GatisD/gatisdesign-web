@@ -12,7 +12,9 @@ import { stackTools } from "@/data/stack";
  * platumam. Tāpēc viens rAF cikls rēķina katrai kartītei x (lineāri, ar
  * pārnesi) un y = A·sin(2πx/λ), un tas pats sinuss zīmē līniju kā SVG ceļu.
  * Kartītes tāpēc STĀV uz līnijas ar precizitāti līdz pikselim - to pārbauda
- * mērījums, ne acs. Cena: 13 `transform` ieraksti kadrā, bez izkārtojuma; tas
+ * mērījums, ne acs. Un tās ir līnijai PARALĒLAS: pagrieziens ir pieskares
+ * leņķis (atan no atvasinājuma) kartītes centrā, līdz ±10° (Gatis, 08.09.:
+ * "lai slīd attiecīgajā leņķī, šobrīd slīd taisni"). Cena: 13 `transform` ieraksti kadrā, bez izkārtojuma; tas
  * ir mazāk nekā ciparu lietus canvas hero fonā.
  *
  * ĢEOMETRIJA. Periods ir N·solis, kur solis = lielākais no (kadrs + divas
@@ -56,6 +58,17 @@ function vilnis(x: number): number {
   return AMPLITUDA * Math.sin((2 * Math.PI * x) / VILNIS);
 }
 
+/** Līnijas kāpums punktā x (dy/dx) - viļņa atvasinājums. */
+function kapums(x: number): number {
+  return AMPLITUDA * ((2 * Math.PI) / VILNIS) * Math.cos((2 * Math.PI * x) / VILNIS);
+}
+
+/** Kartītes pagrieziens grādos: pieskares leņķis līnijai tās centrā. Ar A=16 un
+    λ=560 maksimums ir ±10,2° - vagoniņš seko sliedei, ne pats zvalstās. */
+function leņķis(x: number): number {
+  return (Math.atan(kapums(x)) * 180) / Math.PI;
+}
+
 /** Solis un periods no kadra platuma un kartītes izmēra. */
 function geometrija(W: number, flize: number) {
   const pad = flize;
@@ -73,7 +86,10 @@ function centrs(i: number, dist: number, W: number, H: number, flize: number) {
 
 function transformFor(i: number, dist: number, W: number, H: number, flize: number): string {
   const c = centrs(i, dist, W, H, flize);
-  return `translate3d(${(c.x - flize / 2).toFixed(2)}px, ${(c.y - flize / 2).toFixed(2)}px, 0)`;
+  // Pagrieziens notiek ap kartītes centru (transform-origin noklusējums), un
+  // centrs ar translate jau stāv uz līnijas - tāpēc kartīte gan sēž uz
+  // sliedes, gan ir tai paralēla.
+  return `translate3d(${(c.x - flize / 2).toFixed(2)}px, ${(c.y - flize / 2).toFixed(2)}px, 0) rotate(${leņķis(c.x).toFixed(2)}deg)`;
 }
 
 /** SVG ceļš līnijai: sinuss, ņemts ik pa 6 px. */
@@ -113,7 +129,11 @@ export default function StackStrip({ heading }: { heading: string }) {
       const r = el!.getBoundingClientRect();
       W = Math.max(1, r.width);
       H = Math.max(1, r.height);
-      flize = kartes.current[0]?.getBoundingClientRect().width || NOKLUSEJUMA_FLIZE;
+      // offsetWidth, ne getBoundingClientRect: kartīte ir pagriezta, un tās
+      // ietverošais taisnstūris ir platāks par pašu kartīti (52 px kļūst 59 px
+      // pie 9°). Ar to solis un centrs nobīdījās par 4 px - mērījums to
+      // noķēra, acs to redzētu kā kartīti, kas nesēž uz līnijas.
+      flize = kartes.current[0]?.offsetWidth || NOKLUSEJUMA_FLIZE;
       const svg = cels.current;
       if (svg) {
         svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
