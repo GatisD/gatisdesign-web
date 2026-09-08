@@ -497,7 +497,9 @@
   inset-inline-start: 0;
   width: 2.75rem;
   border-radius: 9999px;
-  border: 1px solid var(--amber);
+  /* Papīra, ne akcenta: gredzens sākas tieši uz pogas malas, un akcents
+     uz akcenta pirmajā mirklī būtu neredzams. */
+  border: 1px solid var(--paper);
   opacity: 0;
   pointer-events: none;
 }

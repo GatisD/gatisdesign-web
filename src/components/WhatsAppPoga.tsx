@@ -4,11 +4,14 @@ import { WHATSAPP } from "@/lib/site";
 /**
  * Peldoša WhatsApp poga lapas kreisajā apakšā.
  *
- * KLAUSULE, NE WHATSAPP ZAĻĀ. Zīmola zaļā ir spilgtāka par pašas lapas akcentu
- * un uz grafīta izlec vairāk nekā virsraksts - poga sāktu konkurēt ar saturu.
- * Tāpēc virsma ir tā pati stikla ripa, kas pogai "uz augšu" pretējā stūrī: abas
+ * KLAUSULE, NE WHATSAPP ZAĻĀ. Zīmola zaļā fonā ir vēl viena piesātināta krāsa
+ * blakus lapas akcentam, un divas tādas stūrī cīnās savā starpā. Tāpēc poga ir
+ * lapas paša akcentā - tā pati virsma, kas pogai "uz augšu" pretējā stūrī: abas
  * kopā izskatās kā pāris, ne kā divi svešķermeņi. Ka aiz tās ir WhatsApp,
  * pasaka nosaukums, kas atveras uz hover, un `aria-label`.
+ *
+ * Uz dzeltenā pildījuma ikona un teksts ir tumši (#1A1206, 10,96:1). Balts uz
+ * dzeltenā būtu 1,39:1 - tas nav lasāms nemaz.
  *
  * KUSTĪBA IR VIENA, NE TRĪS. Reize pa reizei no pogas izplūst viens gaismas
  * gredzens. Tas ir pietiekami, lai acs to pamanītu perifērijā, un par maz, lai
@@ -35,10 +38,10 @@ export default function WhatsAppPoga() {
       title={virsraksts}
       className={[
         "wa-poga group fixed left-5 z-[150] inline-flex h-11 items-center gap-0 overflow-hidden rounded-full",
-        "border border-line-strong bg-ink-950/90 pe-0 ps-0 text-paper backdrop-blur",
-        "transition-[background-color,color,padding] duration-300 ease-dir",
-        "hover:bg-ink-900 hover:text-amber",
-        "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber",
+        "bg-amber pe-0 ps-0 text-on-amber [box-shadow:0_10px_30px_-12px_rgb(254_188_17_/_0.55)]",
+        "transition-[background-color,padding] duration-300 ease-dir",
+        "hover:bg-amber-soft",
+        "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper",
         // Uz hover ripa pārvēršas par tableti ar nosaukumu. Pieskāriena ierīcēs
         // hover nav, tāpēc tur tā vienmēr paliek ripa - un tas ir pareizi, jo
         // telefonā vieta ekrāna malā ir dārgāka.
