@@ -991,5 +991,75 @@
   "titleLv": "Olīve Virtuves Mēbeles - virtuvju vietnes SEO un GEO",
   "summaryLv": "SEO un GEO virtuvju ražotāja vietnei, kas būvēta ar Next.js un Strapi. Pozīcijas meklēšanā jau bija augstas, tāpēc darbs iet uz to, cik bieži lapu no meklēšanas atver: virsraksti, apraksti un strukturētie dati.",
   "coverHint": null
+ },
+ {
+  "id": "tavasdurvis",
+  "slug": "tavasdurvis",
+  "category": "web",
+  "client": "Tavas Durvis",
+  "year": null,
+  "yearEstimated": true,
+  "roleKind": "solo",
+  "roleLabel": "Tehniskā uzturēšana",
+  "services": [
+   "majaslapas"
+  ],
+  "externalUrl": "https://tavasdurvis.lv",
+  "externalStatus": "live",
+  "stack": [
+   "WordPress",
+   "WooCommerce",
+   "Elementor"
+  ],
+  "titleLv": "Tavas Durvis - durvju veikals ar piecām tirdzniecības vietām",
+  "summaryLv": "Durvju veikals ar plašu katalogu - ārdurvis noliktavā, privātmāju durvis, iekšdurvis un siltumnīcas. Vietne apkalpo piecas tirdzniecības vietas: Rīgā, Talsos, Preiļos, Jelgavā un Valmierā.",
+  "coverHint": "shots/tavasdurvis.jpg",
+  "needsInput": "Vai tavasdurvis.lv esmu arī izstrādājis, vai tikai uzturu? Līdz atbildei loma ir 'Tehniskā uzturēšana' un gads netiek rādīts."
+ },
+ {
+  "id": "mlmcargo",
+  "slug": "mlmcargo",
+  "category": "web",
+  "client": "MLM Cargo",
+  "year": null,
+  "yearEstimated": true,
+  "roleKind": "solo",
+  "roleLabel": "Tehniskā uzturēšana",
+  "services": [
+   "majaslapas"
+  ],
+  "externalUrl": "https://mlmcargo.lv",
+  "externalStatus": "live",
+  "stack": [
+   "WordPress",
+   "WooCommerce",
+   "Elementor"
+  ],
+  "titleLv": "MLM Cargo - beramkravu piegādes vietne",
+  "summaryLv": "Beramo būvmateriālu vietne ar piegādi Rīgā: šķembas, drupināts betons, asfalts, smilts, grants un melnzeme, katram materiālam sava sadaļa. Atsevišķi rādīta grunts izvešana.",
+  "coverHint": "shots/mlmcargo.jpg",
+  "needsInput": "Vai mlmcargo.lv esmu arī izstrādājis, vai tikai uzturu no 09.2026? Līdz atbildei loma ir 'Tehniskā uzturēšana' un gads netiek rādīts."
+ },
+ {
+  "id": "delkors",
+  "slug": "delkors",
+  "category": "web",
+  "client": "Delkors",
+  "year": null,
+  "yearEstimated": true,
+  "roleKind": "solo",
+  "roleLabel": "Dizains un izstrāde",
+  "services": [
+   "majaslapas"
+  ],
+  "externalUrl": "https://delkors.lv",
+  "externalStatus": "live",
+  "stack": [
+   "WordPress"
+  ],
+  "titleLv": "Delkors - mēbeļu ražotne un vizuālā reklāma",
+  "summaryLv": "Uzņēmumam ir divi nesaistīti darbības virzieni, tāpēc vietne sākas ar izvēli: mēbeļu ražotne vai vizuālā reklāma. Katra puse ved uz savu pakalpojumu sadaļu. Vietne tapa LIAA projekta ietvaros.",
+  "coverHint": "shots/delkors.jpg",
+  "needsInput": "Kurā gadā tapa delkors.lv un kāds bija LIAA projekta nosaukums? Līdz atbildei gads netiek rādīts."
  }
 ]

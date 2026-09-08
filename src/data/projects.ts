@@ -116,15 +116,16 @@ const ORDER = [
   "oakabbq",
   "olive-mebeles",
   "videastone",
-  // Šeit pieder arī Tavas durvis, bet tāda projekta datos vēl nav - sk.
-  // projects.raw.json, tur ir tikai profdurys (LT) un sinuuksed (EE).
+  "tavasdurvis",
   "termokoksne",
   "sinuuksed",
   "estire",
   "improvement",
   "tenter",
 
-  // Tālāk viss pārējais iepriekšējā secībā.
+  // Tālāk viss pārējais iepriekšējā secībā; jaunie 08.09 saraksta priekšgalā.
+  "mlmcargo",
+  "delkors",
   "box-latvia",
   "digitalaisdzintars",
   "logo-branding",
