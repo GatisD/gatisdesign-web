@@ -17,16 +17,11 @@ import { cn } from "@/lib/utils";
  * paņem slug un pieliek to pie ROUTES.portfolio maršruta. Iepriekš tur atslēga
  * bija null, un pārslēgs no katras no 33 projektu lapām veda uz /en sākumlapu.
  *
- * `onPaper` maina krāsas kājenes papīra fonam: tumšās virsmas vara tur ir
- * 2,60:1 un neder ne tekstam, ne aktīvajam stāvoklim.
+ * Papīra varianta te vairs nav: kājene 2026-09-08 kļuva tumša, un tā bija
+ * vienīgā gaišā virsma lapā. Karogs, kam vairs nav virsmas, ir slazds - to
+ * kāds kādreiz uzliktu uz tumša fona un dabūtu tumšu tekstu uz tumša.
  */
-export default function LanguageSwitch({
-  routeKey,
-  onPaper = false,
-}: {
-  routeKey?: RouteKey;
-  onPaper?: boolean;
-}) {
+export default function LanguageSwitch({ routeKey }: { routeKey?: RouteKey }) {
   const { locale, t } = useLocale();
   const { pathname } = useLocation();
   // Kamēr EN saturs nav uzrakstīts, pārslēga nav vispār (sk. LANGUAGE_SWITCH_VISIBLE).
@@ -40,7 +35,7 @@ export default function LanguageSwitch({
       {LOCALES.map((l: Locale, i) => (
         <span key={l} className="inline-flex items-center">
           {i > 0 ? (
-            <span aria-hidden="true" className={cn("px-1.5 text-label", onPaper ? "text-on-paper-dim" : "text-paper-faint")}>
+            <span aria-hidden="true" className="px-1.5 text-label text-paper-faint">
               /
             </span>
           ) : null}
@@ -52,13 +47,7 @@ export default function LanguageSwitch({
             className={cn(
               // 44 px abos virzienos: augstums bija 44, platums 15.
               "inline-flex min-h-[44px] min-w-[44px] items-center justify-center font-label text-label uppercase transition-colors duration-300",
-              l === locale
-                ? onPaper
-                  ? "text-on-paper"
-                  : "text-paper"
-                : onPaper
-                  ? "text-on-paper-dim hover:text-amber-paper"
-                  : "text-paper-faint hover:text-amber",
+              l === locale ? "text-paper" : "text-paper-faint hover:text-amber",
             )}
           >
             {l === "lv" ? t.lang.lv : t.lang.en}

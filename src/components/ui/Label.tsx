@@ -16,7 +16,7 @@ export default function Label({
   className,
 }: {
   children: ReactNode;
-  tone?: "dim" | "amber" | "paper" | "on-paper";
+  tone?: "dim" | "amber" | "paper";
   /** Versāls tiek izvēlēts apzināti, ne pēc teksta garuma. */
   caps?: boolean;
   className?: string;
@@ -29,7 +29,6 @@ export default function Label({
         tone === "dim" && "text-paper-faint",
         tone === "amber" && "text-amber",
         tone === "paper" && "text-paper",
-        tone === "on-paper" && "text-on-paper-dim",
         className,
       )}
     >
