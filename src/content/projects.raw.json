@@ -1000,7 +1000,7 @@
   "year": null,
   "yearEstimated": true,
   "roleKind": "solo",
-  "roleLabel": "Tehniskā uzturēšana",
+  "roleLabel": "Izstrāde un uzturēšana",
   "services": [
    "majaslapas"
   ],
@@ -1014,7 +1014,7 @@
   "titleLv": "Tavas Durvis - durvju veikals ar piecām tirdzniecības vietām",
   "summaryLv": "Durvju veikals ar plašu katalogu - ārdurvis noliktavā, privātmāju durvis, iekšdurvis un siltumnīcas. Vietne apkalpo piecas tirdzniecības vietas: Rīgā, Talsos, Preiļos, Jelgavā un Valmierā.",
   "coverHint": "shots/tavasdurvis.jpg",
-  "needsInput": "Vai tavasdurvis.lv esmu arī izstrādājis, vai tikai uzturu? Līdz atbildei loma ir 'Tehniskā uzturēšana' un gads netiek rādīts."
+  "needsInput": "Kurā gadā tapa tavasdurvis.lv? Gatis 2026-09-08 apstiprināja, ka vietni būvēja pats. Līdz atbildei gads netiek rādīts."
  },
  {
   "id": "mlmcargo",
@@ -1024,7 +1024,7 @@
   "year": null,
   "yearEstimated": true,
   "roleKind": "solo",
-  "roleLabel": "Tehniskā uzturēšana",
+  "roleLabel": "Izstrāde un uzturēšana",
   "services": [
    "majaslapas"
   ],
@@ -1038,7 +1038,7 @@
   "titleLv": "MLM Cargo - beramkravu piegādes vietne",
   "summaryLv": "Beramo būvmateriālu vietne ar piegādi Rīgā: šķembas, drupināts betons, asfalts, smilts, grants un melnzeme, katram materiālam sava sadaļa. Atsevišķi rādīta grunts izvešana.",
   "coverHint": "shots/mlmcargo.jpg",
-  "needsInput": "Vai mlmcargo.lv esmu arī izstrādājis, vai tikai uzturu no 09.2026? Līdz atbildei loma ir 'Tehniskā uzturēšana' un gads netiek rādīts."
+  "needsInput": "Kurā gadā tapa mlmcargo.lv? Gatis 2026-09-08 apstiprināja, ka vietni būvēja pats. Līdz atbildei gads netiek rādīts."
  },
  {
   "id": "delkors",
