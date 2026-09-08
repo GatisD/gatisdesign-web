@@ -119,7 +119,7 @@ export default function Header() {
       <img
         src="/media/gd-logo-horizontal.svg"
         alt="Gatis Design"
-        width="225"
+        width="231"
         height="72"
         className="h-14 w-auto shrink-0 md:h-[72px]"
       />
