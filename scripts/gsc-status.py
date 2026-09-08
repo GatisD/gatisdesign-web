@@ -29,6 +29,7 @@ SITE = "sc-domain:gatisdesign.com"
 SVARIGAS = [
     "https://gatisdesign.com/",
     "https://gatisdesign.com/portfolio",
+    "https://gatisdesign.com/pakalpojumi",
     "https://gatisdesign.com/majaslapu-izstrade",
     "https://gatisdesign.com/zimola-identitate",
     "https://gatisdesign.com/seo-geo-aeo",
