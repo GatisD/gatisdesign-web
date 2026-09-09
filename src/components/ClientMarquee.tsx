@@ -43,7 +43,8 @@ export default function ClientMarquee({ headingId, heading }: { headingId: strin
             loading="lazy"
             priority="low"
             decoding="async"
-            className="h-[clamp(28px,3.2vw,36px)] w-auto max-w-[140px] object-contain opacity-70 transition-opacity duration-500 ease-dir hover:opacity-100 motion-reduce:transition-none"
+            className="h-7 w-auto md:h-9 max-w-[140px] object-contain opacity-70 transition-opacity duration-500 ease-dir hover:opacity-100 motion-reduce:transition-none"
+            style={{ aspectRatio: `${client.width} / ${client.height}` }}
           />
         </li>
       ))}
