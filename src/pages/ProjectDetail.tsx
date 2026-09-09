@@ -434,6 +434,7 @@ export default function ProjectDetail() {
                   alt={project.cover.alt}
                   width={project.cover.width}
                   height={project.cover.height}
+                  style={{ aspectRatio: `${project.cover.width} / ${project.cover.height}` }}
                   loading="lazy"
                   decoding="async"
                   className="h-auto w-full object-cover"
