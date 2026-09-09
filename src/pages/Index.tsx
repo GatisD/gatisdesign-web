@@ -188,7 +188,7 @@ export default function Index({ home = homeLv }: { home?: HomeData }) {
           Šķir proporcija: `min-aspect-ratio: 4/3` ieslēdz vh tikai tur, kur
           ekrāns tiešām ir plats, un pārējiem paliek fiksēts augstums. */}
       <section
-        className="relative isolate flex min-h-[540px] flex-col justify-end overflow-hidden bg-ink-900 pb-[clamp(28px,4vw,44px)] pt-[clamp(104px,18vw,220px)] sm:min-h-[600px] [@media(min-aspect-ratio:4/3)]:min-h-[clamp(560px,88vh,880px)]"
+        className="relative isolate flex flex-col justify-end overflow-hidden bg-ink-900 pb-5 pt-[140px] sm:min-h-[600px] sm:pb-[clamp(28px,4vw,44px)] sm:pt-[clamp(104px,18vw,220px)] [@media(min-aspect-ratio:4/3)]:min-h-[clamp(560px,88vh,880px)]"
         aria-labelledby="hero-h"
       >
         <HeroMedia className="-z-[2]" poster="/media/hero-workshop.jpg" position="center 40%" eager drift brightness={0.5} />

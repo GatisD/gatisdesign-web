@@ -189,7 +189,7 @@ export default function StackStrip({ heading }: { heading: string }) {
   }, [H0]);
 
   return (
-    <section className="border-b border-line bg-ink-900 py-[clamp(34px,5vw,64px)]" aria-labelledby="stack-h">
+    <section className="border-b border-line bg-ink-900 pb-[clamp(34px,5vw,64px)] pt-3 sm:pt-[clamp(34px,5vw,64px)]" aria-labelledby="stack-h">
       {/* Virsraksts ir tikai ekrānlasītājam. Redzamais uzraksts "Rīki, ar ko
           strādāju" te bija un ir izņemts: zīmes pašas pasaka, kas tās ir. */}
       <h2 id="stack-h" className="sr-only">
