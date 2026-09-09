@@ -274,6 +274,7 @@ export default function ProjectDetail() {
               alt=""
               width={project.cover.width}
               height={project.cover.height}
+              style={{ aspectRatio: `${project.cover.width} / ${project.cover.height}` }}
               loading="eager"
               priority="high"
               decoding="sync"
