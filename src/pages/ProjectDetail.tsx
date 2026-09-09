@@ -343,6 +343,7 @@ export default function ProjectDetail() {
                 alt={project.shot.desktop.alt}
                 width={project.shot.desktop.width}
                 height={project.shot.desktop.height}
+                style={{ aspectRatio: `${project.shot.desktop.width} / ${project.shot.desktop.height}` }}
                 loading="lazy"
                 priority="low"
                 decoding="async"
@@ -359,6 +360,7 @@ export default function ProjectDetail() {
                 alt={project.shot.mobile.alt}
                 width={project.shot.mobile.width}
                 height={project.shot.mobile.height}
+                style={{ aspectRatio: `${project.shot.mobile.width} / ${project.shot.mobile.height}` }}
                 loading="lazy"
                 priority="low"
                 decoding="async"
