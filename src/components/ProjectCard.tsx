@@ -172,6 +172,11 @@ export default function ProjectCard({
             loading="lazy"
             priority="low"
             decoding="async"
+            // CSS `aspect-ratio`, ne tikai atribūti: Blink slinko attēlu ar
+            // `h-[46%]` + `w-auto` bez CSS proporcijas skaita par "bez izmēra"
+            // un DevTools ceļ LazyLoadImageIssue katram kadram. Šeit platums
+            // tāpat nāk no augstuma, tāpēc proporcija neko neizmaina izkārtojumā.
+            style={{ aspectRatio: `${phone.width} / ${phone.height}` }}
             className="absolute -bottom-2 -end-2 hidden h-[46%] w-auto rounded-[7px] border border-line bg-ink-card object-cover object-top [box-shadow:var(--shadow-panel)] sm:block"
           />
         ) : null}
