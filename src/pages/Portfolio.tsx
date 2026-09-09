@@ -107,7 +107,7 @@ export default function Portfolio() {
     return filter.startsWith("s:")
       ? items.filter((p) => p.services.includes(vertiba as ServiceKey))
       : items.filter((p) => p.stack?.includes(vertiba));
-  }, [filter]);
+  }, [filter, items]);
 
   /**
    * Čipi un skaitļi nāk no datiem, ne no rokas. Skaitlis blakus tagam ir
@@ -239,7 +239,7 @@ export default function Portfolio() {
           josla, kas sākumlapā, uz tā paša fona; augšējo līniju dod filtru
           joslas apakšmala. */}
       <section className="border-b border-line bg-ink-850" aria-labelledby="klienti-h">
-        <ClientMarquee headingId="klienti-h" heading={isLv ? "Klienti, ar kuriem strādāju" : "Clients I work with"} />
+        <ClientMarquee headingId="klienti-h" heading={isLv ? "Klienti, kuri man uzticas" : "Clients who trust me"} />
       </section>
 
       {/* ============ REŽĢIS ============ */}

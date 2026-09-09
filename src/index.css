@@ -277,9 +277,11 @@
     animation: marquee-x 40s linear infinite;
     will-change: transform;
   }
+  /* Pogas "Apturēt" vairs nav (Gata izvēle 09.09.): josla apstājas, kamēr pele
+     ir virs tās vai tajā ir fokuss, un pie prefers-reduced-motion tā ir
+     nekustīgs režģis. */
   .marquee:hover .marquee-track,
-  .marquee:focus-within .marquee-track,
-  .marquee[data-paused="true"] .marquee-track {
+  .marquee:focus-within .marquee-track {
     animation-play-state: paused;
   }
   @keyframes marquee-x {

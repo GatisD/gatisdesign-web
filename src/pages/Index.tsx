@@ -310,7 +310,7 @@ export default function Index({ home = homeLv }: { home?: HomeData }) {
           nāk pēc darba, ne tā vietā. Logotipi ir vienkrāsaini - sk.
           src/data/clients.ts. */}
       <section className="border-y border-line bg-ink-850" aria-labelledby="klienti-h">
-        <ClientMarquee headingId="klienti-h" heading={isLv ? "Klienti, ar kuriem strādāju" : "Clients I work with"} />
+        <ClientMarquee headingId="klienti-h" heading={isLv ? "Klienti, kuri man uzticas" : "Clients who trust me"} />
       </section>
 
       {/* Atsauksmes ar vārdu, uzņēmumu un rezultātu. Sadaļa ir uzbūvēta, bet
