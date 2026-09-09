@@ -33,7 +33,11 @@ export const clientLogos: ClientLogo[] = [
   { slug: "delkors", name: "Delkors", width: 45, height: 72 },
   { slug: "box-latvia", name: "Box Latvia", width: 280, height: 51 },
   { slug: "improvement", name: "Improvement", width: 280, height: 44 },
+  { slug: "digitalaisdzintars", name: "Digitālais Dzintars", width: 280, height: 48 },
   { slug: "universal-solutions", name: "Universal Solutions", width: 280, height: 60 },
+  { slug: "apmekle", name: "Apmeklē.lv", width: 280, height: 44 },
+  { slug: "obsidian", name: "Obsidian", width: 280, height: 65 },
+  { slug: "varloz", name: "Varloz", width: 272, height: 72 },
   { slug: "110m2", name: "110m2", width: 52, height: 72 },
   { slug: "globaltac", name: "Global Tactical Equipment", width: 190, height: 72 },
   { slug: "inovat", name: "Inovat", width: 280, height: 62 },
@@ -54,6 +58,8 @@ export const clientLogos: ClientLogo[] = [
   { slug: "cafeteria", name: "Cafeteria", width: 280, height: 66 },
   { slug: "darbaguru", name: "DarbaGuru", width: 280, height: 60 },
   { slug: "forevolt", name: "Forevolt", width: 280, height: 54 },
+  { slug: "greenbay", name: "Green Bay", width: 280, height: 68 },
+  { slug: "santa-zvejniece", name: "Santa Zvejniece", width: 130, height: 72 },
 ];
 
 /** Ceļš uz logotipa failu (PNG; blakus tam ir tāds pats .webp). */
