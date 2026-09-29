@@ -134,7 +134,7 @@ export function buildAnketaEmail(
     }
     textLines.push("");
   }
-  textLines.push(`Atbildi tieši uz šo vēstuli - atbilde aizies uz ${data.kontaktsEpasts}.`);
+  textLines.push(`Atbildi uz šo vēstuli - tā aizies uz ${data.kontaktsEpasts}.`);
 
   const html = shell(
     [

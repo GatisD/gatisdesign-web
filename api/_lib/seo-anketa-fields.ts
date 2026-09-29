@@ -49,7 +49,7 @@ export const CHOICES = {
     programmetajs: "Mūsu programmētājs vai aģentūra - kontakts:",
     nezinu: "Nezinu",
   },
-  vide: { dzivo: "Dzīvo", testa: "Ir testa vide", nezinu: "Nezinu" },
+  vide: { dzivo: "Dzīvo lapu", testa: "Ir testa vide", nezinu: "Nezinu" },
   cms: {
     wordpress: "WordPress",
     shopify: "Shopify",
@@ -69,7 +69,7 @@ export function choiceValues<K extends ChoiceKey>(key: K): [keyof (typeof CHOICE
 
 /** Izvēles grupu virsraksti (fieldset legend). */
 export const CHOICE_LABELS: Record<ChoiceKey, string> = {
-  atskaites: "Kur sūtīt atskaites",
+  atskaites: "Kur sūtīt atskaites?",
   ieviesejs: "Kas ievieš izmaiņas mājaslapas kodā?",
   vide: "Vai drīkst labot dzīvo lapu, vai ir testa vide?",
   cms: "CMS sistēma",
@@ -114,7 +114,7 @@ export const TEXT_FIELDS = {
 
   // 5. Materiāli, ko drīkst izmantot
   profili: { label: "Sociālo tīklu un katalogu profili (Facebook, Instagram, LinkedIn, YouTube, firmas.lv u.c.) - adreses", max: 2000, required: false, multiline: true },
-  cenas: { label: "Cenas vai cenu diapazons.", max: 1000, required: false, multiline: true },
+  cenas: { label: "Cenas vai cenu diapazons", max: 1000, required: false, multiline: true },
   atsauksmes: { label: "Atsauksmes, ko drīkst citēt (saite vai teksts)", max: 3000, required: false, multiline: true },
   logotipi: { label: "Klientu logotipi vai projekti, ko drīkst rādīt", max: 2000, required: false, multiline: true },
 

@@ -40,6 +40,7 @@ export default async function handler(req: VercelLikeRequest, res: ServerRespons
       config,
       send: createResendSender(config.apiKey ?? ""),
       logger: consoleLogger,
+      requireTurnstile: process.env.VERCEL_ENV === "production",
     });
     sendJson(res, result);
   } catch (error) {

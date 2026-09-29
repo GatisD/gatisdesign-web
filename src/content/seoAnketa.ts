@@ -103,6 +103,7 @@ export const ACCESS_CARDS: AccessCard[] = [
     tool: "gtm",
     title: "2.4. Google Tag Manager",
     qualifier: "(tikai tad, ja jāiestata mērīšana)",
+    why: "caur Tag Manager varu ielikt mērīšanas kodus, nemainot mājaslapas kodu.",
     stepsKind: "numbered",
     steps: [
       'tagmanager.google.com → Admin → User Management → "+" → Add users.',
@@ -162,17 +163,33 @@ export const FAILURE_BEFORE_EMAIL =
  * JAUNI teksti, kuru nav docs/seo-anketa-saturs.md. Minimāli un visi vienuviet,
  * lai tos var nodot gramatikas pārbaudei vienā sarakstā.
  */
+/**
+ * Kļūdu kopsavilkums virs pogas. Latviešu skaitļa saskaņa: skaitļi, kas beidzas
+ * ar 1 (izņemot 11), prasa vienskaitli ("Trūkst 1 atbildes", "Trūkst 21 atbildes").
+ */
+export function missingSummary(n: number): string {
+  const vienskaitlis = n % 10 === 1 && n % 100 !== 11;
+  return vienskaitlis ? `Trūkst ${n} atbildes:` : `Trūkst ${n} atbilžu:`;
+}
+
 export const UI = {
   copy: "Kopēt",
   copied: "Nokopēts",
+  /** Kopēšanas pogas pieejamais nosaukums: "Kopēt adresi <adrese>". */
+  copyAddress: "Kopēt adresi",
+  statusHint: "Atzīmējiet vienu - arī tad, ja šāda rīka jums nav.",
+  draftSaved: "Saglabāts šajā pārlūkā",
+  sectionHasErrors: "(ir kļūdas)",
+  turnstileFailed:
+    "Neizdevās pārbaudīt, ka esat cilvēks. Pārlādējiet lapu - atbildes saglabāsies - un mēģiniet vēlreiz.",
   progressLabel: "Anketas sadaļas",
   honeypot: "Šo lauku neaizpildiet",
   errors: {
     required: "Aizpildiet šo lauku.",
     tooLong: "Teksts ir pārāk garš.",
-    singleLine: "Ierakstiet vienā rindā.",
+    singleLine: "Šajā laukā nedrīkst būt jaunas rindas.",
     emailInvalid: "Ievadiet derīgu e-pasta adresi.",
-    statusRequired: "Atzīmējiet vienu no atbildēm.",
+    statusRequired: "Izvēlieties vienu no atbildēm.",
     choiceInvalid: "Izvēlieties vienu no atbildēm.",
     consentRequired: "Bez piekrišanas anketu nevar nosūtīt.",
   },

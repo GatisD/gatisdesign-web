@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
+import { Fragment, useCallback, useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { useForm, useWatch, type Control, type Resolver, type UseFormRegister } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router-dom";
@@ -26,6 +26,7 @@ import {
   TOOL_LINKS,
   UI,
   WHY_PREFIX,
+  missingSummary,
   type AccessCard,
 } from "@/content/seoAnketa";
 import {
@@ -42,6 +43,7 @@ import {
   SECTIONS,
   TEXT_FIELDS,
   accessField,
+  type AccessTool,
   type ChoiceKey,
   type TextField,
 } from "../../api/_lib/seo-anketa-fields";
@@ -100,7 +102,7 @@ const FIELD_ORDER: FieldName[] = [
   "ieviesejsKontakts",
   "vide",
   ...ACCESS_TOOLS.flatMap((tool): FieldName[] =>
-    tool === "cms" ? [accessField(tool), "cms", "cmsCita"] : [accessField(tool)],
+    tool === "cms" ? ["cms", "cmsCita", accessField(tool)] : [accessField(tool)],
   ),
   "tirgi",
   "valodasTagad",
@@ -122,6 +124,32 @@ const FIELD_ORDER: FieldName[] = [
   "komentars",
   "piekrisana",
 ];
+
+type SectionId = (typeof SECTIONS)[number]["id"];
+
+/** Kurā sadaļā lauks ir - kļūdu punktam sadaļu joslā un kopsavilkuma grupām. */
+function sectionOf(name: FieldName): SectionId {
+  const i = FIELD_ORDER.indexOf(name);
+  if (i < 0) return "nosutisana";
+  if (i <= FIELD_ORDER.indexOf("vide")) return "uznemums";
+  if (i <= FIELD_ORDER.indexOf(accessField("gbp"))) return "piekluves";
+  if (i <= FIELD_ORDER.indexOf("svarigakasLapas")) return "tirgus";
+  if (i <= FIELD_ORDER.indexOf("nozare6")) return "nozare";
+  if (i <= FIELD_ORDER.indexOf("logotipi")) return "materiali";
+  return "nosutisana";
+}
+
+/** Lauka nosaukums kļūdu kopsavilkumā - tas pats teksts, kas lapā. */
+function labelOf(name: FieldName): string {
+  if (name.startsWith("piekluve_")) return ACCESS_TOOL_LABELS[name.slice("piekluve_".length) as AccessTool];
+  if ((CHOICE_KEYS as string[]).includes(name)) return CHOICE_LABELS[name as ChoiceKey];
+  if (name === "piekrisana") return CONSENT_LABEL;
+  if (name === "kontaktsVards" || name === "kontaktsAmats" || name === "kontaktsEpasts") {
+    return `${KONTAKTPERSONA_LEGEND.split(":")[0]}: ${TEXT_FIELDS[name].label.toLowerCase()}`;
+  }
+  if (name in TEXT_FIELDS) return TEXT_FIELDS[name as TextField].label;
+  return name;
+}
 
 /** Lauka DOM id. Radio grupām - pirmā varianta id. */
 function domIdFor(name: FieldName): string {
@@ -159,13 +187,15 @@ function readDraft(): Partial<AnketaFormValues> | null {
   }
 }
 
-function writeDraft(values: AnketaFormValues): void {
+function writeDraft(values: AnketaFormValues): boolean {
   try {
     const { [ANKETA_HONEYPOT_FIELD]: _slazds, ...rest } = values;
     window.localStorage.setItem(DRAFT_KEY, JSON.stringify(rest));
+    return true;
   } catch {
     // Pilna krātuve, privātais režīms vai bloķēta vietnes krātuve - forma
-    // strādā tāpat, tikai bez melnraksta.
+    // strādā tāpat, tikai bez melnraksta (un bez "Saglabāts" norādes).
+    return false;
   }
 }
 
@@ -178,13 +208,28 @@ function clearDraft(): void {
 }
 
 /** Saglabā melnrakstu ar nelielu aizturi. Atsevišķa komponente, lai katrs burts nepārzīmē visu formu. */
-function DraftSaver({ control, enabled }: { control: Control<AnketaFormValues>; enabled: boolean }) {
+function DraftSaver({
+  control,
+  enabled,
+  onSaved,
+}: {
+  control: Control<AnketaFormValues>;
+  enabled: boolean;
+  onSaved: (ok: boolean) => void;
+}) {
   const values = useWatch({ control }) as AnketaFormValues;
+  const skipFirst = useRef(true);
   useEffect(() => {
     if (!enabled) return;
-    const id = window.setTimeout(() => writeDraft(values), DRAFT_SAVE_DELAY_MS);
+    // Pirmais izsaukums pēc atjaunošanas nav lietotāja izmaiņa - tukšu formu
+    // nesaucam par "saglabātu".
+    if (skipFirst.current) {
+      skipFirst.current = false;
+      return;
+    }
+    const id = window.setTimeout(() => onSaved(writeDraft(values)), DRAFT_SAVE_DELAY_MS);
     return () => window.clearTimeout(id);
-  }, [values, enabled]);
+  }, [values, enabled, onSaved]);
   return null;
 }
 
@@ -209,7 +254,7 @@ function Rich({ text }: { text: string }) {
         }
         if (part.startsWith("`") && part.endsWith("`")) {
           return (
-            <code key={i} className="break-all rounded-[4px] bg-ink-900 px-1.5 py-0.5 font-label text-[0.92em] text-paper">
+            <code key={i} className="whitespace-nowrap rounded-[4px] bg-ink-900 px-1.5 py-0.5 font-label text-[0.92em] text-paper">
               {part.slice(1, -1)}
             </code>
           );
@@ -262,7 +307,36 @@ async function copyText(value: string): Promise<boolean> {
   }
 }
 
-function CopyAddress({ address, id }: { address: string; id: string }) {
+/** Adrese ar lūzuma iespējām pēc "@" un pirms punktiem - lai tā lūzt loģiski, ne vārda vidū. */
+function BreakableAddress({ address }: { address: string }) {
+  // Bez regex lookbehind: vecāks Safari to neparsē, un krīt viss modulis.
+  const parts: string[] = [];
+  let current = "";
+  for (const ch of address) {
+    if (ch === "." && current) {
+      parts.push(current);
+      current = "";
+    }
+    current += ch;
+    if (ch === "@") {
+      parts.push(current);
+      current = "";
+    }
+  }
+  if (current) parts.push(current);
+  return (
+    <>
+      {parts.map((part, i) => (
+        <Fragment key={i}>
+          {i > 0 ? <wbr /> : null}
+          {part}
+        </Fragment>
+      ))}
+    </>
+  );
+}
+
+function CopyAddress({ address }: { address: string }) {
   const [copied, setCopied] = useState(false);
   useEffect(() => {
     if (!copied) return;
@@ -271,17 +345,21 @@ function CopyAddress({ address, id }: { address: string; id: string }) {
   }, [copied]);
   return (
     <li className="flex flex-wrap items-center gap-x-3 gap-y-2 rounded-field border border-line bg-ink-900 py-2 pe-2 ps-4">
-      <code id={id} className="min-w-0 flex-1 break-all font-label text-[14px] leading-[1.5] text-paper">
-        {address}
+      {/* Telefonā adrese aizņem visu rindu virs pogas; no sm - blakus pogai. */}
+      <code className="min-w-0 basis-full font-label text-[13px] leading-[1.5] text-paper [overflow-wrap:anywhere] sm:flex-1 sm:basis-auto sm:text-[14px]">
+        <BreakableAddress address={address} />
       </code>
       <button
         type="button"
-        aria-describedby={id}
+        aria-label={`${UI.copyAddress} ${address}`}
         onClick={async () => setCopied(await copyText(address))}
         className="stikls stikls-rams inline-flex min-h-[44px] shrink-0 items-center rounded-full px-4 text-[15px] text-paper active:text-amber"
       >
-        <span aria-live="polite">{copied ? UI.copied : UI.copy}</span>
+        <span aria-hidden="true">{copied ? UI.copied : UI.copy}</span>
       </button>
+      <span className="sr-only" aria-live="polite">
+        {copied ? UI.copied : ""}
+      </span>
     </li>
   );
 }
@@ -291,10 +369,17 @@ function CopyAddress({ address, id }: { address: string; id: string }) {
  * ------------------------------------------------------------------ */
 
 const FIELD_BASE =
-  "w-full rounded-field border border-line bg-ink-850 px-4 text-[16px] text-paper placeholder:text-paper-faint transition-[border-color,background-color] duration-300 hover:border-line-strong focus:border-amber focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-amber aria-[invalid=true]:border-amber";
+  "w-full rounded-field border border-line bg-ink-850 px-4 text-[16px] text-paper placeholder:text-paper-faint transition-[border-color,background-color] duration-300 hover:border-line-strong focus:border-amber focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-amber aria-[invalid=true]:border-[var(--kluda)]";
 const FIELD_INPUT = cn(FIELD_BASE, "min-h-[52px] py-3");
 const FIELD_AREA = cn(FIELD_BASE, "min-h-[112px] resize-y py-3 leading-[1.5]");
-const ERROR_TEXT = "text-[14px] leading-[1.35] text-amber";
+const ERROR_TEXT = "text-[14px] leading-[1.35] text-[var(--kluda-teksts)]";
+
+/**
+ * Kļūdu krāsa tikai šai lapai. Zīmola zaļā nozīmē "atzīmēts / kārtībā", tāpēc
+ * kļūda tajā izskatījās pēc apstiprinājuma. Kontrasts uz #0D0A0A:
+ * #FF8A80 teksts 8,6:1, #FF6B5E rāmis 7,0:1 (abi virs 4,5:1).
+ */
+const DANGER_VARS = { "--kluda": "#ff6b5e", "--kluda-teksts": "#ff8a80" } as CSSProperties;
 const LABEL_TEXT = "text-[16px] leading-[1.45] text-paper";
 
 type ErrorsMap = Partial<Record<FieldName, { message?: string }>>;
@@ -376,6 +461,7 @@ function ChoiceGroup({
   register,
   errors,
   help,
+  hint,
   children,
 }: {
   name: FieldName;
@@ -385,14 +471,17 @@ function ChoiceGroup({
   register: UseFormRegister<AnketaFormValues>;
   errors: ErrorsMap;
   help?: string;
+  /** Norāde zem variantiem (piem. piekļuves statusam). */
+  hint?: ReactNode;
   /** Papildu lauks zem grupas (precizējums "citur", "kontakts"). */
   children?: ReactNode;
 }) {
   const err = errors[name]?.message;
   const helpId = help ? `${name}-help` : undefined;
+  const hintId = hint ? `${name}-hint` : undefined;
   const errId = err ? `${name}-error` : undefined;
   return (
-    <fieldset aria-describedby={[helpId, errId].filter(Boolean).join(" ") || undefined}>
+    <fieldset aria-describedby={[helpId, hintId, errId].filter(Boolean).join(" ") || undefined}>
       <legend className={legendHidden ? "sr-only" : cn(LABEL_TEXT, "mb-2")}>{legend}</legend>
       {help ? (
         <p id={helpId} className="mb-3 text-[14px] leading-[1.5] text-paper-dim">
@@ -424,6 +513,11 @@ function ChoiceGroup({
           </label>
         ))}
       </div>
+      {hint ? (
+        <p id={hintId} className="mt-3 text-[14px] leading-[1.5] text-paper-dim">
+          {hint}
+        </p>
+      ) : null}
       {children}
       {err ? (
         <p id={errId} className={cn("mt-2", ERROR_TEXT)}>
@@ -444,12 +538,14 @@ const ACCESS_OPTIONS = ACCESS_STATUSES.map((value) => ({ value, label: ACCESS_ST
  * Sadaļu josla
  * ------------------------------------------------------------------ */
 
-type SectionId = (typeof SECTIONS)[number]["id"];
-
 const filled = (v: unknown) => (typeof v === "string" ? v.trim() !== "" : v !== null && v !== undefined && v !== false);
 
-/** Vai sadaļa ir "gatava": obligātie aizpildīti; sadaļām bez obligātiem - kaut kas ievadīts. */
-function sectionDone(id: SectionId, v: AnketaFormValues): boolean {
+/**
+ * Vai sadaļa ir "gatava": obligātie aizpildīti. Sadaļām bez obligātiem laukiem
+ * (4. un 5.) - kad tajās ir kaut viena atbilde vai kad cilvēks tajās ir bijis:
+ * tukšs tur ir atļauts, tāpēc aplītis nedrīkst palikt tukšs uz visiem laikiem.
+ */
+function sectionDone(id: SectionId, v: AnketaFormValues, visited: boolean): boolean {
   switch (id) {
     case "uznemums":
       return [v.uznemums, v.majaslapa, v.kontaktsVards, v.kontaktsEpasts].every(filled);
@@ -458,15 +554,36 @@ function sectionDone(id: SectionId, v: AnketaFormValues): boolean {
     case "tirgus":
       return filled(v.tirgi);
     case "nozare":
-      return [v.nozare1, v.nozare2, v.nozare3, v.nozare4, v.nozare5, v.nozare6].some(filled);
+      return visited || [v.nozare1, v.nozare2, v.nozare3, v.nozare4, v.nozare5, v.nozare6].some(filled);
     case "materiali":
-      return [v.profili, v.cenas, v.cenasPublicet, v.atsauksmes, v.logotipi].some(filled);
+      return visited || [v.profili, v.cenas, v.cenasPublicet, v.atsauksmes, v.logotipi].some(filled);
     case "nosutisana":
       return v.piekrisana === true;
   }
 }
 
-function ProgressBar({ control, active }: { control: Control<AnketaFormValues>; active: SectionId }) {
+/** Pāriet uz sadaļu un pārvietot fokusu uz tās virsrakstu (ne atstāt uz body). */
+function goToSection(id: SectionId): void {
+  const heading = document.getElementById(`${id}-h`);
+  if (!heading) return;
+  const kluss = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.getElementById(id)?.scrollIntoView({ behavior: kluss ? "auto" : "smooth", block: "start" });
+  heading.focus({ preventScroll: true });
+}
+
+function ProgressBar({
+  control,
+  active,
+  visited,
+  errorSections,
+  saved,
+}: {
+  control: Control<AnketaFormValues>;
+  active: SectionId;
+  visited: ReadonlySet<SectionId>;
+  errorSections: ReadonlySet<SectionId>;
+  saved: boolean;
+}) {
   const values = useWatch({ control }) as AnketaFormValues;
   const activeTitle = SECTIONS.find((s) => s.id === active)?.title ?? "";
   return (
@@ -474,15 +591,20 @@ function ProgressBar({ control, active }: { control: Control<AnketaFormValues>; 
       <div className="mx-auto flex w-full max-w-wrap items-center gap-6 px-5 py-2 sm:px-8 lg:px-10">
         <ol className="flex shrink-0 items-center gap-1">
           {SECTIONS.map((s, i) => {
-            const done = sectionDone(s.id, values);
+            const hasError = errorSections.has(s.id);
+            const done = !hasError && sectionDone(s.id, values, visited.has(s.id));
             const current = s.id === active;
             return (
               <li key={s.id}>
                 <a
                   href={`#${s.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    goToSection(s.id);
+                  }}
                   aria-current={current ? "step" : undefined}
                   className={cn(
-                    "flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full transition-colors duration-300",
+                    "relative flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full transition-colors duration-300",
                     current ? "text-paper" : "text-paper-faint hover:text-paper",
                   )}
                 >
@@ -490,7 +612,13 @@ function ProgressBar({ control, active }: { control: Control<AnketaFormValues>; 
                     aria-hidden="true"
                     className={cn(
                       "flex h-8 w-8 items-center justify-center rounded-full border font-label text-[13px]",
-                      done ? "border-amber bg-amber text-on-amber" : current ? "border-paper" : "border-line-strong",
+                      hasError
+                        ? "border-[var(--kluda)] text-[var(--kluda-teksts)]"
+                        : done
+                          ? "border-amber bg-amber text-on-amber"
+                          : current
+                            ? "border-paper"
+                            : "border-line-strong",
                     )}
                   >
                     {done ? (
@@ -501,18 +629,27 @@ function ProgressBar({ control, active }: { control: Control<AnketaFormValues>; 
                       i + 1
                     )}
                   </span>
-                  {/* Nosaukums ekrānlasītājam; redzams ir tikai numurs. */}
-                  <span className="sr-only">{s.title}</span>
+                  {hasError ? (
+                    <span
+                      aria-hidden="true"
+                      className="absolute right-[3px] top-[5px] h-2 w-2 rounded-full bg-[var(--kluda)] ring-2 ring-ink-900"
+                    />
+                  ) : null}
+                  <span className="sr-only">
+                    {s.title}
+                    {hasError ? ` ${UI.sectionHasErrors}` : ""}
+                  </span>
                 </a>
               </li>
             );
           })}
         </ol>
-        {/* Pašreizējās sadaļas nosaukums - tikai redzīgajiem, ekrānlasītājs to
-            jau dzird no aria-current saites. */}
-        <p aria-hidden="true" className="hidden min-w-0 truncate text-[15px] text-paper-2 md:block">
+        <p aria-hidden="true" className="hidden min-w-0 flex-1 truncate text-[15px] text-paper-2 md:block">
           {activeTitle}
         </p>
+        {saved ? (
+          <p className="ms-auto hidden shrink-0 text-[14px] text-paper-faint md:block">{UI.draftSaved}</p>
+        ) : null}
       </div>
     </nav>
   );
@@ -530,7 +667,12 @@ function FormSection({ id, title, intro, children }: { id: SectionId; title: str
       data-anketa-section={id}
       className="scroll-mt-[calc(var(--galvene)+76px)] border-t border-line pt-10 md:pt-14"
     >
-      <h2 id={`${id}-h`} className="text-[clamp(1.5rem,3vw,2.1rem)] font-medium leading-[1.1] tracking-[-0.03em] text-paper">
+      {/* tabIndex -1: sadaļu joslas lēciens pārvieto fokusu uz virsrakstu. */}
+      <h2
+        id={`${id}-h`}
+        tabIndex={-1}
+        className="scroll-mt-[calc(var(--galvene)+76px)] text-[clamp(1.5rem,3vw,2.1rem)] font-medium leading-[1.1] tracking-[-0.03em] text-paper focus:outline-none focus-visible:outline-none"
+      >
         {title}
       </h2>
       {intro ? <div className="mt-4 max-w-[62ch] text-[16px] leading-[1.6] text-paper-2">{intro}</div> : null}
@@ -539,41 +681,67 @@ function FormSection({ id, title, intro, children }: { id: SectionId; title: str
   );
 }
 
+/** CMS kartītē rādām tikai izvēlētās sistēmas soli. Wix/Webflow = "Cita sistēma". */
+function cmsStepIndexes(cms: string | null): number[] | null {
+  switch (cms) {
+    case "wordpress":
+      return [0];
+    case "shopify":
+      return [1];
+    case "wix":
+    case "webflow":
+    case "cita":
+      return [2];
+    default:
+      return null; // nekas nav izvēlēts vai "Nezinu" - visi soļi
+  }
+}
+
 function AccessCardView({
   card,
   register,
   errors,
-  extra,
+  top,
+  stepIndexes,
 }: {
   card: AccessCard;
   register: UseFormRegister<AnketaFormValues>;
   errors: ErrorsMap;
-  extra?: ReactNode;
+  /** Saturs kartītes augšā uzreiz aiz "Kāpēc" (CMS izvēle). */
+  top?: ReactNode;
+  /** Kurus soļus rādīt; null = visus. */
+  stepIndexes?: number[] | null;
 }) {
   const name = accessField(card.tool);
   const List = card.stepsKind === "numbered" ? "ol" : "ul";
   const err = errors[name]?.message;
+  const steps = card.steps
+    .map((step, i) => ({ step, i }))
+    .filter(({ i }) => !stepIndexes || stepIndexes.includes(i));
   return (
     <article
       aria-labelledby={`${card.tool}-h`}
-      className={cn("rounded-card border bg-ink-850 p-5 sm:p-7", err ? "border-amber" : "border-line")}
+      className={cn(
+        "rounded-card border bg-ink-850 p-5 sm:p-7",
+        err ? "border-[rgba(255,107,94,0.55)]" : "border-line",
+      )}
     >
       <h3 id={`${card.tool}-h`} className="text-[clamp(1.15rem,2vw,1.35rem)] font-medium tracking-[-0.02em] text-paper">
         {card.title}
-        {card.qualifier ? (
-          <span className="mt-1 block text-[14px] font-normal tracking-normal text-paper-dim sm:ms-2 sm:mt-0 sm:inline">
-            {card.qualifier}
-          </span>
-        ) : null}
       </h3>
+      {/* Piebilde atsevišķā rindā, ne virsrakstā: garā GBP piebilde virsrakstā
+          lūza zem tā nejaušā vietā. */}
+      {card.qualifier ? <p className="mt-1 text-[15px] leading-[1.45] text-paper-faint">{card.qualifier}</p> : null}
       {card.why ? (
         <p className="mt-3 text-[15px] leading-[1.55] text-paper-2">
           <span className="font-semibold text-paper">{WHY_PREFIX}</span> {card.why}
         </p>
       ) : null}
 
+      {top ? <div className="mt-6 flex flex-col gap-6">{top}</div> : null}
+
       <List className="mt-5 flex list-none flex-col gap-3 text-[15px] leading-[1.55] text-paper-2">
-        {card.steps.map((step, i) => (
+        {steps.map(({ step, i }) => (
           <li key={step.slice(0, 32)} className="grid grid-cols-[28px_minmax(0,1fr)] gap-x-3">
             <span aria-hidden="true" className="pt-px font-label text-[14px] text-amber">
               {card.stepsKind === "numbered" ? `${i + 1}.` : "-"}
@@ -587,13 +755,11 @@ function AccessCardView({
 
       <ul className="mt-4 flex flex-col gap-2 sm:ps-[40px]">
         {card.addresses.map((address) => (
-          <CopyAddress key={address} address={address} id={`${card.tool}-adr-${address.split("@")[0]}`} />
+          <CopyAddress key={address} address={address} />
         ))}
       </ul>
 
       {card.note ? <p className="mt-4 text-[14px] leading-[1.55] text-paper-dim">{card.note}</p> : null}
-
-      {extra ? <div className="mt-6 flex flex-col gap-6">{extra}</div> : null}
 
       <div className="mt-6 border-t border-line pt-5">
         <ChoiceGroup
@@ -603,6 +769,12 @@ function AccessCardView({
           legendHidden
           register={register}
           errors={errors}
+          hint={
+            <>
+              {UI.statusHint}
+              <RequiredMark />
+            </>
+          }
         />
       </div>
     </article>
@@ -619,16 +791,27 @@ type ApiResponse =
   | { ok: true }
   | { ok: false; error: string; fields?: Record<string, string>; retryAfter?: number };
 
+const TURNSTILE_CODES = new Set(["turnstile", "turnstile_unavailable"]);
+
+function focusField(name: FieldName): void {
+  const el = document.getElementById(domIdFor(name));
+  if (!el) return;
+  const kluss = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  el.scrollIntoView({ behavior: kluss ? "auto" : "smooth", block: "center" });
+  el.focus({ preventScroll: true });
+}
+
 export default function SeoAnketa() {
   const { locale, t } = useLocale();
   const [status, setStatus] = useState<Status>({ state: "idle" });
   const [draftReady, setDraftReady] = useState(false);
+  const [saved, setSaved] = useState(false);
   const [active, setActive] = useState<SectionId>(SECTIONS[0].id);
+  const [visited, setVisited] = useState<ReadonlySet<SectionId>>(() => new Set<SectionId>());
   const turnstileToken = useRef("");
   const turnstileWaiter = useRef<((token: string) => void) | null>(null);
   const [turnstileReset, setTurnstileReset] = useState(0);
   const successRef = useRef<HTMLDivElement>(null);
-  const formRef = useRef<HTMLFormElement>(null);
 
   const {
     register,
@@ -636,7 +819,7 @@ export default function SeoAnketa() {
     handleSubmit,
     reset,
     setError,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, submitCount },
   } = useForm<AnketaFormValues>({
     resolver: zodResolver(anketaSchema) as unknown as Resolver<AnketaFormValues>,
     defaultValues: emptyValues(),
@@ -645,17 +828,24 @@ export default function SeoAnketa() {
 
   const [atskaites, ieviesejs, cms] = useWatch({ control, name: ["atskaites", "ieviesejs", "cms"] });
 
+  const onSaved = useCallback((ok: boolean) => {
+    if (ok) setSaved(true);
+  }, []);
+
   // Melnraksts: TIKAI pēc hidratācijas. Serveris renderē tukšu formu; ja
   // klients pirmajā zīmējumā ieliktu saglabātās vērtības, React ziņotu par
   // neatbilstību. Saglabāšana ieslēdzas tikai pēc atjaunošanas, lai tukšā
   // sākuma forma nepārrakstītu melnrakstu.
   useEffect(() => {
     const draft = readDraft();
-    if (draft) reset({ ...emptyValues(), ...draft });
+    if (draft) {
+      reset({ ...emptyValues(), ...draft });
+      setSaved(true);
+    }
     setDraftReady(true);
   }, [reset]);
 
-  // Kura sadaļa ir redzama - sadaļu joslas izcēlumam.
+  // Kura sadaļa ir redzama - sadaļu joslas izcēlumam un "apmeklēts" stāvoklim.
   useEffect(() => {
     if (status.state === "success" || typeof IntersectionObserver === "undefined") return;
     const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-anketa-section]"));
@@ -664,7 +854,9 @@ export default function SeoAnketa() {
         const visible = entries.filter((e) => e.isIntersecting);
         if (visible.length === 0) return;
         const top = visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
-        setActive(top.target.getAttribute("data-anketa-section") as SectionId);
+        const id = top.target.getAttribute("data-anketa-section") as SectionId;
+        setActive(id);
+        setVisited((prev) => (prev.has(id) ? prev : new Set(prev).add(id)));
       },
       { rootMargin: "-30% 0px -60% 0px" },
     );
@@ -683,12 +875,7 @@ export default function SeoAnketa() {
 
   function focusFirstError(keys: string[]): void {
     const first = FIELD_ORDER.find((name) => keys.includes(name));
-    if (!first) return;
-    const el = document.getElementById(domIdFor(first));
-    if (!el) return;
-    const kluss = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    el.scrollIntoView({ behavior: kluss ? "auto" : "smooth", block: "center" });
-    el.focus({ preventScroll: true });
+    if (first) focusField(first);
   }
 
   function receiveTurnstileToken(token: string): void {
@@ -735,6 +922,7 @@ export default function SeoAnketa() {
       if (response.ok && data?.ok) {
         clearDraft();
         reset(emptyValues());
+        setSaved(false);
         setStatus({ state: "success" });
         if (typeof window !== "undefined" && window.dataLayer) {
           window.dataLayer.push({ event: "generate_lead", form_name: "seo_anketa" });
@@ -764,6 +952,14 @@ export default function SeoAnketa() {
   const onInvalid = (errs: Record<string, unknown>) => focusFirstError(Object.keys(errs));
   const errs = errors as ErrorsMap;
 
+  // Kļūdainie lauki lapas secībā - kopsavilkumam un sadaļu joslas punktiem.
+  const errorFields = FIELD_ORDER.filter((name) => errs[name]);
+  const errorSections = new Set(errorFields.map(sectionOf));
+  const summaryGroups = SECTIONS.map((s) => ({
+    section: s,
+    fields: errorFields.filter((name) => sectionOf(name) === s.id),
+  })).filter((g) => g.fields.length > 0);
+
   return (
     <>
       <SEO
@@ -774,7 +970,7 @@ export default function SeoAnketa() {
         description={ANKETA_META_DESCRIPTION}
       />
 
-      <div className="flex-1 bg-ink-900 text-paper">
+      <div className="flex-1 bg-ink-900 text-paper" style={DANGER_VARS}>
         <header className="mx-auto w-full max-w-wrap px-5 pb-10 pt-[clamp(104px,15vw,180px)] sm:px-8 md:pb-14 lg:px-10">
           <h1 className="max-w-[18ch] text-display-2 font-bold uppercase">{ANKETA_TITLE}</h1>
           <div className="mt-8 flex max-w-[62ch] flex-col gap-4 text-[clamp(1.02rem,1.3vw,1.15rem)] leading-[1.55] text-paper-2">
@@ -807,14 +1003,19 @@ export default function SeoAnketa() {
           </div>
         ) : (
           <>
-            <ProgressBar control={control} active={active} />
-            <DraftSaver control={control} enabled={draftReady} />
+            <ProgressBar
+              control={control}
+              active={active}
+              visited={visited}
+              errorSections={errorSections}
+              saved={saved}
+            />
+            <DraftSaver control={control} enabled={draftReady} onSaved={onSaved} />
 
             <form
-              ref={formRef}
               noValidate
               onSubmit={handleSubmit(onSubmit, onInvalid)}
-              className="mx-auto flex w-full max-w-wrap flex-col gap-14 px-5 pb-20 pt-10 sm:px-8 md:gap-20 md:pb-32 md:pt-14 lg:px-10"
+              className="mx-auto flex w-full max-w-wrap flex-col gap-14 px-5 pb-28 pt-10 sm:px-8 md:gap-20 md:pb-32 md:pt-14 lg:px-10"
             >
               <div className="flex max-w-[760px] flex-col gap-14 md:gap-20">
                 {/* ============ 1 ============ */}
@@ -906,7 +1107,8 @@ export default function SeoAnketa() {
                       card={card}
                       register={register}
                       errors={errs}
-                      extra={
+                      stepIndexes={card.tool === "cms" ? cmsStepIndexes(cms) : null}
+                      top={
                         card.tool === "cms" ? (
                           <>
                             <ChoiceGroup
@@ -1001,29 +1203,80 @@ export default function SeoAnketa() {
                     ) : null}
                   </div>
 
-                  <Turnstile onToken={receiveTurnstileToken} resetSignal={turnstileReset} locale="lv" />
-
-                  {status.state === "error" ? (
-                    <div role="alert" className="rounded-field border border-amber px-5 py-4 text-[15px] leading-[1.55]">
-                      <p className="text-paper">
-                        {FAILURE_BEFORE_EMAIL}{" "}
-                        <a
-                          href={`mailto:${GATIS_ACCOUNT}`}
-                          className="border-b border-line-amber text-paper transition-colors duration-300 hover:text-amber"
-                        >
-                          {GATIS_ACCOUNT}
-                        </a>
-                        .
-                      </p>
-                      <p className="mt-2.5">
-                        <Label>
-                          {t.form.failureCode}: {status.code}
-                        </Label>
-                      </p>
+                  {/* Vieta logrīkam rezervēta no pirmā zīmējuma. Turnstile
+                      ieslēdzas formas pirmajā pieskārienā un, ja vieta nav
+                      rezervēta, iespraužas virs pogas tieši klikšķa laikā: poga
+                      aizbrauc no kursora, un pirmais "Nosūtīt" neko nedara.
+                      100 px = logrīka 72 px (nomērīts) + tā 28 px atkāpe. */}
+                  {turnstileEnabled ? (
+                    <div className="min-h-[100px]">
+                      <Turnstile onToken={receiveTurnstileToken} resetSignal={turnstileReset} locale="lv" />
                     </div>
                   ) : null}
 
-                  <div>
+                  {status.state === "error" ? (
+                    <div
+                      role="alert"
+                      className="rounded-field border border-[var(--kluda)] px-5 py-4 text-[15px] leading-[1.55]"
+                    >
+                      {TURNSTILE_CODES.has(status.code) ? (
+                        <p className="text-paper">{UI.turnstileFailed}</p>
+                      ) : (
+                        <>
+                          <p className="text-paper">
+                            {FAILURE_BEFORE_EMAIL}{" "}
+                            <a
+                              href={`mailto:${GATIS_ACCOUNT}`}
+                              className="border-b border-line-amber text-paper transition-colors duration-300 hover:text-amber"
+                            >
+                              {GATIS_ACCOUNT}
+                            </a>
+                            .
+                          </p>
+                          <p className="mt-2.5">
+                            <Label>
+                              {t.form.failureCode}: {status.code}
+                            </Label>
+                          </p>
+                        </>
+                      )}
+                    </div>
+                  ) : null}
+
+                  {/* Kļūdu kopsavilkums: cik trūkst un kur. Saites fokusē lauku. */}
+                  {submitCount > 0 && errorFields.length > 0 ? (
+                    <div
+                      role="alert"
+                      className="rounded-field border border-[var(--kluda)] px-5 py-4 text-[15px] leading-[1.55]"
+                    >
+                      <p className="font-semibold text-paper">{missingSummary(errorFields.length)}</p>
+                      <div className="mt-3 flex flex-col gap-3">
+                        {summaryGroups.map((g) => (
+                          <div key={g.section.id}>
+                            <p className="text-[14px] text-paper-dim">{g.section.title}</p>
+                            <ul className="mt-1 flex flex-col">
+                              {g.fields.map((name) => (
+                                <li key={name}>
+                                  <a
+                                    href={`#${domIdFor(name)}`}
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      focusField(name);
+                                    }}
+                                    className="inline-flex min-h-[36px] items-center text-[var(--kluda-teksts)] underline decoration-[var(--kluda)] underline-offset-4 hover:text-paper"
+                                  >
+                                    {labelOf(name)}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+
+                  <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
                     <button
                       type="submit"
                       disabled={isSubmitting}
@@ -1039,6 +1292,7 @@ export default function SeoAnketa() {
                         SUBMIT_LABEL
                       )}
                     </button>
+                    {saved ? <p className="text-[14px] text-paper-faint">{UI.draftSaved}</p> : null}
                   </div>
                 </FormSection>
               </div>

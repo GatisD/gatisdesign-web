@@ -303,6 +303,35 @@ describe("SEO anketas serveris", () => {
     expect(result.headers?.Allow).toBe("POST");
   });
 
+  it("produkcijā bez Turnstile noslēpuma atsaka ar 503 config un neko nesūta", async () => {
+    const mail = recorder();
+    const result = await handleSeoAnketa({
+      payload: validPayload,
+      ip: freshIp(),
+      config: { ...config, turnstileSecret: undefined },
+      send: mail.send,
+      requireTurnstile: true,
+    });
+    expect(result.status).toBe(503);
+    expect(result.body).toEqual({ ok: false, error: "config" });
+    expect(mail.sent).toHaveLength(0);
+  });
+
+  it("U+2028/U+2029/U+0085 vienas rindas laukos netiek pieņemti", async () => {
+    for (const sep of ["\u2028", "\u2029", "\u0085"]) {
+      const mail = recorder();
+      const result = await handleSeoAnketa({
+        payload: { ...validPayload, uznemums: `X${sep}Bcc: e@x` },
+        ip: freshIp(),
+        config,
+        send: mail.send,
+      });
+      expect(result.status).toBe(400);
+      expect(fieldsOf(result.body).uznemums).toBe("singleLine");
+      expect(mail.sent).toHaveLength(0);
+    }
+  });
+
   it("bez RESEND_API_KEY atgriež 500 config", async () => {
     const mail = recorder();
     const result = await handleSeoAnketa({

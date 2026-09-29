@@ -1,4 +1,6 @@
+import { useLocation } from "react-router-dom";
 import { useLocale } from "@/i18n/LocaleContext";
+import { LV_ONLY_ROUTES } from "@/i18n/routes";
 import { WHATSAPP } from "@/lib/site";
 
 /**
@@ -26,7 +28,13 @@ import { WHATSAPP } from "@/lib/site";
  */
 export default function WhatsAppPoga() {
   const { locale } = useLocale();
+  const { pathname } = useLocation();
   const lv = locale === "lv";
+  // /seo-anketa: garā formā fiksētā poga sedz laukus un sadaļu joslu, un
+  // cilvēks tur jau ir sarunā - WhatsApp tur nav vajadzīgs. Maršruta
+  // nosacījums, ne CSS: ceļš SSR un klientā ir viens un tas pats.
+  const clean = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
+  if (clean === LV_ONLY_ROUTES.seoAnketa) return null;
   const virsraksts = lv ? "Rakstīt uz WhatsApp" : "Message on WhatsApp";
 
   return (

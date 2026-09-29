@@ -37,7 +37,7 @@ function textField(key: TextField) {
     .max(spec.max, "tooLong");
   // Vienas rindas laukos rindas pārtraukums nav vajadzīgs nekad, un divi no
   // tiem (uzņēmums, domēns) nonāk e-pasta tēmas rindā.
-  if (!spec.multiline) base = base.regex(/^[^\r\n]*$/, "singleLine");
+  if (!spec.multiline) base = base.regex(/^[^\r\n\u2028\u2029\u0085]*$/, "singleLine");
   if (key === "kontaktsEpasts") return base.min(1, "required").email("emailInvalid");
   if (spec.required) return base.min(1, "required");
   return z.preprocess((v) => (v === null || v === undefined ? "" : v), base);

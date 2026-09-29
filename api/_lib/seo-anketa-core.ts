@@ -50,6 +50,11 @@ export type HandleAnketaInput = {
   send: SendEmail;
   logger?: Logger;
   verifyTurnstile?: VerifyTurnstile;
+  /**
+   * Produkcijā robotu pārbaude ir obligāta: ja noslēpuma nav, anketa atsakās
+   * sūtīt (fail-closed), nevis klusi atveras. Preview un lokāli - pēc env.
+   */
+  requireTurnstile?: boolean;
 };
 
 export async function handleSeoAnketa(input: HandleAnketaInput): Promise<AnketaResult> {
@@ -90,6 +95,11 @@ export async function handleSeoAnketa(input: HandleAnketaInput): Promise<AnketaR
     // Logā tikai lauku nosaukumi un kļūdu atslēgas, nekad saturs.
     log.warn("[seo-anketa] validācija neizdevās", { fields });
     return { status: 400, body: { ok: false, error: "validation", fields } };
+  }
+
+  if (input.requireTurnstile && !input.config.turnstileSecret) {
+    log.error("[seo-anketa] TURNSTILE_SECRET_KEY nav iestatīts produkcijā - sūtīšana atteikta");
+    return { status: 503, body: { ok: false, error: "config" } };
   }
 
   if (input.config.turnstileSecret) {
