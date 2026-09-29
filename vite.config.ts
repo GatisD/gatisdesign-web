@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import sitemap from "vite-plugin-sitemap";
-import { ROUTES, type RouteKey } from "./src/i18n/routes";
+import { LV_ONLY_ROUTES, ROUTES, type RouteKey } from "./src/i18n/routes";
 import { projects, indexableProjects } from "./src/data/projects";
 
 // Sitemap ir vienots patiesības avots: bāzes maršruti nāk no ROUTES (abas valodas),
@@ -70,7 +70,9 @@ export default defineConfig(({ command, isSsrBuild }) => ({
       dynamicRoutes,
       changefreq: "monthly",
       priority: priorityByRoute,
-      exclude: ["/404"],
+      // LV_ONLY_ROUTES ir noindex lapas (piem. /seo-anketa). Tās nav ROUTES, bet
+      // ja spraudnis kādreiz tās atklātu no dist, sitemapā tās nedrīkst nonākt.
+      exclude: ["/404", ...Object.values(LV_ONLY_ROUTES)],
     }),
   ],
   resolve: {

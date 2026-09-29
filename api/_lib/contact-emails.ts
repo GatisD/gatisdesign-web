@@ -27,7 +27,7 @@ function toHtmlParagraph(value: string): string {
   return escapeHtml(value).replace(/\r?\n/g, "<br />");
 }
 
-function shell(bodyHtml: string): string {
+export function shell(bodyHtml: string): string {
   return [
     '<div style="margin:0;padding:24px;background:#f5f2ec;font-family:Helvetica,Arial,sans-serif;color:#1a1613;">',
     '<div style="max-width:560px;margin:0 auto;background:#ffffff;border:1px solid #e3ddd2;border-radius:12px;padding:28px;">',
@@ -39,7 +39,7 @@ function shell(bodyHtml: string): string {
   ].join("");
 }
 
-function row(term: string, value: string): string {
+export function row(term: string, value: string): string {
   return [
     '<tr><td style="padding:6px 12px 6px 0;font-size:13px;color:#8a8074;white-space:nowrap;vertical-align:top;">',
     escapeHtml(term),

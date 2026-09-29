@@ -11,11 +11,16 @@ type Props = {
   alternates?: Array<{ locale: Locale; path: string }>;
   image?: string;
   noindex?: boolean;
+  /**
+   * Canonical lapai bez valodu pāra (LV_ONLY_ROUTES). Dod canonical, bet
+   * neizvada nevienu hreflang - pārim, kura nav, nav ko deklarēt.
+   */
+  canonicalPath?: string;
 };
 
 const abs = (p: string) => (p.startsWith("http") ? p : `${SITE_URL}${p.startsWith("/") ? "" : "/"}${p}`);
 
-export default function SEO({ title, description, locale, routeKey, alternates, image, noindex }: Props) {
+export default function SEO({ title, description, locale, routeKey, alternates, image, noindex, canonicalPath }: Props) {
   const alts = alternates ?? (routeKey ? alternatesFor(routeKey) : []);
   const self = alts.find((a) => a.locale === locale);
   /**
@@ -23,7 +28,7 @@ export default function SEO({ title, description, locale, routeKey, alternates, 
    * agrāk tā izvadīja canonical uz sākumlapu: "neindeksē mani" un "īstā lapa ir
    * sākumlapa" ir divi pretēji signāli par vienu URL.
    */
-  const canonical = self ? abs(self.path) : null;
+  const canonical = self ? abs(self.path) : canonicalPath ? abs(canonicalPath) : null;
   // Noklusētais koplietošanas attēls. Jauns faila vārds 2026-09-08 ar nolūku:
   // Telegram, Facebook un LinkedIn veco adresi tur kešā nedēļām, un pārģenerēts
   // attēls ar to pašu vārdu tiem paliktu vecais. /og-image.png diskā paliek

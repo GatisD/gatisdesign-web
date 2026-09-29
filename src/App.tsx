@@ -4,7 +4,7 @@ import Layout from "@/components/Layout";
 import Index from "./pages/Index";
 import Kluda from "./pages/Kluda";
 import { projects } from "@/data/projects";
-import { LOCALES, ROUTES, type Locale } from "@/i18n/routes";
+import { LOCALES, LV_ONLY_ROUTES, ROUTES, type Locale } from "@/i18n/routes";
 
 /** Ceļš bez valodas prefiksa, jo bērnu maršruti ir relatīvi pret vecāku. */
 function childPath(full: string, locale: Locale): string {
@@ -84,6 +84,16 @@ function pagesFor(locale: Locale): RouteRecord[] {
         import("./pages/PrivatumaPolitika").then((m) => ({ Component: m.default })),
       entry: "src/pages/PrivatumaPolitika.tsx",
     },
+    // Tikai LV, noindex, bez EN pāra (sk. LV_ONLY_ROUTES).
+    ...(en
+      ? []
+      : [
+          {
+            path: childPath(LV_ONLY_ROUTES.seoAnketa, locale),
+            lazy: () => import("./pages/SeoAnketa").then((m) => ({ Component: m.default })),
+            entry: "src/pages/SeoAnketa.tsx",
+          } as RouteRecord,
+        ]),
     {
       path: "404",
       lazy: () => import("./pages/NotFound").then((m) => ({ Component: m.default })),

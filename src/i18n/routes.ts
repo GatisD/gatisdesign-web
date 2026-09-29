@@ -18,6 +18,17 @@ export const ROUTES = {
 export type RouteKey = keyof typeof ROUTES;
 
 /**
+ * Lapas tikai latviski un apzināti ĀRPUS `ROUTES`: tās nav navigācijā, nav
+ * sitemapā, nav llms.txt, tām nav hreflang pāra un tām ir `noindex, follow`.
+ * `ROUTES` baro sitemap, hreflang un valodas pārslēgu, tāpēc šeit ielikta lapa
+ * nekur netiek "atklāta" nejauši. Būves vārti (scripts/verify-build.mjs)
+ * notur, ka tā tas arī paliek.
+ */
+export const LV_ONLY_ROUTES = {
+  seoAnketa: "/seo-anketa",
+} as const;
+
+/**
  * Vai LV/EN pārslēgs ir redzams galvenē un kājenē.
  *
  * `true` kopš 2026-09-08: `src/content/en/*.json` ir uzrakstīti visām lapām,

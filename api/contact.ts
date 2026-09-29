@@ -1,4 +1,4 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
+import type { ServerResponse } from "node:http";
 import {
   consoleLogger,
   describeError,
@@ -8,6 +8,7 @@ import {
 } from "./_lib/contact-core.js";
 import { FIELD_LIMITS } from "./_lib/contact-fields.js";
 import { createResendSender } from "./_lib/resend.js";
+import { clientIp, readJsonBody, sendJson, type BodyResult, type VercelLikeRequest } from "./_lib/http.js";
 
 /**
  * POST /api/contact - kontaktformas pieteikums.
@@ -20,8 +21,6 @@ import { createResendSender } from "./_lib/resend.js";
  * Vides mainīgie: RESEND_API_KEY (obligāts), CONTACT_TO, CONTACT_FROM,
  * CONTACT_REPLY_TO (nav obligāti, sk. readConfig noklusējumus).
  */
-
-type VercelLikeRequest = IncomingMessage & { body?: unknown };
 
 export default async function handler(
   req: VercelLikeRequest,
@@ -39,7 +38,7 @@ export default async function handler(
     // atbildei uz to ir 400, ne 500.
     let body: BodyResult;
     try {
-      body = await readJsonBody(req);
+      body = await readJsonBody(req, FIELD_LIMITS.bodyBytesMax);
     } catch {
       send(res, { status: 400, body: { ok: false, error: "json" } });
       return;
@@ -71,56 +70,5 @@ export default async function handler(
 }
 
 function send(res: ServerResponse, result: ContactResult): void {
-  res.statusCode = result.status;
-  res.setHeader("Content-Type", "application/json; charset=utf-8");
-  res.setHeader("Cache-Control", "no-store");
-  for (const [key, value] of Object.entries(result.headers ?? {})) res.setHeader(key, value);
-  res.end(JSON.stringify(result.body));
-}
-
-/** Pirmā adrese x-forwarded-for virknē; Vercel to uzstāda proxy priekšā. */
-function clientIp(req: IncomingMessage): string {
-  const forwarded = req.headers["x-forwarded-for"];
-  const raw = Array.isArray(forwarded) ? forwarded[0] : forwarded;
-  const first = raw?.split(",")[0]?.trim();
-  return first || req.socket?.remoteAddress || "unknown";
-}
-
-type BodyResult = { ok: true; value: unknown } | { ok: false; error: "json" | "payload" };
-
-/**
- * Vercel parasti jau ir noparsējis JSON un ielicis req.body. Ja nav (cits
- * Content-Type, cita izpildvide, lokāls tests), nolasa plūsmu pats ar izmēra
- * vārtiem.
- */
-async function readJsonBody(req: VercelLikeRequest): Promise<BodyResult> {
-  if (req.body !== undefined && req.body !== null && typeof req.body === "object") {
-    // Vercel jau ir noparsējis ķermeni, tāpēc plūsmas izmēra vārti nekad
-    // nenostrādāja - pa šo ceļu vienīgā robeža bija Vercel 4,5 MB. Izmēru
-    // mēra pēc noparsētā objekta.
-    const size = Buffer.byteLength(JSON.stringify(req.body), "utf8");
-    if (size > FIELD_LIMITS.bodyBytesMax) return { ok: false, error: "payload" };
-    return { ok: true, value: req.body };
-  }
-  if (typeof req.body === "string") return parseJson(req.body);
-
-  const chunks: Buffer[] = [];
-  let size = 0;
-  for await (const chunk of req) {
-    const buf = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk as string);
-    size += buf.length;
-    if (size > FIELD_LIMITS.bodyBytesMax) return { ok: false, error: "payload" };
-    chunks.push(buf);
-  }
-  return parseJson(Buffer.concat(chunks).toString("utf8"));
-}
-
-function parseJson(raw: string): BodyResult {
-  if (raw.length > FIELD_LIMITS.bodyBytesMax) return { ok: false, error: "payload" };
-  if (raw.trim() === "") return { ok: false, error: "json" };
-  try {
-    return { ok: true, value: JSON.parse(raw) };
-  } catch {
-    return { ok: false, error: "json" };
-  }
+  sendJson(res, result);
 }

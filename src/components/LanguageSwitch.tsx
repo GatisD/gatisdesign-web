@@ -3,6 +3,7 @@ import { useLocale } from "@/i18n/LocaleContext";
 import {
   LANGUAGE_SWITCH_VISIBLE,
   LOCALES,
+  LV_ONLY_ROUTES,
   pathFor,
   pathForPathname,
   type Locale,
@@ -30,6 +31,10 @@ export default function LanguageSwitch({ routeKey }: { routeKey?: RouteKey }) {
   const target = (l: Locale): string =>
     (routeKey ? pathFor(routeKey, l) : pathForPathname(pathname, l)) ?? pathFor("home", l);
   if (!LANGUAGE_SWITCH_VISIBLE) return null;
+  // Tikai-LV lapām (piem. /seo-anketa) pāra nav. Pārslēgs uz /en sākumlapu ar
+  // rel="alternate" hreflang="en" meklētājam apgalvotu pāri, kura nav.
+  const clean = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
+  if ((Object.values(LV_ONLY_ROUTES) as string[]).includes(clean)) return null;
   return (
     <div role="group" aria-label={t.lang.label} className="inline-flex items-center gap-1">
       {LOCALES.map((l: Locale, i) => (

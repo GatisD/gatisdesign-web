@@ -53,6 +53,15 @@ const attr = (html, re) => {
 const isEnPage = (page) => page === "en.html" || page.startsWith("en/");
 const isNotFound = (page) => page === "404.html" || page === "en/404.html";
 
+/**
+ * Tikai-LV lapas bez EN pāra, `noindex, follow`, ārpus navigācijas, sitemap un
+ * llms.txt (src/i18n/routes.ts LV_ONLY_ROUTES). Tām hreflang nav ar nolūku, un
+ * 21. vārti notur, ka tās paliek "neredzamas" - viena saite galvenē vai viena
+ * `index` padarītu klienta anketu par publisku meklētāja lapu.
+ */
+const LV_ONLY_NOINDEX = ["seo-anketa.html"];
+const isLvOnly = (page) => LV_ONLY_NOINDEX.includes(page);
+
 function checkDist(dist) {
   const errors = [];
   const read = (p) => {
@@ -84,7 +93,7 @@ function checkDist(dist) {
     if (lang !== wantLang) errors.push(`${where} <html lang> ir ${lang ?? "nav"}, gaidīts ${wantLang}`);
 
     // 3. hreflang pāri un x-default katrā maršruta lapā.
-    if (!isNotFound(page)) {
+    if (!isNotFound(page) && !isLvOnly(page)) {
       for (const tag of ['hreflang="lv"', 'hreflang="en"', 'hreflang="x-default"']) {
         if (!html.includes(tag)) errors.push(`${where} trūkst ${tag}`);
       }
@@ -454,6 +463,35 @@ function checkDist(dist) {
     }
   }
 
+  // 21. Tikai-LV noindex lapas: eksistē, noindex, bez hreflang, ne sitemapā,
+  //     ne llms.txt, un neviena cita lapa uz tām nesaitē (galvene, kājene).
+  for (const page of LV_ONLY_NOINDEX) {
+    const html = read(page);
+    const path = `/${page.replace(/\.html$/, "")}`;
+    if (!html) {
+      errors.push(`${page}: tikai-LV lapa neeksistē dist mapē`);
+      continue;
+    }
+    if (!/name="robots"[^>]*content="noindex, follow"/.test(html)) {
+      errors.push(`${page}: tikai-LV lapai jābūt "noindex, follow"`);
+    }
+    if (/hreflang=/.test(html)) errors.push(`${page}: tikai-LV lapai nedrīkst būt hreflang`);
+    const canonical = attr(html, /<link[^>]*rel="canonical"[^>]*href="([^"]*)"/);
+    if (canonical !== `https://gatisdesign.com${path}`) {
+      errors.push(`${page}: canonical ir ${canonical ?? "nav"}, gaidīts https://gatisdesign.com${path}`);
+    }
+    if (sitemap && sitemap.includes(`https://gatisdesign.com${path}<`)) errors.push(`${page}: tikai-LV lapa ir sitemapā`);
+    if (llms && llms.includes(`gatisdesign.com${path}`)) errors.push(`${page}: tikai-LV lapa ir llms.txt`);
+    const linkRe = new RegExp(`href="(?:https://gatisdesign\\.com)?${path}"`);
+    for (const other of pages) {
+      if (other === page) continue;
+      if (linkRe.test(read(other) ?? "")) {
+        errors.push(`${other}: saitē uz tikai-LV lapu ${path} (tai jāpaliek ārpus navigācijas)`);
+        break;
+      }
+    }
+  }
+
   return errors;
 }
 
@@ -482,6 +520,30 @@ const H1_SOURCE = {
  * ------------------------------------------------------------------ */
 
 const MUTATIONS = [
+  {
+    name: "tikai-LV lapai pazudis noindex",
+    apply(dir) {
+      const f = join(dir, "seo-anketa.html");
+      writeFileSync(f, readFileSync(f, "utf8").replace(/content="noindex, follow"/, 'content="index, follow"'));
+    },
+  },
+  {
+    name: "tikai-LV lapa saitēta galvenē",
+    apply(dir) {
+      const f = join(dir, "index.html");
+      writeFileSync(f, readFileSync(f, "utf8").replace("</main>", '<a href="/seo-anketa">anketa</a></main>'));
+    },
+  },
+  {
+    name: "tikai-LV lapai atgriezies hreflang",
+    apply(dir) {
+      const f = join(dir, "seo-anketa.html");
+      writeFileSync(
+        f,
+        readFileSync(f, "utf8").replace("</head>", '<link rel="alternate" hreflang="en" href="https://gatisdesign.com/en/seo-anketa"/></head>'),
+      );
+    },
+  },
   {
     name: "privātuma politika nenosauc uzstādīto sīkdatni",
     apply(dir) {

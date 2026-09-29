@@ -134,31 +134,55 @@ export function createTurnstileVerifier(secret: string, fetchImpl?: FetchLike): 
 
 export const RATE_LIMIT = { windowMs: 10 * 60_000, max: 5 } as const;
 
-const hits = new Map<string, number[]>();
+export type RateLimiter = {
+  /** Atgriež sekundes līdz nākamajam mēģinājumam vai 0, ja limits nav pārsniegts. */
+  check: (ip: string, now: number) => number;
+  /** Testiem: notīra logu starp pārbaudēm. */
+  reset: () => void;
+};
+
+/**
+ * Katrai formai savs logs: kontaktformas pieteikums nedrīkst apēst SEO
+ * anketas limitu no tās pašas adreses, un otrādi.
+ */
+export function createRateLimiter(limit: { windowMs: number; max: number } = RATE_LIMIT): RateLimiter {
+  const hits = new Map<string, number[]>();
+
+  function pruneOldEntries(now: number): void {
+    if (hits.size < 500) return;
+    for (const [key, times] of hits) {
+      if (times.every((t) => now - t >= limit.windowMs)) hits.delete(key);
+    }
+  }
+
+  return {
+    check(ip, now) {
+      pruneOldEntries(now);
+      const recent = (hits.get(ip) ?? []).filter((t) => now - t < limit.windowMs);
+      if (recent.length >= limit.max) {
+        const oldest = recent[0] as number;
+        return Math.max(1, Math.ceil((limit.windowMs - (now - oldest)) / 1000));
+      }
+      recent.push(now);
+      hits.set(ip, recent);
+      return 0;
+    },
+    reset() {
+      hits.clear();
+    },
+  };
+}
+
+const contactLimiter = createRateLimiter(RATE_LIMIT);
 
 /** Testiem: notīra logu starp pārbaudēm. */
 export function resetRateLimit(): void {
-  hits.clear();
-}
-
-function pruneOldEntries(now: number): void {
-  if (hits.size < 500) return;
-  for (const [key, times] of hits) {
-    if (times.every((t) => now - t >= RATE_LIMIT.windowMs)) hits.delete(key);
-  }
+  contactLimiter.reset();
 }
 
 /** Atgriež sekundes līdz nākamajam mēģinājumam vai 0, ja limits nav pārsniegts. */
 export function checkRateLimit(ip: string, now: number): number {
-  pruneOldEntries(now);
-  const recent = (hits.get(ip) ?? []).filter((t) => now - t < RATE_LIMIT.windowMs);
-  if (recent.length >= RATE_LIMIT.max) {
-    const oldest = recent[0] as number;
-    return Math.max(1, Math.ceil((RATE_LIMIT.windowMs - (now - oldest)) / 1000));
-  }
-  recent.push(now);
-  hits.set(ip, recent);
-  return 0;
+  return contactLimiter.check(ip, now);
 }
 
 /* ------------------------------------------------------------------ *
