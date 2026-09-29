@@ -554,9 +554,9 @@ function sectionDone(id: SectionId, v: AnketaFormValues, visited: boolean): bool
     case "tirgus":
       return filled(v.tirgi);
     case "nozare":
-      return visited || [v.nozare1, v.nozare2, v.nozare3, v.nozare4, v.nozare5, v.nozare6].some(filled);
+      return [v.nozare1, v.nozare2, v.nozare3, v.nozare4, v.nozare5, v.nozare6].some(filled);
     case "materiali":
-      return visited || [v.profili, v.cenas, v.cenasPublicet, v.atsauksmes, v.logotipi].some(filled);
+      return [v.profili, v.cenas, v.cenasPublicet, v.atsauksmes, v.logotipi].some(filled);
     case "nosutisana":
       return v.piekrisana === true;
   }
@@ -692,8 +692,10 @@ function cmsStepIndexes(cms: string | null): number[] | null {
     case "webflow":
     case "cita":
       return [2];
+    case "nezinu":
+      return [0, 1, 2, 3]; // visi soļi + norāde, ko darīt
     default:
-      return null; // nekas nav izvēlēts vai "Nezinu" - visi soļi
+      return [0, 1, 2]; // nekas nav izvēlēts - visi soļi bez "Nezinu" norādes
   }
 }
 
@@ -1263,7 +1265,7 @@ export default function SeoAnketa() {
                                       e.preventDefault();
                                       focusField(name);
                                     }}
-                                    className="inline-flex min-h-[36px] items-center text-[var(--kluda-teksts)] underline decoration-[var(--kluda)] underline-offset-4 hover:text-paper"
+                                    className="inline-flex min-h-[44px] md:min-h-[36px] items-center text-[var(--kluda-teksts)] underline decoration-[var(--kluda)] underline-offset-4 hover:text-paper"
                                   >
                                     {labelOf(name)}
                                   </a>

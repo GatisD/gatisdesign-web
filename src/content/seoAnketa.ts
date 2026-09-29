@@ -82,7 +82,7 @@ export const ACCESS_CARDS: AccessCard[] = [
     stepsKind: "numbered",
     steps: [
       "analytics.google.com → apakšā kreisajā pusē Admin (zobrats).",
-      'Property → Property access management → "+" → Add users.',
+      'Property → Property access management → „+” → Add users.',
       "Abas adreses, loma **Viewer**. Ja jāiestata arī konversijas, `gatis.design@gmail.com` - **Editor**.",
     ],
     addresses: [SERVICE_ACCOUNT, GATIS_ACCOUNT],
@@ -96,6 +96,7 @@ export const ACCESS_CARDS: AccessCard[] = [
       "**WordPress:** Users → Add New → e-pasts `gatis.design@gmail.com`, loma Administrator (vai Editor, ja SEO spraudnim ir atsevišķas tiesības).",
       "**Shopify:** Settings → Users → Add users (e-pasts `gatis.design@gmail.com`), vai apstipriniet sadarbības partnera pieprasījumu, ko nosūtīšu.",
       "**Cita sistēma:** ierakstiet, kāda tā ir un kā tajā pievieno lietotāju.",
+      "Ja nezināt, kāda sistēma ir jūsu lapai, atzīmējiet „Vajag palīdzību” - kopā to noskaidrosim.",
     ],
     addresses: [GATIS_ACCOUNT],
   },
@@ -103,10 +104,10 @@ export const ACCESS_CARDS: AccessCard[] = [
     tool: "gtm",
     title: "2.4. Google Tag Manager",
     qualifier: "(tikai tad, ja jāiestata mērīšana)",
-    why: "caur Tag Manager varu ielikt mērīšanas kodus, nemainot mājaslapas kodu.",
+    why: "ar Tag Manager varu ielikt mērīšanas kodus, nemainot mājaslapas kodu.",
     stepsKind: "numbered",
     steps: [
-      'tagmanager.google.com → Admin → User Management → "+" → Add users.',
+      'tagmanager.google.com → Admin → User Management → „+” → Add users.',
       "Abas adreses, konteinera tiesības **Publish**.",
     ],
     addresses: [SERVICE_ACCOUNT, GATIS_ACCOUNT],
@@ -118,7 +119,7 @@ export const ACCESS_CARDS: AccessCard[] = [
     stepsKind: "numbered",
     steps: [
       "bing.com/webmasters → pieslēdzieties ar Microsoft vai Google kontu.",
-      'Izvēlieties "Import from Google Search Console" - vietne pievienojas 2 minūtēs.',
+      'Izvēlieties „Import from Google Search Console” - vietne pievienojas 2 minūtēs.',
       "Settings → User management → Add user → `gatis.design@gmail.com`, loma **Administrator**.",
     ],
     addresses: [GATIS_ACCOUNT],
