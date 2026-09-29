@@ -254,6 +254,24 @@ describe("SEO anketas serveris", () => {
     expect(text).toContain("Tikai „no X EUR”");
   });
 
+  it("CMS 'Cita sistēma' vēstulē ir ar īsu uzrakstu, ne ar instrukcijas tekstu", async () => {
+    const mail = recorder();
+    await handleSeoAnketa({
+      payload: { ...validPayload, cms: "cita", cmsCita: "Joomla, lietotājus pievieno Users sadaļā" },
+      ip: freshIp(),
+      config,
+      send: mail.send,
+    });
+    const { text, html } = mail.sent[0];
+    expect(text).toContain("Cita sistēma\nJoomla, lietotājus pievieno Users sadaļā");
+    expect(text).not.toContain(TEXT_FIELDS.cmsCita.label);
+    expect(html).not.toContain(TEXT_FIELDS.cmsCita.label);
+
+    const empty = recorder();
+    await handleSeoAnketa({ payload: validPayload, ip: freshIp(), config, send: empty.send });
+    expect(empty.sent[0].text).toContain("Cita sistēma\n-");
+  });
+
   it("nezināma izvēles vērtība tiek noraidīta", async () => {
     const mail = recorder();
     const result = await handleSeoAnketa({

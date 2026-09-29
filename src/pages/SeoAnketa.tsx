@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { Fragment, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { useForm, useWatch, type Control, type Resolver, type UseFormRegister } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router-dom";
@@ -187,6 +187,42 @@ function readDraft(): Partial<AnketaFormValues> | null {
   }
 }
 
+/**
+ * Vērtības, ko cilvēks ievadīja SSR lapā PIRMS hidratācijas.
+ *
+ * Lapa ir redzama un rakstāma, pirms JS ir ielādējies. Kad React hidratē,
+ * react-hook-form `register` ref uzliek katram laukam noklusējuma vērtību ("")
+ * un izdzēš to, kas jau ierakstīts - dzīvajā testā pirmais lauks, aizpildīts
+ * ~1 s pēc navigācijas, pēc hidratācijas bija tukšs. Tāpēc DOM vērtības tiek
+ * nolasītas renderēšanas fāzē, pirms `register` ref pievienojas (commit), un
+ * pēc tam apvienotas ar melnrakstu. Uz izvadi tas neietekmē neko, tāpēc
+ * hidratācijas neatbilstību nerada.
+ */
+function readDomValues(): Partial<AnketaFormValues> {
+  const out: Record<string, unknown> = {};
+  try {
+    const known = emptyValues() as Record<string, unknown>;
+    // Tikai šīs anketas forma: klienta navigācijā DOM vēl var turēt iepriekšējās lapas formu.
+    const form = (document.getElementById("f-uznemums") as HTMLInputElement | null)?.form;
+    if (!form) return {};
+    const fields = form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input[name], textarea[name]");
+    fields.forEach((el) => {
+      const name = el.name;
+      if (!(name in known) || name === ANKETA_HONEYPOT_FIELD) return;
+      if (el instanceof HTMLInputElement && el.type === "radio") {
+        if (el.checked) out[name] = el.value;
+      } else if (el instanceof HTMLInputElement && el.type === "checkbox") {
+        if (el.checked) out[name] = true;
+      } else if (el.value.trim() !== "") {
+        out[name] = el.value;
+      }
+    });
+  } catch {
+    // Nav DOM vai neparedzēta struktūra - vienkārši nav ko glābt.
+  }
+  return out as Partial<AnketaFormValues>;
+}
+
 function writeDraft(values: AnketaFormValues): boolean {
   try {
     const { [ANKETA_HONEYPOT_FIELD]: _slazds, ...rest } = values;
@@ -369,17 +405,12 @@ function CopyAddress({ address }: { address: string }) {
  * ------------------------------------------------------------------ */
 
 const FIELD_BASE =
-  "w-full rounded-field border border-line bg-ink-850 px-4 text-[16px] text-paper placeholder:text-paper-faint transition-[border-color,background-color] duration-300 hover:border-line-strong focus:border-amber focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-amber aria-[invalid=true]:border-[var(--kluda)]";
+  "w-full rounded-field border border-line bg-ink-850 px-4 text-[16px] text-paper placeholder:text-paper-faint transition-[border-color,background-color] duration-300 hover:border-line-strong focus:border-amber focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-amber aria-[invalid=true]:border-[var(--danger)]";
 const FIELD_INPUT = cn(FIELD_BASE, "min-h-[52px] py-3");
 const FIELD_AREA = cn(FIELD_BASE, "min-h-[112px] resize-y py-3 leading-[1.5]");
-const ERROR_TEXT = "text-[14px] leading-[1.35] text-[var(--kluda-teksts)]";
+const ERROR_TEXT = "text-[14px] leading-[1.35] text-[var(--danger-text)]";
 
-/**
- * Kļūdu krāsa tikai šai lapai. Zīmola zaļā nozīmē "atzīmēts / kārtībā", tāpēc
- * kļūda tajā izskatījās pēc apstiprinājuma. Kontrasts uz #0D0A0A:
- * #FF8A80 teksts 8,6:1, #FF6B5E rāmis 7,0:1 (abi virs 4,5:1).
- */
-const DANGER_VARS = { "--kluda": "#ff6b5e", "--kluda-teksts": "#ff8a80" } as CSSProperties;
+/** Kļūdu krāsa nāk no --danger / --danger-text (src/styles/tokens.css), kopīga ar /kontakti. */
 const LABEL_TEXT = "text-[16px] leading-[1.45] text-paper";
 
 type ErrorsMap = Partial<Record<FieldName, { message?: string }>>;
@@ -613,7 +644,7 @@ function ProgressBar({
                     className={cn(
                       "flex h-8 w-8 items-center justify-center rounded-full border font-label text-[13px]",
                       hasError
-                        ? "border-[var(--kluda)] text-[var(--kluda-teksts)]"
+                        ? "border-[var(--danger)] text-[var(--danger-text)]"
                         : done
                           ? "border-amber bg-amber text-on-amber"
                           : current
@@ -632,7 +663,7 @@ function ProgressBar({
                   {hasError ? (
                     <span
                       aria-hidden="true"
-                      className="absolute right-[3px] top-[5px] h-2 w-2 rounded-full bg-[var(--kluda)] ring-2 ring-ink-900"
+                      className="absolute right-[3px] top-[5px] h-2 w-2 rounded-full bg-[var(--danger)] ring-2 ring-ink-900"
                     />
                   ) : null}
                   <span className="sr-only">
@@ -807,6 +838,12 @@ export default function SeoAnketa() {
   const { locale, t } = useLocale();
   const [status, setStatus] = useState<Status>({ state: "idle" });
   const [draftReady, setDraftReady] = useState(false);
+  // Nolasa pirms hidratācijas ierakstīto, kamēr SSR DOM vēl nav aiztikts
+  // (sk. readDomValues). Serverī `document` nav - tur paliek null.
+  const preHydration = useRef<Partial<AnketaFormValues> | null>(null);
+  if (preHydration.current === null && typeof document !== "undefined") {
+    preHydration.current = readDomValues();
+  }
   const [saved, setSaved] = useState(false);
   const [active, setActive] = useState<SectionId>(SECTIONS[0].id);
   const [visited, setVisited] = useState<ReadonlySet<SectionId>>(() => new Set<SectionId>());
@@ -838,10 +875,19 @@ export default function SeoAnketa() {
   // klients pirmajā zīmējumā ieliktu saglabātās vērtības, React ziņotu par
   // neatbilstību. Saglabāšana ieslēdzas tikai pēc atjaunošanas, lai tukšā
   // sākuma forma nepārrakstītu melnrakstu.
+  //
+  // Prioritāte: pirms hidratācijas ierakstītais DOM > melnraksts > tukšs.
+  // Tiek izsaukts viens reset().
   useEffect(() => {
     const draft = readDraft();
-    if (draft) {
-      reset({ ...emptyValues(), ...draft });
+    const typed = preHydration.current ?? {};
+    const hasTyped = Object.keys(typed).length > 0;
+    if (draft || hasTyped) {
+      const merged = { ...emptyValues(), ...(draft ?? {}), ...typed };
+      reset(merged);
+      // DraftSaver pirmo izmaiņu izlaiž, tāpēc pirms hidratācijas ierakstīto
+      // saglabājam uzreiz - citādi tas pazustu, ja cilvēks lapu pārlādē.
+      if (hasTyped) writeDraft(merged);
       setSaved(true);
     }
     setDraftReady(true);
@@ -972,7 +1018,7 @@ export default function SeoAnketa() {
         description={ANKETA_META_DESCRIPTION}
       />
 
-      <div className="flex-1 bg-ink-900 text-paper" style={DANGER_VARS}>
+      <div className="flex-1 bg-ink-900 text-paper">
         <header className="mx-auto w-full max-w-wrap px-5 pb-10 pt-[clamp(104px,15vw,180px)] sm:px-8 md:pb-14 lg:px-10">
           <h1 className="max-w-[18ch] text-display-2 font-bold uppercase">{ANKETA_TITLE}</h1>
           <div className="mt-8 flex max-w-[62ch] flex-col gap-4 text-[clamp(1.02rem,1.3vw,1.15rem)] leading-[1.55] text-paper-2">
@@ -1219,7 +1265,7 @@ export default function SeoAnketa() {
                   {status.state === "error" ? (
                     <div
                       role="alert"
-                      className="rounded-field border border-[var(--kluda)] px-5 py-4 text-[15px] leading-[1.55]"
+                      className="rounded-field border border-[var(--danger)] px-5 py-4 text-[15px] leading-[1.55]"
                     >
                       {TURNSTILE_CODES.has(status.code) ? (
                         <p className="text-paper">{UI.turnstileFailed}</p>
@@ -1249,7 +1295,7 @@ export default function SeoAnketa() {
                   {submitCount > 0 && errorFields.length > 0 ? (
                     <div
                       role="alert"
-                      className="rounded-field border border-[var(--kluda)] px-5 py-4 text-[15px] leading-[1.55]"
+                      className="rounded-field border border-[var(--danger)] px-5 py-4 text-[15px] leading-[1.55]"
                     >
                       <p className="font-semibold text-paper">{missingSummary(errorFields.length)}</p>
                       <div className="mt-3 flex flex-col gap-3">
@@ -1265,7 +1311,7 @@ export default function SeoAnketa() {
                                       e.preventDefault();
                                       focusField(name);
                                     }}
-                                    className="inline-flex min-h-[44px] md:min-h-[36px] items-center text-[var(--kluda-teksts)] underline decoration-[var(--kluda)] underline-offset-4 hover:text-paper"
+                                    className="inline-flex min-h-[44px] md:min-h-[36px] items-center text-[var(--danger-text)] underline decoration-[var(--danger)] underline-offset-4 hover:text-paper"
                                   >
                                     {labelOf(name)}
                                   </a>

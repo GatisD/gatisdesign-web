@@ -177,6 +177,13 @@
   --amber-on-paper: #117d38;
   /** Teksts uz vara pildījuma (pogas). */
   --on-amber: #191414;
+  /* Kļūdu krāsa formām (/kontakti un /seo-anketa). Zīmola zaļā nozīmē
+     "atzīmēts / kārtībā", tāpēc kļūda zaļā izskatījās pēc apstiprinājuma
+     (UI/UX pārskats 2026-09-29). Kontrasts uz grafīta #0D0A0A:
+     --danger rāmis 7,06:1, --danger-text teksts 8,64:1 (abi virs 4,5:1).
+     Tikai kļūdām - fokusa gredzens paliek zaļš. */
+  --danger: #ff6b5e;
+  --danger-text: #ff8a80;
 
   /* --- Pārklājumi (scrim) ---
    * Grafīts kā RGB kanāli, lai caurspīdīgums nāktu no tokena, ne no ar roku

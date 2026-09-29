@@ -62,7 +62,8 @@ function sectionRows(data: AnketaData): Array<{ title: string; rows: Row[] }> {
       rows: [
         ...accessRows(data).map((a) => ({ label: a.tool, value: a.status })),
         choice(data, "cms"),
-        text(data, "cmsCita"),
+        // Laukā ir brīvs teksts; tā uzraksts lapā ir instrukcija, ne nosaukums.
+        { label: "Cita sistēma", value: data.cmsCita?.trim() || EMPTY, multiline: true },
       ],
     },
     {

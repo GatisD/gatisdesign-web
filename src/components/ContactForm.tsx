@@ -50,7 +50,7 @@ type FormField = (typeof FORM_FIELDS)[number];
  * skaidri uzlikts atpakaļ.
  */
 const FIELD_BASE =
-  "w-full rounded-field border border-line bg-ink-850 px-4 text-[16px] text-paper placeholder:text-paper-faint transition-[border-color,background-color] duration-300 hover:border-line-strong focus:border-amber focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-amber aria-[invalid=true]:border-amber";
+  "w-full rounded-field border border-line bg-ink-850 px-4 text-[16px] text-paper placeholder:text-paper-faint transition-[border-color,background-color] duration-300 hover:border-line-strong focus:border-amber focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-amber aria-[invalid=true]:border-[var(--danger)]";
 const FIELD_INPUT = cn(FIELD_BASE, "min-h-[56px] py-4 md:min-h-16");
 
 /**
@@ -58,7 +58,8 @@ const FIELD_INPUT = cn(FIELD_BASE, "min-h-[56px] py-4 md:min-h-16");
  * lapu pagarināja par 151 px, un viss zem formas nolēca lejā tieši tajā brīdī,
  * kad cilvēks skatās, kur radās kļūda. Vieta ir vienmēr; mainās tikai teksts.
  */
-const ERROR_SLOT = "min-h-[19px] text-[14px] leading-[1.35] text-amber";
+// Kļūdas krāsa --danger-text, ne zīmola zaļā (tokens.css, UI/UX pārskats 2026-09-29).
+const ERROR_SLOT = "min-h-[19px] text-[14px] leading-[1.35] text-[var(--danger-text)]";
 
 /** Cik ilgi iesniegšana gaida Cloudflare pilnvaru, pirms padodas. */
 // 20 s, ne 10. Managed režīmā Cloudflare dažiem apmeklētājiem rāda interaktīvu
@@ -437,7 +438,7 @@ export default function ContactForm({ className }: { className?: string }) {
       />
 
       {failure ? (
-        <div role="alert" className="mt-7 rounded-field border border-amber px-5 py-4 text-[15px]">
+        <div role="alert" className="mt-7 rounded-field border border-[var(--danger)] px-5 py-4 text-[15px]">
           <p className="font-semibold text-paper">{t.form.failureTitle}</p>
           <p className="mt-1.5 text-paper-2">{t.form.errors[failure.messageKey]}</p>
           <p className="mt-2 text-paper-2">
