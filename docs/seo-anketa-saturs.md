@@ -46,7 +46,7 @@ Ievads: Katram rīkam atzīmējiet vienu: **Izdarīts**, **Šāda rīka nav** va
 Adreses var nokopēt ar pogu.
 
 ### 2.1. Google Search Console *(obligāts)*
-Kāpēc: redzu, pēc kādiem vaicājumiem jūs atrod, un varu parādīt, kas mainījies pirms un pēc izmaiņām.
+Kāpēc: redzu, pēc kādiem vaicājumiem jūs atrod, un varu salīdzināt rezultātus pirms un pēc izmaiņām.
 1. Atveriet search.google.com/search-console un izvēlieties savu domēnu.
 2. Kreisajā izvēlnē: Settings → Users and permissions → Add user.
 3. Pievienojiet abas adreses, tiesības **Full**:
@@ -111,7 +111,7 @@ konkrētam labojumam, pajautāšu atsevišķi un pateikšu, kāpēc.
 ## 4. Par nozari
 
 Ievads: Šīs atbildes vajadzīgas, pirms rakstu pirmo teikumu jūsu lapai. Bez tām teksts
-būs tehniski pareizs, bet nozares cilvēks tajā pamanīs kļūdas.
+būs gramatiski pareizs, bet cilvēks no jūsu nozares tajā pamanīs neprecizitātes.
 
 1. Kurus zīmolus jūs pārdodat, un kas ir katra ražotājs vai mātes uzņēmums?
 2. Ko pircēji visbiežāk jautā pa telefonu pirms pirkuma? Pieci biežākie jautājumi.

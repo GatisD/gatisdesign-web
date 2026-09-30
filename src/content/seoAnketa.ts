@@ -50,7 +50,7 @@ export const PIEKLUVES_NOTE =
   "DNS, hostinga paneļa, FTP un datubāzes paroles nav vajadzīgas. Ja tās būs vajadzīgas konkrētam labojumam, pajautāšu atsevišķi un pateikšu, kāpēc.";
 
 export const NOZARE_INTRO =
-  "Šīs atbildes vajadzīgas, pirms rakstu pirmo teikumu jūsu lapai. Bez tām teksts būs tehniski pareizs, bet nozares cilvēks tajā pamanīs kļūdas.";
+  "Šīs atbildes vajadzīgas, pirms rakstu pirmo teikumu jūsu lapai. Bez tām teksts būs gramatiski pareizs, bet cilvēks no jūsu nozares tajā pamanīs neprecizitātes.";
 
 export const WHY_PREFIX = "Kāpēc:";
 
@@ -79,7 +79,7 @@ export const ACCESS_CARDS: AccessCard[] = [
     tool: "gsc",
     title: "2.1. Google Search Console",
     qualifier: "(obligāts)",
-    why: "redzu, pēc kādiem vaicājumiem jūs atrod, un varu parādīt, kas mainījies pirms un pēc izmaiņām.",
+    why: "redzu, pēc kādiem vaicājumiem jūs atrod, un varu salīdzināt rezultātus pirms un pēc izmaiņām.",
     stepsKind: "numbered",
     steps: [
       "Atveriet search.google.com/search-console un izvēlieties savu domēnu.",
@@ -108,7 +108,7 @@ export const ACCESS_CARDS: AccessCard[] = [
     stepsKind: "bullets",
     steps: [
       "**WordPress:** Users → Add New → e-pasts `gatis.design@gmail.com`, loma Administrator (vai Editor, ja SEO spraudnim ir atsevišķas tiesības).",
-      "**Shopify:** Settings → Users → Add users (e-pasts `gatis.design@gmail.com`), vai apstipriniet sadarbības partnera pieprasījumu, ko nosūtīšu.",
+      "**Shopify:** Settings → Users → Add users (e-pasts `gatis.design@gmail.com`) vai apstipriniet sadarbības partnera pieprasījumu, ko nosūtīšu.",
       "**GitHub / GitLab:** pievienojiet GitHub lietotāju `GatisD` lapas repozitorijam ar **Write** tiesībām (GitLab - **Developer**).",
       "**Lovable:** uzaiciniet `gatis.design@gmail.com` savā Lovable Workspace ar lomu **Editor**.",
       "**Wix vai Webflow:** uzaiciniet `gatis.design@gmail.com` kā administratoru.",
@@ -199,7 +199,7 @@ export const UI = {
   draftSaved: "Saglabāts šajā pārlūkā",
   sectionHasErrors: "(ir kļūdas)",
   turnstileFailed:
-    "Neizdevās pārbaudīt, ka esat cilvēks. Pārlādējiet lapu - atbildes saglabāsies - un mēģiniet vēlreiz.",
+    "Neizdevās pārbaudīt, vai esat cilvēks. Pārlādējiet lapu - atbildes saglabāsies - un mēģiniet vēlreiz.",
   progressLabel: "Anketas sadaļas",
   honeypot: "Šo lauku neaizpildiet",
   errors: {
