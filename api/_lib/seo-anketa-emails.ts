@@ -93,6 +93,23 @@ function sectionRows(data: AnketaData): Array<{ title: string; rows: Row[] }> {
     },
     {
       title: SECTIONS[5].title,
+      // Bloga jautājumi lapā redzami tikai pie "Jā" - vēstulē tāpat, lai
+      // paslēptu lauku melnraksta atliekas neizskatītos pēc atbildēm.
+      rows:
+        data.blogs === "ja"
+          ? [
+              choice(data, "blogs"),
+              choice(data, "blogsBiezums"),
+              text(data, "blogsAutors"),
+              text(data, "blogsApstiprina"),
+              text(data, "blogsParaugi"),
+              text(data, "blogsFoto"),
+              text(data, "blogsTemas"),
+            ]
+          : [choice(data, "blogs")],
+    },
+    {
+      title: SECTIONS[6].title,
       rows: [text(data, "komentars"), { label: "Piekrišana", value: data.piekrisana ? "Jā" : "Nē" }],
     },
   ];

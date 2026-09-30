@@ -33,6 +33,12 @@ export const HELP = {
     "Piemēram, viens un tas pats produkts vienā valstī ir „worktop”, citā - „countertop”. Pierakstiet vārdus, ko dzirdat no klientiem, ne tos, ko lietojat paši.",
 } as const;
 
+/** GitHub lietotājs, ko rāda kopēšanai, ja izvēlēta programmēta lapa. */
+export const GITHUB_USER = "GatisD";
+
+/** Tikai ekrāna lasītājam, kad pie „Jā” parādās bloga jautājumi. */
+export const BLOGS_OPENED = "Parādījās papildu jautājumi par blogu.";
+
 export const KONTAKTPERSONA_LEGEND = "Kontaktpersona: vārds, amats, e-pasts";
 export const KONTAKTPERSONA_REQUIRED = "(obligāts: vārds un e-pasts)";
 export const REQUIRED_MARK = "(obligāts)";
@@ -47,6 +53,14 @@ export const NOZARE_INTRO =
   "Šīs atbildes vajadzīgas, pirms rakstu pirmo teikumu jūsu lapai. Bez tām teksts būs tehniski pareizs, bet nozares cilvēks tajā pamanīs kļūdas.";
 
 export const WHY_PREFIX = "Kāpēc:";
+
+export const BLOGS_INTRO =
+  "Ja bloga rakstus nepasūtāt, atzīmējiet „Nē” un ejiet tālāk. Neviens jautājums šajā sadaļā nav obligāts.";
+
+export const HELP_BLOGS = {
+  autors: "Rakstam ar īstu autoru vairāk uzticas gan lasītāji, gan Google un AI meklētāji.",
+  apstiprina: "Bez jūsu apstiprinājuma neviens raksts netiks publicēts.",
+} as const;
 
 export type AccessCard = {
   tool: AccessTool;
@@ -95,6 +109,9 @@ export const ACCESS_CARDS: AccessCard[] = [
     steps: [
       "**WordPress:** Users → Add New → e-pasts `gatis.design@gmail.com`, loma Administrator (vai Editor, ja SEO spraudnim ir atsevišķas tiesības).",
       "**Shopify:** Settings → Users → Add users (e-pasts `gatis.design@gmail.com`), vai apstipriniet sadarbības partnera pieprasījumu, ko nosūtīšu.",
+      "**GitHub / GitLab:** pievienojiet GitHub lietotāju `GatisD` lapas repozitorijam ar **Write** tiesībām (GitLab - **Developer**).",
+      "**Lovable:** uzaiciniet `gatis.design@gmail.com` savā Lovable Workspace ar lomu **Editor**.",
+      "**Wix vai Webflow:** uzaiciniet `gatis.design@gmail.com` kā administratoru.",
       "**Cita sistēma:** ierakstiet, kāda tā ir un kā tajā pievieno lietotāju.",
       "Ja nezināt, kāda sistēma ir jūsu lapai, atzīmējiet „Vajag palīdzību” - kopā to noskaidrosim.",
     ],

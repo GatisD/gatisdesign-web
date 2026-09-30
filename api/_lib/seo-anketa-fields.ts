@@ -53,12 +53,16 @@ export const CHOICES = {
   cms: {
     wordpress: "WordPress",
     shopify: "Shopify",
+    kods: "GitHub / GitLab",
+    lovable: "Lovable",
     wix: "Wix",
     webflow: "Webflow",
     cita: "Cita",
     nezinu: "Nezinu",
   },
   cenasPublicet: { ja: "Jā", tikaiNo: "Tikai „no X EUR”", ne: "Nē" },
+  blogs: { ja: "Jā", ne: "Nē", nezinu: "Vēl nezinu" },
+  blogsBiezums: { divi: "2", cetri: "4", vairak: "8 vai vairāk", nezinu: "Vēl nezinu" },
 } as const;
 
 export type ChoiceKey = keyof typeof CHOICES;
@@ -74,6 +78,8 @@ export const CHOICE_LABELS: Record<ChoiceKey, string> = {
   vide: "Vai drīkst labot dzīvo lapu, vai ir testa vide?",
   cms: "CMS sistēma",
   cenasPublicet: "Vai drīkst publicēt?",
+  blogs: "Vai vēlaties, lai es rakstītu arī bloga rakstus?",
+  blogsBiezums: "Cik rakstu mēnesī?",
 };
 
 /**
@@ -113,12 +119,19 @@ export const TEXT_FIELDS = {
   nozare6: { label: "Vienā teikumā: ko jūs darāt, saviem vārdiem.", max: 600, required: false, multiline: true },
 
   // 5. Materiāli, ko drīkst izmantot
-  profili: { label: "Sociālo tīklu un katalogu profili (Facebook, Instagram, LinkedIn, YouTube, firmas.lv u.c.) - adreses", max: 2000, required: false, multiline: true },
+  profili: { label: "Sociālo tīklu un katalogu profili (Facebook, Instagram, LinkedIn, YouTube, firmas.lv u. c.) - adreses", max: 2000, required: false, multiline: true },
   cenas: { label: "Cenas vai cenu diapazons", max: 1000, required: false, multiline: true },
   atsauksmes: { label: "Atsauksmes, ko drīkst citēt (saite vai teksts)", max: 3000, required: false, multiline: true },
   logotipi: { label: "Klientu logotipi vai projekti, ko drīkst rādīt", max: 2000, required: false, multiline: true },
 
-  // 6. Nosūtīšana
+  // 6. Bloga raksti (redzami tikai tad, ja blogs = "ja")
+  blogsAutors: { label: "Kā vārdā tiks publicēti raksti? Vārds, uzvārds, amats, saite uz LinkedIn profilu", max: 500, required: false, multiline: false },
+  blogsApstiprina: { label: "Kas apstiprinās melnrakstus un cik dienu laikā?", max: 300, required: false, multiline: false },
+  blogsParaugi: { label: "2-3 teksti, kas skan tā, kā runājat jūs (saites vai paši teksti)", max: 3000, required: false, multiline: true },
+  blogsFoto: { label: "Saite uz jūsu foto: projekti, produkti, komanda (Google Drive, Dropbox u. c.)", max: 600, required: false, multiline: false },
+  blogsTemas: { label: "Par ko nerakstīt?", max: 1000, required: false, multiline: false },
+
+  // 7. Nosūtīšana
   komentars: { label: "Cits komentārs", max: 3000, required: false, multiline: true },
 } as const;
 
@@ -135,7 +148,7 @@ export const CONSENT_LINK = "Privātuma politika";
 export const ANKETA_HONEYPOT_FIELD = "mezgls" as const;
 
 /** Neapstrādāta pieprasījuma augšējā robeža baitos. Summa no lauku max ar rezervi. */
-export const ANKETA_BODY_BYTES_MAX = 96_000;
+export const ANKETA_BODY_BYTES_MAX = 112_000;
 
 /** Sadaļas vēstulē un lapā - viena secība. */
 export const SECTIONS = [
@@ -144,5 +157,6 @@ export const SECTIONS = [
   { id: "tirgus", title: "3. Tirgus un valoda" },
   { id: "nozare", title: "4. Par nozari" },
   { id: "materiali", title: "5. Materiāli, ko drīkst izmantot" },
-  { id: "nosutisana", title: "6. Nosūtīšana" },
+  { id: "blogs", title: "6. Bloga raksti" },
+  { id: "nosutisana", title: "7. Nosūtīšana" },
 ] as const;

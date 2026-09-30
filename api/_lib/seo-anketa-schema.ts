@@ -71,6 +71,8 @@ export const anketaSchema = z.object({
   vide: optionalChoice(choiceValues("vide")),
   cms: optionalChoice(choiceValues("cms")),
   cenasPublicet: optionalChoice(choiceValues("cenasPublicet")),
+  blogs: optionalChoice(choiceValues("blogs")),
+  blogsBiezums: optionalChoice(choiceValues("blogsBiezums")),
   piekrisana: z
     .boolean({ required_error: "consentRequired", invalid_type_error: "consentRequired" })
     .refine((value) => value === true, { message: "consentRequired" }),
@@ -89,6 +91,8 @@ export type AnketaData = Record<TextField, string> &
     vide?: string;
     cms?: string;
     cenasPublicet?: string;
+    blogs?: string;
+    blogsBiezums?: string;
     piekrisana: boolean;
     [ANKETA_HONEYPOT_FIELD]?: string;
   };
@@ -101,6 +105,8 @@ export type AnketaFormValues = Record<TextField, string> &
     vide: string | null;
     cms: string | null;
     cenasPublicet: string | null;
+    blogs: string | null;
+    blogsBiezums: string | null;
     piekrisana: boolean;
     [ANKETA_HONEYPOT_FIELD]: string;
   };

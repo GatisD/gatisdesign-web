@@ -6,6 +6,7 @@ import {
   ACCESS_TOOLS,
   ANKETA_BODY_BYTES_MAX,
   ANKETA_HONEYPOT_FIELD,
+  CHOICE_LABELS,
   TEXT_FIELDS,
   accessField,
 } from "./seo-anketa-fields.js";
@@ -81,7 +82,8 @@ describe("SEO anketas serveris", () => {
       "3. TIRGUS UN VALODA",
       "4. PAR NOZARI",
       "5. MATERIĀLI, KO DRĪKST IZMANTOT",
-      "6. NOSŪTĪŠANA",
+      "6. BLOGA RAKSTI",
+      "7. NOSŪTĪŠANA",
     ];
     const positions = order.map((title) => text.indexOf(title));
     expect(positions.every((p) => p >= 0)).toBe(true);
@@ -90,6 +92,35 @@ describe("SEO anketas serveris", () => {
     expect(text).toContain(`${TEXT_FIELDS.juridiskais.label}: -`);
     expect(text).toContain(`${TEXT_FIELDS.nozare1.label}\n-`);
     expect(html).toContain("1. Uzņēmums un kontaktpersona");
+  });
+
+  it("bloga jautājumi vēstulē ir tikai pie blogs = ja", async () => {
+    const answers = { blogsAutors: "Anna Testa, īpašniece", blogsBiezums: "cetri", blogsTemas: "Nerakstām par cenām" };
+
+    const ne = recorder();
+    await handleSeoAnketa({ payload: { ...validPayload, ...answers, blogs: "ne" }, ip: freshIp(), config, send: ne.send });
+    expect(ne.sent[0].text).toContain(`${CHOICE_LABELS.blogs}: Nē`);
+    expect(ne.sent[0].text).not.toContain(TEXT_FIELDS.blogsAutors.label);
+    expect(ne.sent[0].text).not.toContain("Nerakstām par cenām");
+
+    const ja = recorder();
+    await handleSeoAnketa({ payload: { ...validPayload, ...answers, blogs: "ja" }, ip: freshIp(), config, send: ja.send });
+    expect(ja.sent[0].text).toContain(`${TEXT_FIELDS.blogsAutors.label}: Anna Testa, īpašniece`);
+    expect(ja.sent[0].text).toContain(`${CHOICE_LABELS.blogsBiezums}: 4`);
+    expect(ja.sent[0].text).toContain(`${TEXT_FIELDS.blogsFoto.label}: -`);
+  });
+
+  it("bloga izvēle nav obligāta, bet nederīga vērtība tiek noraidīta", async () => {
+    const ok = recorder();
+    const r1 = await handleSeoAnketa({ payload: validPayload, ip: freshIp(), config, send: ok.send });
+    expect(r1.status).toBe(200);
+    const r2 = await handleSeoAnketa({ payload: { ...validPayload, blogs: "varbut" }, ip: freshIp(), config, send: recorder().send });
+    expect(fieldsOf(r2.body).blogs).toBe("choiceInvalid");
+  });
+
+  it("CMS izvēlē ir kodēta lapa un Lovable", () => {
+    expect(anketaSchema.safeParse({ ...validPayload, cms: "kods" }).success).toBe(true);
+    expect(anketaSchema.safeParse({ ...validPayload, cms: "lovable" }).success).toBe(true);
   });
 
   it("piekļuvju tabula: katrs rīks ar savu statusu", async () => {

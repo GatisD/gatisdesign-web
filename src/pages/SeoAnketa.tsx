@@ -18,6 +18,10 @@ import {
   KONTAKTPERSONA_LEGEND,
   KONTAKTPERSONA_REQUIRED,
   NOZARE_INTRO,
+  BLOGS_INTRO,
+  BLOGS_OPENED,
+  GITHUB_USER,
+  HELP_BLOGS,
   PIEKLUVES_INTRO,
   PIEKLUVES_NOTE,
   REQUIRED_MARK,
@@ -71,7 +75,7 @@ const TURNSTILE_WAIT_MS = 20_000;
 
 type FieldName = keyof AnketaFormValues;
 
-const CHOICE_KEYS: ChoiceKey[] = ["atskaites", "ieviesejs", "vide", "cms", "cenasPublicet"];
+const CHOICE_KEYS: ChoiceKey[] = ["atskaites", "ieviesejs", "vide", "cms", "cenasPublicet", "blogs", "blogsBiezums"];
 
 function emptyValues(): AnketaFormValues {
   const values: Record<string, unknown> = {};
@@ -121,6 +125,13 @@ const FIELD_ORDER: FieldName[] = [
   "cenasPublicet",
   "atsauksmes",
   "logotipi",
+  "blogs",
+  "blogsBiezums",
+  "blogsAutors",
+  "blogsApstiprina",
+  "blogsParaugi",
+  "blogsFoto",
+  "blogsTemas",
   "komentars",
   "piekrisana",
 ];
@@ -136,6 +147,7 @@ function sectionOf(name: FieldName): SectionId {
   if (i <= FIELD_ORDER.indexOf("svarigakasLapas")) return "tirgus";
   if (i <= FIELD_ORDER.indexOf("nozare6")) return "nozare";
   if (i <= FIELD_ORDER.indexOf("logotipi")) return "materiali";
+  if (i <= FIELD_ORDER.indexOf("blogsTemas")) return "blogs";
   return "nosutisana";
 }
 
@@ -588,6 +600,8 @@ function sectionDone(id: SectionId, v: AnketaFormValues, visited: boolean): bool
       return [v.nozare1, v.nozare2, v.nozare3, v.nozare4, v.nozare5, v.nozare6].some(filled);
     case "materiali":
       return [v.profili, v.cenas, v.cenasPublicet, v.atsauksmes, v.logotipi].some(filled);
+    case "blogs":
+      return filled(v.blogs);
     case "nosutisana":
       return v.piekrisana === true;
   }
@@ -619,8 +633,9 @@ function ProgressBar({
   const activeTitle = SECTIONS.find((s) => s.id === active)?.title ?? "";
   return (
     <nav aria-label={UI.progressLabel} className="sticky top-[var(--galvene)] z-40 border-y border-line bg-ink-900/90 backdrop-blur-md">
-      <div className="mx-auto flex w-full max-w-wrap items-center gap-6 px-5 py-2 sm:px-8 lg:px-10">
-        <ol className="flex shrink-0 items-center gap-1">
+      <div className="mx-auto flex w-full max-w-wrap items-center gap-6 px-1.5 py-2 min-[360px]:px-5 sm:px-8 lg:px-10">
+        {/* 7 sadaļas: zem 360 px atkāpes un atstarpes nost, citādi pēdējais aplis nogriežas. */}
+        <ol className="flex shrink-0 items-center gap-0 min-[360px]:gap-1">
           {SECTIONS.map((s, i) => {
             const hasError = errorSections.has(s.id);
             const done = !hasError && sectionDone(s.id, values, visited.has(s.id));
@@ -719,14 +734,19 @@ function cmsStepIndexes(cms: string | null): number[] | null {
       return [0];
     case "shopify":
       return [1];
+    case "kods":
+      return [2];
+    case "lovable":
+      return [3];
     case "wix":
     case "webflow":
+      return [4];
     case "cita":
-      return [2];
+      return [5];
     case "nezinu":
-      return [0, 1, 2, 3]; // visi soļi + norāde, ko darīt
+      return [0, 1, 2, 3, 4, 5, 6]; // visi soļi + norāde, ko darīt
     default:
-      return [0, 1, 2]; // nekas nav izvēlēts - visi soļi bez "Nezinu" norādes
+      return [0, 1, 2, 3, 4, 5]; // nekas nav izvēlēts - visi soļi bez "Nezinu" norādes
   }
 }
 
@@ -865,7 +885,7 @@ export default function SeoAnketa() {
     shouldFocusError: false,
   });
 
-  const [atskaites, ieviesejs, cms] = useWatch({ control, name: ["atskaites", "ieviesejs", "cms"] });
+  const [atskaites, ieviesejs, cms, blogs] = useWatch({ control, name: ["atskaites", "ieviesejs", "cms", "blogs"] });
 
   const onSaved = useCallback((ok: boolean) => {
     if (ok) setSaved(true);
@@ -1152,7 +1172,7 @@ export default function SeoAnketa() {
                   {ACCESS_CARDS.map((card) => (
                     <AccessCardView
                       key={card.tool}
-                      card={card}
+                      card={card.tool === "cms" && cms === "kods" ? { ...card, addresses: [GITHUB_USER] } : card}
                       register={register}
                       errors={errs}
                       stepIndexes={card.tool === "cms" ? cmsStepIndexes(cms) : null}
@@ -1210,7 +1230,39 @@ export default function SeoAnketa() {
                 </FormSection>
 
                 {/* ============ 6 ============ */}
-                <FormSection id="nosutisana" title={SECTIONS[5].title}>
+                <FormSection id="blogs" title={SECTIONS[5].title} intro={<p>{BLOGS_INTRO}</p>}>
+                  <ChoiceGroup
+                    name="blogs"
+                    legend={CHOICE_LABELS.blogs}
+                    options={choiceOptions("blogs")}
+                    register={register}
+                    errors={errs}
+                  />
+                  {/* Papildu jautājumi tikai pie "Jā". Pie "Nē" tie netiek rādīti,
+                      un vēstule tos izlaiž (sk. seo-anketa-emails.ts). */}
+                  <p className="sr-only" aria-live="polite">
+                    {blogs === "ja" ? BLOGS_OPENED : ""}
+                  </p>
+                  {blogs === "ja" ? (
+                    <div className="flex flex-col gap-8 border-s border-line ps-5">
+                      <ChoiceGroup
+                        name="blogsBiezums"
+                        legend={CHOICE_LABELS.blogsBiezums}
+                        options={choiceOptions("blogsBiezums")}
+                        register={register}
+                        errors={errs}
+                      />
+                      <TextInput name="blogsAutors" register={register} errors={errs} help={HELP_BLOGS.autors} />
+                      <TextInput name="blogsApstiprina" register={register} errors={errs} help={HELP_BLOGS.apstiprina} />
+                      <TextInput name="blogsParaugi" register={register} errors={errs} />
+                      <TextInput name="blogsFoto" register={register} errors={errs} inputMode="url" />
+                      <TextInput name="blogsTemas" register={register} errors={errs} />
+                    </div>
+                  ) : null}
+                </FormSection>
+
+                {/* ============ 7 ============ */}
+                <FormSection id="nosutisana" title={SECTIONS[6].title}>
                   <TextInput name="komentars" register={register} errors={errs} />
 
                   {/* Slazds robotiem: display:none izņem to arī no autofill redzesloka,

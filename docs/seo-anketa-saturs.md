@@ -68,8 +68,11 @@ atsevišķu lietotāju, nevis dodiet savu personīgo kontu.
   (vai Editor, ja SEO spraudnim ir atsevišķas tiesības).
 - **Shopify:** Settings → Users → Add users (e-pasts `gatis.design@gmail.com`),
   vai apstipriniet sadarbības partnera pieprasījumu, ko nosūtīšu.
+- **GitHub / GitLab:** pievienojiet GitHub lietotāju `GatisD` lapas repozitorijam ar **Write** tiesībām (GitLab - **Developer**).
+- **Lovable:** uzaiciniet `gatis.design@gmail.com` savā Lovable Workspace ar lomu **Editor**.
+- **Wix vai Webflow:** uzaiciniet `gatis.design@gmail.com` kā administratoru.
 - **Cita sistēma:** ierakstiet, kāda tā ir un kā tajā pievieno lietotāju.
-Lauks: CMS sistēma *(izvēle: WordPress / Shopify / Wix / Webflow / Cita / Nezinu)*
+Lauks: CMS sistēma *(izvēle: WordPress / Shopify / GitHub / GitLab / Lovable / Wix / Webflow / Cita / Nezinu)*
 
 ### 2.4. Google Tag Manager *(tikai tad, ja jāiestata mērīšana)*
 1. tagmanager.google.com → Admin → User Management → "+" → Add users.
@@ -121,14 +124,36 @@ būs tehniski pareizs, bet nozares cilvēks tajā pamanīs kļūdas.
 
 ## 5. Materiāli, ko drīkst izmantot
 
-- Sociālo tīklu un katalogu profili (Facebook, Instagram, LinkedIn, YouTube, firmas.lv u.c.) - adreses
+- Sociālo tīklu un katalogu profili (Facebook, Instagram, LinkedIn, YouTube, firmas.lv u. c.) - adreses
 - Cenas vai cenu diapazons. Vai drīkst publicēt? *(izvēle: jā / tikai „no X EUR” / nē)*
 - Atsauksmes, ko drīkst citēt (saite vai teksts)
 - Klientu logotipi vai projekti, ko drīkst rādīt
 
 ---
 
-## 6. Nosūtīšana
+## 6. Bloga raksti
+
+Ievads: Ja bloga rakstus nepasūtāt, atzīmējiet „Nē” un ejiet tālāk. Neviens jautājums šajā
+sadaļā nav obligāts.
+
+- Vai vēlaties, lai es rakstītu arī bloga rakstus? *(izvēle: Jā / Nē / Vēl nezinu)*
+
+Tikai pie „Jā” parādās (atkāpts bloks, ekrāna lasītājam: „Parādījās papildu jautājumi par blogu.”):
+- Cik rakstu mēnesī? *(izvēle: 2 / 4 / 8 vai vairāk / Vēl nezinu)*
+- Kā vārdā tiks publicēti raksti? Vārds, uzvārds, amats, saite uz LinkedIn profilu
+  Palīgteksts: Rakstam ar īstu autoru vairāk uzticas gan lasītāji, gan Google un AI meklētāji.
+- Kas apstiprinās melnrakstus un cik dienu laikā?
+  Palīgteksts: Bez jūsu apstiprinājuma neviens raksts netiks publicēts.
+- 2-3 teksti, kas skan tā, kā runājat jūs (saites vai paši teksti)
+- Saite uz jūsu foto: projekti, produkti, komanda (Google Drive, Dropbox u. c.)
+- Par ko nerakstīt?
+
+Vēstulē Gatim bloga jautājumi ir tikai pie „Jā”.
+(2026-09-30 ui-ux-pro: izņemti „raksta mērķis” un „esošais blogs” kompaktuma dēļ.)
+
+---
+
+## 7. Nosūtīšana
 
 - Cits komentārs
 - Piekrišana: Piekrītu, ka šie dati tiks izmantoti sadarbības sagatavošanai.
