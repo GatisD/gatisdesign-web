@@ -155,8 +155,9 @@ Tikai pie „Jā” parādās (atkāpts bloks, ekrāna lasītājam: „Parādīj
   Palīgteksts: Rakstam ar īstu autoru vairāk uzticas gan lasītāji, gan Google un AI meklētāji.
 - Kas apstiprinās melnrakstus un cik dienu laikā?
   Palīgteksts: Bez jūsu apstiprinājuma neviens raksts netiks publicēts.
-- Ko lasītājam vajadzētu izdarīt pēc raksta - aizpildīt formu, piezvanīt, pierakstīties vai izmantot kalkulatoru?
-  Palīgteksts: Ja ir saite uz formu vai pieraksta kalendāru, ielīmējiet to.
+- Ko lasītājam vajadzētu izdarīt pēc raksta? *(izvēle: Aizpildīt formu / Piezvanīt / Rezervēt laiku / Izmantot kalkulatoru / Vēl nezinu)*
+  Pie formas, pieraksta vai kalkulatora parādās lauks: Saite uz formu, pieraksta kalendāru vai kalkulatoru
+  (2026-10-13: teksta lauks -> čipi, ui-ux-pro P2 + Gata OK)
 - 2-3 teksti, kas skan tā, kā runājat jūs (saites vai paši teksti)
 - Saite uz jūsu foto: projekti, produkti, komanda (Google Drive, Dropbox u. c.)
 - Par ko nerakstīt?

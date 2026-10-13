@@ -61,7 +61,6 @@ export const BLOGS_INTRO =
 export const HELP_BLOGS = {
   autors: "Rakstam ar īstu autoru vairāk uzticas gan lasītāji, gan Google un AI meklētāji.",
   apstiprina: "Bez jūsu apstiprinājuma neviens raksts netiks publicēts.",
-  darbiba: "Ja ir saite uz formu vai pieraksta kalendāru, ielīmējiet to.",
 } as const;
 
 export type AccessCard = {

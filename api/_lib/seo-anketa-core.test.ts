@@ -130,7 +130,8 @@ describe("SEO anketas serveris", () => {
         nozare8: "Privātmāju īpašnieki Pierīgā",
         avoti: "https://doi.org/10.0000/testa",
         blogs: "ja",
-        blogsDarbiba: "Pieteikuma forma /kontakti",
+        blogsDarbiba: "forma",
+        blogsDarbibaSaite: "https://testakoks.lv/kontakti",
       },
       ip: freshIp(),
       config,
@@ -147,7 +148,7 @@ describe("SEO anketas serveris", () => {
     expect(between(S[3], S[4], `${TEXT_FIELDS.nozare7.label}\nUzstādām 3 dienās`)).toBe(true);
     expect(between(S[3], S[4], `${TEXT_FIELDS.nozare8.label}\nPrivātmāju īpašnieki`)).toBe(true);
     expect(between(S[4], S[5], `${TEXT_FIELDS.avoti.label}\nhttps://doi.org/10.0000/testa`)).toBe(true);
-    expect(between(S[5], S[6], `${TEXT_FIELDS.blogsDarbiba.label}: Pieteikuma forma`)).toBe(true);
+    expect(between(S[5], S[6], `${CHOICE_LABELS.blogsDarbiba}: ${CHOICES.blogsDarbiba.forma} https://testakoks.lv/kontakti`)).toBe(true);
   });
 
   it("jaunie lauki nav obligāti; nederīga akcepta vērtība tiek noraidīta; CTA tikai pie blogs = ja", async () => {
@@ -160,8 +161,21 @@ describe("SEO anketas serveris", () => {
     expect(fieldsOf(bad.body).akcepts).toBe("choiceInvalid");
 
     const ne = recorder();
-    await handleSeoAnketa({ payload: { ...validPayload, blogs: "ne", blogsDarbiba: "Forma" }, ip: freshIp(), config, send: ne.send });
-    expect(ne.sent[0].text).not.toContain(TEXT_FIELDS.blogsDarbiba.label);
+    await handleSeoAnketa({ payload: { ...validPayload, blogs: "ne", blogsDarbiba: "forma" }, ip: freshIp(), config, send: ne.send });
+    expect(ne.sent[0].text).not.toContain(CHOICE_LABELS.blogsDarbiba);
+
+    // CTA ir izvēle (ui-ux-pro P2, Gatis 2026-10-13): brīvs teksts tiek noraidīts; saite tikai pie formas/pieraksta/kalkulatora.
+    const txt = await handleSeoAnketa({ payload: { ...validPayload, blogs: "ja", blogsDarbiba: "Pieteikuma forma" }, ip: freshIp(), config, send: recorder().send });
+    expect(fieldsOf(txt.body).blogsDarbiba).toBe("choiceInvalid");
+    const zvans = recorder();
+    await handleSeoAnketa({
+      payload: { ...validPayload, blogs: "ja", blogsDarbiba: "zvans", blogsDarbibaSaite: "https://atlicis.lv" },
+      ip: freshIp(),
+      config,
+      send: zvans.send,
+    });
+    expect(zvans.sent[0].text).toContain(`${CHOICE_LABELS.blogsDarbiba}: ${CHOICES.blogsDarbiba.zvans}\n`);
+    expect(zvans.sent[0].text).not.toContain("https://atlicis.lv");
   });
 
   it("CMS izvēlē ir kodēta lapa un Lovable", () => {

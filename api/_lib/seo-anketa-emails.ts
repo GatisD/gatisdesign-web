@@ -5,6 +5,7 @@ import {
   ACCESS_TOOL_LABELS,
   CHOICES,
   CHOICE_LABELS,
+  DARBIBA_AR_SAITI,
   SECTIONS,
   TEXT_FIELDS,
   accessField,
@@ -105,7 +106,8 @@ function sectionRows(data: AnketaData): Array<{ title: string; rows: Row[] }> {
               choice(data, "blogsBiezums"),
               text(data, "blogsAutors"),
               text(data, "blogsApstiprina"),
-              text(data, "blogsDarbiba"),
+              // Saite tikai pie variantiem, kam tā ir jēga - pie "Piezvanīt" paslēpta lauka atliekas neizskatās pēc atbildes.
+              choice(data, "blogsDarbiba", DARBIBA_AR_SAITI.includes(data.blogsDarbiba ?? "") ? data.blogsDarbibaSaite : ""),
               text(data, "blogsParaugi"),
               text(data, "blogsFoto"),
               text(data, "blogsTemas"),

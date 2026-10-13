@@ -68,9 +68,19 @@ export const CHOICES = {
   cenasPublicet: { ja: "Jā", tikaiNo: "Tikai „no X EUR”", ne: "Nē" },
   blogs: { ja: "Jā", ne: "Nē", nezinu: "Vēl nezinu" },
   blogsBiezums: { divi: "2", cetri: "4", vairak: "8 vai vairāk", nezinu: "Vēl nezinu" },
+  blogsDarbiba: {
+    forma: "Aizpildīt formu",
+    zvans: "Piezvanīt",
+    pieraksts: "Rezervēt laiku",
+    kalkulators: "Izmantot kalkulatoru",
+    nezinu: "Vēl nezinu",
+  },
 } as const;
 
 export type ChoiceKey = keyof typeof CHOICES;
+
+/** CTA varianti (blogsDarbiba), pie kuriem anketa prasa saiti - lapa rāda lauku, vēstule to pievieno. */
+export const DARBIBA_AR_SAITI: readonly string[] = ["forma", "pieraksts", "kalkulators"];
 
 export function choiceValues<K extends ChoiceKey>(key: K): [keyof (typeof CHOICES)[K] & string, ...Array<keyof (typeof CHOICES)[K] & string>] {
   return Object.keys(CHOICES[key]) as [keyof (typeof CHOICES)[K] & string, ...Array<keyof (typeof CHOICES)[K] & string>];
@@ -86,6 +96,7 @@ export const CHOICE_LABELS: Record<ChoiceKey, string> = {
   cenasPublicet: "Vai drīkst publicēt?",
   blogs: "Vai vēlaties, lai es rakstītu arī bloga rakstus?",
   blogsBiezums: "Cik rakstu mēnesī?",
+  blogsDarbiba: "Ko lasītājam vajadzētu izdarīt pēc raksta?",
 };
 
 /**
@@ -138,7 +149,7 @@ export const TEXT_FIELDS = {
   // 6. Bloga raksti (redzami tikai tad, ja blogs = "ja")
   blogsAutors: { label: "Kā vārdā tiks publicēti raksti? Vārds, uzvārds, amats, saite uz LinkedIn profilu", max: 500, required: false, multiline: false },
   blogsApstiprina: { label: "Kas apstiprinās melnrakstus un cik dienu laikā?", max: 300, required: false, multiline: false },
-  blogsDarbiba: { label: "Ko lasītājam vajadzētu izdarīt pēc raksta - aizpildīt formu, piezvanīt, pierakstīties vai izmantot kalkulatoru?", max: 500, required: false, multiline: false },
+  blogsDarbibaSaite: { label: "Saite uz formu, pieraksta kalendāru vai kalkulatoru", max: 500, required: false, multiline: false },
   blogsParaugi: { label: "2-3 teksti, kas skan tā, kā runājat jūs (saites vai paši teksti)", max: 3000, required: false, multiline: true },
   blogsFoto: { label: "Saite uz jūsu foto: projekti, produkti, komanda (Google Drive, Dropbox u. c.)", max: 600, required: false, multiline: false },
   blogsTemas: { label: "Par ko nerakstīt?", max: 1000, required: false, multiline: false },

@@ -43,6 +43,7 @@ import {
   CHOICE_LABELS,
   CONSENT_LABEL,
   CONSENT_LINK,
+  DARBIBA_AR_SAITI,
   GATIS_ACCOUNT,
   SECTIONS,
   TEXT_FIELDS,
@@ -75,7 +76,7 @@ const TURNSTILE_WAIT_MS = 20_000;
 
 type FieldName = keyof AnketaFormValues;
 
-const CHOICE_KEYS: ChoiceKey[] = ["atskaites", "ieviesejs", "vide", "akcepts", "cms", "cenasPublicet", "blogs", "blogsBiezums"];
+const CHOICE_KEYS: ChoiceKey[] = ["atskaites", "ieviesejs", "vide", "akcepts", "cms", "cenasPublicet", "blogs", "blogsBiezums", "blogsDarbiba"];
 
 function emptyValues(): AnketaFormValues {
   const values: Record<string, unknown> = {};
@@ -135,6 +136,7 @@ const FIELD_ORDER: FieldName[] = [
   "blogsAutors",
   "blogsApstiprina",
   "blogsDarbiba",
+  "blogsDarbibaSaite",
   "blogsParaugi",
   "blogsFoto",
   "blogsTemas",
@@ -182,6 +184,12 @@ function domIdFor(name: FieldName): string {
  * Melnraksts
  * ------------------------------------------------------------------ */
 
+function isKnownValue(key: string, value: string): boolean {
+  if (key.startsWith("piekluve_")) return (ACCESS_STATUSES as readonly string[]).includes(value);
+  if ((CHOICE_KEYS as string[]).includes(key)) return value in (CHOICES[key as ChoiceKey] as Record<string, string>);
+  return true;
+}
+
 function readDraft(): Partial<AnketaFormValues> | null {
   try {
     const raw = window.localStorage.getItem(DRAFT_KEY);
@@ -197,7 +205,9 @@ function readDraft(): Partial<AnketaFormValues> | null {
       const expected = known[key];
       if (typeof expected === "boolean" && typeof value === "boolean") out[key] = value;
       else if (typeof expected === "string" && typeof value === "string") out[key] = value;
-      else if (expected === null && (typeof value === "string" || value === null)) out[key] = value;
+      // Izvēlei tikai zināma vērtība: lauks, kas agrāk bija teksts (blogsDarbiba līdz 2026-10-13), neielīst kā nederīga izvēle.
+      else if (expected === null && value === null) out[key] = value;
+      else if (expected === null && typeof value === "string" && isKnownValue(key, value)) out[key] = value;
     }
     return out as Partial<AnketaFormValues>;
   } catch {
@@ -903,7 +913,10 @@ export default function SeoAnketa() {
     shouldFocusError: false,
   });
 
-  const [atskaites, ieviesejs, cms, blogs] = useWatch({ control, name: ["atskaites", "ieviesejs", "cms", "blogs"] });
+  const [atskaites, ieviesejs, cms, blogs, blogsDarbiba] = useWatch({
+    control,
+    name: ["atskaites", "ieviesejs", "cms", "blogs", "blogsDarbiba"],
+  });
 
   const onSaved = useCallback((ok: boolean) => {
     if (ok) setSaved(true);
@@ -1163,6 +1176,7 @@ export default function SeoAnketa() {
                     register={register}
                     errors={errs}
                     help={HELP.ieviesejs}
+                    stacked
                   >
                     {ieviesejs === "programmetajs" ? (
                       <input
@@ -1285,7 +1299,19 @@ export default function SeoAnketa() {
                       />
                       <TextInput name="blogsAutors" register={register} errors={errs} help={HELP_BLOGS.autors} />
                       <TextInput name="blogsApstiprina" register={register} errors={errs} help={HELP_BLOGS.apstiprina} />
-                      <TextInput name="blogsDarbiba" register={register} errors={errs} help={HELP_BLOGS.darbiba} />
+                      <ChoiceGroup
+                        name="blogsDarbiba"
+                        legend={CHOICE_LABELS.blogsDarbiba}
+                        options={choiceOptions("blogsDarbiba")}
+                        register={register}
+                        errors={errs}
+                      >
+                        {blogsDarbiba && DARBIBA_AR_SAITI.includes(blogsDarbiba) ? (
+                          <div className="mt-4">
+                            <TextInput name="blogsDarbibaSaite" register={register} errors={errs} inputMode="url" />
+                          </div>
+                        ) : null}
+                      </ChoiceGroup>
                       <TextInput name="blogsParaugi" register={register} errors={errs} />
                       <TextInput name="blogsFoto" register={register} errors={errs} inputMode="url" />
                       <TextInput name="blogsTemas" register={register} errors={errs} />
