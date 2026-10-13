@@ -6,6 +6,7 @@ import {
   ACCESS_TOOLS,
   ANKETA_BODY_BYTES_MAX,
   ANKETA_HONEYPOT_FIELD,
+  CHOICES,
   CHOICE_LABELS,
   TEXT_FIELDS,
   accessField,
@@ -116,6 +117,51 @@ describe("SEO anketas serveris", () => {
     expect(r1.status).toBe(200);
     const r2 = await handleSeoAnketa({ payload: { ...validPayload, blogs: "varbut" }, ip: freshIp(), config, send: recorder().send });
     expect(fieldsOf(r2.body).blogs).toBe("choiceInvalid");
+  });
+
+  it("jaunie lauki (Snoika anketas salīdzinājums 2026-10-13) nonāk savās sadaļās", async () => {
+    const mail = recorder();
+    await handleSeoAnketa({
+      payload: {
+        ...validPayload,
+        kontaktsRezerve: "Pēteris Testa, peteris@testakoks.lv",
+        akcepts: "tehniskie",
+        nozare7: "Uzstādām 3 dienās, konkurents - 3 nedēļās",
+        nozare8: "Privātmāju īpašnieki Pierīgā",
+        avoti: "https://doi.org/10.0000/testa",
+        blogs: "ja",
+        blogsDarbiba: "Pieteikuma forma /kontakti",
+      },
+      ip: freshIp(),
+      config,
+      send: mail.send,
+    });
+    const { text } = mail.sent[0];
+    const between = (from: string, to: string, needle: string) => {
+      const i = text.indexOf(needle);
+      return i > text.indexOf(from) && i < text.indexOf(to);
+    };
+    const S = ["1. UZŅĒMUMS", "2. PIEKĻUVES", "3. TIRGUS", "4. PAR NOZARI", "5. MATERIĀLI", "6. BLOGA", "7. NOSŪTĪŠANA"];
+    expect(between(S[0], S[1], `${TEXT_FIELDS.kontaktsRezerve.label}: Pēteris Testa`)).toBe(true);
+    expect(between(S[0], S[1], `${CHOICE_LABELS.akcepts}: ${CHOICES.akcepts.tehniskie}`)).toBe(true);
+    expect(between(S[3], S[4], `${TEXT_FIELDS.nozare7.label}\nUzstādām 3 dienās`)).toBe(true);
+    expect(between(S[3], S[4], `${TEXT_FIELDS.nozare8.label}\nPrivātmāju īpašnieki`)).toBe(true);
+    expect(between(S[4], S[5], `${TEXT_FIELDS.avoti.label}\nhttps://doi.org/10.0000/testa`)).toBe(true);
+    expect(between(S[5], S[6], `${TEXT_FIELDS.blogsDarbiba.label}: Pieteikuma forma`)).toBe(true);
+  });
+
+  it("jaunie lauki nav obligāti; nederīga akcepta vērtība tiek noraidīta; CTA tikai pie blogs = ja", async () => {
+    const empty = recorder();
+    await handleSeoAnketa({ payload: validPayload, ip: freshIp(), config, send: empty.send });
+    expect(empty.sent[0].text).toContain(`${CHOICE_LABELS.akcepts}: -`);
+    expect(empty.sent[0].text).toContain(`${TEXT_FIELDS.nozare7.label}\n-`);
+
+    const bad = await handleSeoAnketa({ payload: { ...validPayload, akcepts: "viss-bez-jautasanas" }, ip: freshIp(), config, send: recorder().send });
+    expect(fieldsOf(bad.body).akcepts).toBe("choiceInvalid");
+
+    const ne = recorder();
+    await handleSeoAnketa({ payload: { ...validPayload, blogs: "ne", blogsDarbiba: "Forma" }, ip: freshIp(), config, send: ne.send });
+    expect(ne.sent[0].text).not.toContain(TEXT_FIELDS.blogsDarbiba.label);
   });
 
   it("CMS izvēlē ir kodēta lapa un Lovable", () => {

@@ -29,6 +29,7 @@ Ja uz kādu jautājumu atbildes nav, atstājiet tukšu. Tukšs lauks ir labāks 
 - Adrese, kā tai jāparādās Google (iela, pilsēta, pasta indekss)
 - Tālrunis vienā formātā, piemēram, +371 20000000
 - Kontaktpersona: vārds, amats, e-pasts *(obligāts: vārds un e-pasts)*
+- Kas aizvieto kontaktpersonu prombūtnes laikā? Vārds un e-pasts
 - Kur sūtīt atskaites: e-pastā / citur (norādiet)
 - Kas ievieš izmaiņas mājaslapas kodā? *(izvēle)*
   - Paši - mums ir pieeja lapas administrācijai
@@ -37,6 +38,11 @@ Ja uz kādu jautājumu atbildes nav, atstājiet tukšu. Tukšs lauks ir labāks 
   Palīgteksts: Šis ir svarīgākais jautājums anketā. No atbildes atkarīgs, vai labojumus
   ieviešu es vai sagatavoju uzdevumu jūsu programmētājam.
 - Vai drīkst labot dzīvo lapu, vai ir testa vide? *(izvēle: dzīvo / ir testa vide / nezinu)*
+- Ko drīkstu darīt nejautājot? *(izvēle)*
+  - Tehniskus labojumus un aprakstus meklētājiem - bez jautāšanas; jaunus tekstus un cenas - tikai ar mūsu akceptu
+  - Katru izmaiņu - tikai ar mūsu akceptu
+  - Vēl nezinām - izrunāsim
+  Palīgteksts: Vienojamies vienreiz, lai katrs sīkums nebūtu jāsaskaņo atsevišķi.
 
 ---
 
@@ -119,6 +125,10 @@ būs gramatiski pareizs, bet cilvēks no jūsu nozares tajā pamanīs neprecizit
 4. Trīs galvenie konkurenti. Vai kāds no tiem ir arī jūsu partneris vai pārdevējs?
 5. Kādi nozares termini vai saīsinājumi jūsu tekstos pircējam būtu jāpaskaidro?
 6. Vienā teikumā: ko jūs darāt, saviem vārdiem.
+7. Kāpēc pircēji izvēlas jūs, nevis konkurentu, un kas bija izšķirošais 2-3 konkrētos gadījumos?
+8. Kas pie jums pērk (privātpersonas vai uzņēmumi, kāda nozare, kāds amats), un kādus pircējus vēlaties vairāk?
+
+(7.-8. pievienoti 2026-10-13 pēc Snoika anketas salīdzinājuma; atslēgas `nozare7`/`nozare8` sakrīt ar seo-tools brifs.json.)
 
 ---
 
@@ -128,6 +138,7 @@ būs gramatiski pareizs, bet cilvēks no jūsu nozares tajā pamanīs neprecizit
 - Cenas vai cenu diapazons. Vai drīkst publicēt? *(izvēle: jā / tikai „no X EUR” / nē)*
 - Atsauksmes, ko drīkst citēt (saite vai teksts)
 - Klientu logotipi vai projekti, ko drīkst rādīt
+- Publikācijas, pētījumi un nozares avoti (asociācijas, standarti), uz kuriem drīkst atsaukties - saites
 
 ---
 
@@ -144,6 +155,8 @@ Tikai pie „Jā” parādās (atkāpts bloks, ekrāna lasītājam: „Parādīj
   Palīgteksts: Rakstam ar īstu autoru vairāk uzticas gan lasītāji, gan Google un AI meklētāji.
 - Kas apstiprinās melnrakstus un cik dienu laikā?
   Palīgteksts: Bez jūsu apstiprinājuma neviens raksts netiks publicēts.
+- Ko lasītājam vajadzētu izdarīt pēc raksta - aizpildīt formu, piezvanīt, pierakstīties vai izmantot kalkulatoru?
+  Palīgteksts: Ja ir saite uz formu vai pieraksta kalendāru, ielīmējiet to.
 - 2-3 teksti, kas skan tā, kā runājat jūs (saites vai paši teksti)
 - Saite uz jūsu foto: projekti, produkti, komanda (Google Drive, Dropbox u. c.)
 - Par ko nerakstīt?

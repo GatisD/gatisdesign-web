@@ -28,6 +28,7 @@ export const ANKETA_META_DESCRIPTION =
 export const HELP = {
   ieviesejs:
     "Šis ir svarīgākais jautājums anketā. No atbildes atkarīgs, vai labojumus ieviešu es vai sagatavoju uzdevumu jūsu programmētājam.",
+  akcepts: "Vienojamies vienreiz, lai katrs sīkums nebūtu jāsaskaņo atsevišķi.",
   tirgi: "No šīs atbildes atkarīgs, kur mēru pozīcijas un kādā valodā jāraksta.",
   pircejuVardi:
     "Piemēram, viens un tas pats produkts vienā valstī ir „worktop”, citā - „countertop”. Pierakstiet vārdus, ko dzirdat no klientiem, ne tos, ko lietojat paši.",
@@ -60,6 +61,7 @@ export const BLOGS_INTRO =
 export const HELP_BLOGS = {
   autors: "Rakstam ar īstu autoru vairāk uzticas gan lasītāji, gan Google un AI meklētāji.",
   apstiprina: "Bez jūsu apstiprinājuma neviens raksts netiks publicēts.",
+  darbiba: "Ja ir saite uz formu vai pieraksta kalendāru, ielīmējiet to.",
 } as const;
 
 export type AccessCard = {

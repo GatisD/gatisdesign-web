@@ -75,7 +75,7 @@ const TURNSTILE_WAIT_MS = 20_000;
 
 type FieldName = keyof AnketaFormValues;
 
-const CHOICE_KEYS: ChoiceKey[] = ["atskaites", "ieviesejs", "vide", "cms", "cenasPublicet", "blogs", "blogsBiezums"];
+const CHOICE_KEYS: ChoiceKey[] = ["atskaites", "ieviesejs", "vide", "akcepts", "cms", "cenasPublicet", "blogs", "blogsBiezums"];
 
 function emptyValues(): AnketaFormValues {
   const values: Record<string, unknown> = {};
@@ -100,11 +100,13 @@ const FIELD_ORDER: FieldName[] = [
   "kontaktsVards",
   "kontaktsAmats",
   "kontaktsEpasts",
+  "kontaktsRezerve",
   "atskaites",
   "atskaitesCitur",
   "ieviesejs",
   "ieviesejsKontakts",
   "vide",
+  "akcepts",
   ...ACCESS_TOOLS.flatMap((tool): FieldName[] =>
     tool === "cms" ? ["cms", "cmsCita", accessField(tool)] : [accessField(tool)],
   ),
@@ -120,15 +122,19 @@ const FIELD_ORDER: FieldName[] = [
   "nozare4",
   "nozare5",
   "nozare6",
+  "nozare7",
+  "nozare8",
   "profili",
   "cenas",
   "cenasPublicet",
   "atsauksmes",
   "logotipi",
+  "avoti",
   "blogs",
   "blogsBiezums",
   "blogsAutors",
   "blogsApstiprina",
+  "blogsDarbiba",
   "blogsParaugi",
   "blogsFoto",
   "blogsTemas",
@@ -142,11 +148,11 @@ type SectionId = (typeof SECTIONS)[number]["id"];
 function sectionOf(name: FieldName): SectionId {
   const i = FIELD_ORDER.indexOf(name);
   if (i < 0) return "nosutisana";
-  if (i <= FIELD_ORDER.indexOf("vide")) return "uznemums";
+  if (i <= FIELD_ORDER.indexOf("akcepts")) return "uznemums";
   if (i <= FIELD_ORDER.indexOf(accessField("gbp"))) return "piekluves";
   if (i <= FIELD_ORDER.indexOf("svarigakasLapas")) return "tirgus";
-  if (i <= FIELD_ORDER.indexOf("nozare6")) return "nozare";
-  if (i <= FIELD_ORDER.indexOf("logotipi")) return "materiali";
+  if (i <= FIELD_ORDER.indexOf("nozare8")) return "nozare";
+  if (i <= FIELD_ORDER.indexOf("avoti")) return "materiali";
   if (i <= FIELD_ORDER.indexOf("blogsTemas")) return "blogs";
   return "nosutisana";
 }
@@ -471,10 +477,13 @@ function TextInput({
   } as const;
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={id} className={LABEL_TEXT}>
+      {/* Numurētam jautājumam otrā rinda sākas zem teksta, ne zem numura (ui-ux-pro 2026-10-13, P2). */}
+      <label htmlFor={id} className={number ? cn(LABEL_TEXT, "grid grid-cols-[auto_minmax(0,1fr)] items-baseline") : LABEL_TEXT}>
         {number ? <span className="me-2 font-label text-[14px] text-amber">{number}.</span> : null}
-        {label ?? spec.label}
-        {spec.required ? <RequiredMark /> : null}
+        <span>
+          {label ?? spec.label}
+          {spec.required ? <RequiredMark /> : null}
+        </span>
       </label>
       {help ? (
         <p id={`${id}-help`} className="text-[14px] leading-[1.5] text-paper-dim">
@@ -505,6 +514,7 @@ function ChoiceGroup({
   errors,
   help,
   hint,
+  stacked,
   children,
 }: {
   name: FieldName;
@@ -516,6 +526,8 @@ function ChoiceGroup({
   help?: string;
   /** Norāde zem variantiem (piem. piekļuves statusam). */
   hint?: ReactNode;
+  /** Gari varianti (teikums) - viens zem otra pilnā platumā, ne čipi rindā (ui-ux-pro 2026-10-13, P1). */
+  stacked?: boolean;
   /** Papildu lauks zem grupas (precizējums "citur", "kontakts"). */
   children?: ReactNode;
 }) {
@@ -531,12 +543,15 @@ function ChoiceGroup({
           {help}
         </p>
       ) : null}
-      <div className="flex flex-wrap gap-2.5">
+      <div className={stacked ? "flex flex-col items-stretch gap-2.5" : "flex flex-wrap gap-2.5"}>
         {options.map((opt) => (
           <label
             key={opt.value}
             id={`${name}-${opt.value}-label`}
-            className="stikls stikls-rams group inline-flex min-h-[48px] cursor-pointer items-center gap-3 rounded-field px-4 py-2.5 text-[15px] leading-[1.35] text-paper-2 hover:text-paper has-[:checked]:text-amber has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-amber"
+            className={cn(
+              stacked ? "flex w-full items-start" : "inline-flex items-center",
+              "stikls stikls-rams group min-h-[48px] cursor-pointer gap-3 rounded-field px-4 py-2.5 text-[15px] leading-[1.35] text-paper-2 hover:text-paper has-[:checked]:text-amber has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-amber",
+            )}
           >
             <input
               id={`${name}-${opt.value}`}
@@ -548,7 +563,10 @@ function ChoiceGroup({
             />
             <span
               aria-hidden="true"
-              className="flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full border border-line-strong group-has-[:checked]:border-amber"
+              className={cn(
+                stacked && "mt-px",
+                "flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full border border-line-strong group-has-[:checked]:border-amber",
+              )}
             >
               <span className="h-2 w-2 rounded-full bg-amber opacity-0 group-has-[:checked]:opacity-100" />
             </span>
@@ -597,9 +615,9 @@ function sectionDone(id: SectionId, v: AnketaFormValues, visited: boolean): bool
     case "tirgus":
       return filled(v.tirgi);
     case "nozare":
-      return [v.nozare1, v.nozare2, v.nozare3, v.nozare4, v.nozare5, v.nozare6].some(filled);
+      return [v.nozare1, v.nozare2, v.nozare3, v.nozare4, v.nozare5, v.nozare6, v.nozare7, v.nozare8].some(filled);
     case "materiali":
-      return [v.profili, v.cenas, v.cenasPublicet, v.atsauksmes, v.logotipi].some(filled);
+      return [v.profili, v.cenas, v.cenasPublicet, v.atsauksmes, v.logotipi, v.avoti].some(filled);
     case "blogs":
       return filled(v.blogs);
     case "nosutisana":
@@ -1115,6 +1133,8 @@ export default function SeoAnketa() {
                     </div>
                   </fieldset>
 
+                  <TextInput name="kontaktsRezerve" register={register} errors={errs} autoComplete="off" />
+
                   <ChoiceGroup
                     name="atskaites"
                     legend={CHOICE_LABELS.atskaites}
@@ -1165,6 +1185,16 @@ export default function SeoAnketa() {
                     register={register}
                     errors={errs}
                   />
+
+                  <ChoiceGroup
+                    name="akcepts"
+                    legend={CHOICE_LABELS.akcepts}
+                    options={choiceOptions("akcepts")}
+                    register={register}
+                    errors={errs}
+                    help={HELP.akcepts}
+                    stacked
+                  />
                 </FormSection>
 
                 {/* ============ 2 ============ */}
@@ -1207,7 +1237,7 @@ export default function SeoAnketa() {
 
                 {/* ============ 4 ============ */}
                 <FormSection id="nozare" title={SECTIONS[3].title} intro={<p>{NOZARE_INTRO}</p>}>
-                  {(["nozare1", "nozare2", "nozare3", "nozare4", "nozare5", "nozare6"] as const).map((name, i) => (
+                  {(["nozare1", "nozare2", "nozare3", "nozare4", "nozare5", "nozare6", "nozare7", "nozare8"] as const).map((name, i) => (
                     <TextInput key={name} name={name} number={i + 1} register={register} errors={errs} />
                   ))}
                 </FormSection>
@@ -1227,6 +1257,7 @@ export default function SeoAnketa() {
                   </div>
                   <TextInput name="atsauksmes" register={register} errors={errs} />
                   <TextInput name="logotipi" register={register} errors={errs} />
+                  <TextInput name="avoti" register={register} errors={errs} />
                 </FormSection>
 
                 {/* ============ 6 ============ */}
@@ -1254,6 +1285,7 @@ export default function SeoAnketa() {
                       />
                       <TextInput name="blogsAutors" register={register} errors={errs} help={HELP_BLOGS.autors} />
                       <TextInput name="blogsApstiprina" register={register} errors={errs} help={HELP_BLOGS.apstiprina} />
+                      <TextInput name="blogsDarbiba" register={register} errors={errs} help={HELP_BLOGS.darbiba} />
                       <TextInput name="blogsParaugi" register={register} errors={errs} />
                       <TextInput name="blogsFoto" register={register} errors={errs} inputMode="url" />
                       <TextInput name="blogsTemas" register={register} errors={errs} />

@@ -50,6 +50,11 @@ export const CHOICES = {
     nezinu: "Nezinu",
   },
   vide: { dzivo: "Dzīvo lapu", testa: "Ir testa vide", nezinu: "Nezinu" },
+  akcepts: {
+    tehniskie: "Tehniskus labojumus un aprakstus meklētājiem - bez jautāšanas; jaunus tekstus un cenas - tikai ar mūsu akceptu",
+    visu: "Katru izmaiņu - tikai ar mūsu akceptu",
+    nezinu: "Vēl nezinām - izrunāsim",
+  },
   cms: {
     wordpress: "WordPress",
     shopify: "Shopify",
@@ -76,6 +81,7 @@ export const CHOICE_LABELS: Record<ChoiceKey, string> = {
   atskaites: "Kur sūtīt atskaites?",
   ieviesejs: "Kas ievieš izmaiņas mājaslapas kodā?",
   vide: "Vai drīkst labot dzīvo lapu, vai ir testa vide?",
+  akcepts: "Ko drīkstu darīt nejautājot?",
   cms: "CMS sistēma",
   cenasPublicet: "Vai drīkst publicēt?",
   blogs: "Vai vēlaties, lai es rakstītu arī bloga rakstus?",
@@ -96,6 +102,7 @@ export const TEXT_FIELDS = {
   kontaktsVards: { label: "Vārds", max: 100, required: true, multiline: false },
   kontaktsAmats: { label: "Amats", max: 100, required: false, multiline: false },
   kontaktsEpasts: { label: "E-pasts", max: 200, required: true, multiline: false },
+  kontaktsRezerve: { label: "Kas aizvieto kontaktpersonu prombūtnes laikā? Vārds un e-pasts", max: 300, required: false, multiline: false },
   atskaitesCitur: { label: "Citur (norādiet)", max: 300, required: false, multiline: false },
   ieviesejsKontakts: { label: "Mūsu programmētājs vai aģentūra - kontakts", max: 300, required: false, multiline: false },
 
@@ -117,16 +124,21 @@ export const TEXT_FIELDS = {
   nozare4: { label: "Trīs galvenie konkurenti. Vai kāds no tiem ir arī jūsu partneris vai pārdevējs?", max: 2000, required: false, multiline: true },
   nozare5: { label: "Kādi nozares termini vai saīsinājumi jūsu tekstos pircējam būtu jāpaskaidro?", max: 2000, required: false, multiline: true },
   nozare6: { label: "Vienā teikumā: ko jūs darāt, saviem vārdiem.", max: 600, required: false, multiline: true },
+  // 7.-8. no Snoika anketas salīdzinājuma 2026-10-13 (nozares-brifs 1b). Atslēgas sakrīt ar seo-tools brifs.json.
+  nozare7: { label: "Kāpēc pircēji izvēlas jūs, nevis konkurentu, un kas bija izšķirošais 2-3 konkrētos gadījumos?", max: 2000, required: false, multiline: true },
+  nozare8: { label: "Kas pie jums pērk (privātpersonas vai uzņēmumi, kāda nozare, kāds amats), un kādus pircējus vēlaties vairāk?", max: 2000, required: false, multiline: true },
 
   // 5. Materiāli, ko drīkst izmantot
   profili: { label: "Sociālo tīklu un katalogu profili (Facebook, Instagram, LinkedIn, YouTube, firmas.lv u. c.) - adreses", max: 2000, required: false, multiline: true },
   cenas: { label: "Cenas vai cenu diapazons", max: 1000, required: false, multiline: true },
   atsauksmes: { label: "Atsauksmes, ko drīkst citēt (saite vai teksts)", max: 3000, required: false, multiline: true },
   logotipi: { label: "Klientu logotipi vai projekti, ko drīkst rādīt", max: 2000, required: false, multiline: true },
+  avoti: { label: "Publikācijas, pētījumi un nozares avoti (asociācijas, standarti), uz kuriem drīkst atsaukties - saites", max: 2000, required: false, multiline: true },
 
   // 6. Bloga raksti (redzami tikai tad, ja blogs = "ja")
   blogsAutors: { label: "Kā vārdā tiks publicēti raksti? Vārds, uzvārds, amats, saite uz LinkedIn profilu", max: 500, required: false, multiline: false },
   blogsApstiprina: { label: "Kas apstiprinās melnrakstus un cik dienu laikā?", max: 300, required: false, multiline: false },
+  blogsDarbiba: { label: "Ko lasītājam vajadzētu izdarīt pēc raksta - aizpildīt formu, piezvanīt, pierakstīties vai izmantot kalkulatoru?", max: 500, required: false, multiline: false },
   blogsParaugi: { label: "2-3 teksti, kas skan tā, kā runājat jūs (saites vai paši teksti)", max: 3000, required: false, multiline: true },
   blogsFoto: { label: "Saite uz jūsu foto: projekti, produkti, komanda (Google Drive, Dropbox u. c.)", max: 600, required: false, multiline: false },
   blogsTemas: { label: "Par ko nerakstīt?", max: 1000, required: false, multiline: false },

@@ -51,9 +51,11 @@ function sectionRows(data: AnketaData): Array<{ title: string; rows: Row[] }> {
         { label: "Kontaktpersona - vārds", value: data.kontaktsVards || EMPTY },
         { label: "Kontaktpersona - amats", value: data.kontaktsAmats || EMPTY },
         { label: "Kontaktpersona - e-pasts", value: data.kontaktsEpasts || EMPTY },
+        text(data, "kontaktsRezerve"),
         choice(data, "atskaites", data.atskaites === "citur" ? data.atskaitesCitur : ""),
         choice(data, "ieviesejs", data.ieviesejs === "programmetajs" ? data.ieviesejsKontakts : ""),
         choice(data, "vide"),
+        choice(data, "akcepts"),
       ],
     },
     {
@@ -79,7 +81,7 @@ function sectionRows(data: AnketaData): Array<{ title: string; rows: Row[] }> {
     },
     {
       title: SECTIONS[3].title,
-      rows: (["nozare1", "nozare2", "nozare3", "nozare4", "nozare5", "nozare6"] as const).map((k) => text(data, k)),
+      rows: (["nozare1", "nozare2", "nozare3", "nozare4", "nozare5", "nozare6", "nozare7", "nozare8"] as const).map((k) => text(data, k)),
     },
     {
       title: SECTIONS[4].title,
@@ -89,6 +91,7 @@ function sectionRows(data: AnketaData): Array<{ title: string; rows: Row[] }> {
         choice(data, "cenasPublicet"),
         text(data, "atsauksmes"),
         text(data, "logotipi"),
+        text(data, "avoti"),
       ],
     },
     {
@@ -102,6 +105,7 @@ function sectionRows(data: AnketaData): Array<{ title: string; rows: Row[] }> {
               choice(data, "blogsBiezums"),
               text(data, "blogsAutors"),
               text(data, "blogsApstiprina"),
+              text(data, "blogsDarbiba"),
               text(data, "blogsParaugi"),
               text(data, "blogsFoto"),
               text(data, "blogsTemas"),

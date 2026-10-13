@@ -69,6 +69,7 @@ export const anketaSchema = z.object({
   atskaites: optionalChoice(choiceValues("atskaites")),
   ieviesejs: optionalChoice(choiceValues("ieviesejs")),
   vide: optionalChoice(choiceValues("vide")),
+  akcepts: optionalChoice(choiceValues("akcepts")),
   cms: optionalChoice(choiceValues("cms")),
   cenasPublicet: optionalChoice(choiceValues("cenasPublicet")),
   blogs: optionalChoice(choiceValues("blogs")),
@@ -89,6 +90,7 @@ export type AnketaData = Record<TextField, string> &
     atskaites?: string;
     ieviesejs?: string;
     vide?: string;
+    akcepts?: string;
     cms?: string;
     cenasPublicet?: string;
     blogs?: string;
@@ -103,6 +105,7 @@ export type AnketaFormValues = Record<TextField, string> &
     atskaites: string | null;
     ieviesejs: string | null;
     vide: string | null;
+    akcepts: string | null;
     cms: string | null;
     cenasPublicet: string | null;
     blogs: string | null;
